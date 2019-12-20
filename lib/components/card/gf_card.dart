@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_kit/components/avatar/gf_avatar.dart';
+import 'package:ui_kit/components/button_bar/gf_button_bar.dart';
 import 'package:ui_kit/components/header_bar/gf_title_bar.dart';
 
 enum GFCardType { basic, social, image}
@@ -25,7 +26,8 @@ class GFCard extends StatelessWidget {
     this.titleTextStyle,
     this.content,
     this.image,
-    this.icon
+    this.icon,
+    this.buttonBar,
   }) : assert(elevation == null || elevation >= 0.0),
         assert(borderOnForeground != null),
         super(key: key);
@@ -83,6 +85,9 @@ class GFCard extends StatelessWidget {
   /// image widget can be used
   final Image image;
 
+  /// widget can be used to define buttons bar, see [GFButtonBar]
+  final GFButtonBar buttonBar;
+
   static const double _defaultElevation = 1.0;
   static const Clip _defaultClipBehavior = Clip.none;
 
@@ -116,11 +121,12 @@ class GFCard extends StatelessWidget {
               subTitle: subTitle,
               icon: icon,
             ),
-//            image,
-//            Padding(
-//              padding: padding,
-//              child: content,
-//            )
+            image,
+            Padding(
+              padding: padding,
+              child: content,
+            ),
+            buttonBar,
           ],
         ),
       ),
