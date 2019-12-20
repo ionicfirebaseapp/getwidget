@@ -18,7 +18,7 @@ class GFIconBadges extends StatefulWidget {
   final EdgeInsetsGeometry padding;
 
 
-  /// Create badges of all types, check out gfBadges for button badges
+  /// Create badges of all types, check out [GFBadge] for button badges
 
   const GFIconBadges({
     Key key,

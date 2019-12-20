@@ -117,7 +117,7 @@ class GFButton extends StatefulWidget {
   /// on true state default box shadow appears around button
   final bool buttonBoxShadow;
 
-  /// Create buttons of all types. check out gfIconButton for icon buttons
+  /// Create buttons of all types. check out [GFIconButton] for icon buttons
 
   const GFButton({
     Key key,

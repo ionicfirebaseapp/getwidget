@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/components/button/gf_button.dart';
 import 'package:ui_kit/components/button/gf_icon_button.dart';
-import 'package:ui_kit/components/badge/gf_badge.dart';
+import 'package:ui_kit/components/badge/gf_button_badge.dart';
 import 'package:ui_kit/components/badge/gf_icon_badge.dart';
 import 'package:ui_kit/components/avatar/gf_avatar.dart';
-import 'package:ui_kit/components/counter/gf_counter.dart';
+import 'package:ui_kit/components/badge/gf_badge.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
+import 'package:ui_kit/components/header_bar/gf_title_bar.dart';
+import 'package:ui_kit/components/image/gf_image_overlay.dart';
+import 'package:ui_kit/types/gf_type.dart';
 
 void main() => runApp(MyApp());
 
@@ -40,9 +43,35 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+
+            GFTitleBar(
+              avatar: GFAvatar(
+                child: Text("tb"),
+              ),
+              title: Text('title'),
+              subTitle: Text('subtitle'),
+              icon: GFIconButton(
+                icon: Icon(Icons.favorite_border),
+              ),
+            ),
+
+            GFCard(
+              avatar: GFAvatar(
+                child: Text("tb"),
+              ),
+              title: Text('title'),
+              subTitle: Text('subtitle'),
+              icon: GFIconButton(
+                icon: Icon(Icons.favorite_border),
+                type: GFType.transparent,
+              ),
+            ),
+
+
+
 //            GFCard(
 //              headertype: GFAtb(),
 //              po
@@ -75,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: null,
                 icon: Icon(Icons.ac_unit),
               ),
-              counterChild: GFCounter(
+              counterChild: GFBadge(
                 text: '12',
 //                color: GFColor.dark,
 //                shape: GFShape.circle,
@@ -104,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
 //              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 //              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
             ),
-            GFBadges(
+            GFButtonBadge(
               onPressed: null,
 //              position: GFIconPosition.start,
 //              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
@@ -114,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
 //              shape: GFShape.pills,
 //              type: GFType.outline,
 //              size: GFSize.small,
-            counterChild: GFCounter(
+            counterChild: GFBadge(
               child: Text("12"),
 //              color: GFColor.dark,
 //              shape: GFShape.circle,
@@ -124,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
 //              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
             ),
             ),
-            GFCounter(
+            GFBadge(
               text: '12',
 //              color: GFColor.dark,
 //              shape: GFShape.circle,
