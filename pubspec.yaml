@@ -1,7 +1,7 @@
-name: ui_kit
+name: UI_Kit
 description: A new Flutter package project.
 version: 0.0.1
-author: test <test@test.com>
+author: test <test@getflutter.dev>
 homepage: https://github.com/test
 
 environment:
