@@ -72,7 +72,7 @@ class GFIconButton extends StatefulWidget {
   /// The border side for the button's [Material].
   final BorderSide borderSide;
 
-  /// Create icon buttons of all types. check out gfButton for buttons
+  /// Create icon buttons of all types. check out [GFButton] for buttons
 
   const GFIconButton({
     Key key,

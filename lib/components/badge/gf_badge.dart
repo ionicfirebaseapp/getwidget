@@ -1,121 +1,120 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/shape/gf_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
-import 'package:ui_kit/types/gf_type.dart';
-import 'package:ui_kit/position/gf_position.dart';
 import 'package:ui_kit/colors/color.dart';
-import 'package:ui_kit/components/button/gf_button.dart';
 
-class GFBadges extends StatefulWidget {
+class GFBadge extends StatefulWidget {
 
-  /// Called when the badge is tapped or otherwise activated.
-  final VoidCallback onPressed;
+  /// The border side for the button's [Material].
+  final BorderSide border;
 
-  /// Defines the default text style, with [Material.textStyle], for the button's [child].
-  final TextStyle textStyle;
-
-  /// The border side for the badge's [Material].
-  final BorderSide borderSide;
-
-  /// The internal padding for the badge's [child].
-  final EdgeInsetsGeometry padding;
-
-  /// The shape of the badge's [Material].
+  /// Typically the counter button's shape.
   final ShapeBorder borderShape;
 
-  /// Badge type of [GFType] i.e, solid, outline, transparent
-  final GFType type;
-
-  /// Badge type of [GFShape] i.e, standard, pills, square
+  /// Counter type of [GFShape] i.e, standard, pills, square,
   final GFShape shape;
 
   /// Pass [GFColor] or [Color]
   final dynamic color;
 
-  /// Pass [GFColor] or [Color]
-  final dynamic textColor;
-
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
-  final dynamic size;
+  final GFSize size;
+
+  /// text of type [String] is alternative to child. text will get priority over child
+  final Widget child;
 
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
 
-  /// text of type [String] is alternative to child. text will get priority over child
-  final Widget counterChild;
+  /// text style of counter text
+  final TextStyle textStyle;
 
-  /// icon type of [GFPosition] i.e, start, end
-  final GFPosition position;
+  /// Pass [GFColor] or [Color]
+  final dynamic textColor;
 
-  /// Create badges of all types. check out gfIconBadges for icon badges
 
-  const GFBadges({
+  /// Create counter of all types, check out [GFBadge] for button badges and [GFIconBadge] for icon badges
+
+  const GFBadge({
     Key key,
-    @required this.onPressed,
     this.textStyle,
-    this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
     this.borderShape,
-    this.type = GFType.solid,
     this.shape = GFShape.standard,
-    this.color = GFColor.primary,
+    this.color = GFColor.secondary,
     this.textColor = GFColor.dark,
-    this.position = GFPosition.end,
     this.size = GFSize.medium,
-    this.borderSide,
-    @required this.text,
-    @required this.counterChild,
+    this.border,
+    this.text,
+    @required this.child,
   }) :
-        assert(shape != null, 'Badge shape can not be null',),
-        assert(padding != null),
+        assert(shape != null, 'Counter shape can not be null',),
         super(key: key);
 
   @override
-  _GFBadgesState createState() => _GFBadgesState();
+  _GFBadgeState createState() => _GFBadgeState();
 }
 
-class _GFBadgesState extends State<GFBadges> {
+class _GFBadgeState extends State<GFBadge> {
   Color color;
   Color textColor;
   Widget child;
-  Widget icon;
-  Function onPressed;
-  GFType type;
-  GFShape shape;
-  double size;
-  GFPosition position;
+  GFShape counterShape;
+  GFSize size;
+  double height;
+  double width;
+  double fontSize;
 
   @override
   void initState() {
     this.color = getGFColor(widget.color);
     this.textColor = getGFColor(widget.textColor);
-    this.onPressed = widget.onPressed;
-    this.type = widget.type;
-    this.shape = widget.shape;
-    this.size = getGFSize(widget.size);
-    this.position = widget.position;
+    this.child = widget.child == null ? Text(widget.text) : widget.child;
+    this.counterShape = widget.shape;
+    this.size = widget.size;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
 
-    return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: 26.0, minWidth: 98.0),
-      child: Container(
-        height: this.size,
-        child: GFButton(
-          textStyle: widget.textStyle,
-          borderSide: widget.borderSide,
-          color: this.color,
-          textColor: this.textColor,
-          text: widget.text,
-          onPressed: this.onPressed,
-          type: this.type,
-          shape: this.shape,
-          position: this.position,
-          size: this.size,
-          borderShape: widget.borderShape,
-          icon: widget.counterChild
+    final Color themeColor = Theme.of(context).colorScheme.onSurface.withOpacity(0.12);
+    final BorderSide shapeBorder = widget.border != null ? widget.border : BorderSide(color: this.color, width: 0.0,);
+
+    ShapeBorder shape;
+
+    if(this.counterShape == GFShape.pills){
+      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
+    }else if(this.counterShape == GFShape.square){
+      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0), side: shapeBorder);
+    }else if(this.counterShape == GFShape.standard){
+      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: shapeBorder);
+    }else if(this.counterShape == GFShape.circle) {
+      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0), side: shapeBorder);
+    }
+
+    if(this.size == GFSize.small){
+      this.height = 18.0; this.width = 24.0; this.fontSize = 10.0;
+    }else if(this.size == GFSize.medium){
+      this.height = 20.0; this.width = 26.0; this.fontSize = 12.0;
+    }else if(this.size == GFSize.large){
+      this.height = 24.0; this.width = 30.0; this.fontSize = 12.0;
+    }
+
+
+    return Container(
+      height: this.height,
+      width: this.counterShape == GFShape.circle ? this.height : this.width,
+      child: Material(
+        textStyle: this.textColor != null ? TextStyle(color: this.textColor, fontSize: this.fontSize): widget.textStyle,
+        shape: widget.borderShape == null ? shape : widget.borderShape,
+        color: this.color,
+        type: MaterialType.button,
+        child: Container(
+          child: Center(
+            widthFactor: 1.0,
+            heightFactor: 1.0,
+            child: this.child,
+          ),
         ),
       ),
     );

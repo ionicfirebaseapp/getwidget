@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_kit/components/avatar/gf_avatar.dart';
+import 'package:ui_kit/components/header_bar/gf_title_bar.dart';
 
 enum GFCardType { basic, social, image}
 
@@ -24,6 +25,7 @@ class GFCard extends StatelessWidget {
     this.titleTextStyle,
     this.content,
     this.image,
+    this.icon
   }) : assert(elevation == null || elevation >= 0.0),
         assert(borderOnForeground != null),
         super(key: key);
@@ -60,11 +62,14 @@ class GFCard extends StatelessWidget {
   /// gfAvatar used to create rounded user profile
   final GFAvatar avatar;
 
-  /// pass [string] as title
-  final String title;
+  /// The title to display inside the [GFTitleBar]. see [Text]
+  final Widget title;
 
-  /// pass [string] as subTitle
-  final String subTitle;
+  /// The subTitle to display inside the [GFTitleBar]. see [Text]
+  final Widget subTitle;
+
+  /// The icon to display inside the [GFTitleBar]. see [Icon]
+  final Widget icon;
 
   /// pass [style] as title's textStyle
   final TextStyle titleTextStyle;
@@ -85,43 +90,11 @@ class GFCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final CardTheme cardTheme = CardTheme.of(context);
 
-    Text gfTitle = Text(title,
-      style: titleTextStyle == null ? TextStyle(color: Colors.black87, fontSize: 18.0, fontWeight: FontWeight.w600) : titleTextStyle,
-    );
-    Text gfSubTitle = Text(subTitle,
-      style: subTitleTextStyle == null ? TextStyle(color: Colors.black45, fontSize: 14.0, fontWeight: FontWeight.w400) : subTitleTextStyle,
-    );
-
-//
-//    Widget avatarHeader = Container(
-//      padding: padding,
-//      child: Row(
-//        crossAxisAlignment: CrossAxisAlignment.center,
-//        children: <Widget>[
-//          avatar,
-//          const SizedBox(width: 12.0),
-//          Column(
-//            mainAxisAlignment: MainAxisAlignment.center,
-//            crossAxisAlignment: CrossAxisAlignment.start,
-//            children: <Widget>[
-//              gfTitle,
-//              gfSubTitle,
-//            ],
-//          )
-//        ],
-//      ),
+//    Text gfTitle = Text(title,
+//      style: titleTextStyle == null ? TextStyle(color: Colors.black87, fontSize: 18.0, fontWeight: FontWeight.w600) : titleTextStyle,
 //    );
-//
-//    Widget titleBar = Container(
-//      padding: padding,
-//      child: Column(
-//        mainAxisAlignment: MainAxisAlignment.start,
-//        crossAxisAlignment: CrossAxisAlignment.center,
-//        children: <Widget>[
-//          gfTitle,
-//          gfSubTitle,
-//        ],
-//      ),
+//    Text gfSubTitle = Text(subTitle,
+//      style: subTitleTextStyle == null ? TextStyle(color: Colors.black45, fontSize: 14.0, fontWeight: FontWeight.w400) : subTitleTextStyle,
 //    );
 
     return Container(
@@ -137,12 +110,17 @@ class GFCard extends StatelessWidget {
         clipBehavior: clipBehavior ?? cardTheme.clipBehavior ?? _defaultClipBehavior,
         child: Column(
           children: <Widget>[
-            image,
-
-            Padding(
-              padding: padding,
-              child: content,
-            )
+            GFTitleBar(
+              avatar: avatar,
+              title: title,
+              subTitle: subTitle,
+              icon: icon,
+            ),
+//            image,
+//            Padding(
+//              padding: padding,
+//              child: content,
+//            )
           ],
         ),
       ),
