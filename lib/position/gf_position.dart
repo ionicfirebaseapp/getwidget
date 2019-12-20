@@ -1,0 +1,1 @@
+enum GFPosition { start, end }
