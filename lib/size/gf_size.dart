@@ -1,4 +1,4 @@
-enum GFSize { small, medium, large, }
+enum GFSize { small, medium, large }
 
 const double SMALL = 28.0;
 const double MEDIUM = 36.0;
@@ -26,7 +26,3 @@ double getGFSize(dynamic size) {
     }
   }
 }
-
-
-
-

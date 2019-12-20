@@ -3,18 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:ui_kit/components/avatar/gf_avatar.dart';
 
 class GFTitleBar extends StatelessWidget {
-
-  const GFTitleBar({
-    Key key,
-    this.color,
-    this.padding,
-    this.margin,
-    this.avatar,
-    this.title,
-    this.subTitle,
-    this.icon
-  }) : super(key: key);
-
   /// The card's background color.
   final Color color;
 
@@ -36,9 +24,19 @@ class GFTitleBar extends StatelessWidget {
   /// The icon to display inside the [GFTitleBar]. see [Icon]
   final Widget icon;
 
+  const GFTitleBar(
+      {Key key,
+      this.color,
+      this.padding,
+      this.margin,
+      this.avatar,
+      this.title,
+      this.subTitle,
+      this.icon})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-
     return ListTile(
       leading: avatar,
       title: title,
@@ -47,6 +45,3 @@ class GFTitleBar extends StatelessWidget {
     );
   }
 }
-
-
-

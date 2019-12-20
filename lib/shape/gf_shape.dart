@@ -1,2 +1,1 @@
-enum GFShape { standard, pills, square, circle}
-
+enum GFShape { standard, pills, square, circle }
