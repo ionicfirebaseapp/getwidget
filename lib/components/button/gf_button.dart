@@ -333,83 +333,79 @@ class _GFButtonState extends State<GFButton> {
           borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
     }
 
-    return Semantics(
-      container: true,
-      button: true,
-      enabled: widget.enabled,
-      child: _InputPadding(
-        minSize: minSize,
-        child: Focus(
-          focusNode: widget.focusNode,
-          onFocusChange: _handleFocusedChanged,
-          autofocus: widget.autofocus,
-          child: Container(
-            constraints: this.icon == null
-                ? BoxConstraints(minHeight: 26.0, minWidth: 88.0)
-                : BoxConstraints(minHeight: 26.0, minWidth: 98.0),
-            decoration: BoxDecoration(
-                borderRadius: widget.shape == GFShape.pills
-                    ? BorderRadius.circular(50.0)
-                    : widget.shape == GFShape.standard
-                        ? BorderRadius.circular(5.0)
-                        : BorderRadius.zero,
-                boxShadow: [
-                  widget.boxShadow == null && widget.buttonBoxShadow == true
-                      ? BoxShadow(
-                          color: this.color.withOpacity(0.4),
-                          blurRadius: 1.5,
-                          spreadRadius: 2.0,
-                          offset: Offset.zero,
-                        )
-                      : widget.boxShadow != null
-                          ? widget.boxShadow
-                          : BoxShadow(
-                              color: Theme.of(context).canvasColor,
-                              blurRadius: 0.0,
-                              spreadRadius: 0.0,
-                              offset: Offset.zero,
-                            )
-                ]),
-            child: Material(
-              textStyle: widget.textStyle == null
-                  ? TextStyle(color: this.textColor, fontSize: 14)
-                  : widget.textStyle,
-              shape: widget.type == GFType.transparent
-                  ? null
-                  : widget.borderShape == null ? shape : widget.borderShape,
-              color: widget.type != GFType.outline || widget.type == null
-                  ? this.color
-                  : Theme.of(context).canvasColor,
-              type: widget.type == GFType.transparent
-                  ? MaterialType.transparency
-                  : MaterialType.button,
-              animationDuration: widget.animationDuration,
-              clipBehavior: widget.clipBehavior,
-              child: InkWell(
-                onHighlightChanged: _handleHighlightChanged,
-                splashColor: widget.splashColor,
-                highlightColor: widget.highlightColor,
-                focusColor: widget.focusColor,
-                hoverColor: widget.hoverColor,
-                onHover: _handleHoveredChanged,
-                onTap: widget.onPressed,
-                customBorder:
-                    widget.borderShape == null ? shape : widget.borderShape,
-                child: IconTheme.merge(
-                  data: IconThemeData(color: effectiveTextColor),
-                  child: Container(
-                    height: widget.blockButton == true
-                        ? BLOCK
-                        : widget.fullWidthButton == true ? BLOCK : this.size,
-                    width: buttonWidth(),
-                    padding: widget.padding,
-                    child: Center(
-                      widthFactor: 1.0,
-                      heightFactor: 1.0,
-                      child: this.icon != null &&
-                              (this.position == GFPosition.start ||
-                                  this.position == null)
-                          ? Row(
+//    Color _getFillColor() {
+//      if (widget.highlightElevation == null || widget.highlightElevation == 0.0)
+//        return Colors.transparent;
+//      final Color color = widget.color ?? Theme.of(context).canvasColor;
+//      final Tween<Color> colorTween = ColorTween(
+//        begin: color.withAlpha(0x00),
+//        end: color.withAlpha(0xFF),
+//      );
+//      return colorTween.evaluate(_fillAnimation);
+//    }
+
+
+      return Semantics(
+        container: true,
+        button: true,
+        enabled: widget.enabled,
+        child: _InputPadding(
+          minSize: minSize,
+          child: Focus(
+              focusNode: widget.focusNode,
+              onFocusChange: _handleFocusedChanged,
+              autofocus: widget.autofocus,
+              child: Container(
+                constraints: this.icon == null ? BoxConstraints(minHeight: 26.0, minWidth: 88.0) :
+                    BoxConstraints(minHeight: 26.0, minWidth: 98.0),
+                decoration: BoxDecoration(
+                  borderRadius: widget.shape == GFShape.pills ? BorderRadius.circular(50.0) :
+                  widget.shape == GFShape.standard ? BorderRadius.circular(5.0) : BorderRadius.zero,
+                    boxShadow: [
+                      widget.boxShadow == null && widget.buttonBoxShadow == true ? BoxShadow(
+                        color: this.color.withOpacity(0.4),
+                        blurRadius: 1.5,
+                        spreadRadius: 2.0,
+                        offset: Offset.zero,
+                      ) :
+                      widget.boxShadow != null ? widget.boxShadow :
+                      BoxShadow(
+                        color: Theme.of(context).canvasColor,
+                        blurRadius: 0.0,
+                        spreadRadius: 0.0,
+                        offset: Offset.zero,
+                      )
+                    ]
+                ),
+                child: Material(
+                  textStyle: widget.textStyle == null ? TextStyle(color: this.textColor, fontSize: 14) : widget.textStyle,
+                  shape: widget.type == GFType.transparent ? null : widget.borderShape== null ? shape : widget.borderShape,
+                  color: widget.type != GFType.outline || widget.type == null ? this.color : Theme.of(context).canvasColor,
+                  type: widget.type == GFType.transparent ? MaterialType.transparency : MaterialType.button,
+                  animationDuration: widget.animationDuration,
+                  clipBehavior: widget.clipBehavior,
+                  child: InkWell(
+                    onHighlightChanged: _handleHighlightChanged,
+                    splashColor: widget.splashColor,
+                    highlightColor: widget.highlightColor,
+                    focusColor: widget.focusColor,
+                    hoverColor: widget.hoverColor,
+                    onHover: _handleHoveredChanged,
+                    onTap: widget.onPressed,
+                    customBorder: widget.borderShape == null ? shape : widget.borderShape,
+                    child: IconTheme.merge(
+                      data: IconThemeData(color: effectiveTextColor),
+                      child: Container(
+                        height: widget.blockButton == true ? BLOCK
+                            : widget.fullWidthButton == true ? BLOCK
+                            : this.size,
+                        width: buttonWidth(),
+                        padding: widget.padding,
+                        child: Center(
+                          widthFactor: 1.0,
+                          heightFactor: 1.0,
+                          child: this.icon != null && (this.position == GFPosition.start || this.position == null)?
+                            Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 this.icon,

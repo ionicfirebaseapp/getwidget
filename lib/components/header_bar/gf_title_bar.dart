@@ -37,15 +37,11 @@ class GFTitleBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // margin: margin ?? const EdgeInsets.all(16.0),
-      // padding: padding ?? const EdgeInsets.all(12.0),
-      child: ListTile(
-        leading: avatar,
-        title: title,
-        subtitle: subTitle,
-        trailing: icon,
-      ),
+    return ListTile(
+      leading: avatar,
+      title: title,
+      subtitle: subTitle,
+      trailing: icon,
     );
   }
 }

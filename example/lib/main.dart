@@ -8,6 +8,7 @@ import 'package:ui_kit/components/badge/gf_badge.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
 import 'package:ui_kit/components/header_bar/gf_title_bar.dart';
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
+import 'package:ui_kit/components/button_bar/gf_button_bar.dart';
 import 'package:ui_kit/types/gf_type.dart';
 
 void main() => runApp(MyApp());
@@ -47,6 +48,29 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
 
+            Card(
+              child: Column(
+                children: <Widget>[
+                  Text("czsd"),
+                  Row(
+                    children: <Widget>[
+                      OutlineButton(onPressed: null, child: Text("dscds"), color: Colors.orange, ),
+                      FlatButton(onPressed: null, child: Text("dchbvj"))
+                    ],
+                  )
+                ],
+              ),
+            ),
+
+            GFButtonBar(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                GFButton(onPressed: null, child: Text("like"), icon: Icon(Icons.favorite_border), type: GFType.transparent,),
+                GFButton(onPressed: null, child: Text("comment"),),
+                GFButton(onPressed: null, child: Text("share"), icon: Icon(Icons.share), type: GFType.outline,),
+              ],
+            ),
+
             GFTitleBar(
               avatar: GFAvatar(
                 child: Text("tb"),
@@ -54,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text('title'),
               subTitle: Text('subtitle'),
               icon: GFIconButton(
+                type: GFType.transparent,
                 icon: Icon(Icons.favorite_border),
               ),
             ),
@@ -68,7 +93,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: Icon(Icons.favorite_border),
                 type: GFType.transparent,
               ),
+              image: Image.asset("lib/assets/pizza.jpeg"),
+              content: Text("Flutter "
+                  "Flutter is Google's mobile UI framework for crafting high-quality native interfaces on iOS and Android in "),
+              buttonBar: GFButtonBar(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  GFButton(onPressed: null, child: Text("favorite"), icon: Icon(Icons.favorite_border), type: GFType.transparent, ),
+                  GFButton(onPressed: null, child: Text("share"), icon: Icon(Icons.share), type: GFType.outline, ),
+                ],
+              ),
+
             ),
+
+
 
 
 
