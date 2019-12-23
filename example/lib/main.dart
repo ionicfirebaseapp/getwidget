@@ -280,29 +280,30 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
 
 
-              LabeledToggle(
-                transitionType: TextTransitionTypes.FADE,
-                rounded: true,
-                borderSize: 2.0,
-                duration: Duration(milliseconds: 500),
-                forceWidth: true,
-                value: switchValue,
-                onChanged: (v) {
-                  setState(() {
-                    switchValue = v;
-                  });
-                },
-                offBkColor: Colors.indigo,
-                onBkColor: Colors.lightGreen,
-                offText: "FALSE",
-                onText: "TRUE",
-                offThumbColor: Colors.lightGreen,
-                onThumbColor: Colors.indigo,
-                thumbSize: 30.0,
-              ),
+//              LabeledToggle(
+//                transitionType: TextTransitionTypes.FADE,
+//                rounded: true,
+//                borderSize: 2.0,
+//                duration: Duration(milliseconds: 500),
+//                forceWidth: true,
+//                value: switchValue,
+//                onChanged: (v) {
+//                  setState(() {
+//                    switchValue = v;
+//                  });
+//                },
+//                offBkColor: Colors.indigo,
+//                onBkColor: Colors.lightGreen,
+//                offText: "FALSE",
+//                onText: "TRUE",
+//                offThumbColor: Colors.lightGreen,
+//                onThumbColor: Colors.indigo,
+//                thumbSize: 30.0,
+//              ),
               LabeledToggle(
 
 //
+
                 forceWidth: true,
                 value: switchValue,
                 onChanged: (v) {
@@ -314,11 +315,15 @@ class _MyHomePageState extends State<MyHomePage> {
 //                onBkColor: Colors.white,
 //                onBorderColor: Colors.green,
 //                offBorderColor: Colors.red,
-                offText: "No",
-                onText: "YES",
+//                offText: "No",
+//                onText: "YES",
                 offThumbColor: Colors.blue,
-                onThumbColor: Colors.green,
-                thumbSize: 30.0,
+                onThumbColor: Colors.white,
+                thumbSize: 32.0,
+                onBkColor: Colors.green.withOpacity(0.80),
+
+
+
               ),
 
 
