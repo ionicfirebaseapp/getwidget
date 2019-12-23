@@ -53,13 +53,12 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
 
 
-
             GFCard(
               boxFit: BoxFit.cover,
               colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
               image: Image.asset("lib/assets/pizza.jpeg"),
 //              imageOverlay: AssetImage("lib/assets/pizza.jpeg"),
-              titlePosition: GFPosition.start,
+              titlePosition: GFPosition.end,
               title: GFTitleBar(
                 avatar: GFAvatar(
                   child: Text("tb"),

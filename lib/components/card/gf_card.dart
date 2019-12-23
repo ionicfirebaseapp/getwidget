@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/components/avatar/gf_avatar.dart';
 import 'package:ui_kit/components/button_bar/gf_button_bar.dart';
 import 'package:ui_kit/components/header_bar/gf_title_bar.dart';
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
@@ -21,8 +20,6 @@ class GFCard extends StatelessWidget {
     this.clipBehavior,
     this.semanticContainer,
     this.title,
-    this.subTitleTextStyle,
-    this.titleTextStyle,
     this.content,
     this.image,
     this.buttonBar,
@@ -55,7 +52,6 @@ class GFCard extends StatelessWidget {
   final Clip clipBehavior;
 
   /// The empty space that surrounds the card. Defines the card's outer [Container.margin].
-
   final EdgeInsetsGeometry margin;
 
   /// The empty space that surrounds the card. Defines the card's outer [Container.margin]..
@@ -67,12 +63,6 @@ class GFCard extends StatelessWidget {
 
   /// The title to display inside the [GFTitleBar]. see [GFTitleBar]
   final GFTitleBar title;
-
-  /// pass [style] as title's textStyle
-  final TextStyle titleTextStyle;
-
-  /// pass [style] as subTitle's textStyle
-  final TextStyle subTitleTextStyle;
 
   /// widget can be used to define content
   final Widget content;
@@ -109,11 +99,11 @@ class GFCard extends StatelessWidget {
 
     Widget cardChild = Column(
       children: <Widget>[
-        titlePosition == GFPosition.start ? title : ClipRRect(
+        titlePosition == GFPosition.start ? title != null ? title : Container() : image != null ? ClipRRect(
           borderRadius: BorderRadius.vertical(top: Radius.circular(4.0)),
           child: image,
-        ),
-        titlePosition == GFPosition.start ? image : title,
+        ): Container(),
+        titlePosition == GFPosition.start ? image != null ? image : Container(): title != null ? title : Container(),
         Padding(
           padding: padding,
           child: content,

@@ -13,7 +13,6 @@ class GFImageOverlay extends StatelessWidget {
     this.image,
     this.child,
     this.alignment,
-    this.decoration,
     this.borderRadius,
     this.colorFilter,
     this.boxFit,
@@ -44,9 +43,6 @@ class GFImageOverlay extends StatelessWidget {
   /// Align the [child] within the container.
   final AlignmentGeometry alignment;
 
-  /// The decoration to paint behind the [child].
-  final Decoration decoration;
-
   /// How the image should be inscribed into the box.
   /// The default is [BoxFit.scaleDown] if [centerSlice] is null, and
   /// [BoxFit.fill] if [centerSlice] is not null.
@@ -64,22 +60,21 @@ class GFImageOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Center(
-      child: new Container(
-        height: height,
-        width: width,
-        margin: margin,
-        padding: padding,
-        child: child,
-        decoration: new BoxDecoration(
-          borderRadius: borderRadius,
-          border: border,
-          color: color,
-          image: new DecorationImage(
+    return Container(
+      alignment: alignment,
+      height: height,
+      width: width,
+      margin: margin,
+      padding: padding,
+      child: child,
+      decoration: new BoxDecoration(
+        borderRadius: borderRadius,
+        border: border,
+        color: color,
+        image: new DecorationImage(
             fit: boxFit,
             colorFilter: colorFilter,
             image: image
-          ),
         ),
       ),
     );
