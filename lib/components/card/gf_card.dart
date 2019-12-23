@@ -93,7 +93,7 @@ class GFCard extends StatelessWidget {
   final Image image;
 
   /// overlay image [GFImageOverlay] widget can be used
-  final GFImageOverlay imageOverlay;
+  final Image imageOverlay;
 
   /// widget can be used to define buttons bar, see [GFButtonBar]
   final GFButtonBar buttonBar;
@@ -105,15 +105,8 @@ class GFCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final CardTheme cardTheme = CardTheme.of(context);
 
-//    Text gfTitle = Text(title,
-//      style: titleTextStyle == null ? TextStyle(color: Colors.black87, fontSize: 18.0, fontWeight: FontWeight.w600) : titleTextStyle,
-//    );
-//    Text gfSubTitle = Text(subTitle,
-//      style: subTitleTextStyle == null ? TextStyle(color: Colors.black45, fontSize: 14.0, fontWeight: FontWeight.w400) : subTitleTextStyle,
-//    );
-
     return Container(
-      margin: imageOverlay == null ? margin ?? cardTheme.margin ?? const EdgeInsets.all(16.0) : EdgeInsets.zero,
+      margin: margin ?? cardTheme.margin ?? const EdgeInsets.all(16.0),
       child: Material(
         type: MaterialType.card,
         color: color ?? cardTheme.color ?? Theme.of(context).cardColor,
@@ -125,25 +118,31 @@ class GFCard extends StatelessWidget {
         clipBehavior: clipBehavior ?? cardTheme.clipBehavior ?? _defaultClipBehavior,
         child: Stack(
           children: <Widget>[
-            imageOverlay != null  ? imageOverlay : null,
+//            imageOverlay != null ? imageOverlay : null,
             Column(
               children: <Widget>[
-//                titlePosition == GFPosition.start ? GFTitleBar(
+//                imageOverlay != null ? GFTitleBar(
 //                  avatar: avatar,
 //                  title: title,
 //                  subTitle: subTitle,
 //                  icon: icon,
-//                ) : ClipRRect(
-//                  borderRadius: BorderRadius.vertical(top: Radius.circular(4.0)),
-//                  child: image,
-//                ),
-//                titlePosition == GFPosition.start ?
-//                image : GFTitleBar(
-//                  avatar: avatar,
-//                  title: title,
-//                  subTitle: subTitle,
-//                  icon: icon,
-//                ),
+//                ) : null,
+                titlePosition == GFPosition.start ? GFTitleBar(
+                  avatar: avatar,
+                  title: title,
+                  subTitle: subTitle,
+                  icon: icon,
+                ) : ClipRRect(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(4.0)),
+                  child: image,
+                ),
+                titlePosition == GFPosition.start ?
+                image : GFTitleBar(
+                  avatar: avatar,
+                  title: title,
+                  subTitle: subTitle,
+                  icon: icon,
+                ),
                 Padding(
                   padding: padding,
                   child: content,
@@ -152,7 +151,7 @@ class GFCard extends StatelessWidget {
               ],
             ),
           ],
-        ),
+        )
       ),
     );
   }
