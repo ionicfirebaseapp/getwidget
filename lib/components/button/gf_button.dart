@@ -333,17 +333,6 @@ class _GFButtonState extends State<GFButton> {
           borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
     }
 
-//    Color _getFillColor() {
-//      if (widget.highlightElevation == null || widget.highlightElevation == 0.0)
-//        return Colors.transparent;
-//      final Color color = widget.color ?? Theme.of(context).canvasColor;
-//      final Tween<Color> colorTween = ColorTween(
-//        begin: color.withAlpha(0x00),
-//        end: color.withAlpha(0xFF),
-//      );
-//      return colorTween.evaluate(_fillAnimation);
-//    }
-
 
       return Semantics(
         container: true,
