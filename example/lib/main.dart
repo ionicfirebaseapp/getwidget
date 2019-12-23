@@ -55,7 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
             GFCard(
-              margin: EdgeInsets.all(16.0),
 //              color: Colors.pink,
               titlePosition: GFPosition.end,
               avatar: GFAvatar(
@@ -68,9 +67,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: Icon(Icons.favorite_border),
                 type: GFType.transparent,
               ),
-              image: Image.asset("lib/assets/pizza.jpeg"),
-              imageOverlay: Image.asset("lib/assets/pizza.jpeg"),
+//              image: Image.asset("lib/assets/pizza.jpeg"),
+              imageOverlay: AssetImage("lib/assets/pizza.jpeg"),
               content: Text("Flutter "
+                  "Flutter is Google's mobile UI framework for crafting"
+                  " high-quality native interfaces on iOS and Android in "
+                  "Flutter "
+                  "Flutter is Google's mobile UI framework for crafting"
+                  " high-quality native interfaces on iOS and Android in "
+                  "Flutter "
                   "Flutter is Google's mobile UI framework for crafting"
                   " high-quality native interfaces on iOS and Android in ", style: TextStyle(color: Colors.grey), ),
               buttonBar: GFButtonBar(
