@@ -1,55 +1,81 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class GFAvatarTitleBar extends StatelessWidget {
+class GFImageOverlay extends StatelessWidget {
 
-  const GFAvatarTitleBar({
+  const GFImageOverlay({
     Key key,
+    this.height,
+    this.width,
     this.color,
     this.padding,
     this.margin,
     this.image,
-    this.title,
-    this.subTitle,
+    this.child,
+    this.constraints,
+    this.alignment,
+    this.decoration,
+    this.borderRadius,
+    this.colorFilter,
+    this.boxFit,
+    this.border
   }) : super(key: key);
 
-  /// The card's background color.
+  /// define image's [double] height
+  final double height;
+
+  /// define image's [double] width
+  final double width;
+
+  /// The image background color.
   final Color color;
 
-  /// The empty space that surrounds the card. Defines the card's outer [Container.margin].
+  /// The empty space that surrounds the card. Defines the image's outer [Container.margin].
   final EdgeInsetsGeometry margin;
 
-  /// The empty space that surrounds the card. Defines the card's outer [Container.margin]..
+  /// The empty space that surrounds the card. Defines the image's outer [Container.margin]..
   final EdgeInsetsGeometry padding;
 
-  /// gfAvatar used to create rounded user profile
-  final Image image;
+  /// The [Image] widget used to display image
+  final ImageProvider image;
 
-  /// any widget can be used as title
-  final Widget title;
+  /// The [child] contained by the container, used to display text over image
+  final Widget child;
 
-  /// any widget can be used as subTitle
-  final Widget subTitle;
+  /// Align the [child] within the container.
+  final AlignmentGeometry alignment;
+
+  /// The decoration to paint behind the [child].
+  final Decoration decoration;
+
+  /// Additional constraints to apply to the child.
+  final BoxConstraints constraints;
+
+  final BoxFit boxFit;
+  final ColorFilter colorFilter;
+  final BorderRadius borderRadius;
+  final Border border;
 
   @override
   Widget build(BuildContext context) {
 
-    return Container(
-      margin: margin ?? const EdgeInsets.all(16.0),
-      padding: padding ?? const EdgeInsets.all(12.0),
-      child: Container(
-        child: Center(child: Text('test'),),
-        height: 190.0,
-        width: MediaQuery.of(context).size.width - 100.0,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: Colors.blue,
-            image: DecorationImage(
-                image: new NetworkImage(
-                    "https://storage.googleapis.com/gd-wagtail-prod-assets/original_images/MDA2018_inline_03.jpg"
-                ),
-                fit: BoxFit.fill
-            )
+    return Center(
+      child: new Container(
+        height: height,
+        width: width,
+        margin: margin,
+        padding: padding,
+        child: child,
+        decoration: new BoxDecoration(
+          borderRadius: borderRadius,
+          border: border,
+//          backgroundBlendMode: BlendMode.darken,
+          color: color,
+          image: new DecorationImage(
+            fit: boxFit,
+            colorFilter: colorFilter,
+            image: image
+          ),
         ),
       ),
     );

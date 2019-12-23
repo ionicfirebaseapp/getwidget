@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ui_kit/components/avatar/gf_avatar.dart';
 import 'package:ui_kit/components/button_bar/gf_button_bar.dart';
 import 'package:ui_kit/components/header_bar/gf_title_bar.dart';
+import 'package:ui_kit/components/image/gf_image_overlay.dart';
+import 'package:ui_kit/position/gf_position.dart';
 
 enum GFCardType { basic, social, image}
 
@@ -28,9 +30,14 @@ class GFCard extends StatelessWidget {
     this.image,
     this.icon,
     this.buttonBar,
+    this.imageOverlay,
+    this.titlePosition
   }) : assert(elevation == null || elevation >= 0.0),
         assert(borderOnForeground != null),
         super(key: key);
+
+  /// [GFPosition] titlePosition helps to set titlebar at top of card
+  final GFPosition titlePosition;
 
   /// The card's background color.
   final Color color;
@@ -85,6 +92,9 @@ class GFCard extends StatelessWidget {
   /// image widget can be used
   final Image image;
 
+  /// overlay image [GFImageOverlay] widget can be used
+  final GFImageOverlay imageOverlay;
+
   /// widget can be used to define buttons bar, see [GFButtonBar]
   final GFButtonBar buttonBar;
 
@@ -103,7 +113,7 @@ class GFCard extends StatelessWidget {
 //    );
 
     return Container(
-      margin: margin ?? cardTheme.margin ?? const EdgeInsets.all(16.0),
+      margin: imageOverlay == null ? margin ?? cardTheme.margin ?? const EdgeInsets.all(16.0) : EdgeInsets.zero,
       child: Material(
         type: MaterialType.card,
         color: color ?? cardTheme.color ?? Theme.of(context).cardColor,
@@ -113,20 +123,34 @@ class GFCard extends StatelessWidget {
         ),
         borderOnForeground: borderOnForeground,
         clipBehavior: clipBehavior ?? cardTheme.clipBehavior ?? _defaultClipBehavior,
-        child: Column(
+        child: Stack(
           children: <Widget>[
-            GFTitleBar(
-              avatar: avatar,
-              title: title,
-              subTitle: subTitle,
-              icon: icon,
+            imageOverlay != null  ? imageOverlay : null,
+            Column(
+              children: <Widget>[
+//                titlePosition == GFPosition.start ? GFTitleBar(
+//                  avatar: avatar,
+//                  title: title,
+//                  subTitle: subTitle,
+//                  icon: icon,
+//                ) : ClipRRect(
+//                  borderRadius: BorderRadius.vertical(top: Radius.circular(4.0)),
+//                  child: image,
+//                ),
+//                titlePosition == GFPosition.start ?
+//                image : GFTitleBar(
+//                  avatar: avatar,
+//                  title: title,
+//                  subTitle: subTitle,
+//                  icon: icon,
+//                ),
+                Padding(
+                  padding: padding,
+                  child: content,
+                ),
+                buttonBar,
+              ],
             ),
-            image,
-            Padding(
-              padding: padding,
-              child: content,
-            ),
-            buttonBar,
           ],
         ),
       ),

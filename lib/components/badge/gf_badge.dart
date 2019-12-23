@@ -42,7 +42,7 @@ class GFBadge extends StatefulWidget {
     this.size = GFSize.medium,
     this.border,
     this.text,
-    @required this.child,
+    this.child,
   })  : assert(shape != null, 'Counter shape can not be null'),
         super(key: key);
 
