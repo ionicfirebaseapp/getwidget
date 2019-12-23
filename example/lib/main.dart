@@ -52,84 +52,36 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
 
-//            Card(
-//              child: Stack(
-//                alignment: AlignmentDirectional.center,
-//                children: <Widget>[
-////                  Container(
-//////                    child: new Text(
-//////                        'Hello world',
-//////                        style: Theme.of(context).textTheme.display4
-//////                    ),
-////                    decoration: new BoxDecoration(
-////                      color: const Color(0xff7c94b6),
-////                      image: new DecorationImage(
-////                        fit: BoxFit.cover,
-////                        colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
-////                        image: new NetworkImage(
-////                          'http://www.allwhitebackground.com/images/2/2582-190x190.jpg',
-////                        ),
-////                      ),
-////                    ),
-////                  ),
-//                  Image.network(
-//                    'http://www.allwhitebackground.com/images/2/2582-190x190.jpg',
-//                  ),
-//                  Column(
-//                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                    crossAxisAlignment: CrossAxisAlignment.center,
-//                    children: <Widget>[
-//                      GFTitleBar(
-//                        avatar: GFAvatar(
-//                          child: Text("tb"),
-//                        ),
-//                        title: Text('title'),
-//                        subTitle: Text('subtitle'),
-//                        icon: GFIconButton(
-//                          onPressed: null,
-//                          type: GFType.transparent,
-//                          icon: Icon(Icons.favorite_border),
-//                        ),
-//                      ),
-//                      Text("Flutter "
-//                          "Flutter is Google's mobile UI framework for crafting high-quality native interfaces on iOS and Android in "),
-//                      GFButtonBar(
-//                        mainAxisSize: MainAxisSize.min,
-//                        children: <Widget>[
-//                          GFButton(onPressed: null, child: Text("favorite"), icon: Icon(Icons.favorite_border), type: GFType.transparent, ),
-//                          GFButton(onPressed: null, child: Text("share"), icon: Icon(Icons.share), type: GFType.outline, ),
-//                        ],
-//                      ),
-//
-//                    ],
-//                  ),
-//                ],
-//              ),
-//            ),
-//
-            GFImageOverlay(
-              height: 200.0,
-              width: MediaQuery.of(context).size.width,
+
+
+            GFCard(
               margin: EdgeInsets.all(16.0),
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
+//              color: Colors.pink,
+              titlePosition: GFPosition.end,
+              avatar: GFAvatar(
+                child: Text("tb"),
+              ),
+              title: Text('title', style: TextStyle(color: Colors.grey),),
+              subTitle: Text('subtitle', style: TextStyle(color: Colors.grey),),
+              icon: GFIconButton(
+                onPressed: null,
+                icon: Icon(Icons.favorite_border),
+                type: GFType.transparent,
+              ),
+              image: Image.asset("lib/assets/pizza.jpeg"),
+              imageOverlay: Image.asset("lib/assets/pizza.jpeg"),
+              content: Text("Flutter "
+                  "Flutter is Google's mobile UI framework for crafting"
+                  " high-quality native interfaces on iOS and Android in ", style: TextStyle(color: Colors.grey), ),
+              buttonBar: GFButtonBar(
+                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  new Text(
-                      'Hello world', style: TextStyle(color: Colors.white),
-                  ),new Text(
-                      'Hello world', style: TextStyle(color: Colors.white),
-                  ),
+                  GFButton(onPressed: null, child: Text("favorite"), icon: Icon(Icons.favorite_border), type: GFType.transparent, ),
+                  GFButton(onPressed: null, child: Text("share"), icon: Icon(Icons.share), type: GFType.outline, ),
                 ],
               ),
-//              color: Colors.orange,
-              image: AssetImage("lib/assets/pizza.jpeg"),
-              boxFit: BoxFit.cover,
-              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
-              borderRadius: new BorderRadius.circular(5.0),
-//              border: Border.all(color: Colors.pink, width: 2.0),
             ),
+
 
 //            GFButtonBar(
 //              mainAxisSize: MainAxisSize.min,
@@ -153,33 +105,52 @@ class _MyHomePageState extends State<MyHomePage> {
 //              ),
 //            ),
 
-            GFCard(
+            GFImageOverlay(
+              width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.all(16.0),
-//              color: Colors.pink,
-              titlePosition: GFPosition.end,
-              avatar: GFAvatar(
-                child: Text("tb"),
-              ),
-              title: Text('title'),
-              subTitle: Text('subtitle'),
-              icon: GFIconButton(
-                onPressed: null,
-                icon: Icon(Icons.favorite_border),
-                type: GFType.transparent,
-              ),
-//              image: Image.asset("lib/assets/pizza.jpeg"),
-//              imageOverlay: Image.asset("lib/assets/pizza.jpeg"),
-              content: Text("Flutter "
-                  "Flutter is Google's mobile UI framework for crafting high-quality native interfaces on iOS and Android in "),
-              buttonBar: GFButtonBar(
-                mainAxisSize: MainAxisSize.min,
+              padding: EdgeInsets.all(16.0),
+              child: Column(
                 children: <Widget>[
-                  GFButton(onPressed: null, child: Text("favorite"), icon: Icon(Icons.favorite_border), type: GFType.transparent, ),
-                  GFButton(onPressed: null, child: Text("share"), icon: Icon(Icons.share), type: GFType.outline, ),
+                  new Text(
+                    'Hello world', style: TextStyle(color: Colors.white),
+                  ),new Text(
+                    'Hello world', style: TextStyle(color: Colors.white),
+                  ),
+                  new Text(
+                    'Hello world', style: TextStyle(color: Colors.white),
+                  ),new Text(
+                    'Hello world', style: TextStyle(color: Colors.white),
+                  ),
+                  new Text(
+                    'Hello world', style: TextStyle(color: Colors.white),
+                  ),new Text(
+                    'Hello world', style: TextStyle(color: Colors.white),
+                  ),
+                  new Text(
+                    'Hello world', style: TextStyle(color: Colors.white),
+                  ),new Text(
+                    'Hello world', style: TextStyle(color: Colors.white),
+                  ),
+                  new Text(
+                    'Hello world', style: TextStyle(color: Colors.white),
+                  ),new Text(
+                    'Hello world', style: TextStyle(color: Colors.white),
+                  ),
+                  new Text(
+                    'Hello world', style: TextStyle(color: Colors.white),
+                  ),new Text(
+                    'Hello world', style: TextStyle(color: Colors.white),
+                  ),
                 ],
               ),
-
+//              color: Colors.orange,
+              image: AssetImage("lib/assets/pizza.jpeg"),
+              boxFit: BoxFit.cover,
+              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
+              borderRadius: new BorderRadius.circular(5.0),
+//              border: Border.all(color: Colors.pink, width: 2.0),
             ),
+
 //
 //            GFAvatar(
 ////              radius: 40.0,

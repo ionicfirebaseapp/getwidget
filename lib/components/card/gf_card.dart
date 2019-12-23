@@ -116,42 +116,31 @@ class GFCard extends StatelessWidget {
         ),
         borderOnForeground: borderOnForeground,
         clipBehavior: clipBehavior ?? cardTheme.clipBehavior ?? _defaultClipBehavior,
-        child: Stack(
+        child: Column(
           children: <Widget>[
-//            imageOverlay != null ? imageOverlay : null,
-            Column(
-              children: <Widget>[
-//                imageOverlay != null ? GFTitleBar(
-//                  avatar: avatar,
-//                  title: title,
-//                  subTitle: subTitle,
-//                  icon: icon,
-//                ) : null,
-                titlePosition == GFPosition.start ? GFTitleBar(
-                  avatar: avatar,
-                  title: title,
-                  subTitle: subTitle,
-                  icon: icon,
-                ) : ClipRRect(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(4.0)),
-                  child: image,
-                ),
-                titlePosition == GFPosition.start ?
-                image : GFTitleBar(
-                  avatar: avatar,
-                  title: title,
-                  subTitle: subTitle,
-                  icon: icon,
-                ),
-                Padding(
-                  padding: padding,
-                  child: content,
-                ),
-                buttonBar,
-              ],
+            titlePosition == GFPosition.start ? GFTitleBar(
+              avatar: avatar,
+              title: title,
+              subTitle: subTitle,
+              icon: icon,
+            ) : ClipRRect(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(4.0)),
+              child: image,
             ),
+            titlePosition == GFPosition.start ?
+            image : GFTitleBar(
+              avatar: avatar,
+              title: title,
+              subTitle: subTitle,
+              icon: icon,
+            ),
+            Padding(
+              padding: padding,
+              child: content,
+            ),
+            buttonBar,
           ],
-        )
+        ),
       ),
     );
   }
