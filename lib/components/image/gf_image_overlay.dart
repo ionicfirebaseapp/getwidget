@@ -12,7 +12,6 @@ class GFImageOverlay extends StatelessWidget {
     this.margin,
     this.image,
     this.child,
-    this.constraints,
     this.alignment,
     this.decoration,
     this.borderRadius,
@@ -48,12 +47,18 @@ class GFImageOverlay extends StatelessWidget {
   /// The decoration to paint behind the [child].
   final Decoration decoration;
 
-  /// Additional constraints to apply to the child.
-  final BoxConstraints constraints;
-
+  /// How the image should be inscribed into the box.
+  /// The default is [BoxFit.scaleDown] if [centerSlice] is null, and
+  /// [BoxFit.fill] if [centerSlice] is not null.
   final BoxFit boxFit;
+
+  /// A color filter to apply to the image before painting it.
   final ColorFilter colorFilter;
-  final BorderRadius borderRadius;
+
+  /// The corners of this [GFCard] are rounded by this [BorderRadius].
+  final BorderRadiusGeometry borderRadius;
+
+  /// A border to draw above the [GFCard].
   final Border border;
 
   @override
@@ -69,7 +74,6 @@ class GFImageOverlay extends StatelessWidget {
         decoration: new BoxDecoration(
           borderRadius: borderRadius,
           border: border,
-//          backgroundBlendMode: BlendMode.darken,
           color: color,
           image: new DecorationImage(
             fit: boxFit,

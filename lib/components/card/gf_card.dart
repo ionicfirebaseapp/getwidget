@@ -19,19 +19,19 @@ class GFCard extends StatelessWidget {
     this.padding = const EdgeInsets.all(12.0),
     this.margin,
     this.clipBehavior,
-    this.child,
     this.semanticContainer,
-    this.avatar,
     this.title,
-    this.subTitle,
     this.subTitleTextStyle,
     this.titleTextStyle,
     this.content,
     this.image,
-    this.icon,
     this.buttonBar,
     this.imageOverlay,
-    this.titlePosition
+    this.titlePosition,
+    this.borderRadius,
+    this.border,
+    this.boxFit,
+    this.colorFilter
   }) : assert(elevation == null || elevation >= 0.0),
         assert(borderOnForeground != null),
         super(key: key);
@@ -65,20 +65,8 @@ class GFCard extends StatelessWidget {
   /// a collection of individual semantic nodes.
   final bool semanticContainer;
 
-  /// The widget below this widget in the tree.
-  final Widget child;
-
-  /// gfAvatar used to create rounded user profile
-  final GFAvatar avatar;
-
-  /// The title to display inside the [GFTitleBar]. see [Text]
-  final Widget title;
-
-  /// The subTitle to display inside the [GFTitleBar]. see [Text]
-  final Widget subTitle;
-
-  /// The icon to display inside the [GFTitleBar]. see [Icon]
-  final Widget icon;
+  /// The title to display inside the [GFTitleBar]. see [GFTitleBar]
+  final GFTitleBar title;
 
   /// pass [style] as title's textStyle
   final TextStyle titleTextStyle;
@@ -98,6 +86,20 @@ class GFCard extends StatelessWidget {
   /// widget can be used to define buttons bar, see [GFButtonBar]
   final GFButtonBar buttonBar;
 
+  /// How the image should be inscribed into the box.
+  /// The default is [BoxFit.scaleDown] if [centerSlice] is null, and
+  /// [BoxFit.fill] if [centerSlice] is not null.
+  final BoxFit boxFit;
+
+  /// A color filter to apply to the image before painting it.
+  final ColorFilter colorFilter;
+
+  /// The corners of this [GFCard] are rounded by this [BorderRadius].
+  final BorderRadiusGeometry borderRadius;
+
+  /// A border to draw above the [GFCard].
+  final Border border;
+
   static const double _defaultElevation = 1.0;
   static const Clip _defaultClipBehavior = Clip.none;
 
@@ -107,22 +109,11 @@ class GFCard extends StatelessWidget {
 
     Widget cardChild = Column(
       children: <Widget>[
-        titlePosition == GFPosition.start ? GFTitleBar(
-          avatar: avatar,
-          title: title,
-          subTitle: subTitle,
-          icon: icon,
-        ) : ClipRRect(
+        titlePosition == GFPosition.start ? title : ClipRRect(
           borderRadius: BorderRadius.vertical(top: Radius.circular(4.0)),
           child: image,
         ),
-        titlePosition == GFPosition.start ?
-        image : GFTitleBar(
-          avatar: avatar,
-          title: title,
-          subTitle: subTitle,
-          icon: icon,
-        ),
+        titlePosition == GFPosition.start ? image : title,
         Padding(
           padding: padding,
           child: content,
@@ -133,15 +124,13 @@ class GFCard extends StatelessWidget {
 
     Widget overlayImage = GFImageOverlay(
       width: MediaQuery.of(context).size.width,
-//      margin: EdgeInsets.all(16.0),
-      padding: EdgeInsets.all(16.0),
       child: cardChild,
-//              color: Colors.orange,
+      color: color ?? cardTheme.color ?? Theme.of(context).cardColor,
       image: imageOverlay,
-      boxFit: BoxFit.cover,
-      colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
-      borderRadius: new BorderRadius.circular(5.0),
-//              border: Border.all(color: Colors.pink, width: 2.0),
+      boxFit: boxFit,
+      colorFilter: colorFilter,
+      border: border,
+      borderRadius: borderRadius ?? BorderRadius.all(Radius.circular(4.0)),
     );
 
     return Container(

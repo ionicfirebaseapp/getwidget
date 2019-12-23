@@ -55,29 +55,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
             GFCard(
-//              color: Colors.pink,
-              titlePosition: GFPosition.end,
-              avatar: GFAvatar(
-                child: Text("tb"),
+              boxFit: BoxFit.cover,
+              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
+              image: Image.asset("lib/assets/pizza.jpeg"),
+//              imageOverlay: AssetImage("lib/assets/pizza.jpeg"),
+              titlePosition: GFPosition.start,
+              title: GFTitleBar(
+                avatar: GFAvatar(
+                  child: Text("tb"),
+                ),
+                title: Text('title', style: TextStyle(color: Colors.grey),),
+                subTitle: Text('subtitle', style: TextStyle(color: Colors.grey),),
+                icon: GFIconButton(
+                  onPressed: null,
+                  icon: Icon(Icons.favorite_border),
+                  type: GFType.transparent,
+                ),
               ),
-              title: Text('title', style: TextStyle(color: Colors.grey),),
-              subTitle: Text('subtitle', style: TextStyle(color: Colors.grey),),
-              icon: GFIconButton(
-                onPressed: null,
-                icon: Icon(Icons.favorite_border),
-                type: GFType.transparent,
-              ),
-//              image: Image.asset("lib/assets/pizza.jpeg"),
-              imageOverlay: AssetImage("lib/assets/pizza.jpeg"),
               content: Text("Flutter "
                   "Flutter is Google's mobile UI framework for crafting"
                   " high-quality native interfaces on iOS and Android in "
-                  "Flutter "
-                  "Flutter is Google's mobile UI framework for crafting"
-                  " high-quality native interfaces on iOS and Android in "
-                  "Flutter "
-                  "Flutter is Google's mobile UI framework for crafting"
-                  " high-quality native interfaces on iOS and Android in ", style: TextStyle(color: Colors.grey), ),
+                  "Flutter ", style: TextStyle(color: Colors.grey), ),
               buttonBar: GFButtonBar(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
