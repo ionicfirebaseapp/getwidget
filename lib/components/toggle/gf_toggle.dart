@@ -501,114 +501,115 @@ class _LabeledToggleState extends State<LabeledToggle>
           }
         }
       },
-      child: Opacity(
+      child:
+
+      Opacity(
         opacity: widget.onChanged == null ? 0.3 : 1.0,
         child: AnimatedContainer(
           duration: widget.duration,
           height: 20,
-          width: widget.forceWidth ? widget.thumbSize * 1.4 : null,
+          width: 40,
+//          width: widget.forceWidth ? widget.thumbSize * 1.4 : null,
           child: Stack(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top:1.5, bottom: 1.5),
-                child: AnimatedAlign(
-                  curve: widget.curve,
+              AnimatedAlign(
+                curve: widget.curve,
+                alignment: _value ? Alignment.centerRight : Alignment.centerLeft,
+                duration: widget.duration,
+                child: RotationTransition(
+                  turns: AlwaysStoppedAnimation(animation.value / 360),
+                  child: AnimatedContainer(
 
-                  alignment: _value ? Alignment.centerRight : Alignment.centerLeft,
-                  duration: widget.duration,
-                  child: RotationTransition(
-                    turns: AlwaysStoppedAnimation(animation.value / 360),
-                    child: AnimatedContainer(
-
-                      duration: widget.duration,
-                      width: widget.thumbSize,
-                      height: widget.thumbSize,
-                      child: widget?.child,
-                      decoration: BoxDecoration(
-                        shape: widget.rounded ? BoxShape.circle : BoxShape.rectangle,
-                        color: _value ? widget.onThumbColor : widget.offThumbColor,
-                      ),
+                    duration: widget.duration,
+                    width: widget.thumbSize,
+                    height: 150,
+                    child: widget?.child,
+                    decoration: BoxDecoration(
+                      shape: widget.rounded ? BoxShape.circle : BoxShape.rectangle,
+                      color: _value ? widget.onThumbColor : widget.offThumbColor,
                     ),
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                    right: _value ? widget.thumbSize : 1,
-                    left: _value ? 2.0 : widget.thumbSize),
-                child: Row(
-                  children: <Widget>[
-          Expanded(child: Text('l')),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Container(
-                          width: 80,
-                          height: 90,
-                          child: FittedBox(
-                            child: Center(
-                              child: AnimatedSwitcher(
-                                duration: widget.duration,
-                                switchInCurve: widget.curve,
-                                switchOutCurve: widget.curve,
-                                transitionBuilder:
-                                    (Widget child, Animation<double> animation) {
-                                  switch (widget.transitionType) {
-                                    case TextTransitionTypes.ROTATE:
-                                      {
-                                        return RotationTransition(
-                                          child: child,
-                                          turns: animation,
-                                        );
-                                      }
-                                      break;
-                                    case TextTransitionTypes.FADE:
-                                      {
-                                        return FadeTransition(
-                                          child: child,
-                                          opacity: animation,
-                                        );
-                                      }
-                                      break;
+             Positioned(
 
-                                    case TextTransitionTypes.SIZE:
-                                      {
-                                        return SizeTransition(
-                                          child: child,
-                                          sizeFactor: animation,
-                                          axisAlignment: widget.value ? -5.0 : 5.0,
-                                          axis: Axis.horizontal,
-                                        );
-                                      }
-                                      break;
+                 child:  Padding(
+               padding: EdgeInsets.only(
+                   right: _value ? widget.thumbSize : 1,
+                   left: _value ? 2.0 : widget.thumbSize),
+               child: Row(
+                 children: <Widget>[
+//          Expanded(child: Text('l')),
+                   Expanded(
+                     child: Padding(
+                       padding: const EdgeInsets.all(0),
+                       child: Container(
+                         width: 80,
+                         height: 100,
+                         child: FittedBox(
+                           child: Center(
+                             child: AnimatedSwitcher(
+                               duration: widget.duration,
+                               switchInCurve: widget.curve,
+                               switchOutCurve: widget.curve,
+                               transitionBuilder:
+                                   (Widget child, Animation<double> animation) {
+                                 switch (widget.transitionType) {
+                                   case TextTransitionTypes.ROTATE:
+                                     {
+                                       return RotationTransition(
+                                         child: child,
+                                         turns: animation,
+                                       );
+                                     }
+                                     break;
+                                   case TextTransitionTypes.FADE:
+                                     {
+                                       return FadeTransition(
+                                         child: child,
+                                         opacity: animation,
+                                       );
+                                     }
+                                     break;
 
-                                    case TextTransitionTypes.SCALE:
-                                      {
-                                        return ScaleTransition(
-                                          child: child,
-                                          scale: animation,
-                                        );
-                                      }
-                                      break;
-                                  }
-                                },
-                                child: Text(
-                                  _value ? widget.onText : widget.offText,
-                                  key: ValueKey<bool>(_value),
-                                  style: TextStyle(
-                                      color: _value
-                                          ? widget.onTextColor
-                                          : widget.offTextColor),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
+                                   case TextTransitionTypes.SIZE:
+                                     {
+                                       return SizeTransition(
+                                         child: child,
+                                         sizeFactor: animation,
+                                         axisAlignment: widget.value ? -5.0 : 5.0,
+                                         axis: Axis.horizontal,
+                                       );
+                                     }
+                                     break;
+
+                                   case TextTransitionTypes.SCALE:
+                                     {
+                                       return ScaleTransition(
+                                         child: child,
+                                         scale: animation,
+                                       );
+                                     }
+                                     break;
+                                 }
+                               },
+                               child: Text(
+                                 _value ? widget.onText : widget.offText,
+                                 key: ValueKey<bool>(_value),
+                                 style: TextStyle(
+                                     color: _value
+                                         ? widget.onTextColor
+                                         : widget.offTextColor),
+                               ),
+                             ),
+                           ),
+                         ),
+                       ),
+                     ),
+                   ),
+                 ],
+               ),
+             ))
             ],
           ),
           decoration: BoxDecoration(

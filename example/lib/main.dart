@@ -74,6 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
 
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
 
@@ -300,30 +302,49 @@ class _MyHomePageState extends State<MyHomePage> {
 //                onThumbColor: Colors.indigo,
 //                thumbSize: 30.0,
 //              ),
-              LabeledToggle(
-
-//
-
-                forceWidth: true,
-                value: switchValue,
-                onChanged: (v) {
-                  setState(() {
-                    switchValue = v;
-                  });
-                },
-//                offBkColor: Colors.white,
-//                onBkColor: Colors.white,
-//                onBorderColor: Colors.green,
-//                offBorderColor: Colors.red,
-//                offText: "No",
-//                onText: "YES",
-                offThumbColor: Colors.blue,
-                onThumbColor: Colors.white,
-                thumbSize: 32.0,
-                onBkColor: Colors.green.withOpacity(0.80),
 
 
+              Stack(
+                children: <Widget>[
+                  Container(
+                    height: 30,
+                    width:60,
+//                    color:Colors.blue
+                  ),
 
+                  Positioned(
+                    top:2,
+                    child: Container(
+                      width: 36,
+                      height: 15,
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.all(Radius.circular(20))
+
+                      ),
+
+                    ),
+                  ),
+                  Positioned(
+//                      right:20,
+
+                      child: Container(
+                    height: 20,
+                    width: 20,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                      boxShadow: [
+                        new BoxShadow(
+                            color: Colors.black.withOpacity(0.16),
+                            blurRadius: 6.0,
+                            spreadRadius: 0.0),
+                      ]
+                    ),
+                  )),
+
+
+                ],
               ),
 
 
