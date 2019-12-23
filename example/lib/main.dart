@@ -70,6 +70,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  bool switchValue = true;
   @override
 
   Widget build(BuildContext context) {
@@ -251,10 +252,12 @@ class _MyHomePageState extends State<MyHomePage> {
               Switch(
                 onChanged: (v){},
                 value: true,
-                activeColor: Colors.red,
+//                activeColor: Colors.red,
+              activeColor: Colors.white,
                 activeTrackColor: Colors.green,
                 inactiveTrackColor: Colors.grey,
                 inactiveThumbColor: Colors.black,
+//                activeThumbImage: NetworkImage("https://cdn.pixabay.com/photo/2016/11/10/17/00/forest-1814723_960_720.jpg",),
 
               ),
 
@@ -264,6 +267,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
               ),
 
+
               GFToggle(
                 type: GFToggleType.iosSwitch,
                 activeColor: Colors.red,
@@ -272,7 +276,51 @@ class _MyHomePageState extends State<MyHomePage> {
                 onChanged: (val){
                 },
                 value: true,
+                minWidth: false,
               ),
+
+
+              LabeledToggle(
+                transitionType: TextTransitionTypes.FADE,
+                rounded: true,
+                borderSize: 2.0,
+                duration: Duration(milliseconds: 500),
+                forceWidth: true,
+                value: switchValue,
+                onChanged: (v) {
+                  setState(() {
+                    switchValue = v;
+                  });
+                },
+                offBkColor: Colors.indigo,
+                onBkColor: Colors.lightGreen,
+                offText: "FALSE",
+                onText: "TRUE",
+                offThumbColor: Colors.lightGreen,
+                onThumbColor: Colors.indigo,
+                thumbSize: 30.0,
+              ),
+              LabeledToggle(
+
+//
+                forceWidth: true,
+                value: switchValue,
+                onChanged: (v) {
+                  setState(() {
+                    switchValue = v;
+                  });
+                },
+//                offBkColor: Colors.white,
+//                onBkColor: Colors.white,
+//                onBorderColor: Colors.green,
+//                offBorderColor: Colors.red,
+                offText: "No",
+                onText: "YES",
+                offThumbColor: Colors.blue,
+                onThumbColor: Colors.green,
+                thumbSize: 30.0,
+              ),
+
 
               GFIconBadges(
 
