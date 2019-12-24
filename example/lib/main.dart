@@ -75,7 +75,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
       GFSlider(
         items: child,
         autoPlay: true,
-        enlargeCenterPage: true,
+        enlargeMainPage: true,
         aspectRatio: 2.0,
         onPageChanged: (index) {
           setState(() {
@@ -112,17 +112,17 @@ class CarouselDemo extends StatelessWidget {
     final GFSlider manualCarouselDemo = GFSlider(
       items: child,
       autoPlay: false,
-      enlargeCenterPage: true,
+      enlargeMainPage: true,
       viewportFraction: 0.9,
       aspectRatio: 2.0,
     );
 
     //Auto playing carousel
     final GFSlider autoPlayDemo = GFSlider(
-      viewportFraction: 0.9,
+      viewportFraction: 0.95,
       aspectRatio: 2.0,
       autoPlay: true,
-      enlargeCenterPage: true,
+      enlargeMainPage: true,
       items: imgList.map(
             (url) {
           return Container(
@@ -145,7 +145,7 @@ class CarouselDemo extends StatelessWidget {
       final basicSlider = GFSlider(
         items: child,
         autoPlay: false,
-        enlargeCenterPage: true,
+        enlargeMainPage: true,
         viewportFraction: 0.9,
         aspectRatio: 2.0,
       );
@@ -181,7 +181,7 @@ class CarouselDemo extends StatelessWidget {
       viewportFraction: 1.0,
       aspectRatio: 2.0,
       autoPlay: false,
-      enlargeCenterPage: false,
+      enlargeMainPage: false,
       items: map<Widget>(
         imgList,
             (index, i) {
@@ -199,7 +199,7 @@ class CarouselDemo extends StatelessWidget {
       viewportFraction: 0.9,
       aspectRatio: 2.0,
       autoPlay: true,
-      enlargeCenterPage: true,
+      enlargeMainPage: true,
       pauseAutoPlayOnTouch: Duration(seconds: 3),
       items: imgList.map(
             (url) {
@@ -224,7 +224,7 @@ class CarouselDemo extends StatelessWidget {
       scrollPhysics: BouncingScrollPhysics(),
       enableInfiniteScroll: false,
       autoPlay: false,
-      enlargeCenterPage: true,
+      enlargeMainPage: true,
       viewportFraction: 0.9,
       aspectRatio: 2.0,
     );
@@ -234,7 +234,7 @@ class CarouselDemo extends StatelessWidget {
       scrollDirection: Axis.vertical,
       aspectRatio: 2.0,
       autoPlay: true,
-      enlargeCenterPage: true,
+      enlargeMainPage: true,
       viewportFraction: 0.9,
       pauseAutoPlayOnTouch: Duration(seconds: 3),
       items: imgList.map(

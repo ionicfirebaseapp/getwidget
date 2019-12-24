@@ -16,7 +16,7 @@ class GFSlider extends StatefulWidget {
         this.autoPlayAnimationDuration = const Duration(milliseconds: 800),
         this.autoPlayCurve: Curves.fastOutSlowIn,
         this.pauseAutoPlayOnTouch,
-        this.enlargeCenterPage = false,
+        this.enlargeMainPage = false,
         this.onPageChanged,
         this.scrollPhysics,
         this.scrollDirection: Axis.horizontal})
@@ -26,81 +26,50 @@ class GFSlider extends StatefulWidget {
           initialPage: enableInfiniteScroll ? realPage + initialPage : initialPage,
         );
 
-  /// The widgets to be shown in the carousel.
+  /// The widgets to be shown as sliders.
   final List<Widget> items;
 
-  /// Set carousel height and overrides any existing [aspectRatio].
+  /// Set slide widget height and overrides any existing [aspectRatio].
   final double height;
 
-  /// Aspect ratio is used if no height have been declared.
-  ///
-  /// Defaults to 16:9 aspect ratio.
+  /// Aspect ratio is used if no height have been declared. Defaults to 16:9 aspect ratio.
   final double aspectRatio;
 
-  /// The fraction of the viewport that each page should occupy.
-  ///
-  /// Defaults to 0.8, which means each page fills 80% of the carousel.
+  /// The fraction of the viewport that each page should occupy. Defaults to 0.8, which means each page fills 80% of the slide.
   final num viewportFraction;
 
-  /// The initial page to show when first creating the [GFSlider].
-  ///
-  /// Defaults to 0.
+  /// The initial page to show when first creating the [GFSlider]. Defaults to 0.
   final num initialPage;
 
   /// The actual index of the [PageView].
-  ///
-  /// This value can be ignored unless you know the carousel will be scrolled
-  /// backwards more then 10000 pages.
-  /// Defaults to 10000 to simulate infinite backwards scrolling.
   final num realPage;
 
-  ///Determines if carousel should loop infinitely or be limited to item length.
-  ///
-  ///Defaults to true, i.e. infinite loop.
+  /// Determines if slides should loop infinitely or be limited to item length. Defaults to true, i.e. infinite loop.
   final bool enableInfiniteScroll;
 
-  /// Reverse the order of items if set to true.
-  ///
-  /// Defaults to false.
+  /// Reverse the order of items if set to true. Defaults to false.
   final bool reverse;
 
-  /// Enables auto play, sliding one page at a time.
-  ///
-  /// Use [autoPlayInterval] to determent the frequency of slides.
-  /// Defaults to false.
+  /// Enables auto play, sliding one page at a time. Use [autoPlayInterval] to determent the frequency of slides. Defaults to false.
   final bool autoPlay;
 
-  /// Sets Duration to determent the frequency of slides when
-  ///
-  /// [autoPlay] is set to true.
-  /// Defaults to 4 seconds.
+  /// Sets Duration to determent the frequency of slides when [autoPlay] is set to true. Defaults to 4 seconds.
   final Duration autoPlayInterval;
 
-  /// The animation duration between two transitioning pages while in auto playback.
-  ///
-  /// Defaults to 800 ms.
+  /// The animation duration between two transitioning pages while in auto playback. Defaults to 800 ms.
   final Duration autoPlayAnimationDuration;
 
-  /// Determines the animation curve physics.
-  ///
-  /// Defaults to [Curves.fastOutSlowIn].
+  /// Determines the animation curve physics. Defaults to [Curves.fastOutSlowIn].
   final Curve autoPlayCurve;
 
-  /// Sets a timer on touch detected that pause the auto play with
-  /// the given [Duration].
-  ///
-  /// Touch Detection is only active if [autoPlay] is true.
+  /// Sets a timer on touch detected that pause the auto play with the given [Duration]. Touch Detection is only active if [autoPlay] is true.
   final Duration pauseAutoPlayOnTouch;
 
   /// Determines if current page should be larger then the side images,
-  /// creating a feeling of depth in the carousel.
-  ///
-  /// Defaults to false.
-  final bool enlargeCenterPage;
+  /// creating a feeling of depth in the carousel. Defaults to false.
+  final bool enlargeMainPage;
 
-  /// The axis along which the page view scrolls.
-  ///
-  /// Defaults to [Axis.horizontal].
+  /// The axis along which the page view scrolls. Defaults to [Axis.horizontal].
   final Axis scrollDirection;
 
   /// Called whenever the page in the center of the viewport changes.
@@ -166,10 +135,10 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    timer = getTimer();
+    timer = getPlayTimer();
   }
 
-  Timer getTimer() {
+  Timer getPlayTimer() {
     return Timer.periodic(widget.autoPlayInterval, (_) {
       if (widget.autoPlay) {
         widget.pageController
@@ -181,11 +150,11 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
   void pauseOnTouch() {
     timer.cancel();
     timer = Timer(widget.pauseAutoPlayOnTouch, () {
-      timer = getTimer();
+      timer = getPlayTimer();
     });
   }
 
-  Widget getWrapper(Widget child) {
+  Widget getPageWrapper(Widget child) {
     if (widget.height != null) {
       final Widget wrapper = Container(height: widget.height, child: child);
       return widget.autoPlay && widget.pauseAutoPlayOnTouch != null
@@ -210,7 +179,7 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return getWrapper(PageView.builder(
+    return getPageWrapper(PageView.builder(
       physics: widget.scrollPhysics,
       scrollDirection: widget.scrollDirection,
       controller: widget.pageController,
@@ -245,7 +214,7 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
             final double height =
                 widget.height ?? MediaQuery.of(context).size.width * (1 / widget.aspectRatio);
             final double distortionValue =
-            widget.enlargeCenterPage ? Curves.easeOut.transform(value) : 1.0;
+            widget.enlargeMainPage ? Curves.easeOut.transform(value) : 1.0;
 
             if (widget.scrollDirection == Axis.horizontal) {
               return Center(child: SizedBox(height: distortionValue * height, child: child));
