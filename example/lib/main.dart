@@ -282,26 +282,26 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
 
 
-//              LabeledToggle(
-//                transitionType: TextTransitionTypes.FADE,
-//                rounded: true,
-//                borderSize: 2.0,
-//                duration: Duration(milliseconds: 500),
-//                forceWidth: true,
-//                value: switchValue,
-//                onChanged: (v) {
-//                  setState(() {
-//                    switchValue = v;
-//                  });
-//                },
-//                offBkColor: Colors.indigo,
-//                onBkColor: Colors.lightGreen,
-//                offText: "FALSE",
-//                onText: "TRUE",
-//                offThumbColor: Colors.lightGreen,
-//                onThumbColor: Colors.indigo,
-//                thumbSize: 30.0,
-//              ),
+              LabeledToggle(
+                transitionType: TextTransitionTypes.FADE,
+                rounded: true,
+                borderSize: 2.0,
+                duration: Duration(milliseconds: 500),
+                forceWidth: true,
+                value: switchValue,
+                onChanged: (v) {
+                  setState(() {
+                    switchValue = v;
+                  });
+                },
+                offBkColor: Colors.indigo,
+                onBkColor: Colors.lightGreen,
+                offText: "FALSE",
+                onText: "TRUE",
+                offThumbColor: Colors.lightGreen,
+                onThumbColor: Colors.indigo,
+                thumbSize: 30.0,
+              ),
 
 
               Stack(
