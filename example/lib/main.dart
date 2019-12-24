@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:ui_kit/colors/gf_color.dart';
 
 import 'package:ui_kit/components/button/gf_button.dart';
 
@@ -97,10 +98,32 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 //          thumbSize: 20,
 //        ),
         Container(
-          height: 200,
+//          height: 100,
+//          height: 200,
           width: 200,
           color: Colors.red,
-          margin: EdgeInsets.only(bottom:40),
+          margin: EdgeInsets.only(bottom:40, top: 40),
+          child:   GFToast(
+            bgColor: GFColor.primary,
+//        button: GFButton(onPressed: null, type: GFType.outline,
+//        text: 'Accept',),
+//        text: 'Marked as Favorite.',
+
+//            child: Column(
+//              children: <Widget>[
+//                Text('hygu', style: TextStyle(color:Colors.black87),),
+//                Text('hygu', style: TextStyle(color:Colors.black87),),
+//
+//                Text('hygu', style: TextStyle(color:Colors.black87),),
+//                Text('hygu', style: TextStyle(color:Colors.black87),),
+//
+//                Text('hygu', style: TextStyle(color:Colors.black87),),
+//                Text('hygu', style: TextStyle(color:Colors.black87),),
+//
+//
+//              ],
+//            )
+          ),
         ),
         LabeledToggle(
 
@@ -108,11 +131,12 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ),
 
       GFToast(
+        bgColor: GFColor.transparent,
 //        button: GFButton(onPressed: null, type: GFType.outline,
 //        text: 'Accept',),
 //        text: 'Marked as Favorite.',
 
-//        child: Text('hygu'),
+        child: Text('hygu', style: TextStyle(color:Colors.black87),),
       ),
 //      Card(
 //        child: Column(

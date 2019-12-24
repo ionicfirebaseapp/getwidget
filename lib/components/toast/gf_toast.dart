@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:ui_kit/colors/gf_color.dart';
 
 class GFToast extends StatelessWidget {
 
@@ -19,7 +19,7 @@ class GFToast extends StatelessWidget {
   final  Widget button;
 
   ///pass color of type [Color] or [GFColor] for background of [GFToast]
-  final Color bgColor;
+  final dynamic bgColor;
 
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
@@ -30,19 +30,20 @@ class GFToast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ConstrainedBox(constraints:  BoxConstraints(minHeight: 50.0,), child: Container(
       margin: EdgeInsets.only(left: 10, right: 10),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
+
         borderRadius: BorderRadius.all(Radius.circular(3)),
-        color: bgColor ?? Color(0xff323232),
+        color: bgColor!=null ?getGFColor(bgColor):Color(0xff323232),
       ),
       child: Row(
         children: <Widget>[
           Flexible(
-              flex: 7,
-              fit: FlexFit.tight,
-              child: text!=null ? Text(text , style: textStyle):(child??Container()),),
+            flex: 7,
+            fit: FlexFit.tight,
+            child: text!=null ? Text(text , style: textStyle):(child??Container()),),
           SizedBox(
             width: 10,
           ),
@@ -52,6 +53,6 @@ class GFToast extends StatelessWidget {
               child: button):Container()
         ],
       ),
-    );
+    ),);
   }
 }
