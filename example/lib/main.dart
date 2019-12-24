@@ -43,47 +43,64 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-
-
-            GFCard(
-              boxFit: BoxFit.cover,
-              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
-              image: Image.asset("lib/assets/pizza.jpeg"),
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              GFCard(
+                boxFit: BoxFit.cover,
+                colorFilter: new ColorFilter.mode(
+                    Colors.black.withOpacity(0.67), BlendMode.darken),
+                image: Image.asset("lib/assets/pizza.jpeg"),
 //              imageOverlay: AssetImage("lib/assets/pizza.jpeg"),
-              titlePosition: GFPosition.end,
-              title: GFTitleBar(
-                avatar: GFAvatar(
-                  child: Text("tb"),
+                titlePosition: GFPosition.end,
+                title: GFTitleBar(
+                  avatar: GFAvatar(
+                    child: Text("tb"),
+                  ),
+                  title: Text(
+                    'title',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  subTitle: Text(
+                    'subtitle',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  icon: GFIconButton(
+                    onPressed: null,
+                    icon: Icon(Icons.favorite_border),
+                    type: GFType.transparent,
+                  ),
                 ),
-                title: Text('title', style: TextStyle(color: Colors.grey),),
-                subTitle: Text('subtitle', style: TextStyle(color: Colors.grey),),
-                icon: GFIconButton(
-                  onPressed: null,
-                  icon: Icon(Icons.favorite_border),
-                  type: GFType.transparent,
-                ),
-              ),
-              content: Text("Flutter "
+                content: Text(
+                  "Flutter "
                   "Flutter is Google's mobile UI framework for crafting"
                   " high-quality native interfaces on iOS and Android in "
-                  "Flutter ", style: TextStyle(color: Colors.grey), ),
-              buttonBar: GFButtonBar(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  GFButton(onPressed: null, child: Text("favorite"), icon: Icon(Icons.favorite_border), type: GFType.transparent, ),
-                  GFButton(onPressed: null, child: Text("share"), icon: Icon(Icons.share), type: GFType.outline, ),
-                ],
+                  "Flutter ",
+                  style: TextStyle(color: Colors.grey),
+                ),
+                buttonBar: GFButtonBar(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    GFButton(
+                      onPressed: null,
+                      child: Text("favorite"),
+                      icon: Icon(Icons.favorite_border),
+                      type: GFType.transparent,
+                    ),
+                    GFButton(
+                      onPressed: null,
+                      child: Text("share"),
+                      icon: Icon(Icons.share),
+                      type: GFType.outline,
+                    ),
+                  ],
+                ),
               ),
-            ),
-
 
 //            GFButtonBar(
 //              mainAxisSize: MainAxisSize.min,
@@ -107,51 +124,70 @@ class _MyHomePageState extends State<MyHomePage> {
 //              ),
 //            ),
 
-            GFImageOverlay(
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.all(16.0),
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                children: <Widget>[
-                  new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
+              GFImageOverlay(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  children: <Widget>[
+                    new Text(
+                      'Hello world',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    new Text(
+                      'Hello world',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    new Text(
+                      'Hello world',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    new Text(
+                      'Hello world',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    new Text(
+                      'Hello world',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    new Text(
+                      'Hello world',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    new Text(
+                      'Hello world',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    new Text(
+                      'Hello world',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    new Text(
+                      'Hello world',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    new Text(
+                      'Hello world',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    new Text(
+                      'Hello world',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    new Text(
+                      'Hello world',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
 //              color: Colors.orange,
-              image: AssetImage("lib/assets/pizza.jpeg"),
-              boxFit: BoxFit.cover,
-              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
-              borderRadius: new BorderRadius.circular(5.0),
+                image: AssetImage("lib/assets/pizza.jpeg"),
+                boxFit: BoxFit.cover,
+                colorFilter: new ColorFilter.mode(
+                    Colors.black.withOpacity(0.6), BlendMode.darken),
+                borderRadius: new BorderRadius.circular(5.0),
 //              border: Border.all(color: Colors.pink, width: 2.0),
-            ),
+              ),
 
 //
 //            GFAvatar(
@@ -251,9 +287,8 @@ class _MyHomePageState extends State<MyHomePage> {
 ////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 ////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
 //            ),
-          ],
-        ),
-      )
-    );
+            ],
+          ),
+        ));
   }
 }

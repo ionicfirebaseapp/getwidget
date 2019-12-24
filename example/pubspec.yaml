@@ -9,9 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^0.1.2
   ui_kit:
     path: ../
+
+  cupertino_icons: ^0.1.2
 
 dev_dependencies:
   flutter_test:
@@ -19,7 +20,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - lib/assets/fav.png
-    - lib/assets/food.png
-    - lib/assets/pizza.jpeg
