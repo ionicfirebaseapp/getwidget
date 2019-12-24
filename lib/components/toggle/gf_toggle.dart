@@ -86,8 +86,8 @@ class GFToggle extends StatelessWidget {
         activeColor: activeColor,
         inactiveThumbColor: inactiveTrackColor,
         inactiveTrackColor: inactiveTrackColor,
-        hoverColor: hoverColor,
-        focusColor: focusColor,
+//        hoverColor: hoverColor,
+//        focusColor: focusColor,
         onChanged: onChanged,
 
 
