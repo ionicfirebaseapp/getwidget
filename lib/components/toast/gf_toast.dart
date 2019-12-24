@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 
 class GFToast extends StatelessWidget {
+
+  ///
   GFToast({Key key,
     this.child,
     this.button,
@@ -10,19 +12,19 @@ class GFToast extends StatelessWidget {
     this.textStyle =  const TextStyle(color: Colors.white70, height: 1.5),
   }) :super(key: key);
 
-  ///type child in the [toast] dailogue which is optionally over text
+  /// child of  type [Widget]is alternative to text key. text will get priority over child
   final Widget child;
 
-  ///button type of the [toast] dailogue
-  final  button;
+  /// button of type [Widget],or you can use [GFButton] for easy implementation with [GFToast]
+  final  Widget button;
 
-  ///  background color of the [toast]  dailogue
+  ///pass color of type [Color] or [GFColor] for background of [GFToast]
   final Color bgColor;
 
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
 
-  /// textStyle type for the [text] declared in the [toast] dialogue
+  /// textStyle will be applicable to text only and not for the child
   final TextStyle textStyle;
 
 
