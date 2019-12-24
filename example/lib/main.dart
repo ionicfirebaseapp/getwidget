@@ -31,6 +31,8 @@ import 'package:ui_kit/components/toggle/gf_toggle.dart';
 import 'package:ui_kit/types/gf_toggle_type.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'package:ui_kit/components/toast/gf_toast.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -104,102 +106,110 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
 
         ),
-      Card(
-        child: Column(
-          children: <Widget>[
-            Text('fghj'),
-            Container(
-              height: 200,
-              width: 200,
-              color: Colors.red,
-              margin: EdgeInsets.only(bottom:40),
-            ),
-            GestureDetector(
-              onTap: (){
-                setState(() {
-                  isOn = !isOn;
-                });
-                print(controller.status);
-                switch (controller.status) {
-                  case AnimationStatus.dismissed:
-                    controller.forward();
-                    break;
-                  case AnimationStatus.completed:
-                    controller.reverse();
-                    break;
-                  default:
-                }
 
-              },
-              child:   Stack(
-                children: <Widget>[
-                  Container(
-                    height: 25,
-                    width:40,
-//                    color:Colors.blue
-                  ),
-                  Positioned(
-                    top:5,
-                    child: Container(
-                      width: 36,
-                      height: 15,
-                      decoration: BoxDecoration(
-                          color: isOn ? Colors.green: Colors.grey,
-                          borderRadius: BorderRadius.all(Radius.circular(20))
+      GFToast(
+//        button: GFButton(onPressed: null, type: GFType.outline,
+//        text: 'Accept',),
+//        text: 'Marked as Favorite.',
 
-                      ),
-                      child:
-                      Padding(padding: EdgeInsets.only(left: 3, right: 3, top: 3.4), child:
-                      isOn?
-
-                           Text('ON', style: TextStyle(color: Colors.white, fontSize: 8),):
-                      Text('OFF', textAlign: TextAlign.end, style: TextStyle(color: Colors.white, fontSize: 8),))
-
-                    ),
-                  ),
-                  Positioned(
-                      top: 3,
-                      child: GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              isOn = !isOn;
-                            });
-                            switch (controller.status) {
-                              case AnimationStatus.dismissed:
-                                controller.forward();
-                                break;
-                              case AnimationStatus.completed:
-                                controller.reverse();
-                                break;
-                              default:
-                            }
-                          },
-                          child:  SlideTransition(
-                            position: offset,
-                            child: Container(
-                              height: 20,
-                              width: 20,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    new BoxShadow(
-                                        color: Colors.black.withOpacity(0.16),
-                                        blurRadius: 6.0,
-                                        spreadRadius: 0.0),
-                                  ]
-                              ),
-                            ),
-                          )
-                      )
-                  ),
-
-                ],
-              ),
-            )
-          ],
-        ),
+//        child: Text('hygu'),
       ),
+//      Card(
+//        child: Column(
+//          children: <Widget>[
+//            Text('fghj'),
+//            Container(
+//              height: 200,
+//              width: 200,
+//              color: Colors.red,
+//              margin: EdgeInsets.only(bottom:40),
+//            ),
+//            GestureDetector(
+//              onTap: (){
+//                setState(() {
+//                  isOn = !isOn;
+//                });
+//                print(controller.status);
+//                switch (controller.status) {
+//                  case AnimationStatus.dismissed:
+//                    controller.forward();
+//                    break;
+//                  case AnimationStatus.completed:
+//                    controller.reverse();
+//                    break;
+//                  default:
+//                }
+//
+//              },
+//              child:   Stack(
+//                children: <Widget>[
+//                  Container(
+//                    height: 25,
+//                    width:40,
+////                    color:Colors.blue
+//                  ),
+//                  Positioned(
+//                    top:5,
+//                    child: Container(
+//                      width: 36,
+//                      height: 15,
+//                      decoration: BoxDecoration(
+//                          color: isOn ? Colors.green: Colors.grey,
+//                          borderRadius: BorderRadius.all(Radius.circular(20))
+//
+//                      ),
+//                      child:
+//                      Padding(padding: EdgeInsets.only(left: 3, right: 3, top: 3.4), child:
+//                      isOn?
+//
+//                           Text('ON', style: TextStyle(color: Colors.white, fontSize: 8),):
+//                      Text('OFF', textAlign: TextAlign.end, style: TextStyle(color: Colors.white, fontSize: 8),))
+//
+//                    ),
+//                  ),
+//                  Positioned(
+//                      top: 3,
+//                      child: GestureDetector(
+//                          onTap: (){
+//                            setState(() {
+//                              isOn = !isOn;
+//                            });
+//                            switch (controller.status) {
+//                              case AnimationStatus.dismissed:
+//                                controller.forward();
+//                                break;
+//                              case AnimationStatus.completed:
+//                                controller.reverse();
+//                                break;
+//                              default:
+//                            }
+//                          },
+//                          child:  SlideTransition(
+//                            position: offset,
+//                            child: Container(
+//                              height: 20,
+//                              width: 20,
+//                              decoration: BoxDecoration(
+//                                  shape: BoxShape.circle,
+//                                  color: Colors.white,
+//                                  boxShadow: [
+//                                    new BoxShadow(
+//                                        color: Colors.black.withOpacity(0.16),
+//                                        blurRadius: 6.0,
+//                                        spreadRadius: 0.0),
+//                                  ]
+//                              ),
+//                            ),
+//                          )
+//                      )
+//                  ),
+//
+//                ],
+//              ),
+//            )
+//          ],
+//        ),
+//      ),
 
       ],
     )
