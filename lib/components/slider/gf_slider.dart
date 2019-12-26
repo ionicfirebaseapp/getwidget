@@ -190,7 +190,7 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
     timer?.cancel();
   }
 
-  int currentIndex;
+  int _current = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -207,11 +207,9 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
             int currentPage = _getRealIndex(index + widget.initialPage, widget.realPage, widget.items.length);
             if (widget.onPageChanged != null) {
               widget.onPageChanged(currentPage);
-              currentIndex = currentPage;
-              print('cccccc  $currentPage');
+              _current = currentPage;
             }
-            currentIndex = currentPage;
-            print('cccccc $currentPage');
+            _current = currentPage;
           },
           itemBuilder: (BuildContext context, int i) {
             final int index =
@@ -251,45 +249,22 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
         )),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-children: <Widget>[
-    Container(
-      height: 70.0,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-      itemCount: widget.items.length,
-      itemBuilder: (context, index) {
-        return Container(
-          width: 8.0,
-          height: 8.0,
-          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: currentIndex == index
-                ? widget.activeIndicator == null ? Color.fromRGBO(0, 0, 0, 0.9) : widget.activeIndicator
-                : widget.passiveIndicator == null ? Color.fromRGBO(0, 0, 0, 0.4) : widget.passiveIndicator,
+          children: map<Widget>(
+            widget.items,
+                (indexx, url) {
+              return Container(
+                width: 8.0,
+                height: 8.0,
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _current == indexx
+                      ? widget.activeIndicator == null ? Color.fromRGBO(0, 0, 0, 0.9) : widget.activeIndicator
+                      : widget.passiveIndicator == null ? Color.fromRGBO(0, 0, 0, 0.4) : widget.passiveIndicator,
+                ),
+              );
+            },
           ),
-        );
-      }
-      ),
-    ),
-],
-//          children: map<Widget>(
-//            widget.items,
-//                (indexx, url) {
-//              print('ccccccccccccccc $indexx');
-//              return Container(
-//                width: 8.0,
-//                height: 8.0,
-//                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-//                decoration: BoxDecoration(
-//                  shape: BoxShape.circle,
-//                  color: currentIndex == indexx
-//                      ? widget.activeIndicator == null ? Color.fromRGBO(0, 0, 0, 0.9) : widget.activeIndicator
-//                      : widget.passiveIndicator == null ? Color.fromRGBO(0, 0, 0, 0.4) : widget.passiveIndicator,
-//                ),
-//              );
-//            },
-//          ),
         ),
       ],
     );

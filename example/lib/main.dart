@@ -15,7 +15,6 @@ import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
 import 'package:ui_kit/shape/gf_shape.dart';
 import 'package:ui_kit/components/slider/gf_slider.dart';
-import 'package:ui_kit/components/slider/gf_slider_with_indicator.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -63,11 +62,11 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
 
             GFSlider(
-              activeIndicator: Colors.red,
-              passiveIndicator: Colors.red.withOpacity(0.6),
+              activeIndicator: Colors.pink,
+              passiveIndicator: Colors.red.withOpacity(0.2),
             viewportFraction: 0.9,
             aspectRatio: 2.0,
-//            autoPlay: true,
+            autoPlay: true,
             enlargeMainPage: true,
             items: imageList.map(
                   (url) {
@@ -84,35 +83,32 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ).toList(),
+            onPageChanged: (index) {
+              setState(() {
+                index;
+              });
+            },
           ),
 
-//              GFSliderWithIndicator(
-//                items: imageList,
-//                activeIndicator: Colors.red,
-//                passiveIndicator: Colors.red.withOpacity(0.6),
-//              ),
 
-
-//          Padding(
-//                padding: EdgeInsets.symmetric(vertical: 15.0),
-//                child: Column(children: [
-//                  Text('Carousel With Indecator'),
-//                  CarouselWithIndicator(),
-//                ])),
-
-//              GFSlider(
-//                autoPlay: true,
-//                viewportFraction: 1.0,
-//                aspectRatio: MediaQuery.of(context).size.aspectRatio,
-//                items: imageList.map((url) {
-//                    return Image.network(
-//                      url,
-//                      fit: BoxFit.cover,
-//                      width: 1000.0,
-//                    );
-//                  },
-//                ).toList(),
-//              ),
+              GFSlider(
+                autoPlay: true,
+                viewportFraction: 1.0,
+                aspectRatio: MediaQuery.of(context).size.aspectRatio,
+                items: imageList.map((url) {
+                    return Image.network(
+                      url,
+                      fit: BoxFit.cover,
+                      width: 1000.0,
+                    );
+                  },
+                ).toList(),
+                onPageChanged: (index) {
+                  setState(() {
+                    index;
+                  });
+                },
+              ),
 
 //              GFCard(
 //                boxFit: BoxFit.cover,
