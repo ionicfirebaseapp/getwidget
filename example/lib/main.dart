@@ -15,6 +15,7 @@ import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
 import 'package:ui_kit/shape/gf_shape.dart';
 import 'package:ui_kit/components/slider/gf_slider.dart';
+import 'package:ui_kit/components/slider/gf_slider_with_indicator.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -36,73 +37,6 @@ class MyApp extends StatelessWidget {
       ),
       home: MyHomePage(title: 'UI_KIT_EXAMPLE'),
     );
-  }
-}
-
-List<T> map<T>(List list, Function handler) {
-  List<T> result = [];
-  for (var i = 0; i < list.length; i++) {
-    result.add(handler(i, list[i]));
-  }
-
-  return result;
-}
-
-class CarouselWithIndicator extends StatefulWidget {
-  @override
-  _CarouselWithIndicatorState createState() => _CarouselWithIndicatorState();
-}
-
-class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
-  int _current = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(children: [
-      GFSlider(
-        items: imageList.map(
-          (url) {
-            return Container(
-              margin: EdgeInsets.all(5.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                child: Image.network(
-                  url,
-                  fit: BoxFit.cover,
-                  width: 1000.0,
-                ),
-              ),
-            );
-          },
-          ).toList(),
-        autoPlay: true,
-        enlargeMainPage: true,
-        aspectRatio: 2.0,
-        onPageChanged: (index) {
-          setState(() {
-            _current = index;
-          });
-        },
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: map<Widget>(
-          imageList,
-              (index, url) {
-            return Container(
-              width: 8.0,
-              height: 8.0,
-              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: _current == index
-                      ? Color.fromRGBO(0, 0, 0, 0.9)
-                      : Color.fromRGBO(0, 0, 0, 0.4)),
-            );
-          },
-        ),
-      ),
-    ]);
   }
 }
 
@@ -150,12 +84,19 @@ class _MyHomePageState extends State<MyHomePage> {
             ).toList(),
           ),
 
-          Padding(
-                padding: EdgeInsets.symmetric(vertical: 15.0),
-                child: Column(children: [
-                  Text('Carousel With Indecator'),
-                  CarouselWithIndicator(),
-                ])),
+              GFSliderWithIndicator(
+                items: imageList,
+                activeIndicator: Colors.red,
+                passiveIndicator: Colors.red.withOpacity(0.6),
+              ),
+
+
+//          Padding(
+//                padding: EdgeInsets.symmetric(vertical: 15.0),
+//                child: Column(children: [
+//                  Text('Carousel With Indecator'),
+//                  CarouselWithIndicator(),
+//                ])),
 
 //              GFSlider(
 //                autoPlay: true,
