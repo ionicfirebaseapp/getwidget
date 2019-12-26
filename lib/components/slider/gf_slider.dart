@@ -14,6 +14,7 @@ class GFSlider extends StatefulWidget {
       {@required this.items,
         this.passiveIndicator,
         this.activeIndicator,
+        this.pagination,
         this.height,
         this.aspectRatio: 16 / 9,
         this.viewportFraction: 0.8,
@@ -36,8 +37,14 @@ class GFSlider extends StatefulWidget {
           initialPage: enableInfiniteScroll ? realPage + initialPage : initialPage,
         );
 
+  /// The slider pagination's active color.
   final Color activeIndicator;
+
+  /// The slider pagination's passive color.
   final Color passiveIndicator;
+
+  /// The [GFSlider] shows pagination on state true.
+  final bool pagination;
 
   /// The widgets to be shown as sliders.
   final List<Widget> items;
@@ -194,7 +201,7 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: <Widget>[
         getPageWrapper(PageView.builder(
           physics: widget.scrollPhysics,
@@ -247,25 +254,32 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
             );
           },
         )),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: map<Widget>(
-            widget.items,
-                (indexx, url) {
-              return Container(
-                width: 8.0,
-                height: 8.0,
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: _current == indexx
-                      ? widget.activeIndicator == null ? Color.fromRGBO(0, 0, 0, 0.9) : widget.activeIndicator
-                      : widget.passiveIndicator == null ? Color.fromRGBO(0, 0, 0, 0.4) : widget.passiveIndicator,
-                ),
-              );
-            },
+        widget.pagination == true ? Positioned(
+          left: 0.0,
+          right: 0.0,
+          bottom: 0.0,
+          child: Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: map<Widget>(
+                widget.items,
+                    (indexx, url) {
+                  return Container(
+                    width: 8.0,
+                    height: 8.0,
+                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: _current == indexx
+                          ? widget.activeIndicator == null ? Color.fromRGBO(0, 0, 0, 0.9) : widget.activeIndicator
+                          : widget.passiveIndicator == null ? Color.fromRGBO(0, 0, 0, 0.4) : widget.passiveIndicator,
+                    ),
+                  );
+                },
+              ),
+            ),
           ),
-        ),
+        ) : Container(),
       ],
     );
   }

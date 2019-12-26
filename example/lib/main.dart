@@ -63,11 +63,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
             GFSlider(
               activeIndicator: Colors.pink,
-              passiveIndicator: Colors.red.withOpacity(0.2),
+              passiveIndicator: Colors.pink.withOpacity(0.4),
             viewportFraction: 0.9,
             aspectRatio: 2.0,
-            autoPlay: true,
+//            autoPlay: true,
             enlargeMainPage: true,
+            pagination: true,
             items: imageList.map(
                   (url) {
                 return Container(
@@ -91,24 +92,30 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
 
 
-              GFSlider(
-                autoPlay: true,
-                viewportFraction: 1.0,
-                aspectRatio: MediaQuery.of(context).size.aspectRatio,
-                items: imageList.map((url) {
-                    return Image.network(
-                      url,
-                      fit: BoxFit.cover,
-                      width: 1000.0,
-                    );
-                  },
-                ).toList(),
-                onPageChanged: (index) {
-                  setState(() {
-                    index;
-                  });
-                },
-              ),
+//              GFSlider(
+//                autoPlay: true,
+//                viewportFraction: 1.0,
+//                aspectRatio: MediaQuery.of(context).size.aspectRatio,
+//                items: imageList.map((url) {
+//                    return Container(
+//                      margin: EdgeInsets.all(5.0),
+//                      child: ClipRRect(
+//                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+//                        child: Image.network(
+//                          url,
+//                          fit: BoxFit.cover,
+//                          width: 1000.0,
+//                        ),
+//                      ),
+//                    );
+//                  },
+//                ).toList(),
+//                onPageChanged: (index) {
+//                  setState(() {
+//                    index;
+//                  });
+//                },
+//              ),
 
 //              GFCard(
 //                boxFit: BoxFit.cover,
