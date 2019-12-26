@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
       ),
 
 //      home: MyHomePage(title: 'UI_KIT_EXAMPLE'),
-      home: Home(),
+      home: MyHomePage(title: 'UI KIT',),
 
     );
 
@@ -64,199 +64,6 @@ class MyApp extends StatelessWidget {
 
 
 
-class Home extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => HomeState();
-}
-
-class HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  Animation<Offset> offset;
-
-  bool isOn = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-
-    offset = Tween<Offset>(begin: Offset.zero, end: Offset(1.0, 0.0))
-        .animate(controller);
-//    offset = Tween<Offset>(begin: Offset(1.0, 0.0), end: Offset.zero).animate(controller);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body:
-
-    Column(
-      children: <Widget>[
-//        LabeledToggle(
-//          thumbSize: 20,
-//        ),
-
-        Container(
-//          height: 100,
-//          height: 200,
-          width: 200,
-          color: Colors.red,
-          margin: EdgeInsets.only(bottom:40, top: 40),
-          child:   GFToast(
-            bgColor: GFColor.primary,
-//        button: GFButton(onPressed: null, type: GFType.outline,
-//        text: 'Accept',),
-//        text: 'Marked as Favorite.',
-
-//            child: Column(
-//              children: <Widget>[
-//                Text('hygu', style: TextStyle(color:Colors.black87),),
-//                Text('hygu', style: TextStyle(color:Colors.black87),),
-//
-//                Text('hygu', style: TextStyle(color:Colors.black87),),
-//                Text('hygu', style: TextStyle(color:Colors.black87),),
-//
-//                Text('hygu', style: TextStyle(color:Colors.black87),),
-//                Text('hygu', style: TextStyle(color:Colors.black87),),
-//
-//
-//              ],
-//            )
-          ),
-        ),
-
-        GFToggle(onChanged: (val){
-          print(val);
-        }, value: null, type: GFToggleType.square
-        ),
-
-        GFToggle(onChanged: null, value: null, type: GFToggleType.android,
-        ),
-        GFToggle(onChanged: null, value: null, type: GFToggleType.android,
-        ),
-        GFToggle(onChanged: null, value: null, type: GFToggleType.custom,
-        ),
-        GFToggle(onChanged: null, value: null, type: GFToggleType.custom,
-        ),
-        GFToggle(onChanged: null, value: null, type: GFToggleType.ios,
-
-        ),
-        GFToggle(onChanged: null, value: null, type: GFToggleType.ios,
-
-        ),
-
-      GFToast(
-        bgColor: GFColor.transparent,
-//        button: GFButton(onPressed: null, type: GFType.outline,
-//        text: 'Accept',),
-//        text: 'Marked as Favorite.',
-
-        child: Text('jh', style: TextStyle(color:Colors.black87),),
-      ),
-//      Card(
-//        child: Column(
-//          children: <Widget>[
-//            Text('fghj'),
-//            Container(
-//              height: 200,
-//              width: 200,
-//              color: Colors.red,
-//              margin: EdgeInsets.only(bottom:40),
-//            ),
-//            GestureDetector(
-//              onTap: (){
-//                setState(() {
-//                  isOn = !isOn;
-//                });
-//                print(controller.status);
-//                switch (controller.status) {
-//                  case AnimationStatus.dismissed:
-//                    controller.forward();
-//                    break;
-//                  case AnimationStatus.completed:
-//                    controller.reverse();
-//                    break;
-//                  default:
-//                }
-//
-//              },
-//              child:   Stack(
-//                children: <Widget>[
-//                  Container(
-//                    height: 25,
-//                    width:40,
-////                    color:Colors.blue
-//                  ),
-//                  Positioned(
-//                    top:5,
-//                    child: Container(
-//                      width: 36,
-//                      height: 15,
-//                      decoration: BoxDecoration(
-//                          color: isOn ? Colors.green: Colors.grey,
-//                          borderRadius: BorderRadius.all(Radius.circular(20))
-//
-//                      ),
-//                      child:
-//                      Padding(padding: EdgeInsets.only(left: 3, right: 3, top: 3.4), child:
-//                      isOn?
-//
-//                           Text('ON', style: TextStyle(color: Colors.white, fontSize: 8),):
-//                      Text('OFF', textAlign: TextAlign.end, style: TextStyle(color: Colors.white, fontSize: 8),))
-//
-//                    ),
-//                  ),
-//                  Positioned(
-//                      top: 3,
-//                      child: GestureDetector(
-//                          onTap: (){
-//                            setState(() {
-//                              isOn = !isOn;
-//                            });
-//                            switch (controller.status) {
-//                              case AnimationStatus.dismissed:
-//                                controller.forward();
-//                                break;
-//                              case AnimationStatus.completed:
-//                                controller.reverse();
-//                                break;
-//                              default:
-//                            }
-//                          },
-//                          child:  SlideTransition(
-//                            position: offset,
-//                            child: Container(
-//                              height: 20,
-//                              width: 20,
-//                              decoration: BoxDecoration(
-//                                  shape: BoxShape.circle,
-//                                  color: Colors.white,
-//                                  boxShadow: [
-//                                    new BoxShadow(
-//                                        color: Colors.black.withOpacity(0.16),
-//                                        blurRadius: 6.0,
-//                                        spreadRadius: 0.0),
-//                                  ]
-//                              ),
-//                            ),
-//                          )
-//                      )
-//                  ),
-//
-//                ],
-//              ),
-//            )
-//          ],
-//        ),
-//      ),
-
-      ],
-    )
-    );
-  }
-}
 
 class MyHomePage extends StatefulWidget {
 
@@ -296,6 +103,36 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
 
             children: <Widget>[
+
+              GFToast(
+                bgColor: GFColor.warning,
+        button: GFButton(onPressed: null, type: GFType.outline,
+        text: 'Accept',),
+        text: 'Marked as Favorite.',
+
+
+              ),
+
+              GFToggle(onChanged: (val){
+                print(val);
+              }, value: null, type: GFToggleType.square,
+                duration: Duration(milliseconds: 400),
+              ),
+
+              GFToggle(onChanged: null, value: null, type: GFToggleType.android,
+                duration: Duration(milliseconds: 400),
+              ),
+              GFToggle(onChanged: null, value: null, type: GFToggleType.android,
+                duration: Duration(milliseconds: 400),
+              ),
+              GFToggle(onChanged: null, value: null, type: GFToggleType.custom,
+                duration: Duration(milliseconds: 400),
+              ),
+
+              GFToggle(onChanged: null, value: null, type: GFToggleType.ios,
+                duration: Duration(milliseconds: 400),
+
+              ),
 
               Card(
 
@@ -412,106 +249,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
 //              borderRadius: BorderRadius.circular(20.0),
 
-              ),
-              Switch(
-                onChanged: (v){},
-                value: true,
-//                activeColor: Colors.red,
-                activeColor: Colors.white,
-                activeTrackColor: Colors.green,
-                inactiveTrackColor: Colors.grey,
-                inactiveThumbColor: Colors.black,
-//                activeThumbImage: NetworkImage("https://cdn.pixabay.com/photo/2016/11/10/17/00/forest-1814723_960_720.jpg",),
-
-              ),
-
-              CupertinoSwitch(
-                onChanged: (v){},
-                value: true,
-
-              ),
-
-
-//              GFToggle(
-//                type: GFToggleType.iosSwitch,
-//                activeColor: Colors.red,
-//                activeThumbColor: Colors.blue,
-//
-//                onChanged: (val){
-//                },
-//                value: true,
-//                minWidth: false,
-//              ),
-
-            LabeledToggle(
-              rounded: true,
-              enabledText: 'OFF',
-              disabledText: 'ON',
-            ),
-//
-//              LabeledToggle(
-//                transitionType: TextTransitionTypes.FADE,
-//                rounded: true,
-////                borderSize: 2.0,
-////                duration: Duration(milliseconds: 500),
-//                forceWidth: true,
-//                value: switchValue,
-//                onChanged: (v) {
-//                  setState(() {
-//                    switchValue = v;
-//                  });
-//                },
-//                offBkColor: Colors.grey,
-//                onBkColor: Colors.lightGreen,
-//                offText: "FALSE",
-//                onText: "TRUE",
-//                offThumbColor: Colors.black,
-//                onThumbColor: Colors.white,
-//                thumbSize: 60.0,
-//              ),
-
-
-              Stack(
-                children: <Widget>[
-                  Container(
-                    height: 30,
-                    width:60,
-//                    color:Colors.blue
-                  ),
-
-                  Positioned(
-                    top:2,
-                    child: Container(
-                      width: 36,
-                      height: 15,
-                      decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.all(Radius.circular(20))
-
-                      ),
-
-                    ),
-                  ),
-                  Positioned(
-//                      right:20,
-
-                      child: Container(
-                        height: 20,
-                        width: 20,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                            boxShadow: [
-                              new BoxShadow(
-                                  color: Colors.black.withOpacity(0.16),
-                                  blurRadius: 6.0,
-                                  spreadRadius: 0.0),
-                            ]
-                        ),
-                      )),
-
-
-                ],
               ),
 
 
