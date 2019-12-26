@@ -38,10 +38,10 @@ class GFToggle extends StatefulWidget {
 
 
 
-//  /// Button type of [GFToggleType] i.e, androidSwitch, iosSwitch, labeledSwitch, animatedSWitch
+//  /// Button type of [GFToggleType] i.e, android, ios, labeledSwitch, animatedSWitch
   GFToggleType type;
 
-  ///A androidSwitch
+  ///A android
   ///
   /// The color to use on the track when this switch is on.
   final Color activeColor;
@@ -94,7 +94,8 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context) {
-    if (type == GFToggleType.androidSwitch) {
+//    if (widget.type == GFToggleType.android)
+//    {
       return  GestureDetector(
         onTap: (){
           setState(() {
@@ -115,15 +116,16 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin{
         child:   Stack(
           children: <Widget>[
             Container(
-              height: 25,
-              width:40,
+              height: widget.type == GFToggleType.android? 25: 30,
+              width:widget.type == GFToggleType.android ? 40 :50,
 //                    color:Colors.blue
             ),
             Positioned(
               top:5,
               child: Container(
-                  width: 36,
-                  height: 15,
+
+                  width: widget.type == GFToggleType.ios ? 45 :  36,
+                  height:  widget.type == GFToggleType.ios ? 25 : 15,
                   decoration: BoxDecoration(
                       color: isOn ? widget.enabledTrackColor??Colors.lightGreen: widget.disabledTrackColor ?? Colors.grey,
                       borderRadius: BorderRadius.all(Radius.circular(20))
@@ -133,13 +135,14 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin{
                   Padding(padding: EdgeInsets.only(left: 3, right: 3, top: 3.4), child:
                   isOn?
 
-                  Text( widget.enabledText ?? 'ON',style: widget.enabledTextColor?? TextStyle(color: Colors.white, fontSize: 8),):
-                  Text(widget.disabledText ?? 'OFF', textAlign: TextAlign.end, style: widget.disabledTextColor?? TextStyle(color: Colors.white, fontSize: 8),))
+                widget.type== GFToggleType.android || widget.type == GFToggleType.ios? Container():  Text( widget.enabledText ?? 'ON',style: widget.enabledTextColor?? TextStyle(color: Colors.white, fontSize: 8),):
+                  widget.type== GFToggleType.android || widget.type == GFToggleType.ios? Container(): Text(widget.disabledText ?? 'OFF', textAlign: TextAlign.end, style: widget.disabledTextColor?? TextStyle(color: Colors.white, fontSize: 8),))
 
               ),
             ),
             Positioned(
-                top: 3,
+                top:  widget.type == GFToggleType.ios?7 : 3,
+                left: widget.type == GFToggleType.ios?2 : 0,
                 child: GestureDetector(
                     onTap: (){
                       setState(() {
@@ -158,6 +161,7 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin{
                     child:  SlideTransition(
                       position: offset,
                       child: Container(
+                        padding: EdgeInsets.only(left: 10),
                         height: 20,
                         width: 20,
                         decoration: BoxDecoration(
@@ -178,18 +182,18 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin{
           ],
         ),
       );
-    } else if (type == GFToggleType.iosSwitch) {
-      return ();
-
-    } else if (type == GFToggleType.labeledSwitch){
-      return Switch(value: null, onChanged: null,
-
-
-
-      );
-
-
-    }
+//    } else if (widget.type == GFToggleType.ios) {
+//      return (Container());
+//
+//    } else if (widget.type == GFToggleType.labeledSwitch){
+//      return Switch(value: null, onChanged: null,
+//
+//
+//
+//      );
+//
+//
+//    }
   }
 }
 

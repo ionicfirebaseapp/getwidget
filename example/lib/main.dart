@@ -97,6 +97,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 //        LabeledToggle(
 //          thumbSize: 20,
 //        ),
+
         Container(
 //          height: 100,
 //          height: 200,
@@ -125,8 +126,27 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 //            )
           ),
         ),
-        LabeledToggle(
 
+        GFToggle(onChanged: null, value: null, type: GFToggleType.ios,
+boxShape: BoxShape.rectangle,
+
+//          enabledThumbColor: Colors.red,
+
+        ),
+
+        GFToggle(onChanged: null, value: null, type: GFToggleType.android,
+          boxShape: BoxShape.rectangle,
+//          enabledThumbColor: Colors.red,
+
+        ),
+        GFToggle(onChanged: null, value: null, type: GFToggleType.labeled,
+          boxShape: BoxShape.rectangle,
+//          enabledThumbColor: Colors.red,
+
+        ),
+        GFToggle(onChanged: null, value: null, type: GFToggleType.labeled,
+          boxShape: BoxShape.rectangle,
+//          enabledThumbColor: Colors.red,
 
         ),
 
@@ -136,7 +156,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 //        text: 'Accept',),
 //        text: 'Marked as Favorite.',
 
-        child: Text('hygu', style: TextStyle(color:Colors.black87),),
+        child: Text('jh', style: TextStyle(color:Colors.black87),),
       ),
 //      Card(
 //        child: Column(
@@ -415,16 +435,16 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
 
 
-              GFToggle(
-                type: GFToggleType.iosSwitch,
-                activeColor: Colors.red,
-                activeThumbColor: Colors.blue,
-
-                onChanged: (val){
-                },
-                value: true,
-                minWidth: false,
-              ),
+//              GFToggle(
+//                type: GFToggleType.iosSwitch,
+//                activeColor: Colors.red,
+//                activeThumbColor: Colors.blue,
+//
+//                onChanged: (val){
+//                },
+//                value: true,
+//                minWidth: false,
+//              ),
 
             LabeledToggle(
               rounded: true,
