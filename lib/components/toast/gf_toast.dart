@@ -34,7 +34,6 @@ class GFToast extends StatelessWidget {
       margin: EdgeInsets.only(left: 10, right: 10),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-
         borderRadius: BorderRadius.all(Radius.circular(3)),
         color: bgColor!=null ?getGFColor(bgColor):Color(0xff323232),
       ),
