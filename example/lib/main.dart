@@ -127,26 +127,23 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
         ),
 
-        GFToggle(onChanged: null, value: null, type: GFToggleType.ios,
-boxShape: BoxShape.rectangle,
-
-//          enabledThumbColor: Colors.red,
-
+        GFToggle(onChanged: (val){
+          print(val);
+        }, value: null, type: GFToggleType.square
         ),
 
         GFToggle(onChanged: null, value: null, type: GFToggleType.android,
-          boxShape: BoxShape.rectangle,
-//          enabledThumbColor: Colors.red,
+        ),
+        GFToggle(onChanged: null, value: null, type: GFToggleType.android,
+        ),
+        GFToggle(onChanged: null, value: null, type: GFToggleType.custom,
+        ),
+        GFToggle(onChanged: null, value: null, type: GFToggleType.custom,
+        ),
+        GFToggle(onChanged: null, value: null, type: GFToggleType.ios,
 
         ),
-        GFToggle(onChanged: null, value: null, type: GFToggleType.labeled,
-          boxShape: BoxShape.rectangle,
-//          enabledThumbColor: Colors.red,
-
-        ),
-        GFToggle(onChanged: null, value: null, type: GFToggleType.labeled,
-          boxShape: BoxShape.rectangle,
-//          enabledThumbColor: Colors.red,
+        GFToggle(onChanged: null, value: null, type: GFToggleType.ios,
 
         ),
 

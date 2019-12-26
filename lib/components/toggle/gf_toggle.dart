@@ -19,7 +19,9 @@ class GFToggle extends StatefulWidget {
     this.disabledTrackColor,
     this.disabledThumbColor,
     this.type,
-    this.boxShape
+    this.boxShape,
+    this.borderRadius
+
 
 
   }) :super(key: key);
@@ -35,6 +37,7 @@ class GFToggle extends StatefulWidget {
   final Color disabledThumbColor;
   final Color disabledTrackColor;
   final BoxShape boxShape;
+  final BorderRadius borderRadius;
 
 
 
@@ -101,7 +104,6 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin{
           setState(() {
             isOn = !isOn;
           });
-          print(controller.status);
           switch (controller.status) {
             case AnimationStatus.dismissed:
               controller.forward();
@@ -111,6 +113,7 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin{
               break;
             default:
           }
+          widget.onChanged(isOn);
 
         },
         child:   Stack(
@@ -128,15 +131,15 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin{
                   height:  widget.type == GFToggleType.ios ? 25 : 15,
                   decoration: BoxDecoration(
                       color: isOn ? widget.enabledTrackColor??Colors.lightGreen: widget.disabledTrackColor ?? Colors.grey,
-                      borderRadius: BorderRadius.all(Radius.circular(20))
+                      borderRadius: widget.type == GFToggleType.square?BorderRadius.all(Radius.circular(0)): widget.borderRadius ?? BorderRadius.all(Radius.circular(20))
 
                   ),
                   child:
                   Padding(padding: EdgeInsets.only(left: 3, right: 3, top: 3.4), child:
                   isOn?
 
-                widget.type== GFToggleType.android || widget.type == GFToggleType.ios? Container():  Text( widget.enabledText ?? 'ON',style: widget.enabledTextColor?? TextStyle(color: Colors.white, fontSize: 8),):
-                  widget.type== GFToggleType.android || widget.type == GFToggleType.ios? Container(): Text(widget.disabledText ?? 'OFF', textAlign: TextAlign.end, style: widget.disabledTextColor?? TextStyle(color: Colors.white, fontSize: 8),))
+                Text( widget.enabledText ?? widget.type== GFToggleType.custom?'ON':'',style: widget.enabledTextColor?? TextStyle(color: Colors.white, fontSize: 8),):
+                  Text(widget.disabledText ??  widget.type== GFToggleType.custom?'OFF':'', textAlign: TextAlign.end, style: widget.disabledTextColor?? TextStyle(color: Colors.white, fontSize: 8),))
 
               ),
             ),
@@ -157,6 +160,7 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin{
                           break;
                         default:
                       }
+                      widget.onChanged(isOn);
                     },
                     child:  SlideTransition(
                       position: offset,
@@ -165,7 +169,7 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin{
                         height: 20,
                         width: 20,
                         decoration: BoxDecoration(
-                            shape: widget.boxShape ?? BoxShape.circle,
+                            shape: widget.type == GFToggleType.square ? BoxShape.rectangle : widget.boxShape ?? BoxShape.circle,
                             color: widget.enabledThumbColor ?? Colors.white,
                             boxShadow: [
                               new BoxShadow(
