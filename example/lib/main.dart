@@ -55,46 +55,91 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-
-            GFSlider(
-            viewportFraction: 0.9,
-            aspectRatio: 2.0,
-            autoPlay: true,
-            enlargeMainPage: true,
-            items: imageList.map(
-                  (url) {
-                return Container(
-                  margin: EdgeInsets.all(5.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    child: Image.network(
-                      url,
-                      fit: BoxFit.cover,
-                      width: 1000.0,
-                    ),
-                  ),
-                );
-              },
-            ).toList(),
+        body: DefaultTabController(
+          length: 3,
+          child: Scaffold(
+            appBar: AppBar(
+              bottom: TabBar(
+                tabs: [
+                  Tab(icon: Icon(Icons.directions_car)),
+                  Tab(icon: Icon(Icons.directions_transit)),
+                  Tab(icon: Icon(Icons.directions_bike)),
+                ],
+              ),
+              title: Text('Tabs Demo'),
+            ),
+            body: TabBarView(
+              children: [
+                Icon(Icons.directions_car),
+                Icon(Icons.directions_transit),
+                Icon(Icons.directions_bike),
+              ],
+            ),
           ),
+        ),
+//        SingleChildScrollView(
+//          child: Column(
+//            mainAxisAlignment: MainAxisAlignment.center,
+//            crossAxisAlignment: CrossAxisAlignment.center,
+//            children: <Widget>[
+
+
+
+//            GFSlider(
+////              pagerSize: 12.0,
+////              activeIndicator: Colors.pink,
+////              passiveIndicator: Colors.pink.withOpacity(0.4),
+//            viewportFraction: 0.9,
+//            aspectRatio: 2.0,
+////            autoPlay: true,
+//            enlargeMainPage: true,
+//            pagination: true,
+//            items: imageList.map(
+//                  (url) {
+//                return Container(
+//                  margin: EdgeInsets.all(5.0),
+//                  child: ClipRRect(
+//                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+//                    child: Image.network(
+//                      url,
+//                      fit: BoxFit.cover,
+//                      width: 1000.0,
+//                    ),
+//                  ),
+//                );
+//              },
+//            ).toList(),
+//            onPageChanged: (index) {
+//              setState(() {
+//                index;
+//              });
+//            },
+//          ),
+
 
 //              GFSlider(
 //                autoPlay: true,
 //                viewportFraction: 1.0,
 //                aspectRatio: MediaQuery.of(context).size.aspectRatio,
 //                items: imageList.map((url) {
-//                    return Image.network(
-//                      url,
-//                      fit: BoxFit.cover,
-//                      width: 1000.0,
+//                    return Container(
+//                      margin: EdgeInsets.all(5.0),
+//                      child: ClipRRect(
+//                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+//                        child: Image.network(
+//                          url,
+//                          fit: BoxFit.cover,
+//                          width: 1000.0,
+//                        ),
+//                      ),
 //                    );
 //                  },
 //                ).toList(),
+//                onPageChanged: (index) {
+//                  setState(() {
+//                    index;
+//                  });
+//                },
 //              ),
 
 //              GFCard(
@@ -333,8 +378,9 @@ class _MyHomePageState extends State<MyHomePage> {
 ////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 ////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
 //            ),
-            ],
-          ),
-        ));
+//            ],
+//          ),
+//        )
+    );
   }
 }
