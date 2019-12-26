@@ -63,9 +63,11 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
 
             GFSlider(
+              activeIndicator: Colors.red,
+              passiveIndicator: Colors.red.withOpacity(0.6),
             viewportFraction: 0.9,
             aspectRatio: 2.0,
-            autoPlay: true,
+//            autoPlay: true,
             enlargeMainPage: true,
             items: imageList.map(
                   (url) {
@@ -84,11 +86,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ).toList(),
           ),
 
-              GFSliderWithIndicator(
-                items: imageList,
-                activeIndicator: Colors.red,
-                passiveIndicator: Colors.red.withOpacity(0.6),
-              ),
+//              GFSliderWithIndicator(
+//                items: imageList,
+//                activeIndicator: Colors.red,
+//                passiveIndicator: Colors.red.withOpacity(0.6),
+//              ),
 
 
 //          Padding(

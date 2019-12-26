@@ -1,9 +1,19 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+List<T> map<T>(List list, Function handler) {
+  List<T> result = [];
+  for (var i = 0; i < list.length; i++) {
+    result.add(handler(i, list[i]));
+  }
+  return result;
+}
+
 class GFSlider extends StatefulWidget {
   GFSlider(
       {@required this.items,
+        this.passiveIndicator,
+        this.activeIndicator,
         this.height,
         this.aspectRatio: 16 / 9,
         this.viewportFraction: 0.8,
@@ -25,6 +35,9 @@ class GFSlider extends StatefulWidget {
           viewportFraction: viewportFraction,
           initialPage: enableInfiniteScroll ? realPage + initialPage : initialPage,
         );
+
+  final Color activeIndicator;
+  final Color passiveIndicator;
 
   /// The widgets to be shown as sliders.
   final List<Widget> items;
@@ -177,56 +190,109 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
     timer?.cancel();
   }
 
+  int currentIndex;
+
   @override
   Widget build(BuildContext context) {
-    return getPageWrapper(PageView.builder(
-      physics: widget.scrollPhysics,
-      scrollDirection: widget.scrollDirection,
-      controller: widget.pageController,
-      reverse: widget.reverse,
-      itemCount: widget.enableInfiniteScroll ? null : widget.items.length,
-      onPageChanged: (int index) {
-        int currentPage = _getRealIndex(index + widget.initialPage, widget.realPage, widget.items.length);
-        if (widget.onPageChanged != null) {
-          widget.onPageChanged(currentPage);
-        }
-      },
-      itemBuilder: (BuildContext context, int i) {
-        final int index =
-        _getRealIndex(i + widget.initialPage, widget.realPage, widget.items.length);
+    return Column(
+      children: <Widget>[
+        getPageWrapper(PageView.builder(
+          physics: widget.scrollPhysics,
+          scrollDirection: widget.scrollDirection,
+          controller: widget.pageController,
+          reverse: widget.reverse,
+          itemCount: widget.enableInfiniteScroll ? null : widget.items.length,
+          onPageChanged: (int index) {
 
-        return AnimatedBuilder(
-          animation: widget.pageController,
-          child: widget.items[index],
-          builder: (BuildContext context, child) {
-            // on the first render, the pageController.page is null,
-            // this is a dirty hack
-            if (widget.pageController.position.minScrollExtent == null ||
-                widget.pageController.position.maxScrollExtent == null) {
-              Future.delayed(Duration(microseconds: 1), () {
-                setState(() {});
-              });
-              return Container();
+            int currentPage = _getRealIndex(index + widget.initialPage, widget.realPage, widget.items.length);
+            if (widget.onPageChanged != null) {
+              widget.onPageChanged(currentPage);
+              currentIndex = currentPage;
+              print('cccccc  $currentPage');
             }
-            double value = widget.pageController.page - i;
-            value = (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
-
-            final double height =
-                widget.height ?? MediaQuery.of(context).size.width * (1 / widget.aspectRatio);
-            final double distortionValue =
-            widget.enlargeMainPage ? Curves.easeOut.transform(value) : 1.0;
-
-            if (widget.scrollDirection == Axis.horizontal) {
-              return Center(child: SizedBox(height: distortionValue * height, child: child));
-            } else {
-              return Center(
-                  child: SizedBox(
-                      width: distortionValue * MediaQuery.of(context).size.width, child: child));
-            }
+            currentIndex = currentPage;
+            print('cccccc $currentPage');
           },
+          itemBuilder: (BuildContext context, int i) {
+            final int index =
+            _getRealIndex(i + widget.initialPage, widget.realPage, widget.items.length);
+
+            return AnimatedBuilder(
+              animation: widget.pageController,
+              child: widget.items[index],
+              builder: (BuildContext context, child) {
+                // on the first render, the pageController.page is null,
+                // this is a dirty hack
+                if (widget.pageController.position.minScrollExtent == null ||
+                    widget.pageController.position.maxScrollExtent == null) {
+                  Future.delayed(Duration(microseconds: 1), () {
+                    setState(() {});
+                  });
+                  return Container();
+                }
+                double value = widget.pageController.page - i;
+                value = (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
+
+                final double height =
+                    widget.height ?? MediaQuery.of(context).size.width * (1 / widget.aspectRatio);
+                final double distortionValue =
+                widget.enlargeMainPage ? Curves.easeOut.transform(value) : 1.0;
+
+                if (widget.scrollDirection == Axis.horizontal) {
+                  return Center(child: SizedBox(height: distortionValue * height, child: child));
+                } else {
+                  return Center(
+                      child: SizedBox(
+                          width: distortionValue * MediaQuery.of(context).size.width, child: child));
+                }
+              },
+            );
+          },
+        )),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+children: <Widget>[
+    Container(
+      height: 70.0,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+      itemCount: widget.items.length,
+      itemBuilder: (context, index) {
+        return Container(
+          width: 8.0,
+          height: 8.0,
+          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: currentIndex == index
+                ? widget.activeIndicator == null ? Color.fromRGBO(0, 0, 0, 0.9) : widget.activeIndicator
+                : widget.passiveIndicator == null ? Color.fromRGBO(0, 0, 0, 0.4) : widget.passiveIndicator,
+          ),
         );
-      },
-    ));
+      }
+      ),
+    ),
+],
+//          children: map<Widget>(
+//            widget.items,
+//                (indexx, url) {
+//              print('ccccccccccccccc $indexx');
+//              return Container(
+//                width: 8.0,
+//                height: 8.0,
+//                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+//                decoration: BoxDecoration(
+//                  shape: BoxShape.circle,
+//                  color: currentIndex == indexx
+//                      ? widget.activeIndicator == null ? Color.fromRGBO(0, 0, 0, 0.9) : widget.activeIndicator
+//                      : widget.passiveIndicator == null ? Color.fromRGBO(0, 0, 0, 0.4) : widget.passiveIndicator,
+//                ),
+//              );
+//            },
+//          ),
+        ),
+      ],
+    );
   }
 }
 
