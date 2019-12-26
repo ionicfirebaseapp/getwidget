@@ -9,10 +9,10 @@ class GFToggle extends StatefulWidget {
       @required this.value,
       this.enabledText,
       this.disabledText,
-      this.enabledTextColor,
+      this.enabledTextStyle,
       this.enabledThumbColor,
       this.enabledTrackColor,
-      this.disabledTextColor,
+      this.disabledTextStyle,
       this.disabledTrackColor,
       this.disabledThumbColor,
       this.type,
@@ -22,46 +22,46 @@ class GFToggle extends StatefulWidget {
       : super(key: key);
 
 
-  ///type String used to add custom text like ON,  in custom toggle
+  ///type [String] used to add custom text i.e, ON,ENABLE
   final String enabledText;
 
-  ///type String used to add custom text like ON,  in custom toggle
+  ///type [String] used to add custom text i.e, ON,DISABLE
   final String disabledText;
 
-  ///type of TextStyle used to define the style peoperties of the active text
-  final TextStyle enabledTextColor;
+  ///type of [TextStyle] used to define the style properties of the enabled text
+  final TextStyle enabledTextStyle;
 
-  ///type of TextStyle used to define the style peoperties of the inactive text
-  final TextStyle disabledTextColor;
+  ///type of [TextStyle] used to define the style peoperties of the disabled text
+  final TextStyle disabledTextStyle;
 
-  ///type of Color used for the active thumb color
+//  ///type of [Color] used for the active thumb color
   final Color enabledThumbColor;
 
-  ///type of Color used for the inactive thumb color
+ ///type of [Color] used for the inactive thumb color
   final Color disabledThumbColor;
 
-  ///type of Color used for the active track color
+  ///type of [Color] used for the active track color
   final Color enabledTrackColor;
 
-  ///type of Color used for the inactive thumb color
+  ///type of [Color] used for the inactive thumb color
   final Color disabledTrackColor;
 
-  ///type of boxShape used to define shapes like Circle , Rectangle
+  ///type of [BoxShape] used to define shapes i.e, Circle , Rectangle
   final BoxShape boxShape;
 
-  ///type of borderRadius used to define the radius of the Container
+  ///type of [BorderRadius] used to define the radius of the Container
   final BorderRadius borderRadius;
 
-  ///type of animation duration called when the switch animates during the specific duration
+  ///type of animation [Duration] called when the switch animates during the specific duration
   final Duration duration;
 
  /// Button type of [GFToggleType] i.e, android, ios, custom, sqaure
   GFToggleType type;
 
-  /// This property must not be null.
+  /// This property must not be null. Used to set the current state of toggle
   final bool value;
 
-  ///the state used to toggle the switch for true or false
+  /// Called when the user toggles the switch on or off.
   final ValueChanged<bool> onChanged;
 
     @override
@@ -105,7 +105,10 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
             break;
           default:
         }
-        widget.onChanged(isOn);
+        if(widget.onChanged!=null){
+          widget.onChanged(isOn);
+        }
+
       },
       child: Stack(
         children: <Widget>[
@@ -134,7 +137,7 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                                 ( widget.type == GFToggleType.custom
                                 ? 'ON'
                                 : ''),
-                            style: widget.enabledTextColor ??
+                            style: widget.enabledTextStyle ??
                                 ( widget.type == GFToggleType.ios ?TextStyle(color: Colors.white, fontSize: 12): TextStyle(color: Colors.white, fontSize: 8))
                           )
                         : Text(
@@ -143,7 +146,7 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                                 ? 'OFF'
                                 : ''),
                             textAlign: TextAlign.end,
-                            style: widget.disabledTextColor ??
+                            style: widget.disabledTextStyle ??
                                 ( widget.type == GFToggleType.ios ?TextStyle(color: Colors.white, fontSize: 12): TextStyle(color: Colors.white, fontSize: 8))
                           ))),
           ),
@@ -164,7 +167,9 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                         break;
                       default:
                     }
-                    widget.onChanged(isOn);
+                    if(widget.onChanged!=null){
+                      widget.onChanged(isOn);
+                    }
                   },
                   child: SlideTransition(
                     position: offset,
@@ -176,7 +181,8 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                           shape: widget.type == GFToggleType.square
                               ? BoxShape.rectangle
                               : widget.boxShape ?? BoxShape.circle,
-                          color: widget.enabledThumbColor ?? Colors.white,
+                          color: isOn ?  widget.enabledThumbColor ?? Colors.white
+                          : widget.disabledThumbColor ?? Colors.white,
                           boxShadow: [
                             new BoxShadow(
                                 color: Colors.black.withOpacity(0.16),

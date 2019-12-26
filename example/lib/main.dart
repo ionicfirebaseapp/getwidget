@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 
@@ -34,227 +32,183 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:ui_kit/components/toast/gf_toast.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
   @override
-
   Widget build(BuildContext context) {
-
     return MaterialApp(
-
       title: 'UI_KIT_EXAMPLE',
 
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
-
       ),
 
 //      home: MyHomePage(title: 'UI_KIT_EXAMPLE'),
-      home: MyHomePage(title: 'UI KIT',),
-
+      home: MyHomePage(
+        title: 'UI KIT',
+      ),
     );
-
   }
-
 }
 
-
-
-
 class MyHomePage extends StatefulWidget {
-
   MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-
   _MyHomePageState createState() => _MyHomePageState();
-
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   bool switchValue = true;
   @override
-
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-
         appBar: AppBar(
-
           title: Text(widget.title),
-
         ),
-
         body: SingleChildScrollView(
-
           child: Column(
-
             mainAxisAlignment: MainAxisAlignment.center,
-
             crossAxisAlignment: CrossAxisAlignment.center,
-
             children: <Widget>[
-
               GFToast(
                 bgColor: GFColor.warning,
-        button: GFButton(onPressed: null, type: GFType.outline,
-        text: 'Accept',),
-        text: 'Marked as Favorite.',
-
-
+                button: GFButton(
+                  onPressed: null,
+                  type: GFType.outline,
+                  text: 'Accept',
+                ),
+                text: 'Marked as Favorite.',
               ),
-
-             Container(
-               margin: EdgeInsets.only(left: 10, right: 10, top:10, bottom: 10),
-               child:  Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                 children: <Widget>[
-
-
-                   GFToggle(onChanged: null, value: null, type: GFToggleType.android,
-                     duration: Duration(milliseconds: 400),
-                     enabledText: 'hi',
-                     disabledText: 'k',
-
-                   ),
-                   GFToggle(onChanged: null, value: null, type: GFToggleType.ios,
-                     duration: Duration(milliseconds: 400),
-                     enabledText: 'hi',
-                     disabledText: 'k',
-
-                   ),
-
-                   GFToggle(onChanged: null, value: null, type: GFToggleType.custom,
-                     duration: Duration(milliseconds: 400),
-                     enabledText: 'omm',
-                     disabledText: 'k',
-                   ),
-                   GFToggle(onChanged: (val){
-                     print(val);
-                   }, value: null, type: GFToggleType.square,
-                     duration: Duration(milliseconds: 400),
-                     enabledText: 'li',
-                     disabledText: 'k',
-
-                  ),
-
-
-                 ],
-               ),
-             ),
 
               Container(
-                margin: EdgeInsets.only(left: 10, right: 10, top:10, bottom: 10),
-                child:  Row(
+                margin:
+                    EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-
-
-                    GFToggle(onChanged: null, value: null, type: GFToggleType.android,
+                    GFToggle(
+                      onChanged: null,
+                      value: null,
+                      type: GFToggleType.android,
                       duration: Duration(milliseconds: 400),
-                      borderRadius: BorderRadius.all(Radius.circular(0)),
-                      boxShape: BoxShape.rectangle,
-
-
 
                     ),
-                    GFToggle(onChanged: null, value: null, type: GFToggleType.ios,
+                    GFToggle(
+                      onChanged: null,
+                      value: null,
+                      type: GFToggleType.ios,
                       duration: Duration(milliseconds: 400),
-                      borderRadius: BorderRadius.all(Radius.circular(0)),
-                      boxShape: BoxShape.rectangle,
-
-
-
                     ),
-
-                    GFToggle(onChanged: null, value: null, type: GFToggleType.custom,
+                    GFToggle(
+                      onChanged: null,
+                      value: null,
+                      type: GFToggleType.custom,
                       duration: Duration(milliseconds: 400),
-                      borderRadius: BorderRadius.all(Radius.circular(0)),
-                      boxShape: BoxShape.rectangle,
-                 
-                   ),
-
-                 ],
+                    ),
+                    GFToggle(
+                      onChanged: (val) {
+                        print(val);
+                      },
+                      value: null,
+                      type: GFToggleType.square,
+                      duration: Duration(milliseconds: 400),
+                    ),
+                  ],
                 ),
               ),
 
-
-
+              Container(
+                margin:
+                    EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    GFToggle(
+                      onChanged: null,
+                      value: null,
+                      type: GFToggleType.android,
+                      duration: Duration(milliseconds: 400),
+                      borderRadius: BorderRadius.all(Radius.circular(0)),
+                      boxShape: BoxShape.rectangle,
+                    ),
+                    GFToggle(
+                      onChanged: null,
+                      value: null,
+                      type: GFToggleType.ios,
+                      duration: Duration(milliseconds: 400),
+                      borderRadius: BorderRadius.all(Radius.circular(0)),
+                      boxShape: BoxShape.rectangle,
+                    ),
+                    GFToggle(
+                      onChanged: null,
+                      value: null,
+                      type: GFToggleType.custom,
+                      duration: Duration(milliseconds: 400),
+                      borderRadius: BorderRadius.all(Radius.circular(0)),
+                      boxShape: BoxShape.rectangle,
+                    ),
+                  ],
+                ),
+              ),
 
               Card(
-
                 child: Column(
-
                   children: <Widget>[
-
                     Text("czsd"),
-
                     Row(
-
                       children: <Widget>[
-
-                        OutlineButton(onPressed: null, child: Text("dscds"), color: Colors.orange, ),
-
+                        OutlineButton(
+                          onPressed: null,
+                          child: Text("dscds"),
+                          color: Colors.orange,
+                        ),
                         FlatButton(onPressed: null, child: Text("dchbvj"))
-
                       ],
-
                     )
-
                   ],
-
                 ),
-
               ),
 
               GFButtonBar(
-
                 mainAxisSize: MainAxisSize.min,
-
                 children: <Widget>[
-
-                  GFButton(onPressed: null, child: Text("like"), icon: Icon(Icons.favorite_border), type: GFType.transparent,),
-
-                  GFButton(onPressed: null, child: Text("comment"),),
-
-                  GFButton(onPressed: null, child: Text("share"), icon: Icon(Icons.share), type: GFType.outline,),
-
+                  GFButton(
+                    onPressed: null,
+                    child: Text("like"),
+                    icon: Icon(Icons.favorite_border),
+                    type: GFType.transparent,
+                  ),
+                  GFButton(
+                    onPressed: null,
+                    child: Text("comment"),
+                  ),
+                  GFButton(
+                    onPressed: null,
+                    child: Text("share"),
+                    icon: Icon(Icons.share),
+                    type: GFType.outline,
+                  ),
                 ],
-
               ),
 
               GFTitleBar(
-
                 avatar: GFAvatar(
-
                   child: Text("tb"),
-
                 ),
-
                 title: Text('title'),
-
                 subTitle: Text('subtitle'),
-
                 icon: GFIconButton(
-
                   type: GFType.transparent,
-
                   icon: Icon(Icons.favorite_border),
-
                 ),
-
               ),
-
-
 
 //            GFCard(
 
@@ -287,9 +241,8 @@ class _MyHomePageState extends State<MyHomePage> {
 //            GFimageoverlay()
 
               GFAvatar(
-
 //              radius: 20.0,
-                maxRadius:50 ,
+                maxRadius: 50,
 
                 child: Text("de"),
 
@@ -304,24 +257,15 @@ class _MyHomePageState extends State<MyHomePage> {
 //              size: GFSize.medium,
 
 //              borderRadius: BorderRadius.circular(20.0),
-
               ),
 
-
               GFIconBadges(
-
                 onPressed: null,
-
                 child: GFIconButton(
-
                   onPressed: null,
-
                   icon: Icon(Icons.ac_unit),
-
                 ),
-
                 counterChild: GFBadge(
-
                   text: '12',
 
 //                color: GFColor.dark,
@@ -337,13 +281,10 @@ class _MyHomePageState extends State<MyHomePage> {
 //                textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
 
 //                borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.orange, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-
                 ),
-
               ),
 
               GFIconButton(
-
                 onPressed: null,
 
                 icon: Icon(Icons.ac_unit),
@@ -375,13 +316,9 @@ class _MyHomePageState extends State<MyHomePage> {
 //              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 
 //              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-
               ),
 
-
-
               GFButtonBadge(
-
                 onPressed: null,
 
 //              position: GFIconPosition.start,
@@ -401,7 +338,6 @@ class _MyHomePageState extends State<MyHomePage> {
 //              size: GFSize.small,
 
                 counterChild: GFBadge(
-
                   child: Text("12"),
 
 //              color: GFColor.dark,
@@ -415,13 +351,10 @@ class _MyHomePageState extends State<MyHomePage> {
 //              textColor: GFColor.white,
 
 //              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
-
                 ),
-
               ),
 
               GFBadge(
-
                 text: '12',
 
 //              color: GFColor.dark,
@@ -435,11 +368,9 @@ class _MyHomePageState extends State<MyHomePage> {
 //              textColor: GFColor.white,
 
 //              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
-
               ),
 
               GFButton(
-
 //              type: GFType.solid,
 
 //              shape: GFShape.pills,
@@ -481,18 +412,9 @@ class _MyHomePageState extends State<MyHomePage> {
 //              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 
 //              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-
               ),
-
             ],
-
           ),
-
-        )
-
-    );
-
+        ));
   }
-
 }
-
