@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'package:flutter/material.dart';
 
 List<T> map<T>(List list, Function handler) {
@@ -12,6 +13,7 @@ List<T> map<T>(List list, Function handler) {
 class GFSlider extends StatefulWidget {
   GFSlider(
       {@required this.items,
+        this.pagerSize,
         this.passiveIndicator,
         this.activeIndicator,
         this.pagination,
@@ -36,6 +38,9 @@ class GFSlider extends StatefulWidget {
           viewportFraction: viewportFraction,
           initialPage: enableInfiniteScroll ? realPage + initialPage : initialPage,
         );
+
+  /// The pagination dots size can be defined using [double].
+  final double pagerSize;
 
   /// The slider pagination's active color.
   final Color activeIndicator;
@@ -265,8 +270,8 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
                 widget.items,
                     (indexx, url) {
                   return Container(
-                    width: 8.0,
-                    height: 8.0,
+                    width: widget.pagerSize == null ? 8.0 : widget.pagerSize,
+                    height: widget.pagerSize == null ? 8.0 : widget.pagerSize,
                     margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
