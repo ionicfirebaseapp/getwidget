@@ -4,26 +4,38 @@ import '../../types/gf_toggle_type.dart';
 
 
 
-
-
-class GFToggle extends StatelessWidget {
+class GFToggle extends StatefulWidget {
   GFToggle({Key key,
     @required this.onChanged,
     @required this.value,
     this.activeColor,
 //    this.inactiveColor,
-    this.inactiveTrackColor,
-    this.inactiveThumbColor,
-    this.activeThumbColor,
-    this.focusColor,
-    this.hoverColor,
+    this.enabledText,
+    this.disabledText,
+    this.enabledTextColor,
+    this.enabledThumbColor,
+    this.enabledTrackColor,
+    this.disabledTextColor,
+    this.disabledTrackColor,
+    this.disabledThumbColor,
     this.type,
-    this.height,
-    this.width,
-    this.onText,
-    this.offText,
-    this.minWidth
+    this.boxShape
+
+
   }) :super(key: key);
+
+
+
+  final String enabledText;
+  final String disabledText;
+  final TextStyle enabledTextColor;
+  final Color enabledThumbColor;
+  final Color enabledTrackColor;
+  final TextStyle disabledTextColor;
+  final Color disabledThumbColor;
+  final Color disabledTrackColor;
+  final BoxShape boxShape;
+
 
 
 //  /// Button type of [GFToggleType] i.e, androidSwitch, iosSwitch, labeledSwitch, animatedSWitch
@@ -43,66 +55,134 @@ class GFToggle extends StatelessWidget {
   ///the state used to toggle the switch for true or false
   final ValueChanged<bool> onChanged;
 
-  /// The color to use on the track when this switch is off.
-  final Color inactiveTrackColor;
-
-  /// Defaults to the colors described in the Material design specification.
-  final Color inactiveThumbColor;
-
-  /// Defaults to the colors described in the Material design specification when switch is on.
-  final Color activeThumbColor;
 
 
-  /// The color for the button's [Material] when it has the input focus.
-  final Color focusColor;
+  @override
+  _GFToggleState createState() => _GFToggleState();
+}
 
-  /// The color for the button's [Material] when a pointer is hovering over it.
-  final Color hoverColor;
+class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin{
 
+  AnimationController animationController;
+  Animation<double> animation;
+  AnimationController controller;
+  Animation<Offset> offset;
 
-  ///height of the ios button
-  final double height;
-
-  ///width of the track button
-  final double width;
-
-
-///text for the labeled Switch when it is true
-  final String onText;
-
-///text for the labled switch when it is false
-  final String offText;
+  bool isOn = false;
 
 
-  ///minwidth of the switch for labeled switch
-  final bool minWidth;
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+
+    offset = Tween<Offset>(begin: Offset.zero, end: Offset(1.0, 0.0))
+        .animate(controller);
+
+
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+
+    super.dispose();
+  }
+
 
 
   @override
   Widget build(BuildContext context) {
     if (type == GFToggleType.androidSwitch) {
-      return Switch(
-        value: value,
-        activeColor: activeColor,
-        inactiveThumbColor: inactiveTrackColor,
-        inactiveTrackColor: inactiveTrackColor,
-        hoverColor: hoverColor,
-        focusColor: focusColor,
-        onChanged: onChanged,
+      return  GestureDetector(
+        onTap: (){
+          setState(() {
+            isOn = !isOn;
+          });
+          print(controller.status);
+          switch (controller.status) {
+            case AnimationStatus.dismissed:
+              controller.forward();
+              break;
+            case AnimationStatus.completed:
+              controller.reverse();
+              break;
+            default:
+          }
 
+        },
+        child:   Stack(
+          children: <Widget>[
+            Container(
+              height: 25,
+              width:40,
+//                    color:Colors.blue
+            ),
+            Positioned(
+              top:5,
+              child: Container(
+                  width: 36,
+                  height: 15,
+                  decoration: BoxDecoration(
+                      color: isOn ? widget.enabledTrackColor??Colors.lightGreen: widget.disabledTrackColor ?? Colors.grey,
+                      borderRadius: BorderRadius.all(Radius.circular(20))
 
+                  ),
+                  child:
+                  Padding(padding: EdgeInsets.only(left: 3, right: 3, top: 3.4), child:
+                  isOn?
+
+                  Text( widget.enabledText ?? 'ON',style: widget.enabledTextColor?? TextStyle(color: Colors.white, fontSize: 8),):
+                  Text(widget.disabledText ?? 'OFF', textAlign: TextAlign.end, style: widget.disabledTextColor?? TextStyle(color: Colors.white, fontSize: 8),))
+
+              ),
+            ),
+            Positioned(
+                top: 3,
+                child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        isOn = !isOn;
+                      });
+                      switch (controller.status) {
+                        case AnimationStatus.dismissed:
+                          controller.forward();
+                          break;
+                        case AnimationStatus.completed:
+                          controller.reverse();
+                          break;
+                        default:
+                      }
+                    },
+                    child:  SlideTransition(
+                      position: offset,
+                      child: Container(
+                        height: 20,
+                        width: 20,
+                        decoration: BoxDecoration(
+                            shape: widget.boxShape ?? BoxShape.circle,
+                            color: widget.enabledThumbColor ?? Colors.white,
+                            boxShadow: [
+                              new BoxShadow(
+                                  color: Colors.black.withOpacity(0.16),
+                                  blurRadius: 6.0,
+                                  spreadRadius: 0.0),
+                            ]
+                        ),
+                      ),
+                    )
+                )
+            ),
+
+          ],
+        ),
       );
     } else if (type == GFToggleType.iosSwitch) {
-      return CupertinoSwitch(
-          value: value,
-          onChanged: onChanged,
-          activeColor: activeColor,
-
-
-      );
+      return ();
 
     } else if (type == GFToggleType.labeledSwitch){
-      return Switch(value: value, onChanged: onChanged,
+      return Switch(value: null, onChanged: null,
 
 
 
@@ -112,6 +192,9 @@ class GFToggle extends StatelessWidget {
     }
   }
 }
+
+
+
 //
 //enum TextTransitionTypes { ROTATE, SCALE, FADE, SIZE }
 //
@@ -649,7 +732,6 @@ class LabeledToggle extends StatefulWidget {
   final Color disabledThumbColor;
   final Color disabledTrackColor;
   final bool value;
-
   final double borderSize;
   final Duration duration;
   final Curve curve;

@@ -30,7 +30,8 @@ class GFToast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(constraints:  BoxConstraints(minHeight: 50.0,), child: Container(
+    return
+      ConstrainedBox(constraints:  BoxConstraints(minHeight: 50.0,), child: Container(
       margin: EdgeInsets.only(left: 10, right: 10),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
