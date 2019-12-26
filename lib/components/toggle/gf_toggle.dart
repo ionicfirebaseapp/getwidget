@@ -127,24 +127,24 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                         : widget.borderRadius ??
                             BorderRadius.all(Radius.circular(20))),
                 child: Padding(
-                    padding: EdgeInsets.only(left: 3, right: 3, top: 3.4),
+                    padding: widget.type == GFToggleType.ios ?  EdgeInsets.only(left: 3.5, right: 3.5, top: 5.4):  EdgeInsets.only(left: 3, right: 3, top: 3.4),
                     child: isOn
                         ? Text(
                             widget.enabledText ??
-                                    widget.type == GFToggleType.custom
+                                ( widget.type == GFToggleType.custom
                                 ? 'ON'
-                                : '',
+                                : ''),
                             style: widget.enabledTextColor ??
-                                TextStyle(color: Colors.white, fontSize: 8),
+                                ( widget.type == GFToggleType.ios ?TextStyle(color: Colors.white, fontSize: 12): TextStyle(color: Colors.white, fontSize: 8))
                           )
                         : Text(
                             widget.disabledText ??
-                                    widget.type == GFToggleType.custom
+                                ( widget.type == GFToggleType.custom
                                 ? 'OFF'
-                                : '',
+                                : ''),
                             textAlign: TextAlign.end,
                             style: widget.disabledTextColor ??
-                                TextStyle(color: Colors.white, fontSize: 8),
+                                ( widget.type == GFToggleType.ios ?TextStyle(color: Colors.white, fontSize: 12): TextStyle(color: Colors.white, fontSize: 8))
                           ))),
           ),
           Positioned(

@@ -113,26 +113,82 @@ class _MyHomePageState extends State<MyHomePage> {
 
               ),
 
-              GFToggle(onChanged: (val){
-                print(val);
-              }, value: null, type: GFToggleType.square,
-                duration: Duration(milliseconds: 400),
+             Container(
+               margin: EdgeInsets.only(left: 10, right: 10, top:10, bottom: 10),
+               child:  Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: <Widget>[
+
+
+                   GFToggle(onChanged: null, value: null, type: GFToggleType.android,
+                     duration: Duration(milliseconds: 400),
+                     enabledText: 'hi',
+                     disabledText: 'k',
+
+                   ),
+                   GFToggle(onChanged: null, value: null, type: GFToggleType.ios,
+                     duration: Duration(milliseconds: 400),
+                     enabledText: 'hi',
+                     disabledText: 'k',
+
+                   ),
+
+                   GFToggle(onChanged: null, value: null, type: GFToggleType.custom,
+                     duration: Duration(milliseconds: 400),
+                     enabledText: 'omm',
+                     disabledText: 'k',
+                   ),
+                   GFToggle(onChanged: (val){
+                     print(val);
+                   }, value: null, type: GFToggleType.square,
+                     duration: Duration(milliseconds: 400),
+                     enabledText: 'li',
+                     disabledText: 'k',
+
+                  ),
+
+
+                 ],
+               ),
+             ),
+
+              Container(
+                margin: EdgeInsets.only(left: 10, right: 10, top:10, bottom: 10),
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+
+
+                    GFToggle(onChanged: null, value: null, type: GFToggleType.android,
+                      duration: Duration(milliseconds: 400),
+                      borderRadius: BorderRadius.all(Radius.circular(0)),
+                      boxShape: BoxShape.rectangle,
+
+
+
+                    ),
+                    GFToggle(onChanged: null, value: null, type: GFToggleType.ios,
+                      duration: Duration(milliseconds: 400),
+                      borderRadius: BorderRadius.all(Radius.circular(0)),
+                      boxShape: BoxShape.rectangle,
+
+
+
+                    ),
+
+                    GFToggle(onChanged: null, value: null, type: GFToggleType.custom,
+                      duration: Duration(milliseconds: 400),
+                      borderRadius: BorderRadius.all(Radius.circular(0)),
+                      boxShape: BoxShape.rectangle,
+                 
+                   ),
+
+                 ],
+                ),
               ),
 
-              GFToggle(onChanged: null, value: null, type: GFToggleType.android,
-                duration: Duration(milliseconds: 400),
-              ),
-              GFToggle(onChanged: null, value: null, type: GFToggleType.android,
-                duration: Duration(milliseconds: 400),
-              ),
-              GFToggle(onChanged: null, value: null, type: GFToggleType.custom,
-                duration: Duration(milliseconds: 400),
-              ),
 
-              GFToggle(onChanged: null, value: null, type: GFToggleType.ios,
-                duration: Duration(milliseconds: 400),
 
-              ),
 
               Card(
 
