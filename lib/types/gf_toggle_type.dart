@@ -1,1 +1,1 @@
-enum GFToggleType { androidSwitch, iosSwitch, labeledSwitch, animatedSwitch,  }
+enum GFToggleType { android, ios, custom ,square  }
