@@ -15,7 +15,7 @@ import 'package:ui_kit/components/badge/gf_badge.dart';
 
 import 'package:ui_kit/components/card/gf_card.dart';
 
-import 'package:ui_kit/components/header_bar/gf_title_bar.dart';
+import 'package:ui_kit/components/list_item/gf_list_item.dart';
 
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
 
@@ -84,6 +84,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
       body: Column(
         children: <Widget>[
+          GFListItem(
+            avatar: GFAvatar(),
+
+            title: GFHeader(
+              text: 'cvbn',
+//             showDivider: false,
+              backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
+            ),
+            subTitle: Text('cfghjk'),
+          ),
         Container(
           margin: EdgeInsets.only(top:10),
           child:   GFToast(

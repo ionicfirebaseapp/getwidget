@@ -92,7 +92,7 @@ class GFHeader extends StatelessWidget {
             ),
             showDivider
                 ? Container(
-                    margin: EdgeInsets.only(top: 5),
+                    margin: EdgeInsets.only(top: 5, bottom: 5),
                     alignment: dividerAlignment,
                     child: Container(
                       width: dividerWidth != null ? dividerWidth : 70,
