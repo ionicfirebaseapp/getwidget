@@ -84,15 +84,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
       body: Column(
         children: <Widget>[
-          GFToast(
-            bgColor: GFColor.warning,
-            button: GFButton(
-              onPressed: null,
-              type: GFType.outline,
-              text: 'Accept',
-            ),
+        Container(
+          margin: EdgeInsets.only(top:10),
+          child:   GFToast(
+//
+//
+//
+//            button: GFButton(
+//              onPressed: null,
+//              type: GFType.outline,
+//              text: 'Accept',
+//            ),
             text: 'Marked as Favorite.',
           ),
+        ),
           Container(
             margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
             child: Row(
