@@ -30,6 +30,7 @@ import 'package:ui_kit/components/toggle/gf_toggle.dart';
 import 'package:ui_kit/types/gf_toggle_type.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ui_kit/components/header/gf_header.dart';
+import 'package:ui_kit/position/gf_position.dart';
 
 import 'package:ui_kit/components/toast/gf_toast.dart';
 
@@ -82,21 +83,62 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
 
-      body: Column(
+      body:
+
+    SingleChildScrollView(
+      child:   Column(
         children: <Widget>[
+
+//      GFCard(
+////      boxFit: BoxFit.cover,
+////        colorFilter: new ColorFilter.mode(
+////            Colors.black.withOpacity(0.67), BlendMode.darken),
+//        image: Image.asset("lib/assets/food.jpeg"),
+////              imageOverlay: AssetImage("lib/assets/food.jpeg"),
+//        titlePosition: GFPosition.end,
+//        title: GFListItem(
+//          avatar: GFAvatar(
+//            child: Text("tb"),
+//          ),
+//          title: Text(
+//            'title',
+//            style: TextStyle(color: Colors.grey),
+//          ),
+//          subTitle: Text(
+//            'subtitle',
+//            style: TextStyle(color: Colors.grey),
+//          ),
+//          icon: GFIconButton(
+//            onPressed: null,
+//            icon: Icon(Icons.favorite_border),
+//            type: GFType.transparent,
+//          ),
+//        ),
+//      ),
+
+//
+//        GFCard(
+//          title: GFListItem(
+//            title: Text('dcrfvjn'),
+//            subTitle: Text('fghjk'),
+//
+//          ),
+//
+//        ),
+
           GFListItem(
             avatar: GFAvatar(),
 
             title: GFHeader(
-              text: 'cvbn',
-//             showDivider: false,
-              backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
+              text: 'HEADER',
+
+//              backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
             ),
-            subTitle: Text('cfghjk'),
+            subTitle: Text('Sub Header'),
           ),
-        Container(
-          margin: EdgeInsets.only(top:10),
-          child:   GFToast(
+          Container(
+            margin: EdgeInsets.only(top:10),
+            child:   GFToast(
 //
 //
 //
@@ -105,9 +147,9 @@ class _MyHomePageState extends State<MyHomePage> {
 //              type: GFType.outline,
 //              text: 'Accept',
 //            ),
-            text: 'Marked as Favorite.',
+              text: 'Marked as Favorite.',
+            ),
           ),
-        ),
           Container(
             margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
             child: Row(
@@ -149,10 +191,10 @@ class _MyHomePageState extends State<MyHomePage> {
 //              icon: Icon(Icons.image, color: Colors.white,),
               text: 'GET FLUTTER HEADER',
 //textColor: Colors.red,
-dividerWidth: 20,
+              dividerWidth: 20,
 //backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
 //showDivider: false,
-            
+
 //              textColor: Colors.black,
 //              dividerColor: Colors.red,
 //dividerAlignment: Alignment.center,
@@ -167,6 +209,7 @@ dividerWidth: 20,
 
         ],
       ),
+    )
       // body: DefaultTabController(
       //   length: 3,
       //   child: Scaffold(
