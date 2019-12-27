@@ -15,7 +15,7 @@ import 'package:ui_kit/components/badge/gf_badge.dart';
 
 import 'package:ui_kit/components/card/gf_card.dart';
 
-import 'package:ui_kit/components/header_bar/gf_title_bar.dart';
+import 'package:ui_kit/components/list_tile/gf_list_tile.dart';
 
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
 
@@ -29,6 +29,8 @@ import 'package:ui_kit/shape/gf_shape.dart';
 import 'package:ui_kit/components/toggle/gf_toggle.dart';
 import 'package:ui_kit/types/gf_toggle_type.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:ui_kit/components/header/gf_header.dart';
+import 'package:ui_kit/position/gf_position.dart';
 
 import 'package:ui_kit/components/toast/gf_toast.dart';
 
@@ -48,6 +50,7 @@ class MyApp extends StatelessWidget {
       title: 'UI_KIT_EXAMPLE',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+
       ),
 debugShowCheckedModeBanner: false,
 
@@ -80,16 +83,70 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
 
-      body: Column(
+      body:
+
+    SingleChildScrollView(
+      child:   Column(
         children: <Widget>[
-          GFToast(
-            bgColor: GFColor.warning,
-            button: GFButton(
-              onPressed: null,
-              type: GFType.outline,
-              text: 'Accept',
+
+//      GFCard(
+////      boxFit: BoxFit.cover,
+////        colorFilter: new ColorFilter.mode(
+////            Colors.black.withOpacity(0.67), BlendMode.darken),
+//        image: Image.asset("lib/assets/food.jpeg"),
+////              imageOverlay: AssetImage("lib/assets/food.jpeg"),
+//        titlePosition: GFPosition.end,
+//        title: GFListItem(
+//          avatar: GFAvatar(
+//            child: Text("tb"),
+//          ),
+//          title: Text(
+//            'title',
+//            style: TextStyle(color: Colors.grey),
+//          ),
+//          subTitle: Text(
+//            'subtitle',
+//            style: TextStyle(color: Colors.grey),
+//          ),
+//          icon: GFIconButton(
+//            onPressed: null,
+//            icon: Icon(Icons.favorite_border),
+//            type: GFType.transparent,
+//          ),
+//        ),
+//      ),
+
+//
+//        GFCard(
+//          title: GFListItem(
+//            title: Text('dcrfvjn'),
+//            subTitle: Text('fghjk'),
+//
+//          ),
+//
+//        ),
+
+          GFListTile(
+            avatar: GFAvatar(),
+            
+            icon: Icon(Icons.description),
+            title: Text('Header'),
+            subTitle: Text('Sub Header'),
+            description: Text('Lorem ipsum gf header used to show the header of the list tile'),
+          ),
+          Container(
+            margin: EdgeInsets.only(top:10),
+            child:   GFToast(
+//
+//
+//
+//            button: GFButton(
+//              onPressed: null,
+//              type: GFType.outline,
+//              text: 'Accept',
+//            ),
+              text: 'Marked as Favorite.',
             ),
-            text: 'Marked as Favorite.',
           ),
           Container(
             margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
@@ -124,9 +181,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
+          ),
+
+          Container(
+//            padding: EdgeInsets.only(left: 20, right: 20),
+            child:  GFHeader(
+//              icon: Icon(Icons.image, color: Colors.white,),
+              text: 'GET FLUTTER HEADER',
+//textColor: Colors.red,
+              dividerWidth: 20,
+//backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
+//showDivider: false,
+
+//              textColor: Colors.black,
+//              dividerColor: Colors.red,
+//dividerAlignment: Alignment.center,
+
+
+
+//            child: Text('GF HEADER ', ),
+//            dividercolor: GFColor.warning,
+//            dividerBorderRadius: BorderRadius.all(Radius.circular(0)),
+            ),
           )
+
         ],
       ),
+    )
       // body: DefaultTabController(
       //   length: 3,
       //   child: Scaffold(
