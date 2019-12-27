@@ -15,6 +15,7 @@ import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
 import 'package:ui_kit/shape/gf_shape.dart';
 import 'package:ui_kit/components/slider/gf_slider.dart';
+import 'package:ui_kit/colors/gf_color.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -60,9 +61,41 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Scaffold(
             appBar: AppBar(
               bottom: TabBar(
+indicatorColor: Colors.lightGreen,
+              labelColor: Colors.orange,
                 tabs: [
-                  Tab(icon: Icon(Icons.directions_car)),
-                  Tab(icon: Icon(Icons.directions_transit)),
+                  Container(
+                    child: Column(
+                      children: <Widget>[
+                        Text("dcec"),
+                      ],
+                    ),
+                  ),
+
+
+                  GFButton(
+              type: GFType.solid,
+              shape: GFShape.pills,
+                    text: 'goodies',
+//                    onPressed: () {},
+//              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
+//              size: GFSize.large,
+//              buttonBoxShadow: true,
+//              blockButton: true,
+//              fullWidthButton: true,
+//              color: Colors.red,
+//              textColor: GFColor.secondary,
+//              icon: Icon(Icons.error, color: Colors.white,),
+//              position: GFIconPosition.start,
+//              boxShadow: BoxShadow(
+                color: GFColor.danger,
+//                blurRadius: 2.0,
+//                spreadRadius: 1.0,
+//                offset: Offset.zero,
+//              ),
+//              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+//              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
+                  ),
                   Tab(icon: Icon(Icons.directions_bike)),
                 ],
               ),
