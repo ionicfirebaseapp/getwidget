@@ -129,10 +129,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
 
           Container(
-            padding: EdgeInsets.only(left: 20, right: 20),
+//            padding: EdgeInsets.only(left: 20, right: 20),
             child:  GFHeader(
-//              icon: Icon(Icons.favorite),
+//              icon: Icon(Icons.image, color: Colors.white,),
               text: 'GET FLUTTER HEADER',
+//textColor: Colors.red,
+dividerWidth: 20,
+//backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
+//showDivider: false,
+            
 //              textColor: Colors.black,
 //              dividerColor: Colors.red,
 //dividerAlignment: Alignment.center,
