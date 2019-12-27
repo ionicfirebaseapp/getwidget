@@ -162,6 +162,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
+                        RawMaterialButton(onPressed: null, child: Text("fv"),),
+                        FlatButton(onPressed: null, child: Text("cds")),
                         Icon(Icons.directions_railway),
                         GFButton(
                           onPressed: null,
