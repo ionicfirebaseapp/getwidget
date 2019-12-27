@@ -29,6 +29,7 @@ import 'package:ui_kit/shape/gf_shape.dart';
 import 'package:ui_kit/components/toggle/gf_toggle.dart';
 import 'package:ui_kit/types/gf_toggle_type.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:ui_kit/components/header/gf_header.dart';
 
 import 'package:ui_kit/components/toast/gf_toast.dart';
 
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
       title: 'UI_KIT_EXAMPLE',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+
       ),
 debugShowCheckedModeBanner: false,
 
@@ -124,7 +126,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
+          ),
+
+          Container(
+            margin: EdgeInsets.only(left: 20),
+            child:  GFHeader(
+//              icon: Icon(Icons.favorite),
+              text: 'GET FLUTTER HEADER',
+              textColor: Colors.black,
+              dividerColor: Colors.red,
+
+
+
+//            child: Text('GF HEADER ', ),
+//            dividercolor: GFColor.warning,
+//            dividerBorderRadius: BorderRadius.all(Radius.circular(0)),
+            ),
           )
+
         ],
       ),
       // body: DefaultTabController(
