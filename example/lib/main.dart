@@ -15,7 +15,7 @@ import 'package:ui_kit/components/badge/gf_badge.dart';
 
 import 'package:ui_kit/components/card/gf_card.dart';
 
-import 'package:ui_kit/components/header_bar/gf_title_bar.dart';
+import 'package:ui_kit/components/list_tile/gf_list_tile.dart';
 
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
 
@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
       title: 'UI_KIT_EXAMPLE',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+
       ),
       debugShowCheckedModeBanner: false,
       home: MyHomePage(title: 'UI_KIT_EXAMPLE'),
@@ -229,7 +230,7 @@ class _MyHomePageState extends State<MyHomePage> {
               image: Image.asset("lib/assets/food.jpeg"),
 //              imageOverlay: AssetImage("lib/assets/food.jpeg"),
               titlePosition: GFPosition.end,
-              title: GFTitleBar(
+              title: GFListItem(
                 avatar: GFAvatar(
                   child: Text("tb"),
                 ),
@@ -293,7 +294,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            GFTitleBar(
+            GFListItem(
               avatar: GFAvatar(
                 child: Text("tb"),
               ),
