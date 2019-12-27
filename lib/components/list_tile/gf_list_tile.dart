@@ -6,12 +6,6 @@ class GFListItem extends StatelessWidget {
   /// The card's background color.
   final Color color;
 
-  /// The empty space that surrounds the card. Defines the card's outer [Container.margin].
-  final EdgeInsetsGeometry margin;
-
-  /// The empty space that surrounds the card. Defines the card's outer [Container.padding].
-  final EdgeInsetsGeometry padding;
-
   /// [GFAvatar] used to create rounded user profile
   final GFAvatar avatar;
 
@@ -27,8 +21,6 @@ class GFListItem extends StatelessWidget {
   const GFListItem(
       {Key key,
       this.color,
-      this.padding,
-      this.margin,
       this.avatar,
       this.title,
       this.subTitle,

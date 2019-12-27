@@ -15,7 +15,7 @@ import 'package:ui_kit/components/badge/gf_badge.dart';
 
 import 'package:ui_kit/components/card/gf_card.dart';
 
-import 'package:ui_kit/components/list_item/gf_list_item.dart';
+import 'package:ui_kit/components/list_tile/gf_list_tile.dart';
 
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
 
@@ -126,15 +126,13 @@ class _MyHomePageState extends State<MyHomePage> {
 //
 //        ),
 
-          GFListItem(
+          GFListTile(
             avatar: GFAvatar(),
-
-            title: GFHeader(
-              text: 'HEADER',
-
-//              backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
-            ),
+            
+            icon: Icon(Icons.description),
+            title: Text('Header'),
             subTitle: Text('Sub Header'),
+            description: Text('Lorem ipsum gf header used to show the header of the list tile'),
           ),
           Container(
             margin: EdgeInsets.only(top:10),
