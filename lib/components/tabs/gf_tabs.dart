@@ -22,7 +22,7 @@ class GFTabs extends StatefulWidget {
     this.labelPadding,
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
-    this.tabBarViewChild,
+    this.tabBarView,
     this.tabs,
   }):
         assert(length != null && length >= 0),
@@ -137,7 +137,7 @@ class GFTabs extends StatefulWidget {
   /// One widget per tab.
   /// Its length must match the length of the [GFTabs.tabs]
   /// list, as well as the [controller]'s [GFTabs.length].
-  final TabBarView tabBarViewChild;
+  final TabBarView tabBarView;
 
   /// Typically a list of two or more [Tab] widgets.
   ///
@@ -178,7 +178,7 @@ class _GFTabsState extends State<GFTabs> {
                 ),
               ),
               Expanded(
-                child: widget.tabBarViewChild
+                child: widget.tabBarView
               ),
             ],
           ),

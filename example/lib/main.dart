@@ -74,6 +74,33 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+//            Container(
+//              height: 300.0,
+//              child: DefaultTabController(
+//                length: 2,
+//                child: Scaffold(
+//                  appBar: AppBar(
+//                    bottom: TabBar(
+//                      indicator: UnderlineTabIndicator(
+//                        borderSide: BorderSide(color: Color(0xDD613896), width: 2.0),
+//                        insets: EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 4.0),
+//                      ),
+//                      tabs: [
+//                        Tab(icon: Icon(Icons.directions_car), text: "Non persistent",),
+//                        Tab(icon: Icon(Icons.directions_transit), text: "Persistent"),
+//                      ],
+//                    ),
+//                    title: Text('Persistent Tab Demo'),
+//                  ),
+//                  body: TabBarView(
+//                    children: [
+//                      Text("cdx"),
+//                      Text("cdv")
+//                    ],
+//                  ),
+//                ),
+//              ),
+//            ),
 
             GFSlider(
 //              pagerSize: 12.0,
@@ -106,67 +133,67 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
 
-GFTabs(
-  initialIndex: 0,
-  length: 3,
-  tabs: <Widget>[
-    GFButton(
-      onPressed: null,
-      child: Text("share"),
-      icon: Icon(Icons.share),
-    ),
-    Tab(
-      icon: Icon(Icons.error),
-      child: Text(
-        "Orders",
-      ),
-    ),
-    Tab(
-      child: Text(
-        "Pastry",
-      ),
-    ),
-  ],
-  tabBarViewChild: TabBarView(
-    children: <Widget>[
-      Container(
-        color: Colors.red,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Icon(Icons.directions_railway),
-            GFButton(
-              onPressed: null,
-              child: Text("share"),
-              icon: Icon(Icons.share),
-              type: GFType.outline,
-              shape: GFShape.pills,
+            GFTabs(
+              initialIndex: 0,
+              length: 3,
+              tabs: <Widget>[
+                GFButton(
+                  onPressed: null,
+                  child: Text("share"),
+                  icon: Icon(Icons.share),
+                ),
+                Tab(
+                  icon: Icon(Icons.error),
+                  child: Text(
+                    "Orders",
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    "Pastry",
+                  ),
+                ),
+              ],
+              tabBarView: TabBarView(
+                children: <Widget>[
+                  Container(
+                    color: Colors.red,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(Icons.directions_railway),
+                        GFButton(
+                          onPressed: null,
+                          child: Text("share"),
+                          icon: Icon(Icons.share),
+                          type: GFType.transparent,
+                          shape: GFShape.pills,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(Icons.directions_car),
+                  Icon(Icons.directions_transit),
+                ],
+              ),
+//              indicatorColor: Colors.teal,
+//              indicatorSize: TabBarIndicatorSize.label,
+//              labelColor: Colors.lightGreen,
+//              unselectedLabelColor: Colors.black,
+//              labelStyle: TextStyle(
+//                fontWeight: FontWeight.w500,
+//                fontSize: 13.0,
+//                color: Colors.deepOrange,
+//                fontFamily: 'OpenSansBold',
+//              ),
+//              unselectedLabelStyle: TextStyle(
+//                fontWeight: FontWeight.w500,
+//                fontSize: 13.0,
+//                color: Colors.black,
+//                fontFamily: 'OpenSansBold',
+//              ),
             ),
-          ],
-        ),
-      ),
-      Icon(Icons.directions_car),
-      Icon(Icons.directions_transit),
-    ],
-  ),
-  labelColor: Colors.lightGreen,
-  unselectedLabelColor: Colors.black,
-  labelStyle: TextStyle(
-    fontWeight: FontWeight.w500,
-    fontSize: 13.0,
-    color: Colors.deepOrange,
-    fontFamily: 'OpenSansBold',
-  ),
-  unselectedLabelStyle: TextStyle(
-    fontWeight: FontWeight.w500,
-    fontSize: 13.0,
-    color: Colors.black,
-    fontFamily: 'OpenSansBold',
-  ),
-),
-
-
 
 //              GFSlider(
 //                autoPlay: true,
