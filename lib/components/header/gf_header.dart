@@ -4,17 +4,25 @@ import 'package:ui_kit/colors/gf_color.dart';
 class GFHeader extends StatelessWidget {
   
    
-  const GFHeader({Key key, this.child, this.text, this.icon, this.dividerBorderRadius,
-    this.textColor= GFColor.primary,
-    this.dividerColor= GFColor.primary}) : super (key:key);
-  
-  
+  const GFHeader({Key key,
+    this.child,
+    this.text,
+    this.icon,
+    this.dividerBorderRadius,
+    this.textColor= GFColor.dark,
+    this.dividerAlignment,
+    this.dividerColor= GFColor.dark
+  }) : super (key:key);
+
+
+
   final Widget child;
   final String text;
   final Icon icon;
   final dynamic dividerColor;
   final dynamic textColor;
   final BorderRadius dividerBorderRadius;
+  final Alignment dividerAlignment;
   
   
   
@@ -35,13 +43,15 @@ class GFHeader extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.only(top:5),
-            width: 70,
+            alignment: dividerAlignment,
+            child: Container(
+              width: 70,
             height: 4,
-            decoration: BoxDecoration(
-             color: dividerColor != null?getGFColor(dividerColor): GFColor.primary,
-              borderRadius: dividerBorderRadius != null ?dividerBorderRadius:BorderRadius.all(Radius.circular(5))
-            ),
-
+              decoration: BoxDecoration(
+                  color: dividerColor != null?getGFColor(dividerColor): GFColor.primary,
+                  borderRadius: dividerBorderRadius != null ?dividerBorderRadius:BorderRadius.all(Radius.circular(5))
+              ),
+            )
           )
         ],
       )

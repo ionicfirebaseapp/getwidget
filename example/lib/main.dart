@@ -129,12 +129,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
 
           Container(
-            margin: EdgeInsets.only(left: 20),
+            padding: EdgeInsets.only(left: 20, right: 20),
             child:  GFHeader(
 //              icon: Icon(Icons.favorite),
               text: 'GET FLUTTER HEADER',
-              textColor: Colors.black,
-              dividerColor: Colors.red,
+//              textColor: Colors.black,
+//              dividerColor: Colors.red,
+//dividerAlignment: Alignment.center,
 
 
 
