@@ -151,7 +151,7 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                           ))),
           ),
           Positioned(
-              top: widget.type == GFToggleType.ios ? 7 : 3,
+              top: widget.type == GFToggleType.ios ? 7.5 : 3,
               left: widget.type == GFToggleType.ios ? 2 : 0,
               child: GestureDetector(
                   onTap: () {
