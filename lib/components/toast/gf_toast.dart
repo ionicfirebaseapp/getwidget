@@ -7,9 +7,9 @@ class GFToast extends StatelessWidget {
   GFToast({Key key,
     this.child,
     this.button,
-    this.bgColor,
+    this.backgroundColor,
     this.text,
-    this.textStyle =  const TextStyle(color: Colors.white70, height: 1.5),
+    this.textStyle =  const TextStyle(color: Colors.white70),
   }) :super(key: key);
 
   /// child of  type [Widget]is alternative to text key. text will get priority over child
@@ -19,7 +19,7 @@ class GFToast extends StatelessWidget {
   final  Widget button;
 
   ///pass color of type [Color] or [GFColor] for background of [GFToast]
-  final dynamic bgColor;
+  final dynamic backgroundColor;
 
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
@@ -36,7 +36,7 @@ class GFToast extends StatelessWidget {
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(3)),
-        color: bgColor!=null ?getGFColor(bgColor):Color(0xff323232),
+        color: backgroundColor!=null ?getGFColor(backgroundColor):Color(0xff323232),
       ),
       child: Row(
         children: <Widget>[
