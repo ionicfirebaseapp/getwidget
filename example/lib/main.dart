@@ -14,6 +14,15 @@ import 'package:ui_kit/position/gf_position.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
 import 'package:ui_kit/shape/gf_shape.dart';
+import 'package:ui_kit/components/slider/gf_slider.dart';
+
+final List<String> imageList = [
+  "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
+  "https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg",
+  "https://cdn.pixabay.com/photo/2019/12/19/10/55/christmas-market-4705877_960_720.jpg",
+  "https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"
+];
+
 
 void main() => runApp(MyApp());
 
@@ -43,47 +52,146 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-
-
-            GFCard(
-              boxFit: BoxFit.cover,
-              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
-              image: Image.asset("lib/assets/pizza.jpeg"),
-//              imageOverlay: AssetImage("lib/assets/pizza.jpeg"),
-              titlePosition: GFPosition.end,
-              title: GFTitleBar(
-                avatar: GFAvatar(
-                  child: Text("tb"),
-                ),
-                title: Text('title', style: TextStyle(color: Colors.grey),),
-                subTitle: Text('subtitle', style: TextStyle(color: Colors.grey),),
-                icon: GFIconButton(
-                  onPressed: null,
-                  icon: Icon(Icons.favorite_border),
-                  type: GFType.transparent,
-                ),
-              ),
-              content: Text("Flutter "
-                  "Flutter is Google's mobile UI framework for crafting"
-                  " high-quality native interfaces on iOS and Android in "
-                  "Flutter ", style: TextStyle(color: Colors.grey), ),
-              buttonBar: GFButtonBar(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  GFButton(onPressed: null, child: Text("favorite"), icon: Icon(Icons.favorite_border), type: GFType.transparent, ),
-                  GFButton(onPressed: null, child: Text("share"), icon: Icon(Icons.share), type: GFType.outline, ),
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: DefaultTabController(
+          length: 3,
+          child: Scaffold(
+            appBar: AppBar(
+              bottom: TabBar(
+                tabs: [
+                  Tab(icon: Icon(Icons.directions_car)),
+                  Tab(icon: Icon(Icons.directions_transit)),
+                  Tab(icon: Icon(Icons.directions_bike)),
                 ],
               ),
+              title: Text('Tabs Demo'),
             ),
+            body: TabBarView(
+              children: [
+                Icon(Icons.directions_car),
+                Icon(Icons.directions_transit),
+                Icon(Icons.directions_bike),
+              ],
+            ),
+          ),
+        ),
+//        SingleChildScrollView(
+//          child: Column(
+//            mainAxisAlignment: MainAxisAlignment.center,
+//            crossAxisAlignment: CrossAxisAlignment.center,
+//            children: <Widget>[
 
+
+
+//            GFSlider(
+////              pagerSize: 12.0,
+////              activeIndicator: Colors.pink,
+////              passiveIndicator: Colors.pink.withOpacity(0.4),
+//            viewportFraction: 0.9,
+//            aspectRatio: 2.0,
+////            autoPlay: true,
+//            enlargeMainPage: true,
+//            pagination: true,
+//            items: imageList.map(
+//                  (url) {
+//                return Container(
+//                  margin: EdgeInsets.all(5.0),
+//                  child: ClipRRect(
+//                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+//                    child: Image.network(
+//                      url,
+//                      fit: BoxFit.cover,
+//                      width: 1000.0,
+//                    ),
+//                  ),
+//                );
+//              },
+//            ).toList(),
+//            onPageChanged: (index) {
+//              setState(() {
+//                index;
+//              });
+//            },
+//          ),
+
+
+//              GFSlider(
+//                autoPlay: true,
+//                viewportFraction: 1.0,
+//                aspectRatio: MediaQuery.of(context).size.aspectRatio,
+//                items: imageList.map((url) {
+//                    return Container(
+//                      margin: EdgeInsets.all(5.0),
+//                      child: ClipRRect(
+//                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+//                        child: Image.network(
+//                          url,
+//                          fit: BoxFit.cover,
+//                          width: 1000.0,
+//                        ),
+//                      ),
+//                    );
+//                  },
+//                ).toList(),
+//                onPageChanged: (index) {
+//                  setState(() {
+//                    index;
+//                  });
+//                },
+//              ),
+
+//              GFCard(
+//                boxFit: BoxFit.cover,
+//                colorFilter: new ColorFilter.mode(
+//                    Colors.black.withOpacity(0.67), BlendMode.darken),
+//                image: Image.asset("lib/assets/food.jpeg"),
+////              imageOverlay: AssetImage("lib/assets/food.jpeg"),
+//                titlePosition: GFPosition.end,
+//                title: GFTitleBar(
+//                  avatar: GFAvatar(
+//                    child: Text("tb"),
+//                  ),
+//                  title: Text(
+//                    'title',
+//                    style: TextStyle(color: Colors.grey),
+//                  ),
+//                  subTitle: Text(
+//                    'subtitle',
+//                    style: TextStyle(color: Colors.grey),
+//                  ),
+//                  icon: GFIconButton(
+//                    onPressed: null,
+//                    icon: Icon(Icons.favorite_border),
+//                    type: GFType.transparent,
+//                  ),
+//                ),
+//                content: Text(
+//                  "Flutter "
+//                  "Flutter is Google's mobile UI framework for crafting"
+//                  " high-quality native interfaces on iOS and Android in "
+//                  "Flutter ",
+//                  style: TextStyle(color: Colors.grey),
+//                ),
+//                buttonBar: GFButtonBar(
+//                  mainAxisSize: MainAxisSize.min,
+//                  children: <Widget>[
+//                    GFButton(
+//                      onPressed: null,
+//                      child: Text("favorite"),
+//                      icon: Icon(Icons.favorite_border),
+//                      type: GFType.transparent,
+//                    ),
+//                    GFButton(
+//                      onPressed: null,
+//                      child: Text("share"),
+//                      icon: Icon(Icons.share),
+//                      type: GFType.outline,
+//                    ),
+//                  ],
+//                ),
+//              ),
 
 //            GFButtonBar(
 //              mainAxisSize: MainAxisSize.min,
@@ -107,51 +215,70 @@ class _MyHomePageState extends State<MyHomePage> {
 //              ),
 //            ),
 
-            GFImageOverlay(
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.all(16.0),
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                children: <Widget>[
-                  new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),new Text(
-                    'Hello world', style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-//              color: Colors.orange,
-              image: AssetImage("lib/assets/pizza.jpeg"),
-              boxFit: BoxFit.cover,
-              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
-              borderRadius: new BorderRadius.circular(5.0),
-//              border: Border.all(color: Colors.pink, width: 2.0),
-            ),
+//              GFImageOverlay(
+//                width: MediaQuery.of(context).size.width,
+//                margin: EdgeInsets.all(16.0),
+//                padding: EdgeInsets.all(16.0),
+//                child: Column(
+//                  children: <Widget>[
+//                    new Text(
+//                      'Hello world',
+//                      style: TextStyle(color: Colors.white),
+//                    ),
+//                    new Text(
+//                      'Hello world',
+//                      style: TextStyle(color: Colors.white),
+//                    ),
+//                    new Text(
+//                      'Hello world',
+//                      style: TextStyle(color: Colors.white),
+//                    ),
+//                    new Text(
+//                      'Hello world',
+//                      style: TextStyle(color: Colors.white),
+//                    ),
+//                    new Text(
+//                      'Hello world',
+//                      style: TextStyle(color: Colors.white),
+//                    ),
+//                    new Text(
+//                      'Hello world',
+//                      style: TextStyle(color: Colors.white),
+//                    ),
+//                    new Text(
+//                      'Hello world',
+//                      style: TextStyle(color: Colors.white),
+//                    ),
+//                    new Text(
+//                      'Hello world',
+//                      style: TextStyle(color: Colors.white),
+//                    ),
+//                    new Text(
+//                      'Hello world',
+//                      style: TextStyle(color: Colors.white),
+//                    ),
+//                    new Text(
+//                      'Hello world',
+//                      style: TextStyle(color: Colors.white),
+//                    ),
+//                    new Text(
+//                      'Hello world',
+//                      style: TextStyle(color: Colors.white),
+//                    ),
+//                    new Text(
+//                      'Hello world',
+//                      style: TextStyle(color: Colors.white),
+//                    ),
+//                  ],
+//                ),
+////              color: Colors.orange,
+//                image: AssetImage("lib/assets/food.jpeg"),
+//                boxFit: BoxFit.cover,
+//                colorFilter: new ColorFilter.mode(
+//                    Colors.black.withOpacity(0.6), BlendMode.darken),
+//                borderRadius: new BorderRadius.circular(5.0),
+////              border: Border.all(color: Colors.pink, width: 2.0),
+//              ),
 
 //
 //            GFAvatar(
@@ -251,9 +378,9 @@ class _MyHomePageState extends State<MyHomePage> {
 ////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 ////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
 //            ),
-          ],
-        ),
-      )
+//            ],
+//          ),
+//        )
     );
   }
 }
