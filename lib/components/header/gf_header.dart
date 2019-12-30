@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/colors/gf_color.dart';
-import 'package:ui_kit/types/gf_header_type.dart';
+import 'package:ui_kit/types/gf_heading_type.dart';
 
 class GFHeader extends StatelessWidget {
   const GFHeader(
@@ -21,8 +21,8 @@ class GFHeader extends StatelessWidget {
 
 
 
-
-  final GFHeaderType type;
+  /// Button type of [GFHeaderType] i.e, typo1, typo2, typo3, typo4, typo5, typo6
+  final GFHeadingType type;
 
   /// child of  type [Widget] is alternative to text key. text will get priority over child
   final Widget child;
@@ -89,7 +89,7 @@ class GFHeader extends StatelessWidget {
                                 : backgroundImage != null
                                     ? Colors.white
                                     : Colors.black,
-                            fontSize: 16,
+                            fontSize:  16,
                             letterSpacing: 0.3,
                             fontWeight: FontWeight.w500),
                       )

@@ -21,6 +21,7 @@ class GFListTile extends StatelessWidget {
   /// The icon to display inside the [GFListTile]. see [Icon]
   final Widget icon;
 
+  ///type of [bool] corresponds to true or false to show or hide the divider
   final bool showDivider;
 
   const GFListTile(
