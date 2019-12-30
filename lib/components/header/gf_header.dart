@@ -21,8 +21,6 @@ class GFHeader extends StatelessWidget {
 
 
 
-  /// Button type of [GFHeaderType] i.e, typo1, typo2, typo3, typo4, typo5, typo6
-  final GFHeadingType type;
 
   /// child of  type [Widget] is alternative to text key. text will get priority over child
   final Widget child;
@@ -57,8 +55,29 @@ class GFHeader extends StatelessWidget {
   ///backgroundImagecolorFilter of type [ColorFilter] to set the background color of [GFHeader] only when backgroundImage is available
   final ColorFilter backgroundImagecolorFilter;
 
+
+  /// header type of [GFHeaderType] i.e, typo1, typo2, typo3, typo4, typo5, typo6
+  final GFHeadingType type;
+
   @override
   Widget build(BuildContext context) {
+
+    double fontSize;
+
+    if(type == GFHeadingType.typo1){
+      fontSize = 25.0;
+    }else if(type == GFHeadingType.typo2){
+      fontSize = 22.0;
+    }else if (type == GFHeadingType.typo3){
+      fontSize = 19.0;
+    }else if(type == GFHeadingType.typo4){
+      fontSize = 17.0;
+    }else if (type == GFHeadingType.typo5){
+      fontSize = 15.0;
+    }else if(type == GFHeadingType.typo6){
+      fontSize = 13.0;
+    }
+
     return Container(
         padding: EdgeInsets.all(backgroundImage != null ? 10 : 0),
         decoration: BoxDecoration(
@@ -89,7 +108,7 @@ class GFHeader extends StatelessWidget {
                                 : backgroundImage != null
                                     ? Colors.white
                                     : Colors.black,
-                            fontSize:  16,
+                            fontSize:  fontSize,
                             letterSpacing: 0.3,
                             fontWeight: FontWeight.w500),
                       )
@@ -98,11 +117,11 @@ class GFHeader extends StatelessWidget {
             ),
             showDivider
                 ? Container(
-                    margin: EdgeInsets.only(top: 5, bottom: 5),
+                    margin: EdgeInsets.only(top: 3, bottom: 3),
                     alignment: dividerAlignment,
                     child: Container(
                       width: dividerWidth != null ? dividerWidth : 70,
-                      height: 4,
+                      height: fontSize/5,
                       decoration: BoxDecoration(
                           color: dividerColor != null
                               ? getGFColor(dividerColor)

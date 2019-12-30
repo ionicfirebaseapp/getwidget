@@ -33,6 +33,7 @@ import 'package:ui_kit/components/header/gf_header.dart';
 import 'package:ui_kit/position/gf_position.dart';
 
 import 'package:ui_kit/components/toast/gf_toast.dart';
+import 'package:ui_kit/types/gf_heading_type.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -144,6 +145,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
+
+
           GFListTile(
             avatar: GFAvatar(),
 
@@ -203,25 +206,42 @@ class _MyHomePageState extends State<MyHomePage> {
 
           Container(
 //            padding: EdgeInsets.only(left: 20, right: 20),
-            child:  GFHeader(
-//              icon: Icon(Icons.image, color: Colors.white,),
-              text: 'GET FLUTTER HEADER',
-//textColor: Colors.red,
-              dividerWidth: 20,
-//backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
-//showDivider: false,
+            child:  Column(
+              children: <Widget>[
+                GFHeader(
+                  text: 'GET FLUTTER HEADER',
+                  type: GFHeadingType.typo1,
 
-//              textColor: Colors.black,
-//              dividerColor: Colors.red,
-//dividerAlignment: Alignment.center,
+                ),
+                GFHeader(
+                  text: 'GET FLUTTER HEADER',
+                  type: GFHeadingType.typo2,
 
+                ),
+                GFHeader(
+                  text: 'GET FLUTTER HEADER',
+                  type: GFHeadingType.typo3,
+//                  dividerWidth: 20,
+                ),
+                GFHeader(
+                  text: 'GET FLUTTER HEADER',
+                  type: GFHeadingType.typo4,
 
+                ),
+                GFHeader(
+                  text: 'GET FLUTTER HEADER',
+                  type: GFHeadingType.typo5,
 
-//            child: Text('GF HEADER ', ),
-//            dividercolor: GFColor.warning,
-//            dividerBorderRadius: BorderRadius.all(Radius.circular(0)),
-            ),
-          )
+                ),
+                GFHeader(
+                  text: 'GET FLUTTER HEADER',
+                  type: GFHeadingType.typo6,
+
+                ),
+              ],
+            )
+          ),
+
 
         ],
       ),
