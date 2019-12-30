@@ -138,20 +138,33 @@ class _MyHomePageState extends State<MyHomePage> {
             RawMaterialButton(onPressed: null, child: Text("fv"),),
             FlatButton(onPressed: null, child: Text("cds")),
 
-
+//            Container(
+//              decoration: BoxDecoration(
+//                color: Colors.teal,
+//                  boxShadow: [BoxShadow(
+//                      color: Colors.pink,
+//                      blurRadius: 1.5,
+//                      spreadRadius: 2.0,
+//                      offset: Offset.zero,
+//                    )
+//                  ]
+//              ),
+//                child: OutlineButton(child: Text("Fvd"),)),
+//
+//
             GFButton(
               color: Colors.orange,
               onPressed: null,
               child: Text("share"),
               type: GFType.outline,
-              shape: GFShape.standard,
+              shape: GFShape.pills,
               buttonBoxShadow: true,
-//              boxShadow: BoxShadow(
-//                color: Colors.pink.withOpacity(0.4),
-//                blurRadius: 1.5,
-//                spreadRadius: 2.0,
-//                offset: Offset.zero,
-//              ),
+              boxShadow: BoxShadow(
+                color: Colors.pink.withOpacity(0.4),
+                blurRadius: 1.5,
+                spreadRadius: 2.0,
+                offset: Offset.zero,
+              ),
             ),
 
             GFTabs(
