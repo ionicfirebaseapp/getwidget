@@ -34,6 +34,8 @@ import 'package:ui_kit/position/gf_position.dart';
 
 import 'package:ui_kit/components/toast/gf_toast.dart';
 import 'package:ui_kit/types/gf_heading_type.dart';
+import 'package:ui_kit/components/toast/gf_floating_widget.dart';
+
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -85,10 +87,20 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       body:
+     GFFloatingWidget(
+//       horizontalPosition: screenHeight * 0.1,
+//       verticalPosition: screenWidth* 0.2,
+//child: GFToast(
+//  text: 'hello',
+//),
+       child: GFToggle(onChanged: null, value: null,
+       type: GFToggleType.ios,
+       ),
+       body:  SingleChildScrollView(
+         child:
 
-    SingleChildScrollView(
-      child:   Column(
-        children: <Widget>[
+         Column(
+           children: <Widget>[
 
 
 //      GFCard(
@@ -118,176 +130,68 @@ class _MyHomePageState extends State<MyHomePage> {
 //        ),
 //      ),
 
-        GFAvatar(),
-        GFBadge(
-          child: Text('1')),
-GFButton(onPressed: null,
-type: GFType.solid,
-  text: 'CLICK',
+
+             GFFloatingWidget(
+               horizontalPosition: 30,
+             ),
+
+             GFAvatar(),
+             GFBadge(
+                 child: Text('1')),
+             GFButton(onPressed: null,
+               type: GFType.solid,
+               text: 'CLICK',
 //  position: GFPosition.end,
-  icon: Icon(Icons.face),
-  textStyle: TextStyle(color: Colors.black),
-),
+               icon: Icon(Icons.face),
+               textStyle: TextStyle(color: Colors.black),
+             ),
 
-          GFButtonBar(
-            children: <Widget>[
-              Text('jk'),
-              Icon(Icons.face)
-            ],
-          ),
-
-          
-          
-          GFListTile(
-          avatar: Icon(Icons.format_align_center),
-            icon:Icon(Icons.format_align_center),
-            title: GFHeader(
-              type: GFHeadingType.typo3,
-              text: 'GFHeader in GFListTile',
-
-              backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2019/12/22/19/14/christmas-4713177_960_720.jpg')
-            ),
-            subTitle: Text('Sub Header'),
-            description: Text('Lorem ipsum gf header used to show the header of the list tile'),
-            showDivider: false,
-          ),
+             GFButtonBar(
+               children: <Widget>[
+                 Text('jk'),
+                 Icon(Icons.face)
+               ],
+             ),
 
 
-          Container(
-            margin: EdgeInsets.only(top:10),
-            child:   GFToast(
-              backgroundColor: GFColor.primary,
 
-           button:  GFToggle(
-             onChanged: null,
-             value: null,
-             type: GFToggleType.ios,
-             duration: Duration(milliseconds: 400),
-           ),
+             GFListTile(
+               avatar: Icon(Icons.format_align_center),
+               icon:Icon(Icons.format_align_center),
+               title: GFHeader(
+                   type: GFHeadingType.typo3,
+                   text: 'GFHeader in GFListTile',
+
+                   backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2019/12/22/19/14/christmas-4713177_960_720.jpg')
+               ),
+               subTitle: Text('Sub Header'),
+               description: Text('Lorem ipsum gf header used to show the header of the list tile'),
+               showDivider: false,
+             ),
+
+
+             Container(
+               margin: EdgeInsets.only(top:10),
+               child:   GFToast(
+                 backgroundColor: GFColor.primary,
+
+                 button:  GFToggle(
+                   onChanged: null,
+                   value: null,
+                   type: GFToggleType.ios,
+                   duration: Duration(milliseconds: 400),
+                 ),
 //           text: 'hjkk',
-            child: GFHeader(
-              text: 'GFHEADER inside GFTOAST ',
-              type: GFHeadingType.typo5,
-            ),
-            ),
-          ),
-
-          Container(
-            margin: EdgeInsets.only(top:10),
-            child:   GFToast(
-              backgroundColor: GFColor.primary,
-
-              button:  GFButton(
-                type: GFType.outline,
-                text: 'CLICK',
-                onPressed: null,
-//                position: GFPosition.end,
-              ),
-              text: 'Marked as Favorite ',
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                GFToggle(
-                  onChanged: null,
-                  value: null,
-                  type: GFToggleType.android,
-                  duration: Duration(milliseconds: 400),
-                ),
-                GFToggle(
-                  onChanged: null,
-                  value: null,
-                  type: GFToggleType.ios,
-                  duration: Duration(milliseconds: 400),
-                ),
-                GFToggle(
-                  onChanged: null,
-                  value: null,
-                  type: GFToggleType.custom,
-                  duration: Duration(milliseconds: 400),
-                ),
-                GFToggle(
-                  onChanged: (val) {
-                    print(val);
-                  },
-                  value: null,
-                  type: GFToggleType.square,
-                  duration: Duration(milliseconds: 400),
-                ),
-              ],
-            ),
-          ),
-
-          Container(
-//            padding: EdgeInsets.only(left: 20, right: 20),
-            child:  Column(
-              children: <Widget>[
-                GFHeader(
-                  text: 'GET FLUTTER HEADER',
-                  type: GFHeadingType.typo1,
-
-                ),
-                GFHeader(
-                  text: 'GET FLUTTER HEADER',
-                  type: GFHeadingType.typo2,
-
-                ),
-                GFHeader(
-                  text: 'GET FLUTTER HEADER',
-                  type: GFHeadingType.typo3,
-//                  dividerWidth: 20,
-                ),
-                GFHeader(
-                  text: 'GET FLUTTER HEADER',
-                  type: GFHeadingType.typo4,
-
-                ),
-                GFHeader(
-                  text: 'GET FLUTTER HEADER',
-                  type: GFHeadingType.typo5,
-
-                ),
-                GFHeader(
-                  text: 'GET FLUTTER HEADER',
-                  type: GFHeadingType.typo6,
-
-                ),
-              ],
-            )
-          ),
-          
-          GFImageOverlay(
-             height: 250,
-
-           child: Column(
-             children: <Widget>[
-               GFHeader(
-                 text: 'GET FLUTTER HEADER',
-                 type: GFHeadingType.typo3,
-                 textColor: GFColor.white,
-dividerColor: GFColor.white,
-//                  dividerWidth: 20,
-               ),
-               GFListTile(
-                 avatar: GFAvatar(
-                   backgroundColor: Colors.white,
+                 child: GFHeader(
+                   text: 'GFHEADER inside GFTOAST ',
+                   type: GFHeadingType.typo5,
                  ),
-                 icon:Icon(Icons.keyboard_arrow_right, color: Colors.white,),
-                 title: GFHeader(
-                     type: GFHeadingType.typo3,
-                     text: 'GFHeader in GFListTile',
-
-                     backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2019/12/22/19/14/christmas-4713177_960_720.jpg')
-                 ),
-                 subTitle: Text('Sub Header', style: TextStyle(color: Colors.white),),
-                 description: Text('Lorem ipsum gf header used to show the header of the list tile', style: TextStyle(color: Colors.white),),
-                 showDivider: false,
                ),
+             ),
 
-               GFToast(
+             Container(
+               margin: EdgeInsets.only(top:10),
+               child:   GFToast(
                  backgroundColor: GFColor.primary,
 
                  button:  GFButton(
@@ -298,19 +202,134 @@ dividerColor: GFColor.white,
                  ),
                  text: 'Marked as Favorite ',
                ),
-             ],
-           ),
+             ),
+             Container(
+               margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+               child: Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: <Widget>[
+                   GFToggle(
+                     onChanged: null,
+                     value: null,
+                     type: GFToggleType.android,
+                     duration: Duration(milliseconds: 400),
+                   ),
+                   GFToggle(
+                     onChanged: null,
+                     value: null,
+                     type: GFToggleType.ios,
+                     duration: Duration(milliseconds: 400),
+                   ),
+                   GFToggle(
+                     onChanged: null,
+                     value: null,
+                     type: GFToggleType.custom,
+                     duration: Duration(milliseconds: 400),
+                   ),
+                   GFToggle(
+                     onChanged: (val) {
+                       print(val);
+                     },
+                     value: null,
+                     type: GFToggleType.square,
+                     duration: Duration(milliseconds: 400),
+                   ),
+                 ],
+               ),
+             ),
+
+             Container(
+//            padding: EdgeInsets.only(left: 20, right: 20),
+                 child:  Column(
+                   children: <Widget>[
+                     GFHeader(
+                       text: 'GET FLUTTER HEADER',
+                       type: GFHeadingType.typo1,
+
+                     ),
+                     GFHeader(
+                       text: 'GET FLUTTER HEADER',
+                       type: GFHeadingType.typo2,
+
+                     ),
+                     GFHeader(
+                       text: 'GET FLUTTER HEADER',
+                       type: GFHeadingType.typo3,
+//                  dividerWidth: 20,
+                     ),
+                     GFHeader(
+                       text: 'GET FLUTTER HEADER',
+                       type: GFHeadingType.typo4,
+
+                     ),
+                     GFHeader(
+                       text: 'GET FLUTTER HEADER',
+                       type: GFHeadingType.typo5,
+
+                     ),
+                     GFHeader(
+                       text: 'GET FLUTTER HEADER',
+                       type: GFHeadingType.typo6,
+
+                     ),
+                   ],
+                 )
+             ),
+
+             GFImageOverlay(
+                 height: 250,
+
+                 child: Column(
+                   children: <Widget>[
+                     GFHeader(
+                       text: 'GET FLUTTER HEADER',
+                       type: GFHeadingType.typo3,
+                       textColor: GFColor.white,
+                       dividerColor: GFColor.white,
+//                  dividerWidth: 20,
+                     ),
+                     GFListTile(
+                       avatar: GFAvatar(
+                         backgroundColor: Colors.white,
+                       ),
+                       icon:Icon(Icons.keyboard_arrow_right, color: Colors.white,),
+                       title: GFHeader(
+                           type: GFHeadingType.typo3,
+                           text: 'GFHeader in GFListTile',
+
+                           backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2019/12/22/19/14/christmas-4713177_960_720.jpg')
+                       ),
+                       subTitle: Text('Sub Header', style: TextStyle(color: Colors.white),),
+                       description: Text('Lorem ipsum gf header used to show the header of the list tile', style: TextStyle(color: Colors.white),),
+                       showDivider: false,
+                     ),
+
+                     GFToast(
+                       backgroundColor: GFColor.primary,
+
+                       button:  GFButton(
+                         type: GFType.outline,
+                         text: 'CLICK',
+                         onPressed: null,
+//                position: GFPosition.end,
+                       ),
+                       text: 'Marked as Favorite ',
+                     ),
+                   ],
+                 ),
 //            height: screenHeight,
 //width: screenWidth,
 //          image: NetworkImage('https://cdn.pixabay.com/photo/2019/12/22/19/14/christmas-4713177_960_720.jpg'),
 
-            image: AssetImage('lib/assets/food.jpeg')
-          )
+                 image: AssetImage('lib/assets/food.jpeg')
+             )
 
 
-        ],
-      ),
-    )
+           ],
+         ),
+       ),
+     )
+    );
       // body: DefaultTabController(
       //   length: 3,
       //   child: Scaffold(
@@ -858,6 +877,6 @@ dividerColor: GFColor.white,
 //          ),
 //        )
       // )
-    );
+
   }
 }
