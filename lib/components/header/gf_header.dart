@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/colors/gf_color.dart';
+import 'package:ui_kit/types/gf_header_type.dart';
 
 class GFHeader extends StatelessWidget {
   const GFHeader(
       {Key key,
+        this.type,
       this.child,
       this.text,
       this.icon,
@@ -17,6 +19,10 @@ class GFHeader extends StatelessWidget {
       this.backgroundImagecolorFilter})
       : super(key: key);
 
+
+
+
+  final GFHeaderType type;
 
   /// child of  type [Widget] is alternative to text key. text will get priority over child
   final Widget child;

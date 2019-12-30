@@ -126,9 +126,27 @@ class _MyHomePageState extends State<MyHomePage> {
 //
 //        ),
 
+
+          
+
+
+          GFListTile(
+//          avatar: Icon(Icons.format_align_center),
+//            icon:Icon(Icons.format_align_center),
+            title: Text('Header'),
+                    ),
+          GFListTile(
+//          avatar: Icon(Icons.format_align_center),
+//            icon:Icon(Icons.format_align_center),
+            title: Text('Header'),
+            showDivider: false,
+          ),
+
+
+
           GFListTile(
             avatar: GFAvatar(),
-            
+
             icon: Icon(Icons.description),
             title: Text('Header'),
             subTitle: Text('Sub Header'),

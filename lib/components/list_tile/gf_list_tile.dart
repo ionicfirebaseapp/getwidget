@@ -6,8 +6,8 @@ class GFListTile extends StatelessWidget {
   /// The card's background color.
   final Color color;
 
-  /// [GFAvatar] used to create rounded user profile
-  final GFAvatar avatar;
+  /// type of [Widget] or [GFAvatar] used to create rounded user profile
+  final Widget avatar;
 
   /// The title to display inside the [GFListTile]. see [Text]
   final Widget title;
@@ -21,29 +21,44 @@ class GFListTile extends StatelessWidget {
   /// The icon to display inside the [GFListTile]. see [Icon]
   final Widget icon;
 
+  final bool showDivider;
+
   const GFListTile(
       {Key key,
       this.color,
       this.avatar,
       this.title,
       this.subTitle,
-        this.description,
-      this.icon})
+      this.description,
+      this.icon,
+      this.showDivider = true
+      })
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: avatar,
-      title: title,
-      subtitle: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          subTitle ?? Container(),
-          description ?? Container()
-          ],
-      ),
-      trailing: icon,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        ListTile(
+            leading: avatar,
+            title: title,
+            subtitle:  subTitle != null || description != null ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                subTitle ?? Container(),
+                description ?? Container()
+              ],
+            ): null,
+            trailing: icon != null ?  Column(
+              children: <Widget>[
+                Padding(padding: EdgeInsets.only(top: description != null ? 0.0 : 8.0), child:
+                icon )
+              ],
+            ): null
+        ),
+        showDivider ? Divider() : Container()
+      ],
     );
   }
 }
