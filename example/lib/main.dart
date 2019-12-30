@@ -90,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child:   Column(
         children: <Widget>[
 
+
 //      GFCard(
 ////      boxFit: BoxFit.cover,
 ////        colorFilter: new ColorFilter.mode(
@@ -97,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
 //        image: Image.asset("lib/assets/food.jpeg"),
 ////              imageOverlay: AssetImage("lib/assets/food.jpeg"),
 //        titlePosition: GFPosition.end,
-//        title: GFListItem(
+//        title: GFListTile(
 //          avatar: GFAvatar(
 //            child: Text("tb"),
 //          ),
@@ -117,56 +118,72 @@ class _MyHomePageState extends State<MyHomePage> {
 //        ),
 //      ),
 
-//
-//        GFCard(
-//          title: GFListItem(
-//            title: Text('dcrfvjn'),
-//            subTitle: Text('fghjk'),
-//
-//          ),
-//
-//        ),
+        GFAvatar(),
+        GFBadge(
+          child: Text('1')),
+GFButton(onPressed: null,
+type: GFType.solid,
+  text: 'CLICK',
+//  position: GFPosition.end,
+  icon: Icon(Icons.face),
+  textStyle: TextStyle(color: Colors.black),
+),
 
+          GFButtonBar(
+            children: <Widget>[
+              Text('jk'),
+              Icon(Icons.face)
+            ],
+          ),
 
           
-
-
+          
           GFListTile(
-//          avatar: Icon(Icons.format_align_center),
-//            icon:Icon(Icons.format_align_center),
-            title: Text('Header'),
-                    ),
-          GFListTile(
-//          avatar: Icon(Icons.format_align_center),
-//            icon:Icon(Icons.format_align_center),
-            title: Text('Header'),
+          avatar: Icon(Icons.format_align_center),
+            icon:Icon(Icons.format_align_center),
+            title: GFHeader(
+              type: GFHeadingType.typo3,
+              text: 'GFHeader in GFListTile',
+
+              backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2019/12/22/19/14/christmas-4713177_960_720.jpg')
+            ),
+            subTitle: Text('Sub Header'),
+            description: Text('Lorem ipsum gf header used to show the header of the list tile'),
             showDivider: false,
           ),
 
 
-
-
-
-          GFListTile(
-            avatar: GFAvatar(),
-
-            icon: Icon(Icons.description),
-            title: Text('Header'),
-            subTitle: Text('Sub Header'),
-            description: Text('Lorem ipsum gf header used to show the header of the list tile'),
-          ),
           Container(
             margin: EdgeInsets.only(top:10),
             child:   GFToast(
-//
-//
-//
-//            button: GFButton(
-//              onPressed: null,
-//              type: GFType.outline,
-//              text: 'Accept',
-//            ),
-              text: 'Marked as Favorite.',
+              backgroundColor: GFColor.primary,
+
+           button:  GFToggle(
+             onChanged: null,
+             value: null,
+             type: GFToggleType.ios,
+             duration: Duration(milliseconds: 400),
+           ),
+//           text: 'hjkk',
+            child: GFHeader(
+              text: 'GFHEADER inside GFTOAST ',
+              type: GFHeadingType.typo5,
+            ),
+            ),
+          ),
+
+          Container(
+            margin: EdgeInsets.only(top:10),
+            child:   GFToast(
+              backgroundColor: GFColor.primary,
+
+              button:  GFButton(
+                type: GFType.outline,
+                text: 'CLICK',
+                onPressed: null,
+//                position: GFPosition.end,
+              ),
+              text: 'Marked as Favorite ',
             ),
           ),
           Container(
@@ -241,6 +258,54 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             )
           ),
+          
+          GFImageOverlay(
+             height: 250,
+//          colorFilter: ColorFilter.mode(Colors.black, BlendMode.colorBurn),
+           child: Column(
+             children: <Widget>[
+               GFHeader(
+                 text: 'GET FLUTTER HEADER',
+                 type: GFHeadingType.typo3,
+                 textColor: GFColor.white,
+dividerColor: GFColor.white,
+//                  dividerWidth: 20,
+               ),
+               GFListTile(
+                 avatar: GFAvatar(
+                   backgroundColor: Colors.white,
+                 ),
+                 icon:Icon(Icons.keyboard_arrow_right, color: Colors.white,),
+                 title: GFHeader(
+                     type: GFHeadingType.typo3,
+                     text: 'GFHeader in GFListTile',
+
+                     backgroundImage: NetworkImage('https://cdn.pixabay.com/photo/2019/12/22/19/14/christmas-4713177_960_720.jpg')
+                 ),
+                 subTitle: Text('Sub Header', style: TextStyle(color: Colors.white),),
+                 description: Text('Lorem ipsum gf header used to show the header of the list tile', style: TextStyle(color: Colors.white),),
+                 showDivider: false,
+               ),
+
+               GFToast(
+                 backgroundColor: GFColor.primary,
+
+                 button:  GFButton(
+                   type: GFType.outline,
+                   text: 'CLICK',
+                   onPressed: null,
+//                position: GFPosition.end,
+                 ),
+                 text: 'Marked as Favorite ',
+               ),
+             ],
+           ),
+//            height: screenHeight,
+//width: screenWidth,
+//          image: NetworkImage('https://cdn.pixabay.com/photo/2019/12/22/19/14/christmas-4713177_960_720.jpg'),
+
+            image: AssetImage('lib/assets/food.jpeg')
+          )
 
 
         ],

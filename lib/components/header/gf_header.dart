@@ -100,18 +100,18 @@ class GFHeader extends StatelessWidget {
                     ? Padding(padding: EdgeInsets.only(left: 10))
                     : Container(),
                 text != null
-                    ? Text(
-                        text,
-                        style: TextStyle(
-                            color: textColor != null
-                                ? getGFColor(textColor)
-                                : backgroundImage != null
-                                    ? Colors.white
-                                    : Colors.black,
-                            fontSize:  fontSize,
-                            letterSpacing: 0.3,
-                            fontWeight: FontWeight.w500),
-                      )
+                    ? Expanded(child: Text(
+                  text,
+                  style: TextStyle(
+                      color: textColor != null
+                          ? getGFColor(textColor)
+                          : backgroundImage != null
+                          ? Colors.white
+                          : Colors.black,
+                      fontSize:  fontSize,
+                      letterSpacing: 0.3,
+                      fontWeight: FontWeight.w500),
+                ))
                     : child
               ],
             ),
