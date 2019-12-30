@@ -261,7 +261,7 @@ type: GFType.solid,
           
           GFImageOverlay(
              height: 250,
-//          colorFilter: ColorFilter.mode(Colors.black, BlendMode.colorBurn),
+
            child: Column(
              children: <Widget>[
                GFHeader(

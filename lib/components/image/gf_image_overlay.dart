@@ -15,7 +15,7 @@ class GFImageOverlay extends StatelessWidget {
       this.child,
       this.alignment,
       this.borderRadius,
-      this.colorFilter,
+      this.colorFilter=  const ColorFilter.mode(Colors.black26, BlendMode.colorBurn),
       this.boxFit,
       this.border})
       : super(key: key);
@@ -50,7 +50,7 @@ class GFImageOverlay extends StatelessWidget {
   final BoxFit boxFit;
 
   /// A color filter to apply to the image before painting it.
-  final ColorFilter colorFilter;
+  final ColorFilter colorFilter ;
 
   /// The corners of this [GFCard] are rounded by this [BorderRadius].
   final BorderRadiusGeometry borderRadius;
@@ -72,7 +72,7 @@ class GFImageOverlay extends StatelessWidget {
         border: border,
         color: color,
         image: new DecorationImage(
-            fit: BoxFit.fill, colorFilter: colorFilter, image: image),
+            fit: BoxFit.fill, colorFilter: child != null?  colorFilter: null, image: image),
       ),
     );
   }
