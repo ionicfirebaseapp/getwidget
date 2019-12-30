@@ -174,9 +174,9 @@ class GFButton extends StatefulWidget {
     this.autofocus = false,
     MaterialTapTargetSize materialTapTargetSize,
     this.child,
-    this.type,
+    this.type = GFType.solid,
     this.shape = GFShape.standard,
-    this.color,
+    this.color = GFColor.primary,
     this.textColor = GFColor.dark,
     this.position = GFPosition.start,
     this.size = GFSize.medium,
@@ -207,7 +207,7 @@ class GFButton extends StatefulWidget {
 }
 
 class _GFButtonState extends State<GFButton> {
-//  Color color;
+  Color color;
   Color textColor;
   Widget child;
   Widget icon;
@@ -221,7 +221,7 @@ class _GFButtonState extends State<GFButton> {
 
   @override
   void initState() {
-//    this.color = getGFColor(widget.color);
+    this.color = getGFColor(widget.color);
     this.textColor = getGFColor(widget.textColor);
     this.child = widget.text != null ? Text(widget.text) : widget.child;
     this.icon = widget.icon;
@@ -302,25 +302,6 @@ class _GFButtonState extends State<GFButton> {
   }
 
 
-
-  // double get _effectiveElevation {
-  //   // These conditionals are in order of precedence, so be careful about
-  //   // reorganizing them.
-  //   if (_disabled) {
-  //     return widget.disabledElevation;
-  //   }
-  //   if (_pressed) {
-  //     return widget.highlightElevation;
-  //   }
-  //   if (_hovered) {
-  //     return widget.hoverElevation;
-  //   }
-  //   if (_focused) {
-  //     return widget.focusElevation;
-  //   }
-  //   return widget.elevation;
-  // }
-
   double get _effectiveElevation {
     // These conditionals are in order of precedence, so be careful about
     // reorganizing them.
@@ -374,7 +355,7 @@ class _GFButtonState extends State<GFButton> {
         : widget.borderSide != null
         ? widget.borderSide
         : BorderSide(
-      color: widget.color == null ? themeColor : widget.color,
+      color: this.color == null ? themeColor : this.color,
       width: 0.0,
     );
 
@@ -394,53 +375,46 @@ class _GFButtonState extends State<GFButton> {
           borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
     }
 
-//    print("ccccccccccccccccccccc ${MaterialButton}");
-
-    Color getFillColor(MaterialButton button) {
-      final Color color = button.enabled ? button.color : button.disabledColor;
-      if (color != null)
-        return color;
-
-      if (button is FlatButton || button is OutlineButton || button.runtimeType == MaterialButton)
-        return null;
-
-      if (button.enabled && button is RaisedButton && widget.color != null)
-        return widget.color;
-
-
-      assert(false);
-      return null;
+    BoxDecoration getBoxShadow() {
+      if(widget.type != GFType.transparent){
+        if(widget.boxShadow == null && widget.buttonBoxShadow != true){
+          return null;
+        }else{
+          return BoxDecoration(
+              color: widget.type == GFType.transparent || widget.type == GFType.outline ? Colors.transparent : this.color,
+              borderRadius: widget.shape == GFShape.pills ? BorderRadius.circular(50.0) :
+              widget.shape == GFShape.standard ? BorderRadius.circular(5.0) : BorderRadius.zero,
+              boxShadow: [
+                widget.boxShadow == null && widget.buttonBoxShadow == true ? BoxShadow(
+                  color: themeColor,
+                  blurRadius: 1.5,
+                  spreadRadius: 2.0,
+                  offset: Offset.zero,
+                ) :
+                widget.boxShadow != null ? widget.boxShadow :
+                BoxShadow(
+                  color: Theme.of(context).canvasColor,
+                  blurRadius: 0.0,
+                  spreadRadius: 0.0,
+                  offset: Offset.zero,
+                )
+              ]
+          );
+        }
+      }
     }
 
 
-
-    final Widget result = ConstrainedBox(
+    final Widget result = Container(
       constraints: this.icon == null ? BoxConstraints(minHeight: 26.0, minWidth: 88.0) :
       BoxConstraints(minHeight: 26.0, minWidth: 98.0),
-//      decoration: BoxDecoration(
-//          borderRadius: widget.shape == GFShape.pills ? BorderRadius.circular(50.0) :
-//          widget.shape == GFShape.standard ? BorderRadius.circular(5.0) : BorderRadius.zero,
-//          boxShadow: [
-//            widget.boxShadow == null && widget.buttonBoxShadow == true ? BoxShadow(
-//              color: widget.color.withOpacity(0.4),
-//              blurRadius: 1.5,
-//              spreadRadius: 2.0,
-//              offset: Offset.zero,
-//            ) :
-//            widget.boxShadow != null ? widget.boxShadow :
-//            BoxShadow(
-//              color: Theme.of(context).canvasColor,
-//              blurRadius: 0.0,
-//              spreadRadius: 0.0,
-//              offset: Offset.zero,
-//            )
-//          ]
-//      ),
+      decoration: getBoxShadow(),
       child: Material(
+        elevation: _effectiveElevation,
         textStyle: widget.textStyle == null ? TextStyle(color: this.textColor, fontSize: 14) : widget.textStyle,
         shape: widget.type == GFType.transparent ? null : widget.borderShape == null ? shape : widget.borderShape,
-        color: widget.type == GFType.transparent || widget.type == GFType.outline ? Colors.transparent : widget.color,
-        type: widget.color == null ? MaterialType.transparency : MaterialType.button,
+        color: widget.type == GFType.transparent || widget.type == GFType.outline ? Colors.transparent : this.color,
+        type: this.color == null ? MaterialType.transparency : MaterialType.button,
         animationDuration: widget.animationDuration,
         clipBehavior: widget.clipBehavior,
         child: InkWell(
