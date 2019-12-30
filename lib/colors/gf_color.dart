@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 enum GFColor {
   primary,
   secondary,
@@ -14,6 +15,7 @@ enum GFColor {
   white,
   transparent
 }
+
 
 const PRIMARY = Color(0xff3f6ad8);
 const SECONDARY = Color(0xff6c757c);

@@ -111,7 +111,8 @@ class _GFButtonBadgeState extends State<GFButtonBadge> {
             position: this.position,
             size: this.size,
             borderShape: widget.borderShape,
-            icon: widget.counterChild),
+            icon: widget.counterChild
+            ),
       ),
     );
   }
