@@ -135,12 +135,16 @@ class _MyHomePageState extends State<MyHomePage> {
 //              },
 //            ),
 
+            RawMaterialButton(onPressed: null, child: Text("fv"),),
+            FlatButton(onPressed: null, child: Text("cds")),
+
+
             GFButton(
+              color: Colors.orange,
               onPressed: null,
               child: Text("share"),
-              icon: Icon(Icons.share),
-//                          shape: GFShape.pills,
-//              type: GFType.transparent,
+              type: GFType.outline,
+              shape: GFShape.standard,
             ),
 //
 //            GFTabs(
