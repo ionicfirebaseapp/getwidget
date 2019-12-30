@@ -67,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -103,100 +104,108 @@ class _MyHomePageState extends State<MyHomePage> {
 //              ),
 //            ),
 
-            GFSlider(
-//              pagerSize: 12.0,
-//              activeIndicator: Colors.pink,
-//              passiveIndicator: Colors.pink.withOpacity(0.4),
-              viewportFraction: 0.9,
-              aspectRatio: 2.0,
-//            autoPlay: true,
-              enlargeMainPage: true,
-              pagination: true,
-              items: imageList.map(
-                (url) {
-                  return Container(
-                    margin: EdgeInsets.all(5.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      child: Image.network(
-                        url,
-                        fit: BoxFit.cover,
-                        width: 1000.0,
-                      ),
-                    ),
-                  );
-                },
-              ).toList(),
-              onPageChanged: (index) {
-                setState(() {
-                  index;
-                });
-              },
-            ),
+//            GFSlider(
+////              pagerSize: 12.0,
+////              activeIndicator: Colors.pink,
+////              passiveIndicator: Colors.pink.withOpacity(0.4),
+//              viewportFraction: 0.9,
+//              aspectRatio: 2.0,
+////            autoPlay: true,
+//              enlargeMainPage: true,
+//              pagination: true,
+//              items: imageList.map(
+//                (url) {
+//                  return Container(
+//                    margin: EdgeInsets.all(5.0),
+//                    child: ClipRRect(
+//                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+//                      child: Image.network(
+//                        url,
+//                        fit: BoxFit.cover,
+//                        width: 1000.0,
+//                      ),
+//                    ),
+//                  );
+//                },
+//              ).toList(),
+//              onPageChanged: (index) {
+//                setState(() {
+//                  index;
+//                });
+//              },
+//            ),
 
-            GFTabs(
-              initialIndex: 0,
-              length: 3,
-              tabs: <Widget>[
-                GFButton(
-                  onPressed: null,
-                  child: Text("share"),
-                  icon: Icon(Icons.share),
-                ),
-                Tab(
-                  icon: Icon(Icons.error),
-                  child: Text(
-                    "Orders",
-                  ),
-                ),
-                Tab(
-                  child: Text(
-                    "Pastry",
-                  ),
-                ),
-              ],
-              tabBarView: TabBarView(
-                children: <Widget>[
-                  Container(
-                    color: Colors.red,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        RawMaterialButton(onPressed: null, child: Text("fv"),),
-                        FlatButton(onPressed: null, child: Text("cds")),
-                        Icon(Icons.directions_railway),
-                        GFButton(
-                          onPressed: null,
-                          child: Text("share"),
-                          icon: Icon(Icons.share),
-                          shape: GFShape.pills,
-                          type: GFType.transparent,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Icon(Icons.directions_car),
-                  Icon(Icons.directions_transit),
-                ],
-              ),
-//              indicatorColor: Colors.teal,
-//              indicatorSize: TabBarIndicatorSize.label,
-//              labelColor: Colors.lightGreen,
-//              unselectedLabelColor: Colors.black,
-//              labelStyle: TextStyle(
-//                fontWeight: FontWeight.w500,
-//                fontSize: 13.0,
-//                color: Colors.deepOrange,
-//                fontFamily: 'OpenSansBold',
-//              ),
-//              unselectedLabelStyle: TextStyle(
-//                fontWeight: FontWeight.w500,
-//                fontSize: 13.0,
-//                color: Colors.black,
-//                fontFamily: 'OpenSansBold',
-//              ),
+            GFButton(
+              onPressed: null,
+              child: Text("share"),
+              icon: Icon(Icons.share),
+//                          shape: GFShape.pills,
+//              type: GFType.transparent,
             ),
+//
+//            GFTabs(
+//              initialIndex: 0,
+//              length: 3,
+//              tabs: <Widget>[
+//                GFButton(
+//                  onPressed: null,
+//                  child: Text("share"),
+//                  icon: Icon(Icons.share),
+//                ),
+//                Tab(
+//                  icon: Icon(Icons.error),
+//                  child: Text(
+//                    "Orders",
+//                  ),
+//                ),
+//                Tab(
+//                  child: Text(
+//                    "Pastry",
+//                  ),
+//                ),
+//              ],
+//              tabBarView: TabBarView(
+//                children: <Widget>[
+//                  Container(
+//                    color: Colors.red,
+//                    child: Column(
+//                      mainAxisAlignment: MainAxisAlignment.center,
+//                      crossAxisAlignment: CrossAxisAlignment.center,
+//                      children: <Widget>[
+//                        RawMaterialButton(onPressed: null, child: Text("fv"),),
+//                        FlatButton(onPressed: null, child: Text("cds")),
+//                        Icon(Icons.directions_railway),
+//                        GFButton(
+//                          onPressed: null,
+//                          child: Text("share"),
+//                          icon: Icon(Icons.share),
+////                          shape: GFShape.pills,
+//                          type: GFType.transparent,
+//                        ),
+//                      ],
+//                    ),
+//                  ),
+//                  Icon(Icons.directions_car),
+//                  Icon(Icons.directions_transit),
+//                ],
+//              ),
+////              indicatorColor: Colors.teal,
+////              indicatorSize: TabBarIndicatorSize.label,
+////              labelColor: Colors.lightGreen,
+////              unselectedLabelColor: Colors.black,
+////              labelStyle: TextStyle(
+////                fontWeight: FontWeight.w500,
+////                fontSize: 13.0,
+////                color: Colors.deepOrange,
+////                fontFamily: 'OpenSansBold',
+////              ),
+////              unselectedLabelStyle: TextStyle(
+////                fontWeight: FontWeight.w500,
+////                fontSize: 13.0,
+////                color: Colors.black,
+////                fontFamily: 'OpenSansBold',
+////              ),
+//            ),
 
 //              GFSlider(
 //                autoPlay: true,
@@ -223,265 +232,265 @@ class _MyHomePageState extends State<MyHomePage> {
 //                  });
 //                },
 //              ),
-            GFCard(
-              boxFit: BoxFit.cover,
-              colorFilter: new ColorFilter.mode(
-                  Colors.black.withOpacity(0.67), BlendMode.darken),
-              image: Image.asset("lib/assets/food.jpeg"),
-//              imageOverlay: AssetImage("lib/assets/food.jpeg"),
-              titlePosition: GFPosition.end,
-              title: GFListItem(
-                avatar: GFAvatar(
-                  child: Text("tb"),
-                ),
-                title: Text(
-                  'title',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                subTitle: Text(
-                  'subtitle',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                icon: GFIconButton(
-                  onPressed: null,
-                  icon: Icon(Icons.favorite_border),
-                  type: GFType.transparent,
-                ),
-              ),
-              content: Text(
-                "Flutter "
-                "Flutter is Google's mobile UI framework for crafting"
-                " high-quality native interfaces on iOS and Android in "
-                "Flutter ",
-                style: TextStyle(color: Colors.grey),
-              ),
-              buttonBar: GFButtonBar(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  GFButton(
-                    onPressed: null,
-                    child: Text("favorite"),
-                    icon: Icon(Icons.favorite_border),
-                    type: GFType.transparent,
-                  ),
-                  GFButton(
-                    onPressed: null,
-                    child: Text("share"),
-                    icon: Icon(Icons.share),
-                    type: GFType.outline,
-                  ),
-                ],
-              ),
-            ),
-            GFButtonBar(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                GFButton(
-                  onPressed: null,
-                  child: Text("like"),
-                  icon: Icon(Icons.favorite_border),
-                  type: GFType.transparent,
-                ),
-                GFButton(
-                  onPressed: null,
-                  child: Text("comment"),
-                ),
-                GFButton(
-                  onPressed: null,
-                  child: Text("share"),
-                  icon: Icon(Icons.share),
-                  type: GFType.outline,
-                ),
-              ],
-            ),
-            GFListItem(
-              avatar: GFAvatar(
-                child: Text("tb"),
-              ),
-              title: Text('title'),
-              subTitle: Text('subtitle'),
-              icon: GFIconButton(
-                onPressed: null,
-                type: GFType.transparent,
-                icon: Icon(Icons.favorite_border),
-              ),
-            ),
-            GFImageOverlay(
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.all(16.0),
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                children: <Widget>[
-                  new Text(
-                    'Hello world',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  new Text(
-                    'Hello world',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-//              color: Colors.orange,
-              image: AssetImage("lib/assets/food.jpeg"),
-              boxFit: BoxFit.cover,
-              colorFilter: new ColorFilter.mode(
-                  Colors.black.withOpacity(0.6), BlendMode.darken),
-              borderRadius: new BorderRadius.circular(5.0),
-//              border: Border.all(color: Colors.pink, width: 2.0),
-            ),
-            GFAvatar(
-              //              radius: 20.0,
-//                 maxRadius: 50,
-
-              child: Text("de"),
-
-//                 backgroundColor: Colors.pink,
-//
-////              backgroundImage: ,
-//
-//              foregroundColor: Colors.deepOrangeAccent,
-//
-//       shape: GFShape.square,
-//
-//              size: GFSize.medium,
-//
-//              borderRadius: BorderRadius.circular(20.0),
-            ),
-            GFIconBadges(
-              onPressed: null,
-              child: GFIconButton(
-                onPressed: null,
-                icon: Icon(Icons.ac_unit),
-              ),
-              counterChild: GFBadge(
-                text: '12',
-
-//                color: GFColor.dark,
-//
-//                shape: GFShape.circle,
-//
-//                size: GFSize.small,
-//
-//                border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
-//
-//                textColor: GFColor.white,
-//
-//                textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
-//
-//                borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.orange, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-              ),
-            ),
-            GFIconButton(
-              onPressed: null,
-              icon: Icon(Icons.ac_unit),
-//              iconSize: 12.0,
-//              type: GFType.solid,
-//              shape: GFShape.pills,
-//              size: GFSize.large,
-//              buttonBoxShadow: true,
-//              color: GFColor.primary,
-//              boxShadow: BoxShadow(
-//                color: Colors.pink,
-//                blurRadius: 2.0,
-//                spreadRadius: 1.0,
-//                offset: Offset.zero,
+//            GFCard(
+//              boxFit: BoxFit.cover,
+//              colorFilter: new ColorFilter.mode(
+//                  Colors.black.withOpacity(0.67), BlendMode.darken),
+//              image: Image.asset("lib/assets/food.jpeg"),
+////              imageOverlay: AssetImage("lib/assets/food.jpeg"),
+//              titlePosition: GFPosition.end,
+//              title: GFListItem(
+//                avatar: GFAvatar(
+//                  child: Text("tb"),
+//                ),
+//                title: Text(
+//                  'title',
+//                  style: TextStyle(color: Colors.grey),
+//                ),
+//                subTitle: Text(
+//                  'subtitle',
+//                  style: TextStyle(color: Colors.grey),
+//                ),
+//                icon: GFIconButton(
+//                  onPressed: null,
+//                  icon: Icon(Icons.favorite_border),
+//                  type: GFType.transparent,
+//                ),
 //              ),
-//              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
-//              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-            ),
-            GFButtonBadge(
-              onPressed: null,
-//              position: GFIconPosition.start,
-//              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
-//              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-              text: 'goodies',
-//              color: GFColor.danger,
-//              shape: GFShape.pills,
-//              type: GFType.outline,
-//              size: GFSize.small,
-              counterChild: GFBadge(
-                child: Text("12"),
-//              color: GFColor.dark,
-//              shape: GFShape.circle,
-//              size: GFSize.small,
-//              border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
-//              textColor: GFColor.white,
-//              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
-              ),
-            ),
-            GFBadge(
-              text: '12',
-//              color: GFColor.dark,
-//              shape: GFShape.circle,
-//              size: GFSize.small,
-//              border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
-//              textColor: GFColor.white,
-//              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
-            ),
-            GFButton(
-//              type: GFType.solid,
-//              shape: GFShape.pills,
-              text: 'goodies',
-              onPressed: () {},
-//              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
-//              size: GFSize.large,
-//              buttonBoxShadow: true,
-//              blockButton: true,
-//              fullWidthButton: true,
-//              color: GFColor.primary,
-//              textColor: GFColor.secondary,
-//              icon: Icon(Icons.error, color: Colors.white,),
-//              position: GFIconPosition.start,
-//              boxShadow: BoxShadow(
-//                color: Colors.pink,
-//                blurRadius: 2.0,
-//                spreadRadius: 1.0,
-//                offset: Offset.zero,
+//              content: Text(
+//                "Flutter "
+//                "Flutter is Google's mobile UI framework for crafting"
+//                " high-quality native interfaces on iOS and Android in "
+//                "Flutter ",
+//                style: TextStyle(color: Colors.grey),
 //              ),
-//              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
-//              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-            ),
+//              buttonBar: GFButtonBar(
+//                mainAxisSize: MainAxisSize.min,
+//                children: <Widget>[
+//                  GFButton(
+//                    onPressed: null,
+//                    child: Text("favorite"),
+//                    icon: Icon(Icons.favorite_border),
+//                    type: GFType.transparent,
+//                  ),
+//                  GFButton(
+//                    onPressed: null,
+//                    child: Text("share"),
+//                    icon: Icon(Icons.share),
+//                    type: GFType.outline,
+//                  ),
+//                ],
+//              ),
+//            ),
+//            GFButtonBar(
+//              mainAxisSize: MainAxisSize.min,
+//              children: <Widget>[
+//                GFButton(
+//                  onPressed: null,
+//                  child: Text("like"),
+//                  icon: Icon(Icons.favorite_border),
+//                  type: GFType.transparent,
+//                ),
+//                GFButton(
+//                  onPressed: null,
+//                  child: Text("comment"),
+//                ),
+//                GFButton(
+//                  onPressed: null,
+//                  child: Text("share"),
+//                  icon: Icon(Icons.share),
+//                  type: GFType.outline,
+//                ),
+//              ],
+//            ),
+//            GFListItem(
+//              avatar: GFAvatar(
+//                child: Text("tb"),
+//              ),
+//              title: Text('title'),
+//              subTitle: Text('subtitle'),
+//              icon: GFIconButton(
+//                onPressed: null,
+//                type: GFType.transparent,
+//                icon: Icon(Icons.favorite_border),
+//              ),
+//            ),
+//            GFImageOverlay(
+//              width: MediaQuery.of(context).size.width,
+//              margin: EdgeInsets.all(16.0),
+//              padding: EdgeInsets.all(16.0),
+//              child: Column(
+//                children: <Widget>[
+//                  new Text(
+//                    'Hello world',
+//                    style: TextStyle(color: Colors.white),
+//                  ),
+//                  new Text(
+//                    'Hello world',
+//                    style: TextStyle(color: Colors.white),
+//                  ),
+//                  new Text(
+//                    'Hello world',
+//                    style: TextStyle(color: Colors.white),
+//                  ),
+//                  new Text(
+//                    'Hello world',
+//                    style: TextStyle(color: Colors.white),
+//                  ),
+//                  new Text(
+//                    'Hello world',
+//                    style: TextStyle(color: Colors.white),
+//                  ),
+//                  new Text(
+//                    'Hello world',
+//                    style: TextStyle(color: Colors.white),
+//                  ),
+//                  new Text(
+//                    'Hello world',
+//                    style: TextStyle(color: Colors.white),
+//                  ),
+//                  new Text(
+//                    'Hello world',
+//                    style: TextStyle(color: Colors.white),
+//                  ),
+//                  new Text(
+//                    'Hello world',
+//                    style: TextStyle(color: Colors.white),
+//                  ),
+//                  new Text(
+//                    'Hello world',
+//                    style: TextStyle(color: Colors.white),
+//                  ),
+//                  new Text(
+//                    'Hello world',
+//                    style: TextStyle(color: Colors.white),
+//                  ),
+//                  new Text(
+//                    'Hello world',
+//                    style: TextStyle(color: Colors.white),
+//                  ),
+//                ],
+//              ),
+////              color: Colors.orange,
+//              image: AssetImage("lib/assets/food.jpeg"),
+//              boxFit: BoxFit.cover,
+//              colorFilter: new ColorFilter.mode(
+//                  Colors.black.withOpacity(0.6), BlendMode.darken),
+//              borderRadius: new BorderRadius.circular(5.0),
+////              border: Border.all(color: Colors.pink, width: 2.0),
+//            ),
+//            GFAvatar(
+//              //              radius: 20.0,
+////                 maxRadius: 50,
+//
+//              child: Text("de"),
+//
+////                 backgroundColor: Colors.pink,
+////
+//////              backgroundImage: ,
+////
+////              foregroundColor: Colors.deepOrangeAccent,
+////
+////       shape: GFShape.square,
+////
+////              size: GFSize.medium,
+////
+////              borderRadius: BorderRadius.circular(20.0),
+//            ),
+//            GFIconBadges(
+//              onPressed: null,
+//              child: GFIconButton(
+//                onPressed: null,
+//                icon: Icon(Icons.ac_unit),
+//              ),
+//              counterChild: GFBadge(
+//                text: '12',
+//
+////                color: GFColor.dark,
+////
+////                shape: GFShape.circle,
+////
+////                size: GFSize.small,
+////
+////                border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+////
+////                textColor: GFColor.white,
+////
+////                textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
+////
+////                borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.orange, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
+//              ),
+//            ),
+//            GFIconButton(
+//              onPressed: null,
+//              icon: Icon(Icons.ac_unit),
+////              iconSize: 12.0,
+////              type: GFType.solid,
+////              shape: GFShape.pills,
+////              size: GFSize.large,
+////              buttonBoxShadow: true,
+////              color: GFColor.primary,
+////              boxShadow: BoxShadow(
+////                color: Colors.pink,
+////                blurRadius: 2.0,
+////                spreadRadius: 1.0,
+////                offset: Offset.zero,
+////              ),
+////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
+//            ),
+//            GFButtonBadge(
+//              onPressed: null,
+////              position: GFIconPosition.start,
+////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
+//              text: 'goodies',
+////              color: GFColor.danger,
+////              shape: GFShape.pills,
+////              type: GFType.outline,
+////              size: GFSize.small,
+//              counterChild: GFBadge(
+//                child: Text("12"),
+////              color: GFColor.dark,
+////              shape: GFShape.circle,
+////              size: GFSize.small,
+////              border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+////              textColor: GFColor.white,
+////              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
+//              ),
+//            ),
+//            GFBadge(
+//              text: '12',
+////              color: GFColor.dark,
+////              shape: GFShape.circle,
+////              size: GFSize.small,
+////              border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+////              textColor: GFColor.white,
+////              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
+//            ),
+//            GFButton(
+////              type: GFType.solid,
+////              shape: GFShape.pills,
+//              text: 'goodies',
+//              onPressed: () {},
+////              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
+////              size: GFSize.large,
+////              buttonBoxShadow: true,
+////              blockButton: true,
+////              fullWidthButton: true,
+////              color: GFColor.primary,
+////              textColor: GFColor.secondary,
+////              icon: Icon(Icons.error, color: Colors.white,),
+////              position: GFIconPosition.start,
+////              boxShadow: BoxShadow(
+////                color: Colors.pink,
+////                blurRadius: 2.0,
+////                spreadRadius: 1.0,
+////                offset: Offset.zero,
+////              ),
+////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
+//            ),
           ],
         ),
       ),

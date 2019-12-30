@@ -156,7 +156,7 @@ class GFButton extends StatefulWidget {
     this.child,
     this.type = GFType.solid,
     this.shape = GFShape.standard,
-    this.color,
+    this.color = GFColor.primary,
     this.textColor = GFColor.dark,
     this.position = GFPosition.start,
     this.size = GFSize.medium,
@@ -346,6 +346,9 @@ class _GFButtonState extends State<GFButton> {
           borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
     }
 
+    print("ccccccccccccccccccccc ${widget.type}");
+
+
       return Semantics(
         container: true,
         button: true,
@@ -381,8 +384,8 @@ class _GFButtonState extends State<GFButton> {
                 child: Material(
                   textStyle: widget.textStyle == null ? TextStyle(color: this.textColor, fontSize: 14) : widget.textStyle,
                   shape: widget.type == GFType.transparent ? null : widget.borderShape == null ? shape : widget.borderShape,
-                  color:  widget.type != GFType.transparent ? this.color : null,
-//                  type: widget.type == GFType.transparent ? null  : MaterialType.button,
+                  color: widget.type == null ? this.color : Colors.teal ,
+                  type: widget.type == GFType.transparent ? MaterialType.transparency : MaterialType.button,
                   animationDuration: widget.animationDuration,
                   clipBehavior: widget.clipBehavior,
                   child: InkWell(
@@ -393,7 +396,7 @@ class _GFButtonState extends State<GFButton> {
                     hoverColor: widget.hoverColor,
                     onHover: _handleHoveredChanged,
                     onTap: widget.onPressed,
-                    customBorder: widget.borderShape == null ? shape : widget.borderShape,
+                    customBorder: widget.type == GFType.transparent ? null : widget.borderShape == null ? shape : widget.borderShape,
                     child: IconTheme.merge(
                       data: IconThemeData(color: effectiveTextColor),
                       child: Container(
