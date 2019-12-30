@@ -116,6 +116,18 @@ class GFButton extends StatefulWidget {
   /// on true state default box shadow appears around button
   final bool buttonBoxShadow;
 
+  /// A set of thirteen colors that can be used to derive the button theme's
+  /// colors.
+  ///
+  /// This property was added much later than the theme's set of highly
+  /// specific colors, like [ThemeData.buttonColor], [ThemeData.highlightColor],
+  /// [ThemeData.splashColor] etc.
+  ///
+  /// The colors for new button classes can be defined exclusively in terms
+  /// of [colorScheme]. When it's possible, the existing buttons will
+  /// (continue to) gradually migrate to it.
+  final ColorScheme colorScheme;
+
   /// Create buttons of all types. check out [GFIconButton] for icon buttons, and [GFBadge] for badges
   const GFButton({
     Key key,
@@ -144,7 +156,7 @@ class GFButton extends StatefulWidget {
     this.child,
     this.type = GFType.solid,
     this.shape = GFShape.standard,
-    this.color = GFColor.primary,
+    this.color,
     this.textColor = GFColor.dark,
     this.position = GFPosition.start,
     this.size = GFSize.medium,
@@ -153,6 +165,7 @@ class GFButton extends StatefulWidget {
     this.icon,
     this.blockButton,
     this.fullWidthButton,
+    this.colorScheme,
   })  : materialTapTargetSize =
             materialTapTargetSize ?? MaterialTapTargetSize.padded,
         assert(shape != null, 'Button shape can not be null'),
@@ -333,7 +346,6 @@ class _GFButtonState extends State<GFButton> {
           borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
     }
 
-
       return Semantics(
         container: true,
         button: true,
@@ -368,9 +380,9 @@ class _GFButtonState extends State<GFButton> {
                 ),
                 child: Material(
                   textStyle: widget.textStyle == null ? TextStyle(color: this.textColor, fontSize: 14) : widget.textStyle,
-                  shape: widget.type == GFType.transparent ? null : widget.borderShape== null ? shape : widget.borderShape,
-                  color: widget.type != GFType.outline || widget.type == null ? this.color : Theme.of(context).canvasColor,
-                  type: widget.type == GFType.transparent ? MaterialType.transparency : MaterialType.button,
+                  shape: widget.type == GFType.transparent ? null : widget.borderShape == null ? shape : widget.borderShape,
+                  color:  widget.type != GFType.transparent ? this.color : null,
+//                  type: widget.type == GFType.transparent ? null  : MaterialType.button,
                   animationDuration: widget.animationDuration,
                   clipBehavior: widget.clipBehavior,
                   child: InkWell(
