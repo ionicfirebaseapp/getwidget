@@ -62,7 +62,7 @@ class GFCard extends StatelessWidget {
   final bool semanticContainer;
 
   /// The title to display inside the [GFTitleBar]. see [GFTitleBar]
-  final GFListItem title;
+  final GFListTile title;
 
   /// widget can be used to define content
   final Widget content;

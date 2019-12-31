@@ -1,23 +1,24 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GFImageOverlay extends StatelessWidget {
-
-  const GFImageOverlay({
-    Key key,
-    this.height,
-    this.width,
-    this.color,
-    this.padding,
-    this.margin,
-    this.image,
-    this.child,
-    this.alignment,
-    this.borderRadius,
-    this.colorFilter,
-    this.boxFit,
-    this.border
-  }) : super(key: key);
+  const GFImageOverlay(
+      {Key key,
+      this.height,
+      this.width,
+      this.color,
+      this.padding,
+      this.margin,
+      this.image,
+      this.child,
+      this.alignment,
+      this.borderRadius,
+      this.colorFilter=  const ColorFilter.mode(Colors.black26, BlendMode.colorBurn),
+      this.boxFit,
+      this.border})
+      : super(key: key);
 
   /// define image's [double] height
   final double height;
@@ -49,7 +50,7 @@ class GFImageOverlay extends StatelessWidget {
   final BoxFit boxFit;
 
   /// A color filter to apply to the image before painting it.
-  final ColorFilter colorFilter;
+  final ColorFilter colorFilter ;
 
   /// The corners of this [GFCard] are rounded by this [BorderRadius].
   final BorderRadiusGeometry borderRadius;
@@ -59,11 +60,10 @@ class GFImageOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       alignment: alignment,
-      height: height,
-      width: width,
+      height: height ?? MediaQuery.of(context).size.height * 0.3,
+      width: width ?? MediaQuery.of(context).size.width,
       margin: margin,
       padding: padding,
       child: child,
@@ -72,14 +72,8 @@ class GFImageOverlay extends StatelessWidget {
         border: border,
         color: color,
         image: new DecorationImage(
-            fit: boxFit,
-            colorFilter: colorFilter,
-            image: image
-        ),
+            fit: BoxFit.fill, colorFilter: child != null?  colorFilter: null, image: image),
       ),
     );
   }
 }
-
-
-
