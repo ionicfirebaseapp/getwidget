@@ -190,9 +190,9 @@ class _CarouselState extends State<Carousel> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onHorizontalDragStart: this.onDragStart,
-      onHorizontalDragUpdate: this.onDrag,
-      onHorizontalDragEnd: this.onDragEnd,
+//      onHorizontalDragStart: this.onDragStart,
+//      onHorizontalDragUpdate: this.onDrag,
+//      onHorizontalDragEnd: this.onDragEnd,
       child: Container(
         width: double.infinity,
         height: this.size,

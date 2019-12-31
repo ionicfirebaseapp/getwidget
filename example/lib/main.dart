@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
               passiveIndicator: Colors.pink.withOpacity(0.4),
               viewportFraction: 1.0,
               aspectRatio: 2.0,
-//            autoPlay: true,
+              autoPlay: true,
               enlargeMainPage: true,
               pagination: true,
               items: imageList.map(

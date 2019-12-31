@@ -233,8 +233,10 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
 
   int _current = 0;
 
+
   @override
   Widget build(BuildContext context) {
+
     return Stack(
       children: <Widget>[
         getPageWrapper(PageView.builder(
@@ -258,7 +260,27 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
 
             return AnimatedBuilder(
               animation: widget.pageController,
-              child: widget.items[index],
+//              child: widget.items[index],
+              child: Container(
+                width: double.infinity,
+                height: this.size,
+                child: Stack(
+                    children: [
+                      Positioned(
+                        left: 0,
+                        child: Row(
+                          children: widget.items.map((child) {
+                            return Container(
+                              width: this.size,
+                              height: this.size,
+                              child: child,
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ]
+                ),
+              ),
               builder: (BuildContext context, child) {
                 // on the first render, the pageController.page is null,
                 // this is a dirty hack
@@ -281,35 +303,17 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
 
                 if (widget.scrollDirection == Axis.horizontal) {
                   return Center(
-//                      child: SizedBox(
-//                          height: distortionValue * height, child: child),
-                    child: Container(
-                      width: double.infinity,
-                      height: this.size,
-                      child: Stack(
-                          children: [
-                            Positioned(
-                              left: 0,
-                              child: Row(
-                                children: widget.items.map((child) {
-                                  return Container(
-                                    width: this.size,
-                                    height: this.size,
-                                    child: child,
-                                  );
-                                }).toList(),
-                              ),
-                            ),
-                          ]
-                      ),
-                    ),
+                      child: SizedBox(
+                          height: distortionValue * height, child: child),
+
                   );
                 } else {
                   return Center(
                       child: SizedBox(
                           width: distortionValue *
                               MediaQuery.of(context).size.width,
-                          child: child));
+                          child: child),
+                  );
                 }
               },
             );
