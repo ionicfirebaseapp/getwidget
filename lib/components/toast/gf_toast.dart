@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 
 class GFToast extends StatelessWidget {
@@ -31,7 +32,7 @@ class GFToast extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
-      ConstrainedBox(constraints:  BoxConstraints(minHeight: 50.0,), child: Container(
+      ConstrainedBox(constraints:  BoxConstraints(minHeight: 50.0, minWidth: 340), child: Container(
       margin: EdgeInsets.only(left: 10, right: 10),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -50,7 +51,11 @@ class GFToast extends StatelessWidget {
           button!=null?Flexible(
               flex: 4,
               fit: FlexFit.tight,
-              child: button):Container()
+              child: Align(
+                alignment: Alignment.topRight,
+                child: button,
+              )
+          ):Container()
         ],
       ),
     ),);
