@@ -204,6 +204,35 @@ class _GFIconButtonState extends State<GFIconButton> {
       );
     }
 
+    BoxDecoration getBoxShadow() {
+      if(widget.type != GFType.transparent){
+        if(widget.boxShadow == null && widget.buttonBoxShadow != true){
+          return null;
+        }else{
+          return BoxDecoration(
+              color: widget.type == GFType.transparent || widget.type == GFType.outline ? Colors.transparent : this.color,
+              borderRadius: widget.shape == GFShape.pills ? BorderRadius.circular(50.0) :
+              widget.shape == GFShape.standard ? BorderRadius.circular(5.0) : BorderRadius.zero,
+              boxShadow: [
+                widget.boxShadow == null && widget.buttonBoxShadow == true ? BoxShadow(
+                  color: themeColor,
+                  blurRadius: 1.5,
+                  spreadRadius: 2.0,
+                  offset: Offset.zero,
+                ) :
+                widget.boxShadow != null ? widget.boxShadow :
+                BoxShadow(
+                  color: Theme.of(context).canvasColor,
+                  blurRadius: 0.0,
+                  spreadRadius: 0.0,
+                  offset: Offset.zero,
+                )
+              ]
+          );
+        }
+      }
+    }
+
     return Semantics(
       button: true,
       enabled: widget.onPressed != null,
@@ -216,36 +245,12 @@ class _GFIconButtonState extends State<GFIconButton> {
             height:
                 widget.shape == GFShape.pills ? this.height + 6 : this.height,
             width: widget.shape == GFShape.pills ? this.width + 6 : this.width,
-            decoration: BoxDecoration(
-                borderRadius: widget.shape == GFShape.pills
-                    ? BorderRadius.circular(50.0)
-                    : widget.shape == GFShape.standard
-                        ? BorderRadius.circular(5.0)
-                        : BorderRadius.zero,
-                boxShadow: [
-                  widget.boxShadow == null && widget.buttonBoxShadow == true
-                      ? BoxShadow(
-                          color: this.color.withOpacity(0.4),
-                          blurRadius: 1.5,
-                          spreadRadius: 2.0,
-                          offset: Offset.zero,
-                        )
-                      : widget.boxShadow != null
-                          ? widget.boxShadow
-                          : BoxShadow(
-                              color: Theme.of(context).canvasColor,
-                              blurRadius: 0.0,
-                              spreadRadius: 0.0,
-                              offset: Offset.zero,
-                            )
-                ]),
+            decoration: getBoxShadow(),
             child: Material(
               shape: widget.type == GFType.transparent
                   ? null
                   : widget.borderShape == null ? shape : widget.borderShape,
-              color: widget.type != GFType.outline || widget.type == null
-                  ? this.color
-                  : Theme.of(context).canvasColor,
+              color: widget.type == GFType.transparent || widget.type == GFType.outline ? Colors.transparent : this.color,
               type: widget.type == GFType.transparent
                   ? MaterialType.transparency
                   : MaterialType.button,

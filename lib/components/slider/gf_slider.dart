@@ -13,30 +13,32 @@ List<T> map<T>(List list, Function handler) {
 class GFSlider extends StatefulWidget {
   GFSlider(
       {@required this.items,
-        this.pagerSize,
-        this.passiveIndicator,
-        this.activeIndicator,
-        this.pagination,
-        this.height,
-        this.aspectRatio: 16 / 9,
-        this.viewportFraction: 0.8,
-        this.initialPage: 0,
-        int realPage: 10000,
-        this.enableInfiniteScroll: true,
-        this.reverse: false,
-        this.autoPlay: false,
-        this.autoPlayInterval: const Duration(seconds: 4),
-        this.autoPlayAnimationDuration = const Duration(milliseconds: 800),
-        this.autoPlayCurve: Curves.fastOutSlowIn,
-        this.pauseAutoPlayOnTouch,
-        this.enlargeMainPage = false,
-        this.onPageChanged,
-        this.scrollPhysics,
-        this.scrollDirection: Axis.horizontal})
-      : this.realPage = enableInfiniteScroll ? realPage + initialPage : initialPage,
+      this.pagerSize,
+      this.passiveIndicator,
+      this.activeIndicator,
+      this.pagination,
+      this.height,
+      this.aspectRatio: 16 / 9,
+      this.viewportFraction: 0.8,
+      this.initialPage: 0,
+      int realPage: 10000,
+      this.enableInfiniteScroll: true,
+      this.reverse: false,
+      this.autoPlay: false,
+      this.autoPlayInterval: const Duration(seconds: 4),
+      this.autoPlayAnimationDuration = const Duration(milliseconds: 800),
+      this.autoPlayCurve: Curves.fastOutSlowIn,
+      this.pauseAutoPlayOnTouch,
+      this.enlargeMainPage = false,
+      this.onPageChanged,
+      this.scrollPhysics,
+      this.scrollDirection: Axis.horizontal})
+      : this.realPage =
+            enableInfiniteScroll ? realPage + initialPage : initialPage,
         this.pageController = PageController(
           viewportFraction: viewportFraction,
-          initialPage: enableInfiniteScroll ? realPage + initialPage : initialPage,
+          initialPage:
+              enableInfiniteScroll ? realPage + initialPage : initialPage,
         );
 
   /// The pagination dots size can be defined using [double].
@@ -136,8 +138,10 @@ class GFSlider extends StatefulWidget {
   /// Jumps the page position from its current value to the given value,
   /// without animation, and without checking if the new value is in range.
   void jumpToPage(int page) {
-    final index = _getRealIndex(pageController.page.toInt(), realPage, items.length);
-    return pageController.jumpToPage(pageController.page.toInt() + page - index);
+    final index =
+        _getRealIndex(pageController.page.toInt(), realPage, items.length);
+    return pageController
+        .jumpToPage(pageController.page.toInt() + page - index);
   }
 
   /// Animates the controlled [GFSlider] from the current page to the given page.
@@ -145,9 +149,12 @@ class GFSlider extends StatefulWidget {
   /// The animation lasts for the given duration and follows the given curve.
   /// The returned [Future] resolves when the animation completes.
   Future<void> animateToPage(int page, {Duration duration, Curve curve}) {
-    final index = _getRealIndex(pageController.page.toInt(), realPage, items.length);
-    return pageController.animateToPage(pageController.page.toInt() + page - index,
-        duration: duration, curve: curve);
+    final index =
+        _getRealIndex(pageController.page.toInt(), realPage, items.length);
+    return pageController.animateToPage(
+        pageController.page.toInt() + page - index,
+        duration: duration,
+        curve: curve);
   }
 
   @override
@@ -166,8 +173,9 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
   Timer getPlayTimer() {
     return Timer.periodic(widget.autoPlayInterval, (_) {
       if (widget.autoPlay) {
-        widget.pageController
-            .nextPage(duration: widget.autoPlayAnimationDuration, curve: widget.autoPlayCurve);
+        widget.pageController.nextPage(
+            duration: widget.autoPlayAnimationDuration,
+            curve: widget.autoPlayCurve);
       }
     });
   }
@@ -186,7 +194,8 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
           ? addGestureDetection(wrapper)
           : wrapper;
     } else {
-      final Widget wrapper = AspectRatio(aspectRatio: widget.aspectRatio, child: child);
+      final Widget wrapper =
+          AspectRatio(aspectRatio: widget.aspectRatio, child: child);
       return widget.autoPlay && widget.pauseAutoPlayOnTouch != null
           ? addGestureDetection(wrapper)
           : wrapper;
@@ -215,8 +224,8 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
           reverse: widget.reverse,
           itemCount: widget.enableInfiniteScroll ? null : widget.items.length,
           onPageChanged: (int index) {
-
-            int currentPage = _getRealIndex(index + widget.initialPage, widget.realPage, widget.items.length);
+            int currentPage = _getRealIndex(index + widget.initialPage,
+                widget.realPage, widget.items.length);
             if (widget.onPageChanged != null) {
               widget.onPageChanged(currentPage);
               _current = currentPage;
@@ -224,8 +233,8 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
             _current = currentPage;
           },
           itemBuilder: (BuildContext context, int i) {
-            final int index =
-            _getRealIndex(i + widget.initialPage, widget.realPage, widget.items.length);
+            final int index = _getRealIndex(
+                i + widget.initialPage, widget.realPage, widget.items.length);
 
             return AnimatedBuilder(
               animation: widget.pageController,
@@ -243,48 +252,63 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
                 double value = widget.pageController.page - i;
                 value = (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
 
-                final double height =
-                    widget.height ?? MediaQuery.of(context).size.width * (1 / widget.aspectRatio);
-                final double distortionValue =
-                widget.enlargeMainPage ? Curves.easeOut.transform(value) : 1.0;
+                final double height = widget.height ??
+                    MediaQuery.of(context).size.width *
+                        (1 / widget.aspectRatio);
+                final double distortionValue = widget.enlargeMainPage
+                    ? Curves.easeOut.transform(value)
+                    : 1.0;
 
                 if (widget.scrollDirection == Axis.horizontal) {
-                  return Center(child: SizedBox(height: distortionValue * height, child: child));
+                  return Center(
+                      child: SizedBox(
+                          height: distortionValue * height, child: child));
                 } else {
                   return Center(
                       child: SizedBox(
-                          width: distortionValue * MediaQuery.of(context).size.width, child: child));
+                          width: distortionValue *
+                              MediaQuery.of(context).size.width,
+                          child: child));
                 }
               },
             );
           },
         )),
-        widget.pagination == true ? Positioned(
-          left: 0.0,
-          right: 0.0,
-          bottom: 0.0,
-          child: Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: map<Widget>(
-                widget.items,
-                    (indexx, url) {
-                  return Container(
-                    width: widget.pagerSize == null ? 8.0 : widget.pagerSize,
-                    height: widget.pagerSize == null ? 8.0 : widget.pagerSize,
-                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: _current == indexx
-                          ? widget.activeIndicator == null ? Color.fromRGBO(0, 0, 0, 0.9) : widget.activeIndicator
-                          : widget.passiveIndicator == null ? Color.fromRGBO(0, 0, 0, 0.4) : widget.passiveIndicator,
+        widget.pagination == true
+            ? Positioned(
+                left: 0.0,
+                right: 0.0,
+                bottom: 0.0,
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: map<Widget>(
+                      widget.items,
+                      (indexx, url) {
+                        return Container(
+                          width:
+                              widget.pagerSize == null ? 8.0 : widget.pagerSize,
+                          height:
+                              widget.pagerSize == null ? 8.0 : widget.pagerSize,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 2.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _current == indexx
+                                ? widget.activeIndicator == null
+                                    ? Color.fromRGBO(0, 0, 0, 0.9)
+                                    : widget.activeIndicator
+                                : widget.passiveIndicator == null
+                                    ? Color.fromRGBO(0, 0, 0, 0.4)
+                                    : widget.passiveIndicator,
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
-            ),
-          ),
-        ) : Container(),
+                  ),
+                ),
+              )
+            : Container(),
       ],
     );
   }
