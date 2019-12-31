@@ -51,7 +51,11 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
 left: widget.verticalPosition  != null ? widget.verticalPosition : 0,
 
 //            top:20,
-            child: widget.child ?? Container()
+            child: Container(
+              height: 60,
+              width: MediaQuery.of(context).size.width,
+              child:  widget.child ?? Container(),
+            )
         ),
 
 

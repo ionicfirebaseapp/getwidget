@@ -90,12 +90,20 @@ class _MyHomePageState extends State<MyHomePage> {
      GFFloatingWidget(
 //       horizontalPosition: screenHeight * 0.1,
 //       verticalPosition: screenWidth* 0.2,
-//child: GFToast(
-//  text: 'hello',
-//),
-       child: GFToggle(onChanged: null, value: null,
-       type: GFToggleType.ios,
-       ),
+child: GFToast(
+  backgroundColor: GFColor.warning,
+
+  button:  GFButton(
+    type: GFType.outline,
+    text: 'CLICK',
+    onPressed: null,
+//                position: GFPosition.end,
+  ),
+  text: 'Marked as Favorite ',
+),
+//       child: GFToggle(onChanged: null, value: null,
+//       type: GFToggleType.ios,
+//       ),
        body:  SingleChildScrollView(
          child:
 
@@ -182,10 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
                    duration: Duration(milliseconds: 400),
                  ),
 //           text: 'hjkk',
-                 child: GFHeader(
-                   text: 'GFHEADER inside GFTOAST ',
-                   type: GFHeadingType.typo5,
-                 ),
+                 text: 'who  hbdi  h nedj  bdj vcej vcbejb yhjycen bcekj bcen bdjn bcenk jhcnekj',
                ),
              ),
 
@@ -200,7 +205,7 @@ class _MyHomePageState extends State<MyHomePage> {
                    onPressed: null,
 //                position: GFPosition.end,
                  ),
-                 text: 'Marked as Favorite ',
+                 text: 'Marked',
                ),
              ),
              Container(
