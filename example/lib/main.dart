@@ -78,14 +78,16 @@ class _MyHomePageState extends State<MyHomePage> {
   bool showToast = false ;
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.cyanAccent,
+//      backgroundColor: Colors.cyanAccent,
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: GFFloatingWidget(
-        horizontalPosition: 40,
-        child: !showToast? GFToast(
+//         horizontalPosition: screenWidth * 0.9,
+        child: showToast? GFToast(
           text: 'xfcgvhjk',
 
 
@@ -96,32 +98,24 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               
-              GFButton(onPressed: (){
-                setState(() {
-                  print(showToast);
-                  showToast = !showToast;
-                });
-              },
-              type: GFType.outline,
-              child: Text('Show toast'),
-                            ),
 
 
 
-              Container(
-                margin: EdgeInsets.only(top:10),
-                child:   GFToast(
-                  backgroundColor: GFColor.warning,
-
-                  button:  GFButton(
-                    type: GFType.outline,
-                    text: 'CLICK',
-                    onPressed: null,
-//                position: GFPosition.end,
-                  ),
-                  text: 'Marked as favorites',
-                ),
-              ),
+//
+//              Container(
+//                margin: EdgeInsets.only(top:10),
+//                child:   GFToast(
+//                  backgroundColor: GFColor.warning,
+//
+//                  button:  GFButton(
+//                    type: GFType.outline,
+//                    text: 'CLICK',
+//                    onPressed: null,
+////                position: GFPosition.end,
+//                  ),
+//                  text: 'Marked as favorites',
+//                ),
+//              ),
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
                 child: Row(
@@ -156,6 +150,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
+
+
 
               Container(
 //            padding: EdgeInsets.only(left: 20, right: 20),
@@ -224,6 +220,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     index;
                   });
                 },
+              ),
+
+              GFButton(onPressed: (){
+                setState(() {
+                  print(showToast);
+                  showToast = !showToast;
+                });
+              },
+                type: GFType.outline,
+                child: Text('Show toast'),
               ),
 
               GFButton(
