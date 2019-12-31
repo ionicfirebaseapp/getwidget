@@ -1,6 +1,5 @@
 import 'dart:async';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ui_kit/colors/gf_color.dart';
@@ -51,23 +50,13 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
     controller = AnimationController(
         duration: const Duration(milliseconds: 300), vsync: this);
     animation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
-
     _controller =
         AnimationController(vsync: this, duration: Duration(milliseconds: 200));
-
     offset = Tween<Offset>(begin: Offset.zero, end: Offset(0.0, 1.0))
         .animate(_controller);
-
-    offset1 = Tween<Offset>(begin: Offset.zero, end: Offset(0.0, 0.1))
-        .animate(_controller);
-
-
-
-
     controller.forward();
     _controller.forward();
   }
-
 
   @override
   void dispose() {
@@ -75,51 +64,47 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
     super.dispose();
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
-
-    return
-     SlideTransition(
-         position: offset,
-         child: FadeTransition(opacity: animation, child:
-         Container(
-           constraints: BoxConstraints(minHeight: 50.0, minWidth: 340),
-           margin: EdgeInsets.only(left: 10, right: 10),
-           padding: EdgeInsets.all(10),
-           decoration: BoxDecoration(
-             borderRadius: BorderRadius.all(Radius.circular(3)),
-             color: widget.backgroundColor != null
-                 ? getGFColor(widget.backgroundColor)
-                 : Color(0xff323232),
-           ),
-           child: Row(
-             children: <Widget>[
-               Flexible(
-                 flex: 7,
-                 fit: FlexFit.tight,
-                 child: widget.text != null
-                     ? Text(widget.text, style: widget.textStyle)
-                     : (widget.child ?? Container()),
-               ),
-               SizedBox(
-                 width: 10,
-               ),
-               widget.button != null
-                   ? Flexible(
-                   flex: 4,
-                   fit: FlexFit.tight,
-                   child: Align(
-                     alignment: Alignment.topRight,
-                     child: widget.button,
-                   ))
-                   : Container()
-             ],
-           ),
-         ),),
-       )
-     ;
+    return SlideTransition(
+      position: offset,
+      child: FadeTransition(
+        opacity: animation,
+        child: Container(
+          constraints: BoxConstraints(minHeight: 50.0, minWidth: 340),
+          margin: EdgeInsets.only(left: 10, right: 10),
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(3)),
+            color: widget.backgroundColor != null
+                ? getGFColor(widget.backgroundColor)
+                : Color(0xff323232),
+          ),
+          child: Row(
+            children: <Widget>[
+              Flexible(
+                flex: 7,
+                fit: FlexFit.tight,
+                child: widget.text != null
+                    ? Text(widget.text, style: widget.textStyle)
+                    : (widget.child ?? Container()),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              widget.button != null
+                  ? Flexible(
+                      flex: 4,
+                      fit: FlexFit.tight,
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: widget.button,
+                      ))
+                  : Container()
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

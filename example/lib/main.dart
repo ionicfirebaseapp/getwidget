@@ -38,6 +38,7 @@ import 'package:ui_kit/components/toggle/gf_toggle.dart';
 import 'package:ui_kit/components/header/gf_header.dart';
 import 'package:ui_kit/types/gf_heading_type.dart';
 import 'package:ui_kit/types/gf_toggle_type.dart';
+import 'package:ui_kit/components/list/gf_list.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -98,6 +99,14 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               
+      GFList(
+//        text: 'cfvgnh ghj gyuij gyuh tgyuji yugji fyuhji gyuji',
+////        text: 'bj nm',
+//        icon: GFButton(onPressed: null, text: 'k', type: GFType.outline,),
+//        showDivider: false,
+
+      ),
+GFList(),GFList(),
 
 
 
