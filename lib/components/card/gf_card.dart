@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_kit/components/button_bar/gf_button_bar.dart';
-import 'package:ui_kit/components/header_bar/gf_title_bar.dart';
+import 'package:ui_kit/components/list_tile/gf_list_tile.dart';
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
 import 'package:ui_kit/position/gf_position.dart';
 
@@ -62,7 +62,7 @@ class GFCard extends StatelessWidget {
   final bool semanticContainer;
 
   /// The title to display inside the [GFTitleBar]. see [GFTitleBar]
-  final GFTitleBar title;
+  final GFListItem title;
 
   /// widget can be used to define content
   final Widget content;
@@ -106,9 +106,9 @@ class GFCard extends StatelessWidget {
         titlePosition == GFPosition.start ? image != null ? image : Container(): title != null ? title : Container(),
         Padding(
           padding: padding,
-          child: content,
+          child: content != null ? content : Container(),
         ),
-        buttonBar,
+        buttonBar == null ? Container() : buttonBar,
       ],
     );
 
