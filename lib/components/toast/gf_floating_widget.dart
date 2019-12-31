@@ -11,7 +11,6 @@ class GFFloatingWidget extends StatefulWidget {
     this.horizontalPosition,
     this.verticalPosition,
     this.body
-
   }) : super(key: key);
 
 
@@ -35,39 +34,17 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
     var screenHeight = MediaQuery.of(context).size.height;
     return Stack(
       children: <Widget>[
-//        widget.child != null? widget.child : MyHomePage(),
-//       Container(
-//        height: screenHeight,
-//         width: screenWidth,
-//         color: Colors.orange,
-//       ),
       Container(
-//        height: screenHeight,
-//        width: screenWidth,
          child: widget.body ?? Container(),
       ),
         Positioned(
           top: widget.horizontalPosition != null ? widget.horizontalPosition : 0,
-left: widget.verticalPosition  != null ? widget.verticalPosition : 0,
-
-//            top:20,
+          left: widget.verticalPosition  != null ? widget.verticalPosition : 0,
             child: Container(
-              height: 60,
               width: MediaQuery.of(context).size.width,
               child:  widget.child ?? Container(),
             )
         ),
-
-
-//        Positioned(
-//          top:MediaQuery.of(context).size.height * 0.3,
-////            top:30,
-//            child: GFToast(
-//              text: 'hi',
-//            )
-//        )
-
-
       ],
     );
   }

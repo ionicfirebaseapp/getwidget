@@ -88,16 +88,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
       body:
      GFFloatingWidget(
-//       horizontalPosition: screenHeight * 0.1,
+       horizontalPosition: screenHeight * 0.1,
 //       verticalPosition: screenWidth* 0.2,
 child: GFToast(
   backgroundColor: GFColor.warning,
 
   button:  GFButton(
     type: GFType.outline,
-    text: 'CLICK',
+    text: 'OK',
     onPressed: null,
-//                position: GFPosition.end,
   ),
   text: 'Marked as Favorite ',
 ),
