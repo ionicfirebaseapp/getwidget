@@ -18,9 +18,8 @@ class GFToggle extends StatefulWidget {
       this.type,
       this.boxShape,
       this.borderRadius,
-      this.duration})
+      this.duration = const Duration(milliseconds: 400)})
       : super(key: key);
-
 
   ///type [String] used to add custom text i.e, ON,ENABLE
   final String enabledText;
@@ -37,7 +36,7 @@ class GFToggle extends StatefulWidget {
 //  ///type of [Color] used for the active thumb color
   final Color enabledThumbColor;
 
- ///type of [Color] used for the inactive thumb color
+  ///type of [Color] used for the inactive thumb color
   final Color disabledThumbColor;
 
   ///type of [Color] used for the active track color
@@ -55,7 +54,7 @@ class GFToggle extends StatefulWidget {
   ///type of animation [Duration] called when the switch animates during the specific duration
   final Duration duration;
 
- /// Button type of [GFToggleType] i.e, android, ios, custom, sqaure
+  /// Button type of [GFToggleType] i.e, android, ios, custom, sqaure
   GFToggleType type;
 
   /// This property must not be null. Used to set the current state of toggle
@@ -64,7 +63,7 @@ class GFToggle extends StatefulWidget {
   /// Called when the user toggles the switch on or off.
   final ValueChanged<bool> onChanged;
 
-    @override
+  @override
   _GFToggleState createState() => _GFToggleState();
 }
 
@@ -80,7 +79,8 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     controller = AnimationController(vsync: this, duration: widget.duration);
-    offset = Tween<Offset>(begin: Offset.zero, end: Offset(1.0, 0.0)).animate(controller);
+    offset = Tween<Offset>(begin: Offset.zero, end: Offset(1.0, 0.0))
+        .animate(controller);
   }
 
   @override
@@ -105,10 +105,9 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
             break;
           default:
         }
-        if(widget.onChanged!=null){
+        if (widget.onChanged != null) {
           widget.onChanged(isOn);
         }
-
       },
       child: Stack(
         children: <Widget>[
@@ -130,25 +129,31 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                         : widget.borderRadius ??
                             BorderRadius.all(Radius.circular(20))),
                 child: Padding(
-                    padding: widget.type == GFToggleType.ios ?  EdgeInsets.only(left: 3.5, right: 3.5, top: 5.4):  EdgeInsets.only(left: 3, right: 3, top: 3.4),
+                    padding: widget.type == GFToggleType.ios
+                        ? EdgeInsets.only(left: 3.5, right: 3.5, top: 5.4)
+                        : EdgeInsets.only(left: 3, right: 3, top: 3.4),
                     child: isOn
                         ? Text(
                             widget.enabledText ??
-                                ( widget.type == GFToggleType.custom
-                                ? 'ON'
-                                : ''),
+                                (widget.type == GFToggleType.custom
+                                    ? 'ON'
+                                    : ''),
                             style: widget.enabledTextStyle ??
-                                ( widget.type == GFToggleType.ios ?TextStyle(color: Colors.white, fontSize: 12): TextStyle(color: Colors.white, fontSize: 8))
-                          )
+                                (widget.type == GFToggleType.ios
+                                    ? TextStyle(
+                                        color: Colors.white, fontSize: 12)
+                                    : TextStyle(
+                                        color: Colors.white, fontSize: 8)))
                         : Text(
                             widget.disabledText ??
-                                ( widget.type == GFToggleType.custom
-                                ? 'OFF'
-                                : ''),
+                                (widget.type == GFToggleType.custom
+                                    ? 'OFF'
+                                    : ''),
                             textAlign: TextAlign.end,
                             style: widget.disabledTextStyle ??
-                                ( widget.type == GFToggleType.ios ?TextStyle(color: Colors.white, fontSize: 12): TextStyle(color: Colors.white, fontSize: 8))
-                          ))),
+                                (widget.type == GFToggleType.ios
+                                    ? TextStyle(color: Colors.white, fontSize: 12)
+                                    : TextStyle(color: Colors.white, fontSize: 8))))),
           ),
           Positioned(
               top: widget.type == GFToggleType.ios ? 7.5 : 3,
@@ -167,7 +172,7 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                         break;
                       default:
                     }
-                    if(widget.onChanged!=null){
+                    if (widget.onChanged != null) {
                       widget.onChanged(isOn);
                     }
                   },
@@ -181,8 +186,9 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                           shape: widget.type == GFToggleType.square
                               ? BoxShape.rectangle
                               : widget.boxShape ?? BoxShape.circle,
-                          color: isOn ?  widget.enabledThumbColor ?? Colors.white
-                          : widget.disabledThumbColor ?? Colors.white,
+                          color: isOn
+                              ? widget.enabledThumbColor ?? Colors.white
+                              : widget.disabledThumbColor ?? Colors.white,
                           boxShadow: [
                             new BoxShadow(
                                 color: Colors.black.withOpacity(0.16),
@@ -190,9 +196,7 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                                 spreadRadius: 0.0),
                           ]),
                     ),
-                  )
-              )
-          ),
+                  ))),
         ],
       ),
     );

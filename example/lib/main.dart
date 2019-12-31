@@ -21,6 +21,8 @@ import 'package:ui_kit/components/image/gf_image_overlay.dart';
 
 import 'package:ui_kit/components/button_bar/gf_button_bar.dart';
 
+import 'package:ui_kit/components/list_tile/gf_list_tile.dart';
+
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/shape/gf_shape.dart';
 import 'package:ui_kit/components/slider/gf_slider.dart';
@@ -45,7 +47,6 @@ class MyApp extends StatelessWidget {
       title: 'UI_KIT_EXAMPLE',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-
       ),
       debugShowCheckedModeBanner: false,
       home: MyHomePage(title: 'UI_KIT_EXAMPLE'),
@@ -135,7 +136,10 @@ class _MyHomePageState extends State<MyHomePage> {
 //              },
 //            ),
 
-            RawMaterialButton(onPressed: null, child: Text("fv"),),
+            RawMaterialButton(
+              onPressed: null,
+              child: Text("fv"),
+            ),
             FlatButton(onPressed: null, child: Text("cds")),
 
 //            Container(
@@ -197,7 +201,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        RawMaterialButton(onPressed: null, child: Text("fv"),),
+                        RawMaterialButton(
+                          onPressed: null,
+                          child: Text("fv"),
+                        ),
                         FlatButton(onPressed: null, child: Text("cds")),
                         Icon(Icons.directions_railway),
                         GFButton(
@@ -264,7 +271,7 @@ class _MyHomePageState extends State<MyHomePage> {
               image: Image.asset("lib/assets/food.jpeg"),
 //              imageOverlay: AssetImage("lib/assets/food.jpeg"),
               titlePosition: GFPosition.end,
-              title: GFListItem(
+              title: GFListTile(
                 avatar: GFAvatar(
                   child: Text("tb"),
                 ),
