@@ -35,9 +35,6 @@ class Carousel extends StatefulWidget {
   /// Count of visible cells
   int rowCount;
 
-  /// Customize widget by left/right arrows
-  CarouselArrow leftArrow, rightArrow;
-
   List<Widget> children;
 
   /// Signature for when a pointer has contacted the screen and has begun to move.
@@ -54,8 +51,6 @@ class Carousel extends StatefulWidget {
   Carousel({
     this.rowCount,
     this.children,
-    this.leftArrow,
-    this.rightArrow,
     this.onDragStart,
     this.onDrag,
     this.onDragEnd
@@ -96,20 +91,8 @@ class _CarouselState extends State<Carousel> with TickerProviderStateMixin {
 
     new Future.delayed(Duration.zero, () {
       this.setState(() {
-        /// Calculate cells container width
-        CarouselArrow leftArrow = widget.leftArrow;
-        CarouselArrow rightArrow = widget.rightArrow;
 
         double width = MediaQuery.of(context).size.width;
-
-        if (leftArrow != null && leftArrow.constraints != null) {
-          width -= leftArrow.constraints.constrainWidth();
-        }
-
-        if (rightArrow != null && rightArrow.constraints != null) {
-          width -= rightArrow.constraints.constrainWidth();
-        }
-
         this.width = width;
         this.size = this.width / widget.rowCount;
       });
@@ -213,67 +196,63 @@ class _CarouselState extends State<Carousel> with TickerProviderStateMixin {
       child: Container(
         width: double.infinity,
         height: this.size,
-        child: Container(
-          width: this.width,
-          height: this.size,
-          child: Stack(
-              children: [
-                Positioned(
-                  left: this.offset,
-                  child: Row(
-                    children: widget.children.map((child) {
-                      return Container(
-                        width: this.size,
-                        height: this.size,
-                        child: child,
-                      );
-                    }).toList(),
-                  ),
+        child: Stack(
+            children: [
+              Positioned(
+                left: this.offset,
+                child: Row(
+                  children: widget.children.map((child) {
+                    return Container(
+                      width: this.size,
+                      height: this.size,
+                      child: child,
+                    );
+                  }).toList(),
                 ),
-              ]
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CarouselArrow extends Container {
-
-  CarouselArrow({ Key key, double width, Widget child })
-      : super(key: key, width: width, child: child);
-}
-
-
-class DefaultCarouselItem extends StatelessWidget {
-  String text;
-
-  DefaultCarouselItem(String text) {
-    this.text = text;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(6.0),
-      alignment: Alignment.center,
-      decoration: new BoxDecoration(
-        color: Colors.blue,
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(6.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              this.text,
-              style: TextStyle(
-                  color: Colors.white
               ),
-            ),
-          ],
+            ]
         ),
       ),
     );
   }
 }
+
+//class CarouselArrow extends Container {
+//
+//  CarouselArrow({ Key key, double width, Widget child })
+//      : super(key: key, width: width, child: child);
+//}
+//
+//
+//class DefaultCarouselItem extends StatelessWidget {
+//  String text;
+//
+//  DefaultCarouselItem(String text) {
+//    this.text = text;
+//  }
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return Container(
+//      margin: EdgeInsets.all(6.0),
+//      alignment: Alignment.center,
+//      decoration: new BoxDecoration(
+//        color: Colors.blue,
+//      ),
+//      child: Padding(
+//        padding: EdgeInsets.all(6.0),
+//        child: Column(
+//          mainAxisAlignment: MainAxisAlignment.center,
+//          children: <Widget>[
+//            Text(
+//              this.text,
+//              style: TextStyle(
+//                  color: Colors.white
+//              ),
+//            ),
+//          ],
+//        ),
+//      ),
+//    );
+//  }
+//}

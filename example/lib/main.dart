@@ -80,49 +80,55 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
 
             Carousel(
-                rowCount: 3,
-                children: [
-                  'Item 1',
-                  'Item 2',
-                  'Item 3',
-                  'Item 4',
-                  'Item 5',
-                  'Item 6',
-                ].map((String itemText) {
-                  return DefaultCarouselItem(itemText);
-                }).toList()
+                rowCount: 2,
+                children: imageList.map(
+                      (url) {
+                    return Container(
+                      margin: EdgeInsets.all(5.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        child: Image.network(
+                            url,
+                            fit: BoxFit.cover,
+                            width: 1000.0
+                        ),
+                      ),
+                    );
+                  },
+                ).toList(),
             ),
 
-//            GFSlider(
-//              pagerSize: 12.0,
-//              activeIndicator: Colors.pink,
-//              passiveIndicator: Colors.pink.withOpacity(0.4),
-//              viewportFraction: 0.9,
-//              aspectRatio: 2.0,
-////            autoPlay: true,
-//              enlargeMainPage: true,
-//              pagination: true,
-//              items: imageList.map(
-//                (url) {
-//                  return Container(
-//                    margin: EdgeInsets.all(5.0),
-//                    child: ClipRRect(
-//                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-//                      child: Image.network(
-//                        url,
-//                        fit: BoxFit.cover,
-//                        width: 1000.0
-//                      ),
-//                    ),
-//                  );
-//                },
-//              ).toList(),
-//              onPageChanged: (index) {
-//                setState(() {
-//                  index;
-//                });
-//              },
-//            ),
+            GFSlider(
+              rowCount: 2,
+              pagerSize: 12.0,
+              activeIndicator: Colors.pink,
+              passiveIndicator: Colors.pink.withOpacity(0.4),
+              viewportFraction: 1.0,
+              aspectRatio: 2.0,
+//            autoPlay: true,
+              enlargeMainPage: true,
+              pagination: true,
+              items: imageList.map(
+                (url) {
+                  return Container(
+                    margin: EdgeInsets.all(5.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      child: Image.network(
+                        url,
+                        fit: BoxFit.cover,
+                        width: 1000.0
+                      ),
+                    ),
+                  );
+                },
+              ).toList(),
+              onPageChanged: (index) {
+                setState(() {
+                  index;
+                });
+              },
+            ),
 
 //            GFButton(
 //              color: Colors.orange,

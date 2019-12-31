@@ -32,6 +32,7 @@ class GFSlider extends StatefulWidget {
       this.enlargeMainPage = false,
       this.onPageChanged,
       this.scrollPhysics,
+        this.rowCount,
       this.scrollDirection: Axis.horizontal})
       : this.realPage =
             enableInfiniteScroll ? realPage + initialPage : initialPage,
@@ -40,6 +41,9 @@ class GFSlider extends StatefulWidget {
           initialPage:
               enableInfiniteScroll ? realPage + initialPage : initialPage,
         );
+
+  /// Count of visible cells
+  int rowCount;
 
   /// The pagination dots size can be defined using [double].
   final double pagerSize;
@@ -164,10 +168,26 @@ class GFSlider extends StatefulWidget {
 class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
   Timer timer;
 
+  /// Size of cell
+  double size = 0;
+
+  /// Width of cells container
+  double width = 0;
+
   @override
   void initState() {
     super.initState();
     timer = getPlayTimer();
+
+    new Future.delayed(Duration.zero, () {
+      this.setState(() {
+
+        double width = MediaQuery.of(context).size.width;
+        this.width = width;
+        this.size = this.width / widget.rowCount;
+      });
+    });
+
   }
 
   Timer getPlayTimer() {
@@ -261,8 +281,29 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
 
                 if (widget.scrollDirection == Axis.horizontal) {
                   return Center(
-                      child: SizedBox(
-                          height: distortionValue * height, child: child));
+//                      child: SizedBox(
+//                          height: distortionValue * height, child: child),
+                    child: Container(
+                      width: double.infinity,
+                      height: this.size,
+                      child: Stack(
+                          children: [
+                            Positioned(
+                              left: 0,
+                              child: Row(
+                                children: widget.items.map((child) {
+                                  return Container(
+                                    width: this.size,
+                                    height: this.size,
+                                    child: child,
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ]
+                      ),
+                    ),
+                  );
                 } else {
                   return Center(
                       child: SizedBox(
