@@ -21,6 +21,8 @@ import 'package:ui_kit/components/image/gf_image_overlay.dart';
 
 import 'package:ui_kit/components/button_bar/gf_button_bar.dart';
 
+import 'package:ui_kit/components/list_tile/gf_list_tile.dart';
+
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/shape/gf_shape.dart';
 import 'package:ui_kit/components/slider/gf_slider.dart';
@@ -45,7 +47,6 @@ class MyApp extends StatelessWidget {
       title: 'UI_KIT_EXAMPLE',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-
       ),
       debugShowCheckedModeBanner: false,
       home: MyHomePage(title: 'UI_KIT_EXAMPLE'),
@@ -67,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange,
+      backgroundColor: Colors.cyanAccent,
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -76,95 +77,51 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-//            Container(
-//              height: 300.0,
-//              child: DefaultTabController(
-//                length: 2,
-//                child: Scaffold(
-//                  appBar: AppBar(
-//                    bottom: TabBar(
-//                      indicator: UnderlineTabIndicator(
-//                        borderSide: BorderSide(color: Color(0xDD613896), width: 2.0),
-//                        insets: EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 4.0),
-//                      ),
-//                      tabs: [
-//                        Tab(icon: Icon(Icons.directions_car), text: "Non persistent",),
-//                        Tab(icon: Icon(Icons.directions_transit), text: "Persistent"),
-//                      ],
-//                    ),
-//                    title: Text('Persistent Tab Demo'),
-//                  ),
-//                  body: TabBarView(
-//                    children: [
-//                      Text("cdx"),
-//                      Text("cdv")
-//                    ],
-//                  ),
-//                ),
-//              ),
-//            ),
 
-//            GFSlider(
-////              pagerSize: 12.0,
-////              activeIndicator: Colors.pink,
-////              passiveIndicator: Colors.pink.withOpacity(0.4),
-//              viewportFraction: 0.9,
-//              aspectRatio: 2.0,
-////            autoPlay: true,
-//              enlargeMainPage: true,
-//              pagination: true,
-//              items: imageList.map(
-//                (url) {
-//                  return Container(
-//                    margin: EdgeInsets.all(5.0),
-//                    child: ClipRRect(
-//                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-//                      child: Image.network(
-//                        url,
-//                        fit: BoxFit.cover,
-//                        width: 1000.0,
-//                      ),
-//                    ),
-//                  );
-//                },
-//              ).toList(),
-//              onPageChanged: (index) {
-//                setState(() {
-//                  index;
-//                });
-//              },
-//            ),
+            GFSlider(
+//              pagerSize: 12.0,
+//              activeIndicator: Colors.pink,
+//              passiveIndicator: Colors.pink.withOpacity(0.4),
+              viewportFraction: 0.9,
+              aspectRatio: 2.0,
+//            autoPlay: true,
+              enlargeMainPage: true,
+              pagination: true,
+              items: imageList.map(
+                (url) {
+                  return Container(
+                    margin: EdgeInsets.all(5.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      child: Image.network(
+                        url,
+                        fit: BoxFit.cover,
+                        width: 1000.0,
+                      ),
+                    ),
+                  );
+                },
+              ).toList(),
+              onPageChanged: (index) {
+                setState(() {
+                  index;
+                });
+              },
+            ),
 
-            RawMaterialButton(onPressed: null, child: Text("fv"),),
-            FlatButton(onPressed: null, child: Text("cds")),
-
-//            Container(
-//              decoration: BoxDecoration(
-//                color: Colors.teal,
-//                  boxShadow: [BoxShadow(
-//                      color: Colors.pink,
-//                      blurRadius: 1.5,
-//                      spreadRadius: 2.0,
-//                      offset: Offset.zero,
-//                    )
-//                  ]
-//              ),
-//                child: OutlineButton(child: Text("Fvd"),)),
-//
-//
             GFButton(
               color: Colors.orange,
               onPressed: null,
               child: Text("share"),
               type: GFType.outline,
               shape: GFShape.pills,
-              buttonBoxShadow: true,
-              boxShadow: BoxShadow(
-                color: Colors.pink.withOpacity(0.4),
-                blurRadius: 1.5,
-                spreadRadius: 2.0,
-                offset: Offset.zero,
-              ),
+//              buttonBoxShadow: true,
+//              boxShadow: BoxShadow(
+//                color: Colors.pink,
+//                blurRadius: 1.5,
+//                spreadRadius: 2.0,
+//                offset: Offset.zero,
+//              ),
             ),
 
             GFTabs(
@@ -197,7 +154,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        RawMaterialButton(onPressed: null, child: Text("fv"),),
+                        RawMaterialButton(
+                          onPressed: null,
+                          child: Text("fv"),
+                        ),
                         FlatButton(onPressed: null, child: Text("cds")),
                         Icon(Icons.directions_railway),
                         GFButton(
@@ -264,7 +224,7 @@ class _MyHomePageState extends State<MyHomePage> {
               image: Image.asset("lib/assets/food.jpeg"),
 //              imageOverlay: AssetImage("lib/assets/food.jpeg"),
               titlePosition: GFPosition.end,
-              title: GFListItem(
+              title: GFListTile(
                 avatar: GFAvatar(
                   child: Text("tb"),
                 ),
