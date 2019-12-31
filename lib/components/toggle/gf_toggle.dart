@@ -87,6 +87,7 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
   void dispose() {
     animationController.dispose();
     super.dispose();
+    controller.dispose();
   }
 
   @override

@@ -32,6 +32,7 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
     return Stack(
       children: <Widget>[
         Container(
+          height:  MediaQuery.of(context).size.height,
           child: widget.body ?? Container(),
         ),
         Positioned(
