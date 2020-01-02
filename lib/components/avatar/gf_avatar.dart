@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_shape.dart';
+import 'package:ui_kit/shape/gf_avatar_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
 
 class GFAvatar extends StatelessWidget {
@@ -28,8 +28,8 @@ class GFAvatar extends StatelessWidget {
   /// size of avatar like [double] or [GFSize] i.e, 1.2, small, medium, large etc.
   final GFSize size;
 
-  /// shape of avatar [GFShape] i.e, standard, pills, square
-  final GFShape shape;
+  /// shape of avatar [GFAvatarShape] i.e, standard, pills, square
+  final GFAvatarShape shape;
 
   /// border radius to give extra radius for avatar square or standard shape
   final BorderRadius borderRadius;
@@ -59,7 +59,7 @@ class GFAvatar extends StatelessWidget {
       this.minRadius,
       this.maxRadius,
       this.borderRadius,
-      this.shape = GFShape.pills,
+      this.shape = GFAvatarShape.circle,
       this.size = GFSize.medium})
       : assert(radius == null || (minRadius == null && maxRadius == null)),
         super(key: key);
@@ -97,11 +97,11 @@ class GFAvatar extends StatelessWidget {
   }
 
   BoxShape get _avatarShape {
-    if (shape == GFShape.pills) {
+    if (shape == GFAvatarShape.circle) {
       return BoxShape.circle;
-    } else if (shape == GFShape.square) {
+    } else if (shape == GFAvatarShape.square) {
       return BoxShape.rectangle;
-    } else if (shape == GFShape.standard) {
+    } else if (shape == GFAvatarShape.standard) {
       return BoxShape.rectangle;
     } else {
       return BoxShape.rectangle;
@@ -151,7 +151,7 @@ class GFAvatar extends StatelessWidget {
             ? DecorationImage(image: backgroundImage, fit: BoxFit.cover)
             : null,
         shape: _avatarShape,
-        borderRadius: shape == GFShape.standard && borderRadius == null
+        borderRadius: shape == GFAvatarShape.standard && borderRadius == null
             ? BorderRadius.circular(10.0)
             : borderRadius,
       ),

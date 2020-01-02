@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_shape.dart';
+import 'package:ui_kit/shape/gf_badge_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 
@@ -10,8 +10,8 @@ class GFBadge extends StatefulWidget {
   /// Typically the counter button's shape.
   final ShapeBorder borderShape;
 
-  /// Counter type of [GFShape] i.e, standard, pills, square,
-  final GFShape shape;
+  /// Counter type of [GFBadgeShape] i.e, standard, pills, square,
+  final GFBadgeShape shape;
 
   /// Pass [GFColor] or [Color]
   final dynamic color;
@@ -36,7 +36,7 @@ class GFBadge extends StatefulWidget {
     Key key,
     this.textStyle,
     this.borderShape,
-    this.shape = GFShape.standard,
+    this.shape = GFBadgeShape.standard,
     this.color = GFColor.secondary,
     this.textColor = GFColor.dark,
     this.size = GFSize.medium,
@@ -54,7 +54,7 @@ class _GFBadgeState extends State<GFBadge> {
   Color color;
   Color textColor;
   Widget child;
-  GFShape counterShape;
+  GFBadgeShape counterShape;
   GFSize size;
   double height;
   double width;
@@ -81,16 +81,16 @@ class _GFBadgeState extends State<GFBadge> {
 
     ShapeBorder shape;
 
-    if (this.counterShape == GFShape.pills) {
+    if (this.counterShape == GFBadgeShape.pills) {
       shape = RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
-    } else if (this.counterShape == GFShape.square) {
+    } else if (this.counterShape == GFBadgeShape.square) {
       shape = RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(0.0), side: shapeBorder);
-    } else if (this.counterShape == GFShape.standard) {
+    } else if (this.counterShape == GFBadgeShape.standard) {
       shape = RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0), side: shapeBorder);
-    } else if (this.counterShape == GFShape.circle) {
+    } else if (this.counterShape == GFBadgeShape.circle) {
       shape = RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100.0), side: shapeBorder);
     } else {
@@ -118,7 +118,7 @@ class _GFBadgeState extends State<GFBadge> {
 
     return Container(
       height: this.height,
-      width: this.counterShape == GFShape.circle ? this.height : this.width,
+      width: this.counterShape == GFBadgeShape.circle ? this.height : this.width,
       child: Material(
         textStyle: this.textColor != null
             ? TextStyle(color: this.textColor, fontSize: this.fontSize)

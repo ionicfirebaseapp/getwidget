@@ -179,15 +179,6 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
     super.initState();
     timer = getPlayTimer();
 
-    new Future.delayed(Duration.zero, () {
-      this.setState(() {
-
-        double width = MediaQuery.of(context).size.width;
-        this.width = width;
-        this.size = this.width / widget.rowCount;
-      });
-    });
-
   }
 
   Timer getPlayTimer() {
