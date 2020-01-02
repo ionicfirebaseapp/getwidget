@@ -21,6 +21,7 @@ import 'package:ui_kit/position/gf_position.dart';
 import 'package:ui_kit/components/tabs/gf_tabs.dart';
 import 'package:ui_kit/components/slider/gf_items_slider.dart';
 import 'package:ui_kit/components/drawer/gf_drawer.dart';
+import 'package:ui_kit/components/drawer/gf_drawer_header.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -63,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       drawer: GFDrawer(
         colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
-//        backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+        backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
         gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
@@ -78,22 +79,37 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            UserAccountsDrawerHeader(),
-            DrawerHeader(
-              child: Column(
-                children: <Widget>[
-                  Text('Drawer Header'),
-                  Text('Drawer Header'),
-                  Text('Drawer Header'),
-                ],
+            GFDrawerHeader(
+              currentAccountPicture: GFAvatar(
+                radius: 80.0,
+                backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
               ),
+
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.teal.withOpacity(0.45),
+              ),
+              otherAccountsPictures: <Widget>[
+                Image(
+                  image: NetworkImage("https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"),
+                  fit: BoxFit.cover,
+                ),
+                GFAvatar(
+                  child: Text("dcf"),
+                )
+              ],
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('user'),
+                  Text('user@asdf.com'),
+                ],
               ),
             ),
             ListTile(
               title: Text('Item 1'),
               onTap: () {
+                Navigator.pop(context);
               },
             ),
             ListTile(
@@ -107,13 +123,16 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.cyanAccent,
       appBar: AppBar(
         title: Text(widget.title),
-
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            GFAvatar(
+              radius: 80.0,
+              backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+            ),
 
 //            GFItemsSlider(
 //                rowCount: 3,
@@ -167,7 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
 //            ),
 
             GFButton(
-              color: Colors.green,
+//              color: Colors.green,
               onPressed: null,
               child: Text("share"),
               type: GFType.outline,
@@ -482,26 +501,26 @@ class _MyHomePageState extends State<MyHomePage> {
 ////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 ////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
 //            ),
-//            GFButtonBadge(
-//              onPressed: null,
-////              position: GFIconPosition.start,
-////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
-////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-//              text: 'goodies',
-////              color: GFColor.danger,
-////              shape: GFButtonShape.pills,
-////              type: GFType.outline,
-////              size: GFSize.small,
-//              counterChild: GFBadge(
-//                child: Text("12"),
-////              color: GFColor.dark,
-//              shape: GFBadgeShape.circle,
-////              size: GFSize.small,
-////              border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
-////              textColor: GFColor.white,
-////              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
-//              ),
-//            ),
+            GFButtonBadge(
+              onPressed: null,
+//              position: GFIconPosition.start,
+//              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+//              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
+              text: 'goodies',
+//              color: GFColor.danger,
+//              shape: GFButtonShape.pills,
+              type: GFType.outline,
+//              size: GFSize.small,
+              counterChild: GFBadge(
+                child: Text("12"),
+//              color: GFColor.dark,
+              shape: GFBadgeShape.circle,
+//              size: GFSize.small,
+//              border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+//              textColor: GFColor.white,
+//              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
+              ),
+            ),
 //            GFBadge(
 //              text: '12',
 ////              color: GFColor.dark,
