@@ -117,8 +117,8 @@ const Duration _kBaseSettleDuration = Duration(milliseconds: 246);
 ///    shown.
 ///  * [Scaffold.of], to obtain the current [ScaffoldState], which manages the
 ///    display and animation of the drawer.
-///  * [ScaffoldState.openGFDrawer], which displays its [GFDrawer], if any.
-///  * <https://material.io/design/components/navigation-drawer.html>
+///  * [ScaffoldState.openGFDrawer], which displays its [GFDrawer].
+///
 class GFDrawer extends StatelessWidget {
   /// Creates a material design drawer.
   ///
@@ -130,6 +130,7 @@ class GFDrawer extends StatelessWidget {
     this.elevation = 16.0,
     this.child,
     this.semanticLabel,
+    this.backgroundImage
   }) : assert(elevation != null && elevation >= 0.0),
         super(key: key);
 
@@ -160,6 +161,8 @@ class GFDrawer extends StatelessWidget {
   ///    value is used.
   final String semanticLabel;
 
+  final ImageProvider backgroundImage;
+
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterialLocalizations(context));
@@ -181,7 +184,17 @@ class GFDrawer extends StatelessWidget {
         constraints: const BoxConstraints.expand(width: _kWidth),
         child: Material(
           elevation: elevation,
-          child: child,
+          child: Container(
+              decoration: new BoxDecoration(
+                image: new DecorationImage(
+                  image: backgroundImage,
+                  fit: BoxFit.cover,
+                  colorFilter: new ColorFilter.mode(
+                      Colors.black.withOpacity(0.65), BlendMode.darken),
+                ),
+              ),
+              child: child
+          ),
         ),
       ),
     );
