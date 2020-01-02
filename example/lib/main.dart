@@ -80,17 +80,14 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             GFDrawerHeader(
-              arrowColor: Colors.tealAccent,
-              currentAccountPicture: Image(
-                image: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
-                fit: BoxFit.cover,
+              currentAccountPicture: GFAvatar(
+                radius: 80.0,
+                backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
               ),
+
               decoration: BoxDecoration(
                 color: Colors.teal.withOpacity(0.45),
               ),
-              onDetailsPressed: (){
-                Navigator.pop(context);
-              },
               otherAccountsPictures: <Widget>[
                 Image(
                   image: NetworkImage("https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"),
@@ -126,13 +123,16 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.cyanAccent,
       appBar: AppBar(
         title: Text(widget.title),
-
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            GFAvatar(
+              radius: 80.0,
+              backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+            ),
 
 //            GFItemsSlider(
 //                rowCount: 3,

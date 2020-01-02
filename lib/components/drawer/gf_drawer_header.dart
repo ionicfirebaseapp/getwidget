@@ -71,8 +71,6 @@ class GFDrawerHeader extends StatefulWidget {
     this.margin = const EdgeInsets.only(bottom: 8.0),
     this.currentAccountPicture,
     this.otherAccountsPictures,
-    this.onDetailsPressed,
-    this.arrowColor = Colors.white,
     this.child,
     this.duration = const Duration(milliseconds: 250),
     this.curve = Curves.fastOutSlowIn,
@@ -94,13 +92,6 @@ class GFDrawerHeader extends StatefulWidget {
   /// upper-right corner. Normally a list of [CircleAvatar] widgets.
   final List<Widget> otherAccountsPictures;
 
-  /// A callback that is called when the horizontal area which contains the
-  /// [accountName] and [accountEmail] is tapped.
-  final VoidCallback onDetailsPressed;
-
-  /// The [Color] of the arrow icon.
-  final Color arrowColor;
-
   /// A widget to be placed inside the drawer header, inset by the [padding].
   ///
   /// This widget will be sized to the size of the header. To position the child
@@ -120,14 +111,6 @@ class GFDrawerHeader extends StatefulWidget {
 }
 
 class _GFDrawerHeaderState extends State<GFDrawerHeader> {
-  bool _isOpen = false;
-
-  void _handleDetailsPressed() {
-    setState(() {
-      _isOpen = !_isOpen;
-    });
-    widget.onDetailsPressed();
-  }
 
   @override
   Widget build(BuildContext context) {
