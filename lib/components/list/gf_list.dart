@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:ui_kit/components/avatar/gf_avatar.dart';
+import 'package:ui_kit/components/list_tile/gf_list_tile.dart';
 class GFList extends StatefulWidget {
 
   const GFList(
@@ -34,38 +35,27 @@ class _GFListState extends State<GFList> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
       margin: EdgeInsets.only(left: 10),
       padding: EdgeInsets.only(right: 5, top: 10),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Flexible(
-                flex: 7,
-                fit: FlexFit.tight,
-                child: widget.text != null
-                    ? Text(widget.text, style: widget.textStyle)
-                    : (widget.child ?? Container()),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              widget.icon != null
-                  ? Flexible(
-                  flex: 4,
-                  fit: FlexFit.tight,
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: widget.icon,
-                  ))
-                  : Container()
-            ],
-          ),
-         widget.showDivider? Divider(): Container(),
-        ],
-      )
+      child:ListView.builder(
+    shrinkWrap: true,
+//    scrollDirection: Axis.horizontal,
+//     itemCount: 0,
+    itemBuilder: (BuildContext context, int index) {
+      return Container(
+//        height: MediaQuery.of(context).size.height,
+//        width: MediaQuery.of(context).size.width,
+        child: GFListTile(
+          title: Text('j'),
+          avatar: GFAvatar(),
+        ),
+      );
+    }
 
+
+)
     );
   }
 }

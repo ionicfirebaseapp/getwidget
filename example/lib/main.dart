@@ -99,14 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               
-      GFList(
-//        text: 'cfvgnh ghj gyuij gyuh tgyuji yugji fyuhji gyuji',
-////        text: 'bj nm',
-//        icon: GFButton(onPressed: null, text: 'k', type: GFType.outline,),
-//        showDivider: false,
-
-      ),
-GFList(),GFList(),
+    GFList(),
 
 
 
