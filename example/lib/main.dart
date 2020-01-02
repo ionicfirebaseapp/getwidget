@@ -30,12 +30,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/position/gf_position.dart';
 import 'package:ui_kit/components/tabs/gf_tabs.dart';
+import 'package:ui_kit/components/slider/gf_items_slider.dart';
+import 'package:ui_kit/components/drawer/gf_drawer.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
   "https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg",
   "https://cdn.pixabay.com/photo/2019/12/19/10/55/christmas-market-4705877_960_720.jpg",
-  "https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"
+  "https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg",
+  "https://cdn.pixabay.com/photo/2019/12/22/04/18/x-mas-4711785__340.jpg",
+  "https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg"
 ];
 
 void main() => runApp(MyApp());
@@ -68,9 +72,53 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: GFDrawer(
+        colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
+        backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          stops: [0.1, 0.5, 0.7, 0.9],
+          colors: [
+            Colors.teal[800],
+            Colors.teal[600],
+            Colors.teal[400],
+            Colors.teal[200],
+          ],
+        ),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            UserAccountsDrawerHeader(),
+            DrawerHeader(
+              child: Column(
+                children: <Widget>[
+                  Text('Drawer Header'),
+                  Text('Drawer Header'),
+                  Text('Drawer Header'),
+                ],
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+              },
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.cyanAccent,
       appBar: AppBar(
         title: Text(widget.title),
+
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -78,13 +126,33 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
 
+            GFItemsSlider(
+                rowCount: 3,
+                children: imageList.map(
+                      (url) {
+                    return Container(
+                      margin: EdgeInsets.all(5.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        child: Image.network(
+                            url,
+                            fit: BoxFit.cover,
+                            width: 1000.0
+                        ),
+                      ),
+                    );
+                  },
+                ).toList(),
+            ),
+
             GFSlider(
-//              pagerSize: 12.0,
-//              activeIndicator: Colors.pink,
-//              passiveIndicator: Colors.pink.withOpacity(0.4),
-              viewportFraction: 0.9,
+              rowCount: 3,
+              pagerSize: 12.0,
+              activeIndicator: Colors.pink,
+              passiveIndicator: Colors.pink.withOpacity(0.4),
+              viewportFraction: 1.0,
               aspectRatio: 2.0,
-//            autoPlay: true,
+            autoPlay: true,
               enlargeMainPage: true,
               pagination: true,
               items: imageList.map(
@@ -96,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Image.network(
                         url,
                         fit: BoxFit.cover,
-                        width: 1000.0,
+                        width: 1000.0
                       ),
                     ),
                   );
@@ -109,20 +177,20 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
 
-            GFButton(
-              color: Colors.orange,
-              onPressed: null,
-              child: Text("share"),
-              type: GFType.outline,
-              shape: GFShape.pills,
-//              buttonBoxShadow: true,
-//              boxShadow: BoxShadow(
-//                color: Colors.pink,
-//                blurRadius: 1.5,
-//                spreadRadius: 2.0,
-//                offset: Offset.zero,
-//              ),
-            ),
+//            GFButton(
+//              color: Colors.orange,
+//              onPressed: null,
+//              child: Text("share"),
+//              type: GFType.outline,
+//              shape: GFShape.pills,
+////              buttonBoxShadow: true,
+////              boxShadow: BoxShadow(
+////                color: Colors.pink,
+////                blurRadius: 1.5,
+////                spreadRadius: 2.0,
+////                offset: Offset.zero,
+////              ),
+//            ),
 
             GFTabs(
               initialIndex: 0,
@@ -174,22 +242,22 @@ class _MyHomePageState extends State<MyHomePage> {
                   Icon(Icons.directions_transit),
                 ],
               ),
-//              indicatorColor: Colors.teal,
-//              indicatorSize: TabBarIndicatorSize.label,
-//              labelColor: Colors.lightGreen,
-//              unselectedLabelColor: Colors.black,
-//              labelStyle: TextStyle(
-//                fontWeight: FontWeight.w500,
-//                fontSize: 13.0,
-//                color: Colors.deepOrange,
-//                fontFamily: 'OpenSansBold',
-//              ),
-//              unselectedLabelStyle: TextStyle(
-//                fontWeight: FontWeight.w500,
-//                fontSize: 13.0,
-//                color: Colors.black,
-//                fontFamily: 'OpenSansBold',
-//              ),
+              indicatorColor: Colors.teal,
+              indicatorSize: TabBarIndicatorSize.label,
+              labelColor: Colors.lightGreen,
+              unselectedLabelColor: Colors.black,
+              labelStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 13.0,
+                color: Colors.deepOrange,
+                fontFamily: 'OpenSansBold',
+              ),
+              unselectedLabelStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 13.0,
+                color: Colors.black,
+                fontFamily: 'OpenSansBold',
+              ),
             ),
 
 //              GFSlider(
@@ -217,77 +285,80 @@ class _MyHomePageState extends State<MyHomePage> {
 //                  });
 //                },
 //              ),
-            GFCard(
-              boxFit: BoxFit.cover,
-              colorFilter: new ColorFilter.mode(
-                  Colors.black.withOpacity(0.67), BlendMode.darken),
-              image: Image.asset("lib/assets/food.jpeg"),
-//              imageOverlay: AssetImage("lib/assets/food.jpeg"),
-              titlePosition: GFPosition.end,
-              title: GFListTile(
-                avatar: GFAvatar(
-                  child: Text("tb"),
-                ),
-                title: Text(
-                  'title',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                subTitle: Text(
-                  'subtitle',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                icon: GFIconButton(
-                  onPressed: null,
-                  icon: Icon(Icons.favorite_border),
-                  type: GFType.transparent,
-                ),
-              ),
-              content: Text(
-                "Flutter "
-                "Flutter is Google's mobile UI framework for crafting"
-                " high-quality native interfaces on iOS and Android in "
-                "Flutter ",
-                style: TextStyle(color: Colors.grey),
-              ),
-              buttonBar: GFButtonBar(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  GFButton(
-                    onPressed: null,
-                    child: Text("favorite"),
-                    icon: Icon(Icons.favorite_border),
-                    type: GFType.transparent,
-                  ),
-                  GFButton(
-                    onPressed: null,
-                    child: Text("share"),
-                    icon: Icon(Icons.share),
-                    type: GFType.outline,
-                  ),
-                ],
-              ),
-            ),
-            GFButtonBar(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
+//            GFCard(
+//              boxFit: BoxFit.cover,
+//              colorFilter: new ColorFilter.mode(
+//                  Colors.black.withOpacity(0.67), BlendMode.darken),
+//              image: Image.asset("lib/assets/food.jpeg"),
+////              imageOverlay: AssetImage("lib/assets/food.jpeg"),
+//              titlePosition: GFPosition.end,
+//              title: GFListTile(
+//                avatar: GFAvatar(
+//                  child: Text("tb"),
+//                ),
+//                title: Text(
+//                  'title',
+//                  style: TextStyle(color: Colors.grey),
+//                ),
+//                subTitle: Text(
+//                  'subtitle',
+//                  style: TextStyle(color: Colors.grey),
+//                ),
+//                icon: GFIconButton(
+//                  onPressed: null,
+//                  icon: Icon(Icons.favorite_border),
+//                  type: GFType.transparent,
+//                ),
+//              ),
+//              content: Text(
+//                "Flutter "
+//                "Flutter is Google's mobile UI framework for crafting"
+//                " high-quality native interfaces on iOS and Android in "
+//                "Flutter ",
+//                style: TextStyle(color: Colors.grey),
+//              ),
+//              buttonBar: GFButtonBar(
+//                mainAxisSize: MainAxisSize.min,
+//                children: <Widget>[
+//                  GFButton(
+//                    onPressed: null,
+//                    child: Text("favorite"),
+//                    icon: Icon(Icons.favorite_border),
+//                    type: GFType.transparent,
+//                  ),
+//                  GFButton(
+//                    onPressed: null,
+//                    child: Text("share"),
+//                    icon: Icon(Icons.share),
+//                    type: GFType.outline,
+//                  ),
+//                ],
+//              ),
+//            ),
+//            GFButtonBar(
+//              mainAxisSize: MainAxisSize.min,
+//              children: <Widget>[
+//                GFButton(
+//                  onPressed: null,
+//                  child: Text("like"),
+//                  icon: Icon(Icons.favorite_border),
+//                  type: GFType.transparent,
+//                ),
+//                GFButton(
+//                  onPressed: null,
+//                  child: Text("comment"),
+//                ),
                 GFButton(
-                  onPressed: null,
-                  child: Text("like"),
-                  icon: Icon(Icons.favorite_border),
-                  type: GFType.transparent,
-                ),
-                GFButton(
-                  onPressed: null,
-                  child: Text("comment"),
-                ),
-                GFButton(
-                  onPressed: null,
+                  color: Colors.teal,
+                  onPressed: (){},
                   child: Text("share"),
                   icon: Icon(Icons.share),
                   type: GFType.outline,
                 ),
-              ],
-            ),
+//              ],
+//            ),
+
+
 //            GFListItem(
 //              avatar: GFAvatar(
 //                child: Text("tb"),

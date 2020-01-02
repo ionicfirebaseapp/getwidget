@@ -302,31 +302,10 @@ class _GFButtonState extends State<GFButton> {
   }
 
 
-  double get _effectiveElevation {
-    // These conditionals are in order of precedence, so be careful about
-    // reorganizing them.
-    if (_disabled) {
-      return widget.disabledElevation;
-    }
-    if (_pressed) {
-      return widget.highlightElevation;
-    }
-    if (_hovered) {
-      return widget.hoverElevation;
-    }
-    if (_focused) {
-      return widget.focusElevation;
-    }
-    return widget.elevation;
-  }
-
-
   @override
   Widget build(BuildContext context) {
 
     ShapeBorder shape;
-
-    final ShapeBorder effectiveShape =  MaterialStateProperty.resolveAs<ShapeBorder>(shape, _states);
 
     final Color effectiveTextColor = MaterialStateProperty.resolveAs<Color>(
         widget.textStyle?.color, _states);
@@ -410,7 +389,6 @@ class _GFButtonState extends State<GFButton> {
       BoxConstraints(minHeight: 26.0, minWidth: 98.0),
       decoration: getBoxShadow(),
       child: Material(
-        elevation: _effectiveElevation,
         textStyle: widget.textStyle == null ? TextStyle(color: this.textColor, fontSize: 14) : widget.textStyle,
         shape: widget.type == GFType.transparent ? null : widget.borderShape == null ? shape : widget.borderShape,
         color: widget.type == GFType.transparent || widget.type == GFType.outline ? Colors.transparent : this.color,
