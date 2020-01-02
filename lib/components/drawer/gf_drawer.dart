@@ -130,7 +130,9 @@ class GFDrawer extends StatelessWidget {
     this.elevation = 16.0,
     this.child,
     this.semanticLabel,
-    this.backgroundImage
+    this.backgroundImage,
+    this.colorFilter,
+    this.gradient
   }) : assert(elevation != null && elevation >= 0.0),
         super(key: key);
 
@@ -161,7 +163,14 @@ class GFDrawer extends StatelessWidget {
   ///    value is used.
   final String semanticLabel;
 
+  /// Background image can be added to the [GFDrawer].
   final ImageProvider backgroundImage;
+
+  /// A composited layer that applies a color filter to its children.
+  final ColorFilter colorFilter;
+
+  ///
+  final Gradient gradient;
 
   @override
   Widget build(BuildContext context) {
@@ -186,12 +195,13 @@ class GFDrawer extends StatelessWidget {
           elevation: elevation,
           child: Container(
               decoration: new BoxDecoration(
-                image: new DecorationImage(
+                color: Colors.teal,
+                gradient: gradient,
+                image: backgroundImage != null ? new DecorationImage(
                   image: backgroundImage,
                   fit: BoxFit.cover,
-                  colorFilter: new ColorFilter.mode(
-                      Colors.black.withOpacity(0.65), BlendMode.darken),
-                ),
+                  colorFilter: colorFilter,
+                ) : null,
               ),
               child: child
           ),
