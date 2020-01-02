@@ -169,7 +169,8 @@ class GFDrawer extends StatelessWidget {
   /// A composited layer that applies a color filter to its children.
   final ColorFilter colorFilter;
 
-  ///
+  ///  Gradient can be used for transforming gradient shaders without
+  ///  applying the same transform to the entire canvas.
   final Gradient gradient;
 
   @override
@@ -210,3 +211,4 @@ class GFDrawer extends StatelessWidget {
     );
   }
 }
+

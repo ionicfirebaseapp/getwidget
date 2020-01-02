@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_shape.dart';
+import 'package:ui_kit/shape/gf_badge_shape.dart';
+import 'package:ui_kit/shape/gf_badge_shape.dart';
+import 'package:ui_kit/shape/gf_badge_shape.dart';
+import 'package:ui_kit/shape/gf_badge_shape.dart';
+import 'package:ui_kit/shape/gf_button_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/position/gf_position.dart';
@@ -25,8 +29,8 @@ class GFButtonBadge extends StatefulWidget {
   /// Badge type of [GFType] i.e, solid, outline, transparent
   final GFType type;
 
-  /// Badge type of [GFShape] i.e, standard, pills, square
-  final GFShape shape;
+  /// Badge type of [GFBadgeShape] i.e, standard, pills, square
+  final GFButtonShape shape;
 
   /// Pass [GFColor] or [Color]
   final dynamic color;
@@ -54,7 +58,7 @@ class GFButtonBadge extends StatefulWidget {
     this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
     this.borderShape,
     this.type = GFType.solid,
-    this.shape = GFShape.standard,
+    this.shape = GFButtonShape.standard,
     this.color = GFColor.primary,
     this.textColor = GFColor.dark,
     this.position = GFPosition.end,
@@ -77,7 +81,7 @@ class _GFButtonBadgeState extends State<GFButtonBadge> {
   Widget icon;
   Function onPressed;
   GFType type;
-  GFShape shape;
+  GFButtonShape shape;
   double size;
   GFPosition position;
 

@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_shape.dart';
+import 'package:ui_kit/shape/gf_button_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/position/gf_position.dart';
@@ -87,8 +87,8 @@ class GFButton extends StatefulWidget {
   /// Button type of [GFType] i.e, solid, outline, dashed
   final GFType type;
 
-  /// Button type of [GFShape] i.e, standard, pills, square, shadow, icons
-  final GFShape shape;
+  /// Button type of [GFButtonShape] i.e, standard, pills, square, shadow, icons
+  final GFButtonShape shape;
 
   /// Pass [GFColor] or [Color]
   final dynamic color;
@@ -175,9 +175,9 @@ class GFButton extends StatefulWidget {
     MaterialTapTargetSize materialTapTargetSize,
     this.child,
     this.type = GFType.solid,
-    this.shape = GFShape.standard,
+    this.shape = GFButtonShape.standard,
     this.color = GFColor.primary,
-    this.textColor = GFColor.dark,
+    this.textColor,
     this.position = GFPosition.start,
     this.size = GFSize.medium,
     this.borderSide,
@@ -213,7 +213,7 @@ class _GFButtonState extends State<GFButton> {
   Widget icon;
   Function onPressed;
   GFType type;
-  GFShape shape;
+  GFButtonShape shape;
   double size;
   GFPosition position;
   BoxShadow boxShadow;
@@ -221,8 +221,10 @@ class _GFButtonState extends State<GFButton> {
 
   @override
   void initState() {
+
+    print('ccccccccccc ${widget.textColor}');
     this.color = getGFColor(widget.color);
-    this.textColor = getGFColor(widget.textColor);
+    this.textColor = widget.type == GFType.outline && widget.textColor == null ? this.color : widget.textColor == null ? getGFColor(GFColor.dark) : getGFColor(widget.textColor);
     this.child = widget.text != null ? Text(widget.text) : widget.child;
     this.icon = widget.icon;
     this.onPressed = widget.onPressed;
@@ -312,7 +314,7 @@ class _GFButtonState extends State<GFButton> {
     final Color themeColor =
     Theme.of(context).colorScheme.onSurface.withOpacity(0.12);
     final BorderSide outlineBorder = BorderSide(
-      color: widget.borderSide == null ? themeColor : widget.borderSide.color,
+      color: this.color == null ? themeColor : widget.borderSide == null ? this.color : widget.borderSide.color,
       width: widget.borderSide?.width ?? 1.0,
     );
 
@@ -340,13 +342,13 @@ class _GFButtonState extends State<GFButton> {
 
 
 
-    if (this.shape == GFShape.pills) {
+    if (this.shape == GFButtonShape.pills) {
       shape = RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
-    } else if (this.shape == GFShape.square) {
+    } else if (this.shape == GFButtonShape.square) {
       shape = RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(0.0), side: shapeBorder);
-    } else if (this.shape == GFShape.standard) {
+    } else if (this.shape == GFButtonShape.standard) {
       shape = RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0), side: shapeBorder);
     } else {
@@ -361,8 +363,8 @@ class _GFButtonState extends State<GFButton> {
         }else{
           return BoxDecoration(
               color: widget.type == GFType.transparent || widget.type == GFType.outline ? Colors.transparent : this.color,
-              borderRadius: widget.shape == GFShape.pills ? BorderRadius.circular(50.0) :
-              widget.shape == GFShape.standard ? BorderRadius.circular(5.0) : BorderRadius.zero,
+              borderRadius: widget.shape == GFButtonShape.pills ? BorderRadius.circular(50.0) :
+              widget.shape == GFButtonShape.standard ? BorderRadius.circular(5.0) : BorderRadius.zero,
               boxShadow: [
                 widget.boxShadow == null && widget.buttonBoxShadow == true ? BoxShadow(
                   color: themeColor,
@@ -643,8 +645,8 @@ class _RenderInputPadding extends RenderShiftedBox {
 //  /// Button type of [GFType] i.e, solid, outline, dashed
 //  final GFType type;
 //
-//  /// Button type of [GFShape] i.e, standard, pills, square, shadow, icons
-//  final GFShape shape;
+//  /// Button type of [GFButtonShape] i.e, standard, pills, square, shadow, icons
+//  final GFButtonShape shape;
 //
 //  /// Pass [GFColor] or [Color]
 //  final dynamic color;
@@ -712,7 +714,7 @@ class _RenderInputPadding extends RenderShiftedBox {
 //    MaterialTapTargetSize materialTapTargetSize,
 //    this.child,
 //    this.type,
-//    this.shape = GFShape.standard,
+//    this.shape = GFButtonShape.standard,
 //    this.color,
 //    this.textColor = GFColor.dark,
 //    this.position = GFPosition.start,
@@ -748,7 +750,7 @@ class _RenderInputPadding extends RenderShiftedBox {
 //  Widget icon;
 //  Function onPressed;
 //  GFType type;
-//  GFShape shape;
+//  GFButtonShape shape;
 //  double size;
 //  GFPosition position;
 //  BoxShadow boxShadow;
@@ -889,13 +891,13 @@ class _RenderInputPadding extends RenderShiftedBox {
 //
 //    ShapeBorder shape;
 //
-//    if (this.shape == GFShape.pills) {
+//    if (this.shape == GFButtonShape.pills) {
 //      shape = RoundedRectangleBorder(
 //          borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
-//    } else if (this.shape == GFShape.square) {
+//    } else if (this.shape == GFButtonShape.square) {
 //      shape = RoundedRectangleBorder(
 //          borderRadius: BorderRadius.circular(0.0), side: shapeBorder);
-//    } else if (this.shape == GFShape.standard) {
+//    } else if (this.shape == GFButtonShape.standard) {
 //      shape = RoundedRectangleBorder(
 //          borderRadius: BorderRadius.circular(5.0), side: shapeBorder);
 //    } else {
@@ -937,8 +939,8 @@ class _RenderInputPadding extends RenderShiftedBox {
 //                constraints: this.icon == null ? BoxConstraints(minHeight: 26.0, minWidth: 88.0) :
 //                    BoxConstraints(minHeight: 26.0, minWidth: 98.0),
 //                decoration: BoxDecoration(
-//                  borderRadius: widget.shape == GFShape.pills ? BorderRadius.circular(50.0) :
-//                  widget.shape == GFShape.standard ? BorderRadius.circular(5.0) : BorderRadius.zero,
+//                  borderRadius: widget.shape == GFButtonShape.pills ? BorderRadius.circular(50.0) :
+//                  widget.shape == GFButtonShape.standard ? BorderRadius.circular(5.0) : BorderRadius.zero,
 //                    boxShadow: [
 //                      widget.boxShadow == null && widget.buttonBoxShadow == true ? BoxShadow(
 //                        color: widget.color.withOpacity(0.4),
