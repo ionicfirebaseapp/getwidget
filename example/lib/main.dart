@@ -30,13 +30,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/position/gf_position.dart';
 import 'package:ui_kit/components/tabs/gf_tabs.dart';
-import 'package:ui_kit/components/slider/carousel.dart';
+import 'package:ui_kit/components/slider/gf_items_slider.dart';
+import 'package:ui_kit/components/drawer/gf_drawer.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
   "https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg",
   "https://cdn.pixabay.com/photo/2019/12/19/10/55/christmas-market-4705877_960_720.jpg",
-  "https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"
+  "https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg",
+  "https://cdn.pixabay.com/photo/2019/12/22/04/18/x-mas-4711785__340.jpg",
+  "https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg"
 ];
 
 void main() => runApp(MyApp());
@@ -69,9 +72,40 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: GFDrawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            UserAccountsDrawerHeader(),
+            DrawerHeader(
+              child: Column(
+                children: <Widget>[
+                  Text('Drawer Header'),
+                  Text('Drawer Header'),
+                  Text('Drawer Header'),
+                ],
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+              },
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.cyanAccent,
       appBar: AppBar(
         title: Text(widget.title),
+
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -79,8 +113,8 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
 
-            Carousel(
-                rowCount: 2,
+            GFItemsSlider(
+                rowCount: 3,
                 children: imageList.map(
                       (url) {
                     return Container(
@@ -99,13 +133,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             GFSlider(
-              rowCount: 2,
+              rowCount: 3,
               pagerSize: 12.0,
               activeIndicator: Colors.pink,
               passiveIndicator: Colors.pink.withOpacity(0.4),
               viewportFraction: 1.0,
               aspectRatio: 2.0,
-              autoPlay: true,
+            autoPlay: true,
               enlargeMainPage: true,
               pagination: true,
               items: imageList.map(
@@ -145,73 +179,73 @@ class _MyHomePageState extends State<MyHomePage> {
 ////              ),
 //            ),
 
-//            GFTabs(
-//              initialIndex: 0,
-//              length: 3,
-//              tabs: <Widget>[
-//                GFButton(
-//                  onPressed: null,
-//                  child: Text("share"),
-//                  icon: Icon(Icons.share),
-//                  buttonBoxShadow: true,
-//                ),
-//                Tab(
-//                  icon: Icon(Icons.error),
-//                  child: Text(
-//                    "Orders",
-//                  ),
-//                ),
-//                Tab(
-//                  child: Text(
-//                    "Pastry",
-//                  ),
-//                ),
-//              ],
-//              tabBarView: TabBarView(
-//                children: <Widget>[
-//                  Container(
-//                    color: Colors.red,
-//                    child: Column(
-//                      mainAxisAlignment: MainAxisAlignment.center,
-//                      crossAxisAlignment: CrossAxisAlignment.center,
-//                      children: <Widget>[
-//                        RawMaterialButton(
-//                          onPressed: null,
-//                          child: Text("fv"),
-//                        ),
-//                        FlatButton(onPressed: null, child: Text("cds")),
-//                        Icon(Icons.directions_railway),
-//                        GFButton(
-//                          onPressed: null,
-//                          child: Text("share"),
-//                          icon: Icon(Icons.share),
-//                          shape: GFShape.pills,
-//                          type: GFType.transparent,
-//                        ),
-//                      ],
-//                    ),
-//                  ),
-//                  Icon(Icons.directions_car),
-//                  Icon(Icons.directions_transit),
-//                ],
-//              ),
-//              indicatorColor: Colors.teal,
-//              indicatorSize: TabBarIndicatorSize.label,
-//              labelColor: Colors.lightGreen,
-//              unselectedLabelColor: Colors.black,
-//              labelStyle: TextStyle(
-//                fontWeight: FontWeight.w500,
-//                fontSize: 13.0,
-//                color: Colors.deepOrange,
-//                fontFamily: 'OpenSansBold',
-//              ),
-//              unselectedLabelStyle: TextStyle(
-//                fontWeight: FontWeight.w500,
-//                fontSize: 13.0,
-//                color: Colors.black,
-//                fontFamily: 'OpenSansBold',
-//              ),
-//            ),
+            GFTabs(
+              initialIndex: 0,
+              length: 3,
+              tabs: <Widget>[
+                GFButton(
+                  onPressed: null,
+                  child: Text("share"),
+                  icon: Icon(Icons.share),
+                  buttonBoxShadow: true,
+                ),
+                Tab(
+                  icon: Icon(Icons.error),
+                  child: Text(
+                    "Orders",
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    "Pastry",
+                  ),
+                ),
+              ],
+              tabBarView: TabBarView(
+                children: <Widget>[
+                  Container(
+                    color: Colors.red,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        RawMaterialButton(
+                          onPressed: null,
+                          child: Text("fv"),
+                        ),
+                        FlatButton(onPressed: null, child: Text("cds")),
+                        Icon(Icons.directions_railway),
+                        GFButton(
+                          onPressed: null,
+                          child: Text("share"),
+                          icon: Icon(Icons.share),
+                          shape: GFShape.pills,
+                          type: GFType.transparent,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(Icons.directions_car),
+                  Icon(Icons.directions_transit),
+                ],
+              ),
+              indicatorColor: Colors.teal,
+              indicatorSize: TabBarIndicatorSize.label,
+              labelColor: Colors.lightGreen,
+              unselectedLabelColor: Colors.black,
+              labelStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 13.0,
+                color: Colors.deepOrange,
+                fontFamily: 'OpenSansBold',
+              ),
+              unselectedLabelStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 13.0,
+                color: Colors.black,
+                fontFamily: 'OpenSansBold',
+              ),
+            ),
 
 //              GFSlider(
 //                autoPlay: true,

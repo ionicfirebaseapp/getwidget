@@ -239,6 +239,7 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
 
     return Stack(
       children: <Widget>[
+
         getPageWrapper(PageView.builder(
           physics: widget.scrollPhysics,
           scrollDirection: widget.scrollDirection,
@@ -260,27 +261,7 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
 
             return AnimatedBuilder(
               animation: widget.pageController,
-//              child: widget.items[index],
-              child: Container(
-                width: double.infinity,
-                height: this.size,
-                child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        child: Row(
-                          children: widget.items.map((child) {
-                            return Container(
-                              width: this.size,
-                              height: this.size,
-                              child: child,
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ]
-                ),
-              ),
+              child: widget.items[index],
               builder: (BuildContext context, child) {
                 // on the first render, the pageController.page is null,
                 // this is a dirty hack

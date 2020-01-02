@@ -8,59 +8,59 @@ import 'package:flutter/material.dart';
 ///
 /// The `details` object provides the position of the touch when it first
 /// touched the surface.
-typedef CarouselDragStartCallback = void Function(DragStartDetails details);
+typedef GFItemsSliderSlideStartCallback = void Function(DragStartDetails details);
 
 /// Signature for when a pointer that is in contact with the screen and moving
 /// has moved again.
 ///
 /// The `details` object provides the position of the touch and the distance it
 /// has travelled since the last update.
-typedef CarouselDragCallback = void Function(DragUpdateDetails details);
+typedef GFItemsSliderSlideCallback = void Function(DragUpdateDetails details);
 
 /// Signature for when a pointer that was previously in contact with the screen
 /// and moving is no longer in contact with the screen.
 ///
 /// The velocity at which the pointer was moving when it stopped contacting
 /// the screen is available in the `details`.
-typedef CarouselDragEndCallback = void Function(DragEndDetails details);
+typedef GFItemsSliderSlideEndCallback = void Function(DragEndDetails details);
 
 /// A widget that show draggable cells with animation.
 ///
 /// Set [rowCount] of visible cells
 ///
-/// Set drag handlers [onDragStart], [onDrag], [onDragEnd]
+/// Set drag handlers [onSlideStart], [onSlide], [onSlideEnd]
 ///
 /// Set left/right arrows [leftArrow], [rightArrow]
-class Carousel extends StatefulWidget {
+class GFItemsSlider extends StatefulWidget {
   /// Count of visible cells
   int rowCount;
 
   List<Widget> children;
 
   /// Signature for when a pointer has contacted the screen and has begun to move.
-  CarouselDragStartCallback onDragStart;
+  GFItemsSliderSlideStartCallback onSlideStart;
 
   /// Signature for when a pointer that is in contact with the screen and moving
   /// has moved again.
-  CarouselDragCallback onDrag;
+  GFItemsSliderSlideCallback onSlide;
 
   /// Signature for when a pointer that was previously in contact with the screen
   /// and moving is no longer in contact with the screen.
-  CarouselDragEndCallback onDragEnd;
+  GFItemsSliderSlideEndCallback onSlideEnd;
 
-  Carousel({
+  GFItemsSlider({
     this.rowCount,
     this.children,
-    this.onDragStart,
-    this.onDrag,
-    this.onDragEnd
+    this.onSlideStart,
+    this.onSlide,
+    this.onSlideEnd
   });
 
   @override
-  _CarouselState createState() => new _CarouselState();
+  _GFItemsSliderState createState() => new _GFItemsSliderState();
 }
 
-class _CarouselState extends State<Carousel> with TickerProviderStateMixin {
+class _GFItemsSliderState extends State<GFItemsSlider> with TickerProviderStateMixin {
   /// In milliseconds
   static final int DRAG_ANIMATION_DURATION = 1000;
 
@@ -113,20 +113,20 @@ class _CarouselState extends State<Carousel> with TickerProviderStateMixin {
     return offset;
   }
 
-  onDragStart(DragStartDetails details) {
+  onSlideStart(DragStartDetails details) {
     this.animationController.stop();
-    widget.onDragStart != null ? widget.onDragStart(details) : null;
+    widget.onSlideStart != null ? widget.onSlideStart(details) : null;
   }
 
-  onDrag(DragUpdateDetails details) {
+  onSlide(DragUpdateDetails details) {
     setState(() {
       this.offset = this.calculateOffset(3 * details.delta.dx);
     });
 
-    widget.onDrag != null ? widget.onDrag(details) : null;
+    widget.onSlide != null ? widget.onSlide(details) : null;
   }
 
-  onDragEnd(DragEndDetails details) {
+  onSlideEnd(DragEndDetails details) {
     double dx = details.velocity.pixelsPerSecond.dx;
 
     if (dx == 0) {
@@ -163,7 +163,7 @@ class _CarouselState extends State<Carousel> with TickerProviderStateMixin {
     });
 
     this.animationController.forward();
-    widget.onDragEnd != null ? widget.onDragEnd(details) : null;
+    widget.onSlideEnd != null ? widget.onSlideEnd(details) : null;
   }
 
   runShiftAnimation() {
@@ -190,9 +190,9 @@ class _CarouselState extends State<Carousel> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-//      onHorizontalDragStart: this.onDragStart,
-//      onHorizontalDragUpdate: this.onDrag,
-//      onHorizontalDragEnd: this.onDragEnd,
+      onHorizontalDragStart: this.onSlideStart,
+      onHorizontalDragUpdate: this.onSlide,
+      onHorizontalDragEnd: this.onSlideEnd,
       child: Container(
         width: double.infinity,
         height: this.size,
@@ -216,43 +216,3 @@ class _CarouselState extends State<Carousel> with TickerProviderStateMixin {
     );
   }
 }
-
-//class CarouselArrow extends Container {
-//
-//  CarouselArrow({ Key key, double width, Widget child })
-//      : super(key: key, width: width, child: child);
-//}
-//
-//
-//class DefaultCarouselItem extends StatelessWidget {
-//  String text;
-//
-//  DefaultCarouselItem(String text) {
-//    this.text = text;
-//  }
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return Container(
-//      margin: EdgeInsets.all(6.0),
-//      alignment: Alignment.center,
-//      decoration: new BoxDecoration(
-//        color: Colors.blue,
-//      ),
-//      child: Padding(
-//        padding: EdgeInsets.all(6.0),
-//        child: Column(
-//          mainAxisAlignment: MainAxisAlignment.center,
-//          children: <Widget>[
-//            Text(
-//              this.text,
-//              style: TextStyle(
-//                  color: Colors.white
-//              ),
-//            ),
-//          ],
-//        ),
-//      ),
-//    );
-//  }
-//}
