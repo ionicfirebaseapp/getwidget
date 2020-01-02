@@ -60,7 +60,7 @@ class GFButtonBadge extends StatefulWidget {
     this.type = GFType.solid,
     this.shape = GFButtonShape.standard,
     this.color = GFColor.primary,
-    this.textColor = GFColor.dark,
+    this.textColor,
     this.position = GFPosition.end,
     this.size = GFSize.medium,
     this.borderSide,
@@ -88,7 +88,7 @@ class _GFButtonBadgeState extends State<GFButtonBadge> {
   @override
   void initState() {
     this.color = getGFColor(widget.color);
-    this.textColor = getGFColor(widget.textColor);
+    this.textColor =  widget.type == GFType.outline && widget.textColor == null ? this.color : widget.textColor == null ? getGFColor(GFColor.dark) : getGFColor(widget.textColor);
     this.onPressed = widget.onPressed;
     this.type = widget.type;
     this.shape = widget.shape;
