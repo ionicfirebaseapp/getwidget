@@ -13,6 +13,7 @@ class GFToast extends StatefulWidget {
     this.button,
     this.backgroundColor,
     this.text,
+    this.width,
     this.textStyle = const TextStyle(color: Colors.white70),
   }) : super(key: key);
 
@@ -28,8 +29,12 @@ class GFToast extends StatefulWidget {
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
 
-  /// textStyle will be applicable to text only and not for the child
+  /// textStyle of type [textStyle] will be applicable to text only and not for the child
   final TextStyle textStyle;
+
+  /// width od type [double] used to control the width od the [GFToast]
+  final double width;
+
 
   @override
   _GFToastState createState() => _GFToastState();
@@ -66,44 +71,48 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return SlideTransition(
-      position: offset,
-      child: FadeTransition(
-        opacity: animation,
-        child: Container(
-          constraints: BoxConstraints(minHeight: 50.0, minWidth: 340),
-          margin: EdgeInsets.only(left: 10, right: 10),
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(3)),
-            color: widget.backgroundColor != null
-                ? getGFColor(widget.backgroundColor)
-                : Color(0xff323232),
+    return  FadeTransition(
+      opacity: animation,
+      child:
+      Column(
+        children: <Widget>[
+          Container(
+            width: widget.width != null? widget.width: null,
+            constraints: BoxConstraints(minHeight: 50.0),
+//        width: 100,
+            margin: EdgeInsets.only(left: 10, right: 10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(3)),
+              color: widget.backgroundColor != null
+                  ? getGFColor(widget.backgroundColor)
+                  : Color(0xff323232),
+            ),
+            child: Row(
+              children: <Widget>[
+                Flexible(
+                  flex: 7,
+                  fit: FlexFit.tight,
+                  child: widget.text != null
+                      ? Text(widget.text, style: widget.textStyle)
+                      : (widget.child ?? Container()),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                widget.button != null
+                    ? Flexible(
+                    flex: 4,
+                    fit: FlexFit.tight,
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: widget.button,
+                    ))
+                    : Container()
+              ],
+            ),
           ),
-          child: Row(
-            children: <Widget>[
-              Flexible(
-                flex: 7,
-                fit: FlexFit.tight,
-                child: widget.text != null
-                    ? Text(widget.text, style: widget.textStyle)
-                    : (widget.child ?? Container()),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              widget.button != null
-                  ? Flexible(
-                      flex: 4,
-                      fit: FlexFit.tight,
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: widget.button,
-                      ))
-                  : Container()
-            ],
-          ),
-        ),
+        ],
       ),
     );
   }

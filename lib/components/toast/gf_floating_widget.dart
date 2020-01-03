@@ -30,6 +30,8 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.center,
+      fit: StackFit.loose,
       children: <Widget>[
         Container(
           height:  MediaQuery.of(context).size.height,
