@@ -62,15 +62,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: GFButtonBadge(
-          color: GFColor.light,
-          text: 'hi',
+        child: GFIconBadge(
           onPressed: null,
+          child: GFIconButton(
+            icon: Icon(Icons.share),
+          ),
           counterChild: GFBadge(
             text: '12',
-            color: GFColor.warning,
           ),
-          position: GFPosition.start,
         ),
       ),
     );
