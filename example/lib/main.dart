@@ -138,8 +138,12 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         ),
       ),
       appBar: GFAppBar(
-//        title: Text(widget.title),
         backgroundColor: Colors.tealAccent,
+//        title: Text(widget.title),
+//        trailing: <Widget>[
+//          GFIconButton(icon: Icon(Icons.directions_railway), onPressed: null, type: GFType.transparent,),
+//          GFIconButton(icon: Icon(Icons.directions_bus), onPressed: null)
+//        ],
         flexibleSpace: SafeArea(
           child: TabBar(controller: tabController, tabs: [
             Tab(text: "Add", icon: Icon(Icons.add)),

@@ -163,7 +163,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.leading,
     this.automaticallyImplyLeading = true,
     this.title,
-    this.actions,
+    this.trailing,
     this.flexibleSpace,
     this.bottom,
     this.elevation,
@@ -246,7 +246,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// Typically these widgets are [IconButton]s representing common operations.
   /// For less common operations, consider using a [PopupMenuButton] as the
   /// last action.
-  final List<Widget> actions;
+  final List<Widget> trailing;
 
   /// This widget is stacked behind the toolbar and the tab bar. It's height will
   /// be the same as the app bar's overall height.
@@ -375,7 +375,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
       case TargetPlatform.fuchsia:
         return false;
       case TargetPlatform.iOS:
-        return actions == null || actions.length < 2;
+        return trailing == null || trailing.length < 2;
     }
     return null;
   }
@@ -480,11 +480,11 @@ class _GFAppBarState extends State<GFAppBar> {
     }
 
     Widget actions;
-    if (widget.actions != null && widget.actions.isNotEmpty) {
+    if (widget.trailing != null && widget.trailing.isNotEmpty) {
       actions = Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: widget.actions,
+        children: widget.trailing,
       );
     } else if (hasEndDrawer) {
       actions = IconButton(
@@ -742,7 +742,7 @@ class _SliverGFAppBarDelegate extends SliverPersistentHeaderDelegate {
         leading: leading,
         automaticallyImplyLeading: automaticallyImplyLeading,
         title: title,
-        actions: actions,
+        trailing: actions,
         flexibleSpace: (title == null && flexibleSpace != null)
             ? Semantics(child: flexibleSpace, header: true)
             : flexibleSpace,
