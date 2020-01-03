@@ -4,12 +4,16 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
 
-class GFTabs extends StatefulWidget {
-  GFTabs({
+
+class GFSegmentTabs extends StatefulWidget {
+  GFSegmentTabs({
     Key key,
     this.initialIndex = 0,
     @required this.length,
     this.height,
+    this.width,
+    this.border,
+    this.borderRadius,
     this.tabBarColor,
     this.indicatorColor,
     this.indicatorWeight = 2.0,
@@ -23,6 +27,7 @@ class GFTabs extends StatefulWidget {
     this.unselectedLabelStyle,
     this.tabBarView,
     this.tabs,
+    this.tabController
   }):
         assert(length != null && length >= 0),
         assert(initialIndex != null && initialIndex >= 0 && (length == 0 || initialIndex < length));
@@ -34,7 +39,7 @@ class GFTabs extends StatefulWidget {
   /// [TabBarView.children]'s length.
   final int length;
 
-  /// Sets [GFTabs] height
+  /// Sets [GFSegmentTabs] height
   final double height;
 
   /// Sets [TabBar] color using material color [Color]
@@ -134,8 +139,8 @@ class GFTabs extends StatefulWidget {
   final TextStyle unselectedLabelStyle;
 
   /// One widget per tab.
-  /// Its length must match the length of the [GFTabs.tabs]
-  /// list, as well as the [controller]'s [GFTabs.length].
+  /// Its length must match the length of the [GFSegmentTabs.tabs]
+  /// list, as well as the [controller]'s [GFSegmentTabs.length].
   final GFTabBarView tabBarView;
 
   /// Typically a list of two or more [Tab] widgets.
@@ -144,41 +149,49 @@ class GFTabs extends StatefulWidget {
   /// and the length of the [TabBarView.children] list.
   final List<Widget> tabs;
 
+  final Border border;
+  final BorderRadius borderRadius;
+  final TabController tabController;
+  final double width;
+
   @override
-  _GFTabsState createState() => _GFTabsState();
+  _GFSegmentTabsState createState() => _GFSegmentTabsState();
 }
 
-class _GFTabsState extends State<GFTabs> {
+class _GFSegmentTabsState extends State<GFSegmentTabs> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: widget.height == null ? 28.0 : widget.height,
+      width: widget.width == null ? 240.0 : widget.width,
+      decoration: BoxDecoration(
+        border: widget.border == null ? Border.all(color: Colors.black26, width: 2.0) : widget.border,
+        borderRadius: widget.borderRadius == null ? BorderRadius.circular(8.0) : widget.borderRadius,
+      ),
       child: DefaultTabController(
         initialIndex: widget.initialIndex,
         length: widget.length,
-        child: Container(
-          height: widget.height == null ? MediaQuery.of(context).size.height * 0.5 : widget.height,
-          child: Column(
-            children: <Widget>[
-              Material(
-                type: MaterialType.button,
-                color: widget.tabBarColor ?? Theme.of(context).primaryColor,
-                child: TabBar(
-                  labelColor: widget.labelColor,
-                  unselectedLabelColor: widget.unselectedLabelColor,
-                  labelStyle: widget.labelStyle,
-                  unselectedLabelStyle: widget.unselectedLabelStyle,
-                  indicatorColor: widget.indicatorColor,
-                  indicatorSize: widget.indicatorSize,
-                  indicator: widget.indicator,
-                  indicatorPadding: widget.indicatorPadding,
-                  indicatorWeight: widget.indicatorWeight,
-                  tabs: widget.tabs,
-                ),
-              ),
-              Expanded(
-                child: widget.tabBarView
-              ),
-            ],
+        child: Material(
+          borderRadius: widget.borderRadius == null ? BorderRadius.circular(8.0) : widget.borderRadius,
+          type: MaterialType.button,
+          color: widget.tabBarColor ?? Colors.transparent,
+          child: TabBar(
+            controller: widget.tabController,
+            labelColor: widget.labelColor,
+            unselectedLabelColor: widget.unselectedLabelColor,
+            labelStyle: widget.labelStyle,
+            unselectedLabelStyle: widget.unselectedLabelStyle,
+            indicatorColor: widget.indicatorColor == null ? Theme.of(context).primaryColor : widget.indicatorColor,
+            indicatorSize: widget.indicatorSize,
+            indicator: widget.indicator == null ?
+              BoxDecoration(
+                color: widget.indicatorColor == null ? Theme.of(context).primaryColor : widget.indicatorColor,
+                border: Border.all(color: widget.indicatorColor == null ? Theme.of(context).primaryColor : widget.indicatorColor, width: 2.0),
+                borderRadius: widget.borderRadius == null ? BorderRadius.circular(6.0) : widget.borderRadius,
+              ) : widget.indicator,
+            indicatorPadding: widget.indicatorPadding,
+            indicatorWeight: widget.indicatorWeight,
+            tabs: widget.tabs,
           ),
         ),
       ),
