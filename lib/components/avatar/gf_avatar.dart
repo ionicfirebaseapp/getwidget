@@ -1,25 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_shape.dart';
+import 'package:ui_kit/shape/gf_avatar_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
 
 class GFAvatar extends StatelessWidget {
-
-  const GFAvatar({
-    Key key,
-    this.child,
-    this.backgroundColor,
-    this.backgroundImage,
-    this.foregroundColor,
-    this.radius,
-    this.minRadius,
-    this.maxRadius,
-    this.borderRadius,
-    this.shape = GFShape.pills,
-    this.size = GFSize.medium
-  }) : assert(radius == null || (minRadius == null && maxRadius == null)),
-        super(key: key);
-
   /// Typically a [Text] widget. If the [CircleAvatar] is to have an image, use [backgroundImage] instead.
   final Widget child;
 
@@ -44,8 +28,8 @@ class GFAvatar extends StatelessWidget {
   /// size of avatar like [double] or [GFSize] i.e, 1.2, small, medium, large etc.
   final GFSize size;
 
-  /// shape of avatar [GFShape] i.e, standard, pills, square
-  final GFShape shape;
+  /// shape of avatar [GFAvatarShape] i.e, standard, pills, square
+  final GFAvatarShape shape;
 
   /// border radius to give extra radius for avatar square or standard shape
   final BorderRadius borderRadius;
@@ -65,48 +49,71 @@ class GFAvatar extends StatelessWidget {
   // The default max if only the min is specified.
   static const double _defaultMaxRadius = double.infinity;
 
+  const GFAvatar(
+      {Key key,
+      this.child,
+      this.backgroundColor,
+      this.backgroundImage,
+      this.foregroundColor,
+      this.radius,
+      this.minRadius,
+      this.maxRadius,
+      this.borderRadius,
+      this.shape = GFAvatarShape.circle,
+      this.size = GFSize.medium})
+      : assert(radius == null || (minRadius == null && maxRadius == null)),
+        super(key: key);
+
   double get _minDiameter {
-    if (radius == null && minRadius == null && maxRadius == null && size == GFSize.medium ) {
-      return _defaultRadius * 2.0;
+    if (radius == null && minRadius == null && maxRadius == null) {
+      if (size == GFSize.medium) {
+        return _defaultRadius * 2.0;
+      } else if (size == GFSize.small) {
+        return _smallRadius * 2.0;
+      } else if (size == GFSize.large) {
+        return _largeRadius * 2.0;
+      } else {
+        return _defaultRadius * 2.0;
+      }
+    } else {
+      return 2.0 * (radius ?? minRadius ?? _defaultMinRadius);
     }
-    if (radius == null && minRadius == null && maxRadius == null && size == GFSize.small) {
-      return _smallRadius * 2.0;
-    }
-    if (radius == null && minRadius == null && maxRadius == null && size == GFSize.large) {
-      return _largeRadius * 2.0;
-    }
-    return 2.0 * (radius ?? minRadius ?? _defaultMinRadius);
   }
 
   double get _maxDiameter {
-    if (radius == null && minRadius == null && maxRadius == null && size == GFSize.medium ) {
-      return _defaultRadius * 2.0;
+    if (radius == null && minRadius == null && maxRadius == null) {
+      if (size == GFSize.medium) {
+        return _defaultRadius * 2.0;
+      } else if (size == GFSize.small) {
+        return _smallRadius * 2.0;
+      } else if (size == GFSize.large) {
+        return _largeRadius * 2.0;
+      } else {
+        return _defaultRadius * 2.0;
+      }
+    } else {
+      return 2.0 * (radius ?? maxRadius ?? _defaultMaxRadius);
     }
-    if (radius == null && minRadius == null && maxRadius == null && size == GFSize.small) {
-      return _smallRadius * 2.0;
-    }
-    if (radius == null && minRadius == null && maxRadius == null && size == GFSize.large) {
-      return _largeRadius * 2.0;
-    }
-    return 2.0 * (radius ?? maxRadius ?? _defaultMaxRadius);
   }
 
   BoxShape get _avatarShape {
-    if (shape == GFShape.pills) {
+    if (shape == GFAvatarShape.circle) {
       return BoxShape.circle;
-    } else if (shape == GFShape.square) {
+    } else if (shape == GFAvatarShape.square) {
       return BoxShape.rectangle;
-    } else if (shape == GFShape.standard) {
+    } else if (shape == GFAvatarShape.standard) {
+      return BoxShape.rectangle;
+    } else {
       return BoxShape.rectangle;
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMediaQuery(context));
     final ThemeData theme = Theme.of(context);
-    TextStyle textStyle = theme.primaryTextTheme.subhead.copyWith(color: foregroundColor);
+    TextStyle textStyle =
+        theme.primaryTextTheme.subhead.copyWith(color: foregroundColor);
     Color effectiveBackgroundColor = backgroundColor;
 
     if (effectiveBackgroundColor == null) {
@@ -144,22 +151,24 @@ class GFAvatar extends StatelessWidget {
             ? DecorationImage(image: backgroundImage, fit: BoxFit.cover)
             : null,
         shape: _avatarShape,
-        borderRadius: shape == GFShape.standard && borderRadius == null ? BorderRadius.circular(10.0) :  borderRadius,
+        borderRadius: shape == GFAvatarShape.standard && borderRadius == null
+            ? BorderRadius.circular(10.0)
+            : borderRadius,
       ),
       child: child == null
           ? null
           : Center(
-        child: MediaQuery(
-          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-          child: IconTheme(
-            data: theme.iconTheme.copyWith(color: textStyle.color),
-            child: DefaultTextStyle(
-              style: textStyle,
-              child: child,
+              child: MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: IconTheme(
+                  data: theme.iconTheme.copyWith(color: textStyle.color),
+                  child: DefaultTextStyle(
+                    style: textStyle,
+                    child: child,
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
     );
   }
 }

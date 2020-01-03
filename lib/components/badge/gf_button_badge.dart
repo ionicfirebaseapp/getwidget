@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_shape.dart';
+import 'package:ui_kit/shape/gf_badge_shape.dart';
+import 'package:ui_kit/shape/gf_badge_shape.dart';
+import 'package:ui_kit/shape/gf_badge_shape.dart';
+import 'package:ui_kit/shape/gf_badge_shape.dart';
+import 'package:ui_kit/shape/gf_button_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/position/gf_position.dart';
-import 'package:ui_kit/colors/color.dart';
+import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/button/gf_button.dart';
 
 class GFButtonBadge extends StatefulWidget {
-
   /// Called when the badge is tapped or otherwise activated.
   final VoidCallback onPressed;
 
@@ -26,8 +29,8 @@ class GFButtonBadge extends StatefulWidget {
   /// Badge type of [GFType] i.e, solid, outline, transparent
   final GFType type;
 
-  /// Badge type of [GFShape] i.e, standard, pills, square
-  final GFShape shape;
+  /// Badge type of [GFBadgeShape] i.e, standard, pills, square
+  final GFButtonShape shape;
 
   /// Pass [GFColor] or [Color]
   final dynamic color;
@@ -47,8 +50,7 @@ class GFButtonBadge extends StatefulWidget {
   /// icon type of [GFPosition] i.e, start, end
   final GFPosition position;
 
-  /// Create badges of all types. check out [GFIconBadge] for icon badges
-
+  /// Create badges of all types. check out [GFIconBadge] for icon badges and [GFBadge] for default badges.
   const GFButtonBadge({
     Key key,
     @required this.onPressed,
@@ -56,16 +58,15 @@ class GFButtonBadge extends StatefulWidget {
     this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
     this.borderShape,
     this.type = GFType.solid,
-    this.shape = GFShape.standard,
+    this.shape = GFButtonShape.standard,
     this.color = GFColor.primary,
-    this.textColor = GFColor.dark,
+    this.textColor,
     this.position = GFPosition.end,
     this.size = GFSize.medium,
     this.borderSide,
     @required this.text,
     @required this.counterChild,
-  }) :
-        assert(shape != null, 'Badge shape can not be null',),
+  })  : assert(shape != null, 'Badge shape can not be null'),
         assert(padding != null),
         super(key: key);
 
@@ -80,14 +81,14 @@ class _GFButtonBadgeState extends State<GFButtonBadge> {
   Widget icon;
   Function onPressed;
   GFType type;
-  GFShape shape;
+  GFButtonShape shape;
   double size;
   GFPosition position;
 
   @override
   void initState() {
     this.color = getGFColor(widget.color);
-    this.textColor = getGFColor(widget.textColor);
+    this.textColor =  widget.type == GFType.outline && widget.textColor == null ? this.color : widget.textColor == null ? getGFColor(GFColor.dark) : getGFColor(widget.textColor);
     this.onPressed = widget.onPressed;
     this.type = widget.type;
     this.shape = widget.shape;
@@ -98,25 +99,24 @@ class _GFButtonBadgeState extends State<GFButtonBadge> {
 
   @override
   Widget build(BuildContext context) {
-
     return ConstrainedBox(
       constraints: BoxConstraints(minHeight: 26.0, minWidth: 98.0),
       child: Container(
         height: this.size,
         child: GFButton(
-          textStyle: widget.textStyle,
-          borderSide: widget.borderSide,
-          color: this.color,
-          textColor: this.textColor,
-          text: widget.text,
-          onPressed: this.onPressed,
-          type: this.type,
-          shape: this.shape,
-          position: this.position,
-          size: this.size,
-          borderShape: widget.borderShape,
-          icon: widget.counterChild
-        ),
+            textStyle: widget.textStyle,
+            borderSide: widget.borderSide,
+            color: this.color,
+            textColor: this.textColor,
+            text: widget.text,
+            onPressed: this.onPressed,
+            type: this.type,
+            shape: this.shape,
+            position: this.position,
+            size: this.size,
+            borderShape: widget.borderShape,
+            icon: widget.counterChild
+            ),
       ),
     );
   }

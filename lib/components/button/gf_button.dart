@@ -4,14 +4,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_shape.dart';
+import 'package:ui_kit/shape/gf_button_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/position/gf_position.dart';
-import 'package:ui_kit/colors/color.dart';
+import 'package:ui_kit/colors/gf_color.dart';
+
 
 class GFButton extends StatefulWidget {
-
   /// Called when the button is tapped or otherwise activated.
   final VoidCallback onPressed;
 
@@ -87,8 +87,8 @@ class GFButton extends StatefulWidget {
   /// Button type of [GFType] i.e, solid, outline, dashed
   final GFType type;
 
-  /// Button type of [GFShape] i.e, standard, pills, square, shadow, icons
-  final GFShape shape;
+  /// Button type of [GFButtonShape] i.e, standard, pills, square, shadow, icons
+  final GFButtonShape shape;
 
   /// Pass [GFColor] or [Color]
   final dynamic color;
@@ -117,8 +117,38 @@ class GFButton extends StatefulWidget {
   /// on true state default box shadow appears around button
   final bool buttonBoxShadow;
 
-  /// Create buttons of all types. check out [GFIconButton] for icon buttons
+  /// A set of thirteen colors that can be used to derive the button theme's
+  /// colors.
+  ///
+  /// This property was added much later than the theme's set of highly
+  /// specific colors, like [ThemeData.buttonColor], [ThemeData.highlightColor],
+  /// [ThemeData.splashColor] etc.
+  ///
+  /// The colors for new button classes can be defined exclusively in terms
+  /// of [colorScheme]. When it's possible, the existing buttons will
+  /// (continue to) gradually migrate to it.
+  final ColorScheme colorScheme;
 
+  /// Whether detected gestures should provide acoustic and/or haptic feedback.
+  ///
+  /// For example, on Android a tap will produce a clicking sound and a
+  /// long-press will produce a short vibration, when feedback is enabled.
+  ///
+  /// See also:
+  ///
+  ///  * [Feedback] for providing platform-specific feedback to certain actions.
+  final bool enableFeedback;
+
+  /// Called when the button is long-pressed.
+  ///
+  /// If this callback and [onPressed] are null, then the button will be disabled.
+  ///
+  /// See also:
+  ///
+  ///  * [enabled], which is true if the button is enabled.
+  final VoidCallback onLongPress;
+
+  /// Create buttons of all types. check out [GFIconButton] for icon buttons, and [GFBadge] for badges
   const GFButton({
     Key key,
     @required this.onPressed,
@@ -145,9 +175,9 @@ class GFButton extends StatefulWidget {
     MaterialTapTargetSize materialTapTargetSize,
     this.child,
     this.type = GFType.solid,
-    this.shape = GFShape.standard,
+    this.shape = GFButtonShape.standard,
     this.color = GFColor.primary,
-    this.textColor = GFColor.dark,
+    this.textColor,
     this.position = GFPosition.start,
     this.size = GFSize.medium,
     this.borderSide,
@@ -155,8 +185,12 @@ class GFButton extends StatefulWidget {
     this.icon,
     this.blockButton,
     this.fullWidthButton,
-  }) : materialTapTargetSize = materialTapTargetSize ?? MaterialTapTargetSize.padded,
-        assert(shape != null, 'Button shape can not be null',),
+    this.colorScheme,
+    this.enableFeedback,
+    this.onLongPress
+  })  : materialTapTargetSize =
+      materialTapTargetSize ?? MaterialTapTargetSize.padded,
+        assert(shape != null, 'Button shape can not be null'),
         assert(elevation != null && elevation >= 0.0),
         assert(focusElevation != null && focusElevation >= 0.0),
         assert(hoverElevation != null && hoverElevation >= 0.0),
@@ -179,21 +213,16 @@ class _GFButtonState extends State<GFButton> {
   Widget icon;
   Function onPressed;
   GFType type;
-  GFShape shape;
+  GFButtonShape shape;
   double size;
   GFPosition position;
   BoxShadow boxShadow;
-  double blockWidth(context) {
-    return MediaQuery.of(context).size.width * 0.88;
-  }
-  double fullWidth(context) {
-    return MediaQuery.of(context).size.width;
-  }
+  final Set<MaterialState> _states = <MaterialState>{};
 
   @override
   void initState() {
     this.color = getGFColor(widget.color);
-    this.textColor = getGFColor(widget.textColor);
+    this.textColor = widget.type == GFType.outline && widget.textColor == null ? this.color : widget.textColor == null ? getGFColor(GFColor.dark) : getGFColor(widget.textColor);
     this.child = widget.text != null ? Text(widget.text) : widget.child;
     this.icon = widget.icon;
     this.onPressed = widget.onPressed;
@@ -201,15 +230,32 @@ class _GFButtonState extends State<GFButton> {
     this.shape = widget.shape;
     this.size = getGFSize(widget.size);
     this.position = widget.position;
-    super.initState();
     _updateState(MaterialState.disabled, !widget.enabled);
+    super.initState();
   }
-  final Set<MaterialState> _states = <MaterialState>{};
 
   bool get _hovered => _states.contains(MaterialState.hovered);
   bool get _focused => _states.contains(MaterialState.focused);
   bool get _pressed => _states.contains(MaterialState.pressed);
   bool get _disabled => _states.contains(MaterialState.disabled);
+
+  double blockWidth(context) {
+    return MediaQuery.of(context).size.width * 0.88;
+  }
+
+  double fullWidth(context) {
+    return MediaQuery.of(context).size.width;
+  }
+
+  double buttonWidth() {
+    if (widget.blockButton == true) {
+      return blockWidth(context);
+    } else if (widget.fullWidthButton == true) {
+      return fullWidth(context);
+    } else {
+      return null;
+    }
+  }
 
   void _updateState(MaterialState state, bool value) {
     value ? _states.add(state) : _states.remove(state);
@@ -244,7 +290,6 @@ class _GFButtonState extends State<GFButton> {
 
   @override
   void didUpdateWidget(GFButton oldWidget) {
-    super.didUpdateWidget(oldWidget);
     _updateState(MaterialState.disabled, !widget.enabled);
     // If the button is disabled while a press gesture is currently ongoing,
     // InkWell makes a call to handleHighlightChanged. This causes an exception
@@ -253,33 +298,21 @@ class _GFButtonState extends State<GFButton> {
     if (_disabled && _pressed) {
       _handleHighlightChanged(false);
     }
+    super.didUpdateWidget(oldWidget);
   }
 
-  double get _effectiveElevation {
-    // These conditionals are in order of precedence, so be careful about
-    // reorganizing them.
-    if (_disabled) {
-      return widget.disabledElevation;
-    }
-    if (_pressed) {
-      return widget.highlightElevation;
-    }
-    if (_hovered) {
-      return widget.hoverElevation;
-    }
-    if (_focused) {
-      return widget.focusElevation;
-    }
-    return widget.elevation;
-  }
 
   @override
   Widget build(BuildContext context) {
 
-    final Color effectiveTextColor = MaterialStateProperty.resolveAs<Color>(widget.textStyle?.color, _states);
-    final Color themeColor = Theme.of(context).colorScheme.onSurface.withOpacity(0.12);
+    ShapeBorder shape;
+
+    final Color effectiveTextColor = MaterialStateProperty.resolveAs<Color>(
+        widget.textStyle?.color, _states);
+    final Color themeColor =
+    Theme.of(context).colorScheme.onSurface.withOpacity(0.12);
     final BorderSide outlineBorder = BorderSide(
-      color: widget.borderSide == null ? themeColor : widget.borderSide.color,
+      color: this.color == null ? themeColor : widget.borderSide == null ? this.color : widget.borderSide.color,
       width: widget.borderSide?.width ?? 1.0,
     );
 
@@ -291,118 +324,150 @@ class _GFButtonState extends State<GFButton> {
       case MaterialTapTargetSize.shrinkWrap:
         minSize = Size.zero;
         break;
+      default:
+        minSize = Size.zero;
+        break;
     }
 
-    final BorderSide shapeBorder = widget.type == GFType.outline ? outlineBorder : widget.borderSide != null ? widget.borderSide : BorderSide(color: this.color, width: 0.0,);
+    final BorderSide shapeBorder = widget.type == GFType.outline
+        ? outlineBorder
+        : widget.borderSide != null
+        ? widget.borderSide
+        : BorderSide(
+      color: this.color == null ? themeColor : this.color,
+      width: 0.0,
+    );
 
-    ShapeBorder shape;
 
-    if(this.shape == GFShape.pills){
-      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
-    }else if(this.shape == GFShape.square){
-      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0), side: shapeBorder);
-    }else if(this.shape == GFShape.standard){
-      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: shapeBorder);
+
+    if (this.shape == GFButtonShape.pills) {
+      shape = RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
+    } else if (this.shape == GFButtonShape.square) {
+      shape = RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(0.0), side: shapeBorder);
+    } else if (this.shape == GFButtonShape.standard) {
+      shape = RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0), side: shapeBorder);
+    } else {
+      shape = RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
     }
 
-    buttonWidth(){
-      if(widget.blockButton == true) {
-        blockWidth(context);
-      }else if(widget.fullWidthButton == true ) {
-        fullWidth(context);
+    BoxDecoration getBoxShadow() {
+      if(widget.type != GFType.transparent){
+        if(widget.boxShadow == null && widget.buttonBoxShadow != true){
+          return null;
+        }else{
+          return BoxDecoration(
+              color: widget.type == GFType.transparent || widget.type == GFType.outline ? Colors.transparent : this.color,
+              borderRadius: widget.shape == GFButtonShape.pills ? BorderRadius.circular(50.0) :
+              widget.shape == GFButtonShape.standard ? BorderRadius.circular(5.0) : BorderRadius.zero,
+              boxShadow: [
+                widget.boxShadow == null && widget.buttonBoxShadow == true ? BoxShadow(
+                  color: themeColor,
+                  blurRadius: 1.5,
+                  spreadRadius: 2.0,
+                  offset: Offset.zero,
+                ) :
+                widget.boxShadow != null ? widget.boxShadow :
+                BoxShadow(
+                  color: Theme.of(context).canvasColor,
+                  blurRadius: 0.0,
+                  spreadRadius: 0.0,
+                  offset: Offset.zero,
+                )
+              ]
+          );
+        }
       }
     }
 
 
-      return Semantics(
-        container: true,
-        button: true,
-        enabled: widget.enabled,
-        child: _InputPadding(
-          minSize: minSize,
-          child: Focus(
-              focusNode: widget.focusNode,
-              onFocusChange: _handleFocusedChanged,
-              autofocus: widget.autofocus,
-              child: Container(
-                constraints: this.icon == null ? BoxConstraints(minHeight: 26.0, minWidth: 88.0) :
-                    BoxConstraints(minHeight: 26.0, minWidth: 98.0),
-                decoration: BoxDecoration(
-                  borderRadius: widget.shape == GFShape.pills ? BorderRadius.circular(50.0) :
-                  widget.shape == GFShape.standard ? BorderRadius.circular(5.0) : BorderRadius.zero,
-                    boxShadow: [
-                      widget.boxShadow == null && widget.buttonBoxShadow == true ? BoxShadow(
-                        color: this.color.withOpacity(0.4),
-                        blurRadius: 1.5,
-                        spreadRadius: 2.0,
-                        offset: Offset.zero,
-                      ) :
-                      widget.boxShadow != null ? widget.boxShadow :
-                      BoxShadow(
-                        color: Theme.of(context).canvasColor,
-                        blurRadius: 0.0,
-                        spreadRadius: 0.0,
-                        offset: Offset.zero,
-                      )
-                    ]
-                ),
-                child: Material(
-                  textStyle: widget.textStyle == null ? TextStyle(color: this.textColor, fontSize: 14) : widget.textStyle,
-                  shape: widget.type == GFType.transparent ? null : widget.borderShape== null ? shape : widget.borderShape,
-                  color: widget.type != GFType.outline || widget.type == null ? this.color : Theme.of(context).canvasColor,
-                  type: widget.type == GFType.transparent ? MaterialType.transparency : MaterialType.button,
-                  animationDuration: widget.animationDuration,
-                  clipBehavior: widget.clipBehavior,
-                  child: InkWell(
-                    onHighlightChanged: _handleHighlightChanged,
-                    splashColor: widget.splashColor,
-                    highlightColor: widget.highlightColor,
-                    focusColor: widget.focusColor,
-                    hoverColor: widget.hoverColor,
-                    onHover: _handleHoveredChanged,
-                    onTap: widget.onPressed,
-                    customBorder: widget.borderShape == null ? shape : widget.borderShape,
-                    child: IconTheme.merge(
-                      data: IconThemeData(color: effectiveTextColor),
-                      child: Container(
-                        height: widget.blockButton == true ? BLOCK
-                            : widget.fullWidthButton == true ? BLOCK
-                            : this.size,
-                        width: buttonWidth(),
-                        padding: widget.padding,
-                        child: Center(
-                          widthFactor: 1.0,
-                          heightFactor: 1.0,
-                          child: this.icon != null && (this.position == GFPosition.start || this.position == null)?
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                this.icon,
-                                const SizedBox(width: 8.0),
-                                this.child
-                              ],
-                            ) : this.icon != null && (this.position == GFPosition.end) ?
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              this.child,
-                              const SizedBox(width: 8.0),
-                              this.icon
-                            ],
-                          ) : this.child,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+    final Widget result = Container(
+      constraints: this.icon == null ? BoxConstraints(minHeight: 26.0, minWidth: 88.0) :
+      BoxConstraints(minHeight: 26.0, minWidth: 98.0),
+      decoration: getBoxShadow(),
+      child: Material(
+        textStyle: widget.textStyle == null ? TextStyle(color: this.textColor, fontSize: 14) : widget.textStyle,
+        shape: widget.type == GFType.transparent ? null : widget.borderShape == null ? shape : widget.borderShape,
+        color: widget.type == GFType.transparent || widget.type == GFType.outline ? Colors.transparent : this.color,
+        type: this.color == null ? MaterialType.transparency : MaterialType.button,
+        animationDuration: widget.animationDuration,
+        clipBehavior: widget.clipBehavior,
+        child: InkWell(
+          onHighlightChanged: _handleHighlightChanged,
+          splashColor: widget.splashColor,
+          highlightColor: widget.highlightColor,
+          focusColor: widget.focusColor,
+          hoverColor: widget.hoverColor,
+          onHover: _handleHoveredChanged,
+          onTap: widget.onPressed,
+          customBorder: widget.type == GFType.transparent ? null : widget.borderShape == null ? shape : widget.borderShape,
+          child: IconTheme.merge(
+            data: IconThemeData(color: effectiveTextColor),
+            child: Container(
+              height: widget.blockButton == true ? BLOCK
+                  : widget.fullWidthButton == true ? BLOCK
+                  : this.size,
+              width: buttonWidth(),
+              padding: widget.padding,
+              child: Center(
+                widthFactor: 1.0,
+                heightFactor: 1.0,
+                child: this.icon != null && (this.position == GFPosition.start || this.position == null)?
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    this.icon,
+                    const SizedBox(width: 8.0),
+                    this.child
+                  ],
+                )
+                    : this.icon != null &&
+                    (this.position == GFPosition.end)
+                    ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    this.child,
+                    const SizedBox(width: 8.0),
+                    this.icon
+                  ],
+                )
+                    : this.child,
               ),
+            ),
           ),
         ),
-      );
-    }
+      ),
+    );
+
+    return Semantics(
+      container: true,
+      button: true,
+      enabled: widget.enabled,
+      child: _InputPadding(
+        minSize: minSize,
+        child: result,
+      ),
+    );
+
+//    return Semantics(
+//      container: true,
+//      button: true,
+//      enabled: widget.enabled,
+//      child: _InputPadding(
+//        minSize: minSize,
+//        child: Focus(
+//          focusNode: widget.focusNode,
+//          onFocusChange: _handleFocusedChanged,
+//          autofocus: widget.autofocus,
+//          child:
+//        ),
+//      ),
+//    );
   }
-
-
+}
 
 /// A widget to pad the area around a [MaterialButton]'s inner [Material].
 ///

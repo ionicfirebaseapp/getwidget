@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_shape.dart';
+import 'package:ui_kit/shape/gf_badge_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
-import 'package:ui_kit/colors/color.dart';
+import 'package:ui_kit/colors/gf_color.dart';
 
 class GFBadge extends StatefulWidget {
-
   /// The border side for the button's [Material].
   final BorderSide border;
 
   /// Typically the counter button's shape.
   final ShapeBorder borderShape;
 
-  /// Counter type of [GFShape] i.e, standard, pills, square,
-  final GFShape shape;
+  /// Counter type of [GFBadgeShape] i.e, standard, pills, square,
+  final GFBadgeShape shape;
 
   /// Pass [GFColor] or [Color]
   final dynamic color;
@@ -32,22 +31,19 @@ class GFBadge extends StatefulWidget {
   /// Pass [GFColor] or [Color]
   final dynamic textColor;
 
-
-  /// Create counter of all types, check out [GFBadge] for button badges and [GFIconBadge] for icon badges
-
+  /// Create badges of all types, check out [GFButtonBadge] for button badges and [GFIconBadge] for icon badges
   const GFBadge({
     Key key,
     this.textStyle,
     this.borderShape,
-    this.shape = GFShape.standard,
+    this.shape = GFBadgeShape.standard,
     this.color = GFColor.secondary,
     this.textColor = GFColor.dark,
     this.size = GFSize.medium,
     this.border,
     this.text,
-    @required this.child,
-  }) :
-        assert(shape != null, 'Counter shape can not be null',),
+    this.child,
+  })  : assert(shape != null, 'Counter shape can not be null'),
         super(key: key);
 
   @override
@@ -58,7 +54,7 @@ class _GFBadgeState extends State<GFBadge> {
   Color color;
   Color textColor;
   Widget child;
-  GFShape counterShape;
+  GFBadgeShape counterShape;
   GFSize size;
   double height;
   double width;
@@ -76,36 +72,57 @@ class _GFBadgeState extends State<GFBadge> {
 
   @override
   Widget build(BuildContext context) {
-
-    final Color themeColor = Theme.of(context).colorScheme.onSurface.withOpacity(0.12);
-    final BorderSide shapeBorder = widget.border != null ? widget.border : BorderSide(color: this.color, width: 0.0,);
+    final BorderSide shapeBorder = widget.border != null
+        ? widget.border
+        : BorderSide(
+            color: this.color,
+            width: 0.0,
+          );
 
     ShapeBorder shape;
 
-    if(this.counterShape == GFShape.pills){
-      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
-    }else if(this.counterShape == GFShape.square){
-      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0), side: shapeBorder);
-    }else if(this.counterShape == GFShape.standard){
-      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0), side: shapeBorder);
-    }else if(this.counterShape == GFShape.circle) {
-      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0), side: shapeBorder);
+    if (this.counterShape == GFBadgeShape.pills) {
+      shape = RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
+    } else if (this.counterShape == GFBadgeShape.square) {
+      shape = RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(0.0), side: shapeBorder);
+    } else if (this.counterShape == GFBadgeShape.standard) {
+      shape = RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0), side: shapeBorder);
+    } else if (this.counterShape == GFBadgeShape.circle) {
+      shape = RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(100.0), side: shapeBorder);
+    } else {
+      shape = RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0), side: shapeBorder);
     }
 
-    if(this.size == GFSize.small){
-      this.height = 18.0; this.width = 24.0; this.fontSize = 10.0;
-    }else if(this.size == GFSize.medium){
-      this.height = 20.0; this.width = 26.0; this.fontSize = 12.0;
-    }else if(this.size == GFSize.large){
-      this.height = 24.0; this.width = 30.0; this.fontSize = 12.0;
+    if (this.size == GFSize.small) {
+      this.height = 18.0;
+      this.width = 24.0;
+      this.fontSize = 10.0;
+    } else if (this.size == GFSize.medium) {
+      this.height = 20.0;
+      this.width = 26.0;
+      this.fontSize = 12.0;
+    } else if (this.size == GFSize.large) {
+      this.height = 24.0;
+      this.width = 30.0;
+      this.fontSize = 12.0;
+    } else {
+      this.height = 20.0;
+      this.width = 26.0;
+      this.fontSize = 12.0;
     }
-
 
     return Container(
       height: this.height,
-      width: this.counterShape == GFShape.circle ? this.height : this.width,
+      width: this.counterShape == GFBadgeShape.circle ? this.height : this.width,
       child: Material(
-        textStyle: this.textColor != null ? TextStyle(color: this.textColor, fontSize: this.fontSize): widget.textStyle,
+        textStyle: this.textColor != null
+            ? TextStyle(color: this.textColor, fontSize: this.fontSize)
+            : widget.textStyle,
         shape: widget.borderShape == null ? shape : widget.borderShape,
         color: this.color,
         type: MaterialType.button,

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_shape.dart';
+import 'package:ui_kit/shape/gf_badge_shape.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/position/gf_position.dart';
 
 class GFIconBadges extends StatefulWidget {
-
   /// Called when the badge is tapped or otherwise activated.
   final VoidCallback onPressed;
 
@@ -17,17 +16,14 @@ class GFIconBadges extends StatefulWidget {
   /// The internal padding for the badge's [child].
   final EdgeInsetsGeometry padding;
 
-
-  /// Create badges of all types, check out [GFBadge] for button badges
-
+  /// Create badges of all types, check out [GFBadge] for button badges and [GFIconBadge] for icon badges.
   const GFIconBadges({
     Key key,
     @required this.onPressed,
     this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
     @required this.child,
     @required this.counterChild,
-  }) :
-        assert(padding != null),
+  })  : assert(padding != null),
         super(key: key);
 
   @override
@@ -41,7 +37,7 @@ class _GFIconBadgesState extends State<GFIconBadges> {
   Widget icon;
   Function onPressed;
   GFType type;
-  GFShape shape;
+  GFBadgeShape shape;
   GFPosition position;
 
   @override
@@ -51,9 +47,9 @@ class _GFIconBadgesState extends State<GFIconBadges> {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
-    height: 60.0, width: 60.0,
+      height: 60.0,
+      width: 60.0,
       child: Stack(
         children: <Widget>[
           widget.child,
