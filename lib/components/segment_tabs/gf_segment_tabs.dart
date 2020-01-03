@@ -181,12 +181,12 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
             unselectedLabelColor: widget.unselectedLabelColor,
             labelStyle: widget.labelStyle,
             unselectedLabelStyle: widget.unselectedLabelStyle,
-            indicatorColor: widget.indicatorColor == null ? Theme.of(context).primaryColor : widget.indicatorColor,
+            indicatorColor: widget.indicatorColor == null ? Colors.blueGrey : widget.indicatorColor,
             indicatorSize: widget.indicatorSize,
             indicator: widget.indicator == null ?
               BoxDecoration(
-                color: widget.indicatorColor == null ? Theme.of(context).primaryColor : widget.indicatorColor,
-                border: Border.all(color: widget.indicatorColor == null ? Theme.of(context).primaryColor : widget.indicatorColor, width: 2.0),
+                color: widget.indicatorColor == null ? Colors.blueGrey : widget.indicatorColor,
+                border: Border.all(color: widget.indicatorColor == null ? Colors.blueGrey : widget.indicatorColor, width: 2.0),
                 borderRadius: widget.borderRadius == null ? BorderRadius.circular(6.0) : widget.borderRadius,
               ) : widget.indicator,
             indicatorPadding: widget.indicatorPadding,

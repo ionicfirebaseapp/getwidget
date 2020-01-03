@@ -81,66 +81,66 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      drawer: GFDrawer(
-//        colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
-//        backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
-//        gradient: LinearGradient(
-//          begin: Alignment.topRight,
-//          end: Alignment.bottomLeft,
-//          stops: [0.1, 0.5, 0.7, 0.9],
-//          colors: [
-//            Colors.teal[800],
-//            Colors.teal[600],
-//            Colors.teal[400],
-//            Colors.teal[200],
-//          ],
-//        ),
-//        child: ListView(
-//          padding: EdgeInsets.zero,
-//          children: <Widget>[
-//            GFDrawerHeader(
-//              currentAccountPicture: GFAvatar(
-//                radius: 80.0,
-//                backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
-//              ),
-//
-//              decoration: BoxDecoration(
-//                color: Colors.teal.withOpacity(0.45),
-//              ),
-//              otherAccountsPictures: <Widget>[
-//                Image(
-//                  image: NetworkImage("https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"),
-//                  fit: BoxFit.cover,
-//                ),
-//                GFAvatar(
-//                  child: Text("dcf"),
-//                )
-//              ],
-//              child: Column(
-//                mainAxisAlignment: MainAxisAlignment.start,
-//                crossAxisAlignment: CrossAxisAlignment.start,
-//                children: <Widget>[
-//                  Text('user'),
-//                  Text('user@asdf.com'),
-//                ],
-//              ),
-//            ),
-//            ListTile(
-//              title: Text('Item 1'),
-//              onTap: () {
-//                Navigator.pop(context);
-//              },
-//            ),
-//            ListTile(
-//              title: Text('Item 2'),
-//              onTap: () {
-//              },
-//            ),
-//          ],
-//        ),
-//      ),
+      drawer: GFDrawer(
+        colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
+        backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          stops: [0.1, 0.5, 0.7, 0.9],
+          colors: [
+            Colors.teal[800],
+            Colors.teal[600],
+            Colors.teal[400],
+            Colors.teal[200],
+          ],
+        ),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            GFDrawerHeader(
+              currentAccountPicture: GFAvatar(
+                radius: 80.0,
+                backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+              ),
+
+              decoration: BoxDecoration(
+                color: Colors.teal.withOpacity(0.45),
+              ),
+              otherAccountsPictures: <Widget>[
+                Image(
+                  image: NetworkImage("https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"),
+                  fit: BoxFit.cover,
+                ),
+                GFAvatar(
+                  child: Text("dcf"),
+                )
+              ],
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('user'),
+                  Text('user@asdf.com'),
+                ],
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: GFAppBar(
-        backgroundColor: Colors.tealAccent,
+//        backgroundColor: Colors.tealAccent,
         centerTitle: true,
         title:  GFSegmentTabs(
           initialIndex: 0,
@@ -219,6 +219,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 //              border: Border.all(color: Colors.orange, width: 2.0),
 //                borderRadius: BorderRadius.circular(50.0)
             ),
+
+
 
 //            GFItemsSlider(
 //                rowCount: 3,
