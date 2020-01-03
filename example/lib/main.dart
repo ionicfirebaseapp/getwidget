@@ -58,18 +58,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool switchValue = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: GFBadge(
-        shape: GFBadgeShape.circle,
-        color: Colors.green,
-        text: 'dk',
-        textColor: Colors.red,
-        child: Icon(Icons.add),
-      )),
+        child: GFButtonBadge(
+          color: GFColor.light,
+          text: 'hi',
+          onPressed: null,
+          counterChild: GFBadge(
+            text: '12',
+            color: GFColor.warning,
+          ),
+          position: GFPosition.start,
+        ),
+      ),
     );
   }
 }
