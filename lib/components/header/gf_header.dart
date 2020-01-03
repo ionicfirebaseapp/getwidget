@@ -5,7 +5,7 @@ import 'package:ui_kit/types/gf_heading_type.dart';
 class GFHeader extends StatelessWidget {
   const GFHeader(
       {Key key,
-        this.type,
+        this.type = GFHeadingType.typo4,
       this.child,
       this.text,
       this.icon,
