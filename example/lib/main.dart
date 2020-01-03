@@ -19,6 +19,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/position/gf_position.dart';
 import 'package:ui_kit/components/tabs/gf_tabs.dart';
+import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/components/slider/gf_items_slider.dart';
 import 'package:ui_kit/components/drawer/gf_drawer.dart';
 import 'package:ui_kit/components/drawer/gf_drawer_header.dart';
@@ -62,14 +63,16 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: GFIconBadge(
+        child: GFButton(
           onPressed: null,
-          child: GFIconButton(
-            icon: Icon(Icons.share),
-          ),
-          counterChild: GFBadge(
+          type: GFType.transparent,
+          // text: 'hi',
+          child: GFBadge(
             text: '12',
           ),
+          textColor: GFColor.primary,
+          color: GFColor.danger,
+          shape: GFButtonShape.square,
         ),
       ),
     );
