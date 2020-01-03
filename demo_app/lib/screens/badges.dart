@@ -11,7 +11,6 @@ import 'package:ui_kit/position/gf_position.dart';
 import 'package:ui_kit/shape/gf_badge_shape.dart';
 import 'package:ui_kit/shape/gf_button_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
-import 'package:ui_kit/components/button/gf_button.dart';
 import 'package:ui_kit/types/gf_heading_type.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
@@ -283,8 +282,8 @@ class _BadgesState extends State<Badges> {
                             type: GFType.solid,
                             counterChild: GFBadge(
                               text: '12',
- textColor: GFColor.white,
- color: GFColor.danger,
+                              textColor: GFColor.white,
+                              color: GFColor.danger,
                               shape: GFBadgeShape.circle,
                             ),
                             onPressed: null,
@@ -295,7 +294,6 @@ class _BadgesState extends State<Badges> {
                     ],
                   ),
                 ),
-
                 GFCard(
                   content: Column(
                     children: <Widget>[
@@ -354,7 +352,6 @@ class _BadgesState extends State<Badges> {
                     ],
                   ),
                 ),
-
                 GFCard(
                   content: Column(
                     children: <Widget>[
@@ -418,7 +415,6 @@ class _BadgesState extends State<Badges> {
                     ],
                   ),
                 ),
-
                 GFCard(
                   content: Column(
                     children: <Widget>[
@@ -482,7 +478,6 @@ class _BadgesState extends State<Badges> {
                     ],
                   ),
                 ),
-
                 GFCard(
                   content: Column(
                     children: <Widget>[
@@ -551,272 +546,206 @@ class _BadgesState extends State<Badges> {
                 )
               ],
             ),
-           ListView(
-             children: <Widget>[
-               GFCard(
-                 content: Column(
-                   children: <Widget>[
-                     GFHeader(
-                       text: 'Types of Icon Badges',
-                       type: GFHeadingType.typo6,
-                     ),
-                   SizedBox(
-                     height: 10,
-                   ),
-                   Row(
-                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                     children: <Widget>[
-                       GFIconBadges(
-                         onPressed: null,
-                         child: GFIconButton(
-                           shape: GFButtonShape.circle,
-                           color: GFColor.success,
-                           type: GFType.solid,
-                           onPressed: null,
-                           icon: Icon(Icons.mail),
-                         ),
-                         counterChild: GFBadge(
-                           text: '12',
-
-//                color: GFColor.dark,
-//
-                           shape: GFBadgeShape.circle,
-
-                           size: GFSize.small,
-                         )
-                       ),
-                       GFIconBadges(
-                         onPressed: null,
-                         child: GFIconButton(
-                           shape: GFButtonShape.square,
-                           color: GFColor.primary,
-                           type: GFType.solid,
-                           onPressed: null,
-                           icon: Icon(Icons.mail),
-                         ),
-                         counterChild: GFBadge(
-                           text: '12',
-
-//                color: GFColor.dark,
-//
-                           shape: GFBadgeShape.circle,
-
-                           size: GFSize.small,
-                         )
-                       ),
-                       GFIconBadges(
-                         onPressed: null,
-                         child: GFIconButton(
-                           shape: GFButtonShape.pills,
-                           color: GFColor.danger,
-                           type: GFType.solid,
-                           onPressed: null,
-                           icon: Icon(Icons.mail),
-                         ),
-                         counterChild: GFBadge(
-                           text: '12',
-
-//                color: GFColor.dark,
-//
-                           shape: GFBadgeShape.circle,
-
-                           size: GFSize.small,
-                         )
-                       ),
-                       GFIconBadges(
-                         onPressed: null,
-                         child: GFIconButton(
-                           shape: GFButtonShape.standard,
-                           type: GFType.solid,
-                           color: GFColor.warning,
-                           onPressed: null,
-                           icon: Icon(Icons.mail),
-                         ),
-                         counterChild: GFBadge(
-                           text: '12',
-
-//                color: GFColor.dark,
-//
-                           shape: GFBadgeShape.circle,
-
-                           size: GFSize.small,
-                         )
-                       ),
-                     ],
-                   )
-                   ],
-                 ),
-               ),
-               GFCard(
-                 content: Column(
-                   children: <Widget>[
-                     GFHeader(
-                       text: 'Shapes of Icon Badges',
-                       type: GFHeadingType.typo6,
-                     ),
-                     SizedBox(
-                       height: 10,
-                     ),
-                     Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                       children: <Widget>[
-                         GFIconBadges(
-                             onPressed: null,
-                             child: GFIconButton(
-                               shape: GFButtonShape.circle,
-
-                               onPressed: null,
-                               icon: Icon(Icons.mail),
-                             ),
-                             counterChild: GFBadge(
-                               text: '12',
-
-//                color: GFColor.dark,
-//
-                               shape: GFBadgeShape.circle,
-
-                               size: GFSize.small,
-                             )
-                         ),
-                         GFIconBadges(
-                             onPressed: null,
-                             child: GFIconButton(
-                               shape: GFButtonShape.square,
-
-
-                               onPressed: null,
-                               icon: Icon(Icons.mail),
-                             ),
-                             counterChild: GFBadge(
-                               text: '12',
-
-//                color: GFColor.dark,
-//
-                               shape: GFBadgeShape.circle,
-
-                               size: GFSize.small,
-                             )
-                         ),
-                         GFIconBadges(
-                             onPressed: null,
-                             child: GFIconButton(
-                               shape: GFButtonShape.pills,
-
-
-                               onPressed: null,
-                               icon: Icon(Icons.mail),
-                             ),
-                             counterChild: GFBadge(
-                               text: '12',
-
-//                color: GFColor.dark,
-//
-                               shape: GFBadgeShape.circle,
-
-                               size: GFSize.small,
-                             )
-                         ),
-                         GFIconBadges(
-                             onPressed: null,
-                             child: GFIconButton(
-                               shape: GFButtonShape.standard,
-
-                               onPressed: null,
-                               icon: Icon(Icons.mail),
-                             ),
-                             counterChild: GFBadge(
-                               text: '12',
-
-//                color: GFColor.dark,
-//
-                               shape: GFBadgeShape.circle,
-
-                               size: GFSize.small,
-                             )
-                         ),
-                       ],
-                     )
-                   ],
-                 ),
-               ),
-               GFCard(
-                 content: Column(
-                   children: <Widget>[
-                     GFHeader(
-                       text: 'Sizes of Icon Badges',
-                       type: GFHeadingType.typo6,
-                     ),
-                     SizedBox(
-                       height: 10,
-                     ),
-                     Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                       children: <Widget>[
-
-                         GFIconBadges(
-                             onPressed: null,
-                             child: GFIconButton(
-                               size: GFSize.large,
-
-                               onPressed: null,
-                               icon: Icon(Icons.mail),
-                             ),
-                             counterChild: GFBadge(
-                               text: '12',
-
-//                color: GFColor.dark,
-//
-                               shape: GFBadgeShape.circle,
-
-                               size: GFSize.small,
-                             )
-                         ),
-                         GFIconBadges(
-                             onPressed: null,
-                             child: GFIconButton(
-
-                               size: GFSize.medium,
-
-                               onPressed: null,
-                               icon: Icon(Icons.mail),
-                             ),
-                             counterChild: GFBadge(
-                               text: '12',
-
-//                color: GFColor.dark,
-//
-                               shape: GFBadgeShape.circle,
-
-                               size: GFSize.small,
-                             )
-                         ),
-                         GFIconBadges(
-
-                             onPressed: null,
-                             child: GFIconButton(
-
+            ListView(
+              children: <Widget>[
+                GFCard(
+                  content: Column(
+                    children: <Widget>[
+                      GFHeader(
+                        text: 'Types of Icon Badges',
+                        type: GFHeadingType.typo6,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          GFIconBadge(
+                              onPressed: null,
+                              child: GFIconButton(
+                                shape: GFButtonShape.pills,
+                                color: GFColor.success,
+                                type: GFType.solid,
+                                onPressed: null,
+                                icon: Icon(Icons.mail),
+                              ),
+                              counterChild: GFBadge(
+                                text: '12',
+                                shape: GFBadgeShape.circle,
                                 size: GFSize.small,
-
-                               onPressed: null,
-                               icon: Icon(Icons.mail),
-                             ),
-                             counterChild: GFBadge(
-                               text: '12',
-
-//                color: GFColor.dark,
-//
-                               shape: GFBadgeShape.circle,
-
-                               size: GFSize.small,
-                             )
-                         ),
-                       ],
-                     )
-                   ],
-                 ),
-               )
-             ],
-           )
+                              )),
+                          GFIconBadge(
+                              onPressed: null,
+                              child: GFIconButton(
+                                shape: GFButtonShape.square,
+                                color: GFColor.primary,
+                                type: GFType.solid,
+                                onPressed: null,
+                                icon: Icon(Icons.mail),
+                              ),
+                              counterChild: GFBadge(
+                                text: '12',
+                                shape: GFBadgeShape.circle,
+                                size: GFSize.small,
+                              )),
+                          GFIconBadge(
+                              onPressed: null,
+                              child: GFIconButton(
+                                shape: GFButtonShape.pills,
+                                color: GFColor.danger,
+                                type: GFType.solid,
+                                onPressed: null,
+                                icon: Icon(Icons.mail),
+                              ),
+                              counterChild: GFBadge(
+                                text: '12',
+                                shape: GFBadgeShape.circle,
+                                size: GFSize.small,
+                              )),
+                          GFIconBadge(
+                              onPressed: null,
+                              child: GFIconButton(
+                                shape: GFButtonShape.standard,
+                                type: GFType.solid,
+                                color: GFColor.warning,
+                                onPressed: null,
+                                icon: Icon(Icons.mail),
+                              ),
+                              counterChild: GFBadge(
+                                text: '12',
+                                shape: GFBadgeShape.circle,
+                                size: GFSize.small,
+                              )),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                GFCard(
+                  content: Column(
+                    children: <Widget>[
+                      GFHeader(
+                        text: 'Shapes of Icon Badges',
+                        type: GFHeadingType.typo6,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          GFIconBadge(
+                              onPressed: null,
+                              child: GFIconButton(
+                                shape: GFButtonShape.pills,
+                                onPressed: null,
+                                icon: Icon(Icons.mail),
+                              ),
+                              counterChild: GFBadge(
+                                text: '12',
+                                shape: GFBadgeShape.circle,
+                                size: GFSize.small,
+                              )),
+                          GFIconBadge(
+                              onPressed: null,
+                              child: GFIconButton(
+                                shape: GFButtonShape.square,
+                                onPressed: null,
+                                icon: Icon(Icons.mail),
+                              ),
+                              counterChild: GFBadge(
+                                text: '12',
+                                color: GFColor.dark,
+                                shape: GFBadgeShape.circle,
+                                size: GFSize.small,
+                              )),
+                          GFIconBadge(
+                              onPressed: null,
+                              child: GFIconButton(
+                                shape: GFButtonShape.pills,
+                                onPressed: null,
+                                icon: Icon(Icons.mail),
+                              ),
+                              counterChild: GFBadge(
+                                text: '12',
+                                shape: GFBadgeShape.circle,
+                                size: GFSize.small,
+                              )),
+                          GFIconBadge(
+                            onPressed: null,
+                            child: GFIconButton(
+                              shape: GFButtonShape.standard,
+                              onPressed: null,
+                              icon: Icon(Icons.mail),
+                            ),
+                            counterChild: GFBadge(
+                              text: '12',
+                              shape: GFBadgeShape.circle,
+                              size: GFSize.small,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                GFCard(
+                  content: Column(
+                    children: <Widget>[
+                      GFHeader(
+                        text: 'Sizes of Icon Badges',
+                        type: GFHeadingType.typo6,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          GFIconBadge(
+                              onPressed: null,
+                              child: GFIconButton(
+                                size: GFSize.large,
+                                onPressed: null,
+                                icon: Icon(Icons.mail),
+                              ),
+                              counterChild: GFBadge(
+                                text: '12',
+                                shape: GFBadgeShape.circle,
+                                size: GFSize.small,
+                              )),
+                          GFIconBadge(
+                              onPressed: null,
+                              child: GFIconButton(
+                                size: GFSize.medium,
+                                onPressed: null,
+                                icon: Icon(Icons.mail),
+                              ),
+                              counterChild: GFBadge(
+                                text: '12',
+                                shape: GFBadgeShape.circle,
+                                size: GFSize.small,
+                              )),
+                          GFIconBadge(
+                              onPressed: null,
+                              child: GFIconButton(
+                                size: GFSize.small,
+                                onPressed: null,
+                                icon: Icon(Icons.mail),
+                              ),
+                              counterChild: GFBadge(
+                                text: '12',
+                                shape: GFBadgeShape.circle,
+                                size: GFSize.small,
+                              )),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            )
           ],
         ),
         indicatorColor: getGFColor(GFColor.dark),

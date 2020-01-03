@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ui_kit/colors/gf_color.dart';
-import 'gf_floating_widget.dart';
 
 class GFToast extends StatefulWidget {
   ///
@@ -34,7 +33,6 @@ class GFToast extends StatefulWidget {
 
   /// width od type [double] used to control the width od the [GFToast]
   final double width;
-
 
   @override
   _GFToastState createState() => _GFToastState();
@@ -71,13 +69,12 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return  FadeTransition(
+    return FadeTransition(
       opacity: animation,
-      child:
-      Column(
+      child: Column(
         children: <Widget>[
           Container(
-            width: widget.width != null? widget.width: null,
+            width: widget.width != null ? widget.width : null,
             constraints: BoxConstraints(minHeight: 50.0),
 //        width: 100,
             margin: EdgeInsets.only(left: 10, right: 10),
@@ -102,12 +99,12 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
                 ),
                 widget.button != null
                     ? Flexible(
-                    flex: 4,
-                    fit: FlexFit.tight,
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: widget.button,
-                    ))
+                        flex: 4,
+                        fit: FlexFit.tight,
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: widget.button,
+                        ))
                     : Container()
               ],
             ),

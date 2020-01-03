@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 ///
 /// The `details` object provides the position of the touch when it first
 /// touched the surface.
-typedef GFItemsSliderSlideStartCallback = void Function(DragStartDetails details);
+typedef GFItemsSliderSlideStartCallback = void Function(
+    DragStartDetails details);
 
 /// Signature for when a pointer that is in contact with the screen and moving
 /// has moved again.
@@ -33,39 +34,39 @@ typedef GFItemsSliderSlideEndCallback = void Function(DragEndDetails details);
 /// Set left/right arrows [leftArrow], [rightArrow]
 class GFItemsSlider extends StatefulWidget {
   /// Count of visible cells
-  int rowCount;
+  final int rowCount;
 
-  List<Widget> children;
+  final List<Widget> children;
 
   /// Signature for when a pointer has contacted the screen and has begun to move.
-  GFItemsSliderSlideStartCallback onSlideStart;
+  final GFItemsSliderSlideStartCallback onSlideStart;
 
   /// Signature for when a pointer that is in contact with the screen and moving
   /// has moved again.
-  GFItemsSliderSlideCallback onSlide;
+  final GFItemsSliderSlideCallback onSlide;
 
   /// Signature for when a pointer that was previously in contact with the screen
   /// and moving is no longer in contact with the screen.
-  GFItemsSliderSlideEndCallback onSlideEnd;
+  final GFItemsSliderSlideEndCallback onSlideEnd;
 
-  GFItemsSlider({
-    this.rowCount,
-    this.children,
-    this.onSlideStart,
-    this.onSlide,
-    this.onSlideEnd
-  });
+  GFItemsSlider(
+      {this.rowCount,
+      this.children,
+      this.onSlideStart,
+      this.onSlide,
+      this.onSlideEnd});
 
   @override
   _GFItemsSliderState createState() => new _GFItemsSliderState();
 }
 
-class _GFItemsSliderState extends State<GFItemsSlider> with TickerProviderStateMixin {
+class _GFItemsSliderState extends State<GFItemsSlider>
+    with TickerProviderStateMixin {
   /// In milliseconds
-  static final int DRAG_ANIMATION_DURATION = 1000;
+  static final int dragAnimationDuration = 1000;
 
   /// In milliseconds
-  static final int SHIFT_ANIMATION_DURATION = 300;
+  static final int shiftAnimationDuration = 300;
 
   /// Size of cell
   double size = 0;
@@ -85,13 +86,11 @@ class _GFItemsSliderState extends State<GFItemsSlider> with TickerProviderStateM
     this.offset = 0;
 
     this.animationController = AnimationController(
-        duration: new Duration(milliseconds: DRAG_ANIMATION_DURATION),
-        vsync: this
-    );
+        duration: new Duration(milliseconds: dragAnimationDuration),
+        vsync: this);
 
     new Future.delayed(Duration.zero, () {
       this.setState(() {
-
         double width = MediaQuery.of(context).size.width;
         this.width = width;
         this.size = this.width / widget.rowCount;
@@ -115,7 +114,7 @@ class _GFItemsSliderState extends State<GFItemsSlider> with TickerProviderStateM
 
   onSlideStart(DragStartDetails details) {
     this.animationController.stop();
-    widget.onSlideStart != null ? widget.onSlideStart(details) : null;
+    if (widget.onSlideStart != null) widget.onSlideStart(details);
   }
 
   onSlide(DragUpdateDetails details) {
@@ -123,7 +122,7 @@ class _GFItemsSliderState extends State<GFItemsSlider> with TickerProviderStateM
       this.offset = this.calculateOffset(3 * details.delta.dx);
     });
 
-    widget.onSlide != null ? widget.onSlide(details) : null;
+    if (widget.onSlide != null) widget.onSlide(details);
   }
 
   onSlideEnd(DragEndDetails details) {
@@ -134,21 +133,16 @@ class _GFItemsSliderState extends State<GFItemsSlider> with TickerProviderStateM
     }
 
     this.animationController = new AnimationController(
-        duration: new Duration(milliseconds: DRAG_ANIMATION_DURATION),
-        vsync: this
-    );
+        duration: new Duration(milliseconds: dragAnimationDuration),
+        vsync: this);
 
     Tween tween = new Tween<double>(
-        begin: this.offset,
-        end: this.calculateOffset(0.5 * dx)
-    );
+        begin: this.offset, end: this.calculateOffset(0.5 * dx));
 
-    Animation animation = tween.animate(
-        new CurvedAnimation(
-          parent: this.animationController,
-          curve: Curves.easeOut,
-        )
-    );
+    Animation animation = tween.animate(new CurvedAnimation(
+      parent: this.animationController,
+      curve: Curves.easeOut,
+    ));
 
     animation.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed) {
@@ -163,7 +157,7 @@ class _GFItemsSliderState extends State<GFItemsSlider> with TickerProviderStateM
     });
 
     this.animationController.forward();
-    widget.onSlideEnd != null ? widget.onSlideEnd(details) : null;
+    if (widget.onSlideEnd != null) widget.onSlideEnd(details);
   }
 
   runShiftAnimation() {
@@ -172,9 +166,8 @@ class _GFItemsSliderState extends State<GFItemsSlider> with TickerProviderStateM
         this.size * (this.offset / this.size).round().toDouble();
 
     this.animationController = new AnimationController(
-        duration: new Duration(milliseconds: SHIFT_ANIMATION_DURATION),
-        vsync: this
-    );
+        duration: new Duration(milliseconds: shiftAnimationDuration),
+        vsync: this);
     Tween tween = new Tween<double>(begin: beginAnimation, end: endAnimation);
     Animation animation = tween.animate(this.animationController);
 
@@ -196,22 +189,20 @@ class _GFItemsSliderState extends State<GFItemsSlider> with TickerProviderStateM
       child: Container(
         width: double.infinity,
         height: this.size,
-        child: Stack(
-            children: [
-              Positioned(
-                left: this.offset,
-                child: Row(
-                  children: widget.children.map((child) {
-                    return Container(
-                      width: this.size,
-                      height: this.size,
-                      child: child,
-                    );
-                  }).toList(),
-                ),
-              ),
-            ]
-        ),
+        child: Stack(children: [
+          Positioned(
+            left: this.offset,
+            child: Row(
+              children: widget.children.map((child) {
+                return Container(
+                  width: this.size,
+                  height: this.size,
+                  child: child,
+                );
+              }).toList(),
+            ),
+          ),
+        ]),
       ),
     );
   }
