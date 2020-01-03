@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +20,9 @@ class DrawerHeaderPictures extends StatelessWidget {
           top: 0.0,
           end: 0.0,
           child: Row(
-            children: (otherAccountsPictures ?? <Widget>[]).take(3).map<Widget>((Widget picture) {
+            children: (otherAccountsPictures ?? <Widget>[])
+                .take(3)
+                .map<Widget>((Widget picture) {
               return Padding(
                 padding: const EdgeInsetsDirectional.only(start: 8.0),
                 child: Semantics(
@@ -111,7 +112,6 @@ class GFDrawerHeader extends StatefulWidget {
 }
 
 class _GFDrawerHeaderState extends State<GFDrawerHeader> {
-
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterial(context));
@@ -120,9 +120,10 @@ class _GFDrawerHeaderState extends State<GFDrawerHeader> {
       container: true,
       label: MaterialLocalizations.of(context).signedInLabel,
       child: DrawerHeader(
-        decoration: widget.decoration ?? BoxDecoration(
-          color: Theme.of(context).primaryColor,
-        ),
+        decoration: widget.decoration ??
+            BoxDecoration(
+              color: Theme.of(context).primaryColor,
+            ),
         margin: widget.margin,
         padding: const EdgeInsetsDirectional.only(top: 16.0, start: 16.0),
         child: SafeArea(
@@ -140,11 +141,10 @@ class _GFDrawerHeaderState extends State<GFDrawerHeader> {
                 ),
               ),
               AnimatedContainer(
-                padding: EdgeInsets.only(bottom: 16.0),
-                duration: widget.duration,
-                curve: widget.curve,
-                child: widget.child
-              ),
+                  padding: EdgeInsets.only(bottom: 16.0),
+                  duration: widget.duration,
+                  curve: widget.curve,
+                  child: widget.child),
             ],
           ),
         ),

@@ -1,5 +1,4 @@
 import 'dart:async';
-//import 'dart:ffi';
 import 'package:flutter/material.dart';
 
 List<T> map<T>(List list, Function handler) {
@@ -32,7 +31,7 @@ class GFSlider extends StatefulWidget {
       this.enlargeMainPage = false,
       this.onPageChanged,
       this.scrollPhysics,
-        this.rowCount,
+      this.rowCount,
       this.scrollDirection: Axis.horizontal})
       : this.realPage =
             enableInfiniteScroll ? realPage + initialPage : initialPage,
@@ -43,7 +42,7 @@ class GFSlider extends StatefulWidget {
         );
 
   /// Count of visible cells
-  int rowCount;
+  final int rowCount;
 
   /// The pagination dots size can be defined using [double].
   final double pagerSize;
@@ -178,7 +177,6 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     timer = getPlayTimer();
-
   }
 
   Timer getPlayTimer() {
@@ -224,13 +222,10 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
 
   int _current = 0;
 
-
   @override
   Widget build(BuildContext context) {
-
     return Stack(
       children: <Widget>[
-
         getPageWrapper(PageView.builder(
           physics: widget.scrollPhysics,
           scrollDirection: widget.scrollDirection,
@@ -275,16 +270,15 @@ class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
 
                 if (widget.scrollDirection == Axis.horizontal) {
                   return Center(
-                      child: SizedBox(
-                          height: distortionValue * height, child: child),
-
+                    child: SizedBox(
+                        height: distortionValue * height, child: child),
                   );
                 } else {
                   return Center(
-                      child: SizedBox(
-                          width: distortionValue *
-                              MediaQuery.of(context).size.width,
-                          child: child),
+                    child: SizedBox(
+                        width:
+                            distortionValue * MediaQuery.of(context).size.width,
+                        child: child),
                   );
                 }
               },

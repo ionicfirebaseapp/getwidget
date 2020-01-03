@@ -1,8 +1,8 @@
 enum GFSize { small, medium, large }
 
-const double SMALL = 32.0;
-const double MEDIUM = 40.0;
-const double LARGE = 56.0;
+const double SMALL = 35.0;
+const double MEDIUM = 50.0;
+const double LARGE = 65.0;
 const double BLOCK = 40.0;
 
 /// Pass [GFSize] or [double]

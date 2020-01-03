@@ -240,7 +240,7 @@ class _GFButtonState extends State<GFButton> {
   }
 
   bool get _hovered => _states.contains(MaterialState.hovered);
-  bool get _focused => _states.contains(MaterialState.focused);
+  // bool get _focused => _states.contains(MaterialState.focused);
   bool get _pressed => _states.contains(MaterialState.pressed);
   bool get _disabled => _states.contains(MaterialState.disabled);
 
@@ -383,6 +383,7 @@ class _GFButtonState extends State<GFButton> {
               ]);
         }
       }
+      return null;
     }
 
     final Widget result = Container(

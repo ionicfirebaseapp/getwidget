@@ -87,7 +87,7 @@ class GFIconButton extends StatefulWidget {
       this.focusNode,
       this.autofocus = false,
       this.tooltip,
-      this.type = GFType.outline,
+      this.type = GFType.transparent,
       this.shape = GFButtonShape.standard,
       this.color = GFColor.primary,
       this.borderShape,

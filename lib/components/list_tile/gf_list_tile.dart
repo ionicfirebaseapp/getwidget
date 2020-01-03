@@ -29,8 +29,8 @@ class GFListTile extends StatelessWidget {
       this.color,
       this.avatar,
       this.title,
-      this.subTitle,
-      this.description,
+      this.subTitle ,
+      this.description ,
       this.icon,
       this.showDivider = true
       })
