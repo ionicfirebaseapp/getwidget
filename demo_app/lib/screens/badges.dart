@@ -14,6 +14,7 @@ import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/components/button/gf_button.dart';
 import 'package:ui_kit/types/gf_heading_type.dart';
 import 'package:ui_kit/types/gf_type.dart';
+import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
 
 class Badges extends StatefulWidget {
   @override
@@ -44,7 +45,7 @@ class _BadgesState extends State<Badges> {
           Text('Button Badge'),
           Text('Icon Badge'),
         ],
-        tabBarView: TabBarView(
+        tabBarView: GFTabBarView(
           children: <Widget>[
             ListView(
               children: <Widget>[

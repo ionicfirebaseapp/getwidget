@@ -7,6 +7,7 @@ import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/shape/gf_button_shape.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
+import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
 
 class Buttons extends StatefulWidget {
   @override
@@ -58,7 +59,7 @@ class _ButtonsState extends State<Buttons> {
             type: GFType.transparent,
           ),
         ],
-        tabBarView: TabBarView(
+        tabBarView: GFTabBarView(
           children: <Widget>[
             Container(
 //              color: Colors.red,
