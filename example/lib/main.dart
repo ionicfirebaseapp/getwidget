@@ -10,6 +10,7 @@ import 'package:ui_kit/components/card/gf_card.dart';
 import 'package:ui_kit/components/list_tile/gf_list_tile.dart';
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
 import 'package:ui_kit/components/button_bar/gf_button_bar.dart';
+import 'package:ui_kit/components/segment_tabs/gf_segment_tabs.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/shape/gf_avatar_shape.dart';
 import 'package:ui_kit/shape/gf_button_shape.dart';
@@ -22,6 +23,9 @@ import 'package:ui_kit/components/tabs/gf_tabs.dart';
 import 'package:ui_kit/components/slider/gf_items_slider.dart';
 import 'package:ui_kit/components/drawer/gf_drawer.dart';
 import 'package:ui_kit/components/drawer/gf_drawer_header.dart';
+import 'package:ui_kit/components/toast/gf_toast.dart';
+import 'package:ui_kit/components/appbar/gf_appbar.dart';
+import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -57,8 +61,23 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
+  TabController tabController;
+
+  @override
+  void initState() {
+  super.initState();
+    tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+  tabController.dispose();
+  super.dispose();
+  }
+
   bool switchValue = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,11 +139,42 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      backgroundColor: Colors.cyanAccent,
-      appBar: AppBar(
-        title: Text(widget.title),
+      appBar: GFAppBar(
+//        backgroundColor: Colors.tealAccent,
+        centerTitle: true,
+        title:  GFSegmentTabs(
+          initialIndex: 0,
+          length: 3,
+          tabs: <Widget>[
+            Tab(
+              child: Text(
+                "Gelatin",
+              ),
+            ),
+            Tab(
+              child: Text(
+                "Donuts",
+              ),
+            ),
+            Tab(
+              child: Text(
+                "Pastry",
+              ),
+            ),
+          ],
+        ),
+//        trailing: <Widget>[
+//          GFIconButton(icon: Icon(Icons.directions_bus), onPressed: null)
+//        ],
       ),
-      body: SingleChildScrollView(
+      backgroundColor: Colors.teal,
+      body:
+//        GFTabBarView(controller: tabController, children: <Widget>[
+//          Container(color: Colors.red),
+//          Container(color: Colors.green),
+//          Container(color: Colors.blue)
+//      ]),
+      SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -133,6 +183,44 @@ class _MyHomePageState extends State<MyHomePage> {
               radius: 80.0,
               backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
             ),
+
+            GFSegmentTabs(
+//              height: 38.0,
+//              width: 180.0,
+              initialIndex: 0,
+              length: 3,
+              tabs: <Widget>[
+                Tab(
+                  child: Text(
+                    "Gelatin",
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    "Donuts",
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    "Pastry",
+                  ),
+                ),
+              ],
+//              tabBarColor: Colors.pink.withOpacity(0.6),
+//              indicatorSize: TabBarIndicatorSize.tab,
+//              indicatorColor: Colors.tealAccent,
+//              indicator: BoxDecoration(
+//                color: Colors.pink,
+//                border: Border.all(color: Colors.green, width: 1.0),
+//                borderRadius: BorderRadius.circular(50.0)
+//              ),
+//              indicatorPadding: EdgeInsets.all(8.0),
+//              indicatorWeight: 2.0,
+//              border: Border.all(color: Colors.orange, width: 2.0),
+//                borderRadius: BorderRadius.circular(50.0)
+            ),
+
+
 
 //            GFItemsSlider(
 //                rowCount: 3,
@@ -202,73 +290,84 @@ class _MyHomePageState extends State<MyHomePage> {
 //              ),
             ),
 
-//            GFTabs(
-//              initialIndex: 0,
-//              length: 3,
-//              tabs: <Widget>[
-//                GFButton(
-//                  onPressed: null,
-//                  child: Text("share"),
-//                  icon: Icon(Icons.share),
-//                  buttonBoxShadow: true,
-//                ),
-//                Tab(
-//                  icon: Icon(Icons.error),
-//                  child: Text(
-//                    "Orders",
-//                  ),
-//                ),
-//                Tab(
-//                  child: Text(
-//                    "Pastry",
-//                  ),
-//                ),
-//              ],
-//              tabBarView: TabBarView(
-//                children: <Widget>[
-//                  Container(
-//                    color: Colors.red,
-//                    child: Column(
-//                      mainAxisAlignment: MainAxisAlignment.center,
-//                      crossAxisAlignment: CrossAxisAlignment.center,
-//                      children: <Widget>[
-//                        RawMaterialButton(
-//                          onPressed: null,
-//                          child: Text("fv"),
-//                        ),
-//                        FlatButton(onPressed: null, child: Text("cds")),
-//                        Icon(Icons.directions_railway),
-//                        GFButton(
-//                          onPressed: null,
-//                          child: Text("share"),
-//                          icon: Icon(Icons.share),
-//                          shape: GFButtonShape.pills,
-//                          type: GFType.transparent,
-//                        ),
-//                      ],
-//                    ),
-//                  ),
-//                  Icon(Icons.directions_car),
-//                  Icon(Icons.directions_transit),
-//                ],
-//              ),
-//              indicatorColor: Colors.teal,
-//              indicatorSize: TabBarIndicatorSize.label,
-//              labelColor: Colors.lightGreen,
-//              unselectedLabelColor: Colors.black,
-//              labelStyle: TextStyle(
-//                fontWeight: FontWeight.w500,
-//                fontSize: 13.0,
-//                color: Colors.deepOrange,
-//                fontFamily: 'OpenSansBold',
-//              ),
-//              unselectedLabelStyle: TextStyle(
-//                fontWeight: FontWeight.w500,
-//                fontSize: 13.0,
-//                color: Colors.black,
-//                fontFamily: 'OpenSansBold',
-//              ),
+          GFTabs(
+            initialIndex: 0,
+            length: 3,
+            tabs: <Widget>[
+              GFButton(
+                onPressed: null,
+                child: Text("share"),
+                icon: Icon(Icons.share),
+                buttonBoxShadow: true,
+              ),
+              Tab(
+                icon: Icon(Icons.error),
+                child: Text(
+                  "Orders",
+                ),
+              ),
+              Tab(
+                child: Text(
+                  "Pastry",
+                ),
+              ),
+            ],
+            tabBarView: GFTabBarView(
+              children: <Widget>[
+                Container(
+                  color: Colors.red,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+
+                      GFToast(
+                        child: Text("sdc"),
+                        backgroundColor: Colors.pink,
+                        button: GFButton(
+                          text: 'dsx',
+                          onPressed: (){
+                            print("fdsc");
+                          },
+                        ),
+                      ),
+                      RawMaterialButton(
+                        onPressed: null,
+                        child: Text("fv"),
+                      ),
+                      FlatButton(onPressed: null, child: Text("cds")),
+                      Icon(Icons.directions_railway),
+                      GFButton(
+                        onPressed: null,
+                        child: Text("share"),
+                        icon: Icon(Icons.share),
+                        shape: GFButtonShape.pills,
+                        type: GFType.transparent,
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(Icons.directions_car),
+                Icon(Icons.directions_transit),
+              ],
+            ),
+            indicatorColor: Colors.teal,
+//            indicatorSize: TabBarIndicatorSize.label,
+//            labelColor: Colors.lightGreen,
+//            unselectedLabelColor: Colors.black,
+//            labelStyle: TextStyle(
+//              fontWeight: FontWeight.w500,
+//              fontSize: 13.0,
+//              color: Colors.deepOrange,
+//              fontFamily: 'OpenSansBold',
 //            ),
+//            unselectedLabelStyle: TextStyle(
+//              fontWeight: FontWeight.w500,
+//              fontSize: 13.0,
+//              color: Colors.black,
+//              fontFamily: 'OpenSansBold',
+//            ),
+          ),
 //
 //              GFSlider(
 //                autoPlay: true,
@@ -459,30 +558,30 @@ class _MyHomePageState extends State<MyHomePage> {
 ////
 ////              borderRadius: BorderRadius.circular(20.0),
 //            ),
-//            GFIconBadges(
-//              onPressed: null,
-//              child: GFIconButton(
-//                onPressed: null,
-//                icon: Icon(Icons.ac_unit),
-//              ),
-//              counterChild: GFBadge(
-//                text: '12',
-//
-////                color: GFColor.dark,
-////
+            GFIconBadges(
+              onPressed: null,
+              child: GFIconButton(
+                onPressed: null,
+                icon: Icon(Icons.ac_unit),
+              ),
+              counterChild: GFBadge(
+                text: '12',
+
+//                color: GFColor.dark
+////,
 //                shape: GFBadgeShape.circle,
 //
 //                size: GFSize.small,
-////
-////                border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
-////
-////                textColor: GFColor.white,
-////
-////                textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
-////
-////                borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.orange, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-//              ),
-//            ),
+//
+//                border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+//
+//                textColor: GFColor.white,
+//
+//                textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
+//
+//                borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.orange, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
+              ),
+            ),
 //            GFIconButton(
 //              onPressed: null,
 //              icon: Icon(Icons.ac_unit),
