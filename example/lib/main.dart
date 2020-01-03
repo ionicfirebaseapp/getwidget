@@ -10,6 +10,10 @@ import 'package:ui_kit/components/header_bar/gf_title_bar.dart';
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
 import 'package:ui_kit/types/gf_type.dart';
 
+import '../../lib/colors/gf_color.dart';
+import '../../lib/shape/gf_shape.dart';
+import '../../lib/size/gf_size.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -38,39 +42,46 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-
-            GFTitleBar(
-              avatar: GFAvatar(
-                child: Text("tb"),
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              GFTitleBar(
+                avatar: GFAvatar(
+                  child: Text("GF"),
+                ),
+                title: Text('Title'),
+                subTitle: Text('Subtitle'),
+                icon: GFIconButton(
+                  onPressed: null,
+                  icon: Icon(Icons.favorite_border),
+                ),
               ),
-              title: Text('title'),
-              subTitle: Text('subtitle'),
-              icon: GFIconButton(
-                icon: Icon(Icons.favorite_border),
+              GFCard(
+                image: Image.asset("lib/assets/food.jpeg"),
+                title: GFTitleBar(
+                  avatar: GFAvatar(
+                    child: Text("tb"),
+                  ),
+                  title: Text(
+                    'title',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  subTitle: Text(
+                    'subtitle',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  icon: GFIconButton(
+                    onPressed: null,
+                    icon: Icon(Icons.favorite_border),
+                    type: GFType.transparent,
+                  ),
+                ),
               ),
-            ),
-
-            GFCard(
-              avatar: GFAvatar(
-                child: Text("tb"),
-              ),
-              title: Text('title'),
-              subTitle: Text('subtitle'),
-              icon: GFIconButton(
-                icon: Icon(Icons.favorite_border),
-                type: GFType.transparent,
-              ),
-            ),
-
-
 
 //            GFCard(
 //              headertype: GFAtb(),
@@ -88,24 +99,24 @@ class _MyHomePageState extends State<MyHomePage> {
 //            )
 //            GFimageoverlay()
 
-            GFAvatar(
+              GFAvatar(
 //              radius: 20.0,
-              child: Text("de"),
-              backgroundColor: Colors.pink,
+                child: Text("de"),
+                backgroundColor: Colors.pink,
 //              backgroundImage: ,
 //              foregroundColor: Colors.deepOrangeAccent,
 //              shape: GFShape.standard,
 //              size: GFSize.medium,
 //              borderRadius: BorderRadius.circular(20.0),
-            ),
-            GFIconBadges(
-              onPressed: null,
-              child: GFIconButton(
-                onPressed: null,
-                icon: Icon(Icons.ac_unit),
               ),
-              counterChild: GFBadge(
-                text: '12',
+              GFIconBadges(
+                onPressed: null,
+                child: GFIconButton(
+                  onPressed: null,
+                  icon: Icon(Icons.ac_unit),
+                ),
+                counterChild: GFBadge(
+                  text: '12',
 //                color: GFColor.dark,
 //                shape: GFShape.circle,
 //                size: GFSize.small,
@@ -113,11 +124,11 @@ class _MyHomePageState extends State<MyHomePage> {
 //                textColor: GFColor.white,
 //                textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
 //                borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.orange, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
+                ),
               ),
-            ),
-            GFIconButton(
-              onPressed: null,
-              icon: Icon(Icons.ac_unit),
+              GFIconButton(
+                onPressed: null,
+                icon: Icon(Icons.ac_unit),
 //              iconSize: 12.0,
 //              type: GFType.solid,
 //              shape: GFShape.pills,
@@ -132,41 +143,41 @@ class _MyHomePageState extends State<MyHomePage> {
 //              ),
 //              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 //              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-            ),
-            GFButtonBadge(
-              onPressed: null,
+              ),
+              GFButtonBadge(
+                onPressed: null,
 //              position: GFIconPosition.start,
 //              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 //              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-              text: 'goodies',
+                text: 'goodies',
 //              color: GFColor.danger,
 //              shape: GFShape.pills,
 //              type: GFType.outline,
 //              size: GFSize.small,
-            counterChild: GFBadge(
-              child: Text("12"),
+                counterChild: GFBadge(
+                  child: Text("12"),
 //              color: GFColor.dark,
 //              shape: GFShape.circle,
 //              size: GFSize.small,
 //              border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 //              textColor: GFColor.white,
 //              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
-            ),
-            ),
-            GFBadge(
-              text: '12',
+                ),
+              ),
+              GFBadge(
+                text: '12',
 //              color: GFColor.dark,
 //              shape: GFShape.circle,
 //              size: GFSize.small,
 //              border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 //              textColor: GFColor.white,
 //              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
-            ),
-            GFButton(
+              ),
+              GFButton(
 //              type: GFType.solid,
 //              shape: GFShape.pills,
-              text: 'goodies',
-              onPressed: () {},
+                text: 'goodies',
+                onPressed: () {},
 //              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
 //              size: GFSize.large,
 //              buttonBoxShadow: true,
@@ -184,10 +195,9 @@ class _MyHomePageState extends State<MyHomePage> {
 //              ),
 //              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 //              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-            ),
-          ],
-        ),
-      )
-    );
+              ),
+            ],
+          ),
+        ));
   }
 }
