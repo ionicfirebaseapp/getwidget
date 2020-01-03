@@ -62,7 +62,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: GFBadge()),
+      body: Center(
+          child: GFBadge(
+        shape: GFBadgeShape.circle,
+        color: Colors.green,
+        text: 'dk',
+        textColor: Colors.red,
+        child: Icon(Icons.add),
+      )),
     );
   }
 }
