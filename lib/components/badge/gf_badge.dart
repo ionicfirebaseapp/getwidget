@@ -19,26 +19,26 @@ class GFBadge extends StatefulWidget {
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
   final GFSize size;
 
-  /// text of type [String] is alternative to child. text will get priority over child
+  /// child of type [Widget] is alternative to child. text will get priority over child
   final Widget child;
 
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
 
-  /// text style of counter text
+  /// text style of counter text.
   final TextStyle textStyle;
 
   /// Pass [GFColor] or [Color]
   final dynamic textColor;
 
-  /// Create badges of all types, check out [GFButtonBadge] for button badges and [GFIconBadge] for icon badges
+  /// Create badges of all types, check out [GFButtonBadge] for button badges and [GFIconBadge] for icon type badges
   const GFBadge({
     Key key,
     this.textStyle,
     this.borderShape,
     this.shape = GFBadgeShape.standard,
-    this.color = GFColor.secondary,
-    this.textColor = GFColor.dark,
+    this.color = GFColor.danger,
+    this.textColor = GFColor.white,
     this.size = GFSize.medium,
     this.border,
     this.text,
@@ -64,7 +64,7 @@ class _GFBadgeState extends State<GFBadge> {
   void initState() {
     this.color = getGFColor(widget.color);
     this.textColor = getGFColor(widget.textColor);
-    this.child = widget.child == null ? Text(widget.text) : widget.child;
+    this.child = widget.text != null ? Text(widget.text ?? '') : widget.child;
     this.counterShape = widget.shape;
     this.size = widget.size;
     super.initState();
@@ -99,26 +99,28 @@ class _GFBadgeState extends State<GFBadge> {
     }
 
     if (this.size == GFSize.small) {
-      this.height = 18.0;
-      this.width = 24.0;
-      this.fontSize = 10.0;
+      this.height = getGFSize(this.size) * 0.56;
+      this.width = getGFSize(this.size) * 0.75;
+      this.fontSize = getGFSize(this.size) * 0.31;
     } else if (this.size == GFSize.medium) {
-      this.height = 20.0;
-      this.width = 26.0;
+      this.height = getGFSize(this.size) * 0.5;
+      this.width = getGFSize(this.size) * 0.65;
+      this.fontSize = getGFSize(this.size) * 0.3;
       this.fontSize = 12.0;
     } else if (this.size == GFSize.large) {
-      this.height = 24.0;
-      this.width = 30.0;
-      this.fontSize = 12.0;
+      this.height = getGFSize(this.size) * 0.428;
+      this.width = getGFSize(this.size) * 0.535;
+      this.fontSize = getGFSize(this.size) * 0.214;
     } else {
-      this.height = 20.0;
-      this.width = 26.0;
-      this.fontSize = 12.0;
+      this.height = getGFSize(this.size) * 0.56;
+      this.width = getGFSize(this.size) * 0.75;
+      this.fontSize = getGFSize(this.size) * 0.31;
     }
 
     return Container(
       height: this.height,
-      width: this.counterShape == GFBadgeShape.circle ? this.height : this.width,
+      width:
+          this.counterShape == GFBadgeShape.circle ? this.height : this.width,
       child: Material(
         textStyle: this.textColor != null
             ? TextStyle(color: this.textColor, fontSize: this.fontSize)

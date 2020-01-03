@@ -1,1 +1,1 @@
-enum GFButtonShape { standard, pills, square, circle }
+enum GFButtonShape { standard, pills, square }
