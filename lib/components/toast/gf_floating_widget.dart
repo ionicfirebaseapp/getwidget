@@ -29,17 +29,16 @@ class GFFloatingWidget extends StatefulWidget {
 class _GFFloatingWidgetState extends State<GFFloatingWidget> {
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
     return Stack(
+      alignment: Alignment.center,
+      fit: StackFit.loose,
       children: <Widget>[
         Container(
+          height:  MediaQuery.of(context).size.height,
           child: widget.body ?? Container(),
         ),
         Positioned(
-            top: widget.horizontalPosition != null
-                ? widget.horizontalPosition
-                : 0,
+            top:  widget.horizontalPosition != null ? widget.horizontalPosition : 0,
             left: widget.verticalPosition != null ? widget.verticalPosition : 0,
             child: Container(
               width: MediaQuery.of(context).size.width,
