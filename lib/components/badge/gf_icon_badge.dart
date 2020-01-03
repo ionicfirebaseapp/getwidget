@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_shape.dart';
+import 'package:ui_kit/shape/gf_badge_shape.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/position/gf_position.dart';
 
@@ -37,7 +37,7 @@ class _GFIconBadgesState extends State<GFIconBadges> {
   Widget icon;
   Function onPressed;
   GFType type;
-  GFShape shape;
+  GFBadgeShape shape;
   GFPosition position;
 
   @override
