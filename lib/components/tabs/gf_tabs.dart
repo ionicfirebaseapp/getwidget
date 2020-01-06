@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:ui_kit/components/button/gf_button.dart';
-
+import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
 
 class GFTabs extends StatefulWidget {
   GFTabs({
@@ -137,14 +136,13 @@ class GFTabs extends StatefulWidget {
   /// One widget per tab.
   /// Its length must match the length of the [GFTabs.tabs]
   /// list, as well as the [controller]'s [GFTabs.length].
-  final TabBarView tabBarView;
+  final GFTabBarView tabBarView;
 
   /// Typically a list of two or more [Tab] widgets.
   ///
   /// The length of this list must match the [controller]'s [TabController.length]
   /// and the length of the [TabBarView.children] list.
   final List<Widget> tabs;
-
 
   @override
   _GFTabsState createState() => _GFTabsState();

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/components/toast/gf_toast.dart';
 
 class GFFloatingWidget extends StatefulWidget {
   const GFFloatingWidget(
@@ -29,11 +28,12 @@ class GFFloatingWidget extends StatefulWidget {
 class _GFFloatingWidgetState extends State<GFFloatingWidget> {
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
     return Stack(
+      alignment: Alignment.center,
+      fit: StackFit.loose,
       children: <Widget>[
         Container(
+          height: MediaQuery.of(context).size.height,
           child: widget.body ?? Container(),
         ),
         Positioned(
