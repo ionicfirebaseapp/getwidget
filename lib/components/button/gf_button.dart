@@ -386,10 +386,12 @@ class _GFButtonState extends State<GFButton> {
       return null;
     }
 
+    print('ddddddddddddd ${this.size}');
+
     final Widget result = Container(
       constraints: this.icon == null
-          ? BoxConstraints(minHeight: 26.0, minWidth: 88.0)
-          : BoxConstraints(minHeight: 26.0, minWidth: 98.0),
+          ? BoxConstraints(minWidth: 88.0)
+          : BoxConstraints(minWidth: 98.0),
       decoration: getBoxShadow(),
       child: Material(
         textStyle: widget.textStyle == null
