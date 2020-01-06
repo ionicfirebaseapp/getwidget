@@ -81,109 +81,133 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: GFDrawer(
-        colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
-        backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
-        gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          stops: [0.1, 0.5, 0.7, 0.9],
-          colors: [
-            Colors.teal[800],
-            Colors.teal[600],
-            Colors.teal[400],
-            Colors.teal[200],
-          ],
-        ),
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            GFDrawerHeader(
-              currentAccountPicture: GFAvatar(
-                radius: 80.0,
-                backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
-              ),
-
-              decoration: BoxDecoration(
-                color: Colors.teal.withOpacity(0.45),
-              ),
-              otherAccountsPictures: <Widget>[
-                Image(
-                  image: NetworkImage("https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"),
-                  fit: BoxFit.cover,
-                ),
-                GFAvatar(
-                  child: Text("dcf"),
-                )
-              ],
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text('user'),
-                  Text('user@asdf.com'),
-                ],
-              ),
-            ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-              },
-            ),
-          ],
-        ),
-      ),
+//      drawer: GFDrawer(
+//        colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
+//        backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+//        gradient: LinearGradient(
+//          begin: Alignment.topRight,
+//          end: Alignment.bottomLeft,
+//          stops: [0.1, 0.5, 0.7, 0.9],
+//          colors: [
+//            Colors.teal[800],
+//            Colors.teal[600],
+//            Colors.teal[400],
+//            Colors.teal[200],
+//          ],
+//        ),
+//        child: ListView(
+//          padding: EdgeInsets.zero,
+//          children: <Widget>[
+//            GFDrawerHeader(
+//              currentAccountPicture: GFAvatar(
+//                radius: 80.0,
+//                backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+//              ),
+//
+//              decoration: BoxDecoration(
+//                color: Colors.teal.withOpacity(0.45),
+//              ),
+//              otherAccountsPictures: <Widget>[
+//                Image(
+//                  image: NetworkImage("https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"),
+//                  fit: BoxFit.cover,
+//                ),
+//                GFAvatar(
+//                  child: Text("dcf"),
+//                )
+//              ],
+//              child: Column(
+//                mainAxisAlignment: MainAxisAlignment.start,
+//                crossAxisAlignment: CrossAxisAlignment.start,
+//                children: <Widget>[
+//                  Text('user'),
+//                  Text('user@asdf.com'),
+//                ],
+//              ),
+//            ),
+//            ListTile(
+//              title: Text('Item 1'),
+//              onTap: () {
+//                Navigator.pop(context);
+//              },
+//            ),
+//            ListTile(
+//              title: Text('Item 2'),
+//              onTap: () {
+//              },
+//            ),
+//          ],
+//        ),
+//      ),
       appBar: GFAppBar(
         backgroundColor: Colors.tealAccent,
         centerTitle: true,
         title:
-//        Text("UI KIT"),
-        GFSegmentTabs(
-          tabController: tabController,
-          initialIndex: 0,
-          length: 3,
-          tabs: <Widget>[
-            Tab(
-              child: Text(
-                "cream",
-              ),
-            ),
-            Tab(
-              child: Text(
-                "serum",
-              ),
-            ),
-            Tab(
-              child: Text(
-                "toner",
-              ),
-            ),
-          ],
-//          borderRadius: BorderRadius.circular(50.0),
-        ),
-        trailing: <Widget>[
-          GFIconButton(icon: Icon(Icons.directions_bus), onPressed: null)
-        ],
+        Text("UI KIT"),
+//        GFSegmentTabs(
+//          tabController: tabController,
+//          initialIndex: 0,
+//          length: 3,
+//          tabs: <Widget>[
+//            Tab(
+//              child: Text(
+//                "cream",
+//              ),
+//            ),
+//            Tab(
+//              child: Text(
+//                "serum",
+//              ),
+//            ),
+//            Tab(
+//              child: Text(
+//                "toner",
+//              ),
+//            ),
+//          ],
+////          borderRadius: BorderRadius.circular(50.0),
+//        ),
+//        trailing: <Widget>[
+//          GFIconButton(icon: Icon(Icons.directions_bus), onPressed: null)
+//        ],
       ),
-      backgroundColor: Colors.teal,
+//      backgroundColor: Colors.teal,
       body:
 //        GFTabBarView(controller: tabController, children: <Widget>[
 //          Container(color: Colors.red),
 //          Container(color: Colors.green),
 //          Container(color: Colors.blue)
 //      ]),
-      SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-//            GFAvatar(
+    Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        GFButton(
+          text: 'goodies',
+          onPressed: () {},
+          icon: Icon(Icons.access_alarms),
+          hoverColor: Colors.orange,
+          color: Colors.pink,
+          focusColor: Colors.green,
+          type: GFType.outline,
+        ),
+        RawMaterialButton(
+          child: Text('goodies'),
+          onPressed: () {
+            print('dddddddddd');
+          },
+              fillColor: Colors.pink,
+          hoverColor: Colors.orange,
+          focusColor: Colors.teal,
+        ),
+      ],
+    )
+//      SingleChildScrollView(
+//        child: Column(
+//          mainAxisAlignment: MainAxisAlignment.center,
+//          crossAxisAlignment: CrossAxisAlignment.center,
+//          children: <Widget>[
+////            GFAvatar(
 //              radius: 80.0,
 //              backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
 //            ),
@@ -628,37 +652,37 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 ////              textColor: GFColor.white,
 ////              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
 //            ),
-            GFButton(
-              text: 'goodies',
-              onPressed: () {},
-              icon: Icon(Icons.access_alarms),
-            ),
-            GFButton(
-              type: GFType.solid,
-              shape: GFButtonShape.pills,
-              text: 'goodies',
-              onPressed: () {},
-//              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
-//              size: GFSize.large,
-//              buttonBoxShadow: true,
-//              blockButton: true,
-//              fullWidthButton: true,
-//              color: GFColor.primary,
-//              textColor: GFColor.secondary,
-//              icon: Icon(Icons.error, color: Colors.white,),
-//              position: GFIconPosition.start,
-//              boxShadow: BoxShadow(
-//                color: Colors.pink,
-//                blurRadius: 2.0,
-//                spreadRadius: 1.0,
-//                offset: Offset.zero,
-//              ),
-//              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
-//              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-            ),
-          ],
-        ),
-      ),
+
+//            GFButton(
+//              type: GFType.solid,
+//              shape: GFButtonShape.pills,
+//              text: 'goodies',
+//              onPressed: () {
+//                print('dddddddddd');
+//              },
+//              hoverColor: Colors.orange,
+//              focusColor: Colors.teal,
+////              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
+////              size: GFSize.large,
+////              buttonBoxShadow: true,
+////              blockButton: true,
+////              fullWidthButton: true,
+////              color: GFColor.primary,
+////              textColor: GFColor.secondary,
+////              icon: Icon(Icons.error, color: Colors.white,),
+////              position: GFIconPosition.start,
+////              boxShadow: BoxShadow(
+////                color: Colors.pink,
+////                blurRadius: 2.0,
+////                spreadRadius: 1.0,
+////                offset: Offset.zero,
+////              ),
+////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
+//            ),
+//          ],
+//        ),
+//      ),
     );
   }
 }
