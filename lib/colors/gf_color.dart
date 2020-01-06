@@ -73,7 +73,7 @@ Color getGFColor(dynamic color) {
         return TRANSPARENT;
         break;
       default:
-        return PRIMARY;
+        return null;
         break;
     }
   }

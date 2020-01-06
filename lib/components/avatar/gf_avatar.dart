@@ -58,7 +58,6 @@ class GFAvatar extends StatelessWidget {
 
 
   double get _minDiameter {
-    print('sssssssssssssss ${getGFSize(size)}');
     if (radius == null && minRadius == null && maxRadius == null) {
       return 1.5 * getGFSize(size);
     } else {

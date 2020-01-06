@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/button/gf_button.dart';
 import 'package:ui_kit/components/badge/gf_button_badge.dart';
 import 'package:ui_kit/components/avatar/gf_avatar.dart';
 import 'package:ui_kit/components/badge/gf_badge.dart';
-import 'package:ui_kit/components/segment_tabs/gf_segment_tabs.dart';
+import 'package:ui_kit/components/tabs/gf_segment_tabs.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/shape/gf_button_shape.dart';
@@ -175,24 +176,30 @@ class _MyHomePageState extends State<MyHomePage>
 
         GFButton(
           text: 'goodies',
-          onPressed: () {},
-          icon: Icon(Icons.access_alarms),
-          hoverColor: Colors.orange,
-          color: Colors.pink,
-          focusColor: Colors.green,
-          type: GFType.outline,
+          onPressed: (){},
+//          textColor: GFColor.danger,
+//          icon: Icon(Icons.access_alarms),
+//          hoverColor: GFColor.dark,
+//          color: GFColor.success,
+//          focusColor: GFColor.danger,
+          type: GFType.solid,
+//          splashColor: GFColor.warning,
+//          highlightColor: GFColor.alt,
 //          size: GFSize.large,
+//          disabledColor: GFColor.dark,
+//disabledTextColor: GFColor.light,
 //        blockButton: true,
 //          fullWidthButton: true,
         ),
-        RawMaterialButton(
-          child: Text('goodies'),
-          onPressed: () {
-            print('dddddddddd');
-          },
-              fillColor: Colors.pink,
-          hoverColor: Colors.orange,
-          focusColor: Colors.teal,
+
+        RaisedButton(
+          child: Text('goodiesMaterialButton button '),
+          onPressed: (){},
+//          color: Colors.blueGrey,
+//          hoverColor: Colors.blueGrey,
+//          focusColor: Colors.teal,
+//          splashColor: Colors.amber,
+//          highlightColor: Colors.cyan,
         ),
       ],
     )
