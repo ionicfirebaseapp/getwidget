@@ -1,1 +1,1 @@
-enum GFToggleType { android, ios, custom ,square  }
+enum GFToggleType { android, ios, custom, square }

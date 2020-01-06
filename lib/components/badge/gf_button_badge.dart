@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/shape/gf_badge_shape.dart';
-import 'package:ui_kit/shape/gf_badge_shape.dart';
-import 'package:ui_kit/shape/gf_badge_shape.dart';
-import 'package:ui_kit/shape/gf_badge_shape.dart';
 import 'package:ui_kit/shape/gf_button_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/types/gf_type.dart';
@@ -29,7 +26,7 @@ class GFButtonBadge extends StatefulWidget {
   /// Badge type of [GFType] i.e, solid, outline, transparent
   final GFType type;
 
-  /// Badge type of [GFBadgeShape] i.e, standard, pills, square
+  /// Badge type of [GFBadgeShape] i.e, standard, pills, square, circle
   final GFButtonShape shape;
 
   /// Pass [GFColor] or [Color]
@@ -41,10 +38,11 @@ class GFButtonBadge extends StatefulWidget {
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
   final dynamic size;
 
-  /// text of type [String] is alternative to child. text will get priority over child
+  /// text of type [String] is used to display text on the button.
   final String text;
 
-  /// text of type [String] is alternative to child. text will get priority over child
+  /// child of type [Widget] is alternative to child. text will get priority over child.
+  /// You can use [GFBadge] for compatibility.
   final Widget counterChild;
 
   /// icon type of [GFPosition] i.e, start, end
@@ -88,7 +86,11 @@ class _GFButtonBadgeState extends State<GFButtonBadge> {
   @override
   void initState() {
     this.color = getGFColor(widget.color);
-    this.textColor =  widget.type == GFType.outline && widget.textColor == null ? this.color : widget.textColor == null ? getGFColor(GFColor.dark) : getGFColor(widget.textColor);
+    this.textColor = (widget.type == GFType.outline && widget.textColor == null)
+        ? this.color
+        : widget.textColor == null
+            ? getGFColor(GFColor.dark)
+            : getGFColor(widget.textColor);
     this.onPressed = widget.onPressed;
     this.type = widget.type;
     this.shape = widget.shape;
@@ -104,19 +106,19 @@ class _GFButtonBadgeState extends State<GFButtonBadge> {
       child: Container(
         height: this.size,
         child: GFButton(
-            textStyle: widget.textStyle,
-            borderSide: widget.borderSide,
-            color: this.color,
-            textColor: this.textColor,
-            text: widget.text,
-            onPressed: this.onPressed,
-            type: this.type,
-            shape: this.shape,
-            position: this.position,
-            size: this.size,
-            borderShape: widget.borderShape,
-            icon: widget.counterChild
-            ),
+          textStyle: widget.textStyle,
+          borderSide: widget.borderSide,
+          color: this.color,
+          textColor: this.textColor,
+          text: widget.text,
+          onPressed: this.onPressed,
+          type: this.type,
+          shape: this.shape,
+          position: this.position,
+          size: this.size,
+          borderShape: widget.borderShape,
+          icon: widget.counterChild,
+        ),
       ),
     );
   }

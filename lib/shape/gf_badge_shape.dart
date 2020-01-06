@@ -1,1 +1,1 @@
-enum GFBadgeShape { standard, pills, square, circle}
+enum GFBadgeShape { standard, pills, square, circle }

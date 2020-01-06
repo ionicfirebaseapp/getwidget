@@ -17,9 +17,6 @@ enum GFDrawerAlignment {
   end,
 }
 
-// TODO(eseidel): Draw width should vary based on device size:
-// https://material.io/design/components/navigation-drawer.html#specs
-
 // Mobile:
 // Width = Screen width − 56 dp
 // Maximum width: 320dp
@@ -31,9 +28,9 @@ enum GFDrawerAlignment {
 // The right nav can vary depending on content.
 
 const double _kWidth = 304.0;
-const double _kEdgeDragWidth = 20.0;
-const double _kMinFlingVelocity = 365.0;
-const Duration _kBaseSettleDuration = Duration(milliseconds: 246);
+// const double _kEdgeDragWidth = 20.0;
+// const double _kMinFlingVelocity = 365.0;
+// const Duration _kBaseSettleDuration = Duration(milliseconds: 246);
 
 /// A material design panel that slides in horizontally from the edge of a
 /// [Scaffold] to show navigation links in an application.
@@ -125,15 +122,15 @@ class GFDrawer extends StatelessWidget {
   /// Typically used in the [Scaffold.drawer] property.
   ///
   /// The [elevation] must be non-negative.
-  const GFDrawer({
-    Key key,
-    this.elevation = 16.0,
-    this.child,
-    this.semanticLabel,
-    this.backgroundImage,
-    this.colorFilter,
-    this.gradient
-  }) : assert(elevation != null && elevation >= 0.0),
+  const GFDrawer(
+      {Key key,
+      this.elevation = 16.0,
+      this.child,
+      this.semanticLabel,
+      this.backgroundImage,
+      this.colorFilter,
+      this.gradient})
+      : assert(elevation != null && elevation >= 0.0),
         super(key: key);
 
   /// The z-coordinate at which to place this drawer relative to its parent.
@@ -198,17 +195,17 @@ class GFDrawer extends StatelessWidget {
               decoration: new BoxDecoration(
                 color: Colors.teal,
                 gradient: gradient,
-                image: backgroundImage != null ? new DecorationImage(
-                  image: backgroundImage,
-                  fit: BoxFit.cover,
-                  colorFilter: colorFilter,
-                ) : null,
+                image: backgroundImage != null
+                    ? new DecorationImage(
+                        image: backgroundImage,
+                        fit: BoxFit.cover,
+                        colorFilter: colorFilter,
+                      )
+                    : null,
               ),
-              child: child
-          ),
+              child: child),
         ),
       ),
     );
   }
 }
-
