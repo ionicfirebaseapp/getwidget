@@ -5,7 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
-const double _kLeadingWidth = kToolbarHeight; // So the leading button is square.
+const double _kLeadingWidth =
+    kToolbarHeight; // So the leading button is square.
 
 // Bottom justify the kToolbarHeight child which may overflow the top.
 class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
@@ -29,12 +30,6 @@ class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
   @override
   bool shouldRelayout(_ToolbarContainerLayout oldDelegate) => false;
 }
-
-// TODO(eseidel): Toolbar needs to change size based on orientation:
-// https://material.io/design/components/app-bars-top.html#specs
-// Mobile Landscape: 48dp
-// Mobile Portrait: 56dp
-// Tablet/Desktop: 64dp
 
 /// A material design app bar.
 ///
@@ -178,13 +173,14 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.titleSpacing = NavigationToolbar.kMiddleSpacing,
     this.toolbarOpacity = 1.0,
     this.bottomOpacity = 1.0,
-  }) : assert(automaticallyImplyLeading != null),
+  })  : assert(automaticallyImplyLeading != null),
         assert(elevation == null || elevation >= 0.0),
         assert(primary != null),
         assert(titleSpacing != null),
         assert(toolbarOpacity != null),
         assert(bottomOpacity != null),
-        preferredSize = Size.fromHeight(kToolbarHeight + (bottom?.preferredSize?.height ?? 0.0)),
+        preferredSize = Size.fromHeight(
+            kToolbarHeight + (bottom?.preferredSize?.height ?? 0.0)),
         super(key: key);
 
   /// A widget to display before the [title].
@@ -367,8 +363,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Size preferredSize;
 
   bool _getEffectiveCenterTitle(ThemeData theme) {
-    if (centerTitle != null)
-      return centerTitle;
+    if (centerTitle != null) return centerTitle;
     assert(theme.platform != null);
     switch (theme.platform) {
       case TargetPlatform.android:
@@ -407,33 +402,35 @@ class _GFAppBarState extends State<GFAppBar> {
     final bool hasDrawer = scaffold?.hasDrawer ?? false;
     final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
     final bool canPop = parentRoute?.canPop ?? false;
-    final bool useCloseButton = parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
+    final bool useCloseButton =
+        parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
 
-    IconThemeData overallIconTheme = widget.iconTheme
-        ?? appBarTheme.iconTheme
-        ?? theme.primaryIconTheme;
-    IconThemeData actionsIconTheme = widget.actionsIconTheme
-        ?? appBarTheme.actionsIconTheme
-        ?? overallIconTheme;
-    TextStyle centerStyle = widget.textTheme?.title
-        ?? appBarTheme.textTheme?.title
-        ?? theme.primaryTextTheme.title;
-    TextStyle sideStyle = widget.textTheme?.body1
-        ?? appBarTheme.textTheme?.body1
-        ?? theme.primaryTextTheme.body1;
+    IconThemeData overallIconTheme =
+        widget.iconTheme ?? appBarTheme.iconTheme ?? theme.primaryIconTheme;
+    IconThemeData actionsIconTheme = widget.actionsIconTheme ??
+        appBarTheme.actionsIconTheme ??
+        overallIconTheme;
+    TextStyle centerStyle = widget.textTheme?.title ??
+        appBarTheme.textTheme?.title ??
+        theme.primaryTextTheme.title;
+    TextStyle sideStyle = widget.textTheme?.body1 ??
+        appBarTheme.textTheme?.body1 ??
+        theme.primaryTextTheme.body1;
 
     if (widget.toolbarOpacity != 1.0) {
-      final double opacity = const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn).transform(widget.toolbarOpacity);
+      final double opacity =
+          const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn)
+              .transform(widget.toolbarOpacity);
       if (centerStyle?.color != null)
-        centerStyle = centerStyle.copyWith(color: centerStyle.color.withOpacity(opacity));
+        centerStyle =
+            centerStyle.copyWith(color: centerStyle.color.withOpacity(opacity));
       if (sideStyle?.color != null)
-        sideStyle = sideStyle.copyWith(color: sideStyle.color.withOpacity(opacity));
+        sideStyle =
+            sideStyle.copyWith(color: sideStyle.color.withOpacity(opacity));
       overallIconTheme = overallIconTheme.copyWith(
-          opacity: opacity * (overallIconTheme.opacity ?? 1.0)
-      );
+          opacity: opacity * (overallIconTheme.opacity ?? 1.0));
       actionsIconTheme = actionsIconTheme.copyWith(
-          opacity: opacity * (actionsIconTheme.opacity ?? 1.0)
-      );
+          opacity: opacity * (actionsIconTheme.opacity ?? 1.0));
     }
 
     Widget leading = widget.leading;
@@ -534,13 +531,11 @@ class _GFAppBarState extends State<GFAppBar> {
               child: appBar,
             ),
           ),
-          if (widget.bottomOpacity == 1.0)
-            widget.bottom
-          else
-            Opacity(
-              opacity: const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn).transform(widget.bottomOpacity),
-              child: widget.bottom,
-            ),
+          Opacity(
+            opacity: const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn)
+                .transform(widget.bottomOpacity),
+            child: widget.bottom,
+          ),
         ],
       );
     }
@@ -567,9 +562,9 @@ class _GFAppBarState extends State<GFAppBar> {
         ],
       );
     }
-    final Brightness brightness = widget.brightness
-        ?? appBarTheme.brightness
-        ?? theme.primaryColorBrightness;
+    final Brightness brightness = widget.brightness ??
+        appBarTheme.brightness ??
+        theme.primaryColorBrightness;
     final SystemUiOverlayStyle overlayStyle = brightness == Brightness.dark
         ? SystemUiOverlayStyle.light
         : SystemUiOverlayStyle.dark;
@@ -579,12 +574,10 @@ class _GFAppBarState extends State<GFAppBar> {
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: overlayStyle,
         child: Material(
-          color: widget.backgroundColor
-              ?? appBarTheme.color
-              ?? theme.primaryColor,
-          elevation: widget.elevation
-              ?? appBarTheme.elevation
-              ?? _defaultElevation,
+          color:
+              widget.backgroundColor ?? appBarTheme.color ?? theme.primaryColor,
+          elevation:
+              widget.elevation ?? appBarTheme.elevation ?? _defaultElevation,
           shape: widget.shape,
           child: Semantics(
             explicitChildNodes: true,
@@ -597,7 +590,7 @@ class _GFAppBarState extends State<GFAppBar> {
 }
 
 class _FloatingGFAppBar extends StatefulWidget {
-  const _FloatingGFAppBar({ Key key, this.child }) : super(key: key);
+  const _FloatingGFAppBar({Key key, this.child}) : super(key: key);
 
   final Widget child;
 
@@ -628,12 +621,12 @@ class _FloatingGFAppBarState extends State<_FloatingGFAppBar> {
   }
 
   RenderSliverFloatingPersistentHeader _headerRenderer() {
-    return context.findAncestorRenderObjectOfType<RenderSliverFloatingPersistentHeader>();
+    return context
+        .findAncestorRenderObjectOfType<RenderSliverFloatingPersistentHeader>();
   }
 
   void _isScrollingListener() {
-    if (_position == null)
-      return;
+    if (_position == null) return;
 
     // When a scroll stops, then maybe snap the appbar into view.
     // Similarly, when a scroll starts, then maybe stop the snap animation.
@@ -674,7 +667,7 @@ class _SliverGFAppBarDelegate extends SliverPersistentHeaderDelegate {
     @required this.snapConfiguration,
     @required this.stretchConfiguration,
     @required this.shape,
-  }) : assert(primary || topPadding == 0.0),
+  })  : assert(primary || topPadding == 0.0),
         _bottomHeight = bottom?.preferredSize?.height ?? 0.0;
 
   final Widget leading;
@@ -703,10 +696,13 @@ class _SliverGFAppBarDelegate extends SliverPersistentHeaderDelegate {
   final double _bottomHeight;
 
   @override
-  double get minExtent => collapsedHeight ?? (topPadding + kToolbarHeight + _bottomHeight);
+  double get minExtent =>
+      collapsedHeight ?? (topPadding + kToolbarHeight + _bottomHeight);
 
   @override
-  double get maxExtent => math.max(topPadding + (expandedHeight ?? kToolbarHeight + _bottomHeight), minExtent);
+  double get maxExtent => math.max(
+      topPadding + (expandedHeight ?? kToolbarHeight + _bottomHeight),
+      minExtent);
 
   @override
   final FloatingHeaderSnapConfiguration snapConfiguration;
@@ -715,7 +711,8 @@ class _SliverGFAppBarDelegate extends SliverPersistentHeaderDelegate {
   final OverScrollHeaderStretchConfiguration stretchConfiguration;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     final double visibleMainHeight = maxExtent - shrinkOffset - topPadding;
 
     // Truth table for `toolbarOpacity`:
@@ -747,7 +744,11 @@ class _SliverGFAppBarDelegate extends SliverPersistentHeaderDelegate {
             ? Semantics(child: flexibleSpace, header: true)
             : flexibleSpace,
         bottom: bottom,
-        elevation: forceElevated || overlapsContent || (pinned && shrinkOffset > maxExtent - minExtent) ? elevation ?? 4.0 : 0.0,
+        elevation: forceElevated ||
+                overlapsContent ||
+                (pinned && shrinkOffset > maxExtent - minExtent)
+            ? elevation ?? 4.0
+            : 0.0,
         backgroundColor: backgroundColor,
         brightness: brightness,
         iconTheme: iconTheme,
@@ -758,7 +759,8 @@ class _SliverGFAppBarDelegate extends SliverPersistentHeaderDelegate {
         titleSpacing: titleSpacing,
         shape: shape,
         toolbarOpacity: toolbarOpacity,
-        bottomOpacity: pinned ? 1.0 : (visibleMainHeight / _bottomHeight).clamp(0.0, 1.0),
+        bottomOpacity:
+            pinned ? 1.0 : (visibleMainHeight / _bottomHeight).clamp(0.0, 1.0),
       ),
     );
     return floating ? _FloatingGFAppBar(child: appBar) : appBar;
@@ -766,28 +768,28 @@ class _SliverGFAppBarDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant _SliverGFAppBarDelegate oldDelegate) {
-    return leading != oldDelegate.leading
-        || automaticallyImplyLeading != oldDelegate.automaticallyImplyLeading
-        || title != oldDelegate.title
-        || actions != oldDelegate.actions
-        || flexibleSpace != oldDelegate.flexibleSpace
-        || bottom != oldDelegate.bottom
-        || _bottomHeight != oldDelegate._bottomHeight
-        || elevation != oldDelegate.elevation
-        || backgroundColor != oldDelegate.backgroundColor
-        || brightness != oldDelegate.brightness
-        || iconTheme != oldDelegate.iconTheme
-        || actionsIconTheme != oldDelegate.actionsIconTheme
-        || textTheme != oldDelegate.textTheme
-        || primary != oldDelegate.primary
-        || centerTitle != oldDelegate.centerTitle
-        || titleSpacing != oldDelegate.titleSpacing
-        || expandedHeight != oldDelegate.expandedHeight
-        || topPadding != oldDelegate.topPadding
-        || pinned != oldDelegate.pinned
-        || floating != oldDelegate.floating
-        || snapConfiguration != oldDelegate.snapConfiguration
-        || stretchConfiguration != oldDelegate.stretchConfiguration;
+    return leading != oldDelegate.leading ||
+        automaticallyImplyLeading != oldDelegate.automaticallyImplyLeading ||
+        title != oldDelegate.title ||
+        actions != oldDelegate.actions ||
+        flexibleSpace != oldDelegate.flexibleSpace ||
+        bottom != oldDelegate.bottom ||
+        _bottomHeight != oldDelegate._bottomHeight ||
+        elevation != oldDelegate.elevation ||
+        backgroundColor != oldDelegate.backgroundColor ||
+        brightness != oldDelegate.brightness ||
+        iconTheme != oldDelegate.iconTheme ||
+        actionsIconTheme != oldDelegate.actionsIconTheme ||
+        textTheme != oldDelegate.textTheme ||
+        primary != oldDelegate.primary ||
+        centerTitle != oldDelegate.centerTitle ||
+        titleSpacing != oldDelegate.titleSpacing ||
+        expandedHeight != oldDelegate.expandedHeight ||
+        topPadding != oldDelegate.topPadding ||
+        pinned != oldDelegate.pinned ||
+        floating != oldDelegate.floating ||
+        snapConfiguration != oldDelegate.snapConfiguration ||
+        stretchConfiguration != oldDelegate.stretchConfiguration;
   }
 
   @override
@@ -905,7 +907,7 @@ class SliverGFAppBar extends StatefulWidget {
     this.stretchTriggerOffset = 100.0,
     this.onStretchTrigger,
     this.shape,
-  }) : assert(automaticallyImplyLeading != null),
+  })  : assert(automaticallyImplyLeading != null),
         assert(forceElevated != null),
         assert(primary != null),
         assert(titleSpacing != null),
@@ -913,7 +915,8 @@ class SliverGFAppBar extends StatefulWidget {
         assert(pinned != null),
         assert(snap != null),
         assert(stretch != null),
-        assert(floating || !snap, 'The "snap" argument only makes sense for floating app bars.'),
+        assert(floating || !snap,
+            'The "snap" argument only makes sense for floating app bars.'),
         assert(stretchTriggerOffset > 0.0),
         super(key: key);
 
@@ -1177,7 +1180,8 @@ class SliverGFAppBar extends StatefulWidget {
 
 // This class is only Stateful because it owns the TickerProvider used
 // by the floating appbar snap animation (via FloatingHeaderSnapConfiguration).
-class _SliverGFAppBarState extends State<SliverGFAppBar> with TickerProviderStateMixin {
+class _SliverGFAppBarState extends State<SliverGFAppBar>
+    with TickerProviderStateMixin {
   FloatingHeaderSnapConfiguration _snapConfiguration;
   OverScrollHeaderStretchConfiguration _stretchConfiguration;
 
@@ -1216,16 +1220,18 @@ class _SliverGFAppBarState extends State<SliverGFAppBar> with TickerProviderStat
     super.didUpdateWidget(oldWidget);
     if (widget.snap != oldWidget.snap || widget.floating != oldWidget.floating)
       _updateSnapConfiguration();
-    if (widget.stretch != oldWidget.stretch)
-      _updateStretchConfiguration();
+    if (widget.stretch != oldWidget.stretch) _updateStretchConfiguration();
   }
 
   @override
   Widget build(BuildContext context) {
     assert(!widget.primary || debugCheckHasMediaQuery(context));
-    final double topPadding = widget.primary ? MediaQuery.of(context).padding.top : 0.0;
-    final double collapsedHeight = (widget.pinned && widget.floating && widget.bottom != null)
-        ? widget.bottom.preferredSize.height + topPadding : null;
+    final double topPadding =
+        widget.primary ? MediaQuery.of(context).padding.top : 0.0;
+    final double collapsedHeight =
+        (widget.pinned && widget.floating && widget.bottom != null)
+            ? widget.bottom.preferredSize.height + topPadding
+            : null;
 
     return MediaQuery.removePadding(
       context: context,
@@ -1268,7 +1274,9 @@ class _SliverGFAppBarState extends State<SliverGFAppBar> with TickerProviderStat
 // center it within its (NavigationToolbar) parent, and allow the
 // parent to constrain the title's actual height.
 class _GFAppBarTitleBox extends SingleChildRenderObjectWidget {
-  const _GFAppBarTitleBox({ Key key, @required Widget child }) : assert(child != null), super(key: key, child: child);
+  const _GFAppBarTitleBox({Key key, @required Widget child})
+      : assert(child != null),
+        super(key: key, child: child);
 
   @override
   _RenderGFAppBarTitleBox createRenderObject(BuildContext context) {
@@ -1278,7 +1286,8 @@ class _GFAppBarTitleBox extends SingleChildRenderObjectWidget {
   }
 
   @override
-  void updateRenderObject(BuildContext context, _RenderGFAppBarTitleBox renderObject) {
+  void updateRenderObject(
+      BuildContext context, _RenderGFAppBarTitleBox renderObject) {
     renderObject.textDirection = Directionality.of(context);
   }
 }
@@ -1287,11 +1296,15 @@ class _RenderGFAppBarTitleBox extends RenderAligningShiftedBox {
   _RenderGFAppBarTitleBox({
     RenderBox child,
     TextDirection textDirection,
-  }) : super(child: child, alignment: Alignment.center, textDirection: textDirection);
+  }) : super(
+            child: child,
+            alignment: Alignment.center,
+            textDirection: textDirection);
 
   @override
   void performLayout() {
-    final BoxConstraints innerConstraints = constraints.copyWith(maxHeight: double.infinity);
+    final BoxConstraints innerConstraints =
+        constraints.copyWith(maxHeight: double.infinity);
     child.layout(innerConstraints, parentUsesSize: true);
     size = constraints.constrain(child.size);
     alignChild();

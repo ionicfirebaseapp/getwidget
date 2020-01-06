@@ -55,7 +55,7 @@ class GFToggle extends StatefulWidget {
   final Duration duration;
 
   /// Button type of [GFToggleType] i.e, android, ios, custom, sqaure
-  GFToggleType type;
+  final GFToggleType type;
 
   /// This property must not be null. Used to set the current state of toggle
   final bool value;
@@ -85,8 +85,10 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    animationController.dispose();
+    if(animationController!=null) animationController.dispose();
+    if(controller!=null) controller.dispose();
     super.dispose();
+
   }
 
   @override
