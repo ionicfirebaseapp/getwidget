@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/colors/gf_color.dart';
-import 'package:ui_kit/types/gf_heading_type.dart';
+import 'package:ui_kit/types/gf_typography_type.dart';
 
-class GFHeader extends StatelessWidget {
-  const GFHeader(
+class GFTypography extends StatelessWidget {
+  const GFTypography(
       {Key key,
-        this.type = GFHeadingType.typo4,
+        this.type = GFTypographyType.typo4,
       this.child,
       this.text,
       this.icon,
@@ -49,32 +49,32 @@ class GFHeader extends StatelessWidget {
   ///pass [double] type to increase or decrease the width of the divider
   final double dividerWidth;
 
-  ///backgroundImage of type [ImageProvider] to set the background of [GFHeader]
+  ///backgroundImage of type [ImageProvider] to set the background of [GFTypography]
   final ImageProvider backgroundImage;
 
-  ///backgroundImagecolorFilter of type [ColorFilter] to set the background color of [GFHeader] only when backgroundImage is available
+  ///backgroundImagecolorFilter of type [ColorFilter] to set the background color of [GFTypography] only when backgroundImage is available
   final ColorFilter backgroundImagecolorFilter;
 
 
-  /// header type of [GFHeaderType] i.e, typo1, typo2, typo3, typo4, typo5, typo6
-  final GFHeadingType type;
+  /// header type of [GFTypographyType] i.e, typo1, typo2, typo3, typo4, typo5, typo6
+  final GFTypographyType type;
 
   @override
   Widget build(BuildContext context) {
 
     double fontSize;
 
-    if(type == GFHeadingType.typo1){
+    if(type == GFTypographyType.typo1){
       fontSize = 25.0;
-    }else if(type == GFHeadingType.typo2){
+    }else if(type == GFTypographyType.typo2){
       fontSize = 22.0;
-    }else if (type == GFHeadingType.typo3){
+    }else if (type == GFTypographyType.typo3){
       fontSize = 19.0;
-    }else if(type == GFHeadingType.typo4){
+    }else if(type == GFTypographyType.typo4){
       fontSize = 17.0;
-    }else if (type == GFHeadingType.typo5){
+    }else if (type == GFTypographyType.typo5){
       fontSize = 15.0;
-    }else if(type == GFHeadingType.typo6){
+    }else if(type == GFTypographyType.typo6){
       fontSize = 13.0;
     }
 

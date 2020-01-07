@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
 
 
@@ -166,15 +167,15 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
       width: widget.width == null ? 240.0 : widget.width,
       decoration: BoxDecoration(
         border: widget.border == null ? Border.all(color: Colors.black26, width: 2.0) : widget.border,
-        borderRadius: widget.borderRadius == null ? BorderRadius.circular(8.0) : widget.borderRadius,
+        borderRadius: widget.borderRadius == null ? BorderRadius.circular(4.0) : widget.borderRadius,
       ),
       child: DefaultTabController(
         initialIndex: widget.initialIndex,
         length: widget.length,
         child: Material(
-          borderRadius: widget.borderRadius == null ? BorderRadius.circular(8.0) : widget.borderRadius,
+          borderRadius: widget.borderRadius == null ? BorderRadius.circular(2.0) : widget.borderRadius,
           type: MaterialType.button,
-          color: widget.tabBarColor ?? Colors.transparent,
+          color: widget.tabBarColor ?? getGFColor(GFColor.primary),
           child: TabBar(
             controller: widget.tabController,
             labelColor: widget.labelColor,
@@ -185,9 +186,9 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
             indicatorSize: widget.indicatorSize,
             indicator: widget.indicator == null ?
               BoxDecoration(
-                color: widget.indicatorColor == null ? Colors.blueGrey : widget.indicatorColor,
-                border: Border.all(color: widget.indicatorColor == null ? Colors.blueGrey : widget.indicatorColor, width: 2.0),
-                borderRadius: widget.borderRadius == null ? BorderRadius.circular(6.0) : widget.borderRadius,
+                color: widget.indicatorColor == null ? Colors.black26 : widget.indicatorColor,
+                border: Border.all(color: widget.indicatorColor == null ? Colors.transparent : widget.indicatorColor, width: 2.0),
+                borderRadius: widget.borderRadius == null ? BorderRadius.circular(4.0) : widget.borderRadius,
               ) : widget.indicator,
             indicatorPadding: widget.indicatorPadding,
             indicatorWeight: widget.indicatorWeight,

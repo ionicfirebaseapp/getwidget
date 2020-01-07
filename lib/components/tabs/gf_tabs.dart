@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
 
 class GFTabs extends StatefulWidget {
@@ -161,7 +162,7 @@ class _GFTabsState extends State<GFTabs> {
             children: <Widget>[
               Material(
                 type: MaterialType.button,
-                color: widget.tabBarColor ?? Theme.of(context).primaryColor,
+                color: widget.tabBarColor ?? getGFColor(GFColor.primary),
                 child: TabBar(
                   labelColor: widget.labelColor,
                   unselectedLabelColor: widget.unselectedLabelColor,
