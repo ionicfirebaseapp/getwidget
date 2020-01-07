@@ -192,17 +192,19 @@ class _MyHomePageState extends State<MyHomePage>
 //          disabledTextColor: GFColor.light,
           blockButton: true,
 //          fullWidthButton: true,
+//          borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+//          borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
         ),
 
         GFIconButton(
           onPressed: null,
-          icon: Icon(Icons.ac_unit),
+          icon: Icon(Icons.ac_unit,),
 //              iconSize: 12.0,
           type: GFType.outline2x,
 //          shape: GFButtonShape.pills,
 //          size: GFSize.large,
 //              buttonBoxShadow: true,
-//              color: GFColor.primary,
+              color: GFColor.secondary,
 //              boxShadow: BoxShadow(
 //                color: Colors.pink,
 //                blurRadius: 2.0,

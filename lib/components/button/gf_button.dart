@@ -422,7 +422,7 @@ class _GFButtonState extends State<GFButton> {
       color: this.color == null
           ? themeColor
           : widget.borderSide == null ? getBorderColor() : widget.borderSide.color,
-      width: widget.borderSide?.width ?? widget.type == GFType.outline2x ? 2.0 : 1.0,
+      width: widget.borderSide?.width == null ?  widget.type == GFType.outline2x ? 2.0 : 1.0 : widget.borderSide?.width,
     );
 
     Size minSize;
