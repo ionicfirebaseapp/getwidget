@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/components/button_bar/gf_button_bar.dart';
+import 'package:ui_kit/components/button/gf_button_bar.dart';
 import 'package:ui_kit/components/list_tile/gf_list_tile.dart';
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
 import 'package:ui_kit/position/gf_position.dart';

@@ -1,1 +1,1 @@
-enum GFType { solid, outline, transparent }
+enum GFType { solid, outline, outline2x, transparent }

@@ -134,6 +134,8 @@ class _GFIconButtonState extends State<GFIconButton> {
     else
       currentColor = widget.disabledColor ?? Theme.of(context).disabledColor;
 
+
+
     final Color themeColor =
         Theme.of(context).colorScheme.onSurface.withOpacity(0.12);
     final BorderSide outlineBorder = BorderSide(
@@ -167,21 +169,17 @@ class _GFIconButtonState extends State<GFIconButton> {
     }
 
     if (widget.size == GFSize.small) {
-      this.height = 36.0;
-      this.width = 36.0;
-      this.iconPixel = 24.0;
+      this.height = 30.0;
+      this.width = 30.0;
+      this.iconPixel = 18.0;
     } else if (widget.size == GFSize.medium) {
-      this.height = 44.0;
-      this.width = 44.0;
-      this.iconPixel = 24.0;
+      this.height = 35.0;
+      this.width = 35.0;
+      this.iconPixel = 18.0;
     } else if (widget.size == GFSize.large) {
-      this.height = 50.0;
-      this.width = 50.0;
-      this.iconPixel = 28.0;
-    } else {
-      this.height = 44.0;
-      this.width = 44.0;
-      this.iconPixel = 24.0;
+      this.height = 40.0;
+      this.width = 40.0;
+      this.iconPixel = 18.0;
     }
 
     Widget result = Container(
