@@ -16,6 +16,7 @@ import 'package:ui_kit/components/drawer/gf_drawer_header.dart';
 import 'package:ui_kit/components/toast/gf_toast.dart';
 import 'package:ui_kit/components/appbar/gf_appbar.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
+import 'package:ui_kit/components/button/gf_icon_button.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -180,16 +181,36 @@ class _MyHomePageState extends State<MyHomePage>
 //          textColor: GFColor.danger,
 //          icon: Icon(Icons.access_alarms),
 //          hoverColor: GFColor.dark,
-//          color: GFColor.success,
+          color: GFColor.secondary,
 //          focusColor: GFColor.danger,
-          type: GFType.solid,
+          type: GFType.outline2x,
+          shape: GFButtonShape.pills,
 //          splashColor: GFColor.warning,
 //          highlightColor: GFColor.alt,
 //          size: GFSize.large,
 //          disabledColor: GFColor.dark,
-//disabledTextColor: GFColor.light,
-//        blockButton: true,
+//          disabledTextColor: GFColor.light,
+          blockButton: true,
 //          fullWidthButton: true,
+        ),
+
+        GFIconButton(
+          onPressed: null,
+          icon: Icon(Icons.ac_unit),
+//              iconSize: 12.0,
+          type: GFType.outline2x,
+//          shape: GFButtonShape.pills,
+//          size: GFSize.large,
+//              buttonBoxShadow: true,
+//              color: GFColor.primary,
+//              boxShadow: BoxShadow(
+//                color: Colors.pink,
+//                blurRadius: 2.0,
+//                spreadRadius: 1.0,
+//                offset: Offset.zero,
+//              ),
+//              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+//              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
         ),
 
         RaisedButton(
