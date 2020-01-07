@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/button/gf_icon_button.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
-import 'package:ui_kit/components/header/gf_header.dart';
-import 'package:ui_kit/types/gf_heading_type.dart';
+import 'package:ui_kit/components/typography/gf_typography.dart';
+import 'package:ui_kit/types/gf_typography_type.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/size/gf_size.dart';
 
@@ -28,9 +28,9 @@ class _IconButtonsState extends State<IconButtons> {
           GFCard(
             content: Column(
               children: <Widget>[
-                GFHeader(
+                GFTypography(
                   text: 'Solid Icon Button',
-                  type: GFHeadingType.typo6,
+                  type: GFTypographyType.typo6,
                 ),
                 SizedBox(
                   height: 15.0,
@@ -100,9 +100,9 @@ class _IconButtonsState extends State<IconButtons> {
           GFCard(
             content: Column(
               children: <Widget>[
-                GFHeader(
+                GFTypography(
                   text: 'Outline Icon Button',
-                  type: GFHeadingType.typo6,
+                  type: GFTypographyType.typo6,
                 ),
                 SizedBox(
                   height: 15.0,
@@ -168,9 +168,9 @@ class _IconButtonsState extends State<IconButtons> {
           GFCard(
             content: Column(
               children: <Widget>[
-                GFHeader(
+                GFTypography(
                   text: 'Transparent Icon Button',
-                  type: GFHeadingType.typo6,
+                  type: GFTypographyType.typo6,
                 ),
                 SizedBox(
                   height: 15.0,

@@ -4,14 +4,14 @@ import 'package:ui_kit/components/badge/gf_badge.dart';
 import 'package:ui_kit/components/badge/gf_button_badge.dart';
 import 'package:ui_kit/components/badge/gf_icon_badge.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
-import 'package:ui_kit/components/header/gf_header.dart';
+import 'package:ui_kit/components/typography/gf_typography.dart';
 import 'package:ui_kit/components/tabs/gf_tabs.dart';
 import 'package:ui_kit/components/button/gf_icon_button.dart';
 import 'package:ui_kit/position/gf_position.dart';
 import 'package:ui_kit/shape/gf_badge_shape.dart';
 import 'package:ui_kit/shape/gf_button_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
-import 'package:ui_kit/types/gf_heading_type.dart';
+import 'package:ui_kit/types/gf_typography_type.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
 
@@ -51,9 +51,9 @@ class _BadgesState extends State<Badges> {
                 GFCard(
                   content: Column(
                     children: <Widget>[
-                      GFHeader(
+                      GFTypography(
                         text: 'Types of Badges',
-                        type: GFHeadingType.typo6,
+                        type: GFTypographyType.typo6,
                       ),
                       SizedBox(
                         height: 10,
@@ -90,9 +90,9 @@ class _BadgesState extends State<Badges> {
                 GFCard(
                   content: Column(
                     children: <Widget>[
-                      GFHeader(
+                      GFTypography(
                         text: 'Circled Badges with different Sizes',
-                        type: GFHeadingType.typo6,
+                        type: GFTypographyType.typo6,
                       ),
                       SizedBox(
                         height: 10,
@@ -126,9 +126,9 @@ class _BadgesState extends State<Badges> {
                 GFCard(
                   content: Column(
                     children: <Widget>[
-                      GFHeader(
+                      GFTypography(
                         text: 'Squared Badges with different sizes',
-                        type: GFHeadingType.typo6,
+                        type: GFTypographyType.typo6,
                       ),
                       SizedBox(
                         height: 10,
@@ -162,9 +162,9 @@ class _BadgesState extends State<Badges> {
                 GFCard(
                   content: Column(
                     children: <Widget>[
-                      GFHeader(
+                      GFTypography(
                         text: 'Pills with different sizes',
-                        type: GFHeadingType.typo6,
+                        type: GFTypographyType.typo6,
                       ),
                       SizedBox(
                         height: 10,
@@ -201,9 +201,9 @@ class _BadgesState extends State<Badges> {
                 GFCard(
                   content: Column(
                     children: <Widget>[
-                      GFHeader(
+                      GFTypography(
                         text: 'Standard Badges with different sizes',
-                        type: GFHeadingType.typo6,
+                        type: GFTypographyType.typo6,
                       ),
                       SizedBox(
                         height: 10,
@@ -241,9 +241,9 @@ class _BadgesState extends State<Badges> {
                 GFCard(
                   content: Column(
                     children: <Widget>[
-                      GFHeader(
+                      GFTypography(
                         text: 'Types of Button Badges',
-                        type: GFHeadingType.typo6,
+                        type: GFTypographyType.typo6,
                       ),
                       SizedBox(
                         height: 10,
@@ -255,7 +255,7 @@ class _BadgesState extends State<Badges> {
                             shape: GFButtonShape.pills,
                             type: GFType.solid,
                             color: GFColor.info,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               color: GFColor.warning,
                               shape: GFBadgeShape.circle,
@@ -268,7 +268,7 @@ class _BadgesState extends State<Badges> {
                             shape: GFButtonShape.square,
                             type: GFType.solid,
                             color: GFColor.warning,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               shape: GFBadgeShape.circle,
                               color: GFColor.info,
@@ -280,7 +280,7 @@ class _BadgesState extends State<Badges> {
                             color: GFColor.success,
                             shape: GFButtonShape.standard,
                             type: GFType.solid,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               textColor: GFColor.white,
                               color: GFColor.danger,
@@ -297,9 +297,9 @@ class _BadgesState extends State<Badges> {
                 GFCard(
                   content: Column(
                     children: <Widget>[
-                      GFHeader(
+                      GFTypography(
                         text: 'Positions of Button Badges',
-                        type: GFHeadingType.typo6,
+                        type: GFTypographyType.typo6,
                       ),
                       SizedBox(
                         height: 10,
@@ -311,7 +311,7 @@ class _BadgesState extends State<Badges> {
                             shape: GFButtonShape.pills,
                             type: GFType.solid,
                             color: GFColor.info,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               color: GFColor.warning,
                               shape: GFBadgeShape.circle,
@@ -324,7 +324,7 @@ class _BadgesState extends State<Badges> {
                             shape: GFButtonShape.square,
                             type: GFType.solid,
                             color: GFColor.warning,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               shape: GFBadgeShape.circle,
                               color: GFColor.info,
@@ -337,7 +337,7 @@ class _BadgesState extends State<Badges> {
                             color: GFColor.success,
                             shape: GFButtonShape.standard,
                             type: GFType.solid,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               textColor: GFColor.white,
                               color: GFColor.danger,
@@ -355,9 +355,9 @@ class _BadgesState extends State<Badges> {
                 GFCard(
                   content: Column(
                     children: <Widget>[
-                      GFHeader(
+                      GFTypography(
                         text: 'Pilled shape Button Badges with sizes',
-                        type: GFHeadingType.typo6,
+                        type: GFTypographyType.typo6,
                       ),
                       SizedBox(
                         height: 10,
@@ -370,7 +370,7 @@ class _BadgesState extends State<Badges> {
                             size: GFSize.large,
                             type: GFType.solid,
                             color: GFColor.info,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               color: GFColor.warning,
                               size: GFSize.large,
@@ -385,7 +385,7 @@ class _BadgesState extends State<Badges> {
                             size: GFSize.medium,
                             type: GFType.outline,
                             color: GFColor.info,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               color: GFColor.warning,
                               size: GFSize.medium,
@@ -400,7 +400,7 @@ class _BadgesState extends State<Badges> {
                             size: GFSize.small,
                             type: GFType.transparent,
                             color: GFColor.info,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               color: GFColor.warning,
                               size: GFSize.small,
@@ -418,9 +418,9 @@ class _BadgesState extends State<Badges> {
                 GFCard(
                   content: Column(
                     children: <Widget>[
-                      GFHeader(
+                      GFTypography(
                         text: 'Squared shape Button Badges with sizes',
-                        type: GFHeadingType.typo6,
+                        type: GFTypographyType.typo6,
                       ),
                       SizedBox(
                         height: 10,
@@ -433,7 +433,7 @@ class _BadgesState extends State<Badges> {
                             size: GFSize.large,
                             type: GFType.solid,
                             color: GFColor.warning,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               color: GFColor.info,
                               size: GFSize.large,
@@ -448,7 +448,7 @@ class _BadgesState extends State<Badges> {
                             size: GFSize.medium,
                             type: GFType.outline,
                             color: GFColor.warning,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               color: GFColor.info,
                               size: GFSize.medium,
@@ -463,7 +463,7 @@ class _BadgesState extends State<Badges> {
                             size: GFSize.small,
                             type: GFType.transparent,
                             color: GFColor.warning,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               color: GFColor.info,
                               size: GFSize.small,
@@ -481,9 +481,9 @@ class _BadgesState extends State<Badges> {
                 GFCard(
                   content: Column(
                     children: <Widget>[
-                      GFHeader(
+                      GFTypography(
                         text: 'Standard  Button Badges with sizes',
-                        type: GFHeadingType.typo6,
+                        type: GFTypographyType.typo6,
                       ),
                       SizedBox(
                         height: 10,
@@ -496,7 +496,7 @@ class _BadgesState extends State<Badges> {
                             size: GFSize.large,
                             type: GFType.solid,
                             color: GFColor.primary,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               color: GFColor.danger,
                               size: GFSize.large,
@@ -512,7 +512,7 @@ class _BadgesState extends State<Badges> {
                             size: GFSize.medium,
                             type: GFType.outline,
                             color: GFColor.primary,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               color: GFColor.danger,
                               textColor: GFColor.white,
@@ -528,7 +528,7 @@ class _BadgesState extends State<Badges> {
                             size: GFSize.small,
                             type: GFType.transparent,
                             color: GFColor.primary,
-                            counterChild: GFBadge(
+                            icon: GFBadge(
                               text: '12',
                               color: GFColor.danger,
                               textColor: GFColor.white,
@@ -551,9 +551,9 @@ class _BadgesState extends State<Badges> {
                 GFCard(
                   content: Column(
                     children: <Widget>[
-                      GFHeader(
+                      GFTypography(
                         text: 'Types of Icon Badges',
-                        type: GFHeadingType.typo6,
+                        type: GFTypographyType.typo6,
                       ),
                       SizedBox(
                         height: 10,
@@ -625,9 +625,9 @@ class _BadgesState extends State<Badges> {
                 GFCard(
                   content: Column(
                     children: <Widget>[
-                      GFHeader(
+                      GFTypography(
                         text: 'Shapes of Icon Badges',
-                        type: GFHeadingType.typo6,
+                        type: GFTypographyType.typo6,
                       ),
                       SizedBox(
                         height: 10,
@@ -693,9 +693,9 @@ class _BadgesState extends State<Badges> {
                 GFCard(
                   content: Column(
                     children: <Widget>[
-                      GFHeader(
+                      GFTypography(
                         text: 'Sizes of Icon Badges',
-                        type: GFHeadingType.typo6,
+                        type: GFTypographyType.typo6,
                       ),
                       SizedBox(
                         height: 10,

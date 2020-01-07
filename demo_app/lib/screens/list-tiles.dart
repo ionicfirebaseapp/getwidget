@@ -3,10 +3,10 @@ import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/avatar/gf_avatar.dart';
 import 'package:ui_kit/components/button/gf_icon_button.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
-import 'package:ui_kit/components/header/gf_header.dart';
+import 'package:ui_kit/components/typography/gf_typography.dart';
 import 'package:ui_kit/components/list_tile/gf_list_tile.dart';
 import 'package:ui_kit/shape/gf_avatar_shape.dart';
-import 'package:ui_kit/types/gf_heading_type.dart';
+import 'package:ui_kit/types/gf_typography_type.dart';
 
 class ListTiles extends StatefulWidget {
   @override
@@ -28,9 +28,9 @@ class _ListTilesState extends State<ListTiles> {
           GFCard(
             content:  GFListTile(
 
-              title: GFHeader(
+              title: GFTypography(
                 text: 'List tile',
-                type: GFHeadingType.typo5,
+                type: GFTypographyType.typo5,
                 showDivider: false,
               ),
               subTitle: Text('Lorem ipsum', style: TextStyle(color: getGFColor(GFColor.dark)),),
@@ -44,9 +44,9 @@ class _ListTilesState extends State<ListTiles> {
              avatar: GFAvatar(
                shape: GFAvatarShape.standard,
              ),
-             title: GFHeader(
+             title: GFTypography(
                text: 'List tile',
-               type: GFHeadingType.typo5,
+               type: GFTypographyType.typo5,
                showDivider: false,
              ),
              subTitle: Text('Lorem ipsum', style: TextStyle(color: getGFColor(GFColor.dark)),),
@@ -60,9 +60,9 @@ class _ListTilesState extends State<ListTiles> {
          GFCard(
            content:  GFListTile(
 
-               title: GFHeader(
+               title: GFTypography(
                  text: 'List tile',
-                 type: GFHeadingType.typo5,
+                 type: GFTypographyType.typo5,
                  showDivider: false,
                ),
                subTitle: Text('Lorem ipsum', style: TextStyle(color: getGFColor(GFColor.dark)),),
@@ -82,9 +82,9 @@ class _ListTilesState extends State<ListTiles> {
              avatar: GFAvatar(
                shape: GFAvatarShape.square,
              ),
-              title: GFHeader(
+              title: GFTypography(
                 text: 'List tile',
-                type: GFHeadingType.typo5,
+                type: GFTypographyType.typo5,
                 showDivider: false,
               ),
               subTitle: Text('Lorem ipsum', style: TextStyle(color: getGFColor(GFColor.dark)),),

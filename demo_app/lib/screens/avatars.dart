@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_kit/components/avatar/gf_avatar.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
-import 'package:ui_kit/components/header/gf_header.dart';
+import 'package:ui_kit/components/typography/gf_typography.dart';
 import 'package:ui_kit/shape/gf_avatar_shape.dart';
-import 'package:ui_kit/types/gf_heading_type.dart';
+import 'package:ui_kit/types/gf_typography_type.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 
 class Avatars extends StatefulWidget {
@@ -27,9 +27,9 @@ class _AvatarsState extends State<Avatars> {
            content:   Column(
              crossAxisAlignment: CrossAxisAlignment.start,
              children: <Widget>[
-               GFHeader(
+               GFTypography(
                  text: 'Circle Avatar',
-                 type: GFHeadingType.typo6,
+                 type: GFTypographyType.typo6,
                ),
                SizedBox(
                  height: 10,
@@ -109,9 +109,9 @@ class _AvatarsState extends State<Avatars> {
               content:   Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  GFHeader(
+                  GFTypography(
                     text: 'Square Avatar',
-                    type: GFHeadingType.typo6,
+                    type: GFTypographyType.typo6,
                   ),
                   SizedBox(
                     height: 10,
@@ -200,9 +200,9 @@ class _AvatarsState extends State<Avatars> {
               content:   Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  GFHeader(
+                  GFTypography(
                     text: 'Standard Avatar',
-                    type: GFHeadingType.typo6,
+                    type: GFTypographyType.typo6,
                   ),
                   SizedBox(
                     height: 10,

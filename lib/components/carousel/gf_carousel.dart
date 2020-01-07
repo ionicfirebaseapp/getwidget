@@ -9,8 +9,8 @@ List<T> map<T>(List list, Function handler) {
   return result;
 }
 
-class GFSlider extends StatefulWidget {
-  GFSlider(
+class GFCarousel extends StatefulWidget {
+  GFCarousel(
       {@required this.items,
       this.pagerSize,
       this.passiveIndicator,
@@ -53,7 +53,7 @@ class GFSlider extends StatefulWidget {
   /// The slider pagination's passive color.
   final Color passiveIndicator;
 
-  /// The [GFSlider] shows pagination on state true.
+  /// The [GFCarousel] shows pagination on state true.
   final bool pagination;
 
   /// The widgets to be shown as sliders.
@@ -68,7 +68,7 @@ class GFSlider extends StatefulWidget {
   /// The fraction of the viewport that each page should occupy. Defaults to 0.8, which means each page fills 80% of the slide.
   final num viewportFraction;
 
-  /// The initial page to show when first creating the [GFSlider]. Defaults to 0.
+  /// The initial page to show when first creating the [GFCarousel]. Defaults to 0.
   final num initialPage;
 
   /// The actual index of the [PageView].
@@ -120,7 +120,7 @@ class GFSlider extends StatefulWidget {
   /// and can be used to control the [PageView] it is passed to.
   final PageController pageController;
 
-  /// Animates the controlled [GFSlider] to the next page.
+  /// Animates the controlled [GFCarousel] to the next page.
   ///
   /// The animation lasts for the given duration and follows the given curve.
   /// The returned [Future] resolves when the animation completes.
@@ -128,7 +128,7 @@ class GFSlider extends StatefulWidget {
     return pageController.nextPage(duration: duration, curve: curve);
   }
 
-  /// Animates the controlled [GFSlider] to the previous page.
+  /// Animates the controlled [GFCarousel] to the previous page.
   ///
   /// The animation lasts for the given duration and follows the given curve.
   /// The returned [Future] resolves when the animation completes.
@@ -136,7 +136,7 @@ class GFSlider extends StatefulWidget {
     return pageController.previousPage(duration: duration, curve: curve);
   }
 
-  /// Changes which page is displayed in the controlled [GFSlider].
+  /// Changes which page is displayed in the controlled [GFCarousel].
   ///
   /// Jumps the page position from its current value to the given value,
   /// without animation, and without checking if the new value is in range.
@@ -147,7 +147,7 @@ class GFSlider extends StatefulWidget {
         .jumpToPage(pageController.page.toInt() + page - index);
   }
 
-  /// Animates the controlled [GFSlider] from the current page to the given page.
+  /// Animates the controlled [GFCarousel] from the current page to the given page.
   ///
   /// The animation lasts for the given duration and follows the given curve.
   /// The returned [Future] resolves when the animation completes.
@@ -161,10 +161,10 @@ class GFSlider extends StatefulWidget {
   }
 
   @override
-  _GFSliderState createState() => _GFSliderState();
+  _GFCarouselState createState() => _GFCarouselState();
 }
 
-class _GFSliderState extends State<GFSlider> with TickerProviderStateMixin {
+class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
   Timer timer;
 
   /// Size of cell

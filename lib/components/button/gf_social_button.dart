@@ -11,7 +11,7 @@ import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/position/gf_position.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 
-class GFButtonBadge extends GFButton{
+class GFSocialButton extends GFButton{
   /// Called when the button is tapped or otherwise activated.
   final VoidCallback onPressed;
 
@@ -87,7 +87,7 @@ class GFButtonBadge extends GFButton{
   /// Button type of [GFType] i.e, solid, outline, outline2x, transparent
   final GFType type;
 
-  /// Button type of [GFButtonBadgeShape] i.e, standard, pills, square, shadow, icons
+  /// Button type of [GFSocialButtonShape] i.e, standard, pills, square, shadow, icons
   final GFButtonShape shape;
 
   /// Pass [GFColor] or [Color]
@@ -175,7 +175,7 @@ class GFButtonBadge extends GFButton{
   final VoidCallback onLongPress;
 
   /// Create buttons of all types. check out [GFIconButton] for icon buttons, and [GFBadge] for badges
-  const GFButtonBadge(
+  const GFSocialButton(
       {Key key,
         @required this.onPressed,
         this.onHighlightChanged,
@@ -204,7 +204,7 @@ class GFButtonBadge extends GFButton{
         this.shape = GFButtonShape.standard,
         this.color = GFColor.primary,
         this.textColor,
-        this.position = GFPosition.end,
+        this.position = GFPosition.start,
         this.size = GFSize.medium,
         this.borderSide,
         this.text,
@@ -232,166 +232,43 @@ class GFButtonBadge extends GFButton{
 
   @override
   Widget build(BuildContext context) {
-
-    return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: 26.0, minWidth: 98.0),
-      child: Container(
-        height: this.size,
-        child: GFButton(
-          onPressed: onPressed,
-          onHighlightChanged: onHighlightChanged,
-          textStyle: textStyle,
-          boxShadow: boxShadow,
-          buttonBoxShadow: buttonBoxShadow,
-          focusColor: focusColor,
-          hoverColor: hoverColor,
-          highlightColor: highlightColor,
-          splashColor: splashColor,
-          elevation:  elevation,
-          focusElevation: focusElevation,
-          hoverElevation: hoverElevation,
-          highlightElevation:highlightElevation,
-          disabledElevation: disabledElevation,
-          constraints: constraints,
-          borderShape: borderShape,
-          animationDuration: animationDuration,
-          clipBehavior: clipBehavior,
-          focusNode: focusNode,
-          autofocus : autofocus ,
-          child: child,
-          type :GFType.solid,
-          shape :GFButtonShape.standard,
-          color :GFColor.primary,
-          textColor: textColor,
-          position :GFPosition.start,
-          size :GFSize.medium,
-          borderSide: borderSide,
-          text: text,
-          icon: icon,
-          blockButton: blockButton,
-          fullWidthButton: fullWidthButton,
-          disabledColor: disabledTextColor,
-          disabledTextColor: disabledColor,
-        ),
-      ),
+    return GFButton(
+      onPressed: onPressed,
+      onHighlightChanged: onHighlightChanged,
+      textStyle: textStyle,
+      boxShadow: boxShadow,
+      buttonBoxShadow: buttonBoxShadow,
+      focusColor: focusColor,
+      hoverColor: hoverColor,
+      highlightColor: highlightColor,
+      splashColor: splashColor,
+      elevation:  elevation,
+      focusElevation: focusElevation,
+      hoverElevation: hoverElevation,
+      highlightElevation:highlightElevation,
+      disabledElevation: disabledElevation,
+      constraints: constraints,
+      borderShape: borderShape,
+      animationDuration: animationDuration,
+      clipBehavior: clipBehavior,
+      focusNode: focusNode,
+      autofocus : autofocus ,
+      child: child,
+      type :GFType.solid,
+      shape :GFButtonShape.standard,
+      color :GFColor.primary,
+      textColor: textColor,
+      position :GFPosition.start,
+      size :GFSize.medium,
+      borderSide: borderSide,
+      text: text,
+      icon: icon,
+      blockButton: blockButton,
+      fullWidthButton: fullWidthButton,
+      disabledColor: disabledTextColor,
+      disabledTextColor: disabledColor,
     );
-
   }
 }
 
 
-
-
-//
-//class GFButtonBadge extends StatefulWidget {
-//  /// Called when the badge is tapped or otherwise activated.
-//  final VoidCallback onPressed;
-//
-//  /// Defines the default text style, with [Material.textStyle], for the button's [child].
-//  final TextStyle textStyle;
-//
-//  /// The border side for the badge's [Material].
-//  final BorderSide borderSide;
-//
-//  /// The internal padding for the badge's [child].
-//  final EdgeInsetsGeometry padding;
-//
-//  /// The shape of the badge's [Material].
-//  final ShapeBorder borderShape;
-//
-//  /// Badge type of [GFType] i.e, solid, outline, transparent
-//  final GFType type;
-//
-//  /// Badge type of [GFBadgeShape] i.e, standard, pills, square, circle
-//  final GFButtonShape shape;
-//
-//  /// Pass [GFColor] or [Color]
-//  final dynamic color;
-//
-//  /// Pass [GFColor] or [Color]
-//  final dynamic textColor;
-//
-//  /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
-//  final dynamic size;
-//
-//  /// text of type [String] is used to display text on the button.
-//  final String text;
-//
-//  /// child of type [Widget] is alternative to child. text will get priority over child.
-//  /// You can use [GFBadge] for compatibility.
-//  final Widget icon;
-//
-//  /// icon type of [GFPosition] i.e, start, end
-//  final GFPosition position;
-//
-//  /// Create badges of all types. check out [GFIconBadge] for icon badges and [GFBadge] for default badges.
-//  const GFButtonBadge({
-//    Key key,
-//    @required this.onPressed,
-//    this.textStyle,
-//    this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
-//    this.borderShape,
-//    this.type = GFType.solid,
-//    this.shape = GFButtonShape.standard,
-//    this.color = GFColor.primary,
-//    this.textColor,
-//    this.position = GFPosition.end,
-//    this.size = GFSize.medium,
-//    this.borderSide,
-//    @required this.text,
-//    @required this.icon,
-//  })  : assert(shape != null, 'Badge shape can not be null'),
-//        assert(padding != null),
-//        super(key: key);
-//
-//  @override
-//  _GFButtonBadgeState createState() => _GFButtonBadgeState();
-//}
-//
-//class _GFButtonBadgeState extends State<GFButtonBadge> {
-//  Color color;
-//  Color textColor;
-//  Widget child;
-//  Widget icon;
-//  Function onPressed;
-//  GFType type;
-//  GFButtonShape shape;
-//  double size;
-//  GFPosition position;
-//
-//  @override
-//  void initState() {
-//    this.color = getGFColor(widget.color);
-//    this.textColor = getGFColor(widget.textColor);
-//    this.onPressed = widget.onPressed;
-//    this.type = widget.type;
-//    this.shape = widget.shape;
-//    this.size = getGFSize(widget.size);
-//    this.position = widget.position;
-//    super.initState();
-//  }
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return ConstrainedBox(
-//      constraints: BoxConstraints(minHeight: 26.0, minWidth: 98.0),
-//      child: Container(
-//        height: this.size,
-//        child: GFButton(
-//          textStyle: widget.textStyle,
-//          borderSide: widget.borderSide,
-//          color: this.color,
-//          textColor: this.textColor,
-//          text: widget.text,
-//          onPressed: this.onPressed,
-//          type: this.type,
-//          shape: this.shape,
-//          position: this.position,
-//          size: this.size,
-//          borderShape: widget.borderShape,
-//          icon: widget.icon,
-//        ),
-//      ),
-//    );
-//  }
-//}
