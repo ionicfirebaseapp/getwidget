@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55">
+  <g id="Group_618" data-name="Group 618" transform="translate(-1471 -2791)">
+    <rect id="Rectangle_424" data-name="Rectangle 424" width="55" height="55" transform="translate(1471 2791)" fill="#fff" opacity="0"/>
+    <g id="Group_617" data-name="Group 617" transform="translate(1474.636 2796.454)">
+      <rect id="Rectangle_425" data-name="Rectangle 425" width="47" height="44" rx="2" transform="translate(0.364 -0.454)" fill="none" stroke="#19ca4b" stroke-width="2"/>
+      <g id="Group_612" data-name="Group 612" transform="translate(7.273 5.454)">
+        <text id="_1" data-name="1" transform="translate(0.091 5.091)" fill="#19ca4b" font-size="5" font-family="Poppins-Regular, Poppins" letter-spacing="0.01em"><tspan x="0" y="0">1</tspan></text>
+      </g>
+      <g id="Group_613" data-name="Group 613" transform="translate(7.273 13.94)">
+        <text id="_2" data-name="2" transform="translate(0 5)" fill="#19ca4b" font-size="5" font-family="Poppins-Regular, Poppins" letter-spacing="0.01em"><tspan x="0" y="0">2</tspan></text>
+      </g>
+      <g id="Group_614" data-name="Group 614" transform="translate(7.273 22.423)">
+        <text id="_3" data-name="3" transform="translate(0 5)" fill="#19ca4b" font-size="5" font-family="Poppins-Regular, Poppins" letter-spacing="0.01em"><tspan x="0" y="0">3</tspan></text>
+      </g>
+      <g id="Group_615" data-name="Group 615" transform="translate(7.273 30.908)">
+        <text id="_4" data-name="4" transform="translate(0.091 4.637)" fill="#19ca4b" font-size="5" font-family="Poppins-Regular, Poppins" letter-spacing="0.01em"><tspan x="0" y="0">4</tspan></text>
+      </g>
+      <rect id="Rectangle_442" data-name="Rectangle 442" width="28" height="2" rx="0.5" transform="translate(12.364 8.546)" fill="#19ca4b"/>
+      <rect id="Rectangle_443" data-name="Rectangle 443" width="28" height="2" rx="0.5" transform="translate(12.364 16.546)" fill="#19ca4b"/>
+      <rect id="Rectangle_444" data-name="Rectangle 444" width="28" height="2" rx="0.5" transform="translate(12.364 24.546)" fill="#19ca4b"/>
+      <rect id="Rectangle_445" data-name="Rectangle 445" width="28" height="2" rx="0.5" transform="translate(12.364 33.546)" fill="#19ca4b"/>
+    </g>
+  </g>
+</svg>

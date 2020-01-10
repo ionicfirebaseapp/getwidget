@@ -1,5 +1,5 @@
-import 'package:demo_app/screens/avatars.dart';
-import 'package:demo_app/screens/button/shadow-buttons.dart';
+//import 'package:demo_app/screens/avatars.dart';
+//import 'package:demo_app/screens/button/shadow-buttons.dart';
 import 'package:ui_kit/components/avatar/gf_avatar.dart';
 
 import 'standard-buttons.dart';
@@ -12,6 +12,7 @@ import 'pill-buttons.dart';
 import 'square-buttons.dart';
 import 'icon-buttons.dart';
 import 'social-buttons.dart';
+import 'shadow-buttons.dart';
 
 class ButtonTypes extends StatefulWidget {
   @override

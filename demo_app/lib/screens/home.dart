@@ -5,13 +5,13 @@ import 'package:demo_app/screens/list-tiles.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
-import 'avatars.dart';
+//import 'avatars.dart';
 import 'toggles.dart';
 import 'headers.dart';
 import 'toasts.dart';
 import '../screens/badges/badges.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../screens/button/standard-buttons.dart';
+//import '../screens/button/standard-buttons.dart';
 
 class HomePage extends StatefulWidget {
   @override
