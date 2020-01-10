@@ -51,6 +51,19 @@ We this beta release we going to lunch this libraries with Following component :
  
  ## Documentation
  
+  [**Installation Guide**](https://docs.getflutter.dev)
  
  
- ## Copyright-and-license
+### Social Media
+
+Twitter: <https://twitter.com/getflutterdev>
+
+Facebook: <https://www.facebook.com/getflutter>
+
+Linkedin: <https://www.linkedin.com/company/getflutter>
+
+Instagram: <https://www.instagram.com/getflutter> 
+ 
+ 
+ ## Copyright-and-license 
+ Code and documentation copyright 2017-2020 the [GETFLUTTER Authors](https://www.getflutter.dev) and [PIETECH SOLUTION PVT LTD.](https://pietechsolution.com) Code released under the [MIT License]. Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
