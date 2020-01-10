@@ -149,8 +149,7 @@ class _MyHomePageState extends State<MyHomePage>
       appBar: GFAppBar(
         backgroundColor: Colors.tealAccent,
         centerTitle: true,
-        title:
-        Text("UI KIT"),
+        title: Text("UI KIT"),
 //        GFSegmentTabs(
 //          tabController: tabController,
 //          initialIndex: 0,
@@ -188,12 +187,11 @@ class _MyHomePageState extends State<MyHomePage>
 //          Container(color: Colors.green),
 //          Container(color: Colors.blue)
 //      ]),
-      SingleChildScrollView(
+          SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-
             GFCard(
               content: Column(
                 children: <Widget>[
@@ -233,67 +231,65 @@ class _MyHomePageState extends State<MyHomePage>
 
             GFCard(
                 content: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    GFTypography(
-                      text: 'GF Header Typo1',
-                      type: GFTypographyType.typo1,
-                      backgroundImage: NetworkImage(
-                          'https://cdn.pixabay.com/photo/2019/12/25/16/49/happy-new-year-4718894_960_720.png'),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    GFTypography(
-                      icon: GFAvatar(),
-                      text: 'GF Header Typo2',
-                      type: GFTypographyType.typo2,
-                      dividerColor: GFColor.primary,
-                      dividerAlignment: Alignment.center,
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    GFTypography(
-                      icon: Icon(Icons.insert_emoticon),
-                      text: 'GF Header Typo3',
-                      type: GFTypographyType.typo3,
-                      dividerWidth: 150,
-                      dividerColor: GFColor.warning,
-                      dividerBorderRadius: BorderRadius.all(Radius.circular(0)),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    GFTypography(
-                        text: 'GF Header Typo4',
-                        type: GFTypographyType.typo4,
-                        dividerWidth: 345,
-                        icon: Image.network(
-                          'https://cdn.pixabay.com/photo/2016/12/15/03/27/cocoa-1908020_960_720.jpg',
-                          width: 50,
-                        )),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    GFTypography(
-                      text: 'GF Header Typo5',
-                      type: GFTypographyType.typo5,
-                      dividerColor: GFColor.alt,
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    GFTypography(
-                      text: 'GF Header Typo6',
-                      type: GFTypographyType.typo6,
-                      dividerWidth: 20,
-                    ),
-                  ],
-                )),
-
-
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                GFTypography(
+                  text: 'GF Header Typo1',
+                  type: GFTypographyType.typo1,
+                  backgroundImage: NetworkImage(
+                      'https://cdn.pixabay.com/photo/2019/12/25/16/49/happy-new-year-4718894_960_720.png'),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                GFTypography(
+                  icon: GFAvatar(),
+                  text: 'GF Header Typo2',
+                  type: GFTypographyType.typo2,
+                  dividerColor: GFColor.primary,
+                  dividerAlignment: Alignment.center,
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                GFTypography(
+                  icon: Icon(Icons.insert_emoticon),
+                  text: 'GF Header Typo3',
+                  type: GFTypographyType.typo3,
+                  dividerWidth: 150,
+                  dividerColor: GFColor.warning,
+                  dividerBorderRadius: BorderRadius.all(Radius.circular(0)),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                GFTypography(
+                    text: 'GF Header Typo4',
+                    type: GFTypographyType.typo4,
+                    dividerWidth: 345,
+                    icon: Image.network(
+                      'https://cdn.pixabay.com/photo/2016/12/15/03/27/cocoa-1908020_960_720.jpg',
+                      width: 50,
+                    )),
+                SizedBox(
+                  height: 40,
+                ),
+                GFTypography(
+                  text: 'GF Header Typo5',
+                  type: GFTypographyType.typo5,
+                  dividerColor: GFColor.alt,
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                GFTypography(
+                  text: 'GF Header Typo6',
+                  type: GFTypographyType.typo6,
+                  dividerWidth: 20,
+                ),
+              ],
+            )),
 
 //            GFButton(
 //              onPressed: (){},
@@ -323,7 +319,6 @@ class _MyHomePageState extends State<MyHomePage>
               showDivider: false,
             ),
 
-
             GFListTile(
               avatar: GFAvatar(
                 shape: GFAvatarShape.standard,
@@ -333,11 +328,15 @@ class _MyHomePageState extends State<MyHomePage>
                 type: GFTypographyType.typo5,
                 showDivider: false,
               ),
-              subTitle: Text('Lorem ipsum', style: TextStyle(color: getGFColor(GFColor.dark)),),
-
-              description: Text('Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt '
+              subTitle: Text(
+                'Lorem ipsum',
+                style: TextStyle(color: getGFColor(GFColor.dark)),
+              ),
+              description: Text(
+                  'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt '
                   'sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ',
-                  style: TextStyle(fontSize: 13, color: getGFColor(GFColor.secondary))),
+                  style: TextStyle(
+                      fontSize: 13, color: getGFColor(GFColor.secondary))),
               showDivider: true,
               icon: GFIconButton(
                 onPressed: null,
@@ -346,10 +345,8 @@ class _MyHomePageState extends State<MyHomePage>
               ),
             ),
 
-
-
             GFCard(
-              content:  GFListTile(
+              content: GFListTile(
                 avatar: GFAvatar(
                   shape: GFAvatarShape.standard,
                 ),
@@ -358,28 +355,32 @@ class _MyHomePageState extends State<MyHomePage>
                   type: GFTypographyType.typo5,
                   showDivider: false,
                 ),
-                subTitle: Text('Lorem ipsum', style: TextStyle(color: getGFColor(GFColor.dark)),),
-
-                description: Text('Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ',
-                    style: TextStyle(fontSize: 13, color: getGFColor(GFColor.secondary))),
+                subTitle: Text(
+                  'Lorem ipsum',
+                  style: TextStyle(color: getGFColor(GFColor.dark)),
+                ),
+                description: Text(
+                    'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ',
+                    style: TextStyle(
+                        fontSize: 13, color: getGFColor(GFColor.secondary))),
                 showDivider: false,
               ),
             ),
 
-          GFCard(
-            content: GFImageOverlay(
-              height: 200.0,
-              width: MediaQuery.of(context).size.width,
-              child: Text("Dcs"),
+            GFCard(
+              content: GFImageOverlay(
+                height: 200.0,
+                width: MediaQuery.of(context).size.width,
+                child: Text("Dcs"),
 //              color: color ?? cardTheme.color ?? Theme.of(context).cardColor,
-              image: AssetImage("lib/assets/food.jpeg"),
-              boxFit: BoxFit.fill,
-              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
+                image: AssetImage("lib/assets/food.jpeg"),
+                boxFit: BoxFit.fill,
+                colorFilter: new ColorFilter.mode(
+                    Colors.black.withOpacity(0.67), BlendMode.darken),
 //              border: border,
 //              borderRadius: borderRadius ?? BorderRadius.all(Radius.circular(4.0)),
+              ),
             ),
-          ),
-
 
             GFCard(
               content: Container(
@@ -388,15 +389,15 @@ class _MyHomePageState extends State<MyHomePage>
                   decoration: new BoxDecoration(
                       shape: BoxShape.circle,
                       image: new DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage("lib/assets/food.jpeg",),
-                      )
-                  )),
+                        fit: BoxFit.fill,
+                        image: AssetImage(
+                          "lib/assets/food.jpeg",
+                        ),
+                      ))),
             ),
 
-
             GFButtonBadge(
-              onPressed: (){},
+              onPressed: () {},
 //              position: GFPosition.end,
 //              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 //              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
@@ -900,7 +901,7 @@ class _MyHomePageState extends State<MyHomePage>
 //                icon: Icon(Icons.ac_unit),
 //                size: GFSize.large,
 //              ),
-              GFAvatar(
+                  GFAvatar(
                 child: Text("sefv"),
                 size: GFSize.small,
               ),
@@ -981,8 +982,7 @@ class _MyHomePageState extends State<MyHomePage>
           ],
         ),
       ),
-      bottomNavigationBar:
-      GFTabBar(
+      bottomNavigationBar: GFTabBar(
         initialIndex: 0,
         length: 3,
         controller: tabController,
