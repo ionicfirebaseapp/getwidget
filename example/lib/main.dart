@@ -150,29 +150,6 @@ class _MyHomePageState extends State<MyHomePage>
         backgroundColor: Colors.tealAccent,
         centerTitle: true,
         title: Text("UI KIT"),
-//        GFSegmentTabs(
-//          tabController: tabController,
-//          initialIndex: 0,
-//          length: 3,
-//          tabs: <Widget>[
-//            Tab(
-//              child: Text(
-//                "cream",
-//              ),
-//            ),
-//            Tab(
-//              child: Text(
-//                "serum",
-//              ),
-//            ),
-//            Tab(
-//              child: Text(
-//                "toner",
-//              ),
-//            ),
-//          ],
-////          borderRadius: BorderRadius.circular(50.0),
-//        ),
 //        trailing: <Widget>[
 //          GFIconButton(icon: Icon(Icons.directions_bus), onPressed: null)
 //        ],
@@ -316,7 +293,7 @@ class _MyHomePageState extends State<MyHomePage>
 //              dividerHeight: 2.0,
 //              dividerIndent: 30.0,
 //              dividerThickness: 5.0,
-//              showDivider: false,
+              showDivider: false,
             ),
 
             GFListTile(
@@ -370,15 +347,11 @@ class _MyHomePageState extends State<MyHomePage>
             GFCard(
               content: GFImageOverlay(
                 height: 200.0,
-                width: MediaQuery.of(context).size.width,
-                child: Text("Dcs"),
-//              color: color ?? cardTheme.color ?? Theme.of(context).cardColor,
+                width: 200.0,
                 image: AssetImage("lib/assets/food.jpeg"),
                 boxFit: BoxFit.fill,
-                colorFilter: new ColorFilter.mode(
-                    Colors.black.withOpacity(0.67), BlendMode.darken),
-//              border: border,
-//              borderRadius: borderRadius ?? BorderRadius.all(Radius.circular(4.0)),
+                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
+                shape: BoxShape.circle,
               ),
             ),
 
@@ -506,10 +479,10 @@ class _MyHomePageState extends State<MyHomePage>
 //              radius: 80.0,
 //              backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
 //            ),
-//
+
             GFSegmentTabs(
               tabController: tabController,
-//              height: 38.0,
+//              height: 36.0,
 //              width: 180.0,
               initialIndex: 0,
               length: 3,
@@ -528,18 +501,20 @@ class _MyHomePageState extends State<MyHomePage>
                   ),
                 ),
               ],
-//              tabBarColor: Colors.pink.withOpacity(0.6),
-//              indicatorSize: TabBarIndicatorSize.tab,
-//              indicatorColor: Colors.tealAccent,
-//              indicator: BoxDecoration(
-//                color: Colors.pink,
-//                border: Border.all(color: Colors.green, width: 1.0),
-//                borderRadius: BorderRadius.circular(50.0)
-//              ),
-//              indicatorPadding: EdgeInsets.all(8.0),
-//              indicatorWeight: 2.0,
-//              border: Border.all(color: Colors.orange, width: 2.0),
-//                borderRadius: BorderRadius.circular(50.0)
+              tabBarColor: Colors.grey,
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicatorColor: Colors.greenAccent,
+            labelColor: Colors.greenAccent,
+            unselectedLabelColor: Colors.white,
+              indicator: BoxDecoration(
+                color: Colors.black,
+                border: Border(bottom: BorderSide(color: Colors.greenAccent, width: 2.0,),),
+//                borderRadius: BorderRadius.circular(2.0)
+              ),
+              indicatorPadding: EdgeInsets.all(8.0),
+              indicatorWeight: 2.0,
+              border: Border.all(color: Colors.white, width: 2.0),
+                borderRadius: BorderRadius.circular(2.0)
             ),
 //
 //            GFTabBarView(
@@ -666,22 +641,22 @@ class _MyHomePageState extends State<MyHomePage>
 //                Icon(Icons.directions_transit),
 //              ],
 //            ),
-////            indicatorColor: Colors.teal,
-////            indicatorSize: TabBarIndicatorSize.label,
-////            labelColor: Colors.lightGreen,
-////            unselectedLabelColor: Colors.black,
-////            labelStyle: TextStyle(
-////              fontWeight: FontWeight.w500,
-////              fontSize: 13.0,
-////              color: Colors.deepOrange,
-////              fontFamily: 'OpenSansBold',
-////            ),
-////            unselectedLabelStyle: TextStyle(
-////              fontWeight: FontWeight.w500,
-////              fontSize: 13.0,
-////              color: Colors.black,
-////              fontFamily: 'OpenSansBold',
-////            ),
+//            indicatorColor: Colors.teal,
+//            indicatorSize: TabBarIndicatorSize.label,
+//            labelColor: Colors.lightGreen,
+//            unselectedLabelColor: Colors.black,
+//            labelStyle: TextStyle(
+//              fontWeight: FontWeight.w500,
+//              fontSize: 13.0,
+//              color: Colors.deepOrange,
+//              fontFamily: 'OpenSansBold',
+//            ),
+//            unselectedLabelStyle: TextStyle(
+//              fontWeight: FontWeight.w500,
+//              fontSize: 13.0,
+//              color: Colors.black,
+//              fontFamily: 'OpenSansBold',
+//            ),
 //          ),
 //
 //              GFCarousel(
@@ -1005,6 +980,24 @@ class _MyHomePageState extends State<MyHomePage>
             ),
           ),
         ],
+        indicatorColor: Colors.teal,
+//        indicatorSize: TabBarIndicatorSize.label,
+        labelColor: Colors.lightGreen,
+        labelPadding: EdgeInsets.all(8.0),
+        tabBarColor: Colors.blueGrey,
+        unselectedLabelColor: Colors.black,
+        labelStyle: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 13.0,
+          color: Colors.deepOrange,
+          fontFamily: 'OpenSansBold',
+        ),
+        unselectedLabelStyle: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 13.0,
+          color: Colors.black,
+          fontFamily: 'OpenSansBold',
+        ),
       ),
     );
   }
