@@ -62,7 +62,7 @@ class GFImageOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: alignment,
-      height: height ?? MediaQuery.of(context).size.height * 0.3,
+      height: height,
       width: width ?? MediaQuery.of(context).size.width,
       margin: margin,
       padding: padding,

@@ -10,6 +10,7 @@ import 'package:ui_kit/components/button/gf_icon_button.dart';
 import 'package:ui_kit/position/gf_position.dart';
 import 'package:ui_kit/shape/gf_badge_shape.dart';
 import 'package:ui_kit/shape/gf_button_shape.dart';
+import 'package:ui_kit/shape/gf_icon_button_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/types/gf_typography_type.dart';
 import 'package:ui_kit/types/gf_type.dart';
@@ -562,9 +563,8 @@ class _BadgesState extends State<Badges> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           GFIconBadge(
-                              onPressed: null,
                               child: GFIconButton(
-                                shape: GFButtonShape.pills,
+                                shape: GFIconButtonShape.pills,
                                 color: GFColor.success,
                                 type: GFType.solid,
                                 onPressed: null,
@@ -576,9 +576,8 @@ class _BadgesState extends State<Badges> {
                                 size: GFSize.small,
                               )),
                           GFIconBadge(
-                              onPressed: null,
                               child: GFIconButton(
-                                shape: GFButtonShape.square,
+                                shape: GFIconButtonShape.square,
                                 color: GFColor.primary,
                                 type: GFType.solid,
                                 onPressed: null,
@@ -590,9 +589,8 @@ class _BadgesState extends State<Badges> {
                                 size: GFSize.small,
                               )),
                           GFIconBadge(
-                              onPressed: null,
                               child: GFIconButton(
-                                shape: GFButtonShape.pills,
+                                shape: GFIconButtonShape.pills,
                                 color: GFColor.danger,
                                 type: GFType.solid,
                                 onPressed: null,
@@ -604,9 +602,8 @@ class _BadgesState extends State<Badges> {
                                 size: GFSize.small,
                               )),
                           GFIconBadge(
-                              onPressed: null,
                               child: GFIconButton(
-                                shape: GFButtonShape.standard,
+                                shape: GFIconButtonShape.standard,
                                 type: GFType.solid,
                                 color: GFColor.warning,
                                 onPressed: null,
@@ -636,9 +633,8 @@ class _BadgesState extends State<Badges> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           GFIconBadge(
-                              onPressed: null,
                               child: GFIconButton(
-                                shape: GFButtonShape.pills,
+                                shape: GFIconButtonShape.pills,
                                 onPressed: null,
                                 icon: Icon(Icons.mail),
                               ),
@@ -648,9 +644,8 @@ class _BadgesState extends State<Badges> {
                                 size: GFSize.small,
                               )),
                           GFIconBadge(
-                              onPressed: null,
                               child: GFIconButton(
-                                shape: GFButtonShape.square,
+                                shape: GFIconButtonShape.square,
                                 onPressed: null,
                                 icon: Icon(Icons.mail),
                               ),
@@ -661,9 +656,8 @@ class _BadgesState extends State<Badges> {
                                 size: GFSize.small,
                               )),
                           GFIconBadge(
-                              onPressed: null,
                               child: GFIconButton(
-                                shape: GFButtonShape.pills,
+                                shape: GFIconButtonShape.pills,
                                 onPressed: null,
                                 icon: Icon(Icons.mail),
                               ),
@@ -673,9 +667,8 @@ class _BadgesState extends State<Badges> {
                                 size: GFSize.small,
                               )),
                           GFIconBadge(
-                            onPressed: null,
                             child: GFIconButton(
-                              shape: GFButtonShape.standard,
+                              shape: GFIconButtonShape.standard,
                               onPressed: null,
                               icon: Icon(Icons.mail),
                             ),
@@ -704,7 +697,6 @@ class _BadgesState extends State<Badges> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           GFIconBadge(
-                              onPressed: null,
                               child: GFIconButton(
                                 size: GFSize.large,
                                 onPressed: null,
@@ -716,7 +708,6 @@ class _BadgesState extends State<Badges> {
                                 size: GFSize.small,
                               )),
                           GFIconBadge(
-                              onPressed: null,
                               child: GFIconButton(
                                 size: GFSize.medium,
                                 onPressed: null,
@@ -728,7 +719,6 @@ class _BadgesState extends State<Badges> {
                                 size: GFSize.small,
                               )),
                           GFIconBadge(
-                              onPressed: null,
                               child: GFIconButton(
                                 size: GFSize.small,
                                 onPressed: null,

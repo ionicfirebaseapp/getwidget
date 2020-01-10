@@ -1,0 +1,1 @@
+enum GFIconButtonShape { standard, pills, square, circle }

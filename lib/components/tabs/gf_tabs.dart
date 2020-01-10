@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
+import 'package:ui_kit/components/tabs/gf_tabBar.dart';
 
 class GFTabs extends StatefulWidget {
   GFTabs({
@@ -24,6 +25,8 @@ class GFTabs extends StatefulWidget {
     this.unselectedLabelStyle,
     this.tabBarView,
     this.tabs,
+    this.controller,
+    this.tabBarHeight,
   }):
         assert(length != null && length >= 0),
         assert(initialIndex != null && initialIndex >= 0 && (length == 0 || initialIndex < length));
@@ -145,6 +148,10 @@ class GFTabs extends StatefulWidget {
   /// and the length of the [TabBarView.children] list.
   final List<Widget> tabs;
 
+  final TabController controller;
+
+  final double tabBarHeight;
+
   @override
   _GFTabsState createState() => _GFTabsState();
 }
@@ -160,21 +167,22 @@ class _GFTabsState extends State<GFTabs> {
           height: widget.height == null ? MediaQuery.of(context).size.height * 0.5 : widget.height,
           child: Column(
             children: <Widget>[
-              Material(
-                type: MaterialType.button,
-                color: widget.tabBarColor ?? getGFColor(GFColor.primary),
-                child: TabBar(
-                  labelColor: widget.labelColor,
-                  unselectedLabelColor: widget.unselectedLabelColor,
-                  labelStyle: widget.labelStyle,
-                  unselectedLabelStyle: widget.unselectedLabelStyle,
-                  indicatorColor: widget.indicatorColor,
-                  indicatorSize: widget.indicatorSize,
-                  indicator: widget.indicator,
-                  indicatorPadding: widget.indicatorPadding,
-                  indicatorWeight: widget.indicatorWeight,
-                  tabs: widget.tabs,
-                ),
+              GFTabBar(
+                length: widget.length,
+                initialIndex: widget.initialIndex,
+                tabBarHeight: widget.tabBarHeight,
+                tabBarColor: widget.tabBarColor ?? getGFColor(GFColor.primary),
+                controller: widget.controller,
+                labelColor: widget.labelColor,
+                unselectedLabelColor: widget.unselectedLabelColor,
+                labelStyle: widget.labelStyle,
+                unselectedLabelStyle: widget.unselectedLabelStyle,
+                indicatorColor: widget.indicatorColor,
+                indicatorSize: widget.indicatorSize,
+                indicator: widget.indicator,
+                indicatorPadding: widget.indicatorPadding,
+                indicatorWeight: widget.indicatorWeight,
+                tabs: widget.tabs,
               ),
               Expanded(
                 child: widget.tabBarView
