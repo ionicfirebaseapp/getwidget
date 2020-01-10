@@ -2,7 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_button_shape.dart';
+import 'package:ui_kit/shape/gf_icon_button_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/colors/gf_color.dart';
@@ -26,11 +26,11 @@ class GFIconButton extends StatefulWidget {
   /// The color for the button's icon when a pointer is hovering over it.
   final Color hoverColor;
 
-  /// Button type of [GFType] i.e, solid, outline, transparent
+  /// Button type of [GFType] i.e, solid, outline, outline2x transparent
   final GFType type;
 
-  /// Button type of [GFButtonShape] i.e, standard, pills, square, shadow, icons
-  final GFButtonShape shape;
+  /// Button type of [GFIconButtonShape] i.e, standard, pills, square, shadow, icons
+  final GFIconButtonShape shape;
 
   /// Pass [GFColor] or [Color]
   final dynamic color;
@@ -87,14 +87,15 @@ class GFIconButton extends StatefulWidget {
       this.focusNode,
       this.autofocus = false,
       this.tooltip,
-      this.type = GFType.transparent,
-      this.shape = GFButtonShape.standard,
+      this.type = GFType.solid,
+      this.shape = GFIconButtonShape.standard,
       this.color = GFColor.primary,
       this.borderShape,
       this.boxShadow,
       this.size = GFSize.medium,
       this.buttonBoxShadow,
-      this.borderSide})
+      this.borderSide,
+      })
       : assert(iconSize != null),
         assert(padding != null),
         assert(alignment != null),
@@ -110,7 +111,7 @@ class _GFIconButtonState extends State<GFIconButton> {
   Color color;
   Function onPressed;
   GFType type;
-  GFButtonShape shape;
+  GFIconButtonShape shape;
   BoxShadow boxShadow;
   double height;
   double width;
@@ -128,20 +129,45 @@ class _GFIconButtonState extends State<GFIconButton> {
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterial(context));
-    Color currentColor;
-    if (widget.onPressed != null)
-      currentColor = widget.color;
-    else
-      currentColor = widget.disabledColor ?? Theme.of(context).disabledColor;
+
+    Color getBorderColor() {
+      if(widget.onPressed != null){
+        return this.color;
+      }else{
+        if (widget.disabledColor != null)
+          return widget.disabledColor;
+        else {
+          return this.color.withOpacity(0.48);
+        }
+      }
+    }
+
+    Color getDisabledFillColor() {
+      if (widget.type == GFType.transparent || widget.type == GFType.outline || widget.type == GFType.outline2x)
+        return Colors.transparent;
+      if (widget.disabledColor != null)
+        return widget.disabledColor;
+      else {
+        return this.color.withOpacity(0.48);
+      }
+    }
+
+    Color getColor() {
+      if (widget.type == GFType.transparent || widget.type == GFType.outline || widget.type == GFType.outline2x)
+        return Colors.transparent;
+      else{
+        return this.color;
+      }
+    }
 
     final Color themeColor =
         Theme.of(context).colorScheme.onSurface.withOpacity(0.12);
     final BorderSide outlineBorder = BorderSide(
-      color: widget.borderSide == null ? themeColor : widget.borderSide.color,
-      width: widget.borderSide?.width ?? 1.0,
+      color: widget.borderSide == null ? getBorderColor() : widget.borderSide.color,
+      width: widget.borderSide?.width == null ?  widget.type == GFType.outline2x ? 2.0 : 1.0 : widget.borderSide?.width,
     );
 
-    final BorderSide shapeBorder = widget.type == GFType.outline
+    final BorderSide shapeBorder = widget.type == GFType.outline || widget.type == GFType.outline2x
         ? outlineBorder
         : widget.borderSide != null
             ? widget.borderSide
@@ -152,47 +178,50 @@ class _GFIconButtonState extends State<GFIconButton> {
 
     ShapeBorder shape;
 
-    if (this.shape == GFButtonShape.pills) {
-      shape = RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
-    } else if (this.shape == GFButtonShape.square) {
-      shape = RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0.0), side: shapeBorder);
-    } else if (this.shape == GFButtonShape.standard) {
-      shape = RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0), side: shapeBorder);
-    } else {
-      shape = RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0), side: shapeBorder);
+    if (this.shape == GFIconButtonShape.pills) {
+      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0), side: shapeBorder);
+    } else if (this.shape == GFIconButtonShape.square) {
+      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0), side: shapeBorder);
+    } else if (this.shape == GFIconButtonShape.standard) {
+      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0), side: shapeBorder);
+    } else if (this.shape == GFIconButtonShape.circle) {
+      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
     }
 
     if (widget.size == GFSize.small) {
-      this.height = 36.0;
-      this.width = 36.0;
-      this.iconPixel = 24.0;
+      this.height = 30.0;
+      this.width = 30.0;
+      this.iconPixel = 18.0;
     } else if (widget.size == GFSize.medium) {
-      this.height = 44.0;
-      this.width = 44.0;
-      this.iconPixel = 24.0;
+      this.height = 35.0;
+      this.width = 35.0;
+      this.iconPixel = 18.0;
     } else if (widget.size == GFSize.large) {
-      this.height = 50.0;
-      this.width = 50.0;
-      this.iconPixel = 28.0;
-    } else {
-      this.height = 44.0;
-      this.width = 44.0;
-      this.iconPixel = 24.0;
+      this.height = 40.0;
+      this.width = 40.0;
+      this.iconPixel = 18.0;
+    }
+
+    getIconColor(){
+      if (widget.type == GFType.transparent || widget.type == GFType.outline || widget.type == GFType.outline2x)
+        return widget.onPressed != null ?
+        this.color == getGFColor(GFColor.transparent) ? getGFColor(GFColor.dark) : this.color : this.color.withOpacity(0.48);
+      else if(this.color == getGFColor(GFColor.transparent)){
+        return widget.onPressed != null ? getGFColor(GFColor.dark) : getGFColor(GFColor.white);
+      }
+      else{
+        return getGFColor(GFColor.white);
+      }
     }
 
     Widget result = Container(
-      height:
-          widget.shape == GFButtonShape.pills ? this.height + 6 : this.height,
-      width: widget.shape == GFButtonShape.pills ? this.width + 6 : this.width,
+      height: widget.shape == GFIconButtonShape.circle ? this.height + 6 : this.height,
+      width: widget.shape == GFIconButtonShape.pills ? this.width + 10 : widget.shape == GFIconButtonShape.circle ? this.height + 6 : this.width,
       padding: widget.padding,
       child: IconTheme.merge(
         data: IconThemeData(
           size: widget.iconSize > 0.0 ? widget.iconSize : this.iconPixel,
-          color: currentColor,
+          color: getIconColor(),
         ),
         child: widget.icon,
       ),
@@ -211,14 +240,9 @@ class _GFIconButtonState extends State<GFIconButton> {
           return null;
         } else {
           return BoxDecoration(
-              color: widget.type == GFType.transparent ||
-                      widget.type == GFType.outline
-                  ? Colors.transparent
-                  : this.color,
-              borderRadius: widget.shape == GFButtonShape.pills
-                  ? BorderRadius.circular(50.0)
-                  : widget.shape == GFButtonShape.standard
-                      ? BorderRadius.circular(5.0)
+              color: widget.onPressed != null ? getColor() : getDisabledFillColor(),
+              borderRadius: widget.shape == GFIconButtonShape.circle ? BorderRadius.circular(50.0)
+                  : widget.shape == GFIconButtonShape.standard ? BorderRadius.circular(3.0) : widget.shape == GFIconButtonShape.pills ? BorderRadius.circular(20.0)
                       : BorderRadius.zero,
               boxShadow: [
                 widget.boxShadow == null && widget.buttonBoxShadow == true
@@ -251,21 +275,14 @@ class _GFIconButtonState extends State<GFIconButton> {
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: 60.0, maxHeight: 60.0),
           child: Container(
-            height: widget.shape == GFButtonShape.pills
-                ? this.height + 6
-                : this.height,
-            width: widget.shape == GFButtonShape.pills
-                ? this.width + 6
-                : this.width,
+            height: widget.shape == GFIconButtonShape.circle ? this.height + 6 : this.height,
+            width: widget.shape == GFIconButtonShape.pills ? this.width + 10 : widget.shape == GFIconButtonShape.circle ? this.height + 6 : this.width,
             decoration: getBoxShadow(),
             child: Material(
               shape: widget.type == GFType.transparent
                   ? null
                   : widget.borderShape == null ? shape : widget.borderShape,
-              color: widget.type == GFType.transparent ||
-                      widget.type == GFType.outline
-                  ? Colors.transparent
-                  : this.color,
+              color: widget.onPressed != null ? getColor() : getDisabledFillColor(),
               type: widget.type == GFType.transparent
                   ? MaterialType.transparency
                   : MaterialType.button,

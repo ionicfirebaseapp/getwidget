@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/button/gf_button.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
-import 'package:ui_kit/components/header/gf_header.dart';
+import 'package:ui_kit/components/typography/gf_typography.dart';
 import 'package:ui_kit/components/toast/gf_toast.dart';
-import 'package:ui_kit/types/gf_heading_type.dart';
+import 'package:ui_kit/types/gf_typography_type.dart';
 import 'package:ui_kit/types/gf_type.dart';
 
 class Toasts extends StatefulWidget {
@@ -29,9 +29,9 @@ class _ToastsState extends State<Toasts> {
             GFCard(
               content: Column(
                 children: <Widget>[
-                  GFHeader(
+                  GFTypography(
                     text: 'Toast',
-                    type: GFHeadingType.typo6,
+                    type: GFTypographyType.typo6,
                   ),
                   SizedBox(
                     height: 10,

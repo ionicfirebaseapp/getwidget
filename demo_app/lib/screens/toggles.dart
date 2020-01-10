@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
-import 'package:ui_kit/components/header/gf_header.dart';
+import 'package:ui_kit/components/typography/gf_typography.dart';
 import 'package:ui_kit/components/toggle/gf_toggle.dart';
-import 'package:ui_kit/types/gf_heading_type.dart';
+import 'package:ui_kit/types/gf_typography_type.dart';
 import 'package:ui_kit/types/gf_toggle_type.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 
@@ -27,9 +27,9 @@ class _TogglesState extends State<Toggles> {
             GFCard(
               content: Column(
                 children: <Widget>[
-                  GFHeader(
+                  GFTypography(
                     text: 'Android',
-                    type: GFHeadingType.typo6,
+                    type: GFTypographyType.typo6,
                   ),
                   SizedBox(
                     height: 10,
@@ -43,9 +43,9 @@ class _TogglesState extends State<Toggles> {
             GFCard(
               content: Column(
                 children: <Widget>[
-                  GFHeader(
+                  GFTypography(
                     text: 'IOS',
-                    type: GFHeadingType.typo6,
+                    type: GFTypographyType.typo6,
                   ),
                   SizedBox(
                     height: 10,
@@ -59,9 +59,9 @@ class _TogglesState extends State<Toggles> {
             GFCard(
               content: Column(
                 children: <Widget>[
-                  GFHeader(
+                  GFTypography(
                     text: 'Square',
-                    type: GFHeadingType.typo6,
+                    type: GFTypographyType.typo6,
                   ),
                   SizedBox(
                     height: 10,
@@ -75,9 +75,9 @@ class _TogglesState extends State<Toggles> {
             GFCard(
               content: Column(
                 children: <Widget>[
-                  GFHeader(
+                  GFTypography(
                     text: 'Custom',
-                    type: GFHeadingType.typo6,
+                    type: GFTypographyType.typo6,
                   ),
                   SizedBox(
                     height: 10,

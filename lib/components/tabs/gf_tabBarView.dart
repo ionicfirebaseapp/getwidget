@@ -25,6 +25,7 @@ class GFTabBarView extends StatefulWidget {
     @required this.children,
     this.controller,
     this.physics,
+    this.height,
     this.dragStartBehavior = DragStartBehavior.start,
   }) : assert(children != null),
         assert(dragStartBehavior != null),
@@ -55,6 +56,9 @@ class GFTabBarView extends StatefulWidget {
 
   /// {@macro flutter.widgets.scrollable.dragStartBehavior}
   final DragStartBehavior dragStartBehavior;
+
+  /// [GFTabBarView] height can be fixed using [double]
+  final double height;
 
   @override
   _GFTabBarViewState createState() => _GFTabBarViewState();
@@ -223,11 +227,14 @@ class _GFTabBarViewState extends State<GFTabBarView> {
     }());
     return NotificationListener<ScrollNotification>(
       onNotification: _handleScrollNotification,
-      child: PageView(
-        dragStartBehavior: widget.dragStartBehavior,
-        controller: _pageController,
-        physics: widget.physics == null ? _kGFTabBarViewPhysics : _kGFTabBarViewPhysics.applyTo(widget.physics),
-        children: _childrenWithKey,
+      child: Container(
+        height: widget.height == null ? MediaQuery.of(context).size.height : widget.height,
+        child: PageView(
+          dragStartBehavior: widget.dragStartBehavior,
+          controller: _pageController,
+          physics: widget.physics == null ? _kGFTabBarViewPhysics : _kGFTabBarViewPhysics.applyTo(widget.physics),
+          children: _childrenWithKey,
+        ),
       ),
     );
   }

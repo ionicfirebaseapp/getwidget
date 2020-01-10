@@ -1,9 +1,9 @@
 enum GFSize { small, medium, large }
 
-const double SMALL = 35.0;
-const double MEDIUM = 50.0;
-const double LARGE = 65.0;
-const double BLOCK = 40.0;
+const double SMALL = 30.0;
+const double MEDIUM = 35.0;
+const double LARGE = 40.0;
+//const double BLOCK = 40.0;
 
 /// Pass [GFSize] or [double]
 double getGFSize(dynamic size) {

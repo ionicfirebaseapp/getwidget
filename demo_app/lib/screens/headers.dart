@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/avatar/gf_avatar.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
-import 'package:ui_kit/components/header/gf_header.dart';
-import 'package:ui_kit/types/gf_heading_type.dart';
+import 'package:ui_kit/components/typography/gf_typography.dart';
+import 'package:ui_kit/types/gf_typography_type.dart';
 
 class Headers extends StatefulWidget {
   @override
@@ -31,29 +31,29 @@ class _HeadersState extends State<Headers> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                GFHeader(
+                GFTypography(
                   text: 'GF Header Typo1',
-                  type: GFHeadingType.typo1,
+                  type: GFTypographyType.typo1,
                   backgroundImage: NetworkImage(
                       'https://cdn.pixabay.com/photo/2019/12/25/16/49/happy-new-year-4718894_960_720.png'),
                 ),
                 SizedBox(
                   height: 40,
                 ),
-                GFHeader(
+                GFTypography(
                   icon: GFAvatar(),
                   text: 'GF Header Typo2',
-                  type: GFHeadingType.typo2,
+                  type: GFTypographyType.typo2,
                   dividerColor: GFColor.primary,
                   dividerAlignment: Alignment.center,
                 ),
                 SizedBox(
                   height: 40,
                 ),
-                GFHeader(
+                GFTypography(
                   icon: Icon(Icons.insert_emoticon),
                   text: 'GF Header Typo3',
-                  type: GFHeadingType.typo3,
+                  type: GFTypographyType.typo3,
                   dividerWidth: 150,
                   dividerColor: GFColor.warning,
                   dividerBorderRadius: BorderRadius.all(Radius.circular(0)),
@@ -61,9 +61,9 @@ class _HeadersState extends State<Headers> {
                 SizedBox(
                   height: 40,
                 ),
-                GFHeader(
+                GFTypography(
                     text: 'GF Header Typo4',
-                    type: GFHeadingType.typo4,
+                    type: GFTypographyType.typo4,
                     dividerWidth: 345,
                     icon: Image.network(
                       'https://cdn.pixabay.com/photo/2016/12/15/03/27/cocoa-1908020_960_720.jpg',
@@ -72,17 +72,17 @@ class _HeadersState extends State<Headers> {
                 SizedBox(
                   height: 40,
                 ),
-                GFHeader(
+                GFTypography(
                   text: 'GF Header Typo5',
-                  type: GFHeadingType.typo5,
+                  type: GFTypographyType.typo5,
                   dividerColor: GFColor.alt,
                 ),
                 SizedBox(
                   height: 40,
                 ),
-                GFHeader(
+                GFTypography(
                   text: 'GF Header Typo6',
-                  type: GFHeadingType.typo6,
+                  type: GFTypographyType.typo6,
                   dividerWidth: 20,
                 ),
               ],

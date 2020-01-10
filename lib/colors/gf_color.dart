@@ -17,17 +17,17 @@ enum GFColor {
 }
 
 
-const PRIMARY = Color(0xff3f6ad8);
-const SECONDARY = Color(0xff6c757c);
-const SUCCESS =Color(0xff3ac47c);
-const INFO = Color(0xff13aaff);
-const WARNING = Color(0xfff7b825);
-const DANGER = Color(0xffd92550);
+const PRIMARY = Color(0xff3880FF);
+const SECONDARY = Color(0xffAA66CC);
+const SUCCESS =Color(0xff10DC60);
+const INFO = Color(0xff33B5E5);
+const WARNING = Color(0xffFFBB33);
+const DANGER = Color(0xffF04141);
+const LIGHT = Color(0xffE0E0E0);
+const DARK = Color(0xff222428);
+const WHITE = Color(0xffffffff);
 const FOCUS = Color(0xff434054);
 const ALT = Color(0xff794c8a);
-const LIGHT = Color(0xffededed);
-const DARK = Color(0xff333a40);
-const WHITE = Color(0xffffffff);
 const TRANSPARENT = Colors.transparent;
 
 /// Pass [GFColor] or [Color]
@@ -73,7 +73,7 @@ Color getGFColor(dynamic color) {
         return TRANSPARENT;
         break;
       default:
-        return PRIMARY;
+        return null;
         break;
     }
   }
