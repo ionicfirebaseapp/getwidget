@@ -1,6 +1,4 @@
-import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +9,8 @@ import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/position/gf_position.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 
-class GFButtonBadge extends GFButton{
+class GFButtonBadge extends GFButton {
+
   /// Called when the button is tapped or otherwise activated.
   final VoidCallback onPressed;
 
@@ -65,9 +64,6 @@ class GFButtonBadge extends GFButton{
 
   /// Defines the duration of animated changes for [shape] and [elevation].
   final Duration animationDuration;
-
-  /// Typically the button's label.
-  final Widget child;
 
   /// Whether the button is enabled or disabled.
   bool get enabled => onPressed != null;
@@ -128,9 +124,6 @@ class GFButtonBadge extends GFButton{
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
 
-  /// icon of type [Widget]
-  final Widget icon;
-
   /// icon type of [GFIconPosition] i.e, start, end
   final GFPosition position;
 
@@ -174,7 +167,10 @@ class GFButtonBadge extends GFButton{
   ///  * [enabled], which is true if the button is enabled.
   final VoidCallback onLongPress;
 
-  /// Create buttons of all types. check out [GFIconButton] for icon buttons, and [GFBadge] for badges
+  /// Can be used to display [GFCounter], [Icons] inside button design
+  final Widget icon;
+
+  /// Create buttons badges of all types. check out [GFIconButton] for icon buttons, and [GFBadge] for badges
   const GFButtonBadge(
       {Key key,
         @required this.onPressed,
@@ -199,7 +195,6 @@ class GFButtonBadge extends GFButton{
         this.focusNode,
         this.autofocus = false,
         MaterialTapTargetSize materialTapTargetSize,
-        this.child,
         this.type = GFType.solid,
         this.shape = GFButtonShape.standard,
         this.color = GFColor.primary,
@@ -208,7 +203,6 @@ class GFButtonBadge extends GFButton{
         this.size = GFSize.medium,
         this.borderSide,
         this.text,
-        this.icon,
         this.blockButton,
         this.fullWidthButton,
         this.colorScheme,
@@ -216,6 +210,7 @@ class GFButtonBadge extends GFButton{
         this.onLongPress,
         this.disabledColor,
         this.disabledTextColor,
+        this.icon,
       })
       : materialTapTargetSize =
       materialTapTargetSize ?? MaterialTapTargetSize.padded,
@@ -230,13 +225,14 @@ class GFButtonBadge extends GFButton{
         assert(clipBehavior != null),
         assert(autofocus != null);
 
+
   @override
   Widget build(BuildContext context) {
 
     return ConstrainedBox(
       constraints: BoxConstraints(minHeight: 26.0, minWidth: 98.0),
       child: Container(
-        height: this.size,
+        height: getGFSize(size),
         child: GFButton(
           onPressed: onPressed,
           onHighlightChanged: onHighlightChanged,
@@ -258,13 +254,13 @@ class GFButtonBadge extends GFButton{
           clipBehavior: clipBehavior,
           focusNode: focusNode,
           autofocus : autofocus ,
-          child: child,
-          type :GFType.solid,
-          shape :GFButtonShape.standard,
-          color :GFColor.primary,
+//          child: child,
+          type : type,
+          shape : shape,
+          color : color,
           textColor: textColor,
-          position :GFPosition.start,
-          size :GFSize.medium,
+          position : position,
+          size : getGFSize(size),
           borderSide: borderSide,
           text: text,
           icon: icon,
@@ -275,14 +271,13 @@ class GFButtonBadge extends GFButton{
         ),
       ),
     );
-
   }
 }
 
 
 
 
-//
+
 //class GFButtonBadge extends StatefulWidget {
 //  /// Called when the badge is tapped or otherwise activated.
 //  final VoidCallback onPressed;
@@ -319,7 +314,7 @@ class GFButtonBadge extends GFButton{
 //
 //  /// child of type [Widget] is alternative to child. text will get priority over child.
 //  /// You can use [GFBadge] for compatibility.
-//  final Widget icon;
+//  final Widget counter;
 //
 //  /// icon type of [GFPosition] i.e, start, end
 //  final GFPosition position;
@@ -339,7 +334,7 @@ class GFButtonBadge extends GFButton{
 //    this.size = GFSize.medium,
 //    this.borderSide,
 //    @required this.text,
-//    @required this.icon,
+//    @required this.counter,
 //  })  : assert(shape != null, 'Badge shape can not be null'),
 //        assert(padding != null),
 //        super(key: key);
@@ -389,7 +384,7 @@ class GFButtonBadge extends GFButton{
 //          position: this.position,
 //          size: this.size,
 //          borderShape: widget.borderShape,
-//          icon: widget.icon,
+//          icon: widget.counter,
 //        ),
 //      ),
 //    );

@@ -15,7 +15,7 @@ class GFCard extends StatelessWidget {
     this.elevation,
     this.shape,
     this.borderOnForeground = true,
-    this.padding = const EdgeInsets.all(12.0),
+    this.padding = const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
     this.margin,
     this.clipBehavior,
     this.semanticContainer,
@@ -54,7 +54,7 @@ class GFCard extends StatelessWidget {
   /// The empty space that surrounds the card. Defines the card's outer [Container.margin].
   final EdgeInsetsGeometry margin;
 
-  /// The empty space that surrounds the card. Defines the card's outer [Container.margin]..
+  /// The empty space that surrounds the card. Defines the card's outer [Container.padding]..
   final EdgeInsetsGeometry padding;
 
   /// Whether this widget represents a single semantic container, or if false

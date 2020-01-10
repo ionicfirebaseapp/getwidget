@@ -31,7 +31,6 @@ class GFCarousel extends StatefulWidget {
       this.enlargeMainPage = false,
       this.onPageChanged,
       this.scrollPhysics,
-      this.rowCount,
       this.scrollDirection: Axis.horizontal})
       : this.realPage =
             enableInfiniteScroll ? realPage + initialPage : initialPage,
@@ -41,8 +40,6 @@ class GFCarousel extends StatefulWidget {
               enableInfiniteScroll ? realPage + initialPage : initialPage,
         );
 
-  /// Count of visible cells
-  final int rowCount;
 
   /// The pagination dots size can be defined using [double].
   final double pagerSize;
