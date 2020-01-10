@@ -19,81 +19,89 @@ class _ListTilesState extends State<ListTiles> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: getGFColor(GFColor.dark),
-        title: Text('List Tile', style: TextStyle(fontSize: 14),),
+        title: Text(
+          'List Tile',
+          style: TextStyle(fontSize: 14),
+        ),
       ),
       body: ListView(
         children: <Widget>[
-
-
           GFCard(
-            content:  GFListTile(
-
+            content: GFListTile(
               title: GFTypography(
                 text: 'List tile',
                 type: GFTypographyType.typo5,
                 showDivider: false,
               ),
-              subTitle: Text('Lorem ipsum', style: TextStyle(color: getGFColor(GFColor.dark)),),
-
+              subTitle: Text(
+                'Lorem ipsum',
+                style: TextStyle(color: getGFColor(GFColor.dark)),
+              ),
               showDivider: false,
-
             ),
           ),
-         GFCard(
-           content:  GFListTile(
-             avatar: GFAvatar(
-               shape: GFAvatarShape.standard,
-             ),
-             title: GFTypography(
-               text: 'List tile',
-               type: GFTypographyType.typo5,
-               showDivider: false,
-             ),
-             subTitle: Text('Lorem ipsum', style: TextStyle(color: getGFColor(GFColor.dark)),),
-
-             description: Text('Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ',
-                 style: TextStyle(fontSize: 13, color: getGFColor(GFColor.secondary))),
-             showDivider: false,
-           ),
-         ),
-
-         GFCard(
-           content:  GFListTile(
-
-               title: GFTypography(
-                 text: 'List tile',
-                 type: GFTypographyType.typo5,
-                 showDivider: false,
-               ),
-               subTitle: Text('Lorem ipsum', style: TextStyle(color: getGFColor(GFColor.dark)),),
-
-               description: Text('Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ',
-                   style: TextStyle(fontSize: 13, color: getGFColor(GFColor.secondary))),
-               icon: GFAvatar(
-                 shape: GFAvatarShape.circle,
-               ),
-             showDivider: false,
-
-           ),
-         ),
-
           GFCard(
-            content:  GFListTile(
-             avatar: GFAvatar(
-               shape: GFAvatarShape.square,
-             ),
+            content: GFListTile(
+              avatar: GFAvatar(
+                shape: GFAvatarShape.standard,
+              ),
               title: GFTypography(
                 text: 'List tile',
                 type: GFTypographyType.typo5,
                 showDivider: false,
               ),
-              subTitle: Text('Lorem ipsum', style: TextStyle(color: getGFColor(GFColor.dark)),),
-
-              description: Text('Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ',
-                  style: TextStyle(fontSize: 13, color: getGFColor(GFColor.secondary))),
+              subTitle: Text(
+                'Lorem ipsum',
+                style: TextStyle(color: getGFColor(GFColor.dark)),
+              ),
+              description: Text(
+                  'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ',
+                  style: TextStyle(
+                      fontSize: 13, color: getGFColor(GFColor.secondary))),
+              showDivider: false,
+            ),
+          ),
+          GFCard(
+            content: GFListTile(
+              title: GFTypography(
+                text: 'List tile',
+                type: GFTypographyType.typo5,
+                showDivider: false,
+              ),
+              subTitle: Text(
+                'Lorem ipsum',
+                style: TextStyle(color: getGFColor(GFColor.dark)),
+              ),
+              description: Text(
+                  'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ',
+                  style: TextStyle(
+                      fontSize: 13, color: getGFColor(GFColor.secondary))),
+              icon: GFAvatar(
+                shape: GFAvatarShape.circle,
+              ),
+              showDivider: false,
+            ),
+          ),
+          GFCard(
+            content: GFListTile(
+              avatar: GFAvatar(
+                shape: GFAvatarShape.square,
+              ),
+              title: GFTypography(
+                text: 'List tile',
+                type: GFTypographyType.typo5,
+                showDivider: false,
+              ),
+              subTitle: Text(
+                'Lorem ipsum',
+                style: TextStyle(color: getGFColor(GFColor.dark)),
+              ),
+              description: Text(
+                  'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ',
+                  style: TextStyle(
+                      fontSize: 13, color: getGFColor(GFColor.secondary))),
               icon: GFIconButton(icon: Icon(Icons.share), onPressed: null),
               showDivider: false,
-
             ),
           )
         ],

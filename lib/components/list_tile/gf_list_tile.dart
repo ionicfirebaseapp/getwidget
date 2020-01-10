@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/avatar/gf_avatar.dart';
 
 class GFListTile extends StatelessWidget {
@@ -80,27 +81,25 @@ class GFListTile extends StatelessWidget {
       this.color,
       this.avatar,
       this.title,
-      this.subTitle ,
-      this.description ,
+      this.subTitle,
+      this.description,
       this.icon,
       this.showDivider = true,
-        this.padding,
-        this.trailing,
-        this.dividerEndIndent,
-        this.dividerHeight,
-        this.dividerIndent,
-        this.dividerThickness,
-        this.dividerColor
-      })
+      this.padding,
+      this.trailing,
+      this.dividerEndIndent,
+      this.dividerHeight,
+      this.dividerIndent,
+      this.dividerThickness,
+      this.dividerColor})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-    final double height = this.dividerHeight ??  16.0;
-    final double thickness = this.dividerThickness ??  0.0;
-    final double indent = this.dividerIndent ??  0.0;
-    final double endIndent = this.dividerEndIndent ??  0.0;
+    final double height = this.dividerHeight ?? 16.0;
+    final double thickness = this.dividerThickness ?? 0.0;
+    final double indent = this.dividerIndent ?? 0.0;
+    final double endIndent = this.dividerEndIndent ?? 0.0;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,30 +110,33 @@ class GFListTile extends StatelessWidget {
           child: ListTile(
               leading: avatar,
               title: title,
-              subtitle:  subTitle != null || description != null ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  subTitle ?? Container(),
-                  description ?? Container()
-                ],
-              ): null,
-              trailing: icon != null ?  Column(
-                children: <Widget>[
-                  Padding(padding: EdgeInsets.only(top: 16.0), child:
-                  icon )
-                ],
-              ): null
-          ),
+              subtitle: subTitle != null || description != null
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        subTitle ?? Container(),
+                        description ?? Container()
+                      ],
+                    )
+                  : null,
+              trailing: icon != null
+                  ? Column(
+                      children: <Widget>[
+                        Padding(
+                            padding: EdgeInsets.only(top: 16.0), child: icon)
+                      ],
+                    )
+                  : null),
         ),
-
-        showDivider ?
-        Divider(
-          height: height ?? dividerHeight,
-          thickness: thickness ?? dividerThickness,
-          color: dividerColor ??  Theme.of(context).dividerColor,
-          indent: indent ?? dividerIndent,
-          endIndent: endIndent ?? dividerEndIndent,
-        ) : Container()
+        showDivider
+            ? Divider(
+                height: height ?? dividerHeight,
+                thickness: thickness ?? dividerThickness,
+                color: dividerColor ?? Theme.of(context).dividerColor,
+                indent: indent ?? dividerIndent,
+                endIndent: endIndent ?? dividerEndIndent,
+              )
+            : Container()
       ],
     );
   }
