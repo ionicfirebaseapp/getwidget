@@ -320,7 +320,7 @@ class _MyHomePageState extends State<MyHomePage>
 //              dividerHeight: 2.0,
 //              dividerIndent: 30.0,
 //              dividerThickness: 5.0,
-//              showDivider: false,
+              showDivider: false,
             ),
 
 
