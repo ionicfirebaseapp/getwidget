@@ -1,14 +1,41 @@
-# ui_kit
+<p align="center">
+  <a href="https://www.getflutter.dev/">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:w-auto-300/gf-logo-g-b_SYSBeqUrR.png" alt="Get Flutter">
+  </a>
+</p>
 
-A new Flutter package project.
+[**GetFlutter**](https://www.getflutter.dev) is 100% opensource UI libraries build to make flutter development easier then ever and reuse 1000+ pre-build widget in any Flutter Web or Mobile app development. 
 
-## Getting Started
+[**NOTE**] Our libraries will work on flutter web but still flutter web in Beta so their some rendering problem so we update our libraris as flutter came with stable release on Web. 
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## Table of contents 
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+- [Quick start](#quick-start)
+- [Features](#features)
+- [Screenshot](#screenshot)
+- [Demo](#demo)
+- [Contributing](#contributing)
+- [Bugs and feature requests](#bugs-and-feature-requests)
+- [Documentation](#documentation)
+- [Copyright and license](#copyright-and-license)
+
+## Quick start
+
+Read the [Getting started page](https://docs.getflutter.dev) 
+Forum [Support and discussion ](https://forum.getflutter.dev)
+
+## Features 
+We this beta release we going to lunch this libraries with Following component : 
+ [**Button**]
+ [**Badge**]
+ [**Avatar**]
+ [**Image**]
+ [**Card**]
+ [**Carousel**]
+ [**Tile**]
+ [**Tab**]
+ [**Typography**]
+ 
+ ## screenshot
+ 
+ 
