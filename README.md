@@ -27,15 +27,28 @@ Forum [Support and discussion ](https://forum.getflutter.dev)
 ## Features 
 We this beta release we going to lunch this libraries with Following component : 
  
- ### Button
- ### Badge
- ### Avatar
- ### Image
- ### Card
- ### Carousel
- ### Tile
- ### Tab
- ### Typography 
- ## screenshot
+ ##### Button
+ ##### Badge
+ ##### Avatar
+ ##### Image
+ ##### Card
+ ##### Carousel
+ ##### Tile
+ ##### Tab
+ ##### Typography 
+ ##### screenshot
+ 
+ ## Demo 
  
  
+ ## Contributing
+ 
+ 
+ ## Bugs-and-feature-requests
+ 
+ 
+ ## Documentation
+ 
+ 
+ 
+ ## Copyright-and-license
