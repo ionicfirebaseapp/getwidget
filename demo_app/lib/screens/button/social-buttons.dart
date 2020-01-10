@@ -53,36 +53,44 @@ class _SocialButtonsState extends State<SocialButtons> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Expanded(child:  GFButton(
-                        onPressed: null,
+                    Expanded(child:
+                    GFButton(
+                      buttonBoxShadow: true,
+                      color: Color(0xFF3B5998),
+                        onPressed: (){},
                         child: Text(
                           "FB",
                         ),
                         icon: SvgPicture.asset('lib/assets/icons/fb.svg')
-                    ),),
+                    ),
+                    ),
                     SizedBox(
                       width: 6,
                     ),
                     Expanded(child:  GFButton(
-                      onPressed: null,
+                      onPressed: (){},
                       child: Text("Twitter"),
                       icon: SvgPicture.asset('lib/assets/icons/twitter.svg'),
-                      color: GFColor.secondary,
+                      color:Color(0xFF00ACEE),
+                      buttonBoxShadow: true,
                     ),),
                     SizedBox(
                       width: 6,
                     ),
                     Expanded(child:  GFButton(
-                      onPressed: null,
+                      onPressed: (){},
                       child: Text(
-                        "Whtsap",
+                        "Whatsap",
                       ),
                       icon: SvgPicture.asset('lib/assets/icons/whatsapp.svg'),
-                      color: GFColor.success,
+                      color: Color(0xFF25D366),
+                      buttonBoxShadow: true,
                     ),)
                   ],
                 ),
@@ -93,28 +101,31 @@ class _SocialButtonsState extends State<SocialButtons> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     GFButton(
-                      onPressed: null,
+                      onPressed: (){},
                       child: Text(
                         "Google +",
                       ),
                       icon: SvgPicture.asset('lib/assets/icons/google.svg'),
-                      color: GFColor.warning,
+                      color: Color(0xFFDD4B39),
+                      buttonBoxShadow: true,
                     ),
                     GFButton(
-                      onPressed: null,
+                      onPressed: (){},
                       child: Text(
                         "Dribble",
                       ),
                       icon: SvgPicture.asset('lib/assets/icons/dribble.svg'),
-                      color: GFColor.danger,
+                      color: Color(0xFFEA4C89),
+                      buttonBoxShadow: true,
                     ),
                     GFButton(
-                      onPressed: null,
+                      onPressed: (){},
                       child: Text(
                         "LinkedIn",
                       ),
                       icon: SvgPicture.asset('lib/assets/icons/linkedin.svg'),
-                      color: GFColor.info,
+                      color: Color(0xFF0E76A8),
+                      buttonBoxShadow: true,
                     ),
                   ],
                 ),
@@ -125,33 +136,38 @@ class _SocialButtonsState extends State<SocialButtons> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     GFButton(
-                      onPressed: null,
+                      onPressed: (){},
                       child: Text(
                         "Youtube",
                       ),
                       icon: SvgPicture.asset('lib/assets/icons/youtube.svg'),
-                      type: GFType.solid,
-                      color: GFColor.light,
+                      color: Color(0xFFC4302B),
+                      buttonBoxShadow: true,
                     ),
 
                     GFButton(
-                      onPressed: null,
+                      onPressed: (){},
                       child: Text(
                         "Slack",
                         style: TextStyle(color: getGFColor(GFColor.white)),
                       ),
                       icon: SvgPicture.asset('lib/assets/icons/slack.svg'),
-                      color: GFColor.dark,
+                      color:Color(0XFF2EB67D),
+                      buttonBoxShadow: true,
                     ),
                     GFButton(
-                      onPressed: null,
+                      onPressed: (){},
                       child: Text(
                         "Pinterest",
                       ),
                       icon: SvgPicture.asset('lib/assets/icons/pinterest.svg'),
-                      color: GFColor.alt,
+                      color: Color(0XFFC8232C),
+                      buttonBoxShadow: true,
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 10,
                 ),
               ],
             ),
@@ -179,24 +195,22 @@ class _SocialButtonsState extends State<SocialButtons> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     GFIconButton(
-                        type: GFType.solid,
-                        icon: SvgPicture.asset('lib/assets/icons/fb.svg'), onPressed: null),
+                        color: Color(0xFF3B5998),
+                        icon: SvgPicture.asset('lib/assets/icons/fb.svg'), onPressed: (){}),
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.secondary,
-                        icon: SvgPicture.asset('lib/assets/icons/twitter.svg'), onPressed: null),
+
+                        color:Color(0xFF00ACEE),
+                        icon: SvgPicture.asset('lib/assets/icons/twitter.svg'), onPressed: (){}),
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.success,
-                        icon: SvgPicture.asset('lib/assets/icons/whatsapp.svg'), onPressed: null),
+                        color: Color(0xFF25D366),
+                        icon: SvgPicture.asset('lib/assets/icons/whatsapp.svg'), onPressed: (){}),
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.warning,
-                        icon: SvgPicture.asset('lib/assets/icons/google.svg'), onPressed: null),
+
+                        color: Color(0xFFDD4B39),
+                        icon: SvgPicture.asset('lib/assets/icons/google.svg'), onPressed: (){}),
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.danger,
-                        icon: SvgPicture.asset('lib/assets/icons/dribble.svg'), onPressed: null),
+                        color: Color(0xFFEA4C89),
+                        icon: SvgPicture.asset('lib/assets/icons/dribble.svg'), onPressed: (){}),
 
                   ],
                 ),
@@ -210,22 +224,21 @@ class _SocialButtonsState extends State<SocialButtons> {
                   children: <Widget>[
 
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.info,
-                        icon: SvgPicture.asset('lib/assets/icons/linkedin.svg'), onPressed: null),
+                        color: Color(0xFF0E76A8),
+                        icon: SvgPicture.asset('lib/assets/icons/linkedin.svg'), onPressed: (){}),
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.light,
-                        icon: SvgPicture.asset('lib/assets/icons/youtube.svg'), onPressed: null),
-                    GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.dark,
-                        icon: SvgPicture.asset('lib/assets/icons/slack.svg'), onPressed: null),
-                    GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.danger,
 
-                        icon: SvgPicture.asset('lib/assets/icons/pinterest.svg'), onPressed: null),
+                        color: Color(0xFFC4302B),
+                        icon: SvgPicture.asset('lib/assets/icons/youtube.svg'), onPressed: (){}),
+                    GFIconButton(
+
+                        color:Color(0XFF2EB67D),
+                        icon: SvgPicture.asset('lib/assets/icons/slack.svg'), onPressed: (){}),
+                    GFIconButton(
+
+                        color: Color(0XFFC8232C),
+
+                        icon: SvgPicture.asset('lib/assets/icons/pinterest.svg'), onPressed: (){}),
 
                   ],
                 ),
@@ -262,29 +275,28 @@ class _SocialButtonsState extends State<SocialButtons> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     GFIconButton(
-                        type: GFType.solid,
+                        color: Color(0xFF3B5998),
                         shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/fb.svg'), onPressed: null),
+
+                        icon: SvgPicture.asset('lib/assets/icons/fb.svg'), onPressed: (){}),
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.secondary,
+
+                        color:Color(0xFF00ACEE),
                         shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/twitter.svg'), onPressed: null),
+                        icon: SvgPicture.asset('lib/assets/icons/twitter.svg'), onPressed: (){}),
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.success,
+                        color: Color(0xFF25D366),
                         shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/whatsapp.svg'), onPressed: null),
+                        icon: SvgPicture.asset('lib/assets/icons/whatsapp.svg'), onPressed: (){}),
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.warning,
+
+                        color: Color(0xFFDD4B39),
                         shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/google.svg'), onPressed: null),
+                        icon: SvgPicture.asset('lib/assets/icons/google.svg'), onPressed: (){}),
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.danger,
+                        color: Color(0xFFEA4C89),
                         shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/dribble.svg'), onPressed: null),
+                        icon: SvgPicture.asset('lib/assets/icons/dribble.svg'), onPressed: (){}),
 
                   ],
                 ),
@@ -298,25 +310,25 @@ class _SocialButtonsState extends State<SocialButtons> {
                   children: <Widget>[
 
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.info,
+                        color: Color(0xFF0E76A8),
                         shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/linkedin.svg'), onPressed: null),
+                        icon: SvgPicture.asset('lib/assets/icons/linkedin.svg'), onPressed: (){}),
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.light,
+
+                        color: Color(0xFFC4302B),
                         shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/youtube.svg'), onPressed: null),
+                        icon: SvgPicture.asset('lib/assets/icons/youtube.svg'), onPressed: (){}),
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.dark,
+
+                        color:Color(0XFF2EB67D),
                         shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/slack.svg'), onPressed: null),
+                        icon: SvgPicture.asset('lib/assets/icons/slack.svg'), onPressed: (){}),
                     GFIconButton(
-                        type: GFType.solid,
-                        color: GFColor.danger,
+
+                        color: Color(0XFFC8232C),
                         shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/pinterest.svg'), onPressed: null),
+
+                        icon: SvgPicture.asset('lib/assets/icons/pinterest.svg'), onPressed: (){}),
 
                   ],
                 ),

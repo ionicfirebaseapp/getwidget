@@ -37,6 +37,7 @@ flutter:
     - lib/assets/icons/toast.png
     - lib/assets/icons/toggle.png
     - lib/assets/icons/typo.png
+    - lib/assets/icons/images.png
     - lib/assets/icons/back.png
     - lib/assets/icons/next.png
     - lib/assets/icons/primary.svg

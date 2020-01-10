@@ -9,7 +9,7 @@ import 'avatars.dart';
 import 'toggles.dart';
 import 'headers.dart';
 import 'toasts.dart';
-import 'badges.dart';
+import '../screens/badges/badges.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../screens/button/standard-buttons.dart';
 
@@ -505,7 +505,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-//                         builder: (BuildContext context) => Buttons()
+                         builder: (BuildContext context) => Badges()
                               ),
                         );
                       },
@@ -621,6 +621,52 @@ class _HomePageState extends State<HomePage> {
                             Image.asset('lib/assets/icons/typo.png'),
                             Text(
                               'Typography',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: getGFColor(
+                                    GFColor.white,
+                                  )),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+//                              builder: (BuildContext context) => Headers()
+                          ),
+                        );
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(top: 23),
+                        decoration: BoxDecoration(
+//                     color:getGFColor( GFColor.dark,),
+                            color: Color(0xFF333333),
+                            borderRadius: BorderRadius.all(Radius.circular(7)),
+                            boxShadow: [
+                              new BoxShadow(
+                                  color: Colors.black.withOpacity(0.61),
+                                  blurRadius: 8.0,
+                                  spreadRadius: 0.0),
+                            ]),
+                        height: 160,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Image.asset('lib/assets/icons/images.png'),
+                            Text(
+                              'Images',
                               style: TextStyle(
                                   fontSize: 20,
                                   color: getGFColor(

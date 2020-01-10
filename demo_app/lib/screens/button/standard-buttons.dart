@@ -43,7 +43,7 @@ class _StandardButtonsState extends State<StandardButtons> {
         labelColor: getGFColor(GFColor.warning),
         tabs: <Widget>[
           GFButton(
-            onPressed: (){},
+            onPressed: null,
             child: Text(
               "Solid",
               style: TextStyle(fontSize: 12),
@@ -52,7 +52,7 @@ class _StandardButtonsState extends State<StandardButtons> {
             textColor: GFColor.white,
           ),
           GFButton(
-            onPressed: (){},
+            onPressed: null,
             child: Text(
               "Outline",
               style: TextStyle(fontSize: 12),
@@ -60,7 +60,7 @@ class _StandardButtonsState extends State<StandardButtons> {
             type: GFType.outline,
           ),
           GFButton(
-            onPressed: (){},
+            onPressed:null,
             text: 'Outline 2x',
             textStyle: TextStyle(fontSize: 12, color: getGFColor(GFColor.dark)),
             type: GFType.outline2x,
@@ -422,6 +422,9 @@ class _StandardButtonsState extends State<StandardButtons> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
@@ -472,6 +475,9 @@ class _StandardButtonsState extends State<StandardButtons> {
                                       color: getGFColor(GFColor.white))),
                               color: GFColor.primary,
                               size: GFSize.small,
+                            ),
+                            SizedBox(
+                              height: 10,
                             ),
                           ],
                         ),
@@ -537,6 +543,9 @@ class _StandardButtonsState extends State<StandardButtons> {
                                   color: getGFColor(GFColor.white))),
                           color: GFColor.primary,
                           size: GFSize.small,
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
 
                       ],
@@ -661,6 +670,9 @@ class _StandardButtonsState extends State<StandardButtons> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
@@ -774,6 +786,9 @@ class _StandardButtonsState extends State<StandardButtons> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
@@ -825,6 +840,9 @@ class _StandardButtonsState extends State<StandardButtons> {
                               color: GFColor.primary,
                               size: GFSize.small,
                               type: GFType.outline,
+                            ),
+                            SizedBox(
+                              height: 10,
                             ),
                           ],
                         ),
@@ -890,6 +908,9 @@ class _StandardButtonsState extends State<StandardButtons> {
                           color: GFColor.primary,
                           size: GFSize.small,
                           type: GFType.outline,
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
 
                       ],
@@ -1015,6 +1036,9 @@ class _StandardButtonsState extends State<StandardButtons> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
@@ -1128,6 +1152,9 @@ class _StandardButtonsState extends State<StandardButtons> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
@@ -1179,6 +1206,9 @@ class _StandardButtonsState extends State<StandardButtons> {
                               color: GFColor.primary,
                               size: GFSize.small,
                               type: GFType.outline2x,
+                            ),
+                            SizedBox(
+                              height: 10,
                             ),
                           ],
                         ),
@@ -1244,6 +1274,9 @@ class _StandardButtonsState extends State<StandardButtons> {
                           color: GFColor.primary,
                           size: GFSize.small,
                           type: GFType.outline2x,
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
 
                       ],

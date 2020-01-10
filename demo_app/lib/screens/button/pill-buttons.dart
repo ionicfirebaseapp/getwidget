@@ -42,7 +42,7 @@ class _PillsButtonsState extends State<PillsButtons> {
         labelColor: getGFColor(GFColor.warning),
         tabs: <Widget>[
           GFButton(
-            onPressed: (){},
+            onPressed: null,
             child: Text(
               "Solid",
               style: TextStyle(fontSize: 12),
@@ -52,7 +52,7 @@ class _PillsButtonsState extends State<PillsButtons> {
             shape: GFButtonShape.pills,
           ),
           GFButton(
-            onPressed: (){},
+            onPressed: null,
             child: Text(
               "Outline",
               style: TextStyle(fontSize: 12),
@@ -61,7 +61,7 @@ class _PillsButtonsState extends State<PillsButtons> {
             shape: GFButtonShape.pills,
           ),
           GFButton(
-            onPressed: (){},
+            onPressed: null,
             text: 'Outline 2x',
             textStyle: TextStyle(fontSize: 12, color: getGFColor(GFColor.dark)),
             type: GFType.outline2x,
@@ -185,6 +185,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
@@ -301,6 +304,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
@@ -354,6 +360,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                               shape: GFButtonShape.pills,
                             ),
                           ],
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                       ],
                     ),
@@ -410,6 +419,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                           color: GFColor.primary,
                           size: GFSize.small,
                           shape: GFButtonShape.pills,
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                       ],
                     ),
@@ -542,6 +554,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
 
                       ],
                     ),
@@ -666,6 +681,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
@@ -719,7 +737,11 @@ class _PillsButtonsState extends State<PillsButtons> {
                               type: GFType.outline,
                               shape: GFButtonShape.pills,
                             ),
+
                           ],
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                       ],
                     ),
@@ -779,6 +801,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                           size: GFSize.small,
                           type: GFType.outline,
                           shape: GFButtonShape.pills,
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                       ],
                     ),
@@ -911,6 +936,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
 
                       ],
                     ),
@@ -1035,6 +1063,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
@@ -1088,7 +1119,11 @@ class _PillsButtonsState extends State<PillsButtons> {
                               type: GFType.outline2x,
                               shape: GFButtonShape.pills,
                             ),
+
                           ],
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                       ],
                     ),
@@ -1148,6 +1183,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                           size: GFSize.small,
                           type: GFType.outline2x,
                           shape: GFButtonShape.pills,
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                       ],
                     ),
