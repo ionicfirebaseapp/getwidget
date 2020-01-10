@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/components/header/gf_header.dart';
+import 'package:ui_kit/components/typography/gf_typography.dart';
 import 'package:ui_kit/components/tabs/gf_tabs.dart';
 import 'package:ui_kit/components/button/gf_button.dart';
 import 'package:ui_kit/size/gf_size.dart';
-import 'package:ui_kit/types/gf_heading_type.dart';
+import 'package:ui_kit/types/gf_typography_type.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/shape/gf_button_shape.dart';
 import 'package:ui_kit/colors/gf_color.dart';
@@ -76,9 +76,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 30),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Default',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -95,7 +95,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               shape: GFButtonShape.pills,
                               child: Text(
                                 "Primary",
@@ -103,7 +103,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.primary,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Secondary",
                               ),
@@ -111,7 +111,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               shape: GFButtonShape.pills,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Success",
                               ),
@@ -127,7 +127,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Warning",
                               ),
@@ -135,16 +135,15 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.warning,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Danger",
                               ),
-
                               shape: GFButtonShape.pills,
                               color: GFColor.danger,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Info",
                               ),
@@ -160,7 +159,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Light",
                               ),
@@ -168,7 +167,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.light,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Dark",
                               ),
@@ -176,7 +175,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.dark,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Link",
                               ),
@@ -191,13 +190,11 @@ class _PillsButtonsState extends State<PillsButtons> {
                       ],
                     ),
                   ),
-
-
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Disabled State',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -258,7 +255,6 @@ class _PillsButtonsState extends State<PillsButtons> {
                               child: Text(
                                 "Danger",
                               ),
-
                               shape: GFButtonShape.pills,
                               color: GFColor.danger,
                             ),
@@ -295,7 +291,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.dark,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Link",
                               ),
@@ -310,13 +306,11 @@ class _PillsButtonsState extends State<PillsButtons> {
                       ],
                     ),
                   ),
-
-
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Button Sizes',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -333,7 +327,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text("Large",
                                   style: TextStyle(
                                       color: getGFColor(GFColor.white))),
@@ -342,7 +336,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               shape: GFButtonShape.pills,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text("Normal",
                                   style: TextStyle(
                                       color: getGFColor(GFColor.white))),
@@ -351,7 +345,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               shape: GFButtonShape.pills,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text("Small",
                                   style: TextStyle(
                                       color: getGFColor(GFColor.white))),
@@ -369,9 +363,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Block Buttons',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -385,7 +379,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text("Large",
                               style:
@@ -398,7 +392,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text("Normal",
                               style:
@@ -411,7 +405,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text("Small",
                               style:
@@ -437,9 +431,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 30),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Default',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -456,7 +450,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               shape: GFButtonShape.pills,
                               child: Text(
                                 "Primary",
@@ -465,7 +459,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.primary,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Secondary",
                               ),
@@ -474,7 +468,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               shape: GFButtonShape.pills,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Success",
                               ),
@@ -491,7 +485,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Warning",
                               ),
@@ -500,7 +494,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.warning,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Danger",
                               ),
@@ -509,7 +503,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.danger,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Info",
                               ),
@@ -526,7 +520,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Light",
                               ),
@@ -535,7 +529,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.light,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Dark",
                               ),
@@ -544,7 +538,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.dark,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Link",
                               ),
@@ -557,16 +551,14 @@ class _PillsButtonsState extends State<PillsButtons> {
                         SizedBox(
                           height: 10,
                         ),
-
                       ],
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Disabled State',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -671,7 +663,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.dark,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Link",
                               ),
@@ -689,9 +681,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Button Sizes',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -708,7 +700,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Large",
                               ),
@@ -718,7 +710,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               shape: GFButtonShape.pills,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Normal",
                               ),
@@ -728,7 +720,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               shape: GFButtonShape.pills,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Small",
                               ),
@@ -737,7 +729,6 @@ class _PillsButtonsState extends State<PillsButtons> {
                               type: GFType.outline,
                               shape: GFButtonShape.pills,
                             ),
-
                           ],
                         ),
                         SizedBox(
@@ -748,9 +739,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 20),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Block Buttons',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -764,7 +755,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text(
                             "Large",
@@ -778,7 +769,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text(
                             "Normal",
@@ -792,7 +783,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text(
                             "Small",
@@ -819,9 +810,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 30),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Default',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -838,7 +829,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               shape: GFButtonShape.pills,
                               child: Text(
                                 "Primary",
@@ -847,7 +838,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.primary,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Secondary",
                               ),
@@ -856,7 +847,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               shape: GFButtonShape.pills,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Success",
                               ),
@@ -873,7 +864,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Warning",
                               ),
@@ -882,7 +873,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.warning,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Danger",
                               ),
@@ -891,7 +882,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.danger,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Info",
                               ),
@@ -908,7 +899,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Light",
                               ),
@@ -917,7 +908,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.light,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Dark",
                               ),
@@ -926,7 +917,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.dark,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Link",
                               ),
@@ -939,16 +930,14 @@ class _PillsButtonsState extends State<PillsButtons> {
                         SizedBox(
                           height: 10,
                         ),
-
                       ],
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Disabled State',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -1053,7 +1042,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               color: GFColor.dark,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Link",
                               ),
@@ -1071,9 +1060,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Button Sizes',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -1090,7 +1079,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Large",
                               ),
@@ -1100,7 +1089,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               shape: GFButtonShape.pills,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Normal",
                               ),
@@ -1110,7 +1099,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                               shape: GFButtonShape.pills,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Small",
                               ),
@@ -1119,7 +1108,6 @@ class _PillsButtonsState extends State<PillsButtons> {
                               type: GFType.outline2x,
                               shape: GFButtonShape.pills,
                             ),
-
                           ],
                         ),
                         SizedBox(
@@ -1130,9 +1118,9 @@ class _PillsButtonsState extends State<PillsButtons> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 20),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Block Buttons',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -1146,7 +1134,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text(
                             "Large",
@@ -1160,7 +1148,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text(
                             "Normal",
@@ -1174,7 +1162,7 @@ class _PillsButtonsState extends State<PillsButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text(
                             "Small",

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 ///
 /// The `details` object provides the position of the touch when it first
 /// touched the surface.
-typedef GFItemsSliderSlideStartCallback = void Function(
+typedef GFItemsCarouselSlideStartCallback = void Function(
     DragStartDetails details);
 
 /// Signature for when a pointer that is in contact with the screen and moving
@@ -16,14 +16,14 @@ typedef GFItemsSliderSlideStartCallback = void Function(
 ///
 /// The `details` object provides the position of the touch and the distance it
 /// has travelled since the last update.
-typedef GFItemsSliderSlideCallback = void Function(DragUpdateDetails details);
+typedef GFItemsCarouselSlideCallback = void Function(DragUpdateDetails details);
 
 /// Signature for when a pointer that was previously in contact with the screen
 /// and moving is no longer in contact with the screen.
 ///
 /// The velocity at which the pointer was moving when it stopped contacting
 /// the screen is available in the `details`.
-typedef GFItemsSliderSlideEndCallback = void Function(DragEndDetails details);
+typedef GFItemsCarouselSlideEndCallback = void Function(DragEndDetails details);
 
 /// A widget that show draggable cells with animation.
 ///
@@ -32,24 +32,24 @@ typedef GFItemsSliderSlideEndCallback = void Function(DragEndDetails details);
 /// Set drag handlers [onSlideStart], [onSlide], [onSlideEnd]
 ///
 /// Set left/right arrows [leftArrow], [rightArrow]
-class GFItemsSlider extends StatefulWidget {
+class GFItemsCarousel extends StatefulWidget {
   /// Count of visible cells
   final int rowCount;
 
   final List<Widget> children;
 
   /// Signature for when a pointer has contacted the screen and has begun to move.
-  final GFItemsSliderSlideStartCallback onSlideStart;
+  final GFItemsCarouselSlideStartCallback onSlideStart;
 
   /// Signature for when a pointer that is in contact with the screen and moving
   /// has moved again.
-  final GFItemsSliderSlideCallback onSlide;
+  final GFItemsCarouselSlideCallback onSlide;
 
   /// Signature for when a pointer that was previously in contact with the screen
   /// and moving is no longer in contact with the screen.
-  final GFItemsSliderSlideEndCallback onSlideEnd;
+  final GFItemsCarouselSlideEndCallback onSlideEnd;
 
-  GFItemsSlider(
+  GFItemsCarousel(
       {this.rowCount,
       this.children,
       this.onSlideStart,
@@ -57,10 +57,10 @@ class GFItemsSlider extends StatefulWidget {
       this.onSlideEnd});
 
   @override
-  _GFItemsSliderState createState() => new _GFItemsSliderState();
+  _GFItemsCarouselState createState() => new _GFItemsCarouselState();
 }
 
-class _GFItemsSliderState extends State<GFItemsSlider>
+class _GFItemsCarouselState extends State<GFItemsCarousel>
     with TickerProviderStateMixin {
   /// In milliseconds
   static final int dragAnimationDuration = 1000;

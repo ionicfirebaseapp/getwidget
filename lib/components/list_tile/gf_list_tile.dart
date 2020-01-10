@@ -19,62 +19,125 @@ class GFListTile extends StatelessWidget {
   /// The descriprion to display inside the [GFListTile]. see [Text]
   final Widget description;
 
+  /// The descriprion to display inside the [GFListTile]. see [Text]
+  final Widget trailing;
+
   /// The icon to display inside the [GFListTile]. see [Icon]
   final Widget icon;
 
   ///type of [bool] corresponds to true or false to show or hide the divider
   final bool showDivider;
 
-  ///type of [double] , the height corresponds to the height of the [GFListTile] which should not be less than the [minHeight]
-  final double height;
+  /// The empty space that surrounds the card. Defines the card's outer [Container.margin]..
+  final EdgeInsetsGeometry padding;
 
-  ///type of [double], the minHeight corresponds to the minimun height of the [GFListTile]
-  final double minHeight;
+  /// The divider's height extent.
+  ///
+  /// The divider itself is always drawn as a horizontal line that is centered
+  /// within the height specified by this value.
+  ///
+  /// If this is null, then the [DividerThemeData.space] is used. If that is
+  /// also null, then this defaults to 16.0.
+  final double dividerHeight;
+
+  /// The thickness of the line drawn within the divider.
+  ///
+  /// A divider with a [thickness] of 0.0 is always drawn as a line with a
+  /// height of exactly one device pixel.
+  ///
+  /// If this is null, then the [DividerThemeData.dividerThickness] is used. If
+  /// that is also null, then this defaults to 0.0.
+  final double dividerThickness;
+
+  /// The amount of empty space to the leading edge of the divider.
+  ///
+  /// If this is null, then the [DividerThemeData.indent] is used. If that is
+  /// also null, then this defaults to 0.0.
+  final double dividerIndent;
+
+  /// The amount of empty space to the trailing edge of the divider.
+  ///
+  /// If this is null, then the [DividerThemeData.endIndent] is used. If that is
+  /// also null, then this defaults to 0.0.
+  final double dividerEndIndent;
+
+  /// The color to use when painting the line.
+  ///
+  /// If this is null, then the [DividerThemeData.color] is used. If that is
+  /// also null, then [ThemeData.dividerColor] is used.
+  ///
+  /// {@tool sample}
+  ///
+  /// ```dart
+  /// Divider(
+  ///   color: Colors.deepOrange,
+  /// )
+  /// ```
+  /// {@end-tool}
+  final Color dividerColor;
 
   const GFListTile(
       {Key key,
       this.color,
       this.avatar,
       this.title,
-      this.subTitle ,
-      this.description ,
+      this.subTitle,
+      this.description,
       this.icon,
-        this.height,
-        this.minHeight,
-      this.showDivider = true
-      })
+      this.showDivider = true,
+      this.padding,
+      this.trailing,
+      this.dividerEndIndent,
+      this.dividerHeight,
+      this.dividerIndent,
+      this.dividerThickness,
+      this.dividerColor})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return
-      Container(
-        color: color !=null? color: getGFColor(GFColor.white),
-        constraints: BoxConstraints(minHeight: minHeight !=null ? minHeight: 60),
-         height: height,
-        child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          ListTile(
+    final double height = this.dividerHeight ?? 16.0;
+    final double thickness = this.dividerThickness ?? 0.0;
+    final double indent = this.dividerIndent ?? 0.0;
+    final double endIndent = this.dividerEndIndent ?? 0.0;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          margin: padding,
+          color: color,
+          child: ListTile(
               leading: avatar,
               title: title,
-              subtitle:  subTitle != null || description != null ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  subTitle ?? Container(),
-                  description ?? Container()
-                ],
-              ): null,
-              trailing: icon != null ?  Column(
-                children: <Widget>[
-                  Padding(padding: EdgeInsets.only(top: title != null ? 15.0 : 0.0), child:
-                  icon )
-                ],
-              ): null
-          ),
-          showDivider ? Divider() : Container()
-        ],
-    ),
-      );
+              subtitle: subTitle != null || description != null
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        subTitle ?? Container(),
+                        description ?? Container()
+                      ],
+                    )
+                  : null,
+              trailing: icon != null
+                  ? Column(
+                      children: <Widget>[
+                        Padding(
+                            padding: EdgeInsets.only(top: 16.0), child: icon)
+                      ],
+                    )
+                  : null),
+        ),
+        showDivider
+            ? Divider(
+                height: height ?? dividerHeight,
+                thickness: thickness ?? dividerThickness,
+                color: dividerColor ?? Theme.of(context).dividerColor,
+                indent: indent ?? dividerIndent,
+                endIndent: endIndent ?? dividerEndIndent,
+              )
+            : Container()
+      ],
+    );
   }
 }

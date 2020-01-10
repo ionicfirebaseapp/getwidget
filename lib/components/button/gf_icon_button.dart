@@ -2,7 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_button_shape.dart';
+import 'package:ui_kit/shape/gf_icon_button_shape.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/colors/gf_color.dart';
@@ -29,8 +29,8 @@ class GFIconButton extends StatefulWidget {
   /// Button type of [GFType] i.e, solid, outline, outline2x transparent
   final GFType type;
 
-  /// Button type of [GFButtonShape] i.e, standard, pills, square, shadow, icons
-  final GFButtonShape shape;
+  /// Button type of [GFIconButtonShape] i.e, standard, pills, square, shadow, icons
+  final GFIconButtonShape shape;
 
   /// Pass [GFColor] or [Color]
   final dynamic color;
@@ -88,7 +88,7 @@ class GFIconButton extends StatefulWidget {
       this.autofocus = false,
       this.tooltip,
       this.type = GFType.solid,
-      this.shape = GFButtonShape.standard,
+      this.shape = GFIconButtonShape.standard,
       this.color = GFColor.primary,
       this.borderShape,
       this.boxShadow,
@@ -111,7 +111,7 @@ class _GFIconButtonState extends State<GFIconButton> {
   Color color;
   Function onPressed;
   GFType type;
-  GFButtonShape shape;
+  GFIconButtonShape shape;
   BoxShadow boxShadow;
   double height;
   double width;
@@ -178,15 +178,14 @@ class _GFIconButtonState extends State<GFIconButton> {
 
     ShapeBorder shape;
 
-    if (this.shape == GFButtonShape.pills) {
-      shape = RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0), side: shapeBorder);
-    } else if (this.shape == GFButtonShape.square) {
-      shape = RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0.0), side: shapeBorder);
-    } else if (this.shape == GFButtonShape.standard) {
-      shape = RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(3.0), side: shapeBorder);
+    if (this.shape == GFIconButtonShape.pills) {
+      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0), side: shapeBorder);
+    } else if (this.shape == GFIconButtonShape.square) {
+      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0), side: shapeBorder);
+    } else if (this.shape == GFIconButtonShape.standard) {
+      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0), side: shapeBorder);
+    } else if (this.shape == GFIconButtonShape.circle) {
+      shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0), side: shapeBorder);
     }
 
     if (widget.size == GFSize.small) {
@@ -216,8 +215,8 @@ class _GFIconButtonState extends State<GFIconButton> {
     }
 
     Widget result = Container(
-      height: this.height,
-      width: widget.shape == GFButtonShape.pills ? this.width + 10 : this.width,
+      height: widget.shape == GFIconButtonShape.circle ? this.height + 6 : this.height,
+      width: widget.shape == GFIconButtonShape.pills ? this.width + 10 : widget.shape == GFIconButtonShape.circle ? this.height + 6 : this.width,
       padding: widget.padding,
       child: IconTheme.merge(
         data: IconThemeData(
@@ -242,10 +241,8 @@ class _GFIconButtonState extends State<GFIconButton> {
         } else {
           return BoxDecoration(
               color: widget.onPressed != null ? getColor() : getDisabledFillColor(),
-              borderRadius: widget.shape == GFButtonShape.pills
-                  ? BorderRadius.circular(50.0)
-                  : widget.shape == GFButtonShape.standard
-                      ? BorderRadius.circular(5.0)
+              borderRadius: widget.shape == GFIconButtonShape.circle ? BorderRadius.circular(50.0)
+                  : widget.shape == GFIconButtonShape.standard ? BorderRadius.circular(3.0) : widget.shape == GFIconButtonShape.pills ? BorderRadius.circular(20.0)
                       : BorderRadius.zero,
               boxShadow: [
                 widget.boxShadow == null && widget.buttonBoxShadow == true
@@ -278,10 +275,8 @@ class _GFIconButtonState extends State<GFIconButton> {
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: 60.0, maxHeight: 60.0),
           child: Container(
-            height: this.height,
-            width: widget.shape == GFButtonShape.pills
-                ? this.width + 10
-                : this.width,
+            height: widget.shape == GFIconButtonShape.circle ? this.height + 6 : this.height,
+            width: widget.shape == GFIconButtonShape.pills ? this.width + 10 : widget.shape == GFIconButtonShape.circle ? this.height + 6 : this.width,
             decoration: getBoxShadow(),
             child: Material(
               shape: widget.type == GFType.transparent

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/components/header/gf_header.dart';
+import 'package:ui_kit/components/typography/gf_typography.dart';
 import 'package:ui_kit/components/tabs/gf_tabs.dart';
 import 'package:ui_kit/components/button/gf_button.dart';
 import 'package:ui_kit/size/gf_size.dart';
-import 'package:ui_kit/types/gf_heading_type.dart';
+import 'package:ui_kit/types/gf_typography_type.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/shape/gf_button_shape.dart';
 import 'package:ui_kit/colors/gf_color.dart';
@@ -75,9 +75,9 @@ class _SquareButtonsState extends State<SquareButtons> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 30),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Default',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -94,7 +94,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               shape: GFButtonShape.square,
                               child: Text(
                                 "Primary",
@@ -102,7 +102,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.primary,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Secondary",
                               ),
@@ -110,7 +110,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               shape: GFButtonShape.square,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Success",
                               ),
@@ -126,7 +126,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Warning",
                               ),
@@ -134,7 +134,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.warning,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Danger",
                               ),
@@ -142,7 +142,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.danger,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Info",
                               ),
@@ -158,7 +158,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Light",
                               ),
@@ -166,7 +166,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.light,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Dark",
                               ),
@@ -174,11 +174,10 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.dark,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Link",
                               ),
-
                               color: GFColor.transparent,
                             ),
                           ],
@@ -186,16 +185,14 @@ class _SquareButtonsState extends State<SquareButtons> {
                         SizedBox(
                           height: 10,
                         ),
-
                       ],
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Disabled State',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -303,15 +300,14 @@ class _SquareButtonsState extends State<SquareButtons> {
                         SizedBox(
                           height: 10,
                         ),
-
                       ],
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 20),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Button Sizes',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -328,7 +324,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text("Large",
                                   style: TextStyle(
                                       color: getGFColor(GFColor.white))),
@@ -337,7 +333,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               shape: GFButtonShape.square,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text("Normal",
                                   style: TextStyle(
                                       color: getGFColor(GFColor.white))),
@@ -346,7 +342,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               shape: GFButtonShape.square,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text("Small",
                                   style: TextStyle(
                                       color: getGFColor(GFColor.white))),
@@ -364,9 +360,9 @@ class _SquareButtonsState extends State<SquareButtons> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 20),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Block Buttons',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -380,11 +376,11 @@ class _SquareButtonsState extends State<SquareButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text("Large",
                               style:
-                              TextStyle(color: getGFColor(GFColor.white))),
+                                  TextStyle(color: getGFColor(GFColor.white))),
                           color: GFColor.primary,
                           size: GFSize.large,
                           shape: GFButtonShape.square,
@@ -393,11 +389,11 @@ class _SquareButtonsState extends State<SquareButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text("Normal",
                               style:
-                              TextStyle(color: getGFColor(GFColor.white))),
+                                  TextStyle(color: getGFColor(GFColor.white))),
                           color: GFColor.primary,
                           size: GFSize.medium,
                           shape: GFButtonShape.square,
@@ -406,11 +402,11 @@ class _SquareButtonsState extends State<SquareButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text("Small",
                               style:
-                              TextStyle(color: getGFColor(GFColor.white))),
+                                  TextStyle(color: getGFColor(GFColor.white))),
                           color: GFColor.primary,
                           size: GFSize.small,
                           shape: GFButtonShape.square,
@@ -432,9 +428,9 @@ class _SquareButtonsState extends State<SquareButtons> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 30),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Default',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -451,7 +447,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               shape: GFButtonShape.square,
                               child: Text(
                                 "Primary",
@@ -460,7 +456,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.primary,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Secondary",
                               ),
@@ -469,7 +465,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               shape: GFButtonShape.square,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Success",
                               ),
@@ -486,7 +482,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Warning",
                               ),
@@ -495,7 +491,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.warning,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Danger",
                               ),
@@ -504,7 +500,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.danger,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Info",
                               ),
@@ -521,7 +517,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Light",
                               ),
@@ -530,7 +526,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.light,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Dark",
                               ),
@@ -539,7 +535,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.dark,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Link",
                               ),
@@ -553,12 +549,11 @@ class _SquareButtonsState extends State<SquareButtons> {
                       ],
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Disabled State',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -619,7 +614,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.warning,
                             ),
                             GFButton(
-                              onPressed:null,
+                              onPressed: null,
                               child: Text(
                                 "Danger",
                               ),
@@ -663,7 +658,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.dark,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Link",
                               ),
@@ -679,9 +674,9 @@ class _SquareButtonsState extends State<SquareButtons> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Button Sizes',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -698,7 +693,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Large",
                               ),
@@ -708,7 +703,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               shape: GFButtonShape.square,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Normal",
                               ),
@@ -718,7 +713,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               shape: GFButtonShape.square,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Small",
                               ),
@@ -737,9 +732,9 @@ class _SquareButtonsState extends State<SquareButtons> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Block Buttons',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -753,7 +748,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text(
                             "Large",
@@ -767,7 +762,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text(
                             "Normal",
@@ -781,7 +776,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text(
                             "Small",
@@ -808,9 +803,9 @@ class _SquareButtonsState extends State<SquareButtons> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 30),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Default',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -827,7 +822,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               shape: GFButtonShape.square,
                               child: Text(
                                 "Primary",
@@ -836,7 +831,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.primary,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Secondary",
                               ),
@@ -845,7 +840,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               shape: GFButtonShape.square,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Success",
                               ),
@@ -862,7 +857,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Warning",
                               ),
@@ -871,7 +866,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.warning,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Danger",
                               ),
@@ -880,7 +875,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.danger,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Info",
                               ),
@@ -897,7 +892,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Light",
                               ),
@@ -906,7 +901,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.light,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Dark",
                               ),
@@ -915,7 +910,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.dark,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Link",
                               ),
@@ -929,12 +924,11 @@ class _SquareButtonsState extends State<SquareButtons> {
                       ],
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Disabled State',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -995,7 +989,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.warning,
                             ),
                             GFButton(
-                              onPressed:null,
+                              onPressed: null,
                               child: Text(
                                 "Danger",
                               ),
@@ -1039,7 +1033,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               color: GFColor.dark,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Link",
                               ),
@@ -1055,9 +1049,9 @@ class _SquareButtonsState extends State<SquareButtons> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Button Sizes',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -1074,7 +1068,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Large",
                               ),
@@ -1084,7 +1078,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               shape: GFButtonShape.square,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Normal",
                               ),
@@ -1094,7 +1088,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                               shape: GFButtonShape.square,
                             ),
                             GFButton(
-                              onPressed: (){},
+                              onPressed: () {},
                               child: Text(
                                 "Small",
                               ),
@@ -1113,9 +1107,9 @@ class _SquareButtonsState extends State<SquareButtons> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 15, top: 10),
-                    child: GFHeader(
+                    child: GFTypography(
                       text: 'Block Buttons',
-                      type: GFHeadingType.typo5,
+                      type: GFTypographyType.typo5,
                       dividerWidth: 25,
                       dividerColor: Color(0xFF19CA4B),
                     ),
@@ -1129,7 +1123,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text(
                             "Large",
@@ -1143,7 +1137,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text(
                             "Normal",
@@ -1157,7 +1151,7 @@ class _SquareButtonsState extends State<SquareButtons> {
                           height: 10,
                         ),
                         GFButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           blockButton: true,
                           child: Text(
                             "Small",

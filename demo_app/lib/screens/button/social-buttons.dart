@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/colors/gf_color.dart';
-import 'package:ui_kit/components/header/gf_header.dart';
-import 'package:ui_kit/types/gf_heading_type.dart';
+import 'package:ui_kit/components/typography/gf_typography.dart';
+import 'package:ui_kit/types/gf_typography_type.dart';
 import 'package:ui_kit/components/button/gf_button.dart';
 import 'package:ui_kit/components/button/gf_icon_button.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
-import 'package:ui_kit/components/header/gf_header.dart';
-import 'package:ui_kit/types/gf_heading_type.dart';
-import 'package:ui_kit/shape/gf_button_shape.dart';
+import 'package:ui_kit/shape/gf_icon_button_shape.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/size/gf_size.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,30 +22,27 @@ class _SocialButtonsState extends State<SocialButtons> {
       appBar: AppBar(
         backgroundColor: getGFColor(GFColor.dark),
         leading: GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.pop(context);
             },
-            child:Image.asset('lib/assets/icons/back.png')
-        ),
+            child: Image.asset('lib/assets/icons/back.png')),
         title: Text(
           'Social Buttons',
           style: TextStyle(fontSize: 17),
         ),
         centerTitle: true,
       ),
-
       body: ListView(
         children: <Widget>[
-          Padding(padding: EdgeInsets.only(left:15, top:20),
-            child:   GFHeader(
+          Padding(
+            padding: EdgeInsets.only(left: 15, top: 20),
+            child: GFTypography(
               text: 'Social Buttons Full',
-              type: GFHeadingType.typo5,
+              type: GFTypographyType.typo5,
               dividerWidth: 25,
               dividerColor: Color(0xFF19CA4B),
-
             ),
           ),
-
           GFCard(
             content: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -59,39 +54,42 @@ class _SocialButtonsState extends State<SocialButtons> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Expanded(child:
-                    GFButton(
-                      buttonBoxShadow: true,
-                      color: Color(0xFF3B5998),
-                        onPressed: (){},
-                        child: Text(
-                          "FB",
-                        ),
-                        icon: SvgPicture.asset('lib/assets/icons/fb.svg')
-                    ),
+                    Expanded(
+                      child: GFButton(
+                          buttonBoxShadow: true,
+                          color: Color(0xFF3B5998),
+                          onPressed: () {},
+                          child: Text(
+                            "FB",
+                          ),
+                          icon: SvgPicture.asset('lib/assets/icons/fb.svg')),
                     ),
                     SizedBox(
                       width: 6,
                     ),
-                    Expanded(child:  GFButton(
-                      onPressed: (){},
-                      child: Text("Twitter"),
-                      icon: SvgPicture.asset('lib/assets/icons/twitter.svg'),
-                      color:Color(0xFF00ACEE),
-                      buttonBoxShadow: true,
-                    ),),
-                    SizedBox(
-                      width: 6,
-                    ),
-                    Expanded(child:  GFButton(
-                      onPressed: (){},
-                      child: Text(
-                        "Whatsap",
+                    Expanded(
+                      child: GFButton(
+                        onPressed: () {},
+                        child: Text("Twitter"),
+                        icon: SvgPicture.asset('lib/assets/icons/twitter.svg'),
+                        color: Color(0xFF00ACEE),
+                        buttonBoxShadow: true,
                       ),
-                      icon: SvgPicture.asset('lib/assets/icons/whatsapp.svg'),
-                      color: Color(0xFF25D366),
-                      buttonBoxShadow: true,
-                    ),)
+                    ),
+                    SizedBox(
+                      width: 6,
+                    ),
+                    Expanded(
+                      child: GFButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Whatsap",
+                        ),
+                        icon: SvgPicture.asset('lib/assets/icons/whatsapp.svg'),
+                        color: Color(0xFF25D366),
+                        buttonBoxShadow: true,
+                      ),
+                    )
                   ],
                 ),
                 SizedBox(
@@ -101,7 +99,7 @@ class _SocialButtonsState extends State<SocialButtons> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     GFButton(
-                      onPressed: (){},
+                      onPressed: () {},
                       child: Text(
                         "Google +",
                       ),
@@ -110,7 +108,7 @@ class _SocialButtonsState extends State<SocialButtons> {
                       buttonBoxShadow: true,
                     ),
                     GFButton(
-                      onPressed: (){},
+                      onPressed: () {},
                       child: Text(
                         "Dribble",
                       ),
@@ -119,7 +117,7 @@ class _SocialButtonsState extends State<SocialButtons> {
                       buttonBoxShadow: true,
                     ),
                     GFButton(
-                      onPressed: (){},
+                      onPressed: () {},
                       child: Text(
                         "LinkedIn",
                       ),
@@ -136,7 +134,7 @@ class _SocialButtonsState extends State<SocialButtons> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     GFButton(
-                      onPressed: (){},
+                      onPressed: () {},
                       child: Text(
                         "Youtube",
                       ),
@@ -144,19 +142,18 @@ class _SocialButtonsState extends State<SocialButtons> {
                       color: Color(0xFFC4302B),
                       buttonBoxShadow: true,
                     ),
-
                     GFButton(
-                      onPressed: (){},
+                      onPressed: () {},
                       child: Text(
                         "Slack",
                         style: TextStyle(color: getGFColor(GFColor.white)),
                       ),
                       icon: SvgPicture.asset('lib/assets/icons/slack.svg'),
-                      color:Color(0XFF2EB67D),
+                      color: Color(0XFF2EB67D),
                       buttonBoxShadow: true,
                     ),
                     GFButton(
-                      onPressed: (){},
+                      onPressed: () {},
                       child: Text(
                         "Pinterest",
                       ),
@@ -172,17 +169,15 @@ class _SocialButtonsState extends State<SocialButtons> {
               ],
             ),
           ),
-
-          Padding(padding: EdgeInsets.only(left:15, top:20),
-            child:   GFHeader(
+          Padding(
+            padding: EdgeInsets.only(left: 15, top: 20),
+            child: GFTypography(
               text: 'Social Buttons Icons',
-              type: GFHeadingType.typo5,
+              type: GFTypographyType.typo5,
               dividerWidth: 25,
               dividerColor: Color(0xFF19CA4B),
-
             ),
           ),
-
           GFCard(
             content: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -196,73 +191,66 @@ class _SocialButtonsState extends State<SocialButtons> {
                   children: <Widget>[
                     GFIconButton(
                         color: Color(0xFF3B5998),
-                        icon: SvgPicture.asset('lib/assets/icons/fb.svg'), onPressed: (){}),
+                        icon: SvgPicture.asset('lib/assets/icons/fb.svg'),
+                        onPressed: () {}),
                     GFIconButton(
-
-                        color:Color(0xFF00ACEE),
-                        icon: SvgPicture.asset('lib/assets/icons/twitter.svg'), onPressed: (){}),
+                        color: Color(0xFF00ACEE),
+                        icon: SvgPicture.asset('lib/assets/icons/twitter.svg'),
+                        onPressed: () {}),
                     GFIconButton(
                         color: Color(0xFF25D366),
-                        icon: SvgPicture.asset('lib/assets/icons/whatsapp.svg'), onPressed: (){}),
+                        icon: SvgPicture.asset('lib/assets/icons/whatsapp.svg'),
+                        onPressed: () {}),
                     GFIconButton(
-
                         color: Color(0xFFDD4B39),
-                        icon: SvgPicture.asset('lib/assets/icons/google.svg'), onPressed: (){}),
+                        icon: SvgPicture.asset('lib/assets/icons/google.svg'),
+                        onPressed: () {}),
                     GFIconButton(
                         color: Color(0xFFEA4C89),
-                        icon: SvgPicture.asset('lib/assets/icons/dribble.svg'), onPressed: (){}),
-
+                        icon: SvgPicture.asset('lib/assets/icons/dribble.svg'),
+                        onPressed: () {}),
                   ],
                 ),
-
-
                 SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-
                     GFIconButton(
                         color: Color(0xFF0E76A8),
-                        icon: SvgPicture.asset('lib/assets/icons/linkedin.svg'), onPressed: (){}),
+                        icon: SvgPicture.asset('lib/assets/icons/linkedin.svg'),
+                        onPressed: () {}),
                     GFIconButton(
-
                         color: Color(0xFFC4302B),
-                        icon: SvgPicture.asset('lib/assets/icons/youtube.svg'), onPressed: (){}),
+                        icon: SvgPicture.asset('lib/assets/icons/youtube.svg'),
+                        onPressed: () {}),
                     GFIconButton(
-
-                        color:Color(0XFF2EB67D),
-                        icon: SvgPicture.asset('lib/assets/icons/slack.svg'), onPressed: (){}),
+                        color: Color(0XFF2EB67D),
+                        icon: SvgPicture.asset('lib/assets/icons/slack.svg'),
+                        onPressed: () {}),
                     GFIconButton(
-
                         color: Color(0XFFC8232C),
-
-                        icon: SvgPicture.asset('lib/assets/icons/pinterest.svg'), onPressed: (){}),
-
+                        icon:
+                            SvgPicture.asset('lib/assets/icons/pinterest.svg'),
+                        onPressed: () {}),
                   ],
                 ),
                 SizedBox(
                   height: 10,
                 ),
-
-
               ],
             ),
           ),
-
-
-
-          Padding(padding: EdgeInsets.only(left:15, top:20),
-            child:   GFHeader(
+          Padding(
+            padding: EdgeInsets.only(left: 15, top: 20),
+            child: GFTypography(
               text: 'Floating Social Buttons',
-              type: GFHeadingType.typo5,
+              type: GFTypographyType.typo5,
               dividerWidth: 25,
               dividerColor: Color(0xFF19CA4B),
-
             ),
           ),
-
           GFCard(
             content: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -276,72 +264,66 @@ class _SocialButtonsState extends State<SocialButtons> {
                   children: <Widget>[
                     GFIconButton(
                         color: Color(0xFF3B5998),
-                        shape: GFButtonShape.pills,
-
-                        icon: SvgPicture.asset('lib/assets/icons/fb.svg'), onPressed: (){}),
+                        shape: GFIconButtonShape.pills,
+                        icon: SvgPicture.asset('lib/assets/icons/fb.svg'),
+                        onPressed: () {}),
                     GFIconButton(
-
-                        color:Color(0xFF00ACEE),
-                        shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/twitter.svg'), onPressed: (){}),
+                        color: Color(0xFF00ACEE),
+                        shape: GFIconButtonShape.pills,
+                        icon: SvgPicture.asset('lib/assets/icons/twitter.svg'),
+                        onPressed: () {}),
                     GFIconButton(
                         color: Color(0xFF25D366),
-                        shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/whatsapp.svg'), onPressed: (){}),
+                        shape: GFIconButtonShape.pills,
+                        icon: SvgPicture.asset('lib/assets/icons/whatsapp.svg'),
+                        onPressed: () {}),
                     GFIconButton(
-
                         color: Color(0xFFDD4B39),
-                        shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/google.svg'), onPressed: (){}),
+                        shape: GFIconButtonShape.pills,
+                        icon: SvgPicture.asset('lib/assets/icons/google.svg'),
+                        onPressed: () {}),
                     GFIconButton(
                         color: Color(0xFFEA4C89),
-                        shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/dribble.svg'), onPressed: (){}),
-
+                        shape: GFIconButtonShape.pills,
+                        icon: SvgPicture.asset('lib/assets/icons/dribble.svg'),
+                        onPressed: () {}),
                   ],
                 ),
-
-
                 SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-
                     GFIconButton(
                         color: Color(0xFF0E76A8),
-                        shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/linkedin.svg'), onPressed: (){}),
+                        shape: GFIconButtonShape.pills,
+                        icon: SvgPicture.asset('lib/assets/icons/linkedin.svg'),
+                        onPressed: () {}),
                     GFIconButton(
-
                         color: Color(0xFFC4302B),
-                        shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/youtube.svg'), onPressed: (){}),
+                        shape: GFIconButtonShape.pills,
+                        icon: SvgPicture.asset('lib/assets/icons/youtube.svg'),
+                        onPressed: () {}),
                     GFIconButton(
-
-                        color:Color(0XFF2EB67D),
-                        shape: GFButtonShape.pills,
-                        icon: SvgPicture.asset('lib/assets/icons/slack.svg'), onPressed: (){}),
+                        color: Color(0XFF2EB67D),
+                        shape: GFIconButtonShape.pills,
+                        icon: SvgPicture.asset('lib/assets/icons/slack.svg'),
+                        onPressed: () {}),
                     GFIconButton(
-
                         color: Color(0XFFC8232C),
-                        shape: GFButtonShape.pills,
-
-                        icon: SvgPicture.asset('lib/assets/icons/pinterest.svg'), onPressed: (){}),
-
+                        shape: GFIconButtonShape.pills,
+                        icon:
+                            SvgPicture.asset('lib/assets/icons/pinterest.svg'),
+                        onPressed: () {}),
                   ],
                 ),
                 SizedBox(
                   height: 10,
                 ),
-
-
               ],
             ),
           ),
-
-
         ],
       ),
     );
