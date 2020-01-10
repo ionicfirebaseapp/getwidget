@@ -27,13 +27,23 @@ Forum [Support and discussion ](https://forum.getflutter.dev)
 ## Features 
 We this beta release we going to lunch this libraries with Following component : 
  
- #### Button  |  Badge |  Avatar |  Image |  Card |  Carousel |  Tile |  Tab |  Typography |  Screenshot
+ #### Button  |  Badge |  Avatar |  Image |  Card |  Carousel |  Tile |  Tab |  Typography 
+ 
+ 
+ ## Screenshot
  
  
  ## Demo 
  
  
  ## Contributing
+ 
+  GetFlutter is **100% free** and **open source**. We encourage and support an active, healthy community that accepts contributions from the public &ndash; including you!
+
+  * If you are a developer, feel free to check out the source and submit pull requests.
+  * Dig into [**CONTRIBUTING.MD**](CONTRIBUTING.md), which covers submitting bugs, requesting new features, preparing your code for a pull request, etc.
+  * Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](http://forum.getflutter.dev) to keep up to date with the latest Get Flutter development. 
+  * Not sure what to work on? [**We've got lots ideas.**](https://roadmap.getflutter.dev)
  
  
  ## Bugs-and-feature-requests
