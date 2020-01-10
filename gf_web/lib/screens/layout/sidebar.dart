@@ -101,10 +101,30 @@ margin: EdgeInsets.only(right: 10,),
                      },
                      child:  Text('Standard Buttons'),
                    ),
-                    Text('Pills Buttons'),
-                    Text('Square Buttons'),
-                    Text('Shadow Buttons'),
-                    Text('Icon Buttons'),
+                   GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-buttons/pill-button');
+                     },
+                     child:  Text('Pills Buttons'),
+                   ),
+                    GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-buttons/square-button');
+                     },
+                     child:  Text('Square Buttons'),
+                   ),
+                    GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-buttons/shadow-button');
+                     },
+                     child:  Text('Shadow Buttons'),
+                   ),
+                     GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-buttons/icon-button');
+                     },
+                     child:  Text('Icon Buttons'),
+                   ),
                     Text('Social Buttons')
                   ],
                 ),
