@@ -4,21 +4,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GFImageOverlay extends StatelessWidget {
-  const GFImageOverlay(
-      {Key key,
-      this.height,
-      this.width,
-      this.color,
-      this.padding,
-      this.margin,
-      this.image,
-      this.child,
-      this.alignment,
-      this.borderRadius,
-      this.colorFilter=  const ColorFilter.mode(Colors.black26, BlendMode.colorBurn),
-      this.boxFit,
-      this.border})
-      : super(key: key);
+  const GFImageOverlay({
+        Key key,
+        this.height,
+        this.width,
+        this.color,
+        this.padding,
+        this.margin,
+        this.image,
+        this.child = const Text(""),
+        this.alignment,
+        this.borderRadius,
+        this.colorFilter=  const ColorFilter.mode(Colors.black26, BlendMode.colorBurn),
+        this.boxFit,
+        this.border,
+        this.shape = BoxShape.rectangle,
+      }) : assert(shape != null),
+           super(key: key);
 
   /// define image's [double] height
   final double height;
@@ -58,6 +60,21 @@ class GFImageOverlay extends StatelessWidget {
   /// A border to draw above the [GFCard].
   final Border border;
 
+  /// The shape to fill the background [color], [gradient], and [image] into and
+  /// to cast as the [boxShadow].
+  ///
+  /// If this is [BoxShape.circle] then [borderRadius] is ignored.
+  ///
+  /// The [shape] cannot be interpolated; animating between two [BoxDecoration]s
+  /// with different [shape]s will result in a discontinuity in the rendering.
+  /// To interpolate between two shapes, consider using [ShapeDecoration] and
+  /// different [ShapeBorder]s; in particular, [CircleBorder] instead of
+  /// [BoxShape.circle] and [RoundedRectangleBorder] instead of
+  /// [BoxShape.rectangle].
+  ///
+  /// {@macro flutter.painting.boxDecoration.clip}
+  final BoxShape shape;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -68,11 +85,12 @@ class GFImageOverlay extends StatelessWidget {
       padding: padding,
       child: child,
       decoration: new BoxDecoration(
+        shape: shape,
         borderRadius: borderRadius,
         border: border,
         color: color,
         image: new DecorationImage(
-            fit: BoxFit.fill, colorFilter: child != null?  colorFilter: null, image: image),
+            fit: BoxFit.fill, colorFilter: child != null? colorFilter: null, image: image),
       ),
     );
   }

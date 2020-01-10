@@ -26,7 +26,6 @@ class GFSegmentTabs extends StatefulWidget {
     this.labelPadding,
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
-    this.tabBarView,
     this.tabs,
     this.tabController
   }):
@@ -139,11 +138,6 @@ class GFSegmentTabs extends StatefulWidget {
   /// body2 definition is used.
   final TextStyle unselectedLabelStyle;
 
-  /// One widget per tab.
-  /// Its length must match the length of the [GFSegmentTabs.tabs]
-  /// list, as well as the [controller]'s [GFSegmentTabs.length].
-  final GFTabBarView tabBarView;
-
   /// Typically a list of two or more [Tab] widgets.
   ///
   /// The length of this list must match the [controller]'s [TabController.length]
@@ -188,7 +182,7 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
               BoxDecoration(
                 color: widget.indicatorColor == null ? getGFColor(GFColor.primary) : widget.indicatorColor,
                 border: Border.all(color: widget.indicatorColor == null ? Colors.transparent : widget.indicatorColor, width: 2.0),
-                borderRadius: widget.borderRadius == null ? BorderRadius.circular(0.0) : widget.borderRadius,
+                borderRadius: widget.borderRadius == null ? BorderRadius.circular(2.0) : widget.borderRadius,
               ) : widget.indicator,
             indicatorPadding: widget.indicatorPadding,
             indicatorWeight: widget.indicatorWeight,
