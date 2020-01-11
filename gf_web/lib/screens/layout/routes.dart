@@ -7,6 +7,7 @@ import 'package:gf_web/screens/buttons/square-buttons.dart';
 import 'package:gf_web/screens/buttons/shadow-buttons.dart';
 import 'package:gf_web/screens/buttons/icon-buttons.dart';
 import 'package:gf_web/screens/buttons/social-buttons.dart';
+import 'package:gf_web/screens/badges/badges.dart';
 
 
 
@@ -24,6 +25,7 @@ final routes =
         '/gf-buttons/icon-button': (context) => IconButtons(),
         '/gf-buttons/social-button': (context) => SocialButtons(),
 
+        '/gf-badges/badges': (context) => Badges(),
 
 
 

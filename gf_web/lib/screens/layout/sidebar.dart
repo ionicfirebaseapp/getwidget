@@ -140,8 +140,15 @@ margin: EdgeInsets.only(right: 10,),
               height: 20,
             ),
 
-            Text('GF Badge', style: hintStyleTextblackdull()),
-            SizedBox(
+            // Text('GF Badge', style: hintStyleTextblackdull(),),
+             GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-badges/badges');
+                     },
+                     child:  Text('GF Badges',style: hintStyleTextblackdull(),),
+                     
+                   ),
+                       SizedBox(
               height: 20,
             ),
             Text('GF Avatar', style: hintStyleTextblackdull()),
