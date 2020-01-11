@@ -125,7 +125,12 @@ margin: EdgeInsets.only(right: 10,),
                      },
                      child:  Text('Icon Buttons'),
                    ),
-                    Text('Social Buttons')
+                    GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-buttons/social-button');
+                     },
+                     child:  Text('Social Buttons'),
+                   ),
                   ],
                 ),
               ),

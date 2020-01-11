@@ -6,6 +6,7 @@ import 'package:gf_web/screens/buttons/pills-buttons.dart';
 import 'package:gf_web/screens/buttons/square-buttons.dart';
 import 'package:gf_web/screens/buttons/shadow-buttons.dart';
 import 'package:gf_web/screens/buttons/icon-buttons.dart';
+import 'package:gf_web/screens/buttons/social-buttons.dart';
 
 
 
@@ -21,6 +22,8 @@ final routes =
         '/gf-buttons/square-button': (context) => SquareButtons(),
         '/gf-buttons/shadow-button': (context) => ShadowButtons(),
         '/gf-buttons/icon-button': (context) => IconButtons(),
+        '/gf-buttons/social-button': (context) => SocialButtons(),
+
 
 
 
