@@ -5,9 +5,16 @@ import 'package:ui_kit/components/list_tile/gf_list_tile.dart';
 import 'package:ui_kit/components/image/gf_image_overlay.dart';
 import 'package:ui_kit/position/gf_position.dart';
 
-enum GFCardType { basic, social, image}
+/// A material design card. A card has slightly rounded corners and a shadow.
+///
+/// A card is a sheet of [Material] used to represent some related information,
+/// for example an album, a geographical location, a meal, contact details, etc.
 
 class GFCard extends StatelessWidget {
+  /// Creates a material design card.
+  ///
+  /// The [elevation] must be null or non-negative. The [borderOnForeground]
+  /// must not be null.
 
   const GFCard({
     Key key,
@@ -71,6 +78,7 @@ class GFCard extends StatelessWidget {
   final Image image;
 
   /// overlay image [GFImageOverlay] widget can be used
+  /// to display image with shaded overlay
   final ImageProvider imageOverlay;
 
   /// widget can be used to define buttons bar, see [GFButtonBar]
@@ -79,6 +87,7 @@ class GFCard extends StatelessWidget {
   /// How the image should be inscribed into the box.
   /// The default is [BoxFit.scaleDown] if [centerSlice] is null, and
   /// [BoxFit.fill] if [centerSlice] is not null.
+  /// [boxFit] for only [GFImageOverlay]
   final BoxFit boxFit;
 
   /// A color filter to apply to the image before painting it.

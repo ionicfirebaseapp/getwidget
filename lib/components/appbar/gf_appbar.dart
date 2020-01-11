@@ -5,10 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
-const double _kLeadingWidth =
-    kToolbarHeight; // So the leading button is square.
+const double _kLeadingWidth = kToolbarHeight;
 
-// Bottom justify the kToolbarHeight child which may overflow the top.
 class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
   const _ToolbarContainerLayout();
 
@@ -31,115 +29,11 @@ class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
   bool shouldRelayout(_ToolbarContainerLayout oldDelegate) => false;
 }
 
-/// A material design app bar.
-///
 /// An app bar consists of a toolbar and potentially other widgets, such as a
-/// [TabBar] and a [FlexibleSpaceBar]. App bars typically expose one or more
-/// common [actions] with [IconButton]s which are optionally followed by a
-/// [PopupMenuButton] for less common operations (sometimes called the "overflow
-/// menu").
-///
-/// App bars are typically used in the [Scaffold.appBar] property, which places
-/// the app bar as a fixed-height widget at the top of the screen. For a scrollable
-/// app bar, see [SliverGFAppBar], which embeds an [GFAppBar] in a sliver for use in
-/// a [CustomScrollView].
-///
-/// When not used as [Scaffold.appBar], or when wrapped in a [Hero], place the app
-/// bar in a [MediaQuery] to take care of the padding around the content of the
-/// app bar if needed, as the padding will not be handled by [Scaffold].
-///
+/// [GFTabBar][TabBar] and a [FlexibleSpaceBar].
 /// The GFAppBar displays the toolbar widgets, [leading], [title], and [actions],
-/// above the [bottom] (if any). The [bottom] is usually used for a [TabBar]. If
-/// a [flexibleSpace] widget is specified then it is stacked behind the toolbar
-/// and the bottom widget. The following diagram shows where each of these slots
-/// appears in the toolbar when the writing language is left-to-right (e.g.
-/// English):
-///
-/// ![The leading widget is in the top left, the actions are in the top right,
-/// the title is between them. The bottom is, naturally, at the bottom, and the
-/// flexibleSpace is behind all of them.](https://flutter.github.io/assets-for-api-docs/assets/material/app_bar.png)
-///
-/// If the [leading] widget is omitted, but the [GFAppBar] is in a [Scaffold] with
-/// a [Drawer], then a button will be inserted to open the drawer. Otherwise, if
-/// the nearest [Navigator] has any previous routes, a [BackButton] is inserted
-/// instead. This behavior can be turned off by setting the [automaticallyImplyLeading]
-/// to false. In that case a null leading widget will result in the middle/title widget
-/// stretching to start.
-///
-/// {@tool dartpad --template=stateless_widget_material}
-///
-/// This sample shows an [GFAppBar] with two simple actions. The first action
-/// opens a [SnackBar], while the second action navigates to a new page.
-///
-/// ```dart preamble
-/// final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-/// final SnackBar snackBar = const SnackBar(content: Text('Showing Snackbar'));
-///
-/// void openPage(BuildContext context) {
-///   Navigator.push(context, MaterialPageRoute(
-///     builder: (BuildContext context) {
-///       return Scaffold(
-///         appBar: GFAppBar(
-///           title: const Text('Next page'),
-///         ),
-///         body: const Center(
-///           child: Text(
-///             'This is the next page',
-///             style: TextStyle(fontSize: 24),
-///           ),
-///         ),
-///       );
-///     },
-///   ));
-/// }
-/// ```
-///
-/// ```dart
-/// Widget build(BuildContext context) {
-///   return Scaffold(
-///     key: scaffoldKey,
-///     appBar: GFAppBar(
-///       title: const Text('GFAppBar Demo'),
-///       actions: <Widget>[
-///         IconButton(
-///           icon: const Icon(Icons.add_alert),
-///           tooltip: 'Show Snackbar',
-///           onPressed: () {
-///             scaffoldKey.currentState.showSnackBar(snackBar);
-///           },
-///         ),
-///         IconButton(
-///           icon: const Icon(Icons.navigate_next),
-///           tooltip: 'Next page',
-///           onPressed: () {
-///             openPage(context);
-///           },
-///         ),
-///       ],
-///     ),
-///     body: const Center(
-///       child: Text(
-///         'This is the home page',
-///         style: TextStyle(fontSize: 24),
-///       ),
-///     ),
-///   );
-/// }
-/// ```
-/// {@end-tool}
-///
-/// See also:
-///
-///  * [Scaffold], which displays the [GFAppBar] in its [Scaffold.appBar] slot.
-///  * [SliverGFAppBar], which uses [GFAppBar] to provide a flexible app bar that
-///    can be used in a [CustomScrollView].
-///  * [TabBar], which is typically placed in the [bottom] slot of the [GFAppBar]
-///    if the screen has multiple pages arranged in tabs.
-///  * [IconButton], which is used with [actions] to show buttons on the app bar.
-///  * [PopupMenuButton], to show a popup menu on the app bar, via [actions].
-///  * [FlexibleSpaceBar], which is used with [flexibleSpace] when the app bar
-///    can expand and collapse.
-///  * <https://material.io/design/components/app-bars-top.html>
+/// above the [bottom] (if any). The [bottom] is usually used for a [TabBar].
+
 class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// Creates a material design app bar.
   ///
@@ -184,44 +78,6 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
         super(key: key);
 
   /// A widget to display before the [title].
-  ///
-  /// If this is null and [automaticallyImplyLeading] is set to true, the
-  /// [GFAppBar] will imply an appropriate widget. For example, if the [GFAppBar] is
-  /// in a [Scaffold] that also has a [Drawer], the [Scaffold] will fill this
-  /// widget with an [IconButton] that opens the drawer (using [Icons.menu]). If
-  /// there's no [Drawer] and the parent [Navigator] can go back, the [GFAppBar]
-  /// will use a [BackButton] that calls [Navigator.maybePop].
-  ///
-  /// {@tool sample}
-  ///
-  /// The following code shows how the drawer button could be manually specified
-  /// instead of relying on [automaticallyImplyLeading]:
-  ///
-  /// ```dart
-  /// GFAppBar(
-  ///   leading: Builder(
-  ///     builder: (BuildContext context) {
-  ///       return IconButton(
-  ///         icon: const Icon(Icons.menu),
-  ///         onPressed: () { Scaffold.of(context).openDrawer(); },
-  ///         tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-  ///       );
-  ///     },
-  ///   ),
-  /// )
-  /// ```
-  /// {@end-tool}
-  ///
-  /// The [Builder] is used in this example to ensure that the `context` refers
-  /// to that part of the subtree. That way this code snippet can be used even
-  /// inside the very code that is creating the [Scaffold] (in which case,
-  /// without the [Builder], the `context` wouldn't be able to see the
-  /// [Scaffold], since it would refer to an ancestor of that widget).
-  ///
-  /// See also:
-  ///
-  ///  * [Scaffold.appBar], in which an [GFAppBar] is usually placed.
-  ///  * [Scaffold.drawer], in which the [Drawer] is usually placed.
   final Widget leading;
 
   /// Controls whether we should try to imply the leading widget if null.
@@ -817,65 +673,6 @@ class _SliverGFAppBarDelegate extends SliverPersistentHeaderDelegate {
 /// [actions], above the [bottom] (if any). If a [flexibleSpace] widget is
 /// specified then it is stacked behind the toolbar and the bottom widget.
 ///
-/// {@tool sample}
-///
-/// This is an example that could be included in a [CustomScrollView]'s
-/// [CustomScrollView.slivers] list:
-///
-/// ```dart
-/// SliverGFAppBar(
-///   expandedHeight: 150.0,
-///   flexibleSpace: const FlexibleSpaceBar(
-///     title: Text('Available seats'),
-///   ),
-///   actions: <Widget>[
-///     IconButton(
-///       icon: const Icon(Icons.add_circle),
-///       tooltip: 'Add new entry',
-///       onPressed: () { /* ... */ },
-///     ),
-///   ]
-/// )
-/// ```
-/// {@end-tool}
-///
-/// ## Animated Examples
-///
-/// The following animations show how app bars with different configurations
-/// behave when a user scrolls up and then down again.
-///
-/// * App bar with [floating]: false, [pinned]: false, [snap]: false:
-///   {@animation 476 400 https://flutter.github.io/assets-for-api-docs/assets/material/app_bar.mp4}
-///
-/// * App bar with [floating]: true, [pinned]: false, [snap]: false:
-///   {@animation 476 400 https://flutter.github.io/assets-for-api-docs/assets/material/app_bar_floating.mp4}
-///
-/// * App bar with [floating]: true, [pinned]: false, [snap]: true:
-///   {@animation 476 400 https://flutter.github.io/assets-for-api-docs/assets/material/app_bar_floating_snap.mp4}
-///
-/// * App bar with [floating]: true, [pinned]: true, [snap]: false:
-///   {@animation 476 400 https://flutter.github.io/assets-for-api-docs/assets/material/app_bar_pinned_floating.mp4}
-///
-/// * App bar with [floating]: true, [pinned]: true, [snap]: true:
-///   {@animation 476 400 https://flutter.github.io/assets-for-api-docs/assets/material/app_bar_pinned_floating_snap.mp4}
-///
-/// * App bar with [floating]: false, [pinned]: true, [snap]: false:
-///   {@animation 476 400 https://flutter.github.io/assets-for-api-docs/assets/material/app_bar_pinned.mp4}
-///
-/// The property [snap] can only be set to true if [floating] is also true.
-///
-/// See also:
-///
-///  * [CustomScrollView], which integrates the [SliverGFAppBar] into its
-///    scrolling.
-///  * [GFAppBar], which is a fixed-height app bar for use in [Scaffold.appBar].
-///  * [TabBar], which is typically placed in the [bottom] slot of the [GFAppBar]
-///    if the screen has multiple pages arranged in tabs.
-///  * [IconButton], which is used with [actions] to show buttons on the app bar.
-///  * [PopupMenuButton], to show a popup menu on the app bar, via [actions].
-///  * [FlexibleSpaceBar], which is used with [flexibleSpace] when the app bar
-///    can expand and collapse.
-///  * <https://material.io/design/components/app-bars-top.html>
 class SliverGFAppBar extends StatefulWidget {
   /// Creates a material design app bar that can be placed in a [CustomScrollView].
   ///

@@ -22,3 +22,4 @@ flutter:
   uses-material-design: true
   assets:
     - lib/assets/food.jpeg
+    - lib/assets/img.png
