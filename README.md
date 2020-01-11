@@ -4,9 +4,9 @@
   </a>
 </p>
 
-[**GetFlutter**](https://www.getflutter.dev) is 100% opensource UI libraries build to make flutter development easier then ever and reuse 1000+ pre-build widget in any Flutter Web or Mobile app development. 
+[**GetFlutter**](https://www.getflutter.dev) is 100% open source UI library build to make flutter development easier than ever and reuse 1000+ pre-build widget in any Flutter Web or Mobile app development. 
 
-[**NOTE**] Our libraries will work on flutter web but still flutter web in Beta so their some rendering problem so we update our libraris as flutter came with stable release on Web. 
+[**NOTE**] Our library will also work on flutter web but still flutter web is in Beta release so some rendering problem may occur and hence we will update our library as flutter comes with stable release on Web. 
 
 ## Table of contents 
 
@@ -25,7 +25,7 @@ Read the [Getting started page](https://docs.getflutter.dev)
 Forum [Support and discussion ](https://forum.getflutter.dev)
 
 ## Features 
-We this beta release we going to lunch this libraries with Following component : 
+In this beta release we are going to launch the library with following components : 
  
  #### Button  |  Badge |  Avatar |  Image |  Card |  Carousel |  Tile |  Tab |  Typography 
  
