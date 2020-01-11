@@ -1,6 +1,7 @@
 
 
 
+import 'package:flutter/material.dart';
 import 'package:gf_web/screens/buttons/standard-buttons.dart';
 import 'package:gf_web/screens/buttons/pills-buttons.dart';
 import 'package:gf_web/screens/buttons/square-buttons.dart';
@@ -9,6 +10,8 @@ import 'package:gf_web/screens/buttons/icon-buttons.dart';
 import 'package:gf_web/screens/buttons/social-buttons.dart';
 import 'package:gf_web/screens/badges/badges.dart';
 import 'package:gf_web/screens/cards/cards.dart';
+import 'package:gf_web/screens/typography/heading.dart';
+
 
 
 
@@ -28,6 +31,8 @@ final routes =
 
         '/gf-badges/badges': (context) => Badges(),
         '/gf-cards/cards': (context) => Cards(),
+        '/gf-typography/heading': (context) => Heading(),
+
 
 
 //        '/third': (context) => ThirdScreen(),

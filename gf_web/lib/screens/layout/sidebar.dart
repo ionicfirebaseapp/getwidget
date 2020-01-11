@@ -181,9 +181,15 @@ margin: EdgeInsets.only(right: 10,),
             SizedBox(
               height: 20,
             ),
-            Text('GF Typography', style: hintStyleTextblackdull()),
-            SizedBox(
-              height: 30,
+            GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-typography/heading');
+                     },
+                     child:  Text('GF Typography',style: hintStyleTextblackdull(),),
+                     
+                   ),
+                       SizedBox(
+              height: 20,
             ),
             Text('COMING SOON', style: hintStyleTextblack(),),
             SizedBox(

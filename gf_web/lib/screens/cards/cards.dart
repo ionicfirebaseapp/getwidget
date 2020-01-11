@@ -41,7 +41,7 @@ class _CardsState extends State<Cards> {
                boxFit: BoxFit.cover,
         
                colorFilter: new ColorFilter.mode(
-                   Colors.grey.withOpacity(0.67), BlendMode.darken),
+                   Colors.black.withOpacity(0.67), BlendMode.darken),
                image:Image.network('https://cdn.pixabay.com/photo/2016/12/15/03/27/cocoa-1908020_960_720.jpg'),
 //              imageOverlay: AssetImage("lib/assets/food.jpeg"),
                titlePosition: GFPosition.end,
