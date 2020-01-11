@@ -159,8 +159,14 @@ margin: EdgeInsets.only(right: 10,),
             SizedBox(
               height: 20,
             ),
-            Text('GF Card', style: hintStyleTextblackdull()),
-            SizedBox(
+             GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-cards/cards');
+                     },
+                     child:  Text('GF Cards',style: hintStyleTextblackdull(),),
+                     
+                   ),
+                       SizedBox(
               height: 20,
             ),
             Text('GF Slider', style: hintStyleTextblackdull()),
