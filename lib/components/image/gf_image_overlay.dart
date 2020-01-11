@@ -1,7 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+/// Creates a image widget with shaded overlay.
 
 class GFImageOverlay extends StatelessWidget {
   const GFImageOverlay({
@@ -34,7 +35,7 @@ class GFImageOverlay extends StatelessWidget {
   /// The empty space that surrounds the card. Defines the image's outer [Container.margin].
   final EdgeInsetsGeometry margin;
 
-  /// The empty space that surrounds the card. Defines the image's outer [Container.margin]..
+  /// The empty space that surrounds the card. Defines the image's outer [Container.padding]..
   final EdgeInsetsGeometry padding;
 
   /// The [Image] widget used to display image
@@ -54,10 +55,10 @@ class GFImageOverlay extends StatelessWidget {
   /// A color filter to apply to the image before painting it.
   final ColorFilter colorFilter ;
 
-  /// The corners of this [GFCard] are rounded by this [BorderRadius].
+  /// The corners of this [GFImageOverlay] are rounded by this [BorderRadius].
   final BorderRadiusGeometry borderRadius;
 
-  /// A border to draw above the [GFCard].
+  /// A border to draw above the [GFImageOverlay].
   final Border border;
 
   /// The shape to fill the background [color], [gradient], and [image] into and

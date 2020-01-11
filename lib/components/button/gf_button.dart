@@ -23,7 +23,7 @@ class GFButton extends StatefulWidget {
   /// The border side for the button's [Material].
   final BorderSide borderSide;
 
-  /// The box shadow for the button's [Material].
+  /// The box shadow for the button's [Material], if GFButtonType is solid
   final BoxShadow boxShadow;
 
   /// Pass [GFColor] or [Color]. The color for the button's [Material] when it has the input focus.
@@ -139,7 +139,7 @@ class GFButton extends StatefulWidget {
   /// on true state full width Button gives full width button
   final bool fullWidthButton;
 
-  /// on true state default box shadow appears around button
+  /// on true state default box shadow appears around button, if GFButtonType is solid
   final bool buttonBoxShadow;
 
   /// A set of thirteen colors that can be used to derive the button theme's
@@ -515,7 +515,7 @@ class _GFButtonState extends State<GFButton> {
       constraints: this.icon == null
           ? BoxConstraints(minWidth: 80.0)
           : BoxConstraints(minWidth: 90.0),
-      decoration: getBoxShadow(),
+      decoration: widget.type == GFType.solid ? getBoxShadow() : null,
       child: Material(
         elevation: _effectiveElevation,
         textStyle: widget.textStyle == null
@@ -583,16 +583,6 @@ class _GFButtonState extends State<GFButton> {
         ),
       ),
     );
-
-//    return Semantics(
-//      container: true,
-//      button: true,
-//      enabled: widget.enabled,
-//      child: _InputPadding(
-//        minSize: minSize,
-//        child: result,
-//      ),
-//    );
 
     return Semantics(
       container: true,

@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class DrawerHeaderPictures extends StatelessWidget {
-  const DrawerHeaderPictures({
+class GFDrawerHeaderPictures extends StatelessWidget {
+  const GFDrawerHeaderPictures({
     Key key,
     this.currentAccountPicture,
     this.otherAccountsPictures,
@@ -58,10 +58,6 @@ class DrawerHeaderPictures extends StatelessWidget {
 ///
 /// Requires one of its ancestors to be a [Material] widget.
 ///
-/// See also:
-///
-///  * [DrawerHeader], for a drawer header that doesn't show user accounts.
-///  * <https://material.io/design/components/navigation-drawer.html#anatomy>
 class GFDrawerHeader extends StatefulWidget {
   /// Creates a material design drawer header.
   ///
@@ -134,7 +130,7 @@ class _GFDrawerHeaderState extends State<GFDrawerHeader> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsetsDirectional.only(end: 16.0),
-                  child: DrawerHeaderPictures(
+                  child: GFDrawerHeaderPictures(
                     currentAccountPicture: widget.currentAccountPicture,
                     otherAccountsPictures: widget.otherAccountsPictures,
                   ),

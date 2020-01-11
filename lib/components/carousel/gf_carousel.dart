@@ -10,6 +10,9 @@ List<T> map<T>(List list, Function handler) {
 }
 
 class GFCarousel extends StatefulWidget {
+
+  /// Creates slide show of [Images] and [Widget] with animation for sliding.
+
   GFCarousel(
       {@required this.items,
       this.pagerSize,
