@@ -33,7 +33,9 @@ In this beta release we are going to launch the library with following component
  ## Screenshot
  <p align="center">
   <a href="https://www.getflutter.dev/">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/GitHub_screenshots_YIL5wl2NO.png" alt="Get Flutter">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/GitHub_screens_x5waBICcL.png" alt="Get Flutter">
+    
+    
     
   </a>
 </p>
