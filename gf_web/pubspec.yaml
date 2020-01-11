@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
+  flutter_svg: ^0.15.0
 
 dev_dependencies:
   flutter_test:
@@ -24,3 +25,38 @@ flutter:
     - lib/assets/logo.png
     - lib/assets/icons/next.png
     - lib/assets/screen.png
+    - lib/assets/icons/buttons.png
+    - lib/assets/icons/buttons.svg
+    - lib/assets/icons/avatar.png
+    - lib/assets/icons/badge.png
+    - lib/assets/icons/card.png
+    - lib/assets/icons/chips.png
+    - lib/assets/icons/items.png
+    - lib/assets/icons/lists.png
+    - lib/assets/icons/menu.png
+    - lib/assets/icons/slider.png
+    - lib/assets/icons/tabs.png
+    - lib/assets/icons/toast.png
+    - lib/assets/icons/toggle.png
+    - lib/assets/icons/typo.png
+    - lib/assets/icons/images.png
+    - lib/assets/icons/back.png
+    - lib/assets/icons/next.png
+    - lib/assets/icons/primary.svg
+    - lib/assets/icons/secondary.svg
+    - lib/assets/icons/success.svg
+    - lib/assets/icons/warning.svg
+    - lib/assets/icons/danger.svg
+    - lib/assets/icons/info.svg
+    - lib/assets/icons/dark.svg
+    - lib/assets/icons/link.svg
+    - lib/assets/icons/light.svg
+    - lib/assets/icons/fb.svg
+    - lib/assets/icons/twitter.svg
+    - lib/assets/icons/whatsapp.svg
+    - lib/assets/icons/google.svg
+    - lib/assets/icons/dribble.svg
+    - lib/assets/icons/youtube.svg
+    - lib/assets/icons/slack.svg
+    - lib/assets/icons/pinterest.svg
+    - lib/assets/icons/linkedin.svg
