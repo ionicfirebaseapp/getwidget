@@ -15,17 +15,27 @@ import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/types/gf_typography_type.dart';
 import 'package:ui_kit/types/gf_type.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
+import 'package:flutter/cupertino.dart';
 
-class Badges extends StatefulWidget {
+class BadgesPage extends StatefulWidget {
   @override
-  _BadgesState createState() => _BadgesState();
+  _BadgesPageState createState() => _BadgesPageState();
 }
 
-class _BadgesState extends State<Badges> {
+class _BadgesPageState extends State<BadgesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            CupertinoIcons.back,
+            color: getGFColor(GFColor.success),
+          ),
+        ),
         backgroundColor: getGFColor(GFColor.dark),
         title: Text(
           'Badges',
@@ -51,105 +61,140 @@ class _BadgesState extends State<Badges> {
                   height: 10,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    GFButtonBadge(
-                      icon: GFBadge(
-                        text: '6',
-                        shape: GFBadgeShape.pills,
+                    Expanded(
+                      child: GFButtonBadge(
+                        icon: GFBadge(
+                          text: '6',
+                          shape: GFBadgeShape.pills,
+                        ),
+                        onPressed: () {},
+                        text: 'Primary',
                       ),
-                      onPressed: () {},
-                      text: 'Primary',
                     ),
-                    GFButtonBadge(
-                      icon: GFBadge(
-                        text: '6',
-                        shape: GFBadgeShape.pills,
+                    SizedBox(
+                      width: 6,
+                    ),
+                    Expanded(
+                      child: GFButtonBadge(
+                        icon: GFBadge(
+                          text: '6',
+                          shape: GFBadgeShape.pills,
+                        ),
+                        onPressed: () {},
+                        text: 'Second',
+                        color: GFColor.secondary,
                       ),
-                      onPressed: () {},
-                      text: 'Second',
-                      color: GFColor.secondary,
                     ),
-                    GFButtonBadge(
-                      icon: GFBadge(
-                        text: '6',
-                        shape: GFBadgeShape.pills,
+                    SizedBox(
+                      width: 6,
+                    ),
+                    Expanded(
+                      child: GFButtonBadge(
+                        icon: GFBadge(
+                          text: '6',
+                          shape: GFBadgeShape.pills,
+                        ),
+                        onPressed: () {},
+                        text: 'Success',
+                        color: GFColor.success,
                       ),
-                      onPressed: () {},
-                      text: 'Success',
-                      color: GFColor.success,
-                    ),
+                    )
                   ],
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    GFButtonBadge(
-                      icon: GFBadge(
-                        text: '6',
-                        shape: GFBadgeShape.pills,
+                    Expanded(
+                      child: GFButtonBadge(
+                        icon: GFBadge(
+                          text: '6',
+                          shape: GFBadgeShape.pills,
+                        ),
+                        onPressed: () {},
+                        text: 'Warning',
+                        color: GFColor.warning,
                       ),
-                      onPressed: () {},
-                      text: 'Warning',
-                      color: GFColor.warning,
                     ),
-                    GFButtonBadge(
-                      icon: GFBadge(
-                        text: '6',
-                        shape: GFBadgeShape.pills,
+                    SizedBox(
+                      width: 6,
+                    ),
+                    Expanded(
+                      child: GFButtonBadge(
+                        icon: GFBadge(
+                          text: '6',
+                          shape: GFBadgeShape.pills,
+                        ),
+                        onPressed: () {},
+                        text: 'Danger',
+                        color: GFColor.danger,
                       ),
-                      onPressed: () {},
-                      text: 'Danger',
-                      color: GFColor.danger,
                     ),
-                    GFButtonBadge(
-                      icon: GFBadge(
-                        text: '6',
-                        shape: GFBadgeShape.pills,
+                    SizedBox(
+                      width: 6,
+                    ),
+                    Expanded(
+                      child: GFButtonBadge(
+                        icon: GFBadge(
+                          text: '6',
+                          shape: GFBadgeShape.pills,
+                        ),
+                        onPressed: () {},
+                        text: 'Info',
+                        color: GFColor.info,
                       ),
-                      onPressed: () {},
-                      text: 'Info',
-                      color: GFColor.info,
-                    ),
+                    )
                   ],
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    GFButtonBadge(
-                      icon: GFBadge(
-                        text: '6',
-                        shape: GFBadgeShape.pills,
+                    Expanded(
+                      child: GFButtonBadge(
+                        icon: GFBadge(
+                          text: '6',
+                          shape: GFBadgeShape.pills,
+                        ),
+                        onPressed: () {},
+                        text: 'Light',
+                        color: GFColor.light,
                       ),
-                      onPressed: () {},
-                      text: 'Light',
-                      color: GFColor.light,
                     ),
-                    GFButtonBadge(
-                      icon: GFBadge(
-                        text: '6',
-                        shape: GFBadgeShape.pills,
+                    SizedBox(
+                      width: 6,
+                    ),
+                    Expanded(
+                      child: GFButtonBadge(
+                        icon: GFBadge(
+                          text: '6',
+                          shape: GFBadgeShape.pills,
+                        ),
+                        onPressed: () {},
+                        text: 'Dark',
+                        textStyle: TextStyle(color: getGFColor(GFColor.white)),
+                        color: GFColor.dark,
                       ),
-                      onPressed: () {},
-                      text: 'Dark',
-                      textStyle: TextStyle(color: getGFColor(GFColor.white)),
-                      color: GFColor.dark,
                     ),
-                    GFButtonBadge(
-                      icon: GFBadge(
-                        text: '6',
-                        shape: GFBadgeShape.pills,
+                    SizedBox(
+                      width: 6,
+                    ),
+                    Expanded(
+                      child: GFButtonBadge(
+                        icon: GFBadge(
+                          text: '6',
+                          shape: GFBadgeShape.pills,
+                        ),
+                        onPressed: () {},
+                        text: 'Link',
+                        color: GFColor.transparent,
                       ),
-                      onPressed: () {},
-                      text: 'Link',
-                      color: GFColor.transparent,
-                    ),
+                    )
                   ],
                 ),
                 SizedBox(

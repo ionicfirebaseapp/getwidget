@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57">
+  <g id="Group_942" data-name="Group 942" transform="translate(-1213 -1277)">
+    <rect id="Rectangle_393" data-name="Rectangle 393" width="57" height="57" transform="translate(1213 1277)" fill="none"/>
+    <g id="Group_946" data-name="Group 946">
+      <g id="Rectangle_394" data-name="Rectangle 394" transform="translate(1217 1287)" fill="none" stroke="#19ca4b" stroke-width="2">
+        <rect width="49" height="37" stroke="none"/>
+        <rect x="1" y="1" width="47" height="35" fill="none"/>
+      </g>
+      <g id="Group_945" data-name="Group 945">
+        <g id="Group_944" data-name="Group 944" transform="translate(0 3)">
+          <g id="Group_943" data-name="Group 943">
+            <line id="Line_9" data-name="Line 9" y1="12" x2="12" transform="translate(1223.5 1302.5)" fill="none" stroke="#19ca4b" stroke-linecap="round" stroke-width="2"/>
+            <line id="Line_10" data-name="Line 10" x2="6" y2="10" transform="translate(1235.5 1302.5)" fill="none" stroke="#19ca4b" stroke-linecap="round" stroke-width="2"/>
+          </g>
+          <g id="Group_942-2" data-name="Group 942">
+            <line id="Line_11" data-name="Line 11" y1="12" x2="9" transform="translate(1238.5 1295.5)" fill="none" stroke="#19ca4b" stroke-linecap="round" stroke-width="2"/>
+            <line id="Line_12" data-name="Line 12" x2="12" y2="13" transform="translate(1247.5 1295.5)" fill="none" stroke="#19ca4b" stroke-linecap="round" stroke-width="2"/>
+          </g>
+        </g>
+        <g id="Ellipse_63" data-name="Ellipse 63" transform="translate(1230 1294)" fill="none" stroke="#19ca4b" stroke-width="1">
+          <circle cx="3.5" cy="3.5" r="3.5" stroke="none"/>
+          <circle cx="3.5" cy="3.5" r="3" fill="none"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

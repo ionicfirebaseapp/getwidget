@@ -101,11 +101,36 @@ margin: EdgeInsets.only(right: 10,),
                      },
                      child:  Text('Standard Buttons'),
                    ),
-                    Text('Pills Buttons'),
-                    Text('Square Buttons'),
-                    Text('Shadow Buttons'),
-                    Text('Icon Buttons'),
-                    Text('Social Buttons')
+                   GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-buttons/pill-button');
+                     },
+                     child:  Text('Pills Buttons'),
+                   ),
+                    GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-buttons/square-button');
+                     },
+                     child:  Text('Square Buttons'),
+                   ),
+                    GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-buttons/shadow-button');
+                     },
+                     child:  Text('Shadow Buttons'),
+                   ),
+                     GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-buttons/icon-button');
+                     },
+                     child:  Text('Icon Buttons'),
+                   ),
+                    GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-buttons/social-button');
+                     },
+                     child:  Text('Social Buttons'),
+                   ),
                   ],
                 ),
               ),
@@ -115,8 +140,15 @@ margin: EdgeInsets.only(right: 10,),
               height: 20,
             ),
 
-            Text('GF Badge', style: hintStyleTextblackdull()),
-            SizedBox(
+            // Text('GF Badge', style: hintStyleTextblackdull(),),
+             GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-badges/badges');
+                     },
+                     child:  Text('GF Badges',style: hintStyleTextblackdull(),),
+                     
+                   ),
+                       SizedBox(
               height: 20,
             ),
             Text('GF Avatar', style: hintStyleTextblackdull()),
@@ -127,8 +159,14 @@ margin: EdgeInsets.only(right: 10,),
             SizedBox(
               height: 20,
             ),
-            Text('GF Card', style: hintStyleTextblackdull()),
-            SizedBox(
+             GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-cards/cards');
+                     },
+                     child:  Text('GF Cards',style: hintStyleTextblackdull(),),
+                     
+                   ),
+                       SizedBox(
               height: 20,
             ),
             Text('GF Slider', style: hintStyleTextblackdull()),
@@ -143,9 +181,15 @@ margin: EdgeInsets.only(right: 10,),
             SizedBox(
               height: 20,
             ),
-            Text('GF Typography', style: hintStyleTextblackdull()),
-            SizedBox(
-              height: 30,
+            GestureDetector(
+                     onTap: (){
+                       Navigator.pushNamed(context, '/gf-typography/heading');
+                     },
+                     child:  Text('GF Typography',style: hintStyleTextblackdull(),),
+                     
+                   ),
+                       SizedBox(
+              height: 20,
             ),
             Text('COMING SOON', style: hintStyleTextblack(),),
             SizedBox(

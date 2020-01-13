@@ -3,8 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ui_kit/colors/gf_color.dart';
+import 'package:ui_kit/components/tabs/gf_tabBar.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
 
+/// Creates pills like structured tab bar. See [GFTabBar]
+/// [GFSegmentTabs] are best used as an alternative for [GFTabBar].
 
 class GFSegmentTabs extends StatefulWidget {
   GFSegmentTabs({
@@ -26,7 +29,6 @@ class GFSegmentTabs extends StatefulWidget {
     this.labelPadding,
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
-    this.tabBarView,
     this.tabs,
     this.tabController
   }):
@@ -138,11 +140,6 @@ class GFSegmentTabs extends StatefulWidget {
   /// is null, then the text style of the [ThemeData.primaryTextTheme]'s
   /// body2 definition is used.
   final TextStyle unselectedLabelStyle;
-
-  /// One widget per tab.
-  /// Its length must match the length of the [GFSegmentTabs.tabs]
-  /// list, as well as the [controller]'s [GFSegmentTabs.length].
-  final GFTabBarView tabBarView;
 
   /// Typically a list of two or more [Tab] widgets.
   ///

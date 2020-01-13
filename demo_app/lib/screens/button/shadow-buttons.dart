@@ -9,6 +9,7 @@ import 'package:ui_kit/shape/gf_button_shape.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
+import 'package:flutter/cupertino.dart';
 
 class ShadowButtons extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _ShadowButtonsState extends State<ShadowButtons> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Image.asset('lib/assets/icons/back.png')),
+            child:  Icon(CupertinoIcons.back, color: getGFColor(GFColor.success), ),),
         title: Text(
           'Shadow Buttons',
           style: TextStyle(fontSize: 17),

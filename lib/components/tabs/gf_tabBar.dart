@@ -5,7 +5,16 @@ import 'package:flutter/widgets.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
 
+/// A material design widget that displays a horizontal row of tabs.
+///
+/// Typically created as the [AppBar.bottom] part of an [AppBar] and in
+/// conjunction with a [TabBarView].
+
 class GFTabBar extends StatefulWidget {
+  /// Creates a material design tab bar.
+  ///
+  /// The [tabs] argument must not be null and its length must match the [controller]'s
+  /// [TabController.length].
   GFTabBar({
     Key key,
     this.initialIndex = 0,
