@@ -10,6 +10,7 @@ import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/card/gf_card.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
 import 'package:ui_kit/components/tabs/gf_segment_tabs.dart';
+import 'package:flutter/cupertino.dart';
 
 class SquareButtons extends StatefulWidget {
   @override
@@ -40,7 +41,7 @@ class _SquareButtonsState extends State<SquareButtons> with SingleTickerProvider
             onTap: () {
               Navigator.pop(context);
             },
-            child: Image.asset('lib/assets/icons/back.png')),
+          child:  Icon(CupertinoIcons.back, color: getGFColor(GFColor.success), ),),
         title: Text(
           'Square Buttons',
           style: TextStyle(fontSize: 17),
@@ -73,19 +74,18 @@ class _SquareButtonsState extends State<SquareButtons> with SingleTickerProvider
                     ),
                   ),
                 ],
-                tabBarColor: getGFColor(GFColor.white),
-                indicatorSize: TabBarIndicatorSize.tab,
-                indicatorColor: getGFColor(GFColor.dark),
-                unselectedLabelColor: getGFColor(GFColor.light),
-//              indicator: BoxDecoration(
-//                color: Colors.pink,
-//                border: Border.all(color: Colors.green, width: 1.0),
-//                borderRadius: BorderRadius.circular(50.0)
-//              ),
-//              indicatorPadding: EdgeInsets.all(8.0),
-//              indicatorWeight: 2.0,
-                border: Border.all(color: getGFColor(GFColor.transparent)),
-                borderRadius: BorderRadius.circular(2.0)
+              tabBarColor: getGFColor(GFColor.light),
+              indicatorSize: TabBarIndicatorSize.tab,
+              labelColor: getGFColor(GFColor.white),
+              unselectedLabelColor: Colors.white,
+              indicator: BoxDecoration(
+                color: getGFColor(GFColor.dark),
+                border: Border(bottom: BorderSide(color: getGFColor(GFColor.success), width: 3.0,),),
+//                borderRadius: BorderRadius.circular(2.0)
+              ),
+              indicatorPadding: EdgeInsets.all(8.0),
+              indicatorWeight: 2.0,
+              border: Border.all(color: Colors.white, width: 2.0),
             ),
 //
 //
