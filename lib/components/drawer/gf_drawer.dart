@@ -17,9 +17,6 @@ enum GFDrawerAlignment {
   end,
 }
 
-// TODO(eseidel): Draw width should vary based on device size:
-// https://material.io/design/components/navigation-drawer.html#specs
-
 // Mobile:
 // Width = Screen width − 56 dp
 // Maximum width: 320dp
@@ -31,9 +28,9 @@ enum GFDrawerAlignment {
 // The right nav can vary depending on content.
 
 const double _kWidth = 304.0;
-const double _kEdgeDragWidth = 20.0;
-const double _kMinFlingVelocity = 365.0;
-const Duration _kBaseSettleDuration = Duration(milliseconds: 246);
+// const double _kEdgeDragWidth = 20.0;
+// const double _kMinFlingVelocity = 365.0;
+// const Duration _kBaseSettleDuration = Duration(milliseconds: 246);
 
 /// A material design panel that slides in horizontally from the edge of a
 /// [Scaffold] to show navigation links in an application.
@@ -48,76 +45,11 @@ const Duration _kBaseSettleDuration = Duration(milliseconds: 246);
 /// [GFDrawer] when a [GFDrawer] is available in the [Scaffold]. The [Scaffold]
 /// automatically handles the edge-swipe gesture to show the drawer.
 ///
-/// {@animation 350 622 https://flutter.github.io/assets-for-api-docs/assets/material/drawer.mp4}
-///
-/// {@tool sample}
 /// This example shows how to create a [Scaffold] that contains an [AppBar] and
 /// a [GFDrawer]. A user taps the "menu" icon in the [AppBar] to open the
 /// [GFDrawer]. The [GFDrawer] displays four items: A header and three menu items.
 /// The [GFDrawer] displays the four items using a [ListView], which allows the
 /// user to scroll through the items if need be.
-///
-/// ```dart
-/// Scaffold(
-///   appBar: AppBar(
-///     title: const Text('GFDrawer Demo'),
-///   ),
-///   drawer: GFDrawer(
-///     child: ListView(
-///       padding: EdgeInsets.zero,
-///       children: const <Widget>[
-///         GFDrawerHeader(
-///           decoration: BoxDecoration(
-///             color: Colors.blue,
-///           ),
-///           child: Text(
-///             'GFDrawer Header',
-///             style: TextStyle(
-///               color: Colors.white,
-///               fontSize: 24,
-///             ),
-///           ),
-///         ),
-///         ListTile(
-///           leading: Icon(Icons.message),
-///           title: Text('Messages'),
-///         ),
-///         ListTile(
-///           leading: Icon(Icons.account_circle),
-///           title: Text('Profile'),
-///         ),
-///         ListTile(
-///           leading: Icon(Icons.settings),
-///           title: Text('Settings'),
-///         ),
-///       ],
-///     ),
-///   ),
-/// )
-/// ```
-/// {@end-tool}
-///
-/// An open drawer can be closed by calling [Navigator.pop]. For example
-/// a drawer item might close the drawer when tapped:
-///
-/// ```dart
-/// ListTile(
-///   leading: Icon(Icons.change_history),
-///   title: Text('Change history'),
-///   onTap: () {
-///     // change app state...
-///     Navigator.pop(context); // close the drawer
-///   },
-/// );
-/// ```
-///
-/// See also:
-///
-///  * [Scaffold.drawer], where one specifies a [GFDrawer] so that it can be
-///    shown.
-///  * [Scaffold.of], to obtain the current [ScaffoldState], which manages the
-///    display and animation of the drawer.
-///  * [ScaffoldState.openGFDrawer], which displays its [GFDrawer].
 ///
 class GFDrawer extends StatelessWidget {
   /// Creates a material design drawer.
@@ -125,15 +57,15 @@ class GFDrawer extends StatelessWidget {
   /// Typically used in the [Scaffold.drawer] property.
   ///
   /// The [elevation] must be non-negative.
-  const GFDrawer({
-    Key key,
-    this.elevation = 16.0,
-    this.child,
-    this.semanticLabel,
-    this.backgroundImage,
-    this.colorFilter,
-    this.gradient
-  }) : assert(elevation != null && elevation >= 0.0),
+  const GFDrawer(
+      {Key key,
+      this.elevation = 16.0,
+      this.child,
+      this.semanticLabel,
+      this.backgroundImage,
+      this.colorFilter,
+      this.gradient})
+      : assert(elevation != null && elevation >= 0.0),
         super(key: key);
 
   /// The z-coordinate at which to place this drawer relative to its parent.
@@ -198,17 +130,17 @@ class GFDrawer extends StatelessWidget {
               decoration: new BoxDecoration(
                 color: Colors.teal,
                 gradient: gradient,
-                image: backgroundImage != null ? new DecorationImage(
-                  image: backgroundImage,
-                  fit: BoxFit.cover,
-                  colorFilter: colorFilter,
-                ) : null,
+                image: backgroundImage != null
+                    ? new DecorationImage(
+                        image: backgroundImage,
+                        fit: BoxFit.cover,
+                        colorFilter: colorFilter,
+                      )
+                    : null,
               ),
-              child: child
-          ),
+              child: child),
         ),
       ),
     );
   }
 }
-

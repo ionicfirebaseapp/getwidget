@@ -3,19 +3,13 @@ import 'dart:async';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart' show DragStartBehavior;
+import 'package:ui_kit/components/tabs/gf_segment_tabs.dart';
 
 /// A page view that displays the widget which corresponds to the currently
 /// selected tab.
 ///
-/// This widget is typically used in conjunction with a [TabBar].
+/// This widget is typically used in conjunction with a [GFTabBar] or [GFSegmentTabs].
 ///
-/// If a [TabController] is not provided, then there must be a [DefaultTabController]
-/// ancestor.
-///
-/// The tab controller's [TabController.length] must equal the length of the
-/// [children] list and the length of the [TabBar.tabs] list.
-///
-/// To see a sample implementation, visit the [TabController] documentation.
 class GFTabBarView extends StatefulWidget {
   /// Creates a page view with one child per tab.
   ///
@@ -25,20 +19,18 @@ class GFTabBarView extends StatefulWidget {
     @required this.children,
     this.controller,
     this.physics,
+    this.height,
     this.dragStartBehavior = DragStartBehavior.start,
   }) : assert(children != null),
         assert(dragStartBehavior != null),
         super(key: key);
 
   /// This widget's selection and animation state.
-  ///
-  /// If [TabController] is not provided, then the value of [DefaultTabController.of]
-  /// will be used.
   final TabController controller;
 
   /// One widget per tab.
   ///
-  /// Its length must match the length of the [TabBar.tabs]
+  /// Its length must match the length of the [GFTabBar.tabs]
   /// list, as well as the [controller]'s [TabController.length].
   final List<Widget> children;
 
@@ -55,6 +47,9 @@ class GFTabBarView extends StatefulWidget {
 
   /// {@macro flutter.widgets.scrollable.dragStartBehavior}
   final DragStartBehavior dragStartBehavior;
+
+  /// [GFTabBarView] height can be fixed using [double]
+  final double height;
 
   @override
   _GFTabBarViewState createState() => _GFTabBarViewState();
@@ -223,11 +218,14 @@ class _GFTabBarViewState extends State<GFTabBarView> {
     }());
     return NotificationListener<ScrollNotification>(
       onNotification: _handleScrollNotification,
-      child: PageView(
-        dragStartBehavior: widget.dragStartBehavior,
-        controller: _pageController,
-        physics: widget.physics == null ? _kGFTabBarViewPhysics : _kGFTabBarViewPhysics.applyTo(widget.physics),
-        children: _childrenWithKey,
+      child: Container(
+        height: widget.height == null ? MediaQuery.of(context).size.height : widget.height,
+        child: PageView(
+          dragStartBehavior: widget.dragStartBehavior,
+          controller: _pageController,
+          physics: widget.physics == null ? _kGFTabBarViewPhysics : _kGFTabBarViewPhysics.applyTo(widget.physics),
+          children: _childrenWithKey,
+        ),
       ),
     );
   }

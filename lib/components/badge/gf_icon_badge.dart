@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_badge_shape.dart';
-import 'package:ui_kit/types/gf_type.dart';
-import 'package:ui_kit/position/gf_position.dart';
+import 'package:ui_kit/components/button/gf_icon_button.dart';
 
-class GFIconBadges extends StatefulWidget {
-  /// Called when the badge is tapped or otherwise activated.
-  final VoidCallback onPressed;
+class GFIconBadge extends StatefulWidget {
 
-  /// text of type [String] is alternative to child. text will get priority over child
+  /// child of type [GFIconButton] is used to show icon.
+  /// Use [Icon] widget for compatibility.
   final Widget child;
 
-  /// text of type [String] is alternative to child. text will get priority over child
+  /// widget of type [Widget] is used to show counter to the top right corner of child.
+  /// You can use [GFBadge] for compatibility.
   final Widget counterChild;
 
   /// The internal padding for the badge's [child].
   final EdgeInsetsGeometry padding;
 
   /// Create badges of all types, check out [GFBadge] for button badges and [GFIconBadge] for icon badges.
-  const GFIconBadges({
+  const GFIconBadge({
     Key key,
-    @required this.onPressed,
     this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
     @required this.child,
     @required this.counterChild,
@@ -27,19 +24,10 @@ class GFIconBadges extends StatefulWidget {
         super(key: key);
 
   @override
-  _GFIconBadgesState createState() => _GFIconBadgesState();
+  _GFIconBadgeState createState() => _GFIconBadgeState();
 }
 
-class _GFIconBadgesState extends State<GFIconBadges> {
-  Color badgeColor, counterColor;
-  Color textColor;
-  Widget child;
-  Widget icon;
-  Function onPressed;
-  GFType type;
-  GFBadgeShape shape;
-  GFPosition position;
-
+class _GFIconBadgeState extends State<GFIconBadge> {
   @override
   void initState() {
     super.initState();
@@ -50,13 +38,14 @@ class _GFIconBadgesState extends State<GFIconBadges> {
     return Container(
       height: 60.0,
       width: 60.0,
+      padding: widget.padding,
       child: Stack(
         children: <Widget>[
-          widget.child,
+          widget.child ?? Container(),
           new Positioned(
             top: 2,
             left: 22,
-            child: widget.counterChild,
+            child: widget.counterChild ?? Container(),
           ),
         ],
       ),

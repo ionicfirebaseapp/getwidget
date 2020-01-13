@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:ui_kit/components/toast/gf_toast.dart';
 
 class GFFloatingWidget extends StatefulWidget {
+
+  /// Creates a Floating body can be used to display the quick messages, warning and erros.
+  /// Inside floating widget [GFToast] can be used as body. See [GFToast]
+
   const GFFloatingWidget(
       {Key key,
       this.child,
@@ -34,11 +38,13 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
       fit: StackFit.loose,
       children: <Widget>[
         Container(
-          height:  MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height,
           child: widget.body ?? Container(),
         ),
         Positioned(
-            top:  widget.horizontalPosition != null ? widget.horizontalPosition : 0,
+            top: widget.horizontalPosition != null
+                ? widget.horizontalPosition
+                : 0,
             left: widget.verticalPosition != null ? widget.verticalPosition : 0,
             child: Container(
               width: MediaQuery.of(context).size.width,

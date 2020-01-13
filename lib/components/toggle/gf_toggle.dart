@@ -2,7 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../types/gf_toggle_type.dart';
 
+/// A toggle button allows the user to change a setting between two states.
+///
+/// The state of each button is controlled by [isSelected], which is a list of bools that determine
+/// if a button is in an unselected or selected state. They are both
+/// correlated by their index in the list. The length of [isSelected] has to
+/// match the length of the [children] list.
+///
+/// ## Customizing toggle buttons
+/// Each toggle's behavior can be configured by the [onPressed] callback, which
+/// can update the [isSelected] list however it wants to.
+///
+
 class GFToggle extends StatefulWidget {
+
+  /// Creates toggle button to switch between states onChanged.
+
   GFToggle(
       {Key key,
       @required this.onChanged,
@@ -55,7 +70,7 @@ class GFToggle extends StatefulWidget {
   final Duration duration;
 
   /// Button type of [GFToggleType] i.e, android, ios, custom, sqaure
-  GFToggleType type;
+  final GFToggleType type;
 
   /// This property must not be null. Used to set the current state of toggle
   final bool value;
@@ -85,9 +100,9 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    animationController.dispose();
+    if(animationController!=null) animationController.dispose();
+    if(controller!=null) controller.dispose();
     super.dispose();
-    controller.dispose();
 
   }
 

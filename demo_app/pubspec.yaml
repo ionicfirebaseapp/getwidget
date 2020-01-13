@@ -1,16 +1,5 @@
 name: demo_app
 description: A new Flutter project.
-
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
 environment:
@@ -23,6 +12,7 @@ dependencies:
     path: ../
 
   cupertino_icons: ^0.1.2
+  flutter_svg: ^0.15.0
 
 dev_dependencies:
   flutter_test:
@@ -30,3 +20,96 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - lib/assets/logo/logo.png
+    - lib/assets/icons/buttons.png
+    - lib/assets/icons/buttons.svg
+    - lib/assets/icons/avatar.png
+    - lib/assets/icons/badge.png
+    - lib/assets/icons/card.png
+    - lib/assets/icons/chips.png
+    - lib/assets/icons/items.png
+    - lib/assets/icons/lists.png
+    - lib/assets/icons/menu.png
+    - lib/assets/icons/slider.png
+    - lib/assets/icons/tabs.png
+    - lib/assets/icons/toast.png
+    - lib/assets/icons/toggle.png
+    - lib/assets/icons/typo.png
+    - lib/assets/icons/images.png
+    - lib/assets/icons/back.png
+    - lib/assets/icons/next.png
+    - lib/assets/icons/primary.svg
+    - lib/assets/icons/secondary.svg
+    - lib/assets/icons/success.svg
+    - lib/assets/icons/warning.svg
+    - lib/assets/icons/danger.svg
+    - lib/assets/icons/info.svg
+    - lib/assets/icons/dark.svg
+    - lib/assets/icons/link.svg
+    - lib/assets/icons/light.svg
+    - lib/assets/icons/fb.svg
+    - lib/assets/icons/twitter.svg
+    - lib/assets/icons/whatsapp.svg
+    - lib/assets/icons/google.svg
+    - lib/assets/icons/dribble.svg
+    - lib/assets/icons/youtube.svg
+    - lib/assets/icons/slack.svg
+    - lib/assets/icons/pinterest.svg
+    - lib/assets/icons/linkedin.svg
+    - lib/assets/images/image.png
+    - lib/assets/images/image1.png
+    - lib/assets/images/red.png
+    - lib/assets/images/purple.png
+    - lib/assets/images/pink.png
+    - lib/assets/images/green.png
+    - lib/assets/images/green1.png
+    - lib/assets/images/orange.png
+    - lib/assets/images/avatar1.png
+    - lib/assets/images/avatar2.png
+    - lib/assets/images/avatar3.png
+    - lib/assets/images/avatar4.png
+    - lib/assets/images/image2.png
+    - lib/assets/images/img.png
+    - lib/assets/images/img1.png
+    - lib/assets/images/img2.png
+    - lib/assets/images/card.png
+    - lib/assets/images/card1.png
+    - lib/assets/images/card2.png
+    - lib/assets/images/card3.png
+    - lib/assets/images/car.png
+    - lib/assets/images/car1.png
+    - lib/assets/images/car2.png
+    - lib/assets/images/car3.png
+    - lib/assets/images/car4.png
+    - lib/assets/images/car5.png
+    - lib/assets/icons/buttons.svg
+    - lib/assets/icons/badges.svg
+    - lib/assets/icons/avatars.svg
+    - lib/assets/icons/cards.svg
+    - lib/assets/icons/carousels.svg
+    - lib/assets/icons/images.svg
+    - lib/assets/icons/tabs.svg
+    - lib/assets/icons/tiles.svg
+    - lib/assets/icons/typography.svg
+    - lib/assets/icons/next.svg
+    - lib/assets/icons/back.svg
+    - lib/assets/icons/gf.svg
+    - lib/assets/icons/GF.svg
+    - lib/assets/icons/back-arrow.svg
+    - lib/assets/icons/smallback.svg
+    - lib/assets/icons/a.jpg
+    - lib/assets/images/a.png
+    - lib/assets/images/three.png
+    - lib/assets/images/two.png
+    - lib/assets/images/three1.png
+    - lib/assets/images/three2.png
+    - lib/assets/images/three3.png
+    - lib/assets/images/three4.png
+    - lib/assets/images/three5.png
+    - lib/assets/images/three6.png
+    - lib/assets/images/three7.png
+    - lib/assets/images/cir.png
+
+
