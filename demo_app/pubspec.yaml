@@ -58,5 +58,58 @@ flutter:
     - lib/assets/icons/slack.svg
     - lib/assets/icons/pinterest.svg
     - lib/assets/icons/linkedin.svg
+    - lib/assets/images/image.png
+    - lib/assets/images/image1.png
+    - lib/assets/images/red.png
+    - lib/assets/images/purple.png
+    - lib/assets/images/pink.png
+    - lib/assets/images/green.png
+    - lib/assets/images/green1.png
+    - lib/assets/images/orange.png
+    - lib/assets/images/avatar1.png
+    - lib/assets/images/avatar2.png
+    - lib/assets/images/avatar3.png
+    - lib/assets/images/avatar4.png
+    - lib/assets/images/image2.png
+    - lib/assets/images/img.png
+    - lib/assets/images/img1.png
+    - lib/assets/images/img2.png
+    - lib/assets/images/card.png
+    - lib/assets/images/card1.png
+    - lib/assets/images/card2.png
+    - lib/assets/images/card3.png
+    - lib/assets/images/car.png
+    - lib/assets/images/car1.png
+    - lib/assets/images/car2.png
+    - lib/assets/images/car3.png
+    - lib/assets/images/car4.png
+    - lib/assets/images/car5.png
+    - lib/assets/icons/buttons.svg
+    - lib/assets/icons/badges.svg
+    - lib/assets/icons/avatars.svg
+    - lib/assets/icons/cards.svg
+    - lib/assets/icons/carousels.svg
+    - lib/assets/icons/images.svg
+    - lib/assets/icons/tabs.svg
+    - lib/assets/icons/tiles.svg
+    - lib/assets/icons/typography.svg
+    - lib/assets/icons/next.svg
+    - lib/assets/icons/back.svg
+    - lib/assets/icons/gf.svg
+    - lib/assets/icons/GF.svg
+    - lib/assets/icons/back-arrow.svg
+    - lib/assets/icons/smallback.svg
+    - lib/assets/icons/a.jpg
+    - lib/assets/images/a.png
+    - lib/assets/images/three.png
+    - lib/assets/images/two.png
+    - lib/assets/images/three1.png
+    - lib/assets/images/three2.png
+    - lib/assets/images/three3.png
+    - lib/assets/images/three4.png
+    - lib/assets/images/three5.png
+    - lib/assets/images/three6.png
+    - lib/assets/images/three7.png
+    - lib/assets/images/cir.png
 
 
