@@ -5,6 +5,7 @@ import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 
 class GFAvatar extends StatelessWidget {
+
   /// Typically a [Text] widget. If the [CircleAvatar] is to have an image, use [backgroundImage] instead.
   final Widget child;
 
@@ -26,7 +27,7 @@ class GFAvatar extends StatelessWidget {
   /// The maximum size of the avatar, expressed as the radius (half the diameter).
   final double maxRadius;
 
-  /// size of avatar like [double] or [GFSize] i.e, 1.2, small, medium, large etc.
+  /// size of avatar like [GFSize] i.e, 1.2, small, medium, large etc.
   final dynamic size;
 
   /// shape of avatar [GFAvatarShape] i.e, standard, circle, square

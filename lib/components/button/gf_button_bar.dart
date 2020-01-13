@@ -4,6 +4,8 @@ import 'package:ui_kit/components/button/gf_icon_button.dart';
 
 class GFButtonBar extends StatelessWidget {
 
+  /// Create buttons bar for all types of buttons.
+  /// check [GFButton] and [GFIconButton]
   const GFButtonBar({
     Key key,
     this.alignment = MainAxisAlignment.end,

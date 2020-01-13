@@ -6,6 +6,13 @@ import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
 import 'package:ui_kit/components/tabs/gf_tabBar.dart';
 
+/// Creates a default tab for the given [child] widget.
+///
+/// The [length] argument is typically greater than one. The [length] must
+/// match [GFTabBar.tabs]'s and [GFTabBarView.children]'s length.
+///
+/// The [initialIndex] argument must not be null.
+
 class GFTabs extends StatefulWidget {
   GFTabs({
     Key key,

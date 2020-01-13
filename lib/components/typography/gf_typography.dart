@@ -3,9 +3,13 @@ import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/types/gf_typography_type.dart';
 
 class GFTypography extends StatelessWidget {
+
+  /// Creates simple title with underline. Style of title can be changed using [GFTypographyType]
+  /// showDivider is default true, can be set false.
+
   const GFTypography(
       {Key key,
-        this.type = GFTypographyType.typo4,
+      this.type = GFTypographyType.typo4,
       this.child,
       this.text,
       this.icon,
@@ -18,9 +22,6 @@ class GFTypography extends StatelessWidget {
       this.backgroundImage,
       this.backgroundImagecolorFilter})
       : super(key: key);
-
-
-
 
   /// child of  type [Widget] is alternative to text key. text will get priority over child
   final Widget child;
@@ -52,29 +53,28 @@ class GFTypography extends StatelessWidget {
   ///backgroundImage of type [ImageProvider] to set the background of [GFTypography]
   final ImageProvider backgroundImage;
 
-  ///backgroundImagecolorFilter of type [ColorFilter] to set the background color of [GFTypography] only when backgroundImage is available
+  ///backgroundImagecolorFilter of type [ColorFilter] to set the
+  ///background color of [GFTypography] only when backgroundImage is available
   final ColorFilter backgroundImagecolorFilter;
-
 
   /// header type of [GFTypographyType] i.e, typo1, typo2, typo3, typo4, typo5, typo6
   final GFTypographyType type;
 
   @override
   Widget build(BuildContext context) {
-
     double fontSize;
 
-    if(type == GFTypographyType.typo1){
+    if (type == GFTypographyType.typo1) {
       fontSize = 25.0;
-    }else if(type == GFTypographyType.typo2){
+    } else if (type == GFTypographyType.typo2) {
       fontSize = 22.0;
-    }else if (type == GFTypographyType.typo3){
+    } else if (type == GFTypographyType.typo3) {
       fontSize = 19.0;
-    }else if(type == GFTypographyType.typo4){
+    } else if (type == GFTypographyType.typo4) {
       fontSize = 17.0;
-    }else if (type == GFTypographyType.typo5){
+    } else if (type == GFTypographyType.typo5) {
       fontSize = 15.0;
-    }else if(type == GFTypographyType.typo6){
+    } else if (type == GFTypographyType.typo6) {
       fontSize = 13.0;
     }
 
@@ -100,18 +100,19 @@ class GFTypography extends StatelessWidget {
                     ? Padding(padding: EdgeInsets.only(left: 10))
                     : Container(),
                 text != null
-                    ? Expanded(child: Text(
-                  text,
-                  style: TextStyle(
-                      color: textColor != null
-                          ? getGFColor(textColor)
-                          : backgroundImage != null
-                          ? Colors.white
-                          : Colors.black,
-                      fontSize:  fontSize,
-                      letterSpacing: 0.3,
-                      fontWeight: FontWeight.w500),
-                ))
+                    ? Expanded(
+                        child: Text(
+                        text,
+                        style: TextStyle(
+                            color: textColor != null
+                                ? getGFColor(textColor)
+                                : backgroundImage != null
+                                    ? Colors.white
+                                    : Colors.black,
+                            fontSize: fontSize,
+                            letterSpacing: 0.3,
+                            fontWeight: FontWeight.w500),
+                      ))
                     : child
               ],
             ),
@@ -121,7 +122,7 @@ class GFTypography extends StatelessWidget {
                     alignment: dividerAlignment,
                     child: Container(
                       width: dividerWidth != null ? dividerWidth : 70,
-                      height: fontSize/5,
+                      height: fontSize / 5,
                       decoration: BoxDecoration(
                           color: dividerColor != null
                               ? getGFColor(dividerColor)

@@ -4,13 +4,13 @@ import 'package:ui_kit/size/gf_size.dart';
 import 'package:ui_kit/colors/gf_color.dart';
 
 class GFBadge extends StatefulWidget {
-  /// The border side for the button's [Material].
+  /// The border side for the badge's [Material].
   final BorderSide border;
 
-  /// Typically the counter button's shape.
+  /// Typically the counter badge's shape.
   final ShapeBorder borderShape;
 
-  /// Counter type of [GFBadgeShape] i.e, standard, pills, square,
+  /// Counter type of [GFBadgeShape] i.e, standard, pills, square, circle
   final GFBadgeShape shape;
 
   /// Pass [GFColor] or [Color]

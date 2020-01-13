@@ -4,8 +4,9 @@ import 'package:ui_kit/colors/gf_color.dart';
 import 'package:ui_kit/components/avatar/gf_avatar.dart';
 
 class GFListTile extends StatelessWidget {
-  /// The card's background color.
-  final Color color;
+
+  /// The GFListTile's background color. Can be given [Colors] or [GFColor]
+  final dynamic color;
 
   /// type of [Widget] or [GFAvatar] used to create rounded user profile
   final Widget avatar;
@@ -16,10 +17,10 @@ class GFListTile extends StatelessWidget {
   /// The subTitle to display inside the [GFListTile]. see [Text]
   final Widget subTitle;
 
-  /// The descriprion to display inside the [GFListTile]. see [Text]
+  /// The description to display inside the [GFListTile]. see [Text]
   final Widget description;
 
-  /// The descriprion to display inside the [GFListTile]. see [Text]
+  /// The description to display inside the [GFListTile]. see [Text]
   final Widget trailing;
 
   /// The icon to display inside the [GFListTile]. see [Icon]
@@ -28,7 +29,7 @@ class GFListTile extends StatelessWidget {
   ///type of [bool] corresponds to true or false to show or hide the divider
   final bool showDivider;
 
-  /// The empty space that surrounds the card. Defines the card's outer [Container.margin]..
+  /// The empty space that surrounds the card. Defines the card's outer [Container.padding]..
   final EdgeInsetsGeometry padding;
 
   /// The divider's height extent.
@@ -65,17 +66,9 @@ class GFListTile extends StatelessWidget {
   ///
   /// If this is null, then the [DividerThemeData.color] is used. If that is
   /// also null, then [ThemeData.dividerColor] is used.
-  ///
-  /// {@tool sample}
-  ///
-  /// ```dart
-  /// Divider(
-  ///   color: Colors.deepOrange,
-  /// )
-  /// ```
-  /// {@end-tool}
   final Color dividerColor;
 
+  /// Creates ListTile with leading, title, trailing, image widget for almost every type of ListTile design.
   const GFListTile(
       {Key key,
       this.color,
