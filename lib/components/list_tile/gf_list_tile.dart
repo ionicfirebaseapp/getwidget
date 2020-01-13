@@ -111,7 +111,7 @@ class GFListTile extends StatelessWidget {
                         description ?? Container()
                       ],
                     )
-                  : null,
+                  : Container(),
               trailing: icon != null
                   ? Column(
                       children: <Widget>[
@@ -119,7 +119,7 @@ class GFListTile extends StatelessWidget {
                             padding: EdgeInsets.only(top: 16.0), child: icon)
                       ],
                     )
-                  : null),
+                  : Container()),
         ),
         showDivider
             ? Divider(

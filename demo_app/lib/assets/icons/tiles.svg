@@ -1,13 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
-  <g id="Group_611" data-name="Group 611" transform="translate(-1405 -2791)">
-    <rect id="Rectangle_423" data-name="Rectangle 423" width="35" height="35" transform="translate(1405 2791)" fill="#fff" opacity="0"/>
-    <g id="Group_1048" data-name="Group 1048">
-      <rect id="Rectangle_582" data-name="Rectangle 582" width="35" height="17" rx="2" transform="translate(1405 2800)" fill="#19ca4b"/>
-      <g id="Group_1047" data-name="Group 1047">
-        <circle id="Ellipse_69" data-name="Ellipse 69" cx="4.5" cy="4.5" r="4.5" transform="translate(1407 2804)" fill="#333"/>
-        <line id="Line_15" data-name="Line 15" x2="18" transform="translate(1417.5 2804.5)" fill="none" stroke="#333" stroke-linecap="round" stroke-width="2"/>
-        <line id="Line_16" data-name="Line 16" x2="9" transform="translate(1417.5 2808.5)" fill="none" stroke="#333" stroke-linecap="round" stroke-width="2"/>
-      </g>
-    </g>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35"><g id="Group_611" data-name="Group 611" transform="translate(-1405 -2791)"><rect id="Rectangle_423" width="35" height="35" fill="#fff" data-name="Rectangle 423" opacity="0" transform="translate(1405 2791)"/><g id="Group_1048" data-name="Group 1048"><rect id="Rectangle_582" width="35" height="17" fill="#19ca4b" data-name="Rectangle 582" rx="2" transform="translate(1405 2800)"/><g id="Group_1047" data-name="Group 1047"><circle id="Ellipse_69" cx="4.5" cy="4.5" r="4.5" fill="#333" data-name="Ellipse 69" transform="translate(1407 2804)"/><line id="Line_15" x2="18" fill="none" stroke="#333" stroke-linecap="round" stroke-width="2" data-name="Line 15" transform="translate(1417.5 2804.5)"/><line id="Line_16" x2="9" fill="none" stroke="#333" stroke-linecap="round" stroke-width="2" data-name="Line 16" transform="translate(1417.5 2808.5)"/></g></g></g></svg>
