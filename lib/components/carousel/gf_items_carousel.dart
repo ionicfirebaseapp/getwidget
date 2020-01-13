@@ -1,53 +1,48 @@
-library carousel;
-
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
-/// Signature for when a pointer has contacted the screen and has begun to move.
+/// When a pointer has come to contact with screen and has begun to move.
 ///
-/// The `details` object provides the position of the touch when it first
+/// The function provides the position of the touch when it first
 /// touched the surface.
 typedef GFItemsCarouselSlideStartCallback = void Function(
     DragStartDetails details);
 
-/// Signature for when a pointer that is in contact with the screen and moving
+/// When a pointer that is in contact with the screen and moving
 /// has moved again.
 ///
-/// The `details` object provides the position of the touch and the distance it
+/// The function provides the position of the touch and the distance it
 /// has travelled since the last update.
 typedef GFItemsCarouselSlideCallback = void Function(DragUpdateDetails details);
 
-/// Signature for when a pointer that was previously in contact with the screen
+/// When a pointer that was previously in contact with the screen
 /// and moving is no longer in contact with the screen.
 ///
 /// The velocity at which the pointer was moving when it stopped contacting
-/// the screen is available in the `details`.
+/// the screen.
 typedef GFItemsCarouselSlideEndCallback = void Function(DragEndDetails details);
 
-/// A widget that show draggable cells with animation.
-///
-/// Set [rowCount] of visible cells
-///
-/// Set drag handlers [onSlideStart], [onSlide], [onSlideEnd]
-///
-/// Set left/right arrows [leftArrow], [rightArrow]
 class GFItemsCarousel extends StatefulWidget {
+
   /// Count of visible cells
   final int rowCount;
 
+  /// The widgets to be shown as sliders.
   final List<Widget> children;
 
-  /// Signature for when a pointer has contacted the screen and has begun to move.
+  /// When a pointer has contacted the screen and has begun to move.
   final GFItemsCarouselSlideStartCallback onSlideStart;
 
-  /// Signature for when a pointer that is in contact with the screen and moving
+  /// When a pointer that is in contact with the screen and moving
   /// has moved again.
   final GFItemsCarouselSlideCallback onSlide;
 
-  /// Signature for when a pointer that was previously in contact with the screen
+  /// When a pointer that was previously in contact with the screen
   /// and moving is no longer in contact with the screen.
   final GFItemsCarouselSlideEndCallback onSlideEnd;
+
+  /// Creates slide show of [Images] and [Widget] with animation for sliding.
+  /// Shows multiple items on one slide, items number depends on rowCount.
 
   GFItemsCarousel(
       {this.rowCount,
@@ -129,7 +124,7 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
     double dx = details.velocity.pixelsPerSecond.dx;
 
     if (dx == 0) {
-      return this.runShiftAnimation();
+      return this.slideAnimation();
     }
 
     this.animationController = new AnimationController(
@@ -146,7 +141,7 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
 
     animation.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed) {
-        this.runShiftAnimation();
+        this.slideAnimation();
       }
     });
 
@@ -160,7 +155,7 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
     if (widget.onSlideEnd != null) widget.onSlideEnd(details);
   }
 
-  runShiftAnimation() {
+  slideAnimation() {
     double beginAnimation = this.offset;
     double endAnimation =
         this.size * (this.offset / this.size).round().toDouble();

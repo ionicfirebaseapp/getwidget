@@ -32,6 +32,9 @@ import 'package:ui_kit/shape/gf_icon_button_shape.dart';
 import 'package:ui_kit/components/tabs/gf_tabBar.dart';
 import 'package:ui_kit/components/typography/gf_typography.dart';
 import 'package:ui_kit/types/gf_typography_type.dart';
+import 'package:ui_kit/components/toast/gf_floating_widget.dart';
+import 'package:ui_kit/components/toggle/gf_toggle.dart';
+import 'package:ui_kit/types/gf_toggle_type.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -84,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   bool switchValue = true;
+  bool showToast = false;
 
   @override
   Widget build(BuildContext context) {
@@ -169,104 +173,159 @@ class _MyHomePageState extends State<MyHomePage>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            GFCard(
-              content: Column(
-                children: <Widget>[
-                  GFTypography(
-                    text: 'GF Header Typo1',
-                    type: GFTypographyType.typo1,
-                    showDivider: false,
-                  ),
-                  GFTypography(
-                    text: 'GF Header Typo2',
-                    type: GFTypographyType.typo2,
-                    showDivider: false,
-                  ),
-                  GFTypography(
-                    text: 'GF Header Typo3',
-                    type: GFTypographyType.typo3,
-                    showDivider: false,
-                  ),
-                  GFTypography(
-                    text: 'GF Header Typo4',
-                    type: GFTypographyType.typo4,
-                    showDivider: false,
-                  ),
-                  GFTypography(
-                    text: 'GF Header Typo5',
-                    type: GFTypographyType.typo5,
-                    showDivider: false,
-                  ),
-                  GFTypography(
-                    text: 'GF Header Typo6',
-                    type: GFTypographyType.typo6,
-                    showDivider: false,
-                  ),
-                ],
+
+            Container(
+              height: 130.0,
+              width: 105.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                gradient: LinearGradient(
+                  begin: FractionalOffset.bottomLeft,
+                  end: FractionalOffset.topRight,
+                  colors: [
+                    const Color(0x5a0b486b),
+                    const Color(0xFFF56217),
+                  ]
+              )
               ),
             ),
 
             GFCard(
-                content: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                GFTypography(
-                  text: 'GF Header Typo1',
-                  type: GFTypographyType.typo1,
-                  backgroundImage: NetworkImage(
-                      'https://cdn.pixabay.com/photo/2019/12/25/16/49/happy-new-year-4718894_960_720.png'),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                GFTypography(
-                  icon: GFAvatar(),
-                  text: 'GF Header Typo2',
-                  type: GFTypographyType.typo2,
-                  dividerColor: GFColor.primary,
-                  dividerAlignment: Alignment.center,
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                GFTypography(
-                  icon: Icon(Icons.insert_emoticon),
-                  text: 'GF Header Typo3',
-                  type: GFTypographyType.typo3,
-                  dividerWidth: 150,
-                  dividerColor: GFColor.warning,
-                  dividerBorderRadius: BorderRadius.all(Radius.circular(0)),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                GFTypography(
-                    text: 'GF Header Typo4',
-                    type: GFTypographyType.typo4,
-                    dividerWidth: 345,
-                    icon: Image.network(
-                      'https://cdn.pixabay.com/photo/2016/12/15/03/27/cocoa-1908020_960_720.jpg',
-                      width: 50,
-                    )),
-                SizedBox(
-                  height: 40,
-                ),
-                GFTypography(
-                  text: 'GF Header Typo5',
-                  type: GFTypographyType.typo5,
-                  dividerColor: GFColor.alt,
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                GFTypography(
-                  text: 'GF Header Typo6',
-                  type: GFTypographyType.typo6,
-                  dividerWidth: 20,
-                ),
-              ],
-            )),
+              content: Column(
+                children: <Widget>[
+                  GFTypography(
+                    text: 'IOS',
+                    type: GFTypographyType.typo6,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  GFToggle(onChanged: null, value: null,
+                    type: GFToggleType.ios,
+                  )
+                ],
+              ),
+            ),
+
+//            GFCard(
+//              content: Container(
+//                height: 300.0,
+//                child: new Stack(       //if fit not specified then, it aligns to top left....
+//                  fit: StackFit.expand,
+//                  children: <Widget>[
+//                    Column(
+//                      children: <Widget>[
+                        GFTypography(
+                          text: 'GF Header Typo1',
+                          type: GFTypographyType.typo1,
+//                          showDivider: false,
+                        ),
+//                        GFTypography(
+//                          text: 'GF Header Typo2',
+//                          type: GFTypographyType.typo2,
+//                          showDivider: false,
+//                        ),
+//                        GFTypography(
+//                          text: 'GF Header Typo3',
+//                          type: GFTypographyType.typo3,
+//                          showDivider: false,
+//                        ),
+//                        GFTypography(
+//                          text: 'GF Header Typo4',
+//                          type: GFTypographyType.typo4,
+//                          showDivider: false,
+//                        ),
+//                        GFTypography(
+//                          text: 'GF Header Typo5',
+//                          type: GFTypographyType.typo5,
+//                          showDivider: false,
+//                        ),
+//                        GFTypography(
+//                          text: 'GF Header Typo6',
+//                          type: GFTypographyType.typo6,
+//                          showDivider: false,
+//                        ),
+//                      ],
+//                    ),
+//                    new DecoratedBox(
+//                      decoration: new BoxDecoration(
+//                        //color: Colors.lightGreen
+//                          gradient: new LinearGradient(
+//                              begin: FractionalOffset.bottomLeft,
+//                              end: FractionalOffset.topRight,
+//                              colors: [
+//                                const Color(0x5a0b486b),
+//                                const Color(0xFFF56217),
+//                              ]
+//                          )
+//                      ),
+//                    ),
+//                  ],
+//                ),
+//              ),
+//            ),
+//
+//            GFCard(
+//                content: Column(
+//              crossAxisAlignment: CrossAxisAlignment.center,
+//              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//              children: <Widget>[
+//                GFTypography(
+//                  text: 'GF Header Typo1',
+//                  type: GFTypographyType.typo1,
+//                  backgroundImage: NetworkImage(
+//                      'https://cdn.pixabay.com/photo/2019/12/25/16/49/happy-new-year-4718894_960_720.png'),
+//                ),
+//                SizedBox(
+//                  height: 40,
+//                ),
+//                GFTypography(
+//                  icon: GFAvatar(),
+//                  text: 'GF Header Typo2',
+//                  type: GFTypographyType.typo2,
+//                  dividerColor: GFColor.primary,
+//                  dividerAlignment: Alignment.center,
+//                ),
+//                SizedBox(
+//                  height: 40,
+//                ),
+//                GFTypography(
+//                  icon: Icon(Icons.insert_emoticon),
+//                  text: 'GF Header Typo3',
+//                  type: GFTypographyType.typo3,
+//                  dividerWidth: 150,
+//                  dividerColor: GFColor.warning,
+//                  dividerBorderRadius: BorderRadius.all(Radius.circular(0)),
+//                ),
+//                SizedBox(
+//                  height: 40,
+//                ),
+//                GFTypography(
+//                    text: 'GF Header Typo4',
+//                    type: GFTypographyType.typo4,
+//                    dividerWidth: 345,
+//                    icon: Image.network(
+//                      'https://cdn.pixabay.com/photo/2016/12/15/03/27/cocoa-1908020_960_720.jpg',
+//                      width: 50,
+//                    )),
+//                SizedBox(
+//                  height: 40,
+//                ),
+//                GFTypography(
+//                  text: 'GF Header Typo5',
+//                  type: GFTypographyType.typo5,
+//                  dividerColor: GFColor.alt,
+//                ),
+//                SizedBox(
+//                  height: 40,
+//                ),
+//                GFTypography(
+//                  text: 'GF Header Typo6',
+//                  type: GFTypographyType.typo6,
+//                  dividerWidth: 20,
+//                ),
+//              ],
+//            )),
 
 //            GFButton(
 //              onPressed: (){},
@@ -279,105 +338,114 @@ class _MyHomePageState extends State<MyHomePage>
 //              icon: Icon(Icons.directions_bike),
 //            ),
 
-            GFListTile(
-//              padding: EdgeInsets.all(8.0),
-//              color: Colors.redAccent,
+//            GFListTile(
+////              padding: EdgeInsets.all(8.0),
+////              color: Colors.redAccent,
+////              avatar: GFAvatar(
+////                child: Text("tb"),
+////              ),
+//              title: Text('title'),
+////              subTitle: Text('subtitle'),
+//              icon: Text("99"),
+////              dividerColor: Colors.blue,
+////              dividerEndIndent: 20.0,
+////              dividerHeight: 2.0,
+////              dividerIndent: 30.0,
+////              dividerThickness: 5.0,
+//              showDivider: false,
+//            ),
+
+//            GFListTile(
 //              avatar: GFAvatar(
-//                child: Text("tb"),
+//                shape: GFAvatarShape.standard,
 //              ),
-              title: Text('title'),
-//              subTitle: Text('subtitle'),
-              icon: Text("99"),
-//              dividerColor: Colors.blue,
-//              dividerEndIndent: 20.0,
-//              dividerHeight: 2.0,
-//              dividerIndent: 30.0,
-//              dividerThickness: 5.0,
-              showDivider: false,
-            ),
+//              title: GFTypography(
+//                text: 'List tile',
+//                type: GFTypographyType.typo5,
+//                showDivider: false,
+//              ),
+//              subTitle: Text(
+//                'Lorem ipsum',
+//                style: TextStyle(color: getGFColor(GFColor.dark)),
+//              ),
+//              description: Text(
+//                  'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt '
+//                  'sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ',
+//                  style: TextStyle(
+//                      fontSize: 13, color: getGFColor(GFColor.secondary))),
+//              showDivider: true,
+//              icon: GFIconButton(
+//                onPressed: null,
+//                type: GFType.transparent,
+//                icon: Icon(Icons.favorite_border),
+//              ),
+//            ),
+//
+//            GFCard(
+//              content: GFListTile(
+//                avatar: GFAvatar(
+//                  shape: GFAvatarShape.standard,
+//                ),
+//                title: GFTypography(
+//                  text: 'List tile',
+//                  type: GFTypographyType.typo5,
+//                  showDivider: false,
+//                ),
+//                subTitle: Text(
+//                  'Lorem ipsum',
+//                  style: TextStyle(color: getGFColor(GFColor.dark)),
+//                ),
+//                description: Text(
+//                    'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ',
+//                    style: TextStyle(
+//                        fontSize: 13, color: getGFColor(GFColor.secondary))),
+//                showDivider: false,
+//              ),
+//            ),
+//
+//            GFCard(
+//              content: GFImageOverlay(
+//                height: 200.0,
+//                width: 200.0,
+//                image: AssetImage("lib/assets/food.jpeg"),
+//                boxFit: BoxFit.fill,
+//                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
+//                shape: BoxShape.circle,
+//              ),
+//            ),
+//
+//            GFCard(
+//              content: Container(
+//                  width: 190.0,
+//                  height: 190.0,
+//                  decoration: new BoxDecoration(
+//                      shape: BoxShape.circle,
+//                      image: new DecorationImage(
+//                        fit: BoxFit.fill,
+//                        image: AssetImage(
+//                          "lib/assets/food.jpeg",
+//                        ),
+//                      ))),
+//            ),
 
-            GFListTile(
-              avatar: GFAvatar(
-                shape: GFAvatarShape.standard,
-              ),
-              title: GFTypography(
-                text: 'List tile',
-                type: GFTypographyType.typo5,
-                showDivider: false,
-              ),
-              subTitle: Text(
-                'Lorem ipsum',
-                style: TextStyle(color: getGFColor(GFColor.dark)),
-              ),
-              description: Text(
-                  'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt '
-                  'sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ',
-                  style: TextStyle(
-                      fontSize: 13, color: getGFColor(GFColor.secondary))),
-              showDivider: true,
-              icon: GFIconButton(
-                onPressed: null,
-                type: GFType.transparent,
-                icon: Icon(Icons.favorite_border),
-              ),
-            ),
-
-            GFCard(
-              content: GFListTile(
-                avatar: GFAvatar(
-                  shape: GFAvatarShape.standard,
-                ),
-                title: GFTypography(
-                  text: 'List tile',
-                  type: GFTypographyType.typo5,
-                  showDivider: false,
-                ),
-                subTitle: Text(
-                  'Lorem ipsum',
-                  style: TextStyle(color: getGFColor(GFColor.dark)),
-                ),
-                description: Text(
-                    'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ',
-                    style: TextStyle(
-                        fontSize: 13, color: getGFColor(GFColor.secondary))),
-                showDivider: false,
-              ),
-            ),
-
-            GFCard(
-              content: GFImageOverlay(
-                height: 200.0,
-                width: 200.0,
-                image: AssetImage("lib/assets/food.jpeg"),
-                boxFit: BoxFit.fill,
-                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
-                shape: BoxShape.circle,
-              ),
-            ),
-
-            GFCard(
-              content: Container(
-                  width: 190.0,
-                  height: 190.0,
-                  decoration: new BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage(
-                          "lib/assets/food.jpeg",
-                        ),
-                      ))),
-            ),
 
             GFButtonBadge(
+//              boxShadow: BoxShadow(
+//                color: Colors.pink,
+//                blurRadius: 2.0,
+//                spreadRadius: 1.0,
+//                offset: Offset.zero,
+//              ),
+//              badgeBoxShadow: true,
               onPressed: () {},
-//              position: GFPosition.end,
+//              position: GFPosition.start,
 //              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 //              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
               text: 'goodiesdxs',
-//              color: GFColor.success,
-//              shape: GFButtonShape.pills,
-//              type: GFType.outline2x,
+              color: GFColor.success,
+              textColor: GFColor.dark,
+              shape: GFButtonShape.pills,
+              type: GFType.outline2x,
 //              size: GFSize.small,
               icon: GFBadge(
                 child: Text("12"),
@@ -480,42 +548,42 @@ class _MyHomePageState extends State<MyHomePage>
 //              backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
 //            ),
 
-            GFSegmentTabs(
-              tabController: tabController,
+//            GFSegmentTabs(
+//              tabController: tabController,
 //              height: 36.0,
-//              width: 180.0,
-              initialIndex: 0,
-              length: 3,
-              tabs: <Widget>[
-                Text(
-                  "Gelatin",
-                ),
-                Tab(
-                  child: Text(
-                    "Donuts",
-                  ),
-                ),
-                Tab(
-                  child: Text(
-                    "Pastry",
-                  ),
-                ),
-              ],
-              tabBarColor: Colors.grey,
-              indicatorSize: TabBarIndicatorSize.tab,
-              indicatorColor: Colors.greenAccent,
-            labelColor: Colors.greenAccent,
-            unselectedLabelColor: Colors.white,
-              indicator: BoxDecoration(
-                color: Colors.black,
-                border: Border(bottom: BorderSide(color: Colors.greenAccent, width: 2.0,),),
+////              width: 180.0,
+//              initialIndex: 0,
+//              length: 3,
+//              tabs: <Widget>[
+//                Text(
+//                  "Gelatin",
+//                ),
+//                Tab(
+//                  child: Text(
+//                    "Donuts",
+//                  ),
+//                ),
+//                Tab(
+//                  child: Text(
+//                    "Pastry",
+//                  ),
+//                ),
+//              ],
+//              tabBarColor: Colors.grey,
+//              indicatorSize: TabBarIndicatorSize.tab,
+//              indicatorColor: Colors.greenAccent,
+//            labelColor: Colors.greenAccent,
+//            unselectedLabelColor: Colors.white,
+//              indicator: BoxDecoration(
+//                color: Colors.black,
+//                border: Border(bottom: BorderSide(color: Colors.greenAccent, width: 2.0,),),
+////                borderRadius: BorderRadius.circular(2.0)
+//              ),
+//              indicatorPadding: EdgeInsets.all(8.0),
+//              indicatorWeight: 2.0,
+//              border: Border.all(color: Colors.white, width: 2.0),
 //                borderRadius: BorderRadius.circular(2.0)
-              ),
-              indicatorPadding: EdgeInsets.all(8.0),
-              indicatorWeight: 2.0,
-              border: Border.all(color: Colors.white, width: 2.0),
-                borderRadius: BorderRadius.circular(2.0)
-            ),
+//            ),
 //
 //            GFTabBarView(
 //                controller: tabController,
@@ -526,39 +594,40 @@ class _MyHomePageState extends State<MyHomePage>
 //                  Container(color: Colors.blue)
 //                ]
 //            ),
-//
-//            GFItemsCarousel(
-//                rowCount: 3,
-//                children: imageList.map(
-//                      (url) {
-//                    return Container(
-//                      margin: EdgeInsets.all(5.0),
-//                      child: ClipRRect(
-//                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
-//                        child: Image.network(
-//                            url,
-//                            fit: BoxFit.cover,
-//                            width: 1000.0
-//                        ),
-//                      ),
-//                    );
-//                  },
-//                ).toList(),
-//            ),
+
+
+            GFItemsCarousel(
+                rowCount: 3,
+                children: imageList.map(
+                      (url) {
+                    return Container(
+                      margin: EdgeInsets.all(5.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        child: Image.network(
+                            url,
+                            fit: BoxFit.cover,
+                            width: 1000.0
+                        ),
+                      ),
+                    );
+                  },
+                ).toList(),
+            ),
 //
 //            GFCarousel(
-////              pagerSize: 12.0,
-////              activeIndicator: Colors.pink,
-////              passiveIndicator: Colors.pink.withOpacity(0.4),
-////              viewportFraction: 1.0,
-////              aspectRatio: 2.0,
-////            autoPlay: true,
-////              enlargeMainPage: true,
-////              pagination: true,
+//              pagerSize: 12.0,
+//              activeIndicator: Colors.pink,
+//              passiveIndicator: Colors.pink.withOpacity(0.4),
+//              viewportFraction: 1.0,
+////              aspectRatio: 1.0,
+//              autoPlay: true,
+//              enlargeMainPage: true,
+//              pagination: true,
 //              items: imageList.map(
 //                (url) {
 //                  return Container(
-//                    margin: EdgeInsets.all(5.0),
+//                    margin: EdgeInsets.only(bottom: 25.0, left: 12.0, right: 12.0, top: 12.0),
 //                    child: ClipRRect(
 //                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
 //                      child: Image.network(
@@ -684,35 +753,36 @@ class _MyHomePageState extends State<MyHomePage>
 //                  });
 //                },
 //              ),
-//            GFCard(
-//              boxFit: BoxFit.fill,
-//              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
-////              image: Image.asset("lib/assets/food.jpeg",),
+
+            GFCard(
+              boxFit: BoxFit.fill,
+              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
+              image: Image.asset("lib/assets/img.png", fit: BoxFit.fitWidth, width: 400.0,),
 //              imageOverlay: AssetImage("lib/assets/food.jpeg"),
-//              titlePosition: GFPosition.end,
-//              title: GFListTile(
-//                avatar: GFAvatar(
-//                  child: Text("tb"),
-//                ),
-//                title: Text(
-//                  'title',
-//                  style: TextStyle(color: Colors.grey),
-//                ),
-//                subTitle: Text(
-//                  'subtitle',
-//                  style: TextStyle(color: Colors.grey),
-//                ),
-//                icon: GFIconButton(
-//                  onPressed: null,
-//                  icon: Icon(Icons.favorite_border),
-//                  type: GFType.transparent,
-//                ),
-//              ),
-//              content: Text(
-//                "Flutter Flutter is Google's mobile UI framework for crafting"
-//                "Flutter Flutter is Google's mobile UI framework for crafting",
-//                style: TextStyle(color: Colors.grey),
-//              ),
+              titlePosition: GFPosition.end,
+              title: GFListTile(
+                avatar: GFAvatar(
+                  child: Text("tb"),
+                ),
+                title: Text(
+                  'title',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                subTitle: Text(
+                  'subtitle',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                icon: GFIconButton(
+                  onPressed: null,
+                  icon: Icon(Icons.favorite_border),
+                  type: GFType.transparent,
+                ),
+              ),
+              content: Text(
+                "Flutter Flutter is Google's mobile UI framework for crafting"
+                "Flutter Flutter is Google's mobile UI framework for crafting",
+                style: TextStyle(color: Colors.grey),
+              ),
 //              buttonBar: GFButtonBar(
 //                mainAxisSize: MainAxisSize.min,
 //                children: <Widget>[
@@ -730,7 +800,8 @@ class _MyHomePageState extends State<MyHomePage>
 //                  ),
 //                ],
 //              ),
-//            ),
+            ),
+
 //            GFButtonBar(
 //              mainAxisSize: MainAxisSize.min,
 //              children: <Widget>[
@@ -863,11 +934,11 @@ class _MyHomePageState extends State<MyHomePage>
 //
 //              foregroundColor: Colors.deepOrangeAccent,
 //
-//       shape: GFAvatarShape.circle,
+//       shape: GFAvatarShape.square,
 //
-//              size: GFSize.medium,
+//              size: GFSize.large,
 //
-//              borderRadius: BorderRadius.circular(20.0),
+//              borderRadius: BorderRadius.circular(10.0),
             ),
             GFIconBadge(
               child:
@@ -945,12 +1016,12 @@ class _MyHomePageState extends State<MyHomePage>
 ////              textColor: GFColor.secondary,
 ////              icon: Icon(Icons.error, color: Colors.white,),
 ////              position: GFIconPosition.start,
-////              boxShadow: BoxShadow(
-////                color: Colors.pink,
-////                blurRadius: 2.0,
-////                spreadRadius: 1.0,
-////                offset: Offset.zero,
-////              ),
+//              boxShadow: BoxShadow(
+//                color: Colors.pink,
+//                blurRadius: 2.0,
+//                spreadRadius: 1.0,
+//                offset: Offset.zero,
+//              ),
 ////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 ////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
 //            ),

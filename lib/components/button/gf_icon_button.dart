@@ -56,7 +56,7 @@ class GFIconButton extends StatefulWidget {
   /// Text that describes the action that will occur when the button is pressed.
   final String tooltip;
 
-  /// The box shadow for the button's [Material].
+  /// The box shadow for the button's [Material], if GFButtonType is solid
   final BoxShadow boxShadow;
 
   /// The shape and border for the button's [Material].
@@ -65,7 +65,7 @@ class GFIconButton extends StatefulWidget {
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
   final dynamic size;
 
-  /// on true state default box shadow appears around button
+  /// on true state default box shadow appears around button, if GFButtonType is solid
   final bool buttonBoxShadow;
 
   /// The border side for the button's [Material].
@@ -277,7 +277,7 @@ class _GFIconButtonState extends State<GFIconButton> {
           child: Container(
             height: widget.shape == GFIconButtonShape.circle ? this.height + 6 : this.height,
             width: widget.shape == GFIconButtonShape.pills ? this.width + 10 : widget.shape == GFIconButtonShape.circle ? this.height + 6 : this.width,
-            decoration: getBoxShadow(),
+            decoration: widget.type == GFType.solid ? getBoxShadow() : null,
             child: Material(
               shape: widget.type == GFType.transparent
                   ? null

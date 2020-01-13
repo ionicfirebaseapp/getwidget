@@ -3,19 +3,13 @@ import 'dart:async';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart' show DragStartBehavior;
+import 'package:ui_kit/components/tabs/gf_segment_tabs.dart';
 
 /// A page view that displays the widget which corresponds to the currently
 /// selected tab.
 ///
-/// This widget is typically used in conjunction with a [TabBar].
+/// This widget is typically used in conjunction with a [GFTabBar] or [GFSegmentTabs].
 ///
-/// If a [TabController] is not provided, then there must be a [DefaultTabController]
-/// ancestor.
-///
-/// The tab controller's [TabController.length] must equal the length of the
-/// [children] list and the length of the [TabBar.tabs] list.
-///
-/// To see a sample implementation, visit the [TabController] documentation.
 class GFTabBarView extends StatefulWidget {
   /// Creates a page view with one child per tab.
   ///
@@ -32,14 +26,11 @@ class GFTabBarView extends StatefulWidget {
         super(key: key);
 
   /// This widget's selection and animation state.
-  ///
-  /// If [TabController] is not provided, then the value of [DefaultTabController.of]
-  /// will be used.
   final TabController controller;
 
   /// One widget per tab.
   ///
-  /// Its length must match the length of the [TabBar.tabs]
+  /// Its length must match the length of the [GFTabBar.tabs]
   /// list, as well as the [controller]'s [TabController.length].
   final List<Widget> children;
 

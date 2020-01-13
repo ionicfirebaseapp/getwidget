@@ -36,22 +36,6 @@ class _StandardButtonsState extends State<StandardButtons> {
                       Expanded(child: GFButton(
                         onPressed: (){},
                         text: 'Primary',
-                        textColor: Colors.white,
-                      )),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(child: GFButton(
-                        onPressed: (){},
-                        text: 'Primary',
-                        textColor: Colors.white,
-                      )),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(child: GFButton(
-                        onPressed: (){},
-                        text: 'Primary',
                       )),
                       SizedBox(
                         width: 10,

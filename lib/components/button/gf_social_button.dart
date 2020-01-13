@@ -24,7 +24,7 @@ class GFSocialButton extends GFButton{
   /// The border side for the button's [Material].
   final BorderSide borderSide;
 
-  /// The box shadow for the button's [Material].
+  /// The box shadow for the button's [Material], if GFButtonType is solid
   final BoxShadow boxShadow;
 
   /// Pass [GFColor] or [Color]. The color for the button's [Material] when it has the input focus.
@@ -140,7 +140,7 @@ class GFSocialButton extends GFButton{
   /// on true state full width Button gives full width button
   final bool fullWidthButton;
 
-  /// on true state default box shadow appears around button
+  /// on true state default box shadow appears around button, if GFButtonType is solid
   final bool buttonBoxShadow;
 
   /// A set of thirteen colors that can be used to derive the button theme's

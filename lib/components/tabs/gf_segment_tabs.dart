@@ -3,8 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ui_kit/colors/gf_color.dart';
+import 'package:ui_kit/components/tabs/gf_tabBar.dart';
 import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
 
+/// Creates pills like structured tab bar. See [GFTabBar]
+/// [GFSegmentTabs] are best used as an alternative for [GFTabBar].
 
 class GFSegmentTabs extends StatefulWidget {
   GFSegmentTabs({
@@ -182,7 +185,7 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
               BoxDecoration(
                 color: widget.indicatorColor == null ? getGFColor(GFColor.primary) : widget.indicatorColor,
                 border: Border.all(color: widget.indicatorColor == null ? Colors.transparent : widget.indicatorColor, width: 2.0),
-                borderRadius: widget.borderRadius == null ? BorderRadius.circular(2.0) : widget.borderRadius,
+                borderRadius: widget.borderRadius == null ? BorderRadius.circular(0.0) : widget.borderRadius,
               ) : widget.indicator,
             indicatorPadding: widget.indicatorPadding,
             indicatorWeight: widget.indicatorWeight,
