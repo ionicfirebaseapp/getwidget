@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
-  <g id="Group_29" data-name="Group 29" transform="translate(-589 -1050)">
-    <rect id="Rectangle_14" data-name="Rectangle 14" width="35" height="35" transform="translate(589 1050)" fill="none"/>
-    <path id="Icon_material-account-circle" data-name="Icon material-account-circle" d="M20.5,3A17.5,17.5,0,1,0,38,20.5,17.506,17.506,0,0,0,20.5,3Zm0,5.25a5.25,5.25,0,1,1-5.25,5.25A5.243,5.243,0,0,1,20.5,8.25Zm0,24.85A12.6,12.6,0,0,1,10,27.465c.052-3.483,7-5.39,10.5-5.39,3.483,0,10.447,1.908,10.5,5.39A12.6,12.6,0,0,1,20.5,33.1Z" transform="translate(586 1047)" fill="#19ca4b"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35"><g id="Group_29" data-name="Group 29" transform="translate(-589 -1050)"><rect id="Rectangle_14" width="35" height="35" fill="none" data-name="Rectangle 14" transform="translate(589 1050)"/><path id="Icon_material-account-circle" fill="#19ca4b" d="M20.5,3A17.5,17.5,0,1,0,38,20.5,17.506,17.506,0,0,0,20.5,3Zm0,5.25a5.25,5.25,0,1,1-5.25,5.25A5.243,5.243,0,0,1,20.5,8.25Zm0,24.85A12.6,12.6,0,0,1,10,27.465c.052-3.483,7-5.39,10.5-5.39,3.483,0,10.447,1.908,10.5,5.39A12.6,12.6,0,0,1,20.5,33.1Z" data-name="Icon material-account-circle" transform="translate(586 1047)"/></g></svg>
