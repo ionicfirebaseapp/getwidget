@@ -403,16 +403,16 @@ class _MyHomePageState extends State<MyHomePage>
 //              ),
 //            ),
 //
-//            GFCard(
-//              content: GFImageOverlay(
-//                height: 200.0,
-//                width: 200.0,
-//                image: AssetImage("lib/assets/food.jpeg"),
-//                boxFit: BoxFit.fill,
-//                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
-//                shape: BoxShape.circle,
-//              ),
-//            ),
+            GFCard(
+              content: GFImageOverlay(
+                height: 200.0,
+                width: 200.0,
+                image: AssetImage("lib/assets/food.jpeg"),
+                boxFit: BoxFit.fill,
+                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
+                shape: BoxShape.circle,
+              ),
+            ),
 //
 //            GFCard(
 //              content: Container(
