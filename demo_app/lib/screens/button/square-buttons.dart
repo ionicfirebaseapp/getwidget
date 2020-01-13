@@ -77,7 +77,7 @@ class _SquareButtonsState extends State<SquareButtons> with SingleTickerProvider
               tabBarColor: getGFColor(GFColor.light),
               indicatorSize: TabBarIndicatorSize.tab,
               labelColor: getGFColor(GFColor.white),
-              unselectedLabelColor: Colors.white,
+              unselectedLabelColor: getGFColor(GFColor.dark),
               indicator: BoxDecoration(
                 color: getGFColor(GFColor.dark),
                 border: Border(bottom: BorderSide(color: getGFColor(GFColor.success), width: 3.0,),),

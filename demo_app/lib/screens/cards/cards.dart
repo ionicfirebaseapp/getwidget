@@ -39,6 +39,9 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
     super.dispose();
   }
 
+  bool fav= false;
+  bool fav1= false;
+  bool fav2 = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +87,7 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
                   tabBarColor: getGFColor(GFColor.light),
                   indicatorSize: TabBarIndicatorSize.tab,
                   labelColor: getGFColor(GFColor.white),
-                  unselectedLabelColor: Colors.white,
+                  unselectedLabelColor:getGFColor(GFColor.dark),
                   indicator: BoxDecoration(
                     color: Colors.black,
                     border: Border(bottom: BorderSide(color: getGFColor(GFColor.success), width: 3.0,),),
@@ -117,12 +120,17 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
                                 title: GFListTile(
                                   title: Text(
                                     'Card Title',
-                                    style: TextStyle(color: Colors.grey),
                                   ),
                                    icon:
                                        GFIconButton(
                                          onPressed: null,
-                                         icon: Icon(Icons.favorite_border),
+                                         icon: GestureDetector(
+                                           onTap: (){
+                                             setState(() {fav =!fav;
+                                             });
+                                           },
+                                           child:  fav? Icon(Icons.favorite, color: getGFColor(GFColor.danger),):Icon(Icons.favorite_border),
+                                         ),
                                          type: GFType.transparent,
                                        ),
 
@@ -134,8 +142,8 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
                                 buttonBar: GFButtonBar(
                                   alignment: MainAxisAlignment.start,
                                   children: <Widget>[
-                                    GFButton(onPressed: (){},text: 'Button', ),
-                                    GFButton(onPressed: (){},text: 'Button', )
+                                    GFButton(onPressed: (){},text: 'Read More', ),
+                                    GFButton(onPressed: (){},text: 'Send', )
                                   ],
                                 ),
 
@@ -151,12 +159,17 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
                                 title: GFListTile(
                                   title: Text(
                                     'Card Title',
-                                    style: TextStyle(color: Colors.grey),
                                   ),
                                   icon:
                                   GFIconButton(
                                     onPressed: null,
-                                    icon: Icon(Icons.favorite_border),
+                                    icon:GestureDetector(
+                                      onTap: (){
+                                        setState(() {fav1 =!fav1;
+                                        });
+                                      },
+                                      child:  fav1? Icon(Icons.favorite, color: getGFColor(GFColor.danger),):Icon(Icons.favorite_border),
+                                    ),
                                     type: GFType.transparent,
                                   ),
 
@@ -190,7 +203,6 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
                                 title: GFListTile(
                                   title: Text(
                                     'Card Title',
-                                    style: TextStyle(color: Colors.grey),
                                   ),
                                   showDivider: false,
 
@@ -202,7 +214,7 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
                                 buttonBar: GFButtonBar(
                                   alignment: MainAxisAlignment.start,
                                   children: <Widget>[
-                                    GFButton(onPressed: (){},text: 'Button', )
+                                    GFButton(onPressed: (){},text: 'Share', )
                                   ],
                                 ),
 
@@ -218,7 +230,6 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
                                 title: GFListTile(
                                   title: Text(
                                     'Card Title',
-                                    style: TextStyle(color: Colors.grey),
                                   ),
                                   showDivider: false,
 
@@ -230,8 +241,8 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
                                 buttonBar: GFButtonBar(
                                   alignment: MainAxisAlignment.start,
                                   children: <Widget>[
-                                    GFButton(onPressed: (){},text: 'Button', ),
-                                    GFButton(onPressed: (){},text: 'Button', )
+                                    GFButton(onPressed: (){},text: 'View More', ),
+                                    GFButton(onPressed: (){},text: 'Share', )
                                   ],
                                 ),
 
@@ -255,8 +266,7 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
                                     backgroundImage: AssetImage('lib/assets/images/three3.png'),
                                   ),
                                   title: Text(
-                                    'title',
-                                    style: TextStyle(color: Colors.grey),
+                                    'Card Title',
                                   ),
                                   subTitle: Text(
                                     'subtitle',
@@ -264,7 +274,13 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
                                   ),
                                   icon: GFIconButton(
                                     onPressed: null,
-                                    icon: Icon(Icons.favorite_border),
+                                    icon: GestureDetector(
+                                      onTap: (){
+                                        setState(() {fav2 =!fav2;
+                                        });
+                                      },
+                                      child:  fav2? Icon(Icons.favorite, color: getGFColor(GFColor.danger),):Icon(Icons.favorite_border),
+                                    ),
                                     type: GFType.transparent,
                                   ),
                                 ),
@@ -273,57 +289,9 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
                                       "Flutter Flutter is Google's mobile UI framework for crafting",
                                   style: TextStyle(color: Colors.grey),
                                 ),
-//              buttonBar: GFButtonBar(
-//                mainAxisSize: MainAxisSize.min,
-//                children: <Widget>[
-//                  GFButton(
-//                    onPressed: null,
-//                    child: Text("favorite"),
-//                    icon: Icon(Icons.favorite_border),
-//                    type: GFType.transparent,
-//                  ),
-//                  GFButton(
-//                    onPressed: null,
-//                    child: Text("share"),
-//                    icon: Icon(Icons.share),
-//                    type: GFType.outline,
-//                  ),
-//                ],
-//              ),
                               ),
 
-//                              GFCard(
-//                                boxFit: BoxFit.fill,
-//                                colorFilter: new ColorFilter.mode(
-//                                    Colors.black.withOpacity(0.67), BlendMode.darken),
-//                                image: Image.asset('lib/assets/images/image.png'),
 //
-//                                titlePosition: GFPosition.end,
-//                                title: GFListTile(
-//                                  avatar: GFAvatar(
-//                                    backgroundImage: AssetImage('lib/assets/images/avatar3.png'),
-//                                  ),
-//                                  title: Text(
-//                                    'Card Title',
-//                                    style: TextStyle(color: Colors.grey),
-//                                  ),
-//                                  subTitle: Text('Subtitle'),
-//
-//                                ),
-//                                content: Text(
-//                                  "Some quick example text to build on the card",
-//                                  style: TextStyle(color: Colors.grey),
-//                                ),
-//                                buttonBar: GFButtonBar(
-//                                  alignment: MainAxisAlignment.start,
-//                                  children: <Widget>[
-//                                    GFButton(onPressed: (){},text: 'Button', ),
-//                                    GFButton(onPressed: (){},text: 'Button', )
-//                                  ],
-//                                ),
-//
-//                              ),
-
                               GFCard(
                                 boxFit: BoxFit.cover,
                                 colorFilter: new ColorFilter.mode(
@@ -337,7 +305,6 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
                                   ),
                                   title: Text(
                                     'Card Title',
-                                    style: TextStyle(color: Colors.grey),
                                   ),
                                   subTitle: Text('Subtitle'),
 
@@ -386,10 +353,7 @@ class _CardPageState extends State<CardPage> with SingleTickerProviderStateMixin
 avatar: GFAvatar(
   backgroundImage: AssetImage('lib/assets/images/three5.png'),
 ),
-                                  title: Text(
-                                    'title',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
+                                  title:Text('Card Title', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),),
                                   subTitle: Text(
                                     'subtitle',
                                     style: TextStyle(color: Colors.grey),
@@ -408,8 +372,8 @@ avatar: GFAvatar(
                                 buttonBar: GFButtonBar(
                                   alignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                   GFButton(onPressed: (){}, text: 'Button',),
-                                    GFButton(onPressed: (){}, text: 'Button',)
+                                   GFButton(onPressed: (){}, text: 'Send',),
+                                    GFButton(onPressed: (){}, text: 'View',)
                                   ],
                                 ),
 
@@ -422,8 +386,8 @@ imageOverlay: AssetImage('lib/assets/images/image1.png'),
                                 title: GFListTile(
 
                                     title: Text(
-                                      'title',
-                                      style: TextStyle(color: Colors.grey),
+                                      'Card Title',
+                                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
                                     ),
                                     subTitle: Text(
                                       'subtitle',

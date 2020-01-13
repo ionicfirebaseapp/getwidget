@@ -37,17 +37,6 @@ class _ButtonTypesState extends State<ButtonTypes> {
                
                 child:  Icon(CupertinoIcons.back, color: getGFColor(GFColor.success), ),
               )
-//            child: Container(
-//              height: 30,
-//              width: 30,
-//              constraints: BoxConstraints(minHeight: 20, minWidth: 30),
-////              color: Colors.red,
-//              child: GFIconButton(
-//                size: GFSize.small,
-//                color: GFColor.dark,
-//                icon: SvgPicture.asset('lib/assets/icons/back-arrow.svg',),
-//              )
-//            )
         ),
         title: Text('Buttons',  style: TextStyle(fontSize: 17),),
         centerTitle: true,
@@ -84,7 +73,7 @@ class _ButtonTypesState extends State<ButtonTypes> {
                  color: getGFColor(GFColor.dark),
                  showDivider: false,
                  title: Text('Standard Buttons', style: TextStyle(color: getGFColor(GFColor.white)),),
-                 icon: SvgPicture.asset('lib/assets/icons/next.svg'),
+                 icon: Icon(CupertinoIcons.forward, color: getGFColor(GFColor.success),)
 
              ),
            )
@@ -116,7 +105,7 @@ class _ButtonTypesState extends State<ButtonTypes> {
                     color: getGFColor(GFColor.dark),
                     showDivider: false,
                     title: Text('Pills Buttons', style: TextStyle(color: getGFColor(GFColor.white)),),
-                    icon: SvgPicture.asset('lib/assets/icons/next.svg')
+                    icon:  Icon(CupertinoIcons.forward, color: getGFColor(GFColor.success),)
                 ),
               )
           ),
@@ -148,7 +137,7 @@ class _ButtonTypesState extends State<ButtonTypes> {
                     color: getGFColor(GFColor.dark),
                     showDivider: false,
                     title: Text('Square Buttons', style: TextStyle(color: getGFColor(GFColor.white)),),
-                    icon: SvgPicture.asset('lib/assets/icons/next.svg')
+                    icon:  Icon(CupertinoIcons.forward, color: getGFColor(GFColor.success),)
                 ),
               )
           ),
@@ -179,7 +168,7 @@ class _ButtonTypesState extends State<ButtonTypes> {
                     color: getGFColor(GFColor.dark),
                     showDivider: false,
                     title: Text('Shadow Buttons', style: TextStyle(color: getGFColor(GFColor.white)),),
-                    icon: SvgPicture.asset('lib/assets/icons/next.svg')
+                    icon:  Icon(CupertinoIcons.forward, color: getGFColor(GFColor.success),)
                 ),
               )
           ),
@@ -210,7 +199,7 @@ class _ButtonTypesState extends State<ButtonTypes> {
                     color: getGFColor(GFColor.dark),
                     showDivider: false,
                     title: Text('Icons Buttons', style: TextStyle(color: getGFColor(GFColor.white)),),
-                    icon: SvgPicture.asset('lib/assets/icons/next.svg')
+                    icon:  Icon(CupertinoIcons.forward, color: getGFColor(GFColor.success),)
                 ),
               )
           ),
@@ -242,7 +231,7 @@ class _ButtonTypesState extends State<ButtonTypes> {
                     color: getGFColor(GFColor.dark),
                     showDivider: false,
                     title: Text('Social Buttons', style: TextStyle(color: getGFColor(GFColor.white)),),
-                    icon: SvgPicture.asset('lib/assets/icons/next.svg')
+                    icon:  Icon(CupertinoIcons.forward, color: getGFColor(GFColor.success),)
                 ),
               )
           ),

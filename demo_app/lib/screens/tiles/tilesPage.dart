@@ -23,7 +23,9 @@ class _TilesPageState extends State<TilesPage> {
             onTap: () {
               Navigator.pop(context);
             },
-          child:  Icon(CupertinoIcons.back, color: getGFColor(GFColor.success), ),),
+          child:  Container(
+            child: Icon(CupertinoIcons.back, color: getGFColor(GFColor.success), ),
+          )),
         title: Text(
           'Tiles',
           style: TextStyle(fontSize: 17),
@@ -35,7 +37,7 @@ class _TilesPageState extends State<TilesPage> {
           Padding(
             padding: EdgeInsets.only(left: 15, top: 30),
             child: GFTypography(
-              text: 'with Label',
+              text: 'With Label',
               type: GFTypographyType.typo5,
               dividerWidth: 25,
               dividerColor: Color(0xFF19CA4B),
@@ -65,7 +67,7 @@ class _TilesPageState extends State<TilesPage> {
           Padding(
             padding: EdgeInsets.only(left: 15, top: 30),
             child: GFTypography(
-              text: 'with avatar',
+              text: 'With Avatar',
               type: GFTypographyType.typo5,
               dividerWidth: 25,
               dividerColor: Color(0xFF19CA4B),
