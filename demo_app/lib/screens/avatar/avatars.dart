@@ -23,7 +23,9 @@ class _AvatarState extends State<Avatar> {
             onTap: () {
               Navigator.pop(context);
             },
-          child:  Icon(CupertinoIcons.back, color: getGFColor(GFColor.success), ),),
+          child:  Container(
+            child: Icon(CupertinoIcons.back, color: getGFColor(GFColor.success), ),
+          )),
         title: Text(
           'Avatar',
           style: TextStyle(fontSize: 17),
