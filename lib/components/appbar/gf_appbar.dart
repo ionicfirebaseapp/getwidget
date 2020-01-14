@@ -5,35 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
-const double _kLeadingWidth = kToolbarHeight;
-
-class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
-  const _ToolbarContainerLayout();
-
-  @override
-  BoxConstraints getConstraintsForChild(BoxConstraints constraints) {
-    return constraints.tighten(height: kToolbarHeight);
-  }
-
-  @override
-  Size getSize(BoxConstraints constraints) {
-    return Size(constraints.maxWidth, kToolbarHeight);
-  }
-
-  @override
-  Offset getPositionForChild(Size size, Size childSize) {
-    return Offset(0.0, size.height - childSize.height);
-  }
-
-  @override
-  bool shouldRelayout(_ToolbarContainerLayout oldDelegate) => false;
-}
-
 /// An app bar consists of a toolbar and potentially other widgets, such as a
 /// [GFTabBar][TabBar] and a [FlexibleSpaceBar].
 /// The GFAppBar displays the toolbar widgets, [leading], [title], and [actions],
 /// above the [bottom] (if any). The [bottom] is usually used for a [TabBar].
-
 class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// Creates a material design app bar.
   ///
@@ -495,6 +470,30 @@ class _FloatingGFAppBarState extends State<_FloatingGFAppBar> {
 
   @override
   Widget build(BuildContext context) => widget.child;
+}
+
+const double _kLeadingWidth = kToolbarHeight;
+
+class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
+  const _ToolbarContainerLayout();
+
+  @override
+  BoxConstraints getConstraintsForChild(BoxConstraints constraints) {
+    return constraints.tighten(height: kToolbarHeight);
+  }
+
+  @override
+  Size getSize(BoxConstraints constraints) {
+    return Size(constraints.maxWidth, kToolbarHeight);
+  }
+
+  @override
+  Offset getPositionForChild(Size size, Size childSize) {
+    return Offset(0.0, size.height - childSize.height);
+  }
+
+  @override
+  bool shouldRelayout(_ToolbarContainerLayout oldDelegate) => false;
 }
 
 class _SliverGFAppBarDelegate extends SliverPersistentHeaderDelegate {

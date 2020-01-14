@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart' show DragStartBehavior;
-import 'package:ui_kit/components/tabs/gf_segment_tabs.dart';
+import 'package:getflutter/components/tabs/gf_segment_tabs.dart';
 
 /// A page view that displays the widget which corresponds to the currently
 /// selected tab.
@@ -21,7 +21,7 @@ class GFTabBarView extends StatefulWidget {
     this.physics,
     this.height,
     this.dragStartBehavior = DragStartBehavior.start,
-  }) : assert(children != null),
+  })  : assert(children != null),
         assert(dragStartBehavior != null),
         super(key: key);
 
@@ -55,7 +55,8 @@ class GFTabBarView extends StatefulWidget {
   _GFTabBarViewState createState() => _GFTabBarViewState();
 }
 
-final PageScrollPhysics _kGFTabBarViewPhysics = const PageScrollPhysics().applyTo(const ClampingScrollPhysics());
+final PageScrollPhysics _kGFTabBarViewPhysics =
+    const PageScrollPhysics().applyTo(const ClampingScrollPhysics());
 
 class _GFTabBarViewState extends State<GFTabBarView> {
   TabController _controller;
@@ -71,22 +72,20 @@ class _GFTabBarViewState extends State<GFTabBarView> {
   bool get _controllerIsValid => _controller?.animation != null;
 
   void _updateTabController() {
-    final TabController newController = widget.controller ?? DefaultTabController.of(context);
+    final TabController newController =
+        widget.controller ?? DefaultTabController.of(context);
     assert(() {
       if (newController == null) {
-        throw FlutterError(
-            'No TabController for ${widget.runtimeType}.\n'
-                'When creating a ${widget.runtimeType}, you must either provide an explicit '
-                'TabController using the "controller" property, or you must ensure that there '
-                'is a DefaultTabController above the ${widget.runtimeType}.\n'
-                'In this case, there was neither an explicit controller nor a default controller.'
-        );
+        throw FlutterError('No TabController for ${widget.runtimeType}.\n'
+            'When creating a ${widget.runtimeType}, you must either provide an explicit '
+            'TabController using the "controller" property, or you must ensure that there '
+            'is a DefaultTabController above the ${widget.runtimeType}.\n'
+            'In this case, there was neither an explicit controller nor a default controller.');
       }
       return true;
     }());
 
-    if (newController == _controller)
-      return;
+    if (newController == _controller) return;
 
     if (_controllerIsValid)
       _controller.animation.removeListener(_handleTabControllerAnimationTick);
@@ -112,8 +111,7 @@ class _GFTabBarViewState extends State<GFTabBarView> {
   @override
   void didUpdateWidget(GFTabBarView oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.controller != oldWidget.controller)
-      _updateTabController();
+    if (widget.controller != oldWidget.controller) _updateTabController();
     if (widget.children != oldWidget.children && _warpUnderwayCount == 0)
       _updateChildren();
   }
@@ -143,20 +141,19 @@ class _GFTabBarViewState extends State<GFTabBarView> {
   }
 
   Future<void> _warpToCurrentIndex() async {
-    if (!mounted)
-      return Future<void>.value();
+    if (!mounted) return Future<void>.value();
 
     if (_pageController.page == _currentIndex.toDouble())
       return Future<void>.value();
 
     final int previousIndex = _controller.previousIndex;
     if ((_currentIndex - previousIndex).abs() == 1)
-      return _pageController.animateToPage(_currentIndex, duration: kTabScrollDuration, curve: Curves.ease);
+      return _pageController.animateToPage(_currentIndex,
+          duration: kTabScrollDuration, curve: Curves.ease);
 
     assert((_currentIndex - previousIndex).abs() > 1);
-    final int initialPage = _currentIndex > previousIndex
-        ? _currentIndex - 1
-        : _currentIndex + 1;
+    final int initialPage =
+        _currentIndex > previousIndex ? _currentIndex - 1 : _currentIndex + 1;
     final List<Widget> originalChildren = _childrenWithKey;
     setState(() {
       _warpUnderwayCount += 1;
@@ -168,9 +165,9 @@ class _GFTabBarViewState extends State<GFTabBarView> {
     });
     _pageController.jumpToPage(initialPage);
 
-    await _pageController.animateToPage(_currentIndex, duration: kTabScrollDuration, curve: Curves.ease);
-    if (!mounted)
-      return Future<void>.value();
+    await _pageController.animateToPage(_currentIndex,
+        duration: kTabScrollDuration, curve: Curves.ease);
+    if (!mounted) return Future<void>.value();
     setState(() {
       _warpUnderwayCount -= 1;
       if (widget.children != _children) {
@@ -183,19 +180,19 @@ class _GFTabBarViewState extends State<GFTabBarView> {
 
   // Called when the PageView scrolls
   bool _handleScrollNotification(ScrollNotification notification) {
-    if (_warpUnderwayCount > 0)
-      return false;
+    if (_warpUnderwayCount > 0) return false;
 
-    if (notification.depth != 0)
-      return false;
+    if (notification.depth != 0) return false;
 
     _warpUnderwayCount += 1;
-    if (notification is ScrollUpdateNotification && !_controller.indexIsChanging) {
+    if (notification is ScrollUpdateNotification &&
+        !_controller.indexIsChanging) {
       if ((_pageController.page - _controller.index).abs() > 1.0) {
         _controller.index = _pageController.page.floor();
-        _currentIndex =_controller.index;
+        _currentIndex = _controller.index;
       }
-      _controller.offset = (_pageController.page - _controller.index).clamp(-1.0, 1.0);
+      _controller.offset =
+          (_pageController.page - _controller.index).clamp(-1.0, 1.0);
     } else if (notification is ScrollEndNotification) {
       _controller.index = _pageController.page.round();
       _currentIndex = _controller.index;
@@ -211,23 +208,25 @@ class _GFTabBarViewState extends State<GFTabBarView> {
       if (_controller.length != widget.children.length) {
         throw FlutterError(
             'Controller\'s length property (${_controller.length}) does not match the \n'
-                'number of tabs (${widget.children.length}) present in TabBar\'s tabs property.'
-        );
+            'number of tabs (${widget.children.length}) present in TabBar\'s tabs property.');
       }
       return true;
     }());
     return NotificationListener<ScrollNotification>(
       onNotification: _handleScrollNotification,
       child: Container(
-        height: widget.height == null ? MediaQuery.of(context).size.height : widget.height,
+        height: widget.height == null
+            ? MediaQuery.of(context).size.height
+            : widget.height,
         child: PageView(
           dragStartBehavior: widget.dragStartBehavior,
           controller: _pageController,
-          physics: widget.physics == null ? _kGFTabBarViewPhysics : _kGFTabBarViewPhysics.applyTo(widget.physics),
+          physics: widget.physics == null
+              ? _kGFTabBarViewPhysics
+              : _kGFTabBarViewPhysics.applyTo(widget.physics),
           children: _childrenWithKey,
         ),
       ),
     );
   }
 }
-

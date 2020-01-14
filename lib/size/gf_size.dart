@@ -1,14 +1,14 @@
 /// [GFSize] is used to change the size of the widget.
-///
 enum GFSize {
   /// [GFSize.small] is used for small size widget
   small,
+
   /// Default size if [GFSize.medium] is used for medium size widget
   medium,
+
   /// [GFSize.large] is used for large size widget
   large,
 }
-
 
 const double SMALL = 30.0;
 const double MEDIUM = 35.0;

@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/colors/gf_color.dart';
-import 'package:ui_kit/components/button/gf_button.dart';
-import 'package:ui_kit/components/badge/gf_button_badge.dart';
-import 'package:ui_kit/components/avatar/gf_avatar.dart';
-import 'package:ui_kit/components/badge/gf_badge.dart';
-import 'package:ui_kit/components/list/gf_list.dart';
-import 'package:ui_kit/components/tabs/gf_segment_tabs.dart';
-import 'package:ui_kit/size/gf_size.dart';
-import 'package:ui_kit/types/gf_type.dart';
-import 'package:ui_kit/shape/gf_button_shape.dart';
-import 'package:ui_kit/shape/gf_badge_shape.dart';
+import 'package:getflutter/colors/gf_color.dart';
+import 'package:getflutter/components/button/gf_button.dart';
+import 'package:getflutter/components/badge/gf_button_badge.dart';
+import 'package:getflutter/components/avatar/gf_avatar.dart';
+import 'package:getflutter/components/badge/gf_badge.dart';
+// import 'package:getflutter/components/list/gf_list.dart';
+import 'package:getflutter/components/tabs/gf_segment_tabs.dart';
+import 'package:getflutter/size/gf_size.dart';
+import 'package:getflutter/types/gf_type.dart';
+import 'package:getflutter/shape/gf_button_shape.dart';
+import 'package:getflutter/shape/gf_badge_shape.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:ui_kit/components/tabs/gf_tabs.dart';
-import 'package:ui_kit/components/drawer/gf_drawer.dart';
-import 'package:ui_kit/components/drawer/gf_drawer_header.dart';
-import 'package:ui_kit/components/toast/gf_toast.dart';
-import 'package:ui_kit/components/appbar/gf_appbar.dart';
-import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
-import 'package:ui_kit/components/button/gf_icon_button.dart';
-import 'package:ui_kit/components/button/gf_social_button.dart';
-import 'package:ui_kit/components/carousel/gf_carousel.dart';
-import 'package:ui_kit/components/carousel/gf_items_carousel.dart';
-import 'package:ui_kit/shape/gf_avatar_shape.dart';
-import 'package:ui_kit/components/card/gf_card.dart';
-import 'package:ui_kit/components/image/gf_image_overlay.dart';
-import 'package:ui_kit/components/list_tile/gf_list_tile.dart';
-import 'package:ui_kit/position/gf_position.dart';
-import 'package:ui_kit/components/button/gf_button_bar.dart';
-import 'package:ui_kit/components/badge/gf_icon_badge.dart';
-import 'package:ui_kit/shape/gf_icon_button_shape.dart';
-import 'package:ui_kit/components/tabs/gf_tabBar.dart';
-import 'package:ui_kit/components/typography/gf_typography.dart';
-import 'package:ui_kit/types/gf_typography_type.dart';
-import 'package:ui_kit/components/toast/gf_floating_widget.dart';
-import 'package:ui_kit/components/toggle/gf_toggle.dart';
-import 'package:ui_kit/types/gf_toggle_type.dart';
+import 'package:getflutter/components/tabs/gf_tabs.dart';
+import 'package:getflutter/components/drawer/gf_drawer.dart';
+import 'package:getflutter/components/drawer/gf_drawer_header.dart';
+import 'package:getflutter/components/toast/gf_toast.dart';
+import 'package:getflutter/components/appbar/gf_appbar.dart';
+import 'package:getflutter/components/tabs/gf_tabBarView.dart';
+import 'package:getflutter/components/button/gf_icon_button.dart';
+import 'package:getflutter/components/button/gf_social_button.dart';
+import 'package:getflutter/components/carousel/gf_carousel.dart';
+import 'package:getflutter/components/carousel/gf_items_carousel.dart';
+import 'package:getflutter/shape/gf_avatar_shape.dart';
+import 'package:getflutter/components/card/gf_card.dart';
+import 'package:getflutter/components/image/gf_image_overlay.dart';
+import 'package:getflutter/components/list_tile/gf_list_tile.dart';
+import 'package:getflutter/position/gf_position.dart';
+import 'package:getflutter/components/button/gf_button_bar.dart';
+import 'package:getflutter/components/badge/gf_icon_badge.dart';
+import 'package:getflutter/shape/gf_icon_button_shape.dart';
+import 'package:getflutter/components/tabs/gf_tabBar.dart';
+import 'package:getflutter/components/typography/gf_typography.dart';
+import 'package:getflutter/types/gf_typography_type.dart';
+import 'package:getflutter/components/toast/gf_floating_widget.dart';
+import 'package:getflutter/components/toggle/gf_toggle.dart';
+import 'package:getflutter/types/gf_toggle_type.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -51,12 +51,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'UI_KIT_EXAMPLE',
+      title: 'getflutter_EXAMPLE',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'UI_KIT_EXAMPLE'),
+      home: MyHomePage(title: 'getflutter_EXAMPLE'),
     );
   }
 }
@@ -173,21 +173,18 @@ class _MyHomePageState extends State<MyHomePage>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-
             Container(
               height: 130.0,
               width: 105.0,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                gradient: LinearGradient(
-                  begin: FractionalOffset.bottomLeft,
-                  end: FractionalOffset.topRight,
-                  colors: [
-                    const Color(0x5a0b486b),
-                    const Color(0xFFF56217),
-                  ]
-              )
-              ),
+                  borderRadius: BorderRadius.circular(8.0),
+                  gradient: LinearGradient(
+                      begin: FractionalOffset.bottomLeft,
+                      end: FractionalOffset.topRight,
+                      colors: [
+                        const Color(0x5a0b486b),
+                        const Color(0xFFF56217),
+                      ])),
             ),
 
             GFCard(
@@ -200,7 +197,9 @@ class _MyHomePageState extends State<MyHomePage>
                   SizedBox(
                     height: 10,
                   ),
-                  GFToggle(onChanged: null, value: null,
+                  GFToggle(
+                    onChanged: null,
+                    value: null,
                     type: GFToggleType.ios,
                   )
                 ],
@@ -215,11 +214,11 @@ class _MyHomePageState extends State<MyHomePage>
 //                  children: <Widget>[
 //                    Column(
 //                      children: <Widget>[
-                        GFTypography(
-                          text: 'GF Header Typo1',
-                          type: GFTypographyType.typo1,
+            GFTypography(
+              text: 'GF Header Typo1',
+              type: GFTypographyType.typo1,
 //                          showDivider: false,
-                        ),
+            ),
 //                        GFTypography(
 //                          text: 'GF Header Typo2',
 //                          type: GFTypographyType.typo2,
@@ -409,7 +408,8 @@ class _MyHomePageState extends State<MyHomePage>
                 width: 200.0,
                 image: AssetImage("lib/assets/food.jpeg"),
                 boxFit: BoxFit.fill,
-                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
+                colorFilter: new ColorFilter.mode(
+                    Colors.black.withOpacity(0.67), BlendMode.darken),
                 shape: BoxShape.circle,
               ),
             ),
@@ -427,7 +427,6 @@ class _MyHomePageState extends State<MyHomePage>
 //                        ),
 //                      ))),
 //            ),
-
 
             GFButtonBadge(
 //              boxShadow: BoxShadow(
@@ -595,24 +594,20 @@ class _MyHomePageState extends State<MyHomePage>
 //                ]
 //            ),
 
-
             GFItemsCarousel(
-                rowCount: 3,
-                children: imageList.map(
-                      (url) {
-                    return Container(
-                      margin: EdgeInsets.all(5.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                        child: Image.network(
-                            url,
-                            fit: BoxFit.cover,
-                            width: 1000.0
-                        ),
-                      ),
-                    );
-                  },
-                ).toList(),
+              rowCount: 3,
+              children: imageList.map(
+                (url) {
+                  return Container(
+                    margin: EdgeInsets.all(5.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      child:
+                          Image.network(url, fit: BoxFit.cover, width: 1000.0),
+                    ),
+                  );
+                },
+              ).toList(),
             ),
 //
 //            GFCarousel(
@@ -756,8 +751,13 @@ class _MyHomePageState extends State<MyHomePage>
 
             GFCard(
               boxFit: BoxFit.fill,
-              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
-              image: Image.asset("lib/assets/img.png", fit: BoxFit.fitWidth, width: 400.0,),
+              colorFilter: new ColorFilter.mode(
+                  Colors.black.withOpacity(0.67), BlendMode.darken),
+              image: Image.asset(
+                "lib/assets/img.png",
+                fit: BoxFit.fitWidth,
+                width: 400.0,
+              ),
 //              imageOverlay: AssetImage("lib/assets/food.jpeg"),
               titlePosition: GFPosition.end,
               title: GFListTile(

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:ui_kit/colors/gf_color.dart';
-import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
+import 'package:getflutter/colors/gf_color.dart';
+import 'package:getflutter/components/tabs/gf_tabBarView.dart';
+import 'package:getflutter/colors/gf_color.dart';
 
 /// A material design widget that displays a horizontal row of tabs.
 ///
@@ -34,9 +35,10 @@ class GFTabBar extends StatefulWidget {
     this.tabBarView,
     this.tabs,
     this.controller,
-  }):
-        assert(length != null && length >= 0),
-        assert(initialIndex != null && initialIndex >= 0 && (length == 0 || initialIndex < length));
+  })  : assert(length != null && length >= 0),
+        assert(initialIndex != null &&
+            initialIndex >= 0 &&
+            (length == 0 || initialIndex < length));
 
   /// The initial index of the selected tab. Defaults to zero.
   final int initialIndex;
@@ -165,7 +167,9 @@ class _GFTabBarState extends State<GFTabBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.tabBarHeight == null ? MediaQuery.of(context).size.height * 0.1 : widget.tabBarHeight,
+      height: widget.tabBarHeight == null
+          ? MediaQuery.of(context).size.height * 0.1
+          : widget.tabBarHeight,
       child: Material(
         type: MaterialType.button,
         color: widget.tabBarColor ?? getGFColor(GFColor.primary),
@@ -186,20 +190,3 @@ class _GFTabBarState extends State<GFTabBar> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
