@@ -4,7 +4,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:getflutter/colors/gf_color.dart';
 import 'package:getflutter/components/tabs/gf_tabBarView.dart';
-import 'package:getflutter/colors/gf_color.dart';
 
 /// A material design widget that displays a horizontal row of tabs.
 ///

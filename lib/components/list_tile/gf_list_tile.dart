@@ -100,25 +100,25 @@ class GFListTile extends StatelessWidget {
           margin: padding,
           color: color,
           child: ListTile(
-              leading: avatar,
-              title: title,
-              subtitle: subTitle != null || description != null
-                  ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        subTitle ?? Container(),
-                        description ?? Container()
-                      ],
-                    )
-                  : Container(),
-              trailing: icon != null
-                  ? Column(
-                      children: <Widget>[
-                        Padding(
-                            padding: EdgeInsets.only(top: 16.0), child: icon)
-                      ],
-                    )
-                  : Container()),
+            leading: avatar,
+            title: title,
+            subtitle: subTitle != null || description != null
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      subTitle ?? Container(),
+                      description ?? Container()
+                    ],
+                  )
+                : null,
+            trailing: icon != null
+                ? Column(
+                    children: <Widget>[
+                      Padding(padding: EdgeInsets.only(top: 16.0), child: icon)
+                    ],
+                  )
+                : null,
+          ),
         ),
         showDivider
             ? Divider(
@@ -128,7 +128,7 @@ class GFListTile extends StatelessWidget {
                 indent: indent ?? dividerIndent,
                 endIndent: endIndent ?? dividerEndIndent,
               )
-            : Container()
+            : null
       ],
     );
   }
