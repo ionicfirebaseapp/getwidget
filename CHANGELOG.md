@@ -1,17 +1,28 @@
 # Changelog
 
+
+## 1.0.0-dev.1 - 2014-01-14
+
+### Fixed
+* Warnings and Hints
+
+
 ## 0.0.1-pre.3 - 2014-01-14
 
 ### Fixed
-
-* Corrected warnings and hits
-
-### Added
-
-* Changelog and description
-
-## 14.0.0 - 2042-10-06
+* Warnings and Hints
 
 ### Added
+* Changelog and Description
 
-* Introduced animals into the world, we believe they're going to be a neat addition.
+
+## 0.0.1-pre.2 - 2014-01-14
+
+### Fixed
+* Warnings and Hints
+
+
+## 0.0.1-pre.1 - 2014-01-13
+
+### Added
+* initial release with buttons, badge, card, list tile, avatar and many more components.

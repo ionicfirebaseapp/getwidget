@@ -4,7 +4,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:getflutter/colors/gf_color.dart';
 import 'package:getflutter/components/tabs/gf_tabBar.dart';
-import 'package:getflutter/colors/gf_color.dart';
 
 /// Creates pills like structured tab bar. See [GFTabBar]
 /// [GFSegmentTabs] are best used as an alternative for [GFTabBar].
