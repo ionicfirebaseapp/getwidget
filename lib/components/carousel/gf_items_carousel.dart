@@ -23,7 +23,6 @@ typedef GFItemsCarouselSlideCallback = void Function(DragUpdateDetails details);
 typedef GFItemsCarouselSlideEndCallback = void Function(DragEndDetails details);
 
 class GFItemsCarousel extends StatefulWidget {
-
   /// Count of visible cells
   final int rowCount;
 
@@ -43,7 +42,6 @@ class GFItemsCarousel extends StatefulWidget {
 
   /// Creates slide show of [Images] and [Widget] with animation for sliding.
   /// Shows multiple items on one slide, items number depends on rowCount.
-
   GFItemsCarousel(
       {this.rowCount,
       this.children,

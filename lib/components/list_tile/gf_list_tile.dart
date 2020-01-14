@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/colors/gf_color.dart';
-import 'package:ui_kit/components/avatar/gf_avatar.dart';
+import 'package:getflutter/colors/gf_color.dart';
+import 'package:getflutter/components/avatar/gf_avatar.dart';
 
 class GFListTile extends StatelessWidget {
-
   /// The GFListTile's background color. Can be given [Colors] or [GFColor]
   final dynamic color;
 

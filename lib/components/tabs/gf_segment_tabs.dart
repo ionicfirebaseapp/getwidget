@@ -2,38 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:ui_kit/colors/gf_color.dart';
-import 'package:ui_kit/components/tabs/gf_tabBar.dart';
-import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
+import 'package:getflutter/colors/gf_color.dart';
+import 'package:getflutter/components/tabs/gf_tabBar.dart';
+import 'package:getflutter/colors/gf_color.dart';
 
 /// Creates pills like structured tab bar. See [GFTabBar]
 /// [GFSegmentTabs] are best used as an alternative for [GFTabBar].
-
 class GFSegmentTabs extends StatefulWidget {
-  GFSegmentTabs({
-    Key key,
-    this.initialIndex = 0,
-    @required this.length,
-    this.height,
-    this.width,
-    this.border,
-    this.borderRadius,
-    this.tabBarColor,
-    this.indicatorColor,
-    this.indicatorWeight = 2.0,
-    this.indicatorPadding = EdgeInsets.zero,
-    this.indicator,
-    this.indicatorSize,
-    this.labelColor,
-    this.labelStyle,
-    this.labelPadding,
-    this.unselectedLabelColor,
-    this.unselectedLabelStyle,
-    this.tabs,
-    this.tabController
-  }):
-        assert(length != null && length >= 0),
-        assert(initialIndex != null && initialIndex >= 0 && (length == 0 || initialIndex < length));
+  /// Creates pills like structured tab bar. See [GFTabBar]
+  /// [GFSegmentTabs] are best used as an alternative for [GFTabBar].
+  GFSegmentTabs(
+      {Key key,
+      this.initialIndex = 0,
+      @required this.length,
+      this.height,
+      this.width,
+      this.border,
+      this.borderRadius,
+      this.tabBarColor,
+      this.indicatorColor,
+      this.indicatorWeight = 2.0,
+      this.indicatorPadding = EdgeInsets.zero,
+      this.indicator,
+      this.indicatorSize,
+      this.labelColor,
+      this.labelStyle,
+      this.labelPadding,
+      this.unselectedLabelColor,
+      this.unselectedLabelStyle,
+      this.tabs,
+      this.tabController})
+      : assert(length != null && length >= 0),
+        assert(initialIndex != null &&
+            initialIndex >= 0 &&
+            (length == 0 || initialIndex < length));
 
   /// The initial index of the selected tab. Defaults to zero.
   final int initialIndex;
@@ -163,30 +165,49 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
       height: widget.height == null ? 28.0 : widget.height,
       width: widget.width == null ? 240.0 : widget.width,
       decoration: BoxDecoration(
-        border: widget.border == null ? Border.all(color: getGFColor(GFColor.primary), width:1.0) : widget.border,
-        borderRadius: widget.borderRadius == null ? BorderRadius.circular(2.0) : widget.borderRadius,
+        border: widget.border == null
+            ? Border.all(color: getGFColor(GFColor.primary), width: 1.0)
+            : widget.border,
+        borderRadius: widget.borderRadius == null
+            ? BorderRadius.circular(2.0)
+            : widget.borderRadius,
       ),
       child: DefaultTabController(
         initialIndex: widget.initialIndex,
         length: widget.length,
         child: Material(
-          borderRadius: widget.borderRadius == null ? BorderRadius.circular(2.0) : widget.borderRadius,
+          borderRadius: widget.borderRadius == null
+              ? BorderRadius.circular(2.0)
+              : widget.borderRadius,
           type: MaterialType.button,
           color: widget.tabBarColor ?? Colors.transparent,
           child: TabBar(
             controller: widget.tabController,
             labelColor: widget.labelColor ?? getGFColor(GFColor.white),
-            unselectedLabelColor: widget.unselectedLabelColor ?? getGFColor(GFColor.primary),
+            unselectedLabelColor:
+                widget.unselectedLabelColor ?? getGFColor(GFColor.primary),
             labelStyle: widget.labelStyle ?? TextStyle(fontSize: 12.0),
-            unselectedLabelStyle: widget.unselectedLabelStyle ?? TextStyle(fontSize: 12.0),
-            indicatorColor: widget.indicatorColor == null ? getGFColor(GFColor.primary) : widget.indicatorColor,
+            unselectedLabelStyle:
+                widget.unselectedLabelStyle ?? TextStyle(fontSize: 12.0),
+            indicatorColor: widget.indicatorColor == null
+                ? getGFColor(GFColor.primary)
+                : widget.indicatorColor,
             indicatorSize: widget.indicatorSize,
-            indicator: widget.indicator == null ?
-              BoxDecoration(
-                color: widget.indicatorColor == null ? getGFColor(GFColor.primary) : widget.indicatorColor,
-                border: Border.all(color: widget.indicatorColor == null ? Colors.transparent : widget.indicatorColor, width: 2.0),
-                borderRadius: widget.borderRadius == null ? BorderRadius.circular(0.0) : widget.borderRadius,
-              ) : widget.indicator,
+            indicator: widget.indicator == null
+                ? BoxDecoration(
+                    color: widget.indicatorColor == null
+                        ? getGFColor(GFColor.primary)
+                        : widget.indicatorColor,
+                    border: Border.all(
+                        color: widget.indicatorColor == null
+                            ? Colors.transparent
+                            : widget.indicatorColor,
+                        width: 2.0),
+                    borderRadius: widget.borderRadius == null
+                        ? BorderRadius.circular(0.0)
+                        : widget.borderRadius,
+                  )
+                : widget.indicator,
             indicatorPadding: widget.indicatorPadding,
             indicatorWeight: widget.indicatorWeight,
             tabs: widget.tabs,
@@ -196,20 +217,3 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

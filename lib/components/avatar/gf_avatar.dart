@@ -1,11 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/shape/gf_avatar_shape.dart';
-import 'package:ui_kit/size/gf_size.dart';
-import 'package:ui_kit/colors/gf_color.dart';
+import 'package:getflutter/shape/gf_avatar_shape.dart';
+import 'package:getflutter/size/gf_size.dart';
+import 'package:getflutter/colors/gf_color.dart';
+export 'package:getflutter/shape/gf_avatar_shape.dart';
+export 'package:getflutter/size/gf_size.dart';
 
 class GFAvatar extends StatelessWidget {
-
   /// Typically a [Text] widget. If the [CircleAvatar] is to have an image, use [backgroundImage] instead.
   final Widget child;
 
@@ -52,11 +53,9 @@ class GFAvatar extends StatelessWidget {
       this.maxRadius,
       this.borderRadius,
       this.shape = GFAvatarShape.circle,
-      this.size = GFSize.medium
-      })
+      this.size = GFSize.medium})
       : assert(radius == null || (minRadius == null && maxRadius == null)),
         super(key: key);
-
 
   double get _minDiameter {
     if (radius == null && minRadius == null && maxRadius == null) {
