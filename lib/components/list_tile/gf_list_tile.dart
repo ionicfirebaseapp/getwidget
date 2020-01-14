@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/colors/gf_color.dart';
-import 'package:ui_kit/components/avatar/gf_avatar.dart';
+import 'package:getflutter/colors/gf_color.dart';
+import 'package:getflutter/components/avatar/gf_avatar.dart';
 
 class GFListTile extends StatelessWidget {
-
   /// The GFListTile's background color. Can be given [Colors] or [GFColor]
   final dynamic color;
 
@@ -111,7 +110,7 @@ class GFListTile extends StatelessWidget {
                         description ?? Container()
                       ],
                     )
-                  : null,
+                  : Container(),
               trailing: icon != null
                   ? Column(
                       children: <Widget>[
@@ -119,7 +118,7 @@ class GFListTile extends StatelessWidget {
                             padding: EdgeInsets.only(top: 16.0), child: icon)
                       ],
                     )
-                  : null),
+                  : Container()),
         ),
         showDivider
             ? Divider(

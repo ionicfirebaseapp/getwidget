@@ -1,17 +1,20 @@
-import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/components/button/gf_button.dart';
-import 'package:ui_kit/shape/gf_button_shape.dart';
-import 'package:ui_kit/size/gf_size.dart';
-import 'package:ui_kit/types/gf_type.dart';
-import 'package:ui_kit/position/gf_position.dart';
-import 'package:ui_kit/colors/gf_color.dart';
+import 'package:getflutter/components/button/gf_button.dart';
+import 'package:getflutter/shape/gf_button_shape.dart';
+import 'package:getflutter/size/gf_size.dart';
+import 'package:getflutter/types/gf_type.dart';
+import 'package:getflutter/position/gf_position.dart';
+import 'package:getflutter/colors/gf_color.dart';
+export 'package:getflutter/position/gf_position.dart';
+export 'package:getflutter/shape/gf_button_shape.dart';
+export 'package:getflutter/size/gf_size.dart';
+export 'package:getflutter/types/gf_type.dart';
+export 'package:getflutter/colors/gf_color.dart';
 
-class GFSocialButton extends GFButton{
+class GFSocialButton extends GFButton {
   /// Called when the button is tapped or otherwise activated.
   final VoidCallback onPressed;
 
@@ -175,50 +178,49 @@ class GFSocialButton extends GFButton{
   final VoidCallback onLongPress;
 
   /// Create buttons of all types. check out [GFIconButton] for icon buttons, and [GFBadge] for badges
-  const GFSocialButton(
-      {Key key,
-        @required this.onPressed,
-        this.onHighlightChanged,
-        this.textStyle,
-        this.boxShadow,
-        this.buttonBoxShadow,
-        this.focusColor,
-        this.hoverColor,
-        this.highlightColor,
-        this.splashColor,
-        this.elevation = 0.0,
-        this.focusElevation = 4.0,
-        this.hoverElevation = 4.0,
-        this.highlightElevation = 1.0,
-        this.disabledElevation = 0.0,
-        this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
-        this.constraints,
-        this.borderShape,
-        this.animationDuration = kThemeChangeDuration,
-        this.clipBehavior = Clip.none,
-        this.focusNode,
-        this.autofocus = false,
-        MaterialTapTargetSize materialTapTargetSize,
-        this.child,
-        this.type = GFType.solid,
-        this.shape = GFButtonShape.standard,
-        this.color = GFColor.primary,
-        this.textColor,
-        this.position = GFPosition.start,
-        this.size = GFSize.medium,
-        this.borderSide,
-        this.text,
-        this.icon,
-        this.blockButton,
-        this.fullWidthButton,
-        this.colorScheme,
-        this.enableFeedback,
-        this.onLongPress,
-        this.disabledColor,
-        this.disabledTextColor,
-      })
-      : materialTapTargetSize =
-      materialTapTargetSize ?? MaterialTapTargetSize.padded,
+  const GFSocialButton({
+    Key key,
+    @required this.onPressed,
+    this.onHighlightChanged,
+    this.textStyle,
+    this.boxShadow,
+    this.buttonBoxShadow,
+    this.focusColor,
+    this.hoverColor,
+    this.highlightColor,
+    this.splashColor,
+    this.elevation = 0.0,
+    this.focusElevation = 4.0,
+    this.hoverElevation = 4.0,
+    this.highlightElevation = 1.0,
+    this.disabledElevation = 0.0,
+    this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
+    this.constraints,
+    this.borderShape,
+    this.animationDuration = kThemeChangeDuration,
+    this.clipBehavior = Clip.none,
+    this.focusNode,
+    this.autofocus = false,
+    MaterialTapTargetSize materialTapTargetSize,
+    this.child,
+    this.type = GFType.solid,
+    this.shape = GFButtonShape.standard,
+    this.color = GFColor.primary,
+    this.textColor,
+    this.position = GFPosition.start,
+    this.size = GFSize.medium,
+    this.borderSide,
+    this.text,
+    this.icon,
+    this.blockButton,
+    this.fullWidthButton,
+    this.colorScheme,
+    this.enableFeedback,
+    this.onLongPress,
+    this.disabledColor,
+    this.disabledTextColor,
+  })  : materialTapTargetSize =
+            materialTapTargetSize ?? MaterialTapTargetSize.padded,
         assert(shape != null, 'Button shape can not be null'),
 //        assert(elevation != null && elevation >= 0.0),
         assert(focusElevation != null && focusElevation >= 0.0),
@@ -230,7 +232,6 @@ class GFSocialButton extends GFButton{
         assert(clipBehavior != null),
         assert(autofocus != null);
 
-  @override
   Widget build(BuildContext context) {
     return GFButton(
       onPressed: onPressed,
@@ -242,24 +243,24 @@ class GFSocialButton extends GFButton{
       hoverColor: hoverColor,
       highlightColor: highlightColor,
       splashColor: splashColor,
-      elevation:  elevation,
+      elevation: elevation,
       focusElevation: focusElevation,
       hoverElevation: hoverElevation,
-      highlightElevation:highlightElevation,
+      highlightElevation: highlightElevation,
       disabledElevation: disabledElevation,
       constraints: constraints,
       borderShape: borderShape,
       animationDuration: animationDuration,
       clipBehavior: clipBehavior,
       focusNode: focusNode,
-      autofocus : autofocus ,
+      autofocus: autofocus,
       child: child,
-      type :GFType.solid,
-      shape :GFButtonShape.standard,
-      color :GFColor.primary,
+      type: GFType.solid,
+      shape: GFButtonShape.standard,
+      color: GFColor.primary,
       textColor: textColor,
-      position :GFPosition.start,
-      size :GFSize.medium,
+      position: GFPosition.start,
+      size: GFSize.medium,
       borderSide: borderSide,
       text: text,
       icon: icon,
@@ -270,5 +271,3 @@ class GFSocialButton extends GFButton{
     );
   }
 }
-
-

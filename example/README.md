@@ -1,4 +1,4 @@
-# ui_kit_example
+# getflutter_example
 
 A new Flutter project.
 

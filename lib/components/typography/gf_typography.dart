@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/colors/gf_color.dart';
-import 'package:ui_kit/types/gf_typography_type.dart';
+import 'package:getflutter/colors/gf_color.dart';
+import 'package:getflutter/types/gf_typography_type.dart';
+export 'package:getflutter/types/gf_typography_type.dart';
 
 class GFTypography extends StatelessWidget {
-
   /// Creates simple title with underline. Style of title can be changed using [GFTypographyType]
   /// showDivider is default true, can be set false.
-
   const GFTypography(
       {Key key,
       this.type = GFTypographyType.typo4,
