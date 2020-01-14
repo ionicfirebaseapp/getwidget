@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/components/button/gf_icon_button.dart';
+import 'package:getflutter/components/button/gf_icon_button.dart';
 
 class GFIconBadge extends StatefulWidget {
-
   /// child of type [GFIconButton] is used to show icon.
   /// Use [Icon] widget for compatibility.
   final Widget child;

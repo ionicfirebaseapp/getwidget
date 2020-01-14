@@ -2,15 +2,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/components/button/gf_button.dart';
-import 'package:ui_kit/shape/gf_button_shape.dart';
-import 'package:ui_kit/size/gf_size.dart';
-import 'package:ui_kit/types/gf_type.dart';
-import 'package:ui_kit/position/gf_position.dart';
-import 'package:ui_kit/colors/gf_color.dart';
+import 'package:getflutter/components/button/gf_button.dart';
+import 'package:getflutter/shape/gf_button_shape.dart';
+import 'package:getflutter/size/gf_size.dart';
+import 'package:getflutter/types/gf_type.dart';
+import 'package:getflutter/position/gf_position.dart';
+import 'package:getflutter/colors/gf_color.dart';
+export 'package:getflutter/position/gf_position.dart';
+export 'package:getflutter/shape/gf_button_shape.dart';
+export 'package:getflutter/size/gf_size.dart';
+export 'package:getflutter/types/gf_type.dart';
+export 'package:getflutter/colors/gf_color.dart';
 
 class GFButtonBadge extends GFButton {
-
   /// Called when the button is tapped or otherwise activated.
   final VoidCallback onPressed;
 
@@ -20,52 +24,52 @@ class GFButtonBadge extends GFButton {
   /// Defines the default text style, with [Material.textStyle], for the button's [child].
   final TextStyle textStyle;
 
-  /// The border side for the button's [Material].
+  /// The border side for the badge's [Material].
   final BorderSide borderSide;
 
-  /// The box shadow for the button's [Material].
+  /// The box shadow for the badge's [Material].
   final BoxShadow boxShadow;
 
-  /// Pass [GFColor] or [Color]. The color for the button's [Material] when it has the input focus.
+  /// Pass [GFColor] or [Color]. The color for the badge's [Material] when it has the input focus.
   final dynamic focusColor;
 
-  /// Pass [GFColor] or [Color]. The color for the button's [Material] when a pointer is hovering over it.
+  /// Pass [GFColor] or [Color]. The color for the badge's [Material] when a pointer is hovering over it.
   final dynamic hoverColor;
 
-  /// Pass [GFColor] or [Color]. The highlight color for the button's [InkWell].
+  /// Pass [GFColor] or [Color]. The highlight color for the badge's [InkWell].
   final dynamic highlightColor;
 
-  /// Pass [GFColor] or [Color]. The splash color for the button's [InkWell].
+  /// Pass [GFColor] or [Color]. The splash color for the badge's [InkWell].
   final dynamic splashColor;
 
-  /// The elevation for the button's [Material] when the button is [enabled] but not pressed.
+  /// The elevation for the badge's [Material] when the badge is [enabled] but not pressed.
   final double elevation;
 
-  /// The elevation for the button's [Material] when the button is [enabled] and a pointer is hovering over it.
+  /// The elevation for the badge's [Material] when the badge is [enabled] and a pointer is hovering over it.
   final double hoverElevation;
 
-  /// The elevation for the button's [Material] when the button is [enabled] and has the input focus.
+  /// The elevation for the badge's [Material] when the badge is [enabled] and has the input focus.
   final double focusElevation;
 
-  /// The elevation for the button's [Material] when the button is [enabled] and pressed.
+  /// The elevation for the badge's [Material] when the badge is [enabled] and pressed.
   final double highlightElevation;
 
-  /// The elevation for the button's [Material] when the button is not [enabled].
+  /// The elevation for the badge's [Material] when the badge is not [enabled].
   final double disabledElevation;
 
-  /// The internal padding for the button's [child].
+  /// The internal padding for the badge's [child].
   final EdgeInsetsGeometry padding;
 
-  /// Defines the button's size.
+  /// Defines the badge's size.
   final BoxConstraints constraints;
 
-  /// The shape of the button's [Material].
+  /// The shape of the badge's [Material].
   final ShapeBorder borderShape;
 
   /// Defines the duration of animated changes for [shape] and [elevation].
   final Duration animationDuration;
 
-  /// Whether the button is enabled or disabled.
+  /// Whether the badge is enabled or disabled.
   bool get enabled => onPressed != null;
 
   /// Configures the minimum size of the tap target.
@@ -89,23 +93,23 @@ class GFButtonBadge extends GFButton {
   /// Pass [GFColor] or [Color]
   final dynamic color;
 
-  /// The fill color of the button when the button is disabled.
+  /// The fill color of the badge when the badge is disabled.
   ///
   /// The default value of this color is the theme's disabled color,
   /// [ThemeData.disabledColor].
   ///
   /// See also:
   ///
-  ///  * [color] - the fill color of the button when the button is [enabled].
+  ///  * [color] - the fill color of the badge when the badge is [enabled].
   final dynamic disabledColor;
 
   /// Pass [GFColor] or [Color]
   final dynamic textColor;
 
-  /// The color to use for this button's text when the button is disabled.
+  /// The color to use for this badge's text when the badge is disabled.
   ///
-  /// The button's [Material.textStyle] will be the current theme's button
-  /// text style, [ThemeData.textTheme.button], configured with this color.
+  /// The badge's [Material.textStyle] will be the current theme's badge
+  /// text style, [ThemeData.textTheme.badge], configured with this color.
   ///
   /// The default value is the theme's disabled color,
   /// [ThemeData.disabledColor].
@@ -115,7 +119,7 @@ class GFButtonBadge extends GFButton {
   ///
   /// See also:
   ///
-  ///  * [textColor] - The color to use for this button's text when the button is [enabled].
+  ///  * [textColor] - The color to use for this badge's text when the badge is [enabled].
   final dynamic disabledTextColor;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
@@ -127,24 +131,24 @@ class GFButtonBadge extends GFButton {
   /// icon type of [GFIconPosition] i.e, start, end
   final GFPosition position;
 
-  /// on true state blockButton gives block size button
+  /// on true state blockButton gives block size badge
   final bool blockButton;
 
-  /// on true state full width Button gives full width button
+  /// on true state full width Button gives full width badge
   final bool fullWidthButton;
 
-  /// on true state default box shadow appears around button
-  final bool buttonBoxShadow;
+  /// on true state default box shadow appears around badge, if GFButtonType is solid
+  final bool badgeBoxShadow;
 
-  /// A set of thirteen colors that can be used to derive the button theme's
+  /// A set of thirteen colors that can be used to derive the badge theme's
   /// colors.
   ///
   /// This property was added much later than the theme's set of highly
-  /// specific colors, like [ThemeData.buttonColor], [ThemeData.highlightColor],
+  /// specific colors, like [ThemeData.badgeColor], [ThemeData.highlightColor],
   /// [ThemeData.splashColor] etc.
   ///
-  /// The colors for new button classes can be defined exclusively in terms
-  /// of [colorScheme]. When it's possible, the existing buttons will
+  /// The colors for new badge classes can be defined exclusively in terms
+  /// of [colorScheme]. When it's possible, the existing badges will
   /// (continue to) gradually migrate to it.
   final ColorScheme colorScheme;
 
@@ -158,62 +162,61 @@ class GFButtonBadge extends GFButton {
   ///  * [Feedback] for providing platform-specific feedback to certain actions.
   final bool enableFeedback;
 
-  /// Called when the button is long-pressed.
+  /// Called when the badge is long-pressed.
   ///
-  /// If this callback and [onPressed] are null, then the button will be disabled.
+  /// If this callback and [onPressed] are null, then the badge will be disabled.
   ///
   /// See also:
   ///
-  ///  * [enabled], which is true if the button is enabled.
+  ///  * [enabled], which is true if the badge is enabled.
   final VoidCallback onLongPress;
 
-  /// Can be used to display [GFCounter], [Icons] inside button design
+  /// Can be used to display [GFCounter], [Icons] inside badge design
   final Widget icon;
 
-  /// Create buttons badges of all types. check out [GFIconButton] for icon buttons, and [GFBadge] for badges
-  const GFButtonBadge(
-      {Key key,
-        @required this.onPressed,
-        this.onHighlightChanged,
-        this.textStyle,
-        this.boxShadow,
-        this.buttonBoxShadow,
-        this.focusColor,
-        this.hoverColor,
-        this.highlightColor,
-        this.splashColor,
-        this.elevation = 0.0,
-        this.focusElevation = 4.0,
-        this.hoverElevation = 4.0,
-        this.highlightElevation = 1.0,
-        this.disabledElevation = 0.0,
-        this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
-        this.constraints,
-        this.borderShape,
-        this.animationDuration = kThemeChangeDuration,
-        this.clipBehavior = Clip.none,
-        this.focusNode,
-        this.autofocus = false,
-        MaterialTapTargetSize materialTapTargetSize,
-        this.type = GFType.solid,
-        this.shape = GFButtonShape.standard,
-        this.color = GFColor.primary,
-        this.textColor,
-        this.position = GFPosition.end,
-        this.size = GFSize.medium,
-        this.borderSide,
-        this.text,
-        this.blockButton,
-        this.fullWidthButton,
-        this.colorScheme,
-        this.enableFeedback,
-        this.onLongPress,
-        this.disabledColor,
-        this.disabledTextColor,
-        this.icon,
-      })
-      : materialTapTargetSize =
-      materialTapTargetSize ?? MaterialTapTargetSize.padded,
+  /// Create badges badges of all types. check out [GFIconButton] for icon badges, and [GFBadge] for badges
+  const GFButtonBadge({
+    Key key,
+    @required this.onPressed,
+    this.onHighlightChanged,
+    this.textStyle,
+    this.boxShadow,
+    this.badgeBoxShadow,
+    this.focusColor,
+    this.hoverColor,
+    this.highlightColor,
+    this.splashColor,
+    this.elevation = 0.0,
+    this.focusElevation = 4.0,
+    this.hoverElevation = 4.0,
+    this.highlightElevation = 1.0,
+    this.disabledElevation = 0.0,
+    this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
+    this.constraints,
+    this.borderShape,
+    this.animationDuration = kThemeChangeDuration,
+    this.clipBehavior = Clip.none,
+    this.focusNode,
+    this.autofocus = false,
+    MaterialTapTargetSize materialTapTargetSize,
+    this.type = GFType.solid,
+    this.shape = GFButtonShape.standard,
+    this.color = GFColor.primary,
+    this.textColor,
+    this.position = GFPosition.end,
+    this.size = GFSize.medium,
+    this.borderSide,
+    this.text,
+    this.blockButton,
+    this.fullWidthButton,
+    this.colorScheme,
+    this.enableFeedback,
+    this.onLongPress,
+    this.disabledColor,
+    this.disabledTextColor,
+    this.icon,
+  })  : materialTapTargetSize =
+            materialTapTargetSize ?? MaterialTapTargetSize.padded,
         assert(shape != null, 'Button shape can not be null'),
 //        assert(elevation != null && elevation >= 0.0),
         assert(focusElevation != null && focusElevation >= 0.0),
@@ -225,10 +228,7 @@ class GFButtonBadge extends GFButton {
         assert(clipBehavior != null),
         assert(autofocus != null);
 
-
-  @override
   Widget build(BuildContext context) {
-
     return ConstrainedBox(
       constraints: BoxConstraints(minHeight: 26.0, minWidth: 98.0),
       child: Container(
@@ -238,29 +238,29 @@ class GFButtonBadge extends GFButton {
           onHighlightChanged: onHighlightChanged,
           textStyle: textStyle,
           boxShadow: boxShadow,
-          buttonBoxShadow: buttonBoxShadow,
+          buttonBoxShadow: badgeBoxShadow,
           focusColor: focusColor,
           hoverColor: hoverColor,
           highlightColor: highlightColor,
           splashColor: splashColor,
-          elevation:  elevation,
+          elevation: elevation,
           focusElevation: focusElevation,
           hoverElevation: hoverElevation,
-          highlightElevation:highlightElevation,
+          highlightElevation: highlightElevation,
           disabledElevation: disabledElevation,
           constraints: constraints,
           borderShape: borderShape,
           animationDuration: animationDuration,
           clipBehavior: clipBehavior,
           focusNode: focusNode,
-          autofocus : autofocus ,
+          autofocus: autofocus,
 //          child: child,
-          type : type,
-          shape : shape,
-          color : color,
+          type: type,
+          shape: shape,
+          color: color,
           textColor: textColor,
-          position : position,
-          size : getGFSize(size),
+          position: position,
+          size: getGFSize(size),
           borderSide: borderSide,
           text: text,
           icon: icon,
@@ -274,15 +274,11 @@ class GFButtonBadge extends GFButton {
   }
 }
 
-
-
-
-
 //class GFButtonBadge extends StatefulWidget {
 //  /// Called when the badge is tapped or otherwise activated.
 //  final VoidCallback onPressed;
 //
-//  /// Defines the default text style, with [Material.textStyle], for the button's [child].
+//  /// Defines the default text style, with [Material.textStyle], for the badge's [child].
 //  final TextStyle textStyle;
 //
 //  /// The border side for the badge's [Material].
