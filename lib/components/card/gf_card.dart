@@ -1,42 +1,42 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/components/button/gf_button_bar.dart';
-import 'package:ui_kit/components/list_tile/gf_list_tile.dart';
-import 'package:ui_kit/components/image/gf_image_overlay.dart';
-import 'package:ui_kit/position/gf_position.dart';
+import 'package:getflutter/components/button/gf_button_bar.dart';
+import 'package:getflutter/components/list_tile/gf_list_tile.dart';
+import 'package:getflutter/components/image/gf_image_overlay.dart';
+import 'package:getflutter/position/gf_position.dart';
+export 'package:getflutter/position/gf_position.dart';
 
 /// A material design card. A card has slightly rounded corners and a shadow.
 ///
 /// A card is a sheet of [Material] used to represent some related information,
 /// for example an album, a geographical location, a meal, contact details, etc.
-
 class GFCard extends StatelessWidget {
   /// Creates a material design card.
   ///
   /// The [elevation] must be null or non-negative. The [borderOnForeground]
   /// must not be null.
-
-  const GFCard({
-    Key key,
-    this.color,
-    this.elevation,
-    this.shape,
-    this.borderOnForeground = true,
-    this.padding = const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-    this.margin,
-    this.clipBehavior,
-    this.semanticContainer,
-    this.title,
-    this.content,
-    this.image,
-    this.buttonBar,
-    this.imageOverlay,
-    this.titlePosition,
-    this.borderRadius,
-    this.border,
-    this.boxFit,
-    this.colorFilter
-  }) : assert(elevation == null || elevation >= 0.0),
+  const GFCard(
+      {Key key,
+      this.color,
+      this.elevation,
+      this.shape,
+      this.borderOnForeground = true,
+      this.padding =
+          const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+      this.margin,
+      this.clipBehavior,
+      this.semanticContainer,
+      this.title,
+      this.content,
+      this.image,
+      this.buttonBar,
+      this.imageOverlay,
+      this.titlePosition,
+      this.borderRadius,
+      this.border,
+      this.boxFit,
+      this.colorFilter})
+      : assert(elevation == null || elevation >= 0.0),
         assert(borderOnForeground != null),
         super(key: key);
 
@@ -108,11 +108,18 @@ class GFCard extends StatelessWidget {
 
     Widget cardChild = Column(
       children: <Widget>[
-        titlePosition == GFPosition.start ? title != null ? title : Container() : image != null ? ClipRRect(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(4.0)),
-          child: image,
-        ): Container(),
-        titlePosition == GFPosition.start ? image != null ? image : Container(): title != null ? title : Container(),
+        titlePosition == GFPosition.start
+            ? title != null ? title : Container()
+            : image != null
+                ? ClipRRect(
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(4.0)),
+                    child: image,
+                  )
+                : Container(),
+        titlePosition == GFPosition.start
+            ? image != null ? image : Container()
+            : title != null ? title : Container(),
         Padding(
           padding: padding,
           child: content != null ? content : Container(),
@@ -135,19 +142,18 @@ class GFCard extends StatelessWidget {
     return Container(
       margin: margin ?? cardTheme.margin ?? const EdgeInsets.all(16.0),
       child: Material(
-        type: MaterialType.card,
-        color: color ?? cardTheme.color ?? Theme.of(context).cardColor,
-        elevation: elevation ?? cardTheme.elevation ?? _defaultElevation,
-        shape: shape ?? cardTheme.shape ?? const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4.0)),
-        ),
-        borderOnForeground: borderOnForeground,
-        clipBehavior: clipBehavior ?? cardTheme.clipBehavior ?? _defaultClipBehavior,
-        child: imageOverlay == null ? cardChild : overlayImage
-      ),
+          type: MaterialType.card,
+          color: color ?? cardTheme.color ?? Theme.of(context).cardColor,
+          elevation: elevation ?? cardTheme.elevation ?? _defaultElevation,
+          shape: shape ??
+              cardTheme.shape ??
+              const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(4.0)),
+              ),
+          borderOnForeground: borderOnForeground,
+          clipBehavior:
+              clipBehavior ?? cardTheme.clipBehavior ?? _defaultClipBehavior,
+          child: imageOverlay == null ? cardChild : overlayImage),
     );
   }
 }
-
-
-

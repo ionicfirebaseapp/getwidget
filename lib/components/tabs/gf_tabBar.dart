@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:ui_kit/colors/gf_color.dart';
-import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
+import 'package:getflutter/colors/gf_color.dart';
+import 'package:getflutter/components/tabs/gf_tabBarView.dart';
 
 /// A material design widget that displays a horizontal row of tabs.
 ///
@@ -31,12 +31,12 @@ class GFTabBar extends StatefulWidget {
     this.labelPadding,
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
-    this.tabBarView,
     this.tabs,
     this.controller,
-  }):
-        assert(length != null && length >= 0),
-        assert(initialIndex != null && initialIndex >= 0 && (length == 0 || initialIndex < length));
+  })  : assert(length != null && length >= 0),
+        assert(initialIndex != null &&
+            initialIndex >= 0 &&
+            (length == 0 || initialIndex < length));
 
   /// The initial index of the selected tab. Defaults to zero.
   final int initialIndex;
@@ -144,10 +144,6 @@ class GFTabBar extends StatefulWidget {
   /// body2 definition is used.
   final TextStyle unselectedLabelStyle;
 
-  /// One widget per tab.
-  /// Its length must match the length of the [GFTabBar.tabs]
-  /// list, as well as the [controller]'s [GFTabBar.length].
-  final GFTabBarView tabBarView;
 
   /// Typically a list of two or more [Tab] widgets.
   ///
@@ -155,6 +151,10 @@ class GFTabBar extends StatefulWidget {
   /// and the length of the [TabBarView.children] list.
   final List<Widget> tabs;
 
+  /// This widget's selection and animation state.
+  ///
+  /// If [TabController] is not provided, then the value of [DefaultTabController.of]
+  /// will be used.
   final TabController controller;
 
   @override
@@ -165,7 +165,9 @@ class _GFTabBarState extends State<GFTabBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.tabBarHeight == null ? MediaQuery.of(context).size.height * 0.1 : widget.tabBarHeight,
+      height: widget.tabBarHeight == null
+          ? MediaQuery.of(context).size.height * 0.1
+          : widget.tabBarHeight,
       child: Material(
         type: MaterialType.button,
         color: widget.tabBarColor ?? getGFColor(GFColor.primary),
@@ -186,20 +188,3 @@ class _GFTabBarState extends State<GFTabBar> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

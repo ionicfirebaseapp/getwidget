@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/colors/gf_color.dart';
-import 'package:ui_kit/components/avatar/gf_avatar.dart';
+import 'package:getflutter/colors/gf_color.dart';
+import 'package:getflutter/components/avatar/gf_avatar.dart';
 
 class GFListTile extends StatelessWidget {
-
   /// The GFListTile's background color. Can be given [Colors] or [GFColor]
   final dynamic color;
 
@@ -89,10 +88,6 @@ class GFListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double height = this.dividerHeight ?? 16.0;
-    final double thickness = this.dividerThickness ?? 0.0;
-    final double indent = this.dividerIndent ?? 0.0;
-    final double endIndent = this.dividerEndIndent ?? 0.0;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,24 +107,16 @@ class GFListTile extends StatelessWidget {
                       ],
                     )
                   : Container(),
-              trailing: icon != null
-                  ? Column(
-                      children: <Widget>[
-                        Padding(
-                            padding: EdgeInsets.only(top: 16.0), child: icon)
-                      ],
-                    )
-                  : Container()),
+              trailing: Padding(padding: EdgeInsets.only(top: 16.0), child: icon),
+          ),
         ),
-        showDivider
-            ? Divider(
-                height: height ?? dividerHeight,
-                thickness: thickness ?? dividerThickness,
-                color: dividerColor ?? Theme.of(context).dividerColor,
-                indent: indent ?? dividerIndent,
-                endIndent: endIndent ?? dividerEndIndent,
-              )
-            : Container()
+        showDivider == true ? Divider(
+          height: dividerHeight == null ? 16.0 : dividerHeight,
+          thickness: dividerThickness == null ? 1.0 : dividerThickness,
+          color: dividerColor == null ? Theme.of(context).dividerColor : dividerColor,
+          indent: dividerIndent == null ? 0.0 : dividerIndent,
+          endIndent: dividerEndIndent == null ? 0.0 : dividerEndIndent,
+        ) : Container(height: 10.0,)
       ],
     );
   }

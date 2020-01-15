@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:ui_kit/colors/gf_color.dart';
-import 'package:ui_kit/components/tabs/gf_tabBarView.dart';
-import 'package:ui_kit/components/tabs/gf_tabBar.dart';
+import 'package:getflutter/colors/gf_color.dart';
+import 'package:getflutter/components/tabs/gf_tabBarView.dart';
+import 'package:getflutter/components/tabs/gf_tabBar.dart';
 
 /// Creates a default tab for the given [child] widget.
 ///
@@ -14,6 +14,12 @@ import 'package:ui_kit/components/tabs/gf_tabBar.dart';
 /// The [initialIndex] argument must not be null.
 
 class GFTabs extends StatefulWidget {
+  /// Creates a default tab for the given [child] widget.
+  ///
+  /// The [length] argument is typically greater than one. The [length] must
+  /// match [GFTabBar.tabs]'s and [GFTabBarView.children]'s length.
+  ///
+  /// The [initialIndex] argument must not be null.
   GFTabs({
     Key key,
     this.initialIndex = 0,
@@ -34,9 +40,10 @@ class GFTabs extends StatefulWidget {
     this.tabs,
     this.controller,
     this.tabBarHeight,
-  }):
-        assert(length != null && length >= 0),
-        assert(initialIndex != null && initialIndex >= 0 && (length == 0 || initialIndex < length));
+  })  : assert(length != null && length >= 0),
+        assert(initialIndex != null &&
+            initialIndex >= 0 &&
+            (length == 0 || initialIndex < length));
 
   /// The initial index of the selected tab. Defaults to zero.
   final int initialIndex;
@@ -155,8 +162,13 @@ class GFTabs extends StatefulWidget {
   /// and the length of the [TabBarView.children] list.
   final List<Widget> tabs;
 
+  /// This widget's selection and animation state.
+  ///
+  /// If [TabController] is not provided, then the value of [DefaultTabController.of]
+  /// will be used.
   final TabController controller;
 
+  /// defines the tabBar height
   final double tabBarHeight;
 
   @override
@@ -171,7 +183,9 @@ class _GFTabsState extends State<GFTabs> {
         initialIndex: widget.initialIndex,
         length: widget.length,
         child: Container(
-          height: widget.height == null ? MediaQuery.of(context).size.height * 0.5 : widget.height,
+          height: widget.height == null
+              ? MediaQuery.of(context).size.height * 0.5
+              : widget.height,
           child: Column(
             children: <Widget>[
               GFTabBar(
@@ -191,9 +205,7 @@ class _GFTabsState extends State<GFTabs> {
                 indicatorWeight: widget.indicatorWeight,
                 tabs: widget.tabs,
               ),
-              Expanded(
-                child: widget.tabBarView
-              ),
+              Expanded(child: widget.tabBarView),
             ],
           ),
         ),
@@ -201,20 +213,3 @@ class _GFTabsState extends State<GFTabs> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
