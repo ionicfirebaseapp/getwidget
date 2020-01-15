@@ -32,7 +32,7 @@ In this beta release we are going to launch the library with following component
  
  ## Screenshot
  <p align="center">
-  <a href="https://www.getflutter.dev/">
+  <a target="_blank" href="https://www.getflutter.dev/">
     <img src="https://ik.imagekit.io/ionicfirebaseapp/github_all_screens_scMyu9vXg.png" alt="Get Flutter">
     
     
