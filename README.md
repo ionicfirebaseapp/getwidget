@@ -69,7 +69,7 @@ Facebook: <https://www.facebook.com/getflutter>
 
 Linkedin: <https://www.linkedin.com/company/getflutter>
 
-Instagram: <https://www.instagram.com/getflutter> 
+Instagram: <https://www.instagram.com/getflutter.dev/> 
  
  
  ## Copyright-and-license 
