@@ -553,41 +553,45 @@ class _MyHomePageState extends State<MyHomePage>
 //            ),
 
             GFSegmentTabs(
-              tabController: tabController,
-              height: 36.0,
+                tabController: tabController,
+                height: 36.0,
 //              width: 180.0,
-              initialIndex: 0,
-              length: 3,
-              tabs: <Widget>[
-                Text(
-                  "Gelatin",
-                ),
-                Tab(
-                  child: Text(
-                    "Donuts",
+                initialIndex: 0,
+                length: 3,
+                tabs: <Widget>[
+                  Text(
+                    "Gelatin",
                   ),
-                ),
-                Tab(
-                  child: Text(
-                    "Pastry",
+                  Tab(
+                    child: Text(
+                      "Donuts",
+                    ),
                   ),
-                ),
-              ],
-              tabBarColor: Colors.grey,
-              indicatorSize: TabBarIndicatorSize.tab,
-              indicatorColor: Colors.greenAccent,
-            labelColor: Colors.greenAccent,
-            unselectedLabelColor: Colors.white,
-              indicator: BoxDecoration(
-                color: Colors.black,
-                border: Border(bottom: BorderSide(color: Colors.greenAccent, width: 2.0,),),
+                  Tab(
+                    child: Text(
+                      "Pastry",
+                    ),
+                  ),
+                ],
+                tabBarColor: Colors.grey,
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicatorColor: Colors.greenAccent,
+                labelColor: Colors.greenAccent,
+                unselectedLabelColor: Colors.white,
+                indicator: BoxDecoration(
+                  color: Colors.black,
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.greenAccent,
+                      width: 2.0,
+                    ),
+                  ),
 //                borderRadius: BorderRadius.circular(2.0)
-              ),
-              indicatorPadding: EdgeInsets.all(8.0),
-              indicatorWeight: 2.0,
-              border: Border.all(color: Colors.white, width: 2.0),
-                borderRadius: BorderRadius.circular(2.0)
-            ),
+                ),
+                indicatorPadding: EdgeInsets.all(8.0),
+                indicatorWeight: 2.0,
+                border: Border.all(color: Colors.white, width: 2.0),
+                borderRadius: BorderRadius.circular(2.0)),
 
             GFTabBarView(
                 controller: tabController,
@@ -596,9 +600,7 @@ class _MyHomePageState extends State<MyHomePage>
                   Container(color: Colors.red),
                   Container(color: Colors.green),
                   Container(color: Colors.blue)
-                ]
-            ),
-
+                ]),
 
 //            GFItemsCarousel(
 //              rowCount: 3,
@@ -646,7 +648,6 @@ class _MyHomePageState extends State<MyHomePage>
 //                });
 //              },
 //            ),
-
 
 //          GFTabs(
 ////            height: 100.0,
@@ -929,7 +930,7 @@ class _MyHomePageState extends State<MyHomePage>
 ////              border: Border.all(color: Colors.pink, width: 2.0),
 //            ),
 //            GFAvatar(
-              //              radius: 20.0,
+            //              radius: 20.0,
 //                 maxRadius: 50,
 
 //              child: Text("de"),

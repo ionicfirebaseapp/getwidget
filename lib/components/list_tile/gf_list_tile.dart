@@ -88,7 +88,6 @@ class GFListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -96,27 +95,33 @@ class GFListTile extends StatelessWidget {
           margin: padding,
           color: color,
           child: ListTile(
-              leading: avatar,
-              title: title,
-              subtitle: subTitle != null || description != null
-                  ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        subTitle ?? Container(),
-                        description ?? Container()
-                      ],
-                    )
-                  : Container(),
-              trailing: Padding(padding: EdgeInsets.only(top: 16.0), child: icon),
+            leading: avatar,
+            title: title,
+            subtitle: subTitle != null || description != null
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      subTitle ?? Container(),
+                      description ?? Container()
+                    ],
+                  )
+                : Container(),
+            trailing: Padding(padding: EdgeInsets.only(top: 16.0), child: icon),
           ),
         ),
-        showDivider == true ? Divider(
-          height: dividerHeight == null ? 16.0 : dividerHeight,
-          thickness: dividerThickness == null ? 1.0 : dividerThickness,
-          color: dividerColor == null ? Theme.of(context).dividerColor : dividerColor,
-          indent: dividerIndent == null ? 0.0 : dividerIndent,
-          endIndent: dividerEndIndent == null ? 0.0 : dividerEndIndent,
-        ) : Container(height: 10.0,)
+        showDivider == true
+            ? Divider(
+                height: dividerHeight == null ? 16.0 : dividerHeight,
+                thickness: dividerThickness == null ? 1.0 : dividerThickness,
+                color: dividerColor == null
+                    ? Theme.of(context).dividerColor
+                    : dividerColor,
+                indent: dividerIndent == null ? 0.0 : dividerIndent,
+                endIndent: dividerEndIndent == null ? 0.0 : dividerEndIndent,
+              )
+            : Container(
+                height: 10.0,
+              )
       ],
     );
   }
