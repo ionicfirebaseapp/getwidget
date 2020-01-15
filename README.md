@@ -6,18 +6,24 @@
 
 [**GetFlutter**](https://www.getflutter.dev) is 100% a Flutter open source UI library that build to make flutter development easier than ever. GetFlutter has 1000+ pre-build widgets that you could reuse to build for both Flutter Web or Mobile app development. 
 
-[**NOTE**] Our library will also work on flutter web but since flutter didn't released stable version for Flutter web and it is still in Beta release so you might be get some rendering problem and hence we will update our library as flutter comes with the stable release for Flutter Web. 
-
 ## Table of contents 
 
+- [Screenshot](#screenshot)
 - [Quick start](#quick-start)
 - [Features](#features)
-- [Screenshot](#screenshot)
 - [Demo](#demo)
 - [Contributing](#contributing)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Documentation](#documentation)
 - [Copyright and license](#copyright-and-license)
+
+ 
+ ## Screenshot
+ <p align="center">
+  <a target="_blank" href="https://www.getflutter.dev/">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/github_all_screens_scMyu9vXg.png" alt="Get Flutter">
+  </a>
+</p>
 
 ## Quick start
 
@@ -30,14 +36,9 @@ In this beta release we are going to launch the library with following component
  #### Button  |  Badge |  Avatar |  Image |  Card |  Carousel |  Tile |  Tab |  Typography 
  
  
- ## Screenshot
- <p align="center">
-  <a target="_blank" href="https://www.getflutter.dev/">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/github_all_screens_scMyu9vXg.png" alt="Get Flutter">
-  </a>
-</p>
- 
  ## Demo 
+ 
+ Coming Soon 
  
  
  ## Contributing
@@ -57,6 +58,7 @@ In this beta release we are going to launch the library with following component
  
   [**Installation Guide**](https://docs.getflutter.dev)
  
+[**NOTE**] Our library will also work on flutter web but since flutter didn't released stable version for Flutter web and it is still in Beta release so you might be get some rendering problem and hence we will update our library as flutter comes with the stable release for Flutter Web. 
  
 ### Social Media
 
