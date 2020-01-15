@@ -163,8 +163,13 @@ class GFTabs extends StatefulWidget {
   /// and the length of the [TabBarView.children] list.
   final List<Widget> tabs;
 
+  /// This widget's selection and animation state.
+  ///
+  /// If [TabController] is not provided, then the value of [DefaultTabController.of]
+  /// will be used.
   final TabController controller;
 
+  /// defines the tabBar height
   final double tabBarHeight;
 
   @override
