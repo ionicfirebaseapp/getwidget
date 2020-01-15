@@ -148,9 +148,19 @@ class GFSegmentTabs extends StatefulWidget {
   /// and the length of the [TabBarView.children] list.
   final List<Widget> tabs;
 
+  /// defines outer border of the tabs
   final Border border;
+
+  /// defines outer border, border radius
   final BorderRadius borderRadius;
+
+  /// This widget's selection and animation state.
+  ///
+  /// If [TabController] is not provided, then the value of [DefaultTabController.of]
+  /// will be used.
   final TabController tabController;
+
+  /// defines width of the tab row
   final double width;
 
   @override

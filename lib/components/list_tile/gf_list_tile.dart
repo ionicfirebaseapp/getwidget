@@ -88,10 +88,6 @@ class GFListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double height = this.dividerHeight ?? 16.0;
-    final double thickness = this.dividerThickness ?? 0.0;
-    final double indent = this.dividerIndent ?? 0.0;
-    final double endIndent = this.dividerEndIndent ?? 0.0;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,35 +96,27 @@ class GFListTile extends StatelessWidget {
           margin: padding,
           color: color,
           child: ListTile(
-            leading: avatar,
-            title: title,
-            subtitle: subTitle != null || description != null
-                ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      subTitle ?? Container(),
-                      description ?? Container()
-                    ],
-                  )
-                : null,
-            trailing: icon != null
-                ? Column(
-                    children: <Widget>[
-                      Padding(padding: EdgeInsets.only(top: 16.0), child: icon)
-                    ],
-                  )
-                : null,
+              leading: avatar,
+              title: title,
+              subtitle: subTitle != null || description != null
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        subTitle ?? Container(),
+                        description ?? Container()
+                      ],
+                    )
+                  : Container(),
+              trailing: Padding(padding: EdgeInsets.only(top: 16.0), child: icon),
           ),
         ),
-        showDivider
-            ? Divider(
-                height: height ?? dividerHeight,
-                thickness: thickness ?? dividerThickness,
-                color: dividerColor ?? Theme.of(context).dividerColor,
-                indent: indent ?? dividerIndent,
-                endIndent: endIndent ?? dividerEndIndent,
-              )
-            : null
+        showDivider == true ? Divider(
+          height: dividerHeight == null ? 16.0 : dividerHeight,
+          thickness: dividerThickness == null ? 1.0 : dividerThickness,
+          color: dividerColor == null ? Theme.of(context).dividerColor : dividerColor,
+          indent: dividerIndent == null ? 0.0 : dividerIndent,
+          endIndent: dividerEndIndent == null ? 0.0 : dividerEndIndent,
+        ) : Container(height: 10.0,)
       ],
     );
   }
