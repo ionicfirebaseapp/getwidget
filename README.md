@@ -4,7 +4,7 @@
   </a>
 </p>
 
-[**GetFlutter**](https://www.getflutter.dev) is 100% a Flutter open source UI library that build to make flutter development easier than ever. GetFlutter has 1000+ pre-build widgets that you could reuse to build for both Flutter Web or Mobile app development. 
+[**GetFlutter**](https://www.getflutter.dev) is a 100% Free Flutter open source UI library that is build to make flutter development easier than ever. GetFlutter has 1000+ pre-build widgets that you could reuse to build both Flutter Web or Mobile app development. 
 
 ## Table of contents 
 
@@ -58,7 +58,7 @@ In this beta release we are going to launch the library with following component
  
   [**Installation Guide**](https://docs.getflutter.dev)
  
-[**NOTE**] Our library will also work on flutter web but since flutter didn't released stable version for Flutter web and it is still in Beta release so you might be get some rendering problem and hence we will update our library as flutter comes with the stable release for Flutter Web. 
+[**NOTE**] Our library will also work on flutter web but since flutter didn't released stable version for Flutter web and it is still in Beta release so you might get some rendering problem and hence we will update our library as flutter comes with the stable release for Flutter Web. 
  
 ### Social Media
 
