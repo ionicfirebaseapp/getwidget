@@ -162,6 +162,7 @@ class GFTabBar extends StatefulWidget {
 class _GFTabBarState extends State<GFTabBar> {
   @override
   Widget build(BuildContext context) {
+
     return Container(
       height: widget.tabBarHeight == null
           ? MediaQuery.of(context).size.height * 0.1
