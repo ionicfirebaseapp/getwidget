@@ -114,9 +114,11 @@ class GFDrawer extends StatelessWidget {
         label = semanticLabel;
         break;
       case TargetPlatform.android:
-      case TargetPlatform.macOS:
       case TargetPlatform.fuchsia:
         label = semanticLabel ?? MaterialLocalizations.of(context)?.drawerLabel;
+        break;
+      default:
+        break;
     }
     return Semantics(
       scopesRoute: true,
