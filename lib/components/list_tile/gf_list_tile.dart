@@ -85,4 +85,3 @@ class GFListTile extends StatelessWidget {
     );
   }
 }
-

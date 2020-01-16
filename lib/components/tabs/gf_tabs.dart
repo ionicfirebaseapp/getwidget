@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:getflutter/colors/gf_color.dart';
 import 'package:getflutter/components/tabs/gf_tabBarView.dart';
 import 'package:getflutter/components/tabs/gf_tabBar.dart';
-import 'package:getflutter/colors/gf_color.dart';
 
 /// Creates a default tab for the given [child] widget.
 ///
@@ -163,8 +162,13 @@ class GFTabs extends StatefulWidget {
   /// and the length of the [TabBarView.children] list.
   final List<Widget> tabs;
 
+  /// This widget's selection and animation state.
+  ///
+  /// If [TabController] is not provided, then the value of [DefaultTabController.of]
+  /// will be used.
   final TabController controller;
 
+  /// defines the tabBar height
   final double tabBarHeight;
 
   @override

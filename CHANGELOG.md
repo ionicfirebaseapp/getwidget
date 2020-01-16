@@ -1,17 +1,33 @@
 # Changelog
 
-## 0.0.1-pre.3 - 2014-01-14
+## 1.0.0-dev.3 - 2020-01-15
 
 ### Fixed
+* ListTile issue.
 
-* Corrected warnings and hits
+
+## 1.0.0-dev.1 - 2020-01-14
+
+### Fixed
+* Warnings and Hints
+
+
+## 0.0.1-pre.3 - 2020-01-14
+
+### Fixed
+* Warnings and Hints
 
 ### Added
+* Changelog and Description
 
-* Changelog and description
 
-## 14.0.0 - 2042-10-06
+## 0.0.1-pre.2 - 2020-01-14
+
+### Fixed
+* Warnings and Hints
+
+
+## 0.0.1-pre.1 - 2020-01-13
 
 ### Added
-
-* Introduced animals into the world, we believe they're going to be a neat addition.
+* initial release with buttons, badge, card, list tile, avatar and many more components.
