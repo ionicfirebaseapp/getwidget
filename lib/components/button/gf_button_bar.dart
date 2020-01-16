@@ -22,7 +22,7 @@ class GFButtonBar extends StatelessWidget {
 
   /// The empty space that surrounds the buttonBar. Default's to padding.zero
   final EdgeInsetsGeometry padding;
-  
+
   /// The direction to use as the main axis.
   ///
   /// For example, if [direction] is [Axis.horizontal], the default, the
@@ -155,7 +155,6 @@ class GFButtonBar extends StatelessWidget {
   /// [verticalDirection] must not be null.
   final VerticalDirection verticalDirection;
 
-
   /// The buttons to arrange horizontally.
   /// Typically [RaisedButton] or [GFButton] or [GFIconButton] widgets.
   final List<Widget> children;
@@ -171,7 +170,7 @@ class GFButtonBar extends StatelessWidget {
         runAlignment: runAlignment,
         runSpacing: runSpacing,
         crossAxisAlignment: crossAxisAlignment,
-        textDirection : textDirection,
+        textDirection: textDirection,
         verticalDirection: verticalDirection,
         children: children.map<Widget>((Widget child) {
           return child;
