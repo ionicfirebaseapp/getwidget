@@ -198,6 +198,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
     assert(theme.platform != null);
     switch (theme.platform) {
       case TargetPlatform.android:
+      case TargetPlatform.macOS:
       case TargetPlatform.fuchsia:
         return false;
       case TargetPlatform.iOS:
@@ -289,6 +290,7 @@ class _GFAppBarState extends State<GFAppBar> {
       bool namesRoute;
       switch (theme.platform) {
         case TargetPlatform.android:
+        case TargetPlatform.macOS:
         case TargetPlatform.fuchsia:
           namesRoute = true;
           break;
