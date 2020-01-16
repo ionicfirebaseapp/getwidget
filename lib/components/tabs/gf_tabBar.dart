@@ -3,8 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:getflutter/colors/gf_color.dart';
-import 'package:getflutter/components/tabs/gf_tabBarView.dart';
-import 'package:getflutter/colors/gf_color.dart';
 
 /// A material design widget that displays a horizontal row of tabs.
 ///
@@ -32,7 +30,6 @@ class GFTabBar extends StatefulWidget {
     this.labelPadding,
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
-    this.tabBarView,
     this.tabs,
     this.controller,
   })  : assert(length != null && length >= 0),
@@ -146,17 +143,16 @@ class GFTabBar extends StatefulWidget {
   /// body2 definition is used.
   final TextStyle unselectedLabelStyle;
 
-  /// One widget per tab.
-  /// Its length must match the length of the [GFTabBar.tabs]
-  /// list, as well as the [controller]'s [GFTabBar.length].
-  final GFTabBarView tabBarView;
-
   /// Typically a list of two or more [Tab] widgets.
   ///
   /// The length of this list must match the [controller]'s [TabController.length]
   /// and the length of the [TabBarView.children] list.
   final List<Widget> tabs;
 
+  /// This widget's selection and animation state.
+  ///
+  /// If [TabController] is not provided, then the value of [DefaultTabController.of]
+  /// will be used.
   final TabController controller;
 
   @override
