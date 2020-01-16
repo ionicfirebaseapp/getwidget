@@ -948,7 +948,7 @@ class _MyHomePageState extends State<MyHomePage>
 ////              border: Border.all(color: Colors.pink, width: 2.0),
 //            ),
 //            GFAvatar(
-              //              radius: 20.0,
+            //              radius: 20.0,
 //                 maxRadius: 50,
 
 //              child: Text("de"),

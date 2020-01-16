@@ -143,7 +143,6 @@ class GFTabBar extends StatefulWidget {
   /// body2 definition is used.
   final TextStyle unselectedLabelStyle;
 
-
   /// Typically a list of two or more [Tab] widgets.
   ///
   /// The length of this list must match the [controller]'s [TabController.length]
