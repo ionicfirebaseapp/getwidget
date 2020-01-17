@@ -1,3 +1,6 @@
+[![pub package](https://img.shields.io/pub/v/getflutter.svg)](https://pub.dartlang.org/packages/getflutter)
+
+
 <p align="center">
   <a href="https://www.getflutter.dev/">
     <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:w-auto-300/gf-logo-g-b_SYSBeqUrR.png" alt="Get Flutter">

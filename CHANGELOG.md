@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.1-dev.9 - 2020-01-17
+
+### Added
+* Added library exports for commonly used files.
+
 
 ## 1.0.0-dev.8 - 2020-01-16
 
