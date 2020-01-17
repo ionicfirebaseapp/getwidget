@@ -202,8 +202,9 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
         return false;
       case TargetPlatform.iOS:
         return trailing == null || trailing.length < 2;
+      default:
+        return false;
     }
-    return null;
   }
 
   @override
@@ -293,6 +294,8 @@ class _GFAppBarState extends State<GFAppBar> {
           namesRoute = true;
           break;
         case TargetPlatform.iOS:
+          break;
+        default:
           break;
       }
       title = DefaultTextStyle(
