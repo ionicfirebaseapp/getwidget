@@ -116,6 +116,9 @@ class GFDrawer extends StatelessWidget {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
         label = semanticLabel ?? MaterialLocalizations.of(context)?.drawerLabel;
+        break;
+      default:
+        break;
     }
     return Semantics(
       scopesRoute: true,

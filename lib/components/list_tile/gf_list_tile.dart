@@ -28,6 +28,8 @@ class GFListTile extends StatelessWidget {
   /// The icon to display inside the [GFListTile]. see [Icon]
   final Widget icon;
 
+  final EdgeInsets padding;
+
   /// Creates ListTile with leading, title, trailing, image widget for almost every type of ListTile design.
   const GFListTile({
     Key key,
@@ -39,13 +41,14 @@ class GFListTile extends StatelessWidget {
     this.subTitle,
     this.description,
     this.icon,
+    this.padding = const EdgeInsets.all(8.0),
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(minHeight: 50),
-      padding: EdgeInsets.all(8),
+      padding: padding,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.all(Radius.circular(5)),

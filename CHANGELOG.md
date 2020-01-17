@@ -1,5 +1,11 @@
 # Changelog
 
+
+## 1.0.0-dev.8 - 2020-01-16
+
+### Fixed
+* ListTile re-implemeted.
+
 ## 1.0.0-dev.3 - 2020-01-15
 
 ### Fixed
