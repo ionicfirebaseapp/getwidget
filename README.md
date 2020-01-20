@@ -32,7 +32,7 @@ Forum [Support and discussion ](https://forum.getflutter.dev)
 ## Features 
 In this beta release we are going to launch the library with following components : 
  
- #### Button  |  Badge |  Avatar |  Image |  Card |  Carousel |  Tile |  Tab |  Typography 
+ #### [Button](https://docs.getflutter.dev/gf-button) |  [Badge](https://docs.getflutter.dev/gf-badge) |  [Avatar](https://docs.getflutter.dev/gf-avatar) |  [Image](https://docs.getflutter.dev/gf-image) |  [Card](https://docs.getflutter.dev/gf-card) |  [Carousel](https://docs.getflutter.dev/gf-carousel) | [Tile](https://docs.getflutter.dev/gf-tile) | [Tab](https://docs.getflutter.dev/gf-tab) | [Typography](https://docs.getflutter.dev/gf-typography) 
  
  
  ## Demo 
