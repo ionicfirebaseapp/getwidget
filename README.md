@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.getflutter.dev/">
+  <a href="https://www.getflutter.dev/" target="_blank">
     <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:w-auto-300/gf-logo-g-b_SYSBeqUrR.png" alt="Get Flutter">
   </a>
 </p>
@@ -39,7 +39,7 @@ In this beta release we are going to launch the library with following component
  
    ### Play Store 
    <p align="left">
-        <a href="https://play.google.com/store/apps/details?id=dev.getflutter.appkithttps://www.getflutter.dev/">
+        <a href="https://play.google.com/store/apps/details?id=dev.getflutter.appkit" target="_blank">
           <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/playstore_NQQBiJIQ1.png" alt="Get Flutter playstore Demo">
         </a>
       </p>
