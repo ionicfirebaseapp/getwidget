@@ -2,12 +2,12 @@
 
 
 <p align="center">
-  <a href="https://www.getflutter.dev/">
+  <a href="https://www.getflutter.dev/" target="_blank">
     <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:w-auto-300/gf-logo-g-b_SYSBeqUrR.png" alt="Get Flutter">
   </a>
 </p>
 
-[**GetFlutter**](https://www.getflutter.dev) is a 100% Free Flutter open source UI library that is build to make flutter development easier than ever. GetFlutter has 1000+ pre-build widgets that you could reuse to build both Flutter Web or Mobile app development. 
+[**GetFlutter**](https://www.getflutter.dev) is a 100% Free Flutter open-source UI library that is built to make flutter development easier and joyful than ever. GetFlutter has 1000+ pre-build widgets that you could reuse to build both Flutter mobile app and web app development. Our motto to provide the best Flutter UI library to Flutter community to speed up their development process and build awesome apps with pre-build Flutter Library Components.
 
 ## Table of contents 
 
@@ -16,7 +16,6 @@
 - [Features](#features)
 - [Demo](#demo)
 - [Contributing](#contributing)
-- [Bugs and feature requests](#bugs-and-feature-requests)
 - [Documentation](#documentation)
 - [Copyright and license](#copyright-and-license)
 
@@ -41,20 +40,28 @@ In this beta release we are going to launch the library with following component
  
  ## Demo 
  
- Coming Soon 
+   ### Play Store 
+   <p align="left">
+        <a href="https://play.google.com/store/apps/details?id=dev.getflutter.appkit" target="_blank">
+          <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/playstore_NQQBiJIQ1.png" alt="Get Flutter playstore Demo">
+        </a>
+      </p>
+  
+  ### IOS Store and Web Demo
+   Coming Soon
  
  
  ## Contributing
  
-  GetFlutter is **100% free** and **open source**. We encourage and support an active, healthy community that accepts contributions from the public &ndash; including you!
-
+  GetFlutter is **100% free** and **open source**. We encourage and support an active, healthy community that accepts contributions from the public &ndash; including you. There are couple of ways in which you can contribute to the growing community of `getflutter`.
+  
+  * Pick up any issue marked with ["good first issue"](https://github.com/ionicfirebaseapp/getflutter/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+  * Fix a bug
+  * Write and improve some **documentation**. Documentation is very critical to us. We would like to if you can support to add support in multiple language for our docs.
   * If you are a developer, feel free to check out the source and submit pull requests.
   * Dig into [**CONTRIBUTING.MD**](CONTRIBUTING.md), which covers submitting bugs, requesting new features, preparing your code for a pull request, etc.
   * Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](http://forum.getflutter.dev) to keep up to date with the latest Get Flutter development. 
   * Not sure what to work on? [**We've got lots ideas.**](https://roadmap.getflutter.dev)
- 
- 
- ## Bugs-and-feature-requests
  
  
  ## Documentation
