@@ -24,6 +24,7 @@ class GFFloatingWidget extends StatefulWidget {
   /// verticalPosition of type [double] which  aligns the child vertically across the body
   final double verticalPosition;
 
+
   @override
   _GFFloatingWidgetState createState() => _GFFloatingWidgetState();
 }
@@ -31,7 +32,7 @@ class GFFloatingWidget extends StatefulWidget {
 class _GFFloatingWidgetState extends State<GFFloatingWidget> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return   Stack(
       alignment: Alignment.center,
       fit: StackFit.loose,
       children: <Widget>[

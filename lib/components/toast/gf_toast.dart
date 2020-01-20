@@ -14,6 +14,7 @@ class GFToast extends StatefulWidget {
     this.backgroundColor,
     this.text,
     this.width,
+
     this.textStyle = const TextStyle(color: Colors.white70),
   }) : super(key: key);
 
@@ -34,6 +35,8 @@ class GFToast extends StatefulWidget {
 
   /// width od type [double] used to control the width od the [GFToast]
   final double width;
+
+
 
   @override
   _GFToastState createState() => _GFToastState();
@@ -58,6 +61,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
         AnimationController(vsync: this, duration: Duration(milliseconds: 200));
     offset = Tween<Offset>(begin: Offset.zero, end: Offset(0.0, 1.0))
         .animate(_controller);
+
     controller.forward();
     _controller.forward();
   }
@@ -75,7 +79,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
       child: Column(
         children: <Widget>[
           Container(
-            width: widget.width != null ? widget.width : null,
+            width: widget.width ,
             constraints: BoxConstraints(minHeight: 50.0),
 //        width: 100,
             margin: EdgeInsets.only(left: 10, right: 10),
