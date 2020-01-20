@@ -5,14 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:getflutter/components/button/gf_button.dart';
 import 'package:getflutter/shape/gf_button_shape.dart';
 import 'package:getflutter/size/gf_size.dart';
-import 'package:getflutter/types/gf_type.dart';
+import 'package:getflutter/types/gf_button_type.dart';
 import 'package:getflutter/position/gf_position.dart';
 import 'package:getflutter/colors/gf_color.dart';
-export 'package:getflutter/position/gf_position.dart';
-export 'package:getflutter/shape/gf_button_shape.dart';
-export 'package:getflutter/size/gf_size.dart';
-export 'package:getflutter/types/gf_type.dart';
-export 'package:getflutter/colors/gf_color.dart';
 
 class GFButtonBadge extends GFButton {
   /// Called when the button is tapped or otherwise activated.
@@ -84,8 +79,8 @@ class GFButtonBadge extends GFButton {
   /// {@macro flutter.widgets.Clip}
   final Clip clipBehavior;
 
-  /// Button type of [GFType] i.e, solid, outline, outline2x, transparent
-  final GFType type;
+  /// Button type of [GFButtonType] i.e, solid, outline, outline2x, transparent
+  final GFButtonType type;
 
   /// Button type of [GFButtonBadgeShape] i.e, standard, pills, square, shadow, icons
   final GFButtonShape shape;
@@ -128,7 +123,7 @@ class GFButtonBadge extends GFButton {
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
 
-  /// icon type of [GFIconPosition] i.e, start, end
+  /// icon type of [GFPosition] i.e, start, end
   final GFPosition position;
 
   /// on true state blockButton gives block size badge
@@ -199,7 +194,7 @@ class GFButtonBadge extends GFButton {
     this.focusNode,
     this.autofocus = false,
     MaterialTapTargetSize materialTapTargetSize,
-    this.type = GFType.solid,
+    this.type = GFButtonType.solid,
     this.shape = GFButtonShape.standard,
     this.color = GFColor.primary,
     this.textColor,
@@ -232,7 +227,7 @@ class GFButtonBadge extends GFButton {
     return ConstrainedBox(
       constraints: BoxConstraints(minHeight: 26.0, minWidth: 98.0),
       child: Container(
-        height: getGFSize(size),
+        height: GFSizesClass.getGFSize(size),
         child: GFButton(
           onPressed: onPressed,
           onHighlightChanged: onHighlightChanged,
@@ -260,7 +255,7 @@ class GFButtonBadge extends GFButton {
           color: color,
           textColor: textColor,
           position: position,
-          size: getGFSize(size),
+          size: GFSizesClass.getGFSize(size),
           borderSide: borderSide,
           text: text,
           icon: icon,

@@ -175,7 +175,8 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
       width: widget.width == null ? 240.0 : widget.width,
       decoration: BoxDecoration(
         border: widget.border == null
-            ? Border.all(color: getGFColor(GFColor.primary), width: 1.0)
+            ? Border.all(
+                color: GFColors.getGFColor(GFColor.primary), width: 1.0)
             : widget.border,
         borderRadius: widget.borderRadius == null
             ? BorderRadius.circular(2.0)
@@ -192,20 +193,20 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
           color: widget.tabBarColor ?? Colors.transparent,
           child: TabBar(
             controller: widget.tabController,
-            labelColor: widget.labelColor ?? getGFColor(GFColor.white),
-            unselectedLabelColor:
-                widget.unselectedLabelColor ?? getGFColor(GFColor.primary),
+            labelColor: widget.labelColor ?? GFColors.getGFColor(GFColor.white),
+            unselectedLabelColor: widget.unselectedLabelColor ??
+                GFColors.getGFColor(GFColor.primary),
             labelStyle: widget.labelStyle ?? TextStyle(fontSize: 12.0),
             unselectedLabelStyle:
                 widget.unselectedLabelStyle ?? TextStyle(fontSize: 12.0),
             indicatorColor: widget.indicatorColor == null
-                ? getGFColor(GFColor.primary)
+                ? GFColors.getGFColor(GFColor.primary)
                 : widget.indicatorColor,
             indicatorSize: widget.indicatorSize,
             indicator: widget.indicator == null
                 ? BoxDecoration(
                     color: widget.indicatorColor == null
-                        ? getGFColor(GFColor.primary)
+                        ? GFColors.getGFColor(GFColor.primary)
                         : widget.indicatorColor,
                     border: Border.all(
                         color: widget.indicatorColor == null
