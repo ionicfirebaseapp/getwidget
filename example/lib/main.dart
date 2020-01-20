@@ -7,7 +7,7 @@ import 'package:getflutter/components/badge/gf_badge.dart';
 // import 'package:getflutter/components/list/gf_list.dart';
 import 'package:getflutter/components/tabs/gf_segment_tabs.dart';
 import 'package:getflutter/size/gf_size.dart';
-import 'package:getflutter/types/gf_type.dart';
+import 'package:getflutter/types/gf_button_type.dart';
 import 'package:getflutter/shape/gf_button_shape.dart';
 import 'package:getflutter/shape/gf_badge_shape.dart';
 import 'package:flutter/cupertino.dart';
@@ -181,7 +181,20 @@ class _MyHomePageState extends State<MyHomePage>
                     type: GFTypographyType.typo6,
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 20,
+                  ),
+                  GFButtonBar(
+                    children: <Widget>[
+                      GFButton(),
+                      GFButton(),
+                      GFButton(),
+                      GFButton(),
+                      GFButton(),
+                      GFButton(),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   GFToast(
                     text: 'Happy New Year',
@@ -190,7 +203,7 @@ class _MyHomePageState extends State<MyHomePage>
                         print("dfr");
                       },
                       text: 'OK',
-                      type: GFType.outline,
+                      type: GFButtonType.outline,
                       color: GFColor.warning,
                     ),
                   ),
@@ -216,7 +229,7 @@ class _MyHomePageState extends State<MyHomePage>
                                   print("df");
                                 },
                                 text: 'OK',
-                                type: GFType.outline,
+                                type: GFButtonType.outline,
                                 color: GFColor.warning,
                               ),
                             )
@@ -233,7 +246,7 @@ class _MyHomePageState extends State<MyHomePage>
                                 });
                               },
                               text: 'Click to View the toast',
-                              type: GFType.outline,
+                              type: GFButtonType.outline,
                               color: GFColor.warning,
                             ),
                           )
@@ -492,7 +505,7 @@ class _MyHomePageState extends State<MyHomePage>
 //              showDivider: false,
 //                icon: GFIconButton(
 //                  onPressed: null,
-//                  type: GFType.transparent,
+//                  type: GFButtonType.transparent,
 //                  icon: Icon(Icons.favorite_border),
 //                ),
 //              ),
@@ -562,7 +575,7 @@ class _MyHomePageState extends State<MyHomePage>
 ////              color: GFColor.success,
 ////              textColor: GFColor.dark,
 ////              shape: GFButtonShape.pills,
-////              type: GFType.outline2x,
+////              type: GFButtonType.outline2x,
 ////              size: GFSize.small,
 //              icon: GFBadge(
 //                child: Text("12"),
@@ -588,7 +601,7 @@ class _MyHomePageState extends State<MyHomePage>
 //////              textColor: GFColor.white,
 //////              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
 ////              ),
-//              type: GFType.outline2x,
+//              type: GFButtonType.outline2x,
 //              shape: GFButtonShape.pills,
 ////          blockButton: true,
 //              fullWidthButton: true,
@@ -612,7 +625,7 @@ class _MyHomePageState extends State<MyHomePage>
 //          hoverColor: GFColor.dark,
               color: GFColor.secondary,
 //          focusColor: GFColor.danger,
-              type: GFType.solid,
+              type: GFButtonType.solid,
               shape: GFButtonShape.pills,
               buttonBoxShadow: true,
 //              boxShadow: BoxShadow(
@@ -636,7 +649,7 @@ class _MyHomePageState extends State<MyHomePage>
 //              onPressed: null,
 //              icon: Icon(Icons.ac_unit,),
 ////              iconSize: 12.0,
-//              type: GFType.solid,
+//              type: GFButtonType.solid,
 ////          shape: GFButtonShape.pills,
 ////          size: GFSize.large,
 //              buttonBoxShadow: true,
@@ -824,7 +837,7 @@ class _MyHomePageState extends State<MyHomePage>
 //                icon: GFIconButton(
 //                  onPressed: null,
 //                  icon: Icon(Icons.favorite_border),
-//                  type: GFType.transparent,
+//                  type: GFButtonType.transparent,
 //                ),
 //              ),
 //              content: Text(
@@ -839,13 +852,13 @@ class _MyHomePageState extends State<MyHomePage>
 ////                    onPressed: null,
 ////                    child: Text("favorite"),
 ////                    icon: Icon(Icons.favorite_border),
-////                    type: GFType.transparent,
+////                    type: GFButtonType.transparent,
 ////                  ),
 ////                  GFButton(
 ////                    onPressed: null,
 ////                    child: Text("share"),
 ////                    icon: Icon(Icons.share),
-////                    type: GFType.outline,
+////                    type: GFButtonType.outline,
 ////                  ),
 ////                ],
 ////              ),
@@ -858,7 +871,7 @@ class _MyHomePageState extends State<MyHomePage>
 //                  onPressed: null,
 //                  child: Text("like"),
 //                  icon: Icon(Icons.favorite_border),
-//                  type: GFType.transparent,
+//                  type: GFButtonType.transparent,
 //                ),
 //                GFButton(
 //                  onPressed: null,
@@ -869,7 +882,7 @@ class _MyHomePageState extends State<MyHomePage>
 //                  onPressed: (){},
 //                  child: Text("share"),
 //                  icon: Icon(Icons.share),
-//                  type: GFType.outline,
+//                  type: GFButtonType.outline,
 //                ),
 //              ],
 //            ),
@@ -883,7 +896,7 @@ class _MyHomePageState extends State<MyHomePage>
 //              subTitle: Text('subtitle'),
 //              icon: GFIconButton(
 //                onPressed: null,
-//                type: GFType.transparent,
+//                type: GFButtonType.transparent,
 //                icon: Icon(Icons.favorite_border),
 //              ),
 //            ),
@@ -1021,7 +1034,7 @@ class _MyHomePageState extends State<MyHomePage>
 //              onPressed: (){},
 //              icon: Icon(Icons.ac_unit),
 ////              iconSize: 12.0,
-////              type: GFType.solid,
+////              type: GFButtonType.solid,
 ////              shape: GFIconButtonShape.pills,
 ////              size: GFSize.large,
 ////              buttonBoxShadow: true,
@@ -1047,7 +1060,7 @@ class _MyHomePageState extends State<MyHomePage>
 //            ),
 //
 //            GFButton(
-//              type: GFType.outline,
+//              type: GFButtonType.outline,
 //              shape: GFButtonShape.pills,
 //              text: 'goodies',
 //              icon: Icon(Icons.share),

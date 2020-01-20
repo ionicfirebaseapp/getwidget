@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:getflutter/shape/gf_badge_shape.dart';
 import 'package:getflutter/size/gf_size.dart';
 import 'package:getflutter/colors/gf_color.dart';
-export 'package:getflutter/shape/gf_badge_shape.dart';
-export 'package:getflutter/size/gf_size.dart';
-export 'package:getflutter/colors/gf_color.dart';
 
 class GFBadge extends StatefulWidget {
   /// The border side for the badge's [Material].
@@ -20,7 +17,7 @@ class GFBadge extends StatefulWidget {
   final dynamic color;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
-  final GFSize size;
+  final dynamic size;
 
   /// child of type [Widget] is alternative to child. text will get priority over child
   final Widget child;
@@ -58,18 +55,18 @@ class _GFBadgeState extends State<GFBadge> {
   Color textColor;
   Widget child;
   GFBadgeShape counterShape;
-  GFSize size;
+  double size;
   double height;
   double width;
   double fontSize;
 
   @override
   void initState() {
-    this.color = getGFColor(widget.color);
-    this.textColor = getGFColor(widget.textColor);
+    this.color = GFColors.getGFColor(widget.color);
+    this.textColor = GFColors.getGFColor(widget.textColor);
     this.child = widget.text != null ? Text(widget.text ?? '') : widget.child;
     this.counterShape = widget.shape;
-    this.size = widget.size;
+    this.size = GFSizesClass.getGFSize(widget.size);
     super.initState();
   }
 
@@ -101,23 +98,22 @@ class _GFBadgeState extends State<GFBadge> {
           borderRadius: BorderRadius.circular(5.0), side: shapeBorder);
     }
 
-    if (this.size == GFSize.small) {
-      this.height = getGFSize(this.size) * 0.56;
-      this.width = getGFSize(this.size) * 0.75;
-      this.fontSize = getGFSize(this.size) * 0.31;
-    } else if (this.size == GFSize.medium) {
-      this.height = getGFSize(this.size) * 0.5;
-      this.width = getGFSize(this.size) * 0.65;
-      this.fontSize = getGFSize(this.size) * 0.3;
-      this.fontSize = 12.0;
-    } else if (this.size == GFSize.large) {
-      this.height = getGFSize(this.size) * 0.428;
-      this.width = getGFSize(this.size) * 0.535;
-      this.fontSize = getGFSize(this.size) * 0.214;
+    if (widget.size == GFSize.small) {
+      this.height = this.size * 0.56;
+      this.width = this.size * 0.73;
+      this.fontSize = this.size * 0.31;
+    } else if (widget.size == GFSize.medium) {
+      this.height = this.size * 0.58;
+      this.width = this.size * 0.76;
+      this.fontSize = this.size * 0.34;
+    } else if (widget.size == GFSize.large) {
+      this.height = this.size * 0.6;
+      this.width = this.size * 0.79;
+      this.fontSize = this.size * 0.37;
     } else {
-      this.height = getGFSize(this.size) * 0.56;
-      this.width = getGFSize(this.size) * 0.75;
-      this.fontSize = getGFSize(this.size) * 0.31;
+      this.height = this.size * 0.58;
+      this.width = this.size * 0.76;
+      this.fontSize = this.size * 0.34;
     }
 
     return Container(
