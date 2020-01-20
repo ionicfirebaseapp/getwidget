@@ -37,7 +37,15 @@ In this beta release we are going to launch the library with following component
  
  ## Demo 
  
- Coming Soon 
+   ### Play Store 
+   <p align="left">
+        <a href="https://play.google.com/store/apps/details?id=dev.getflutter.appkithttps://www.getflutter.dev/">
+          <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/playstore_NQQBiJIQ1.png" alt="Get Flutter playstore Demo">
+        </a>
+      </p>
+  
+  ### IOS Store and Web Demo
+   Coming Soon
  
  
  ## Contributing
