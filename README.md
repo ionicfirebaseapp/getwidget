@@ -79,4 +79,4 @@ Instagram: <https://www.instagram.com/getflutter.dev/>
  
  
  ## Copyright-and-license 
- Code and documentation copyright 2017-2020 the [GETFLUTTER Authors](https://www.getflutter.dev) and [PIETECH SOLUTION PVT LTD.](https://pietechsolution.com) Code released under the [MIT License]. Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
+ Code and documentation copyright 2017-2020 the [GETFLUTTER Authors](https://www.getflutter.dev) and [IONICFIREBASEAPP](https://ionicfirebaseapp.com) Code released under the [MIT License]. Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
