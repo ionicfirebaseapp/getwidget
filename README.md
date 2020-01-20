@@ -4,7 +4,7 @@
   </a>
 </p>
 
-[**GetFlutter**](https://www.getflutter.dev) is a 100% Free Flutter open source UI library that is build to make flutter development easier than ever. GetFlutter has 1000+ pre-build widgets that you could reuse to build both Flutter Web or Mobile app development. 
+[**GetFlutter**](https://www.getflutter.dev) is a 100% Free Flutter open-source UI library that is built to make flutter development easier and joyful than ever. GetFlutter has 1000+ pre-build widgets that you could reuse to build both Flutter mobile app and web app development. Our motto to provide the best Flutter UI library to Flutter community to speed up their development process and build awesome apps with pre-build Flutter Library Components.
 
 ## Table of contents 
 
