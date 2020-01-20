@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:getflutter/colors/gf_color.dart';
 import 'package:getflutter/components/toast/gf_floating_widget.dart';
+import 'package:getflutter/types/gf_toast_type.dart';
 
 class GFToast extends StatefulWidget {
   ///Creates [GFToast] that can be used to display quick warning or error messages.
@@ -14,6 +15,8 @@ class GFToast extends StatefulWidget {
     this.backgroundColor,
     this.text,
     this.width,
+    this.type= GFToastType.basic,
+
 
     this.textStyle = const TextStyle(color: Colors.white70),
   }) : super(key: key);
@@ -35,6 +38,10 @@ class GFToast extends StatefulWidget {
 
   /// width od type [double] used to control the width od the [GFToast]
   final double width;
+
+  final GFToastType type ;
+
+
 
 
 
@@ -81,14 +88,22 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
           Container(
             width: widget.width ,
             constraints: BoxConstraints(minHeight: 50.0),
-//        width: 100,
-            margin: EdgeInsets.only(left: 10, right: 10),
+            margin: widget.type == GFToastType.fullWidth ? EdgeInsets.only(left: 0, right: 0): EdgeInsets.only(left: 10, right: 10),
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(3)),
+//              borderRadius: BorderRadius.all(Radius.circular(3)),
+              borderRadius: widget.type == GFToastType.basic
+                  ? BorderRadius.circular(0.0)
+                  : widget.type == GFToastType.rounded
+                  ? BorderRadius.circular(10.0): BorderRadius.zero,
               color: widget.backgroundColor != null
                   ? getGFColor(widget.backgroundColor)
                   : Color(0xff323232),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.40), blurRadius: 6.0
+                )
+              ]
             ),
             child: Row(
               children: <Widget>[
