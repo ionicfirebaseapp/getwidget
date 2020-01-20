@@ -98,22 +98,22 @@ class _GFBadgeState extends State<GFBadge> {
           borderRadius: BorderRadius.circular(5.0), side: shapeBorder);
     }
 
-    if (this.size == GFSize.small) {
-      this.height = GFSizesClass.getGFSize(this.size) * 0.56;
-      this.width = GFSizesClass.getGFSize(this.size) * 0.73;
-      this.fontSize = GFSizesClass.getGFSize(this.size) * 0.31;
-    } else if (this.size == GFSize.medium) {
-      this.height = GFSizesClass.getGFSize(this.size) * 0.58;
-      this.width = GFSizesClass.getGFSize(this.size) * 0.76;
-      this.fontSize = GFSizesClass.getGFSize(this.size) * 0.34;
-    } else if (this.size == GFSize.large) {
-      this.height = GFSizesClass.getGFSize(this.size) * 0.6;
-      this.width = GFSizesClass.getGFSize(this.size) * 0.79;
-      this.fontSize = GFSizesClass.getGFSize(this.size) * 0.37;
+    if (widget.size == GFSize.small) {
+      this.height = this.size * 0.56;
+      this.width = this.size * 0.73;
+      this.fontSize = this.size * 0.31;
+    } else if (widget.size == GFSize.medium) {
+      this.height = this.size * 0.58;
+      this.width = this.size * 0.76;
+      this.fontSize = this.size * 0.34;
+    } else if (widget.size == GFSize.large) {
+      this.height = this.size * 0.6;
+      this.width = this.size * 0.79;
+      this.fontSize = this.size * 0.37;
     } else {
-      this.height = GFSizesClass.getGFSize(this.size) * 0.58;
-      this.width = GFSizesClass.getGFSize(this.size) * 0.76;
-      this.fontSize = GFSizesClass.getGFSize(this.size) * 0.34;
+      this.height = this.size * 0.58;
+      this.width = this.size * 0.76;
+      this.fontSize = this.size * 0.34;
     }
 
     return Container(
