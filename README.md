@@ -13,7 +13,6 @@
 - [Features](#features)
 - [Demo](#demo)
 - [Contributing](#contributing)
-- [Bugs and feature requests](#bugs-and-feature-requests)
 - [Documentation](#documentation)
 - [Copyright and license](#copyright-and-license)
 
@@ -43,15 +42,15 @@ In this beta release we are going to launch the library with following component
  
  ## Contributing
  
-  GetFlutter is **100% free** and **open source**. We encourage and support an active, healthy community that accepts contributions from the public &ndash; including you!
-
+  GetFlutter is **100% free** and **open source**. We encourage and support an active, healthy community that accepts contributions from the public &ndash; including you. There are couple of ways in which you can contribute to the growing community of `getflutter`.
+  
+  * Pick up any issue marked with ["good first issue"](https://github.com/ionicfirebaseapp/getflutter/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+  * Fix a bug
+  * Write and improve some **documentation**. Documentation is very critical to us. We would like to if you can support to add support in multiple language for our docs.
   * If you are a developer, feel free to check out the source and submit pull requests.
   * Dig into [**CONTRIBUTING.MD**](CONTRIBUTING.md), which covers submitting bugs, requesting new features, preparing your code for a pull request, etc.
   * Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](http://forum.getflutter.dev) to keep up to date with the latest Get Flutter development. 
   * Not sure what to work on? [**We've got lots ideas.**](https://roadmap.getflutter.dev)
- 
- 
- ## Bugs-and-feature-requests
  
  
  ## Documentation
