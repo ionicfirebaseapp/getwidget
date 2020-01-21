@@ -17,6 +17,8 @@ class GFToast extends StatefulWidget {
     this.width,
     this.type = GFToastType.basic,
     this.autoDismiss = true,
+    this.alignment,
+    this.animationDuration = const Duration(seconds: 2),
     this.duration = const Duration(seconds: 2),
     this.textStyle = const TextStyle(color: Colors.white70),
   }) : super(key: key);
@@ -46,7 +48,13 @@ class GFToast extends StatefulWidget {
   final bool autoDismiss;
 
   ///type of [Duration] which takes the duration of the fade in animation
+  final Duration animationDuration;
+
+  ///type of [Duration] which takes the duration of the animation
   final Duration duration;
+
+  /// type of [Alignment] used to align the text inside the toast
+  final Alignment alignment;
 
   @override
   _GFToastState createState() => _GFToastState();
@@ -55,11 +63,12 @@ class GFToast extends StatefulWidget {
 class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
   AnimationController animationController, fadeanimationController;
   Animation<double> animation, fadeanimation;
+  bool hideToast = false;
 
   @override
   void initState() {
     animationController = AnimationController(
-        duration: const Duration(milliseconds: 300), vsync: this);
+        duration: const Duration(milliseconds: 2000), vsync: this);
     animation =
         CurvedAnimation(parent: animationController, curve: Curves.easeIn);
 
@@ -67,17 +76,28 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
 
     fadeanimationController = AnimationController(
       vsync: this,
-      duration: widget.duration,
+      duration: widget.animationDuration,
     )..addListener(() => setState(() {}));
     fadeanimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
     ).animate(fadeanimationController);
-    fadeanimationController.forward();
+    Timer(widget.duration,(){
+      fadeanimationController.forward();
+    });
+
     fadeanimation = Tween<double>(
       begin: 1.0,
       end: 0.0,
     ).animate(fadeanimationController);
+
+    fadeanimation.addStatusListener((AnimationStatus state){
+      if(fadeanimation.isCompleted && widget.autoDismiss){
+        setState(() {
+          hideToast = true;
+        });
+      }
+    });
     super.initState();
   }
 
@@ -90,7 +110,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return FadeTransition(
+    return hideToast?Container(): FadeTransition(
       opacity: widget.autoDismiss ? fadeanimation : animation,
       child: Column(
         children: <Widget>[
@@ -119,9 +139,12 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
                 Flexible(
                   flex: 7,
                   fit: FlexFit.tight,
-                  child: widget.text != null
-                      ? Text(widget.text, style: widget.textStyle)
-                      : (widget.child ?? Container()),
+                  child: Align(
+                    alignment: widget.alignment !=null ? widget.alignment: Alignment.center,
+                    child: widget.text != null
+                        ? Text(widget.text, style: widget.textStyle)
+                        : (widget.child ?? Container()),
+                  )
                 ),
                 SizedBox(
                   width: 10,
