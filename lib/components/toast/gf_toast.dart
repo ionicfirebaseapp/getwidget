@@ -95,9 +95,9 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
       child: Column(
         children: <Widget>[
           Container(
-            width: widget.width,
+            width:  widget.type == GFToastType.fullWidth? MediaQuery.of(context).size.width:widget.width,
             constraints: BoxConstraints(minHeight: 50.0),
-            margin: widget.type == GFToastType.fullWidth
+            margin:  widget.type == GFToastType.fullWidth
                 ? EdgeInsets.only(left: 0, right: 0)
                 : EdgeInsets.only(left: 10, right: 10),
             padding: EdgeInsets.all(10),
