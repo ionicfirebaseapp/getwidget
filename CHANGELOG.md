@@ -1,6 +1,33 @@
 # Changelog
 
 
+## 1.0.0 - 2020-01-20
+
+### Added
+* Stable version release
+* code refectoring
+* this release includes following stable components 
+    - GFAvatar
+    - GFButton
+    - GFIconButton
+    - GFButtonBar
+    - GFBadge
+    - GFButtonBadge
+    - GFIconBadge
+    - GFCard
+    - GFCarousel
+    - GFImageOverlay
+    - GFListTile
+    - GFTabs
+    - GFTypography
+
+
+## 1.0.0-dev.9 - 2020-01-17
+
+### Added
+* Added library exports for commonly used files.
+
+
 ## 1.0.0-dev.8 - 2020-01-16
 
 ### Fixed

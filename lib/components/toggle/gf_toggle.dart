@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../types/gf_toggle_type.dart';
-export '../../types/gf_toggle_type.dart';
+import 'package:getflutter/types/gf_toggle_type.dart';
 
 /// A toggle button allows the user to change a setting between two states.
 ///
