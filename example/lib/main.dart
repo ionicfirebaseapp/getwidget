@@ -3,38 +3,18 @@ import 'package:getflutter/colors/gf_color.dart';
 import 'package:getflutter/components/button/gf_button.dart';
 import 'package:getflutter/components/badge/gf_button_badge.dart';
 import 'package:getflutter/components/avatar/gf_avatar.dart';
-import 'package:getflutter/components/badge/gf_badge.dart';
-// import 'package:getflutter/components/list/gf_list.dart';
 import 'package:getflutter/components/tabs/gf_segment_tabs.dart';
-import 'package:getflutter/size/gf_size.dart';
 import 'package:getflutter/types/gf_button_type.dart';
 import 'package:getflutter/shape/gf_button_shape.dart';
-import 'package:getflutter/shape/gf_badge_shape.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:getflutter/components/tabs/gf_tabs.dart';
-import 'package:getflutter/components/drawer/gf_drawer.dart';
-import 'package:getflutter/components/drawer/gf_drawer_header.dart';
 import 'package:getflutter/components/toast/gf_toast.dart';
 import 'package:getflutter/components/appbar/gf_appbar.dart';
-import 'package:getflutter/components/tabs/gf_tabBarView.dart';
-import 'package:getflutter/components/button/gf_icon_button.dart';
-import 'package:getflutter/components/button/gf_social_button.dart';
-import 'package:getflutter/components/carousel/gf_carousel.dart';
-import 'package:getflutter/components/carousel/gf_items_carousel.dart';
-import 'package:getflutter/shape/gf_avatar_shape.dart';
 import 'package:getflutter/components/card/gf_card.dart';
-import 'package:getflutter/components/image/gf_image_overlay.dart';
 import 'package:getflutter/components/list_tile/gf_list_tile.dart';
-import 'package:getflutter/position/gf_position.dart';
 import 'package:getflutter/components/button/gf_button_bar.dart';
-import 'package:getflutter/components/badge/gf_icon_badge.dart';
-import 'package:getflutter/shape/gf_icon_button_shape.dart';
-import 'package:getflutter/components/tabs/gf_tabBar.dart';
 import 'package:getflutter/components/typography/gf_typography.dart';
 import 'package:getflutter/types/gf_typography_type.dart';
 import 'package:getflutter/components/toast/gf_floating_widget.dart';
-import 'package:getflutter/components/toggle/gf_toggle.dart';
-import 'package:getflutter/types/gf_toggle_type.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -185,12 +165,12 @@ class _MyHomePageState extends State<MyHomePage>
                   ),
                   GFButtonBar(
                     children: <Widget>[
-                      GFButton(),
-                      GFButton(),
-                      GFButton(),
-                      GFButton(),
-                      GFButton(),
-                      GFButton(),
+                      GFButton(
+                        onPressed: () {},
+                      ),
+                      GFButton(
+                        onPressed: () {},
+                      ),
                     ],
                   ),
                   SizedBox(
