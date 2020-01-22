@@ -6,14 +6,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/shape/gf_button_shape.dart';
 import 'package:getflutter/size/gf_size.dart';
-import 'package:getflutter/types/gf_type.dart';
+import 'package:getflutter/types/gf_button_type.dart';
 import 'package:getflutter/position/gf_position.dart';
 import 'package:getflutter/colors/gf_color.dart';
-export 'package:getflutter/position/gf_position.dart';
-export 'package:getflutter/shape/gf_button_shape.dart';
-export 'package:getflutter/size/gf_size.dart';
-export 'package:getflutter/types/gf_type.dart';
-export 'package:getflutter/colors/gf_color.dart';
 
 class GFButton extends StatefulWidget {
   /// Called when the button is tapped or otherwise activated.
@@ -88,8 +83,8 @@ class GFButton extends StatefulWidget {
   /// {@macro flutter.widgets.Clip}
   final Clip clipBehavior;
 
-  /// Button type of [GFType] i.e, solid, outline, outline2x, transparent
-  final GFType type;
+  /// Button type of [GFButtonType] i.e, solid, outline, outline2x, transparent
+  final GFButtonType type;
 
   /// Button type of [GFButtonShape] i.e, standard, pills, square, shadow, icons
   final GFButtonShape shape;
@@ -135,7 +130,7 @@ class GFButton extends StatefulWidget {
   /// icon of type [Widget]
   final Widget icon;
 
-  /// icon type of [GFIconPosition] i.e, start, end
+  /// icon type of [GFPosition] i.e, start, end
   final GFPosition position;
 
   /// on true state blockButton gives block size button
@@ -204,7 +199,7 @@ class GFButton extends StatefulWidget {
     this.autofocus = false,
     MaterialTapTargetSize materialTapTargetSize,
     this.child,
-    this.type = GFType.solid,
+    this.type = GFButtonType.solid,
     this.shape = GFButtonShape.standard,
     this.color = GFColor.primary,
     this.textColor,
@@ -246,7 +241,7 @@ class _GFButtonState extends State<GFButton> {
   Widget child;
   Widget icon;
   Function onPressed;
-  GFType type;
+  GFButtonType type;
   GFButtonShape shape;
   double size;
   GFPosition position;
@@ -256,17 +251,17 @@ class _GFButtonState extends State<GFButton> {
 
   @override
   void initState() {
-    this.color = getGFColor(widget.color);
-    this.textColor = getGFColor(widget.textColor);
+    this.color = GFColors.getGFColor(widget.color);
+    this.textColor = GFColors.getGFColor(widget.textColor);
     this.child = widget.text != null ? Text(widget.text) : widget.child;
     this.icon = widget.icon;
     this.onPressed = widget.onPressed;
     this.type = widget.type;
     this.shape = widget.shape;
-    this.size = getGFSize(widget.size);
+    this.size = GFSizesClass.getGFSize(widget.size);
     this.position = widget.position;
-    this.disabledColor = getGFColor(widget.disabledColor);
-    this.disabledTextColor = getGFColor(widget.disabledTextColor);
+    this.disabledColor = GFColors.getGFColor(widget.disabledColor);
+    this.disabledTextColor = GFColors.getGFColor(widget.disabledTextColor);
 
     _updateState(MaterialState.disabled, !widget.enabled);
     super.initState();
@@ -355,8 +350,9 @@ class _GFButtonState extends State<GFButton> {
 
     Color getBorderColor() {
       if (widget.enabled) {
-        final Color fillColor =
-            this.color == null ? getGFColor(GFColor.primary) : this.color;
+        final Color fillColor = this.color == null
+            ? GFColors.getGFColor(GFColor.primary)
+            : this.color;
         if (fillColor != null) return fillColor;
       } else {
         if (this.disabledColor != null)
@@ -365,13 +361,15 @@ class _GFButtonState extends State<GFButton> {
           return this.color.withOpacity(0.48);
         }
       }
-      return this.color == null ? getGFColor(GFColor.primary) : this.color;
+      return this.color == null
+          ? GFColors.getGFColor(GFColor.primary)
+          : this.color;
     }
 
     Color getDisabledFillColor() {
-      if (widget.type == GFType.transparent ||
-          widget.type == GFType.outline ||
-          widget.type == GFType.outline2x) return Colors.transparent;
+      if (widget.type == GFButtonType.transparent ||
+          widget.type == GFButtonType.outline ||
+          widget.type == GFButtonType.outline2x) return Colors.transparent;
       if (this.disabledColor != null)
         return this.disabledColor;
       else {
@@ -380,43 +378,44 @@ class _GFButtonState extends State<GFButton> {
     }
 
     Color getColor() {
-      if (widget.type == GFType.transparent ||
-          widget.type == GFType.outline ||
-          widget.type == GFType.outline2x) return Colors.transparent;
-      final Color fillColor =
-          this.color == null ? getGFColor(GFColor.primary) : this.color;
+      if (widget.type == GFButtonType.transparent ||
+          widget.type == GFButtonType.outline ||
+          widget.type == GFButtonType.outline2x) return Colors.transparent;
+      final Color fillColor = this.color == null
+          ? GFColors.getGFColor(GFColor.primary)
+          : this.color;
       return fillColor;
     }
 
     Color getDisabledTextColor() {
       if (this.disabledTextColor != null)
         return this.disabledTextColor;
-      else if (widget.type == GFType.outline ||
-          widget.type == GFType.outline2x ||
-          widget.type == GFType.transparent) {
+      else if (widget.type == GFButtonType.outline ||
+          widget.type == GFButtonType.outline2x ||
+          widget.type == GFButtonType.transparent) {
         return this.color;
       } else {
-        return getGFColor(GFColor.dark);
+        return GFColors.getGFColor(GFColor.dark);
       }
     }
 
     Color getTextColor() {
-      if (widget.type == GFType.outline ||
-          widget.type == GFType.outline2x ||
-          widget.type == GFType.transparent) {
+      if (widget.type == GFButtonType.outline ||
+          widget.type == GFButtonType.outline2x ||
+          widget.type == GFButtonType.transparent) {
         return widget.enabled
             ? this.textColor == null
-                ? this.color == getGFColor(GFColor.transparent)
-                    ? getGFColor(GFColor.dark)
+                ? this.color == GFColors.getGFColor(GFColor.transparent)
+                    ? GFColors.getGFColor(GFColor.dark)
                     : this.color
                 : this.textColor
             : getDisabledTextColor();
       }
       if (this.textColor == null) {
-        if (this.color == getGFColor(GFColor.transparent)) {
-          return getGFColor(GFColor.dark);
+        if (this.color == GFColors.getGFColor(GFColor.transparent)) {
+          return GFColors.getGFColor(GFColor.dark);
         } else {
-          return getGFColor(GFColor.white);
+          return GFColors.getGFColor(GFColor.white);
         }
       } else {
         return this.textColor;
@@ -434,7 +433,7 @@ class _GFButtonState extends State<GFButton> {
               ? getBorderColor()
               : widget.borderSide.color,
       width: widget.borderSide?.width == null
-          ? widget.type == GFType.outline2x ? 2.0 : 1.0
+          ? widget.type == GFButtonType.outline2x ? 2.0 : 1.0
           : widget.borderSide?.width,
     );
 
@@ -451,15 +450,15 @@ class _GFButtonState extends State<GFButton> {
         break;
     }
 
-    final BorderSide shapeBorder =
-        widget.type == GFType.outline || widget.type == GFType.outline2x
-            ? outlineBorder
-            : widget.borderSide != null
-                ? widget.borderSide
-                : BorderSide(
-                    color: this.color == null ? themeColor : getBorderColor(),
-                    width: 0.0,
-                  );
+    final BorderSide shapeBorder = widget.type == GFButtonType.outline ||
+            widget.type == GFButtonType.outline2x
+        ? outlineBorder
+        : widget.borderSide != null
+            ? widget.borderSide
+            : BorderSide(
+                color: this.color == null ? themeColor : getBorderColor(),
+                width: 0.0,
+              );
 
     if (this.shape == GFButtonShape.pills) {
       shape = RoundedRectangleBorder(
@@ -476,14 +475,14 @@ class _GFButtonState extends State<GFButton> {
     }
 
     BoxDecoration getBoxShadow() {
-      if (widget.type != GFType.transparent) {
+      if (widget.type != GFButtonType.transparent) {
         if (widget.boxShadow == null && widget.buttonBoxShadow != true) {
           return null;
         } else {
           return BoxDecoration(
-              color: widget.type == GFType.transparent ||
-                      widget.type == GFType.outline ||
-                      widget.type == GFType.outline2x
+              color: widget.type == GFButtonType.transparent ||
+                      widget.type == GFButtonType.outline ||
+                      widget.type == GFButtonType.outline2x
                   ? Colors.transparent
                   : this.color,
               borderRadius: widget.shape == GFButtonShape.pills
@@ -539,11 +538,11 @@ class _GFButtonState extends State<GFButton> {
       constraints: this.icon == null
           ? BoxConstraints(minWidth: 80.0)
           : BoxConstraints(minWidth: 90.0),
-      decoration: widget.type == GFType.solid ? getBoxShadow() : null,
+      decoration: widget.type == GFButtonType.solid ? getBoxShadow() : null,
       child: Material(
         elevation: _effectiveElevation,
         textStyle: widget.textStyle == null ? getTextStyle() : widget.textStyle,
-        shape: widget.type == GFType.transparent
+        shape: widget.type == GFButtonType.transparent
             ? null
             : widget.borderShape == null ? shape : widget.borderShape,
         color: widget.enabled ? getColor() : getDisabledFillColor(),
@@ -562,11 +561,11 @@ class _GFButtonState extends State<GFButton> {
           onTap: widget.onPressed,
           onLongPress: widget.onLongPress,
           enableFeedback: widget.enableFeedback,
-          splashColor: getGFColor(widget.splashColor),
-          highlightColor: getGFColor(widget.highlightColor),
-          focusColor: getGFColor(widget.focusColor),
-          hoverColor: getGFColor(widget.hoverColor),
-          customBorder: widget.type == GFType.transparent
+          splashColor: GFColors.getGFColor(widget.splashColor),
+          highlightColor: GFColors.getGFColor(widget.highlightColor),
+          focusColor: GFColors.getGFColor(widget.focusColor),
+          hoverColor: GFColors.getGFColor(widget.hoverColor),
+          customBorder: widget.type == GFButtonType.transparent
               ? null
               : widget.borderShape == null ? shape : widget.borderShape,
           child: IconTheme.merge(
