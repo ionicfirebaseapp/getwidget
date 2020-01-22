@@ -94,7 +94,8 @@ class GFImageOverlay extends StatelessWidget {
         image: new DecorationImage(
             fit: BoxFit.fill,
             colorFilter: child != null ? colorFilter : null,
-            image: image),
+            image: image
+        ),
       ),
     );
   }

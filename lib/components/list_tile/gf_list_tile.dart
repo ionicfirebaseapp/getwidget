@@ -48,7 +48,8 @@ class GFListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(minHeight: 50),
-      padding: padding,
+      padding: EdgeInsets.all(8.0),
+//      margin: padding,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.all(Radius.circular(5)),

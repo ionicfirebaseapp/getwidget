@@ -35,10 +35,15 @@ class GFCard extends StatelessWidget {
       this.borderRadius,
       this.border,
       this.boxFit,
-      this.colorFilter})
+      this.colorFilter,
+        this.height
+      })
       : assert(elevation == null || elevation >= 0.0),
         assert(borderOnForeground != null),
         super(key: key);
+
+  /// defines the card's height
+  final double height;
 
   /// [GFPosition] titlePosition helps to set titlebar at top of card
   final GFPosition titlePosition;
@@ -140,6 +145,7 @@ class GFCard extends StatelessWidget {
     );
 
     return Container(
+      height: height,
       margin: margin ?? cardTheme.margin ?? const EdgeInsets.all(16.0),
       child: Material(
           type: MaterialType.card,
