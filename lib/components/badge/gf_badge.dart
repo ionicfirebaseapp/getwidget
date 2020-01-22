@@ -39,7 +39,7 @@ class GFBadge extends StatefulWidget {
     this.shape = GFBadgeShape.standard,
     this.color = GFColor.danger,
     this.textColor = GFColor.white,
-    this.size = GFSize.medium,
+    this.size = GFSize.small,
     this.border,
     this.text,
     this.child,
