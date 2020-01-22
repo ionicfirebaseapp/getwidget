@@ -226,7 +226,6 @@ class _GFIconButtonState extends State<GFIconButton> {
       this.width = 35.0;
       this.iconPixel = 18.0;
     } else if (widget.size == GFSize.large) {
-      print('her');
       this.height = 40.0;
       this.width = 40.0;
       this.iconPixel = 18.0;
