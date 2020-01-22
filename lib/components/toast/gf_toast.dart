@@ -132,7 +132,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
                               ? BorderRadius.circular(10.0)
                               : BorderRadius.zero,
                       color: widget.backgroundColor != null
-                          ? getGFColor(widget.backgroundColor)
+                          ? GFColors.getGFColor(widget.backgroundColor)
                           : Color(0xff323232),
                       boxShadow: [
                         BoxShadow(

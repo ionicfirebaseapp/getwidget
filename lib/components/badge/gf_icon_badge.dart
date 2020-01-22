@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:getflutter/components/button/gf_icon_button.dart';
 
 class GFIconBadge extends StatefulWidget {
-  /// child of type [GFIconButton] is used to show icon.
-  /// Use [Icon] widget for compatibility.
+  /// child of type [Widget] is used to show icon.
+  /// Use [GFIconButton] widget for compatibility.
   final Widget child;
 
   /// widget of type [Widget] is used to show counter to the top right corner of child.
@@ -28,22 +28,16 @@ class GFIconBadge extends StatefulWidget {
 
 class _GFIconBadgeState extends State<GFIconBadge> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60.0,
-      width: 60.0,
       padding: widget.padding,
       child: Stack(
         children: <Widget>[
           widget.child ?? Container(),
           new Positioned(
-            top: 2,
-            left: 22,
+//            top: 2,
+//            left: 22,
+            right: 0,
             child: widget.counterChild ?? Container(),
           ),
         ],

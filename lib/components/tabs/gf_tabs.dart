@@ -192,7 +192,8 @@ class _GFTabsState extends State<GFTabs> {
                 length: widget.length,
                 initialIndex: widget.initialIndex,
                 tabBarHeight: widget.tabBarHeight,
-                tabBarColor: widget.tabBarColor ?? getGFColor(GFColor.primary),
+                tabBarColor:
+                    widget.tabBarColor ?? GFColors.getGFColor(GFColor.primary),
                 controller: widget.controller,
                 labelColor: widget.labelColor,
                 unselectedLabelColor: widget.unselectedLabelColor,

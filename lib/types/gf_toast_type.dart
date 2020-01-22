@@ -1,1 +1,1 @@
-enum GFToastType {basic, rounded, fullWidth}
+enum GFToastType { basic, rounded, fullWidth }

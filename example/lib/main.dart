@@ -3,38 +3,18 @@ import 'package:getflutter/colors/gf_color.dart';
 import 'package:getflutter/components/button/gf_button.dart';
 import 'package:getflutter/components/badge/gf_button_badge.dart';
 import 'package:getflutter/components/avatar/gf_avatar.dart';
-import 'package:getflutter/components/badge/gf_badge.dart';
-// import 'package:getflutter/components/list/gf_list.dart';
 import 'package:getflutter/components/tabs/gf_segment_tabs.dart';
-import 'package:getflutter/size/gf_size.dart';
-import 'package:getflutter/types/gf_type.dart';
+import 'package:getflutter/types/gf_button_type.dart';
 import 'package:getflutter/shape/gf_button_shape.dart';
-import 'package:getflutter/shape/gf_badge_shape.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:getflutter/components/tabs/gf_tabs.dart';
-import 'package:getflutter/components/drawer/gf_drawer.dart';
-import 'package:getflutter/components/drawer/gf_drawer_header.dart';
 import 'package:getflutter/components/toast/gf_toast.dart';
 import 'package:getflutter/components/appbar/gf_appbar.dart';
-import 'package:getflutter/components/tabs/gf_tabBarView.dart';
-import 'package:getflutter/components/button/gf_icon_button.dart';
-import 'package:getflutter/components/button/gf_social_button.dart';
-import 'package:getflutter/components/carousel/gf_carousel.dart';
-import 'package:getflutter/components/carousel/gf_items_carousel.dart';
-import 'package:getflutter/shape/gf_avatar_shape.dart';
 import 'package:getflutter/components/card/gf_card.dart';
-import 'package:getflutter/components/image/gf_image_overlay.dart';
 import 'package:getflutter/components/list_tile/gf_list_tile.dart';
-import 'package:getflutter/position/gf_position.dart';
 import 'package:getflutter/components/button/gf_button_bar.dart';
-import 'package:getflutter/components/badge/gf_icon_badge.dart';
-import 'package:getflutter/shape/gf_icon_button_shape.dart';
-import 'package:getflutter/components/tabs/gf_tabBar.dart';
 import 'package:getflutter/components/typography/gf_typography.dart';
 import 'package:getflutter/types/gf_typography_type.dart';
 import 'package:getflutter/components/toast/gf_floating_widget.dart';
-import 'package:getflutter/components/toggle/gf_toggle.dart';
-import 'package:getflutter/types/gf_toggle_type.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -181,7 +161,20 @@ class _MyHomePageState extends State<MyHomePage>
                     type: GFTypographyType.typo6,
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 20,
+                  ),
+                  GFButtonBar(
+                    children: <Widget>[
+                      GFButton(
+                        onPressed: () {},
+                      ),
+                      GFButton(
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   GFToast(
                     text: 'Happy New Year',
@@ -190,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage>
                         print("dfr");
                       },
                       text: 'OK',
-                      type: GFType.outline,
+                      type: GFButtonType.outline,
                       color: GFColor.warning,
                     ),
                   ),
@@ -216,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage>
                                   print("df");
                                 },
                                 text: 'OK',
-                                type: GFType.outline,
+                                type: GFButtonType.outline,
                                 color: GFColor.warning,
                               ),
                             )
@@ -233,7 +226,7 @@ class _MyHomePageState extends State<MyHomePage>
                                 });
                               },
                               text: 'Click to View the toast',
-                              type: GFType.outline,
+                              type: GFButtonType.outline,
                               color: GFColor.warning,
                             ),
                           )
@@ -492,7 +485,7 @@ class _MyHomePageState extends State<MyHomePage>
 //              showDivider: false,
 //                icon: GFIconButton(
 //                  onPressed: null,
-//                  type: GFType.transparent,
+//                  type: GFButtonType.transparent,
 //                  icon: Icon(Icons.favorite_border),
 //                ),
 //              ),
@@ -562,7 +555,7 @@ class _MyHomePageState extends State<MyHomePage>
 ////              color: GFColor.success,
 ////              textColor: GFColor.dark,
 ////              shape: GFButtonShape.pills,
-////              type: GFType.outline2x,
+////              type: GFButtonType.outline2x,
 ////              size: GFSize.small,
 //              icon: GFBadge(
 //                child: Text("12"),
@@ -588,7 +581,7 @@ class _MyHomePageState extends State<MyHomePage>
 //////              textColor: GFColor.white,
 //////              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
 ////              ),
-//              type: GFType.outline2x,
+//              type: GFButtonType.outline2x,
 //              shape: GFButtonShape.pills,
 ////          blockButton: true,
 //              fullWidthButton: true,
@@ -612,7 +605,7 @@ class _MyHomePageState extends State<MyHomePage>
 //          hoverColor: GFColor.dark,
               color: GFColor.secondary,
 //          focusColor: GFColor.danger,
-              type: GFType.solid,
+              type: GFButtonType.solid,
               shape: GFButtonShape.pills,
               buttonBoxShadow: true,
 //              boxShadow: BoxShadow(
@@ -636,7 +629,7 @@ class _MyHomePageState extends State<MyHomePage>
 //              onPressed: null,
 //              icon: Icon(Icons.ac_unit,),
 ////              iconSize: 12.0,
-//              type: GFType.solid,
+//              type: GFButtonType.solid,
 ////          shape: GFButtonShape.pills,
 ////          size: GFSize.large,
 //              buttonBoxShadow: true,
@@ -824,7 +817,7 @@ class _MyHomePageState extends State<MyHomePage>
 //                icon: GFIconButton(
 //                  onPressed: null,
 //                  icon: Icon(Icons.favorite_border),
-//                  type: GFType.transparent,
+//                  type: GFButtonType.transparent,
 //                ),
 //              ),
 //              content: Text(
@@ -839,13 +832,13 @@ class _MyHomePageState extends State<MyHomePage>
 ////                    onPressed: null,
 ////                    child: Text("favorite"),
 ////                    icon: Icon(Icons.favorite_border),
-////                    type: GFType.transparent,
+////                    type: GFButtonType.transparent,
 ////                  ),
 ////                  GFButton(
 ////                    onPressed: null,
 ////                    child: Text("share"),
 ////                    icon: Icon(Icons.share),
-////                    type: GFType.outline,
+////                    type: GFButtonType.outline,
 ////                  ),
 ////                ],
 ////              ),
@@ -858,7 +851,7 @@ class _MyHomePageState extends State<MyHomePage>
 //                  onPressed: null,
 //                  child: Text("like"),
 //                  icon: Icon(Icons.favorite_border),
-//                  type: GFType.transparent,
+//                  type: GFButtonType.transparent,
 //                ),
 //                GFButton(
 //                  onPressed: null,
@@ -869,7 +862,7 @@ class _MyHomePageState extends State<MyHomePage>
 //                  onPressed: (){},
 //                  child: Text("share"),
 //                  icon: Icon(Icons.share),
-//                  type: GFType.outline,
+//                  type: GFButtonType.outline,
 //                ),
 //              ],
 //            ),
@@ -883,7 +876,7 @@ class _MyHomePageState extends State<MyHomePage>
 //              subTitle: Text('subtitle'),
 //              icon: GFIconButton(
 //                onPressed: null,
-//                type: GFType.transparent,
+//                type: GFButtonType.transparent,
 //                icon: Icon(Icons.favorite_border),
 //              ),
 //            ),
@@ -1021,7 +1014,7 @@ class _MyHomePageState extends State<MyHomePage>
 //              onPressed: (){},
 //              icon: Icon(Icons.ac_unit),
 ////              iconSize: 12.0,
-////              type: GFType.solid,
+////              type: GFButtonType.solid,
 ////              shape: GFIconButtonShape.pills,
 ////              size: GFSize.large,
 ////              buttonBoxShadow: true,
@@ -1047,7 +1040,7 @@ class _MyHomePageState extends State<MyHomePage>
 //            ),
 //
 //            GFButton(
-//              type: GFType.outline,
+//              type: GFButtonType.outline,
 //              shape: GFButtonShape.pills,
 //              text: 'goodies',
 //              icon: Icon(Icons.share),
