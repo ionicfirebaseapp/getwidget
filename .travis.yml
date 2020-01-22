@@ -1,0 +1,28 @@
+os:
+  - linux
+
+sudo: false
+
+git:
+  depth: 3
+
+cache:
+  directories:
+    - $HOME/.pub-cache
+
+env:
+  - FLUTTER_VERSION=stable
+
+# Only building master means that we don't run two builds for each pull request.
+branches:
+  only: [master]
+
+before_script:
+  - cd ../
+  - git clone https://github.com/flutter/flutter.git -b $FLUTTER_VERSION
+  - ./flutter/bin/flutter doctor
+  - cd getflutter/
+
+script:
+  - ./../flutter/bin/flutter analyze .
+  - ./../flutter/bin/cache/dart-sdk/bin/dartfmt --dry-run lib

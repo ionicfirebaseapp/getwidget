@@ -4,7 +4,6 @@ import 'package:getflutter/components/button/gf_button_bar.dart';
 import 'package:getflutter/components/list_tile/gf_list_tile.dart';
 import 'package:getflutter/components/image/gf_image_overlay.dart';
 import 'package:getflutter/position/gf_position.dart';
-export 'package:getflutter/position/gf_position.dart';
 
 /// A material design card. A card has slightly rounded corners and a shadow.
 ///
@@ -36,8 +35,7 @@ class GFCard extends StatelessWidget {
       this.border,
       this.boxFit,
       this.colorFilter,
-        this.height
-      })
+      this.height})
       : assert(elevation == null || elevation >= 0.0),
         assert(borderOnForeground != null),
         super(key: key);

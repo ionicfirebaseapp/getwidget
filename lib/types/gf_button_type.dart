@@ -1,5 +1,5 @@
 /// [GFType] is used to change the type of widgets
-enum GFType {
+enum GFButtonType {
   /// Default type is [GFType.solid], used to fill with color for widget
   solid,
 

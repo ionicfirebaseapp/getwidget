@@ -3,38 +3,26 @@ import 'package:getflutter/colors/gf_color.dart';
 import 'package:getflutter/components/button/gf_button.dart';
 import 'package:getflutter/components/badge/gf_button_badge.dart';
 import 'package:getflutter/components/avatar/gf_avatar.dart';
-import 'package:getflutter/components/badge/gf_badge.dart';
-// import 'package:getflutter/components/list/gf_list.dart';
 import 'package:getflutter/components/tabs/gf_segment_tabs.dart';
-import 'package:getflutter/size/gf_size.dart';
-import 'package:getflutter/types/gf_type.dart';
+import 'package:getflutter/getflutter.dart';
 import 'package:getflutter/shape/gf_button_shape.dart';
-import 'package:getflutter/shape/gf_badge_shape.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:getflutter/components/tabs/gf_tabs.dart';
-import 'package:getflutter/components/drawer/gf_drawer.dart';
-import 'package:getflutter/components/drawer/gf_drawer_header.dart';
 import 'package:getflutter/components/toast/gf_toast.dart';
 import 'package:getflutter/components/appbar/gf_appbar.dart';
-import 'package:getflutter/components/tabs/gf_tabBarView.dart';
-import 'package:getflutter/components/button/gf_icon_button.dart';
-import 'package:getflutter/components/button/gf_social_button.dart';
-import 'package:getflutter/components/carousel/gf_carousel.dart';
-import 'package:getflutter/components/carousel/gf_items_carousel.dart';
-import 'package:getflutter/shape/gf_avatar_shape.dart';
-import 'package:getflutter/components/card/gf_card.dart';
-import 'package:getflutter/components/image/gf_image_overlay.dart';
 import 'package:getflutter/components/list_tile/gf_list_tile.dart';
-import 'package:getflutter/position/gf_position.dart';
 import 'package:getflutter/components/button/gf_button_bar.dart';
-import 'package:getflutter/components/badge/gf_icon_badge.dart';
-import 'package:getflutter/shape/gf_icon_button_shape.dart';
-import 'package:getflutter/components/tabs/gf_tabBar.dart';
 import 'package:getflutter/components/typography/gf_typography.dart';
 import 'package:getflutter/types/gf_typography_type.dart';
 import 'package:getflutter/components/toast/gf_floating_widget.dart';
-import 'package:getflutter/components/toggle/gf_toggle.dart';
-import 'package:getflutter/types/gf_toggle_type.dart';
+import 'package:getflutter/components/drawer/gf_drawer.dart';
+import 'package:getflutter/components/drawer/gf_drawer_header.dart';
+import 'package:getflutter/components/button/gf_icon_button.dart';
+import 'package:getflutter/components/image/gf_image_overlay.dart';
+import 'package:getflutter/components/card/gf_card.dart';
+import 'package:getflutter/components/tabs/gf_tabs.dart';
+import 'package:getflutter/components/tabs/gf_tabBarView.dart';
+import 'package:getflutter/types/gf_button_type.dart';
+import 'package:getflutter/position/gf_position.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -93,8 +81,10 @@ class _MyHomePageState extends State<MyHomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: GFDrawer(
-        colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
-        backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+        colorFilter: new ColorFilter.mode(
+            Colors.black.withOpacity(0.6), BlendMode.darken),
+        backgroundImage: NetworkImage(
+            "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
         gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
@@ -112,15 +102,16 @@ class _MyHomePageState extends State<MyHomePage>
             GFDrawerHeader(
               currentAccountPicture: GFAvatar(
                 radius: 80.0,
-                backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+                backgroundImage: NetworkImage(
+                    "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
               ),
-
               decoration: BoxDecoration(
                 color: Colors.teal.withOpacity(0.45),
               ),
               otherAccountsPictures: <Widget>[
                 Image(
-                  image: NetworkImage("https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"),
+                  image: NetworkImage(
+                      "https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"),
                   fit: BoxFit.cover,
                 ),
                 GFAvatar(
@@ -144,8 +135,7 @@ class _MyHomePageState extends State<MyHomePage>
             ),
             ListTile(
               title: Text('Item 2'),
-              onTap: () {
-              },
+              onTap: () {},
             ),
           ],
         ),
@@ -153,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage>
       appBar: GFAppBar(
         backgroundColor: Colors.tealAccent,
         centerTitle: true,
-//        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: null),
+        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: null),
         title: Text("ui-kit"),
 //        GFSegmentTabs(
 //          tabController: tabController,
@@ -172,8 +162,15 @@ class _MyHomePageState extends State<MyHomePage>
 //          ],
 //        ),
         trailing: <Widget>[
-          IconButton(icon: Icon(Icons.title), onPressed: null, color: Colors.orange,),
-          GFIconButton(icon: Icon(Icons.title), onPressed: null,),
+          IconButton(
+            icon: Icon(Icons.title),
+            onPressed: null,
+            color: Colors.orange,
+          ),
+          GFIconButton(
+            icon: Icon(Icons.title),
+            onPressed: null,
+          ),
           GFIconButton(icon: Icon(Icons.directions_bus), onPressed: null),
 //          GFIconButton(icon: Icon(Icons.directions_bus), onPressed: null),
 //          GFIconButton(icon: Icon(Icons.directions_bus), onPressed: null),
@@ -199,8 +196,6 @@ class _MyHomePageState extends State<MyHomePage>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-
-
             GFCard(
               content: Column(
                 children: <Widget>[
@@ -209,16 +204,19 @@ class _MyHomePageState extends State<MyHomePage>
                     type: GFTypographyType.typo6,
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   GFToast(
                     text: 'Happy New Year',
                     button: GFButton(
-                      onPressed: (){
+                      onPressed: () {
                         print("dfr");
                       },
                       text: 'OK',
-                      type: GFType.outline,
+                      type: GFButtonType.outline,
                       color: GFColor.warning,
                     ),
                   ),
@@ -226,48 +224,50 @@ class _MyHomePageState extends State<MyHomePage>
               ),
             ),
 
-          GFCard(
-            content: Column(
-              children: <Widget>[
-                GFTypography(
-                  text: 'Floating Toast',
-                  type: GFTypographyType.typo6,
-                ),
-                GFFloatingWidget(
-                    verticalPosition: 100,
-                    child:  showToast? GFToast(
-                    width: 300,
-                      text: 'Happy New Year',
-                      button: GFButton(
-                        onPressed: (){
-                          print("df");
-                        },
-                        text: 'OK',
-                        type: GFType.outline,
-                        color: GFColor.warning,
-                      ),
-                    ):Container(),
-                    body: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          alignment: Alignment.center,
-                          child:  GFButton(onPressed: (){
-                            setState(() {
-                              showToast = !showToast;
-                            });
-                          },
-                            text: 'Click to View the toast',
-                            type: GFType.outline,
-                            color: GFColor.warning,
-                          ),
-                        )
-                      ],
-                    )
-                )
-              ],
+            GFCard(
+              content: Column(
+                children: <Widget>[
+                  GFTypography(
+                    text: 'Floating Toast',
+                    type: GFTypographyType.typo6,
+                  ),
+                  GFFloatingWidget(
+                      verticalPosition: 100,
+                      child: showToast
+                          ? GFToast(
+                              width: 300,
+                              text: 'Happy New Year',
+                              button: GFButton(
+                                onPressed: () {
+                                  print("df");
+                                },
+                                text: 'OK',
+                                type: GFButtonType.outline,
+                                color: GFColor.warning,
+                              ),
+                            )
+                          : Container(),
+                      body: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            alignment: Alignment.center,
+                            child: GFButton(
+                              onPressed: () {
+                                setState(() {
+                                  showToast = !showToast;
+                                });
+                              },
+                              text: 'Click to View the toast',
+                              type: GFButtonType.outline,
+                              color: GFColor.warning,
+                            ),
+                          )
+                        ],
+                      ))
+                ],
+              ),
             ),
-          ),
 
 //            Container(
 //              height: 130.0,
@@ -283,8 +283,6 @@ class _MyHomePageState extends State<MyHomePage>
 //                      ])),
 //            ),
 //
-
-
 
 //            GFCard(
 //              content: Column(
@@ -363,20 +361,47 @@ class _MyHomePageState extends State<MyHomePage>
 //              ),
 //            ),
 
-          GFButtonBar(
-            alignment: WrapAlignment.spaceEvenly,
-            children: <Widget>[
-              GFButton(onPressed: null, child: Text("dshsc"), icon: Icon(Icons.access_time),),
-              GFButton(onPressed: null, child: Text("dszndc"),icon: Icon(Icons.warning),),
-              GFButtonBadge(onPressed: null, text: "djvhcfdscc",icon: Icon(Icons.label),),
-              GFButton(onPressed: null, child: Text("gcnjd"),),
-              GFButton(onPressed: null, child: Text("dsqdsc"), icon: Icon(Icons.favorite),),
-              GFButton(onPressed: null, child: Text("gcd"),),
-              GFButton(onPressed: null, child: Text("dascdsc"),),
-              GFButton(onPressed: null, child: Text("gtgcd"),),
-
-            ],
-          ),
+            GFButtonBar(
+              alignment: WrapAlignment.spaceEvenly,
+              children: <Widget>[
+                GFButton(
+                  onPressed: null,
+                  child: Text("dshsc"),
+                  icon: Icon(Icons.access_time),
+                ),
+                GFButton(
+                  onPressed: null,
+                  child: Text("dszndc"),
+                  icon: Icon(Icons.warning),
+                ),
+                GFButtonBadge(
+                  onPressed: null,
+                  text: "djvhcfdscc",
+                  icon: Icon(Icons.label),
+                ),
+                GFButton(
+                  onPressed: null,
+                  child: Text("gcnjd"),
+                ),
+                GFButton(
+                  onPressed: null,
+                  child: Text("dsqdsc"),
+                  icon: Icon(Icons.favorite),
+                ),
+                GFButton(
+                  onPressed: null,
+                  child: Text("gcd"),
+                ),
+                GFButton(
+                  onPressed: null,
+                  child: Text("dascdsc"),
+                ),
+                GFButton(
+                  onPressed: null,
+                  child: Text("gtgcd"),
+                ),
+              ],
+            ),
 
 //            GFCard(
 //                content: Column(
@@ -493,7 +518,7 @@ class _MyHomePageState extends State<MyHomePage>
 //              showDivider: false,
 //                icon: GFIconButton(
 //                  onPressed: null,
-//                  type: GFType.transparent,
+//                  type: GFButtonType.transparent,
 //                  icon: Icon(Icons.favorite_border),
 //                ),
 //              ),
@@ -522,27 +547,26 @@ class _MyHomePageState extends State<MyHomePage>
 //            ),
 //
             GFCard(
-              content: Row(
-                children: <Widget>[
-                  GFImageOverlay(
-                    height: 200.0,
-                    width: 200.0,
-                    image: AssetImage("lib/assets/food.jpeg"),
-                    boxFit: BoxFit.fill,
-                    colorFilter: new ColorFilter.mode(
-                        Colors.black.withOpacity(0.67), BlendMode.darken),
+                content: Row(
+              children: <Widget>[
+                GFImageOverlay(
+                  height: 200.0,
+                  width: 200.0,
+                  image: AssetImage("lib/assets/food.jpeg"),
+                  boxFit: BoxFit.fill,
+                  colorFilter: new ColorFilter.mode(
+                      Colors.black.withOpacity(0.67), BlendMode.darken),
 //                shape: BoxShape.circle,
-                  ),
-                ],
-              )
-            ),
+                ),
+              ],
+            )),
 
-            Image.asset(
-              'lib/assets/food.jpeg',
-              fit: BoxFit.cover,
-              color: Color(0xff0d69ff).withOpacity(1.0),
-              colorBlendMode: BlendMode.softLight,
-            ),
+            // Image.asset(
+            //   'lib/assets/food.jpeg',
+            //   fit: BoxFit.cover,
+            //   color: Color(0xff0d69ff).withOpacity(1.0),
+            //   colorBlendMode: BlendMode.softLight,
+            // ),
 
 //            GFCard(
 //              content: Container(
@@ -574,7 +598,7 @@ class _MyHomePageState extends State<MyHomePage>
 ////              color: GFColor.success,
 ////              textColor: GFColor.dark,
 ////              shape: GFButtonShape.pills,
-////              type: GFType.outline2x,
+////              type: GFButtonType.outline2x,
 ////              size: GFSize.small,
 //              icon: GFBadge(
 //                child: Text("12"),
@@ -600,7 +624,7 @@ class _MyHomePageState extends State<MyHomePage>
 //////              textColor: GFColor.white,
 //////              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
 ////              ),
-//              type: GFType.outline2x,
+//              type: GFButtonType.outline2x,
 //              shape: GFButtonShape.pills,
 ////          blockButton: true,
 //              fullWidthButton: true,
@@ -618,13 +642,13 @@ class _MyHomePageState extends State<MyHomePage>
 ////              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
 //              ),
               text: 'goodies',
-              onPressed: (){},
+              onPressed: () {},
 //          textColor: GFColor.danger,
 //          icon: Icon(Icons.access_alarms),
 //          hoverColor: GFColor.dark,
               color: GFColor.secondary,
 //          focusColor: GFColor.danger,
-              type: GFType.solid,
+              type: GFButtonType.solid,
               shape: GFButtonShape.pills,
               buttonBoxShadow: true,
 //              boxShadow: BoxShadow(
@@ -648,7 +672,7 @@ class _MyHomePageState extends State<MyHomePage>
 //              onPressed: null,
 //              icon: Icon(Icons.ac_unit,),
 ////              iconSize: 12.0,
-//              type: GFType.solid,
+//              type: GFButtonType.solid,
 ////          shape: GFButtonShape.pills,
 ////          size: GFSize.large,
 //              buttonBoxShadow: true,
@@ -695,15 +719,11 @@ class _MyHomePageState extends State<MyHomePage>
               ],
             ),
 
-            GFTabBarView(
-                controller: tabController,
-                children: <Widget>[
-                  Container(color: Colors.red),
-                  Container(color: Colors.green),
-                  Container(color: Colors.blue)
-                ]
-            ),
-
+            GFTabBarView(controller: tabController, children: <Widget>[
+              Container(color: Colors.red),
+              Container(color: Colors.green),
+              Container(color: Colors.blue)
+            ]),
 
 //            GFItemsCarousel(
 //              rowCount: 3,
@@ -752,40 +772,54 @@ class _MyHomePageState extends State<MyHomePage>
 //              },
 //            ),
 
-
-          GFTabs(
-            initialIndex: 0,
-            length: 3,
-            tabs: <Widget>[
-              Tab(
+            GFTabs(
+              initialIndex: 0,
+              length: 3,
+              tabs: <Widget>[
+                Tab(
 //                icon: Icon(Icons.directions_bike),
-                icon: Icon(IconData(0xe907, fontFamily: 'icomoon'),),
-                child: Text(
-                  "Tab1",
+                  icon: Icon(
+                    IconData(0xe907, fontFamily: 'icomoon'),
+                  ),
+                  child: Text(
+                    "Tab1",
+                  ),
                 ),
-              ),
-              Tab(
+                Tab(
 //                icon: Icon(Icons.directions_bus),
-              icon: Icon(IconData(0xe900, fontFamily: 'icomoon'), ),
-                child: Text(
-                  "Tab2",
+                  icon: Icon(
+                    IconData(0xe900, fontFamily: 'icomoon'),
+                  ),
+                  child: Text(
+                    "Tab2",
+                  ),
                 ),
-              ),
-              Tab(
-                icon: Icon(IconData(0xe904, fontFamily: 'icomoon'),),
-                child: Text(
-                  "Tab3",
+                Tab(
+                  icon: Icon(
+                    IconData(0xe904, fontFamily: 'icomoon'),
+                  ),
+                  child: Text(
+                    "Tab3",
+                  ),
                 ),
-              ),
-            ],
-            tabBarView: GFTabBarView(
-              children: <Widget>[
-                Container(child: Icon(Icons.directions_bike), color: Colors.red,),
-                Container(child: Icon(Icons.directions_bus), color: Colors.blue,),
-                Container(child: Icon(Icons.directions_railway), color: Colors.orange,),
               ],
+              tabBarView: GFTabBarView(
+                children: <Widget>[
+                  Container(
+                    child: Icon(Icons.directions_bike),
+                    color: Colors.red,
+                  ),
+                  Container(
+                    child: Icon(Icons.directions_bus),
+                    color: Colors.blue,
+                  ),
+                  Container(
+                    child: Icon(Icons.directions_railway),
+                    color: Colors.orange,
+                  ),
+                ],
+              ),
             ),
-          ),
 //
 //              GFCarousel(
 //                autoPlay: true,
@@ -835,20 +869,20 @@ class _MyHomePageState extends State<MyHomePage>
                 subTitle: Text(
                   'subtitle'
                   "Flutter Flutter is Google's mobile UI framework for crafting"
-                      "Flutter Flutter is Google's mobile UI framework for crafting",
+                  "Flutter Flutter is Google's mobile UI framework for crafting",
                   style: TextStyle(color: Colors.grey),
                 ),
                 icon: GFIconButton(
                   onPressed: null,
                   icon: Icon(Icons.favorite),
-                  type: GFType.transparent,
+                  type: GFButtonType.transparent,
                 ),
               ),
               content: Text(
                 "Flutter Flutter is Google's mobile UI framework for crafting"
                 "Flutter Flutter is Google's mobile UI framework for crafting"
-                    "Flutter Flutter is Google's mobile UI framework for crafting"
-                    "Flutter Flutter is Google's mobile UI framework for crafting",
+                "Flutter Flutter is Google's mobile UI framework for crafting"
+                "Flutter Flutter is Google's mobile UI framework for crafting",
                 style: TextStyle(color: Colors.grey),
               ),
               buttonBar: GFButtonBar(
@@ -857,13 +891,13 @@ class _MyHomePageState extends State<MyHomePage>
                     onPressed: null,
                     child: Text("favorite"),
                     icon: Icon(Icons.favorite_border),
-                    type: GFType.transparent,
+                    type: GFButtonType.transparent,
                   ),
                   GFButton(
                     onPressed: null,
                     child: Text("share"),
                     icon: Icon(Icons.share),
-                    type: GFType.outline,
+                    type: GFButtonType.outline,
                   ),
                   GFButton(
                     onPressed: null,
@@ -881,7 +915,7 @@ class _MyHomePageState extends State<MyHomePage>
 //                  onPressed: null,
 //                  child: Text("like"),
 //                  icon: Icon(Icons.favorite_border),
-//                  type: GFType.transparent,
+//                  type: GFButtonType.transparent,
 //                ),
 //                GFButton(
 //                  onPressed: null,
@@ -892,7 +926,7 @@ class _MyHomePageState extends State<MyHomePage>
 //                  onPressed: (){},
 //                  child: Text("share"),
 //                  icon: Icon(Icons.share),
-//                  type: GFType.outline,
+//                  type: GFButtonType.outline,
 //                ),
 //              ],
 //            ),
@@ -906,7 +940,7 @@ class _MyHomePageState extends State<MyHomePage>
 //              subTitle: Text('subtitle'),
 //              icon: GFIconButton(
 //                onPressed: null,
-//                type: GFType.transparent,
+//                type: GFButtonType.transparent,
 //                icon: Icon(Icons.favorite_border),
 //              ),
 //            ),
@@ -1041,7 +1075,7 @@ class _MyHomePageState extends State<MyHomePage>
 //            ),
 
             GFIconButton(
-              onPressed: (){},
+              onPressed: () {},
               icon: Icon(Icons.ac_unit),
 //              iconSize: 12.0,
 //              type: GFType.solid,
@@ -1070,7 +1104,7 @@ class _MyHomePageState extends State<MyHomePage>
 //            ),
 //
 //            GFButton(
-//              type: GFType.outline,
+//              type: GFButtonType.outline,
 //              shape: GFButtonShape.pills,
 //              text: 'goodies',
 //              icon: Icon(Icons.share),

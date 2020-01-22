@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getflutter/colors/gf_color.dart';
 import 'package:getflutter/types/gf_typography_type.dart';
-export 'package:getflutter/types/gf_typography_type.dart';
 
 class GFTypography extends StatelessWidget {
   /// Creates simple title with underline. Style of title can be changed using [GFTypographyType]
@@ -104,7 +103,7 @@ class GFTypography extends StatelessWidget {
                         text,
                         style: TextStyle(
                             color: textColor != null
-                                ? getGFColor(textColor)
+                                ? GFColors.getGFColor(textColor)
                                 : backgroundImage != null
                                     ? Colors.white
                                     : Colors.black,
@@ -124,7 +123,7 @@ class GFTypography extends StatelessWidget {
                       height: fontSize / 5,
                       decoration: BoxDecoration(
                           color: dividerColor != null
-                              ? getGFColor(dividerColor)
+                              ? GFColors.getGFColor(dividerColor)
                               : backgroundImage != null
                                   ? Colors.white
                                   : Colors.black,

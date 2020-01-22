@@ -28,7 +28,7 @@ class GFAvatar extends StatelessWidget {
   /// The maximum size of the avatar, expressed as the radius (half the diameter).
   final double maxRadius;
 
-  /// size of avatar like [GFSize] i.e, 1.2, small, medium, large etc.
+  /// size of avatar. use [GFSize] or [double] i.e, 1.2, small, medium, large etc.
   final dynamic size;
 
   /// shape of avatar [GFAvatarShape] i.e, standard, circle, square
@@ -59,7 +59,7 @@ class GFAvatar extends StatelessWidget {
 
   double get _minDiameter {
     if (radius == null && minRadius == null && maxRadius == null) {
-      return 1.5 * getGFSize(size);
+      return 1.5 * GFSizesClass.getGFSize(size);
     } else {
       return 2.0 * (radius ?? minRadius ?? 0);
     }
@@ -67,7 +67,7 @@ class GFAvatar extends StatelessWidget {
 
   double get _maxDiameter {
     if (radius == null && minRadius == null && maxRadius == null) {
-      return 1.5 * getGFSize(size);
+      return 1.5 * GFSizesClass.getGFSize(size);
     } else {
       return 2.0 * (radius ?? maxRadius ?? 0);
     }
@@ -87,8 +87,8 @@ class GFAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor = getGFColor(this.backgroundColor);
-    Color foregroundColor = getGFColor(this.foregroundColor);
+    Color backgroundColor = GFColors.getGFColor(this.backgroundColor);
+    Color foregroundColor = GFColors.getGFColor(this.foregroundColor);
     assert(debugCheckHasMediaQuery(context));
     final ThemeData theme = Theme.of(context);
     TextStyle textStyle =

@@ -1,4 +1,4 @@
-import 'dart:math' as math;
+//import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -202,8 +202,9 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
         return false;
       case TargetPlatform.iOS:
         return trailing == null || trailing.length < 2;
+      default:
+        return false;
     }
-    return null;
   }
 
   @override
@@ -293,6 +294,8 @@ class _GFAppBarState extends State<GFAppBar> {
           namesRoute = true;
           break;
         case TargetPlatform.iOS:
+          break;
+        default:
           break;
       }
       title = DefaultTextStyle(
@@ -444,8 +447,6 @@ class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
   bool shouldRelayout(_ToolbarContainerLayout oldDelegate) => false;
 }
 
-
-
 // Layout the GFAppBar's title with unconstrained height, vertically
 // center it within its (NavigationToolbar) parent, and allow the
 // parent to constrain the title's actual height.
@@ -486,6 +487,3 @@ class _RenderGFAppBarTitleBox extends RenderAligningShiftedBox {
     alignChild();
   }
 }
-
-
-

@@ -10,7 +10,7 @@ class GFListTile extends StatelessWidget {
   ///type of [String] used to pass text, alternative to subtitle property and gets higher priority than subtitle
   final String subtitleText;
 
-  /// The GFListTile's background color. Can be given [Colors] or [GFColor]
+  /// The GFListTile's background color. Can be given [Color] or [GFColor]
   final dynamic color;
 
   /// type of [Widget] or [GFAvatar] used to create rounded user profile
@@ -70,7 +70,7 @@ class GFListTile extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.w500,
-                                  color: getGFColor(GFColor.dark)),
+                                  color: GFColors.getGFColor(GFColor.dark)),
                             )
                           : title ?? Container(),
                       subtitleText != null

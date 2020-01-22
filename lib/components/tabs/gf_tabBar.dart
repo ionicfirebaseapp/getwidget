@@ -162,14 +162,13 @@ class GFTabBar extends StatefulWidget {
 class _GFTabBarState extends State<GFTabBar> {
   @override
   Widget build(BuildContext context) {
-
     return Container(
       height: widget.tabBarHeight == null
           ? MediaQuery.of(context).size.height * 0.1
           : widget.tabBarHeight,
       child: Material(
         type: MaterialType.button,
-        color: widget.tabBarColor ?? getGFColor(GFColor.primary),
+        color: widget.tabBarColor ?? GFColors.getGFColor(GFColor.primary),
         child: TabBar(
           controller: widget.controller,
           labelColor: widget.labelColor,
