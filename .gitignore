@@ -29,6 +29,8 @@
 .pub/
 build/
 web/
+getflutter-app-kit
+getflutter-web-kit
 
 # Android related
 **/android/**/gradle-wrapper.jar
