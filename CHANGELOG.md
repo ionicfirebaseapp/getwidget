@@ -1,6 +1,14 @@
 # Changelog
 
 
+## 1.0.1 - 2020-01-22
+
+### Added
+* added couple of new components 
+    - GFToast
+    - GFFloatingWidget
+
+
 ## 1.0.0 - 2020-01-20
 
 ### Added
