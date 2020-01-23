@@ -1,6 +1,12 @@
 # Changelog
 
 
+## 1.0.2 - 2020-01-23
+
+### Fixed
+* import issue fixed.
+
+
 ## 1.0.1 - 2020-01-22
 
 ### Added
