@@ -1,4 +1,3 @@
-//import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -27,7 +26,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.leading,
     this.automaticallyImplyLeading = true,
     this.title,
-    this.trailing,
+    this.actions,
     this.flexibleSpace,
     this.bottom,
     this.elevation,
@@ -73,7 +72,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// Typically these widgets are [IconButton]s representing common operations.
   /// For less common operations, consider using a [PopupMenuButton] as the
   /// last action.
-  final List<Widget> trailing;
+  final List<Widget> actions;
 
   /// This widget is stacked behind the toolbar and the tab bar. It's height will
   /// be the same as the app bar's overall height.
@@ -201,7 +200,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
       case TargetPlatform.fuchsia:
         return false;
       case TargetPlatform.iOS:
-        return trailing == null || trailing.length < 2;
+        return actions == null || actions.length < 2;
       default:
         return false;
     }
@@ -311,11 +310,11 @@ class _GFAppBarState extends State<GFAppBar> {
     }
 
     Widget actions;
-    if (widget.trailing != null && widget.trailing.isNotEmpty) {
+    if (widget.actions != null && widget.actions.isNotEmpty) {
       actions = Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: widget.trailing,
+        children: widget.actions,
       );
     } else if (hasEndDrawer) {
       actions = IconButton(
@@ -325,7 +324,7 @@ class _GFAppBarState extends State<GFAppBar> {
       );
     }
 
-    // Allow the trailing actions to have their own theme if necessary.
+    // Allow the actions actions to have their own theme if necessary.
     if (actions != null) {
       actions = IconTheme.merge(
         data: actionsIconTheme,
@@ -396,6 +395,7 @@ class _GFAppBarState extends State<GFAppBar> {
         ],
       );
     }
+
     final Brightness brightness = widget.brightness ??
         appBarTheme.brightness ??
         theme.primaryColorBrightness;

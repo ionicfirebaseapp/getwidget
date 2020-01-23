@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getflutter/components/toast/gf_toast.dart';
+import 'package:getflutter/getflutter.dart';
 
 class GFFloatingWidget extends StatefulWidget {
   /// Creates a Floating body can be used to display the quick messages, warning and erros.

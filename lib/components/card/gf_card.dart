@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/components/button/gf_button_bar.dart';
-import 'package:getflutter/components/list_tile/gf_list_tile.dart';
-import 'package:getflutter/components/image/gf_image_overlay.dart';
-import 'package:getflutter/position/gf_position.dart';
+import 'package:getflutter/getflutter.dart';
 
 /// A material design card. A card has slightly rounded corners and a shadow.
 ///

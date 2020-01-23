@@ -1,10 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/shape/gf_avatar_shape.dart';
-import 'package:getflutter/size/gf_size.dart';
-import 'package:getflutter/colors/gf_color.dart';
-export 'package:getflutter/shape/gf_avatar_shape.dart';
-export 'package:getflutter/size/gf_size.dart';
+import 'package:getflutter/getflutter.dart';
 
 class GFAvatar extends StatelessWidget {
   /// Typically a [Text] widget. If the [CircleAvatar] is to have an image, use [backgroundImage] instead.

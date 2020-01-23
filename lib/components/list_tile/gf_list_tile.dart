@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/colors/gf_color.dart';
-import 'package:getflutter/components/avatar/gf_avatar.dart';
+import 'package:getflutter/getflutter.dart';
 
 class GFListTile extends StatelessWidget {
   ///type of [String] used to pass text, alternative to title property and gets higher priority than title
