@@ -130,18 +130,19 @@ class GFDrawer extends StatelessWidget {
         child: Material(
           elevation: elevation,
           child: Container(
-              decoration: new BoxDecoration(
-                color: Colors.teal,
-                gradient: gradient,
-                image: backgroundImage != null
-                    ? new DecorationImage(
-                        image: backgroundImage,
-                        fit: BoxFit.cover,
-                        colorFilter: colorFilter,
-                      )
-                    : null,
-              ),
-              child: child),
+            decoration: new BoxDecoration(
+              color: Colors.teal,
+              gradient: gradient,
+              image: backgroundImage != null
+                  ? new DecorationImage(
+                      image: backgroundImage,
+                      fit: BoxFit.cover,
+                      colorFilter: colorFilter,
+                    )
+                  : null,
+            ),
+            child: child,
+          ),
         ),
       ),
     );

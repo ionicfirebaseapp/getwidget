@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/colors/gf_color.dart';
-import 'package:getflutter/components/avatar/gf_avatar.dart';
+import 'package:getflutter/getflutter.dart';
 
 class GFListTile extends StatelessWidget {
   ///type of [String] used to pass text, alternative to title property and gets higher priority than title
@@ -48,7 +47,8 @@ class GFListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(minHeight: 50),
-      padding: padding,
+      padding: EdgeInsets.all(8.0),
+//      margin: padding,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.all(Radius.circular(5)),

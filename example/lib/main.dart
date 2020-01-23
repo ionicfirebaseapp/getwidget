@@ -4,17 +4,27 @@ import 'package:getflutter/components/button/gf_button.dart';
 import 'package:getflutter/components/badge/gf_button_badge.dart';
 import 'package:getflutter/components/avatar/gf_avatar.dart';
 import 'package:getflutter/components/tabs/gf_segment_tabs.dart';
-import 'package:getflutter/types/gf_button_type.dart';
+import 'package:getflutter/getflutter.dart';
 import 'package:getflutter/shape/gf_button_shape.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:getflutter/components/toast/gf_toast.dart';
 import 'package:getflutter/components/appbar/gf_appbar.dart';
-import 'package:getflutter/components/card/gf_card.dart';
 import 'package:getflutter/components/list_tile/gf_list_tile.dart';
 import 'package:getflutter/components/button/gf_button_bar.dart';
 import 'package:getflutter/components/typography/gf_typography.dart';
 import 'package:getflutter/types/gf_typography_type.dart';
 import 'package:getflutter/components/toast/gf_floating_widget.dart';
+import 'package:getflutter/components/drawer/gf_drawer.dart';
+import 'package:getflutter/components/drawer/gf_drawer_header.dart';
+import 'package:getflutter/components/button/gf_icon_button.dart';
+import 'package:getflutter/components/image/gf_image_overlay.dart';
+import 'package:getflutter/components/card/gf_card.dart';
+import 'package:getflutter/components/tabs/gf_tabs.dart';
+import 'package:getflutter/components/tabs/gf_tabBarView.dart';
+import 'package:getflutter/types/gf_button_type.dart';
+import 'package:getflutter/position/gf_position.dart';
+import 'package:getflutter/components/tabs/gf_tabBar.dart';
+import 'dart:io';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -52,12 +62,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
+  static final GlobalKey<ScaffoldState> scaffoldKey =
+      new GlobalKey<ScaffoldState>();
+
   TabController tabController;
 
   @override
   void initState() {
     super.initState();
     tabController = TabController(length: 3, vsync: this);
+    _searchQuery = new TextEditingController();
   }
 
   @override
@@ -69,75 +83,207 @@ class _MyHomePageState extends State<MyHomePage>
   bool switchValue = true;
   bool showToast = false;
 
+  Widget appBarTitle = new Text("UI Kit");
+  Icon actionIcon = new Icon(Icons.search);
+
+  TextEditingController _searchQuery;
+  bool _isSearching = false;
+  String searchQuery = "Search query";
+
+  void _startSearch() {
+    ModalRoute.of(context)
+        .addLocalHistoryEntry(new LocalHistoryEntry(onRemove: _stopSearching));
+
+    setState(() {
+      _isSearching = true;
+    });
+  }
+
+  void _stopSearching() {
+    _clearSearchQuery();
+
+    setState(() {
+      _isSearching = false;
+    });
+  }
+
+  void _clearSearchQuery() {
+    setState(() {
+      _searchQuery.clear();
+      updateSearchQuery("Search query");
+    });
+  }
+
+  Widget _buildTitle(BuildContext context) {
+    var horizontalTitleAlignment =
+        Platform.isIOS ? CrossAxisAlignment.center : CrossAxisAlignment.start;
+
+    return new InkWell(
+      onTap: () => scaffoldKey.currentState.openDrawer(),
+      child: new Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: horizontalTitleAlignment,
+          children: <Widget>[
+            const Text('Seach box'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSearchField() {
+    return new TextField(
+      controller: _searchQuery,
+      autofocus: true,
+      decoration: const InputDecoration(
+        hintText: 'Search...',
+        border: InputBorder.none,
+        hintStyle: const TextStyle(color: Colors.white30),
+      ),
+      style: const TextStyle(color: Colors.white, fontSize: 16.0),
+      onChanged: updateSearchQuery,
+    );
+  }
+
+  void updateSearchQuery(String newQuery) {
+    setState(() {
+      searchQuery = newQuery;
+    });
+    print("search query " + newQuery);
+  }
+
+  List<Widget> _buildActions() {
+    if (_isSearching) {
+      return <Widget>[
+        new IconButton(
+          icon: const Icon(Icons.clear),
+          onPressed: () {
+            if (_searchQuery == null || _searchQuery.text.isEmpty) {
+              Navigator.pop(context);
+              return;
+            }
+            _clearSearchQuery();
+          },
+        ),
+      ];
+    }
+
+    return <Widget>[
+      new IconButton(
+        icon: const Icon(Icons.search),
+        onPressed: _startSearch,
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      drawer: GFDrawer(
-//        colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
-//        backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
-//        gradient: LinearGradient(
-//          begin: Alignment.topRight,
-//          end: Alignment.bottomLeft,
-//          stops: [0.1, 0.5, 0.7, 0.9],
-//          colors: [
-//            Colors.teal[800],
-//            Colors.teal[600],
-//            Colors.teal[400],
-//            Colors.teal[200],
-//          ],
-//        ),
-//        child: ListView(
-//          padding: EdgeInsets.zero,
-//          children: <Widget>[
-//            GFDrawerHeader(
-//              currentAccountPicture: GFAvatar(
-//                radius: 80.0,
-//                backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
-//              ),
-//
-//              decoration: BoxDecoration(
-//                color: Colors.teal.withOpacity(0.45),
-//              ),
-//              otherAccountsPictures: <Widget>[
-//                Image(
-//                  image: NetworkImage("https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"),
-//                  fit: BoxFit.cover,
-//                ),
-//                GFAvatar(
-//                  child: Text("dcf"),
-//                )
-//              ],
-//              child: Column(
-//                mainAxisAlignment: MainAxisAlignment.start,
-//                crossAxisAlignment: CrossAxisAlignment.start,
-//                children: <Widget>[
-//                  Text('user'),
-//                  Text('user@asdf.com'),
-//                ],
-//              ),
-//            ),
-//            ListTile(
-//              title: Text('Item 1'),
-//              onTap: () {
-//                Navigator.pop(context);
-//              },
-//            ),
-//            ListTile(
-//              title: Text('Item 2'),
-//              onTap: () {
-//              },
-//            ),
-//          ],
-//        ),
-//      ),
-      appBar: GFAppBar(
-        backgroundColor: Colors.tealAccent,
-        centerTitle: true,
-        title: Text("UI KIT"),
-//        trailing: <Widget>[
-//          GFIconButton(icon: Icon(Icons.directions_bus), onPressed: null)
-//        ],
+      drawer: GFDrawer(
+        colorFilter: new ColorFilter.mode(
+            Colors.black.withOpacity(0.6), BlendMode.darken),
+        backgroundImage: NetworkImage(
+            "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          stops: [0.1, 0.5, 0.7, 0.9],
+          colors: [
+            Colors.teal[800],
+            Colors.teal[600],
+            Colors.teal[400],
+            Colors.teal[200],
+          ],
+        ),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            GFDrawerHeader(
+              currentAccountPicture: GFAvatar(
+                radius: 80.0,
+                backgroundImage: NetworkImage(
+                    "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.teal.withOpacity(0.45),
+              ),
+              otherAccountsPictures: <Widget>[
+                Image(
+                  image: NetworkImage(
+                      "https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg"),
+                  fit: BoxFit.cover,
+                ),
+                GFAvatar(
+                  child: Text("dcf"),
+                )
+              ],
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('user'),
+                  Text('user@asdf.com'),
+                ],
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {},
+            ),
+          ],
+        ),
       ),
+      appBar: AppBar(
+        leading: _isSearching ? const BackButton() : null,
+        title: _isSearching ? _buildSearchField() : _buildTitle(context),
+        actions: _buildActions(),
+      ),
+//      GFAppBar(
+////        backgroundColor: Colors.tealAccent,
+//        centerTitle: true,
+////        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
+//        title: appBarTitle,
+////        bottom: TabBar(
+////          controller: tabController,
+////          tabs: [
+////            Tab(icon: Icon(Icons.directions_car)),
+////            Tab(icon: Icon(Icons.directions_transit)),
+////            Tab(icon: Icon(Icons.directions_bike)),
+////          ],
+////        ),
+//        actions: <Widget>[
+//          new IconButton(
+//            icon: actionIcon,
+//            onPressed: () {
+//              setState(() {
+//                if (this.actionIcon.icon == Icons.search) {
+//                  this.actionIcon = new Icon(Icons.close);
+//                  this.appBarTitle = new TextField(
+//                    style: new TextStyle(
+//                      color: Colors.white,
+//                    ),
+//                    decoration: new InputDecoration(
+//                        prefixIcon: new Icon(Icons.search, color: Colors.white),
+//                        hintText: "Search...",
+//                        hintStyle: new TextStyle(color: Colors.white)),
+//                  );
+//                } else {
+//                  this.actionIcon = new Icon(Icons.search);
+//                  this.appBarTitle = new Text("UI Kit");
+//                }
+//              });
+//            },
+//          ),
+//        ],
+//      ),
 //      backgroundColor: Colors.teal,
       body:
 //        GFTabBarView(
@@ -153,6 +299,12 @@ class _MyHomePageState extends State<MyHomePage>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            GFIconButton(
+              icon: Icon(Icons.title),
+              onPressed: null,
+//              color: GFColor.secondary,
+            ),
+
             GFCard(
               content: Column(
                 children: <Widget>[
@@ -162,16 +314,6 @@ class _MyHomePageState extends State<MyHomePage>
                   ),
                   SizedBox(
                     height: 20,
-                  ),
-                  GFButtonBar(
-                    children: <Widget>[
-                      GFButton(
-                        onPressed: () {},
-                      ),
-                      GFButton(
-                        onPressed: () {},
-                      ),
-                    ],
                   ),
                   SizedBox(
                     height: 20,
@@ -199,7 +341,7 @@ class _MyHomePageState extends State<MyHomePage>
                     type: GFTypographyType.typo6,
                   ),
                   GFFloatingWidget(
-                      verticalPosition: 80,
+                      verticalPosition: 100,
                       child: showToast
                           ? GFToast(
                               width: 300,
@@ -445,7 +587,7 @@ class _MyHomePageState extends State<MyHomePage>
 //            ),
 
             GFListTile(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(30.0),
               color: Colors.redAccent,
               avatar: GFAvatar(
                 child: Text("tb"),
@@ -513,18 +655,28 @@ class _MyHomePageState extends State<MyHomePage>
 //              ),
 //            ),
 //
-//            GFCard(
-//              content: GFImageOverlay(
-//                height: 200.0,
-//                width: 200.0,
-//                image: AssetImage("lib/assets/food.jpeg"),
-//                boxFit: BoxFit.fill,
-//                colorFilter: new ColorFilter.mode(
-//                    Colors.black.withOpacity(0.67), BlendMode.darken),
+            GFCard(
+                content: Row(
+              children: <Widget>[
+                GFImageOverlay(
+                  height: 200.0,
+                  width: 200.0,
+                  image: AssetImage("lib/assets/food.jpeg"),
+                  boxFit: BoxFit.fill,
+                  colorFilter: new ColorFilter.mode(
+                      Colors.black.withOpacity(0.67), BlendMode.darken),
 //                shape: BoxShape.circle,
-//              ),
-//            ),
-//
+                ),
+              ],
+            )),
+
+            // Image.asset(
+            //   'lib/assets/food.jpeg',
+            //   fit: BoxFit.cover,
+            //   color: Color(0xff0d69ff).withOpacity(1.0),
+            //   colorBlendMode: BlendMode.softLight,
+            // ),
+
 //            GFCard(
 //              content: Container(
 //                  width: 190.0,
@@ -676,14 +828,11 @@ class _MyHomePageState extends State<MyHomePage>
               ],
             ),
 
-//            GFTabBarView(
-//                controller: tabController,
-//                children: <Widget>[
-//                  Container(color: Colors.red),
-//                  Container(color: Colors.green),
-//                  Container(color: Colors.blue)
-//                ]
-//            ),
+            GFTabBarView(controller: tabController, children: <Widget>[
+              Container(color: Colors.red),
+              Container(color: Colors.green),
+              Container(color: Colors.blue)
+            ]),
 
 //            GFItemsCarousel(
 //              rowCount: 3,
@@ -732,38 +881,54 @@ class _MyHomePageState extends State<MyHomePage>
 //              },
 //            ),
 
-//
-//          GFTabs(
-//            initialIndex: 0,
-//            length: 3,
-//            tabs: <Widget>[
-//              Tab(
+            GFTabs(
+              initialIndex: 0,
+              length: 3,
+              tabs: <Widget>[
+                Tab(
 //                icon: Icon(Icons.directions_bike),
-//                child: Text(
-//                  "Tab1",
-//                ),
-//              ),
-//              Tab(
+                  icon: Icon(
+                    IconData(0xe907, fontFamily: 'icomoon'),
+                  ),
+                  child: Text(
+                    "Tab1",
+                  ),
+                ),
+                Tab(
 //                icon: Icon(Icons.directions_bus),
-//                child: Text(
-//                  "Tab2",
-//                ),
-//              ),
-//              Tab(
-//                icon: Icon(Icons.directions_railway),
-//                child: Text(
-//                  "Tab3",
-//                ),
-//              ),
-//            ],
-//            tabBarView: GFTabBarView(
-//              children: <Widget>[
-//                Container(child: Icon(Icons.directions_bike), color: Colors.red,),
-//                Container(child: Icon(Icons.directions_bus), color: Colors.blue,),
-//                Container(child: Icon(Icons.directions_railway), color: Colors.orange,),
-//              ],
-//            ),
-//          ),
+                  icon: Icon(
+                    IconData(0xe900, fontFamily: 'icomoon'),
+                  ),
+                  child: Text(
+                    "Tab2",
+                  ),
+                ),
+                Tab(
+                  icon: Icon(
+                    IconData(0xe904, fontFamily: 'icomoon'),
+                  ),
+                  child: Text(
+                    "Tab3",
+                  ),
+                ),
+              ],
+              tabBarView: GFTabBarView(
+                children: <Widget>[
+                  Container(
+                    child: Icon(Icons.directions_bike),
+                    color: Colors.red,
+                  ),
+                  Container(
+                    child: Icon(Icons.directions_bus),
+                    color: Colors.blue,
+                  ),
+                  Container(
+                    child: Icon(Icons.directions_railway),
+                    color: Colors.orange,
+                  ),
+                ],
+              ),
+            ),
 //
 //              GFCarousel(
 //                autoPlay: true,
@@ -791,58 +956,66 @@ class _MyHomePageState extends State<MyHomePage>
 //                },
 //              ),
 
-//            GFCard(
-//              boxFit: BoxFit.fill,
-//              colorFilter: new ColorFilter.mode(
-//                  Colors.black.withOpacity(0.67), BlendMode.darken),
-//              image: Image.asset(
-//                "lib/assets/img.png",
-//                fit: BoxFit.fitWidth,
-//                width: 400.0,
-//              ),
-////              imageOverlay: AssetImage("lib/assets/food.jpeg"),
-//              titlePosition: GFPosition.end,
-//              title: GFListTile(
-//                avatar: GFAvatar(
-//                  child: Text("tb"),
-//                ),
-//                title: Text(
-//                  'title',
-//                  style: TextStyle(color: Colors.grey),
-//                ),
-//                subTitle: Text(
-//                  'subtitle',
-//                  style: TextStyle(color: Colors.grey),
-//                ),
-//                icon: GFIconButton(
-//                  onPressed: null,
-//                  icon: Icon(Icons.favorite_border),
-//                  type: GFButtonType.transparent,
-//                ),
-//              ),
-//              content: Text(
-//                "Flutter Flutter is Google's mobile UI framework for crafting"
-//                "Flutter Flutter is Google's mobile UI framework for crafting",
-//                style: TextStyle(color: Colors.grey),
-//              ),
-////              buttonBar: GFButtonBar(
-////                mainAxisSize: MainAxisSize.min,
-////                children: <Widget>[
-////                  GFButton(
-////                    onPressed: null,
-////                    child: Text("favorite"),
-////                    icon: Icon(Icons.favorite_border),
-////                    type: GFButtonType.transparent,
-////                  ),
-////                  GFButton(
-////                    onPressed: null,
-////                    child: Text("share"),
-////                    icon: Icon(Icons.share),
-////                    type: GFButtonType.outline,
-////                  ),
-////                ],
-////              ),
-//            ),
+            GFCard(
+              boxFit: BoxFit.fill,
+              colorFilter: new ColorFilter.mode(
+                  Colors.black.withOpacity(0.67), BlendMode.darken),
+              image: Image.asset(
+                "lib/assets/img.png",
+                fit: BoxFit.fitWidth,
+                width: 400.0,
+              ),
+//              imageOverlay: AssetImage("lib/assets/food.jpeg"),
+              titlePosition: GFPosition.end,
+              title: GFListTile(
+                avatar: GFAvatar(
+                  child: Text("tb"),
+                ),
+                title: Text(
+                  'title',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                subTitle: Text(
+                  'subtitle'
+                  "Flutter Flutter is Google's mobile UI framework for crafting"
+                  "Flutter Flutter is Google's mobile UI framework for crafting",
+                  style: TextStyle(color: Colors.grey),
+                ),
+                icon: GFIconButton(
+                  onPressed: null,
+                  icon: Icon(Icons.favorite),
+                  type: GFButtonType.transparent,
+                ),
+              ),
+              content: Text(
+                "Flutter Flutter is Google's mobile UI framework for crafting"
+                "Flutter Flutter is Google's mobile UI framework for crafting"
+                "Flutter Flutter is Google's mobile UI framework for crafting"
+                "Flutter Flutter is Google's mobile UI framework for crafting",
+                style: TextStyle(color: Colors.grey),
+              ),
+              buttonBar: GFButtonBar(
+                children: <Widget>[
+                  GFButton(
+                    onPressed: null,
+                    child: Text("favorite"),
+                    icon: Icon(Icons.favorite_border),
+                    type: GFButtonType.transparent,
+                  ),
+                  GFButton(
+                    onPressed: null,
+                    child: Text("share"),
+                    icon: Icon(Icons.share),
+                    type: GFButtonType.outline,
+                  ),
+                  GFButton(
+                    onPressed: null,
+                    child: Text("share"),
+                    icon: Icon(Icons.share),
+                  ),
+                ],
+              ),
+            ),
 
 //            GFButtonBar(
 //              mainAxisSize: MainAxisSize.min,
@@ -1010,24 +1183,24 @@ class _MyHomePageState extends State<MyHomePage>
 //              ),
 //            ),
 
-//            GFIconButton(
-//              onPressed: (){},
-//              icon: Icon(Icons.ac_unit),
-////              iconSize: 12.0,
-////              type: GFButtonType.solid,
-////              shape: GFIconButtonShape.pills,
-////              size: GFSize.large,
-////              buttonBoxShadow: true,
-////              color: GFColor.warning,
-////              boxShadow: BoxShadow(
-////                color: Colors.pink,
-////                blurRadius: 2.0,
-////                spreadRadius: 1.0,
-////                offset: Offset.zero,
-////              ),
-////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
-////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
-//            ),
+            GFIconButton(
+              onPressed: () {},
+              icon: Icon(Icons.ac_unit),
+//              iconSize: 12.0,
+//              type: GFType.solid,
+//              shape: GFIconButtonShape.pills,
+//              size: GFSize.large,
+//              buttonBoxShadow: true,
+//              color: GFColor.warning,
+//              boxShadow: BoxShadow(
+//                color: Colors.pink,
+//                blurRadius: 2.0,
+//                spreadRadius: 1.0,
+//                offset: Offset.zero,
+//              ),
+//              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+//              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
+            ),
 //
 //            GFBadge(
 //              text: '12',
