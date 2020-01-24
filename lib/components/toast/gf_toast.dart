@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:getflutter/colors/gf_color.dart';
-import 'package:getflutter/components/toast/gf_floating_widget.dart';
-import 'package:getflutter/types/gf_toast_type.dart';
+import 'package:getflutter/getflutter.dart';
 
 class GFToast extends StatefulWidget {
   ///Creates [GFToast] that can be used to display quick warning or error messages.

@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/components/button/gf_button_bar.dart';
-import 'package:getflutter/components/list_tile/gf_list_tile.dart';
-import 'package:getflutter/components/image/gf_image_overlay.dart';
-import 'package:getflutter/position/gf_position.dart';
+import 'package:getflutter/getflutter.dart';
 
 /// A material design card. A card has slightly rounded corners and a shadow.
 ///
@@ -34,10 +31,14 @@ class GFCard extends StatelessWidget {
       this.borderRadius,
       this.border,
       this.boxFit,
-      this.colorFilter})
+      this.colorFilter,
+      this.height})
       : assert(elevation == null || elevation >= 0.0),
         assert(borderOnForeground != null),
         super(key: key);
+
+  /// defines the card's height
+  final double height;
 
   /// [GFPosition] titlePosition helps to set titlebar at top of card
   final GFPosition titlePosition;
@@ -139,6 +140,7 @@ class GFCard extends StatelessWidget {
     );
 
     return Container(
+      height: height,
       margin: margin ?? cardTheme.margin ?? const EdgeInsets.all(16.0),
       child: Material(
           type: MaterialType.card,
