@@ -3,6 +3,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:getflutter/components/button/gf_icon_button.dart';
+import 'package:getflutter/components/search_bar/gf_search_bar.dart';
+import 'package:getflutter/getflutter.dart';
 
 /// An app bar consists of a toolbar and potentially other widgets, such as a
 /// [GFTabBar][TabBar] and a [FlexibleSpaceBar].
@@ -41,6 +44,15 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.titleSpacing = NavigationToolbar.kMiddleSpacing,
     this.toolbarOpacity = 1.0,
     this.bottomOpacity = 1.0,
+    this.searchBar = false,
+    this.searchHintText = 'Search...',
+    this.searchHintStyle = const TextStyle(color: Colors.white, fontSize: 14.0),
+    this.searchTextStyle = const TextStyle(color: Colors.white,),
+    this.searchBarColorTheme = Colors.white,
+    this.searchController,
+    this.onTap,
+    this.onChanged,
+    this.onSubmitted,
   })  : assert(automaticallyImplyLeading != null),
         assert(elevation == null || elevation >= 0.0),
         assert(primary != null),
@@ -192,6 +204,67 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
 
+  /// If true, displays search bar in the title space
+  final bool searchBar;
+
+  /// It takes text to displays the search bar hint text
+  final String searchHintText;
+
+  /// It styles the [searchHintText]
+  final TextStyle searchHintStyle;
+
+  /// It styles the search text
+  final TextStyle searchTextStyle;
+
+  /// It defines the search bar icons color
+  final Color searchBarColorTheme;
+
+  /// {@macro flutter.widgets.editableText.onChanged}
+  ///
+  /// See also:
+  ///
+  ///  * [inputFormatters], which are called before [onChanged]
+  ///    runs and can validate and change ("format") the input value.
+  ///  * [onEditingComplete], [onSubmitted], [onSelectionChanged]:
+  ///    which are more specialized input change notifications.
+  final ValueChanged<String> onChanged;
+
+  /// {@macro flutter.widgets.editableText.onSubmitted}
+  ///
+  /// See also:
+  ///
+  ///  * [EditableText.onSubmitted] for an example of how to handle moving to
+  ///    the next/previous field when using [TextInputAction.next] and
+  ///    [TextInputAction.previous] for [textInputAction].
+  final ValueChanged<String> onSubmitted;
+
+  /// Controls the text being edited.
+  ///
+  /// If null, this widget will create its own [TextEditingController].
+  final TextEditingController searchController;
+
+  /// {@template flutter.material.textfield.onTap}
+  /// Called for each distinct tap except for every second tap of a double tap.
+  ///
+  /// The text field builds a [GestureDetector] to handle input events like tap,
+  /// to trigger focus requests, to move the caret, adjust the selection, etc.
+  /// Handling some of those events by wrapping the text field with a competing
+  /// GestureDetector is problematic.
+  ///
+  /// To unconditionally handle taps, without interfering with the text field's
+  /// internal gesture detector, provide this callback.
+  ///
+  /// If the text field is created with [enabled] false, taps will not be
+  /// recognized.
+  ///
+  /// To be notified when the text field gains or loses the focus, provide a
+  /// [focusNode] and add a listener to that.
+  ///
+  /// To listen to arbitrary pointer events without competing with the
+  /// text field's internal gesture detector, use a [Listener].
+  /// {@endtemplate}
+  final GestureTapCallback onTap;
+
   bool _getEffectiveCenterTitle(ThemeData theme) {
     if (centerTitle != null) return centerTitle;
     assert(theme.platform != null);
@@ -220,6 +293,9 @@ class _GFAppBarState extends State<GFAppBar> {
   void _handleDrawerButtonEnd() {
     Scaffold.of(context).openEndDrawer();
   }
+
+  Widget searchBar;
+  bool showSearchBar = true;
 
   @override
   Widget build(BuildContext context) {
@@ -303,7 +379,7 @@ class _GFAppBarState extends State<GFAppBar> {
         overflow: TextOverflow.ellipsis,
         child: Semantics(
           namesRoute: namesRoute,
-          child: _GFAppBarTitleBox(child: title),
+          child: GFAppBarTitleBar(child: title),
           header: true,
         ),
       );
@@ -332,9 +408,52 @@ class _GFAppBarState extends State<GFAppBar> {
       );
     }
 
+      searchBar = ListTile(
+        contentPadding: EdgeInsets.zero,
+        title: TextField(
+          cursorColor: widget.searchBarColorTheme,
+          style: widget.searchTextStyle,
+          decoration: new InputDecoration(
+            prefixIcon: new Icon(Icons.search, color: widget.searchBarColorTheme, size: 18.0,),
+            hintText: widget.searchHintText,
+            hintStyle: widget.searchHintStyle,
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(width: 1, color: widget.searchBarColorTheme),
+            ),
+          ),
+          onTap: widget.onTap,
+          onChanged: widget.onChanged,
+          controller: widget.searchController,
+          onSubmitted: widget.onSubmitted,
+        ),
+        trailing: GFIconButton(
+          icon: Icon(Icons.close, color: widget.searchBarColorTheme, size: 20.0,), type: GFButtonType.transparent,
+          onPressed: (){
+            setState(() {
+              showSearchBar = !showSearchBar;
+            });
+          },
+        ),
+      );
+
+      if(!showSearchBar){
+        searchBar = ListTile(
+          contentPadding: EdgeInsets.zero,
+          title: title,
+          trailing: GFIconButton(
+            icon: Icon(Icons.search, color: widget.searchBarColorTheme, size: 20.0,), type: GFButtonType.transparent,
+            onPressed: (){
+              setState(() {
+                showSearchBar = !showSearchBar;
+              });
+            },
+          ),
+        );
+      }
+
     final Widget toolbar = NavigationToolbar(
       leading: leading,
-      middle: title,
+      middle: widget.searchBar ? searchBar : title,
       trailing: actions,
       centerMiddle: widget._getEffectiveCenterTitle(theme),
       middleSpacing: widget.titleSpacing,
@@ -450,27 +569,27 @@ class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
 // Layout the GFAppBar's title with unconstrained height, vertically
 // center it within its (NavigationToolbar) parent, and allow the
 // parent to constrain the title's actual height.
-class _GFAppBarTitleBox extends SingleChildRenderObjectWidget {
-  const _GFAppBarTitleBox({Key key, @required Widget child})
+class GFAppBarTitleBar extends SingleChildRenderObjectWidget {
+  const GFAppBarTitleBar({Key key, @required Widget child})
       : assert(child != null),
         super(key: key, child: child);
 
   @override
-  _RenderGFAppBarTitleBox createRenderObject(BuildContext context) {
-    return _RenderGFAppBarTitleBox(
+  RenderGFAppBarTitleBar createRenderObject(BuildContext context) {
+    return RenderGFAppBarTitleBar(
       textDirection: Directionality.of(context),
     );
   }
 
   @override
   void updateRenderObject(
-      BuildContext context, _RenderGFAppBarTitleBox renderObject) {
+      BuildContext context, RenderGFAppBarTitleBar renderObject) {
     renderObject.textDirection = Directionality.of(context);
   }
 }
 
-class _RenderGFAppBarTitleBox extends RenderAligningShiftedBox {
-  _RenderGFAppBarTitleBox({
+class RenderGFAppBarTitleBar extends RenderAligningShiftedBox {
+  RenderGFAppBarTitleBar({
     RenderBox child,
     TextDirection textDirection,
   }) : super(
