@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:getflutter/components/button/gf_button.dart';
-import 'package:getflutter/components/button/gf_icon_button.dart';
 import 'package:flutter/rendering.dart';
+import 'package:getflutter/getflutter.dart';
 
 class GFButtonBar extends StatelessWidget {
   /// Create buttons bar for all types of buttons.

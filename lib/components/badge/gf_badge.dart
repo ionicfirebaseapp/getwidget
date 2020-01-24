@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getflutter/shape/gf_badge_shape.dart';
-import 'package:getflutter/size/gf_size.dart';
-import 'package:getflutter/colors/gf_color.dart';
+import 'package:getflutter/getflutter.dart';
 
 class GFBadge extends StatefulWidget {
   /// The border side for the badge's [Material].
@@ -39,7 +37,7 @@ class GFBadge extends StatefulWidget {
     this.shape = GFBadgeShape.standard,
     this.color = GFColor.danger,
     this.textColor = GFColor.white,
-    this.size = GFSize.medium,
+    this.size = GFSize.small,
     this.border,
     this.text,
     this.child,

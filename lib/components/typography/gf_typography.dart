@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getflutter/colors/gf_color.dart';
-import 'package:getflutter/types/gf_typography_type.dart';
+import 'package:getflutter/getflutter.dart';
 
 class GFTypography extends StatelessWidget {
   /// Creates simple title with underline. Style of title can be changed using [GFTypographyType]

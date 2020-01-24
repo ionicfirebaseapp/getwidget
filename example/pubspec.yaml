@@ -20,6 +20,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: icomoon
+      fonts:
+        - asset: lib/fonts/icomoon.ttf
+
   assets:
     - lib/assets/food.jpeg
     - lib/assets/img.png

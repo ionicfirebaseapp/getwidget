@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getflutter/components/button/gf_icon_button.dart';
+import 'package:getflutter/getflutter.dart';
 
 class GFIconBadge extends StatefulWidget {
   /// child of type [Widget] is used to show icon.
@@ -27,8 +27,6 @@ class GFIconBadge extends StatefulWidget {
 }
 
 class _GFIconBadgeState extends State<GFIconBadge> {
-  double size;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,8 +35,9 @@ class _GFIconBadgeState extends State<GFIconBadge> {
         children: <Widget>[
           widget.child ?? Container(),
           new Positioned(
-            top: 2,
-            left: 22,
+//            top: 2,
+//            left: 22,
+            right: 0,
             child: widget.counterChild ?? Container(),
           ),
         ],
