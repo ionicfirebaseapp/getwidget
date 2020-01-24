@@ -22,7 +22,6 @@ import 'package:getflutter/components/tabs/gf_tabs.dart';
 import 'package:getflutter/components/tabs/gf_tabBarView.dart';
 import 'package:getflutter/types/gf_button_type.dart';
 import 'package:getflutter/position/gf_position.dart';
-import 'dart:io';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -166,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage>
 //        searchBarColorTheme: Colors.greenAccent,
 
         actions: <Widget>[
-          GFIconButton(icon: Icon(Icons.access_time), onPressed: (){}),
+          GFIconButton(icon: Icon(Icons.access_time), onPressed: () {}),
           GFIconButton(icon: Icon(Icons.favorite), onPressed: null),
         ],
       ),
