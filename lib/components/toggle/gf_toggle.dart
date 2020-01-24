@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 
@@ -17,7 +16,7 @@ class GFToggle extends StatefulWidget {
   GFToggle(
       {Key key,
       @required this.onChanged,
-      @required this.value,
+      this.value ,
       this.enabledText,
       this.disabledText,
       this.enabledTextStyle,
@@ -74,6 +73,7 @@ class GFToggle extends StatefulWidget {
   /// Called when the user toggles the switch on or off.
   final ValueChanged<bool> onChanged;
 
+
   @override
   _GFToggleState createState() => _GFToggleState();
 }
@@ -84,14 +84,19 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
   AnimationController controller;
   Animation<Offset> offset;
 
-  bool isOn = false;
+  bool isOn;
+
+
 
   @override
   void initState() {
-    super.initState();
+    setState(() {
+      isOn = widget.value??false;
+    });
     controller = AnimationController(vsync: this, duration: widget.duration);
-    offset = Tween<Offset>(begin: Offset.zero, end: Offset(1.0, 0.0))
+    offset = (isOn?Tween<Offset>(begin:  Offset(1.0, 0.0), end:Offset.zero):Tween<Offset>(begin: Offset.zero, end: Offset(1.0, 0.0)))
         .animate(controller);
+    super.initState();
   }
 
   @override
@@ -101,116 +106,105 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
     super.dispose();
   }
 
+  void onStatusChange(){
+    if(widget.onChanged!=null){
+      setState(() {
+        isOn = !isOn;
+      });
+
+      switch (controller.status) {
+        case AnimationStatus.dismissed:
+          controller.forward();
+          break;
+        case AnimationStatus.completed:
+          controller.reverse();
+          break;
+        default:
+      }
+      widget.onChanged(isOn);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          isOn = !isOn;
-        });
-        switch (controller.status) {
-          case AnimationStatus.dismissed:
-            controller.forward();
-            break;
-          case AnimationStatus.completed:
-            controller.reverse();
-            break;
-          default:
-        }
-        if (widget.onChanged != null) {
-          widget.onChanged(isOn);
-        }
-      },
-      child: Stack(
-        children: <Widget>[
-          Container(
-            height: widget.type == GFToggleType.android ? 25 : 30,
-            width: widget.type == GFToggleType.android ? 40 : 50,
-          ),
-          Positioned(
-            top: 5,
+    return  Stack(
+          children: <Widget>[
+            Container(
+              height: widget.type == GFToggleType.android ? 25 : 30,
+              width: widget.type == GFToggleType.android ? 40 : 50,
+            ),
+            Positioned(
+              top: 5,
+              child: InkWell(
+            onTap: onStatusChange,
             child: Container(
-                width: widget.type == GFToggleType.ios ? 45 : 36,
-                height: widget.type == GFToggleType.ios ? 25 : 15,
-                decoration: BoxDecoration(
-                    color: isOn
-                        ? widget.enabledTrackColor ?? Colors.lightGreen
-                        : widget.disabledTrackColor ?? Colors.grey,
-                    borderRadius: widget.type == GFToggleType.square
-                        ? BorderRadius.all(Radius.circular(0))
-                        : widget.borderRadius ??
-                            BorderRadius.all(Radius.circular(20))),
-                child: Padding(
-                    padding: widget.type == GFToggleType.ios
-                        ? EdgeInsets.only(left: 3.5, right: 3.5, top: 5.4)
-                        : EdgeInsets.only(left: 3, right: 3, top: 3.4),
-                    child: isOn
-                        ? Text(
-                            widget.enabledText ??
-                                (widget.type == GFToggleType.custom
-                                    ? 'ON'
-                                    : ''),
-                            style: widget.enabledTextStyle ??
-                                (widget.type == GFToggleType.ios
-                                    ? TextStyle(
-                                        color: Colors.white, fontSize: 12)
-                                    : TextStyle(
-                                        color: Colors.white, fontSize: 8)))
-                        : Text(
-                            widget.disabledText ??
-                                (widget.type == GFToggleType.custom
-                                    ? 'OFF'
-                                    : ''),
-                            textAlign: TextAlign.end,
-                            style: widget.disabledTextStyle ??
-                                (widget.type == GFToggleType.ios
-                                    ? TextStyle(color: Colors.white, fontSize: 12)
-                                    : TextStyle(color: Colors.white, fontSize: 8))))),
-          ),
-          Positioned(
-              top: widget.type == GFToggleType.ios ? 7.5 : 3,
-              left: widget.type == GFToggleType.ios ? 2 : 0,
-              child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isOn = !isOn;
-                    });
-                    switch (controller.status) {
-                      case AnimationStatus.dismissed:
-                        controller.forward();
-                        break;
-                      case AnimationStatus.completed:
-                        controller.reverse();
-                        break;
-                      default:
-                    }
-                    if (widget.onChanged != null) {
-                      widget.onChanged(isOn);
-                    }
-                  },
-                  child: SlideTransition(
-                    position: offset,
-                    child: Container(
-                      padding: EdgeInsets.only(left: 10),
-                      height: 20,
-                      width: 20,
-                      decoration: BoxDecoration(
-                          shape: widget.type == GFToggleType.square
-                              ? BoxShape.rectangle
-                              : widget.boxShape ?? BoxShape.circle,
-                          color: isOn
-                              ? widget.enabledThumbColor ?? Colors.white
-                              : widget.disabledThumbColor ?? Colors.white,
-                          boxShadow: [
-                            new BoxShadow(
-                                color: Colors.black.withOpacity(0.16),
-                                blurRadius: 6.0,
-                                spreadRadius: 0.0),
-                          ]),
-                    ),
-                  ))),
-        ],
-      ),
-    );
+                  width: widget.type == GFToggleType.ios ? 45 : 36,
+                  height: widget.type == GFToggleType.ios ? 25 : 15,
+                  decoration: BoxDecoration(
+                      color: isOn
+                          ? widget.enabledTrackColor ?? Colors.lightGreen
+                          : widget.disabledTrackColor ?? Colors.grey,
+                      borderRadius: widget.type == GFToggleType.square
+                          ? BorderRadius.all(Radius.circular(0))
+                          : widget.borderRadius ??
+                          BorderRadius.all(Radius.circular(20))),
+                  child: Padding(
+                      padding: widget.type == GFToggleType.ios
+                          ? EdgeInsets.only(left: 3.5, right: 3.5, top: 5.4)
+                          : EdgeInsets.only(left: 3, right: 3, top: 3.4),
+                      child: isOn
+                          ? Text(
+                          widget.enabledText ??
+                              (widget.type == GFToggleType.custom
+                                  ? 'ON'
+                                  : ''),
+                          style: widget.enabledTextStyle ??
+                              (widget.type == GFToggleType.ios
+                                  ? TextStyle(
+                                  color: Colors.white, fontSize: 12)
+                                  : TextStyle(
+                                  color: Colors.white, fontSize: 8)))
+                          : Text(
+                          widget.disabledText ??
+                              (widget.type == GFToggleType.custom
+                                  ? 'OFF'
+                                  : ''),
+                          textAlign: TextAlign.end,
+                          style: widget.disabledTextStyle ??
+                              (widget.type == GFToggleType.ios
+                                  ? TextStyle(color: Colors.white, fontSize: 12)
+                                  : TextStyle(color: Colors.white, fontSize: 8)),),),),
+            ),),
+            Positioned(
+                top: widget.type == GFToggleType.ios ? 7.5 : 3,
+                left: widget.type == GFToggleType.ios ? 2 : 0,
+                child: InkWell(
+                    onTap: onStatusChange,
+                    child: SlideTransition(
+                      position:offset,
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10),
+                        height: 20,
+                        width: 20,
+                        decoration: BoxDecoration(
+                            shape: widget.type == GFToggleType.square
+                                ? BoxShape.rectangle
+                                : widget.boxShape ?? BoxShape.circle,
+                            color: isOn
+                                ? widget.enabledThumbColor ?? Colors.white
+                                : widget.disabledThumbColor ?? Colors.white,
+                            boxShadow: [
+                              new BoxShadow(
+                                  color: Colors.black.withOpacity(0.16),
+                                  blurRadius: 6.0,
+                                  spreadRadius: 0.0),
+                            ]),
+                      ),
+                    )
+                )),
+          ],
+
+      );
   }
 }
+
