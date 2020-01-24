@@ -2,10 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/shape/gf_icon_button_shape.dart';
-import 'package:getflutter/size/gf_size.dart';
-import 'package:getflutter/types/gf_button_type.dart';
-import 'package:getflutter/colors/gf_color.dart';
+import 'package:getflutter/getflutter.dart';
 
 class GFIconButton extends StatefulWidget {
   /// The size of the icon inside the button.

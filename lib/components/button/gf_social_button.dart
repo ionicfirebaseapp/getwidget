@@ -2,12 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/components/button/gf_button.dart';
-import 'package:getflutter/shape/gf_button_shape.dart';
-import 'package:getflutter/size/gf_size.dart';
-import 'package:getflutter/types/gf_button_type.dart';
-import 'package:getflutter/position/gf_position.dart';
-import 'package:getflutter/colors/gf_color.dart';
+import 'package:getflutter/getflutter.dart';
 
 class GFSocialButton extends GFButton {
   /// Called when the button is tapped or otherwise activated.
