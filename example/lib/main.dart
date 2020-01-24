@@ -22,7 +22,6 @@ import 'package:getflutter/components/tabs/gf_tabs.dart';
 import 'package:getflutter/components/tabs/gf_tabBarView.dart';
 import 'package:getflutter/types/gf_button_type.dart';
 import 'package:getflutter/position/gf_position.dart';
-import 'dart:io';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -69,7 +68,6 @@ class _MyHomePageState extends State<MyHomePage>
   void initState() {
     super.initState();
     tabController = TabController(length: 3, vsync: this);
-    _searchQuery = new TextEditingController();
   }
 
   @override
@@ -80,101 +78,8 @@ class _MyHomePageState extends State<MyHomePage>
 
   bool switchValue = true;
   bool showToast = false;
-
   Widget appBarTitle = new Text("UI Kit");
   Icon actionIcon = new Icon(Icons.search);
-
-  TextEditingController _searchQuery;
-  bool _isSearching = false;
-  String searchQuery = "Search query";
-
-  void _startSearch() {
-    ModalRoute.of(context)
-        .addLocalHistoryEntry(new LocalHistoryEntry(onRemove: _stopSearching));
-
-    setState(() {
-      _isSearching = true;
-    });
-  }
-
-  void _stopSearching() {
-    _clearSearchQuery();
-
-    setState(() {
-      _isSearching = false;
-    });
-  }
-
-  void _clearSearchQuery() {
-    setState(() {
-      _searchQuery.clear();
-      updateSearchQuery("Search query");
-    });
-  }
-
-  Widget _buildTitle(BuildContext context) {
-    var horizontalTitleAlignment =
-        Platform.isIOS ? CrossAxisAlignment.center : CrossAxisAlignment.start;
-
-    return new InkWell(
-      onTap: () => scaffoldKey.currentState.openDrawer(),
-      child: new Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: horizontalTitleAlignment,
-          children: <Widget>[
-            const Text('Seach box'),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSearchField() {
-    return new TextField(
-      controller: _searchQuery,
-      autofocus: true,
-      decoration: const InputDecoration(
-        hintText: 'Search...',
-        border: InputBorder.none,
-        hintStyle: const TextStyle(color: Colors.white30),
-      ),
-      style: const TextStyle(color: Colors.white, fontSize: 16.0),
-      onChanged: updateSearchQuery,
-    );
-  }
-
-  void updateSearchQuery(String newQuery) {
-    setState(() {
-      searchQuery = newQuery;
-    });
-    print("search query " + newQuery);
-  }
-
-  List<Widget> _buildActions() {
-    if (_isSearching) {
-      return <Widget>[
-        new IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: () {
-            if (_searchQuery == null || _searchQuery.text.isEmpty) {
-              Navigator.pop(context);
-              return;
-            }
-            _clearSearchQuery();
-          },
-        ),
-      ];
-    }
-
-    return <Widget>[
-      new IconButton(
-        icon: const Icon(Icons.search),
-        onPressed: _startSearch,
-      ),
-    ];
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -239,50 +144,32 @@ class _MyHomePageState extends State<MyHomePage>
           ],
         ),
       ),
-      appBar: AppBar(
-        leading: _isSearching ? const BackButton() : null,
-        title: _isSearching ? _buildSearchField() : _buildTitle(context),
-        actions: _buildActions(),
-      ),
-//      GFAppBar(
-////        backgroundColor: Colors.tealAccent,
+
+      appBar: GFAppBar(
+        backgroundColor: Colors.teal,
 //        centerTitle: true,
-////        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
-//        title: appBarTitle,
-////        bottom: TabBar(
-////          controller: tabController,
-////          tabs: [
-////            Tab(icon: Icon(Icons.directions_car)),
-////            Tab(icon: Icon(Icons.directions_transit)),
-////            Tab(icon: Icon(Icons.directions_bike)),
-////          ],
-////        ),
-//        actions: <Widget>[
-//          new IconButton(
-//            icon: actionIcon,
-//            onPressed: () {
-//              setState(() {
-//                if (this.actionIcon.icon == Icons.search) {
-//                  this.actionIcon = new Icon(Icons.close);
-//                  this.appBarTitle = new TextField(
-//                    style: new TextStyle(
-//                      color: Colors.white,
-//                    ),
-//                    decoration: new InputDecoration(
-//                        prefixIcon: new Icon(Icons.search, color: Colors.white),
-//                        hintText: "Search...",
-//                        hintStyle: new TextStyle(color: Colors.white)),
-//                  );
-//                } else {
-//                  this.actionIcon = new Icon(Icons.search);
-//                  this.appBarTitle = new Text("UI Kit");
-//                }
-//              });
-//            },
-//          ),
-//        ],
-//      ),
-//      backgroundColor: Colors.teal,
+//        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
+        title: Text("UI Kit"),
+//        bottom: TabBar(
+//          controller: tabController,
+//          tabs: [
+//            Tab(icon: Icon(Icons.directions_car)),
+//            Tab(icon: Icon(Icons.directions_transit)),
+//            Tab(icon: Icon(Icons.directions_bike)),
+//          ],
+//        ),
+//        searchBar: true,
+//        searchHintText: "aaaaaaa",
+//        searchHintStyle: TextStyle(fontSize: 18.0, color: Colors.redAccent),
+//        searchStyle: TextStyle(fontSize: 10.0, color: Colors.green),
+//        searchBarColorTheme: Colors.greenAccent,
+
+        actions: <Widget>[
+          GFIconButton(icon: Icon(Icons.access_time), onPressed: () {}),
+          GFIconButton(icon: Icon(Icons.favorite), onPressed: null),
+        ],
+      ),
+      backgroundColor: Colors.blueGrey,
       body:
 //        GFTabBarView(
 //          height: 200.0,
