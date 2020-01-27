@@ -880,13 +880,13 @@ class _MyHomePageState extends State<MyHomePage>
 //              ),
 
             GFCard(
-//              gradient: LinearGradient(
-//                  begin: FractionalOffset.bottomLeft,
-//                  end: FractionalOffset.topRight,
-//                  colors: [
-//                    const Color(0x5a0b486b),
-//                    const Color(0xFFF56217),
-//                  ]),
+              gradient: LinearGradient(
+                  begin: FractionalOffset.bottomLeft,
+                  end: FractionalOffset.topRight,
+                  colors: [
+                    const Color(0x5a0b486b),
+                    const Color(0xFFF56217),
+                  ]),
               boxFit: BoxFit.fill,
               colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
 //              image: Image.asset(
