@@ -23,7 +23,7 @@
  ## Screenshot
  <p align="center">
   <a target="_blank" href="https://www.getflutter.dev/">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/github_all_screens_scMyu9vXg.png" alt="Get Flutter">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/GitHub_WHeammEIl.png" alt="Get Flutter">
   </a>
 </p>
 
