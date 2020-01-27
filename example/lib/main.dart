@@ -1,30 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:getflutter/colors/gf_color.dart';
-import 'package:getflutter/components/button/gf_button.dart';
-import 'package:getflutter/components/badge/gf_button_badge.dart';
-import 'package:getflutter/components/avatar/gf_avatar.dart';
-import 'package:getflutter/components/tabs/gf_segment_tabs.dart';
 import 'package:getflutter/getflutter.dart';
-import 'package:getflutter/shape/gf_button_shape.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:getflutter/components/toast/gf_toast.dart';
-import 'package:getflutter/components/appbar/gf_appbar.dart';
-import 'package:getflutter/components/list_tile/gf_list_tile.dart';
-import 'package:getflutter/components/button/gf_button_bar.dart';
-import 'package:getflutter/components/typography/gf_typography.dart';
-import 'package:getflutter/types/gf_typography_type.dart';
-import 'package:getflutter/components/toast/gf_floating_widget.dart';
-import 'package:getflutter/components/drawer/gf_drawer.dart';
-import 'package:getflutter/components/drawer/gf_drawer_header.dart';
-import 'package:getflutter/components/button/gf_icon_button.dart';
-import 'package:getflutter/components/image/gf_image_overlay.dart';
-import 'package:getflutter/components/card/gf_card.dart';
-import 'package:getflutter/components/tabs/gf_tabs.dart';
-import 'package:getflutter/components/tabs/gf_tabBarView.dart';
-import 'package:getflutter/types/gf_button_type.dart';
-import 'package:getflutter/position/gf_position.dart';
-import 'package:getflutter/components/tabs/gf_tabBar.dart';
-import 'dart:io';
+import 'package:getflutter/components/search_bar/gf_search_bar.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -71,7 +47,6 @@ class _MyHomePageState extends State<MyHomePage>
   void initState() {
     super.initState();
     tabController = TabController(length: 3, vsync: this);
-    _searchQuery = new TextEditingController();
   }
 
   @override
@@ -82,101 +57,12 @@ class _MyHomePageState extends State<MyHomePage>
 
   bool switchValue = true;
   bool showToast = false;
-
   Widget appBarTitle = new Text("UI Kit");
   Icon actionIcon = new Icon(Icons.search);
 
-  TextEditingController _searchQuery;
-  bool _isSearching = false;
-  String searchQuery = "Search query";
-
-  void _startSearch() {
-    ModalRoute.of(context)
-        .addLocalHistoryEntry(new LocalHistoryEntry(onRemove: _stopSearching));
-
-    setState(() {
-      _isSearching = true;
-    });
-  }
-
-  void _stopSearching() {
-    _clearSearchQuery();
-
-    setState(() {
-      _isSearching = false;
-    });
-  }
-
-  void _clearSearchQuery() {
-    setState(() {
-      _searchQuery.clear();
-      updateSearchQuery("Search query");
-    });
-  }
-
-  Widget _buildTitle(BuildContext context) {
-    var horizontalTitleAlignment =
-        Platform.isIOS ? CrossAxisAlignment.center : CrossAxisAlignment.start;
-
-    return new InkWell(
-      onTap: () => scaffoldKey.currentState.openDrawer(),
-      child: new Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: horizontalTitleAlignment,
-          children: <Widget>[
-            const Text('Seach box'),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSearchField() {
-    return new TextField(
-      controller: _searchQuery,
-      autofocus: true,
-      decoration: const InputDecoration(
-        hintText: 'Search...',
-        border: InputBorder.none,
-        hintStyle: const TextStyle(color: Colors.white30),
-      ),
-      style: const TextStyle(color: Colors.white, fontSize: 16.0),
-      onChanged: updateSearchQuery,
-    );
-  }
-
-  void updateSearchQuery(String newQuery) {
-    setState(() {
-      searchQuery = newQuery;
-    });
-    print("search query " + newQuery);
-  }
-
-  List<Widget> _buildActions() {
-    if (_isSearching) {
-      return <Widget>[
-        new IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: () {
-            if (_searchQuery == null || _searchQuery.text.isEmpty) {
-              Navigator.pop(context);
-              return;
-            }
-            _clearSearchQuery();
-          },
-        ),
-      ];
-    }
-
-    return <Widget>[
-      new IconButton(
-        icon: const Icon(Icons.search),
-        onPressed: _startSearch,
-      ),
-    ];
-  }
+  List list = [
+    "Flutter","Flutterjjk","Flutterhy","jhFlutter"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -241,50 +127,32 @@ class _MyHomePageState extends State<MyHomePage>
           ],
         ),
       ),
-      appBar: AppBar(
-        leading: _isSearching ? const BackButton() : null,
-        title: _isSearching ? _buildSearchField() : _buildTitle(context),
-        actions: _buildActions(),
-      ),
-//      GFAppBar(
-////        backgroundColor: Colors.tealAccent,
+
+      appBar: GFAppBar(
+        backgroundColor: Colors.teal,
 //        centerTitle: true,
-////        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
-//        title: appBarTitle,
-////        bottom: TabBar(
-////          controller: tabController,
-////          tabs: [
-////            Tab(icon: Icon(Icons.directions_car)),
-////            Tab(icon: Icon(Icons.directions_transit)),
-////            Tab(icon: Icon(Icons.directions_bike)),
-////          ],
-////        ),
-//        actions: <Widget>[
-//          new IconButton(
-//            icon: actionIcon,
-//            onPressed: () {
-//              setState(() {
-//                if (this.actionIcon.icon == Icons.search) {
-//                  this.actionIcon = new Icon(Icons.close);
-//                  this.appBarTitle = new TextField(
-//                    style: new TextStyle(
-//                      color: Colors.white,
-//                    ),
-//                    decoration: new InputDecoration(
-//                        prefixIcon: new Icon(Icons.search, color: Colors.white),
-//                        hintText: "Search...",
-//                        hintStyle: new TextStyle(color: Colors.white)),
-//                  );
-//                } else {
-//                  this.actionIcon = new Icon(Icons.search);
-//                  this.appBarTitle = new Text("UI Kit");
-//                }
-//              });
-//            },
-//          ),
-//        ],
-//      ),
-//      backgroundColor: Colors.teal,
+//        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
+        title: Text("UI Kit"),
+//        bottom: TabBar(
+//          controller: tabController,
+//          tabs: [
+//            Tab(icon: Icon(Icons.directions_car)),
+//            Tab(icon: Icon(Icons.directions_transit)),
+//            Tab(icon: Icon(Icons.directions_bike)),
+//          ],
+//        ),
+//        searchBar: true,
+//        searchHintText: "aaaaaaa",
+//        searchHintStyle: TextStyle(fontSize: 18.0, color: Colors.redAccent),
+//        searchStyle: TextStyle(fontSize: 10.0, color: Colors.green),
+//        searchBarColorTheme: Colors.greenAccent,
+
+        actions: <Widget>[
+          GFIconButton(icon: Icon(Icons.access_time), onPressed: () {}),
+          GFIconButton(icon: Icon(Icons.favorite), onPressed: null),
+        ],
+      ),
+//      backgroundColor: Colors.blueGrey,
       body:
 //        GFTabBarView(
 //          height: 200.0,
@@ -305,93 +173,148 @@ class _MyHomePageState extends State<MyHomePage>
 //              color: GFColor.secondary,
             ),
 
-            GFCard(
-              content: Column(
-                children: <Widget>[
-                  GFTypography(
-                    text: 'Toast',
-                    type: GFTypographyType.typo6,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  GFToast(
-                    text: 'Happy New Year',
-                    button: GFButton(
-                      onPressed: () {
-                        print("dfr");
-                      },
-                      text: 'OK',
-                      type: GFButtonType.outline,
-                      color: GFColor.warning,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+//            GFSearchBar(
+//              dataList: list,
+//              hideSearchBoxWhenItemSelected: false,
+//              listContainerHeight: MediaQuery.of(context).size.height / 4,
+//              queryBuilder: (query, list) {
+//                return list
+//                    .where((item) => item.username
+//                    .toLowerCase()
+//                    .contains(query.toLowerCase()))
+//                    .toList();
+//              },
+//              popupListItemBuilder: (item) {
+//                return item;
+//              },
+////              selectedItemBuilder: (selectedItem, deleteSelectedItem) {
+////                return SelectedItemWidget(selectedItem, deleteSelectedItem);
+////              },
+//              // widget customization
+//              noItemsFoundWidget: Container(child: Text("fgv"),),
+//              textFieldBuilder: (controller, focusNode) {
+//                return Padding(
+//                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+//                child: TextField(
+//                controller: controller,
+//                focusNode: focusNode,
+//                style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+//                decoration: InputDecoration(
+//                enabledBorder: const OutlineInputBorder(
+//                borderSide: BorderSide(
+//                color: Color(0x4437474F),
+//                ),
+//                ),
+//                focusedBorder: OutlineInputBorder(
+//                borderSide: BorderSide(color: Theme.of(context).primaryColor),
+//                ),
+//                suffixIcon: Icon(Icons.search),
+//                border: InputBorder.none,
+//                hintText: "Search here...",
+//                contentPadding: const EdgeInsets.only(
+//                left: 16,
+//                right: 20,
+//                top: 14,
+//                bottom: 14,
+//                ),
+//                ),
+//                ));
+//              },
+//              onItemSelected: (item) {
+//                setState(() {
+////                  _selectedItem = item;
+//                });
+//              },
+//            ),
 
-            GFCard(
-              content: Column(
-                children: <Widget>[
-                  GFTypography(
-                    text: 'Floating Toast',
-                    type: GFTypographyType.typo6,
-                  ),
-                  GFFloatingWidget(
-                      verticalPosition: 100,
-                      child: showToast
-                          ? GFToast(
-                              width: 300,
-                              text: 'Happy New Year',
-                              button: GFButton(
-                                onPressed: () {
-                                  print("df");
-                                },
-                                text: 'OK',
-                                type: GFButtonType.outline,
-                                color: GFColor.warning,
-                              ),
-                            )
-                          : Container(),
-                      body: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.center,
-                            child: GFButton(
-                              onPressed: () {
-                                setState(() {
-                                  showToast = !showToast;
-                                });
-                              },
-                              text: 'Click to View the toast',
-                              type: GFButtonType.outline,
-                              color: GFColor.warning,
-                            ),
-                          )
-                        ],
-                      ))
-                ],
-              ),
-            ),
-
-//            Container(
-//              height: 130.0,
-//              width: 105.0,
-//              decoration: BoxDecoration(
-//                  borderRadius: BorderRadius.circular(8.0),
-//                  gradient: LinearGradient(
-//                      begin: FractionalOffset.bottomLeft,
-//                      end: FractionalOffset.topRight,
-//                      colors: [
-//                        const Color(0x5a0b486b),
-//                        const Color(0xFFF56217),
-//                      ])),
+//            GFCard(
+//              content: Column(
+//                children: <Widget>[
+//                  GFTypography(
+//                    text: 'Toast',
+//                    type: GFTypographyType.typo6,
+//                  ),
+//                  SizedBox(
+//                    height: 20,
+//                  ),
+//                  SizedBox(
+//                    height: 20,
+//                  ),
+//                  GFToast(
+//                    text: 'Happy New Year',
+//                    button: GFButton(
+//                      onPressed: () {
+//                        print("dfr");
+//                      },
+//                      text: 'OK',
+//                      type: GFButtonType.outline,
+//                      color: GFColor.warning,
+//                    ),
+//                  ),
+//                ],
+//              ),
 //            ),
 //
+//            GFCard(
+//              content: Column(
+//                children: <Widget>[
+//                  GFTypography(
+//                    text: 'Floating Toast',
+//                    type: GFTypographyType.typo6,
+//                  ),
+//                  GFFloatingWidget(
+//                      verticalPosition: 100,
+//                      child: showToast
+//                          ? GFToast(
+//                              width: 300,
+//                              text: 'Happy New Year',
+//                              button: GFButton(
+//                                onPressed: () {
+//                                  print("df");
+//                                },
+//                                text: 'OK',
+//                                type: GFButtonType.outline,
+//                                color: GFColor.warning,
+//                              ),
+//                            )
+//                          : Container(),
+//                      body: Column(
+//                        crossAxisAlignment: CrossAxisAlignment.center,
+//                        children: <Widget>[
+//                          Container(
+//                            alignment: Alignment.center,
+//                            child: GFButton(
+//                              onPressed: () {
+//                                setState(() {
+//                                  showToast = !showToast;
+//                                });
+//                              },
+//                              text: 'Click to View the toast',
+//                              type: GFButtonType.outline,
+//                              color: GFColor.warning,
+//                            ),
+//                          )
+//                        ],
+//                      ))
+//                ],
+//              ),
+//            ),
+
+            Container(
+              height: 130.0,
+              width: 105.0,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  gradient: LinearGradient(
+                      begin: FractionalOffset.bottomLeft,
+                      end: FractionalOffset.topRight,
+                      colors: [
+                        const Color(0x5a0b486b),
+                        const Color(0xFFF56217),
+                      ]),
+              ),
+            ),
+
 
 //            GFCard(
 //              content: Column(
@@ -660,9 +583,9 @@ class _MyHomePageState extends State<MyHomePage>
               children: <Widget>[
                 GFImageOverlay(
                   height: 200.0,
-                  width: 200.0,
+                  width: 304.0,
                   image: AssetImage("lib/assets/food.jpeg"),
-                  boxFit: BoxFit.fill,
+                  boxFit: BoxFit.cover,
                   colorFilter: new ColorFilter.mode(
                       Colors.black.withOpacity(0.67), BlendMode.darken),
 //                shape: BoxShape.circle,
@@ -811,28 +734,28 @@ class _MyHomePageState extends State<MyHomePage>
 //              backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
 //            ),
 
-            GFSegmentTabs(
-              tabController: tabController,
-              initialIndex: 0,
-              length: 3,
-              tabs: <Widget>[
-                Text(
-                  "Tab1",
-                ),
-                Text(
-                  "Tab2",
-                ),
-                Text(
-                  "Tab3",
-                ),
-              ],
-            ),
-
-            GFTabBarView(controller: tabController, children: <Widget>[
-              Container(color: Colors.red),
-              Container(color: Colors.green),
-              Container(color: Colors.blue)
-            ]),
+//            GFSegmentTabs(
+//              tabController: tabController,
+//              initialIndex: 0,
+//              length: 3,
+//              tabs: <Widget>[
+//                Text(
+//                  "Tab1",
+//                ),
+//                Text(
+//                  "Tab2",
+//                ),
+//                Text(
+//                  "Tab3",
+//                ),
+//              ],
+//            ),
+//
+//            GFTabBarView(controller: tabController, children: <Widget>[
+//              Container(color: Colors.red),
+//              Container(color: Colors.green),
+//              Container(color: Colors.blue)
+//            ]),
 
 //            GFItemsCarousel(
 //              rowCount: 3,
@@ -850,36 +773,36 @@ class _MyHomePageState extends State<MyHomePage>
 //              ).toList(),
 //            ),
 //
-//            GFCarousel(
-////              pagerSize: 12.0,
-////              activeIndicator: Colors.pink,
-////              passiveIndicator: Colors.pink.withOpacity(0.4),
-////              viewportFraction: 1.0,
-////              aspectRatio: 1.0,
-////              autoPlay: true,
-////              enlargeMainPage: true,
-////              pagination: true,
-//              items: imageList.map(
-//                (url) {
-//                  return Container(
-//                    margin: EdgeInsets.all(8.0),
-//                    child: ClipRRect(
-//                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-//                      child: Image.network(
-//                        url,
-//                        fit: BoxFit.cover,
-//                        width: 1000.0
-//                      ),
-//                    ),
-//                  );
-//                },
-//              ).toList(),
-//              onPageChanged: (index) {
-//                setState(() {
-//                  index;
-//                });
-//              },
-//            ),
+            GFCarousel(
+//              pagerSize: 12.0,
+//              activeIndicator: Colors.pink,
+//              passiveIndicator: Colors.pink.withOpacity(0.4),
+//              viewportFraction: 1.0,
+//              aspectRatio: 1.0,
+//              autoPlay: true,
+//              enlargeMainPage: true,
+//              pagination: true,
+              items: imageList.map(
+                (url) {
+                  return Container(
+                    margin: EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      child: Image.network(
+                        url,
+                        fit: BoxFit.cover,
+                        width: 1000.0
+                      ),
+                    ),
+                  );
+                },
+              ).toList(),
+              onPageChanged: (index) {
+                setState(() {
+                  index;
+                });
+              },
+            ),
 
             GFTabs(
               initialIndex: 0,
@@ -957,42 +880,41 @@ class _MyHomePageState extends State<MyHomePage>
 //              ),
 
             GFCard(
+              gradient: LinearGradient(
+                  begin: FractionalOffset.bottomLeft,
+                  end: FractionalOffset.topRight,
+                  colors: [
+                    const Color(0x5a0b486b),
+                    const Color(0xFFF56217),
+                  ]),
               boxFit: BoxFit.fill,
-              colorFilter: new ColorFilter.mode(
-                  Colors.black.withOpacity(0.67), BlendMode.darken),
-              image: Image.asset(
-                "lib/assets/img.png",
-                fit: BoxFit.fitWidth,
-                width: 400.0,
-              ),
+              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
+//              image: Image.asset(
+//                "lib/assets/img.png",
+//                fit: BoxFit.fitWidth,
+//                width: 400.0,
+//              ),
 //              imageOverlay: AssetImage("lib/assets/food.jpeg"),
               titlePosition: GFPosition.end,
               title: GFListTile(
                 avatar: GFAvatar(
+                  backgroundColor: Color(0x5a0b486b),
                   child: Text("tb"),
                 ),
-                title: Text(
-                  'title',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                subTitle: Text(
-                  'subtitle'
-                  "Flutter Flutter is Google's mobile UI framework for crafting"
-                  "Flutter Flutter is Google's mobile UI framework for crafting",
-                  style: TextStyle(color: Colors.grey),
-                ),
+                title: Text('Flutter',),
+                subTitle: Text("Flutter is Google's mobile UI",),
+                description: Text("Flutter Flutter is Google's mobile UI framework for crafting"),
                 icon: GFIconButton(
                   onPressed: null,
                   icon: Icon(Icons.favorite),
                   type: GFButtonType.transparent,
                 ),
               ),
+//              borderOnForeground: true,
               content: Text(
                 "Flutter Flutter is Google's mobile UI framework for crafting"
                 "Flutter Flutter is Google's mobile UI framework for crafting"
-                "Flutter Flutter is Google's mobile UI framework for crafting"
                 "Flutter Flutter is Google's mobile UI framework for crafting",
-                style: TextStyle(color: Colors.grey),
               ),
               buttonBar: GFButtonBar(
                 children: <Widget>[
