@@ -67,8 +67,7 @@ In this beta release, we are going to launch the library with the following comp
  ## Documentation
  
   [**Installation Guide**](https://docs.getflutter.dev)
- 
-[**NOTE**] Our library will also work on Flutter Web, but since it is still in beta, you might get some rendering problem and hence we will update our library as Flutter comes out with the stable release for Flutter Web. 
+  
  
 ### Social Media
 
