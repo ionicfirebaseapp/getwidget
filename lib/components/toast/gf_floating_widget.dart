@@ -9,6 +9,8 @@ class GFFloatingWidget extends StatefulWidget {
       this.child,
       this.horizontalPosition,
       this.verticalPosition,
+        this.color,
+        this.blur=false,
       this.body})
       : super(key: key);
 
@@ -23,6 +25,17 @@ class GFFloatingWidget extends StatefulWidget {
 
   /// verticalPosition of type [double] which  aligns the child vertically across the body
   final double verticalPosition;
+
+
+  final dynamic color;
+
+  final bool blur;
+
+
+
+
+
+
 
   @override
   _GFFloatingWidgetState createState() => _GFFloatingWidgetState();
@@ -39,19 +52,33 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
           height: MediaQuery.of(context).size.height,
           child: widget.body ?? Container(),
         ),
-        Positioned(
-            top:
-                widget.verticalPosition != null ? widget.verticalPosition : 0.0,
-            left: widget.horizontalPosition != null
-                ? widget.horizontalPosition
-                : 0.0,
-            right: widget.horizontalPosition != null
-                ? widget.horizontalPosition
-                : 0.0,
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              child: widget.child ?? Container(),
-            )),
+        Container(
+//          color: widget.child!=null? widget.color: null,
+          child:  Stack(
+            children: <Widget>[
+              Positioned(
+                  child:Container(
+                    alignment: Alignment.topLeft,
+//                    color: widget.child!=null? widget.color: null,
+                  color: widget.blur?Colors.black38:null,
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned( top:
+                        widget.verticalPosition != null ? widget.verticalPosition : 0.0,
+                          left: widget.horizontalPosition != null
+                              ? widget.horizontalPosition
+                              : 0.0,
+                          right: widget.horizontalPosition != null
+                              ? widget.horizontalPosition
+                              : 0.0,child: widget.child??Container(),)
+                      ],
+                    )
+                  )
+              ),
+            ],
+          )
+        )
+
       ],
     );
   }
