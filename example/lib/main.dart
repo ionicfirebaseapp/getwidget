@@ -59,9 +59,7 @@ class _MyHomePageState extends State<MyHomePage>
   Widget appBarTitle = new Text("UI Kit");
   Icon actionIcon = new Icon(Icons.search);
 
-  List list = [
-    "Flutter","Flutterjjk","Flutterhy","jhFlutter"
-  ];
+  List list = ["Flutter", "Flutterjjk", "Flutterhy", "jhFlutter"];
 
   @override
   Widget build(BuildContext context) {
@@ -303,17 +301,16 @@ class _MyHomePageState extends State<MyHomePage>
               height: 130.0,
               width: 105.0,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  gradient: LinearGradient(
-                      begin: FractionalOffset.bottomLeft,
-                      end: FractionalOffset.topRight,
-                      colors: [
-                        const Color(0x5a0b486b),
-                        const Color(0xFFF56217),
-                      ]),
+                borderRadius: BorderRadius.circular(8.0),
+                gradient: LinearGradient(
+                    begin: FractionalOffset.bottomLeft,
+                    end: FractionalOffset.topRight,
+                    colors: [
+                      const Color(0x5a0b486b),
+                      const Color(0xFFF56217),
+                    ]),
               ),
             ),
-
 
 //            GFCard(
 //              content: Column(
@@ -787,18 +784,15 @@ class _MyHomePageState extends State<MyHomePage>
                     margin: EdgeInsets.all(8.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      child: Image.network(
-                        url,
-                        fit: BoxFit.cover,
-                        width: 1000.0
-                      ),
+                      child:
+                          Image.network(url, fit: BoxFit.cover, width: 1000.0),
                     ),
                   );
                 },
               ).toList(),
               onPageChanged: (index) {
                 setState(() {
-
+                  // index;
                 });
               },
             ),
@@ -887,7 +881,8 @@ class _MyHomePageState extends State<MyHomePage>
                     const Color(0xFFF56217),
                   ]),
               boxFit: BoxFit.fill,
-              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
+              colorFilter: new ColorFilter.mode(
+                  Colors.black.withOpacity(0.67), BlendMode.darken),
 //              image: Image.asset(
 //                "lib/assets/img.png",
 //                fit: BoxFit.fitWidth,
@@ -900,9 +895,14 @@ class _MyHomePageState extends State<MyHomePage>
                   backgroundColor: Color(0x5a0b486b),
                   child: Text("tb"),
                 ),
-                title: Text('Flutter',),
-                subTitle: Text("Flutter is Google's mobile UI",),
-                description: Text("Flutter Flutter is Google's mobile UI framework for crafting"),
+                title: Text(
+                  'Flutter',
+                ),
+                subTitle: Text(
+                  "Flutter is Google's mobile UI",
+                ),
+                description: Text(
+                    "Flutter Flutter is Google's mobile UI framework for crafting"),
                 icon: GFIconButton(
                   onPressed: null,
                   icon: Icon(Icons.favorite),
