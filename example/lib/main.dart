@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
-import 'package:getflutter/components/search_bar/gf_search_bar.dart';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -799,7 +798,7 @@ class _MyHomePageState extends State<MyHomePage>
               ).toList(),
               onPageChanged: (index) {
                 setState(() {
-                  index;
+
                 });
               },
             ),

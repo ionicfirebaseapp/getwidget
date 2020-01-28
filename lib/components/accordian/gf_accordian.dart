@@ -1,60 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:getflutter/colors/gf_color.dart';
 
-class GFAccordian extends StatefulWidget {
-  const GFAccordian(
+class GFAccordion extends StatefulWidget {
+
+  const GFAccordion(
       {Key key,
       this.child,
-      this.description,
+      this.content,
       this.titlebackgroundColor,
       this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
-      this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
-      this.text,
+      this.expandedIcon =
+          const Icon(Icons.keyboard_arrow_up, color: Colors.red),
+      this.title,
       this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
       this.titlePadding,
       this.descriptionPadding,
       this.descriptionbackgroundColor,
+      this.contentChild,
       this.margin})
       : super(key: key);
 
-  /// child of  type [Widget]is alternative to text key. text will get priority over child
+  /// child of  type [Widget]is alternative to title key. title will get priority over child
   final Widget child;
 
-  /// description of type[Widget] which shows the messages after the [GFAccordian] is expanded
-  final Widget description;
+  /// content of type[String] which shows the messages after the [GFAccordion] is expanded
+  final String content;
 
-  /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordian] title
+  /// contentChild of  type [Widget]is alternative to content key. content will get priority over contentChild
+  final Widget contentChild;
+
+  /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordion] title
   final dynamic titlebackgroundColor;
 
-  ///collapsedIcon of type [Widget] which is used to show when the [GFAccordian] is collapsed
+  ///collapsedIcon of type [Widget] which is used to show when the [GFAccordion] is collapsed
   final Widget collapsedIcon;
 
-  ///expandedIcon of type[Widget] which is used when the [GFAccordian] is expanded
+  ///expandedIcon of type[Widget] which is used when the [GFAccordion] is expanded
   final Widget expandedIcon;
 
   /// text of type [String] is alternative to child. text will get priority over child
-  final String text;
+  final String title;
 
   /// textStyle of type [textStyle] will be applicable to text only and not for the child
   final TextStyle textStyle;
 
-  ///titlePadding of type [EdgeInsets] which is used to set the padding of the [GFAccordian] title
+  ///titlePadding of type [EdgeInsets] which is used to set the padding of the [GFAccordion] title
   final EdgeInsets titlePadding;
 
-  ///descriptionPadding of type [EdgeInsets] which is used to set the padding of the [GFAccordian] description
+  ///descriptionPadding of type [EdgeInsets] which is used to set the padding of the [GFAccordion] description
   final EdgeInsets descriptionPadding;
 
-  /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordian] description
+  /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordion] description
   final dynamic descriptionbackgroundColor;
 
-  ///margin of type [EdgeInsets] which is used to set the margin of the [GFAccordian]
+  ///margin of type [EdgeInsets] which is used to set the margin of the [GFAccordion]
   final EdgeInsets margin;
 
   @override
-  _GFAccordianState createState() => _GFAccordianState();
+  _GFAccordionState createState() => _GFAccordionState();
 }
 
-class _GFAccordianState extends State<GFAccordian>
+class _GFAccordionState extends State<GFAccordion>
     with TickerProviderStateMixin {
   AnimationController animationController;
   AnimationController controller;
@@ -75,7 +81,7 @@ class _GFAccordianState extends State<GFAccordian>
     );
   }
 
-  bool showAccordian = false;
+  bool showAccordion = false;
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +102,7 @@ class _GFAccordianState extends State<GFAccordian>
                     break;
                   default:
                 }
-                showAccordian = !showAccordian;
+                showAccordion = !showAccordion;
               });
             },
             child: Container(
@@ -110,17 +116,18 @@ class _GFAccordianState extends State<GFAccordian>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Expanded(
-                    child: widget.text != null
-                        ? Text(widget.text, style: widget.textStyle)
+                    child: widget.title != null
+                        ? Text(widget.title, style: widget.textStyle)
                         : (widget.child ?? Container()),
                   ),
-                  showAccordian ? widget.expandedIcon : widget.collapsedIcon
+                  showAccordion ? widget.expandedIcon : widget.collapsedIcon
                 ],
               ),
             ),
           ),
-          showAccordian
+          showAccordion
               ? Container(
+                  width: MediaQuery.of(context).size.width,
                   color: widget.descriptionbackgroundColor != null
                       ? widget.descriptionbackgroundColor
                       : Colors.white70,
@@ -128,10 +135,11 @@ class _GFAccordianState extends State<GFAccordian>
                       ? widget.descriptionPadding
                       : EdgeInsets.all(10),
                   child: SlideTransition(
-                      position: offset,
-                      child: widget.description != null
-                          ? widget.description
-                          : Container()))
+                    position: offset,
+                    child: widget.content != null
+                        ? Text(widget.content)
+                        : (widget.contentChild ?? Container()),
+                  ))
               : Container()
         ],
       ),
