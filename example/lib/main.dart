@@ -177,16 +177,16 @@ class _MyHomePageState extends State<MyHomePage>
           children: <Widget>[
 
             GFSearchBar(
-              dataList: list,
+              searchList: list,
               hideSearchBoxWhenItemSelected: false,
-              listContainerHeight: 100.0,
-              queryBuilder: (query, list) {
+              overlaySearchListHeight: 100.0,
+              searchQueryBuilder: (query, list) {
                 return list
                     .where((item) =>
                         item.toLowerCase().contains(query.toLowerCase()))
                     .toList();
               },
-              popupListItemBuilder: (item) {
+              overlaySearchListItemBuilder: (item) {
                 return Container(
                   padding: const EdgeInsets.all(12),
                   child: Text(
@@ -1168,6 +1168,10 @@ class _MyHomePageState extends State<MyHomePage>
             ),
           ),
         ],
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(24.0),
+                topRight: Radius.circular(24.0))),
         indicatorColor: Colors.white,
 //        indicatorSize: TabBarIndicatorSize.label,
         labelColor: Colors.lightGreen,

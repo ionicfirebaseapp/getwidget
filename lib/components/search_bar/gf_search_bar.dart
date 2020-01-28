@@ -9,23 +9,36 @@ typedef QueryBuilder<T> = List<T> Function(
 
 class GFSearchBar<T> extends StatefulWidget {
   const GFSearchBar({
-    @required this.dataList,
-    @required this.popupListItemBuilder,
-    @required this.queryBuilder,
+    @required this.searchList,
+    @required this.overlaySearchListItemBuilder,
+    @required this.searchQueryBuilder,
     Key key,
     this.onItemSelected,
     this.hideSearchBoxWhenItemSelected = false,
-    this.listContainerHeight,
+    this.overlaySearchListHeight,
     this.noItemsFoundWidget,
   }) : super(key: key);
 
-  final List<T> dataList;
-  final QueryListItemBuilder<T> popupListItemBuilder;
+
+  /// List of [text] or [widget] reference for users
+  final List<T> searchList;
+
+  /// defines how the [searchList] items look like in overlayContainer
+  final QueryListItemBuilder<T> overlaySearchListItemBuilder;
+
+  /// if true, it will hide the [searchBox]
   final bool hideSearchBoxWhenItemSelected;
-  final double listContainerHeight;
-  final QueryBuilder<T> queryBuilder;
+
+  /// defines the height of [searchList] overlay container
+  final double overlaySearchListHeight;
+
+  /// can search and filter the [searchList]
+  final QueryBuilder<T> searchQueryBuilder;
+
+  /// displays the [widget] when the search item failed
   final Widget noItemsFoundWidget;
 
+  /// defines what to do with onSelect [SearchList] item
   final OnItemSelected<T> onItemSelected;
 
   @override
@@ -35,15 +48,15 @@ class GFSearchBar<T> extends StatefulWidget {
 class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
   final _controller = TextEditingController();
   List<T> _list;
-  List<T> _tempList;
+  List<T> _searchList;
   bool isFocused;
   FocusNode _focusNode;
   ValueNotifier<T> notifier;
   bool isRequiredCheckFailed;
-  Widget textField;
-  OverlayEntry overlayEntry;
+  Widget searchBox;
+  OverlayEntry overlaySearchList;
   bool showTextBox = false;
-  double listContainerHeight;
+  double overlaySearchListHeight;
   final LayerLink _layerLink = LayerLink();
   final double textBoxHeight = 48;
   final TextEditingController textController = TextEditingController();
@@ -55,54 +68,54 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
   }
 
   void init() {
-    _tempList = <T>[];
+    _searchList = <T>[];
     notifier = ValueNotifier(null);
     _focusNode = FocusNode();
     isFocused = false;
-    _list = List<T>.from(widget.dataList);
-    _tempList.addAll(_list);
+    _list = List<T>.from(widget.searchList);
+    _searchList.addAll(_list);
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus) {
         _controller.clear();
-        if (overlayEntry != null) {
-          overlayEntry.remove();
+        if (overlaySearchList != null) {
+          overlaySearchList.remove();
         }
-        overlayEntry = null;
+        overlaySearchList = null;
       } else {
-        _tempList
+        _searchList
           ..clear()
           ..addAll(_list);
-        if (overlayEntry == null) {
-          onTextfieldFocus();
+        if (overlaySearchList == null) {
+          onTextFieldFocus();
         } else {
-          overlayEntry.markNeedsBuild();
+          overlaySearchList.markNeedsBuild();
         }
       }
     });
     _controller.addListener(() {
       final text = _controller.text;
       if (text.trim().isNotEmpty) {
-        _tempList.clear();
-        final filterList = widget.queryBuilder(text, widget.dataList);
+        _searchList.clear();
+        final filterList = widget.searchQueryBuilder(text, widget.searchList);
         if (filterList == null) {
           throw Exception(
             "List cannot be null",
           );
         }
-        _tempList.addAll(filterList);
-        if (overlayEntry == null) {
-          onTextfieldFocus();
+        _searchList.addAll(filterList);
+        if (overlaySearchList == null) {
+          onTextFieldFocus();
         } else {
-          overlayEntry.markNeedsBuild();
+          overlaySearchList.markNeedsBuild();
         }
       } else {
-        _tempList
+        _searchList
           ..clear()
           ..addAll(_list);
-        if (overlayEntry == null) {
-          onTextfieldFocus();
+        if (overlaySearchList == null) {
+          onTextFieldFocus();
         } else {
-          overlayEntry.markNeedsBuild();
+          overlaySearchList.markNeedsBuild();
         }
       }
     });
@@ -110,7 +123,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
 
   @override
   void didUpdateWidget(GFSearchBar oldWidget) {
-    if (oldWidget.dataList != widget.dataList) {
+    if (oldWidget.searchList != widget.searchList) {
       init();
     }
     super.didUpdateWidget(oldWidget);
@@ -119,9 +132,9 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
   @override
   Widget build(BuildContext context) {
 
-    listContainerHeight =
-        widget.listContainerHeight ?? MediaQuery.of(context).size.height / 4;
-    textField = Padding(
+    overlaySearchListHeight =
+        widget.overlaySearchListHeight ?? MediaQuery.of(context).size.height / 4;
+    searchBox = Padding(
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             child: TextField(
               controller: _controller,
@@ -160,18 +173,18 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
         else
           CompositedTransformTarget(
             link: _layerLink,
-            child: textField,
+            child: searchBox,
           ),
       ],
     );
     return column;
   }
 
-  void onDropDownItemSelected(T item) {
-    if (overlayEntry != null) {
-      overlayEntry.remove();
+  void onSearchListItemSelected(T item) {
+    if (overlaySearchList != null) {
+      overlaySearchList.remove();
     }
-    overlayEntry = null;
+    overlaySearchList = null;
     _controller.clear();
     _focusNode.unfocus();
     setState(() {
@@ -184,24 +197,24 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
     }
   }
 
-  void onTextfieldFocus() {
-    final RenderBox textFieldRenderBox = context.findRenderObject();
+  void onTextFieldFocus() {
+    final RenderBox searchBoxRenderBox = context.findRenderObject();
     final RenderBox overlay = Overlay.of(context).context.findRenderObject();
-    final width = textFieldRenderBox.size.width;
+    final width = searchBoxRenderBox.size.width;
     final position = RelativeRect.fromRect(
       Rect.fromPoints(
-        textFieldRenderBox.localToGlobal(
-          textFieldRenderBox.size.topLeft(Offset.zero),
+        searchBoxRenderBox.localToGlobal(
+          searchBoxRenderBox.size.topLeft(Offset.zero),
           ancestor: overlay,
         ),
-        textFieldRenderBox.localToGlobal(
-          textFieldRenderBox.size.topRight(Offset.zero),
+        searchBoxRenderBox.localToGlobal(
+          searchBoxRenderBox.size.topRight(Offset.zero),
           ancestor: overlay,
         ),
       ),
       Offset.zero & overlay.size,
     );
-    overlayEntry = OverlayEntry(
+    overlaySearchList = OverlayEntry(
       builder: (context) {
         final height = MediaQuery.of(context).size.height;
         return Positioned(
@@ -210,14 +223,14 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
           child: CompositedTransformFollower(
             offset: Offset(
               0,
-              height - position.bottom < listContainerHeight
+              height - position.bottom < overlaySearchListHeight
                   ? (textBoxHeight + 6.0)
-                  : -(listContainerHeight - 8.0),
+                  : -(overlaySearchListHeight - 8.0),
             ),
             showWhenUnlinked: false,
             link: _layerLink,
             child: Container(
-              height: listContainerHeight,
+              height: overlaySearchListHeight,
               margin: const EdgeInsets.symmetric(horizontal: 12),
               child: Card(
                 color: Colors.white,
@@ -225,7 +238,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(4)),
                 ),
-                child: _tempList.isNotEmpty
+                child: _searchList.isNotEmpty
                     ? Scrollbar(
                         child: ListView.separated(
                           padding: const EdgeInsets.symmetric(vertical: 4),
@@ -235,13 +248,13 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
                           itemBuilder: (context, index) => Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              onTap: () => onDropDownItemSelected(_tempList[index]),
-                              child: widget.popupListItemBuilder(
-                                _tempList.elementAt(index),
+                              onTap: () => onSearchListItemSelected(_searchList[index]),
+                              child: widget.overlaySearchListItemBuilder(
+                                _searchList.elementAt(index),
                               ),
                             ),
                           ),
-                          itemCount: _tempList.length,
+                          itemCount: _searchList.length,
                         ),
                       )
                     : widget.noItemsFoundWidget != null
@@ -257,7 +270,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
         );
       },
     );
-    Overlay.of(context).insert(overlayEntry);
+    Overlay.of(context).insert(overlaySearchList);
   }
 }
 

@@ -156,6 +156,7 @@ class GFTabBar extends StatefulWidget {
   /// will be used.
   final TabController controller;
 
+  /// defines the shape of tabBar
   final ShapeBorder shape;
 
   @override
