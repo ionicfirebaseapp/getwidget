@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:getflutter/components/search_bar/gf_search_bar.dart';
-import 'dart:io';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -157,7 +156,14 @@ class _MyHomePageState extends State<MyHomePage>
 
         actions: <Widget>[
 //          GFIconButton(icon: Icon(Icons.access_time), onPressed: () {}),
-          GFIconButton(icon: Icon(Icons.favorite, color: Colors.white,), onPressed: (){}, type: GFButtonType.transparent,),
+          GFIconButton(
+            icon: Icon(
+              Icons.favorite,
+              color: Colors.white,
+            ),
+            onPressed: () {},
+            type: GFButtonType.transparent,
+          ),
         ],
       ),
 //      backgroundColor: Colors.blueGrey,
@@ -175,7 +181,6 @@ class _MyHomePageState extends State<MyHomePage>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-
             GFSearchBar(
               searchList: list,
               hideSearchBoxWhenItemSelected: false,
@@ -774,7 +779,7 @@ class _MyHomePageState extends State<MyHomePage>
               ).toList(),
               onPageChanged: (index) {
                 setState(() {
-                  index;
+//                  index;
                 });
               },
             ),

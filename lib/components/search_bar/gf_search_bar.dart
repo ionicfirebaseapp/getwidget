@@ -19,7 +19,6 @@ class GFSearchBar<T> extends StatefulWidget {
     this.noItemsFoundWidget,
   }) : super(key: key);
 
-
   /// List of [text] or [widget] reference for users
   final List<T> searchList;
 
@@ -131,38 +130,37 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
 
   @override
   Widget build(BuildContext context) {
-
-    overlaySearchListHeight =
-        widget.overlaySearchListHeight ?? MediaQuery.of(context).size.height / 4;
+    overlaySearchListHeight = widget.overlaySearchListHeight ??
+        MediaQuery.of(context).size.height / 4;
     searchBox = Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-            child: TextField(
-              controller: _controller,
-              focusNode: _focusNode,
-              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-              decoration: InputDecoration(
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Color(0x4437474F),
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-                suffixIcon: Icon(Icons.search),
-                border: InputBorder.none,
-                hintText: "Search here...",
-                contentPadding: const EdgeInsets.only(
-                  left: 16,
-                  right: 20,
-                  top: 14,
-                  bottom: 14,
-                ),
-              ),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      child: TextField(
+        controller: _controller,
+        focusNode: _focusNode,
+        style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+        decoration: InputDecoration(
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color(0x4437474F),
             ),
-          );
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+          suffixIcon: Icon(Icons.search),
+          border: InputBorder.none,
+          hintText: "Search here...",
+          contentPadding: const EdgeInsets.only(
+            left: 16,
+            right: 20,
+            top: 14,
+            bottom: 14,
+          ),
+        ),
+      ),
+    );
 
     final column = Column(
       mainAxisSize: MainAxisSize.min,
@@ -248,7 +246,8 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
                           itemBuilder: (context, index) => Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              onTap: () => onSearchListItemSelected(_searchList[index]),
+                              onTap: () =>
+                                  onSearchListItemSelected(_searchList[index]),
                               child: widget.overlaySearchListItemBuilder(
                                 _searchList.elementAt(index),
                               ),
@@ -273,8 +272,6 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
     Overlay.of(context).insert(overlaySearchList);
   }
 }
-
-
 
 //class GFSearch extends StatefulWidget {
 //  @override
