@@ -4,7 +4,6 @@ import 'package:getflutter/getflutter.dart';
 import 'package:getflutter/types/gf_alert_type.dart';
 
 class GFAlert extends StatefulWidget {
-
   /// Alert has to be wrap inside the body like [GFFloatingWidget]. See [GFFloatingWidget]
   GFAlert(
       {Key key,

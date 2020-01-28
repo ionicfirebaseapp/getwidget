@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:getflutter/colors/gf_color.dart';
 
 class GFAccordion extends StatefulWidget {
-
   const GFAccordion(
       {Key key,
       this.child,
