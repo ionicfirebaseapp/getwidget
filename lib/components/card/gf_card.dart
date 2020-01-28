@@ -36,10 +36,10 @@ class GFCard extends StatelessWidget {
       this.gradient})
       : assert(elevation == null || elevation >= 0.0),
         assert(borderOnForeground != null),
-        assert(color == null || gradient == null,
-        'Cannot provide both a color and a decoration\n'
-            'The color argument is just a shorthand for "decoration: new BoxDecoration(color: color)".'
-        ),
+        assert(
+            color == null || gradient == null,
+            'Cannot provide both a color and a decoration\n'
+            'The color argument is just a shorthand for "decoration: new BoxDecoration(color: color)".'),
         super(key: key);
 
   /// defines the card's height
@@ -149,23 +149,29 @@ class GFCard extends StatelessWidget {
     return Container(
       height: height,
       margin: margin ?? cardTheme.margin ?? const EdgeInsets.all(16.0),
-      decoration: gradient != null ? BoxDecoration(
-          gradient: gradient,
-        borderRadius: BorderRadius.all(Radius.circular(4.0)),
-      ) : null,
-      child: gradient == null ? Material(
-          type: MaterialType.card,
-          color: color ?? cardTheme.color ?? Theme.of(context).cardColor,
-        elevation: elevation ?? cardTheme.elevation ?? _defaultElevation,
-        shape: shape ??
-            cardTheme.shape ??
-            const RoundedRectangleBorder(
+      decoration: gradient != null
+          ? BoxDecoration(
+              gradient: gradient,
               borderRadius: BorderRadius.all(Radius.circular(4.0)),
-            ),
-        borderOnForeground: borderOnForeground,
-        clipBehavior: clipBehavior ?? cardTheme.clipBehavior ?? _defaultClipBehavior,
-        child: imageOverlay == null ? cardChild : overlayImage,
-      ) : imageOverlay == null ? cardChild : overlayImage,
+            )
+          : null,
+      child: gradient == null
+          ? Material(
+              type: MaterialType.card,
+              color: color ?? cardTheme.color ?? Theme.of(context).cardColor,
+              elevation: elevation ?? cardTheme.elevation ?? _defaultElevation,
+              shape: shape ??
+                  cardTheme.shape ??
+                  const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                  ),
+              borderOnForeground: borderOnForeground,
+              clipBehavior: clipBehavior ??
+                  cardTheme.clipBehavior ??
+                  _defaultClipBehavior,
+              child: imageOverlay == null ? cardChild : overlayImage,
+            )
+          : imageOverlay == null ? cardChild : overlayImage,
     );
   }
 }

@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 typedef QueryListItemBuilder<T> = Widget Function(T item);
 typedef OnItemSelected<T> = void Function(T item);
 typedef SelectedItemBuilder<T> = Widget Function(
-    T item,
-    VoidCallback deleteSelectedItem,
-    );
+  T item,
+  VoidCallback deleteSelectedItem,
+);
 typedef QueryBuilder<T> = List<T> Function(
-    String query,
-    List<T> list,
-    );
+  String query,
+  List<T> list,
+);
 typedef TextFieldBuilder = Widget Function(
-    TextEditingController controller,
-    FocusNode focus,
-    );
+  TextEditingController controller,
+  FocusNode focus,
+);
 
 class GFSearchBar<T> extends StatefulWidget {
   const GFSearchBar({
@@ -142,34 +142,34 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
     textField = widget.textFieldBuilder != null
         ? widget.textFieldBuilder(_controller, _focusNode)
         : Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      child: TextField(
-        controller: _controller,
-        focusNode: _focusNode,
-        style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-        decoration: InputDecoration(
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Color(0x4437474F),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            child: TextField(
+              controller: _controller,
+              focusNode: _focusNode,
+              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+              decoration: InputDecoration(
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0x4437474F),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                suffixIcon: Icon(Icons.search),
+                border: InputBorder.none,
+                hintText: "Search here...",
+                contentPadding: const EdgeInsets.only(
+                  left: 16,
+                  right: 20,
+                  top: 14,
+                  bottom: 14,
+                ),
+              ),
             ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-          suffixIcon: Icon(Icons.search),
-          border: InputBorder.none,
-          hintText: "Search here...",
-          contentPadding: const EdgeInsets.only(
-            left: 16,
-            right: 20,
-            top: 14,
-            bottom: 14,
-          ),
-        ),
-      ),
-    );
+          );
 
     final column = Column(
       mainAxisSize: MainAxisSize.min,
@@ -259,29 +259,30 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
                 ),
                 child: _tempList.isNotEmpty
                     ? Scrollbar(
-                  child: ListView.separated(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    separatorBuilder: (context, index) => const Divider(
-                      height: 1,
-                    ),
-                    itemBuilder: (context, index) => Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () => onDropDownItemTap(_tempList[index]),
-                        child: widget.popupListItemBuilder(
-                          _tempList.elementAt(index),
+                        child: ListView.separated(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          separatorBuilder: (context, index) => const Divider(
+                            height: 1,
+                          ),
+                          itemBuilder: (context, index) => Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () => onDropDownItemTap(_tempList[index]),
+                              child: widget.popupListItemBuilder(
+                                _tempList.elementAt(index),
+                              ),
+                            ),
+                          ),
+                          itemCount: _tempList.length,
                         ),
-                      ),
-                    ),
-                    itemCount: _tempList.length,
-                  ),
-                )
+                      )
                     : widget.noItemsFoundWidget != null
-                    ? Center(
-                  child: widget.noItemsFoundWidget,
-                ) : Container(
-                  child: Text("no items found"),
-                ),
+                        ? Center(
+                            child: widget.noItemsFoundWidget,
+                          )
+                        : Container(
+                            child: Text("no items found"),
+                          ),
               ),
             ),
           ),
