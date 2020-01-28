@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:getflutter/components/search_bar/gf_search_bar.dart';
+import 'dart:io';
 
 final List<String> imageList = [
   "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
@@ -61,7 +62,14 @@ class _MyHomePageState extends State<MyHomePage>
   Icon actionIcon = new Icon(Icons.search);
 
   List list = [
-    "Flutter","Flutterjjk","Flutterhy","jhFlutter"
+    "Flutter",
+    "React",
+    "Ionic",
+    "Xamarin",
+    "Flutter2",
+    "React2",
+    "Ionic2",
+    "Xamarin2",
   ];
 
   @override
@@ -141,15 +149,15 @@ class _MyHomePageState extends State<MyHomePage>
 //            Tab(icon: Icon(Icons.directions_bike)),
 //          ],
 //        ),
-//        searchBar: true,
+        searchBar: true,
 //        searchHintText: "aaaaaaa",
 //        searchHintStyle: TextStyle(fontSize: 18.0, color: Colors.redAccent),
 //        searchStyle: TextStyle(fontSize: 10.0, color: Colors.green),
 //        searchBarColorTheme: Colors.greenAccent,
 
         actions: <Widget>[
-          GFIconButton(icon: Icon(Icons.access_time), onPressed: () {}),
-          GFIconButton(icon: Icon(Icons.favorite), onPressed: null),
+//          GFIconButton(icon: Icon(Icons.access_time), onPressed: () {}),
+          GFIconButton(icon: Icon(Icons.favorite, color: Colors.white,), onPressed: (){}, type: GFButtonType.transparent,),
         ],
       ),
 //      backgroundColor: Colors.blueGrey,
@@ -167,65 +175,36 @@ class _MyHomePageState extends State<MyHomePage>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            GFIconButton(
-              icon: Icon(Icons.title),
-              onPressed: null,
-//              color: GFColor.secondary,
-            ),
 
-//            GFSearchBar(
-//              dataList: list,
-//              hideSearchBoxWhenItemSelected: false,
-//              listContainerHeight: MediaQuery.of(context).size.height / 4,
-//              queryBuilder: (query, list) {
-//                return list
-//                    .where((item) => item.username
-//                    .toLowerCase()
-//                    .contains(query.toLowerCase()))
-//                    .toList();
-//              },
-//              popupListItemBuilder: (item) {
-//                return item;
-//              },
-////              selectedItemBuilder: (selectedItem, deleteSelectedItem) {
-////                return SelectedItemWidget(selectedItem, deleteSelectedItem);
-////              },
-//              // widget customization
-//              noItemsFoundWidget: Container(child: Text("fgv"),),
-//              textFieldBuilder: (controller, focusNode) {
-//                return Padding(
-//                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-//                child: TextField(
-//                controller: controller,
-//                focusNode: focusNode,
-//                style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-//                decoration: InputDecoration(
-//                enabledBorder: const OutlineInputBorder(
-//                borderSide: BorderSide(
-//                color: Color(0x4437474F),
-//                ),
-//                ),
-//                focusedBorder: OutlineInputBorder(
-//                borderSide: BorderSide(color: Theme.of(context).primaryColor),
-//                ),
-//                suffixIcon: Icon(Icons.search),
-//                border: InputBorder.none,
-//                hintText: "Search here...",
-//                contentPadding: const EdgeInsets.only(
-//                left: 16,
-//                right: 20,
-//                top: 14,
-//                bottom: 14,
-//                ),
-//                ),
-//                ));
-//              },
-//              onItemSelected: (item) {
-//                setState(() {
-////                  _selectedItem = item;
-//                });
-//              },
-//            ),
+            GFSearchBar(
+              dataList: list,
+              hideSearchBoxWhenItemSelected: false,
+              listContainerHeight: 100.0,
+              queryBuilder: (query, list) {
+                return list
+                    .where((item) =>
+                        item.toLowerCase().contains(query.toLowerCase()))
+                    .toList();
+              },
+              popupListItemBuilder: (item) {
+                return Container(
+                  padding: const EdgeInsets.all(12),
+                  child: Text(
+                    item,
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                );
+              },
+              noItemsFoundWidget: Container(
+                color: Colors.green,
+                child: Text("no items found"),
+              ),
+              onItemSelected: (item) {
+                setState(() {
+                  print('ssssssss $item');
+                });
+              },
+            ),
 
 //            GFCard(
 //              content: Column(
@@ -304,17 +283,16 @@ class _MyHomePageState extends State<MyHomePage>
               height: 130.0,
               width: 105.0,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  gradient: LinearGradient(
-                      begin: FractionalOffset.bottomLeft,
-                      end: FractionalOffset.topRight,
-                      colors: [
-                        const Color(0x5a0b486b),
-                        const Color(0xFFF56217),
-                      ]),
+                borderRadius: BorderRadius.circular(8.0),
+                gradient: LinearGradient(
+                    begin: FractionalOffset.bottomLeft,
+                    end: FractionalOffset.topRight,
+                    colors: [
+                      const Color(0x5a0b486b),
+                      const Color(0xFFF56217),
+                    ]),
               ),
             ),
-
 
 //            GFCard(
 //              content: Column(
@@ -788,11 +766,8 @@ class _MyHomePageState extends State<MyHomePage>
                     margin: EdgeInsets.all(8.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      child: Image.network(
-                        url,
-                        fit: BoxFit.cover,
-                        width: 1000.0
-                      ),
+                      child:
+                          Image.network(url, fit: BoxFit.cover, width: 1000.0),
                     ),
                   );
                 },
@@ -888,7 +863,8 @@ class _MyHomePageState extends State<MyHomePage>
                     const Color(0xFFF56217),
                   ]),
               boxFit: BoxFit.fill,
-              colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken),
+              colorFilter: new ColorFilter.mode(
+                  Colors.black.withOpacity(0.67), BlendMode.darken),
 //              image: Image.asset(
 //                "lib/assets/img.png",
 //                fit: BoxFit.fitWidth,
@@ -901,9 +877,14 @@ class _MyHomePageState extends State<MyHomePage>
                   backgroundColor: Color(0x5a0b486b),
                   child: Text("tb"),
                 ),
-                title: Text('Flutter',),
-                subTitle: Text("Flutter is Google's mobile UI",),
-                description: Text("Flutter Flutter is Google's mobile UI framework for crafting"),
+                title: Text(
+                  'Flutter',
+                ),
+                subTitle: Text(
+                  "Flutter is Google's mobile UI",
+                ),
+                description: Text(
+                    "Flutter Flutter is Google's mobile UI framework for crafting"),
                 icon: GFIconButton(
                   onPressed: null,
                   icon: Icon(Icons.favorite),
@@ -1163,49 +1144,49 @@ class _MyHomePageState extends State<MyHomePage>
           ],
         ),
       ),
-//      bottomNavigationBar: GFTabBar(
-//        initialIndex: 0,
-//        length: 3,
-//        controller: tabController,
-//        tabs: [
-//          Tab(
-//            icon: Icon(Icons.directions_bike),
-//            child: Text(
-//              "Tab1",
-//            ),
-//          ),
-//          Tab(
-//            icon: Icon(Icons.directions_bus),
-//            child: Text(
-//              "Tab2",
-//            ),
-//          ),
-//          Tab(
-//            icon: Icon(Icons.directions_railway),
-//            child: Text(
-//              "Tab3",
-//            ),
-//          ),
-//        ],
-//        indicatorColor: Colors.white,
-////        indicatorSize: TabBarIndicatorSize.label,
-//        labelColor: Colors.lightGreen,
-//        labelPadding: EdgeInsets.all(8.0),
-//        tabBarColor: Colors.blueGrey,
-//        unselectedLabelColor: Colors.black,
-//        labelStyle: TextStyle(
-//          fontWeight: FontWeight.w500,
-//          fontSize: 13.0,
-//          color: Colors.deepOrange,
-//          fontFamily: 'OpenSansBold',
-//        ),
-//        unselectedLabelStyle: TextStyle(
-//          fontWeight: FontWeight.w500,
-//          fontSize: 13.0,
-//          color: Colors.black,
-//          fontFamily: 'OpenSansBold',
-//        ),
-//      ),
+      bottomNavigationBar: GFTabBar(
+        initialIndex: 0,
+        length: 3,
+        controller: tabController,
+        tabs: [
+          Tab(
+            icon: Icon(Icons.directions_bike),
+            child: Text(
+              "Tab1",
+            ),
+          ),
+          Tab(
+            icon: Icon(Icons.directions_bus),
+            child: Text(
+              "Tab2",
+            ),
+          ),
+          Tab(
+            icon: Icon(Icons.directions_railway),
+            child: Text(
+              "Tab3",
+            ),
+          ),
+        ],
+        indicatorColor: Colors.white,
+//        indicatorSize: TabBarIndicatorSize.label,
+        labelColor: Colors.lightGreen,
+        labelPadding: EdgeInsets.all(8.0),
+        tabBarColor: Colors.blueGrey,
+        unselectedLabelColor: Colors.black,
+        labelStyle: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 13.0,
+          color: Colors.deepOrange,
+          fontFamily: 'OpenSansBold',
+        ),
+        unselectedLabelStyle: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 13.0,
+          color: Colors.black,
+          fontFamily: 'OpenSansBold',
+        ),
+      ),
     );
   }
 }

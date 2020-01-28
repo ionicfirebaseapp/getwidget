@@ -2,40 +2,28 @@ import 'package:flutter/material.dart';
 
 typedef QueryListItemBuilder<T> = Widget Function(T item);
 typedef OnItemSelected<T> = void Function(T item);
-typedef SelectedItemBuilder<T> = Widget Function(
-    T item,
-    VoidCallback deleteSelectedItem,
-    );
 typedef QueryBuilder<T> = List<T> Function(
-    String query,
-    List<T> list,
-    );
-typedef TextFieldBuilder = Widget Function(
-    TextEditingController controller,
-    FocusNode focus,
-    );
+  String query,
+  List<T> list,
+);
 
 class GFSearchBar<T> extends StatefulWidget {
   const GFSearchBar({
     @required this.dataList,
     @required this.popupListItemBuilder,
-    @required this.selectedItemBuilder,
     @required this.queryBuilder,
     Key key,
     this.onItemSelected,
     this.hideSearchBoxWhenItemSelected = false,
     this.listContainerHeight,
     this.noItemsFoundWidget,
-    this.textFieldBuilder,
   }) : super(key: key);
 
   final List<T> dataList;
   final QueryListItemBuilder<T> popupListItemBuilder;
-  final SelectedItemBuilder<T> selectedItemBuilder;
   final bool hideSearchBoxWhenItemSelected;
   final double listContainerHeight;
   final QueryBuilder<T> queryBuilder;
-  final TextFieldBuilder textFieldBuilder;
   final Widget noItemsFoundWidget;
 
   final OnItemSelected<T> onItemSelected;
@@ -85,7 +73,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
           ..clear()
           ..addAll(_list);
         if (overlayEntry == null) {
-          onTap();
+          onTextfieldFocus();
         } else {
           overlayEntry.markNeedsBuild();
         }
@@ -98,12 +86,12 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
         final filterList = widget.queryBuilder(text, widget.dataList);
         if (filterList == null) {
           throw Exception(
-            "Filtered List cannot be null. Pass empty list instead",
+            "List cannot be null",
           );
         }
         _tempList.addAll(filterList);
         if (overlayEntry == null) {
-          onTap();
+          onTextfieldFocus();
         } else {
           overlayEntry.markNeedsBuild();
         }
@@ -112,19 +100,12 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
           ..clear()
           ..addAll(_list);
         if (overlayEntry == null) {
-          onTap();
+          onTextfieldFocus();
         } else {
           overlayEntry.markNeedsBuild();
         }
       }
     });
-//    KeyboardVisibilityNotification().addNewListener(
-//      onChange: (visible) {
-//        if (!visible) {
-//          _focusNode.unfocus();
-//        }
-//      },
-//    );
   }
 
   @override
@@ -137,39 +118,38 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
 
   @override
   Widget build(BuildContext context) {
+
     listContainerHeight =
         widget.listContainerHeight ?? MediaQuery.of(context).size.height / 4;
-    textField = widget.textFieldBuilder != null
-        ? widget.textFieldBuilder(_controller, _focusNode)
-        : Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      child: TextField(
-        controller: _controller,
-        focusNode: _focusNode,
-        style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-        decoration: InputDecoration(
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Color(0x4437474F),
+    textField = Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+            child: TextField(
+              controller: _controller,
+              focusNode: _focusNode,
+              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+              decoration: InputDecoration(
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0x4437474F),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                suffixIcon: Icon(Icons.search),
+                border: InputBorder.none,
+                hintText: "Search here...",
+                contentPadding: const EdgeInsets.only(
+                  left: 16,
+                  right: 20,
+                  top: 14,
+                  bottom: 14,
+                ),
+              ),
             ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-          suffixIcon: Icon(Icons.search),
-          border: InputBorder.none,
-          hintText: "Search here...",
-          contentPadding: const EdgeInsets.only(
-            left: 16,
-            right: 20,
-            top: 14,
-            bottom: 14,
-          ),
-        ),
-      ),
-    );
+          );
 
     final column = Column(
       mainAxisSize: MainAxisSize.min,
@@ -182,24 +162,12 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
             link: _layerLink,
             child: textField,
           ),
-        if (notifier.value != null)
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: const BorderRadius.all(Radius.circular(4)),
-            ),
-            margin: const EdgeInsets.symmetric(horizontal: 16),
-            child: widget.selectedItemBuilder(
-              notifier.value,
-              onDeleteSelectedItem,
-            ),
-          ),
       ],
     );
     return column;
   }
 
-  void onDropDownItemTap(T item) {
+  void onDropDownItemSelected(T item) {
     if (overlayEntry != null) {
       overlayEntry.remove();
     }
@@ -216,7 +184,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
     }
   }
 
-  void onTap() {
+  void onTextfieldFocus() {
     final RenderBox textFieldRenderBox = context.findRenderObject();
     final RenderBox overlay = Overlay.of(context).context.findRenderObject();
     final width = textFieldRenderBox.size.width;
@@ -259,29 +227,30 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
                 ),
                 child: _tempList.isNotEmpty
                     ? Scrollbar(
-                  child: ListView.separated(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    separatorBuilder: (context, index) => const Divider(
-                      height: 1,
-                    ),
-                    itemBuilder: (context, index) => Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () => onDropDownItemTap(_tempList[index]),
-                        child: widget.popupListItemBuilder(
-                          _tempList.elementAt(index),
+                        child: ListView.separated(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          separatorBuilder: (context, index) => const Divider(
+                            height: 1,
+                          ),
+                          itemBuilder: (context, index) => Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () => onDropDownItemSelected(_tempList[index]),
+                              child: widget.popupListItemBuilder(
+                                _tempList.elementAt(index),
+                              ),
+                            ),
+                          ),
+                          itemCount: _tempList.length,
                         ),
-                      ),
-                    ),
-                    itemCount: _tempList.length,
-                  ),
-                )
+                      )
                     : widget.noItemsFoundWidget != null
-                    ? Center(
-                  child: widget.noItemsFoundWidget,
-                ) : Container(
-                  child: Text("no items found"),
-                ),
+                        ? Center(
+                            child: widget.noItemsFoundWidget,
+                          )
+                        : Container(
+                            child: Text("no items found"),
+                          ),
               ),
             ),
           ),
@@ -290,11 +259,138 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
     );
     Overlay.of(context).insert(overlayEntry);
   }
-
-  void onDeleteSelectedItem() {
-    setState(() => notifier.value = null);
-    if (widget.onItemSelected != null) {
-      widget.onItemSelected(null);
-    }
-  }
 }
+
+
+
+//class GFSearch extends StatefulWidget {
+//  @override
+//  _GFSearchState createState() => new _GFSearchState();
+//}
+//
+//class _GFSearchState extends State<GFSearch> {
+//  final TextEditingController _filter = new TextEditingController();
+//  String _searchText = "";
+//  List names = new List();
+//  List filteredNames = new List();
+//  FocusNode _focusNode;
+//
+//
+//  _GFSearchState() {
+//    _filter.addListener(() {
+//      if (_filter.text.isEmpty) {
+//        setState(() {
+//          _searchText = "";
+//          filteredNames = names;
+//        });
+//      } else {
+//        setState(() {
+//          _searchText = _filter.text;
+//        });
+//      }
+//    });
+//  }
+//
+//  @override
+//  void initState() {
+//    this._getNames();
+//    super.initState();
+//  }
+//
+//  Widget build(BuildContext context) {
+//    return Column(
+//      children: <Widget>[
+//        _buildBar(context),
+//        _buildList(),
+//      ],
+//    );
+//  }
+//
+//  Widget _buildBar(BuildContext context) {
+//
+//    return Padding(
+//        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+//        child: TextField(
+//          controller: _filter,
+//          focusNode: _focusNode,
+//          style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+//          decoration: InputDecoration(
+//            enabledBorder: const OutlineInputBorder(
+//              borderSide: BorderSide(
+//                color: Color(0x4437474F),
+//              ),
+//            ),
+//            focusedBorder: OutlineInputBorder(
+//              borderSide: BorderSide(
+//                color: Theme.of(context).primaryColor,
+//              ),
+//            ),
+//            suffixIcon: Icon(Icons.search),
+//            border: InputBorder.none,
+//            hintText: "Search here...",
+//            contentPadding: const EdgeInsets.only(
+//              left: 16,
+//              right: 20,
+//              top: 14,
+//              bottom: 14,
+//            ),
+//          ),
+//        ));
+//  }
+//
+//  Widget _buildList() {
+//    if (!(_searchText.isEmpty)) {
+//      List tempList = new List();
+//      for (int i = 0; i < filteredNames.length; i++) {
+//        if (filteredNames[i]
+//            .toLowerCase()
+//            .contains(_searchText.toLowerCase())) {
+//          tempList.add(filteredNames[i]);
+//        }
+//      }
+//      filteredNames = tempList;
+//    }
+//    return ListView.builder(
+//      shrinkWrap: true,
+//      itemCount: names == null ? 0 : filteredNames.length,
+//      itemBuilder: (BuildContext context, int index) {
+//        return new ListTile(
+//          title: Text(filteredNames[index]),
+//          onTap: () => print(filteredNames[index]),
+//        );
+//      },
+//    );
+//  }
+//
+////  void _searchPressed() {
+////    setState(() {
+////      if (this._searchIcon.icon == Icons.search) {
+////        this._searchIcon = new Icon(Icons.close);
+////        this._appBarTitle = new TextField(
+////          controller: _filter,
+////          decoration: new InputDecoration(
+////              prefixIcon: new Icon(Icons.search), hintText: 'Search...'),
+////        );
+////      } else {
+////        this._searchIcon = new Icon(Icons.search);
+////        this._appBarTitle = new Text('GF Search bar');
+////        filteredNames = names;
+////        _filter.clear();
+////      }
+////    });
+////  }
+//
+//  List list = ["Aa", "cd", "Dcvsd", "Cds", "vds", "vcdf"];
+//
+//  void _getNames() async {
+//    List tempList = new List();
+//    for (int i = 0; i < list.length; i++) {
+//      tempList.add(list[i]);
+//    }
+//    setState(() {
+//      names = tempList;
+//      names.shuffle();
+//      filteredNames = names;
+//    });
+//  }
+//}
