@@ -10,7 +10,7 @@ class GFAccordion extends StatefulWidget {
       this.titlebackgroundColor,
       this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
       this.expandedIcon =
-          const Icon(Icons.keyboard_arrow_up, color: Colors.red),
+          const Icon(Icons.keyboard_arrow_up),
       this.title,
       this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
       this.titlePadding,
@@ -86,6 +86,13 @@ class _GFAccordionState extends State<GFAccordion>
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+//        borderRadius: BorderRadius.all(Radius.circular(3)),
+        border: Border.all(
+            color:showAccordion?  Colors.white: Colors.black38
+        ),
+        color: Colors.white
+      ),
       margin: widget.margin != null ? widget.margin : EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,9 +113,12 @@ class _GFAccordionState extends State<GFAccordion>
               });
             },
             child: Container(
-              color: widget.titlebackgroundColor != null
-                  ? widget.titlebackgroundColor
-                  : Colors.white,
+              decoration: BoxDecoration(
+                color: showAccordion? widget.titlebackgroundColor != null
+                    ? widget.titlebackgroundColor
+                    : Color(0xFFE0E0E0): Colors.white
+              ),
+
               padding: widget.titlePadding != null
                   ? widget.titlePadding
                   : EdgeInsets.all(10),
