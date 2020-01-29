@@ -4,7 +4,6 @@ import 'package:getflutter/getflutter.dart';
 import 'package:getflutter/types/gf_alert_type.dart';
 
 class GFAlert extends StatefulWidget {
-
   /// Alert has to be wrap inside the body like [GFFloatingWidget]. See [GFFloatingWidget]
   GFAlert(
       {Key key,
@@ -57,6 +56,7 @@ class GFAlert extends StatefulWidget {
 
   ///type of [Widget] used for the buttons ie, OK, Cancel for the action in [GFAlert]
   final Widget bottombar;
+
   @override
   _GFAlertState createState() => _GFAlertState();
 }
@@ -84,61 +84,58 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return
-        FadeTransition(
-          opacity: animation,
-          child: Column(
-            children: <Widget>[
-              Container(
-                width: widget.type == GFAlertType.fullWidth
-                    ? MediaQuery.of(context).size.width
-                    : widget.width,
-                constraints: BoxConstraints(minHeight: 50.0),
-                margin: widget.type == GFAlertType.fullWidth
-                    ? EdgeInsets.only(left: 0, right: 0)
-                    : EdgeInsets.only(left: 20, right: 20),
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                    borderRadius: widget.type == GFAlertType.basic
-                        ? BorderRadius.circular(3.0)
-                        : widget.type == GFAlertType.rounded
-                            ? BorderRadius.circular(10.0)
-                            : BorderRadius.zero,
-                    color: widget.backgroundColor != null
-                        ? GFColors.getGFColor(widget.backgroundColor)
-                        : GFColors.getGFColor(GFColor.white),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.40),
-                          blurRadius: 3.0)
-                    ]),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    widget.title != null
-                        ? Text(widget.title, style: widget.titleTextStyle)
-                        : (widget.child ?? Container()),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Align(
-                      alignment: widget.alignment != null
-                          ? widget.alignment
-                          : Alignment.topLeft,
-                      child: widget.content != null
-                          ? Text(widget.content, style: widget.textStyle)
-                          : (widget.contentChild ?? Container()),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    widget.bottombar != null ? widget.bottombar : Container(),
-                  ],
+    return FadeTransition(
+      opacity: animation,
+      child: Column(
+        children: <Widget>[
+          Container(
+            width: widget.type == GFAlertType.fullWidth
+                ? MediaQuery.of(context).size.width
+                : widget.width,
+            constraints: BoxConstraints(minHeight: 50.0),
+            margin: widget.type == GFAlertType.fullWidth
+                ? EdgeInsets.only(left: 0, right: 0)
+                : EdgeInsets.only(left: 20, right: 20),
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+                borderRadius: widget.type == GFAlertType.basic
+                    ? BorderRadius.circular(3.0)
+                    : widget.type == GFAlertType.rounded
+                        ? BorderRadius.circular(10.0)
+                        : BorderRadius.zero,
+                color: widget.backgroundColor != null
+                    ? GFColors.getGFColor(widget.backgroundColor)
+                    : GFColors.getGFColor(GFColor.white),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black.withOpacity(0.40), blurRadius: 3.0)
+                ]),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                widget.title != null
+                    ? Text(widget.title, style: widget.titleTextStyle)
+                    : (widget.child ?? Container()),
+                SizedBox(
+                  height: 10,
                 ),
-              ),
-            ],
+                Align(
+                  alignment: widget.alignment != null
+                      ? widget.alignment
+                      : Alignment.topLeft,
+                  child: widget.content != null
+                      ? Text(widget.content, style: widget.textStyle)
+                      : (widget.contentChild ?? Container()),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                widget.bottombar != null ? widget.bottombar : Container(),
+              ],
+            ),
           ),
-        );
-
+        ],
+      ),
+    );
   }
 }
