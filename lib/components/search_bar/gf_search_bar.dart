@@ -161,9 +161,10 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
               bottom: 14,
             ),
           ),
-        ));
+        )
+    );
 
-    final column = Column(
+    final searchBoxBody = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -176,7 +177,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
           ),
       ],
     );
-    return column;
+    return searchBoxBody;
   }
 
   void onSearchListItemSelected(T item) {
