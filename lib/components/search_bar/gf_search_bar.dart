@@ -158,15 +158,15 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
                 color: Theme.of(context).primaryColor,
               ),
             ),
-            suffixIcon: isFocused ?
-                GFIconButton(
-                    icon: Icon(Icons.close),
-                    type: GFButtonType.transparent,
-                    onPressed: () {
-                      onSearchListItemSelected(null);
-                    },
-                )
-                : Icon(Icons.search),
+//            suffixIcon: isFocused ?
+//                GFIconButton(
+//                    icon: Icon(Icons.close),
+//                    type: GFButtonType.transparent,
+//                    onPressed: () {
+//                      onSearchListItemSelected(null);
+//                    },
+//                )
+//                : Icon(Icons.search),
             border: InputBorder.none,
             hintText: "Search here...",
             contentPadding: const EdgeInsets.only(
