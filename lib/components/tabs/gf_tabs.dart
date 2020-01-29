@@ -38,6 +38,7 @@ class GFTabs extends StatefulWidget {
     this.tabs,
     this.controller,
     this.tabBarHeight,
+    this.shape,
   })  : assert(length != null && length >= 0),
         assert(initialIndex != null &&
             initialIndex >= 0 &&
@@ -169,6 +170,9 @@ class GFTabs extends StatefulWidget {
   /// defines the tabBar height
   final double tabBarHeight;
 
+  /// defines the shape of tabBar
+  final ShapeBorder shape;
+
   @override
   _GFTabsState createState() => _GFTabsState();
 }
@@ -187,6 +191,7 @@ class _GFTabsState extends State<GFTabs> {
           child: Column(
             children: <Widget>[
               GFTabBar(
+                shape: widget.shape,
                 length: widget.length,
                 initialIndex: widget.initialIndex,
                 tabBarHeight: widget.tabBarHeight,
