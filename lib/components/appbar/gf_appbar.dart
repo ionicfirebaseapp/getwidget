@@ -409,37 +409,37 @@ class _GFAppBarState extends State<GFAppBar> {
     }
 
     searchBar = TextField(
-        cursorColor: widget.searchBarColorTheme,
-        style: widget.searchTextStyle,
-        decoration: new InputDecoration(
-          prefixIcon: new Icon(
-            Icons.search,
-            color: widget.searchBarColorTheme,
-            size: 18.0,
-          ),
-          suffixIcon: GFIconButton(
-            icon: Icon(
-              Icons.close,
-              color: widget.searchBarColorTheme,
-              size: 20.0,
-            ),
-            type: GFButtonType.transparent,
-            onPressed: () {
-              setState(() {
-                showSearchBar = !showSearchBar;
-              });
-            },
-          ),
-          hintText: widget.searchHintText,
-          hintStyle: widget.searchHintStyle,
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(width: 1, color: widget.searchBarColorTheme),
-          ),
+      cursorColor: widget.searchBarColorTheme,
+      style: widget.searchTextStyle,
+      decoration: new InputDecoration(
+        prefixIcon: new Icon(
+          Icons.search,
+          color: widget.searchBarColorTheme,
+          size: 18.0,
         ),
-        onTap: widget.onTap,
-        onChanged: widget.onChanged,
-        controller: widget.searchController,
-        onSubmitted: widget.onSubmitted,
+        suffixIcon: GFIconButton(
+          icon: Icon(
+            Icons.close,
+            color: widget.searchBarColorTheme,
+            size: 20.0,
+          ),
+          type: GFButtonType.transparent,
+          onPressed: () {
+            setState(() {
+              showSearchBar = !showSearchBar;
+            });
+          },
+        ),
+        hintText: widget.searchHintText,
+        hintStyle: widget.searchHintStyle,
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(width: 1, color: widget.searchBarColorTheme),
+        ),
+      ),
+      onTap: widget.onTap,
+      onChanged: widget.onChanged,
+      controller: widget.searchController,
+      onSubmitted: widget.onSubmitted,
     );
 
     if (!showSearchBar) {

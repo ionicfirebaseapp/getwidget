@@ -253,26 +253,30 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
               ),
               content: _searchList.isNotEmpty
                   ? Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-                      InkWell(
-                        child: Icon(Icons.close, size: 22.0,),
-                        onTap: onCloseOverlaySearchList,
-                      ),
-                      Container(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                        InkWell(
+                          child: Icon(
+                            Icons.close,
+                            size: 22.0,
+                          ),
+                          onTap: onCloseOverlaySearchList,
+                        ),
+                        Container(
                           height: overlaySearchListHeight,
                           child: Scrollbar(
                             child: ListView.separated(
                               padding: const EdgeInsets.symmetric(vertical: 4),
-                              separatorBuilder: (context, index) => const Divider(
+                              separatorBuilder: (context, index) =>
+                                  const Divider(
                                 height: 1,
                               ),
                               itemBuilder: (context, index) => Material(
                                 color: Colors.transparent,
                                 child: InkWell(
-                                  onTap: () =>
-                                      onSearchListItemSelected(_searchList[index]),
+                                  onTap: () => onSearchListItemSelected(
+                                      _searchList[index]),
                                   child: widget.overlaySearchListItemBuilder(
                                     _searchList.elementAt(index),
                                   ),
@@ -282,8 +286,8 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
                             ),
                           ),
                         ),
-                    ],
-                  )
+                      ],
+                    )
                   : widget.noItemsFoundWidget != null
                       ? Center(
                           child: widget.noItemsFoundWidget,
