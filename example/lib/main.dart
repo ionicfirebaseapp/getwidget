@@ -116,20 +116,18 @@ class _MyHomePageState extends State<MyHomePage>
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('user'),
-                  Text('user@asdf.com'),
+                  Text('user name'),
+                  Text('user@userid.com'),
                 ],
               ),
             ),
             ListTile(
               title: Text('Item 1'),
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap: null,
             ),
             ListTile(
               title: Text('Item 2'),
-              onTap: () {},
+              onTap: null,
             ),
           ],
         ),
