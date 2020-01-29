@@ -9,8 +9,8 @@ class GFFloatingWidget extends StatefulWidget {
       this.child,
       this.horizontalPosition,
       this.verticalPosition,
-        this.blurnessColor,
-        this.showblurness=false,
+      this.blurnessColor,
+      this.showblurness = false,
       this.body})
       : super(key: key);
 
@@ -26,9 +26,10 @@ class GFFloatingWidget extends StatefulWidget {
   /// verticalPosition of type [double] which  aligns the child vertically across the body
   final double verticalPosition;
 
-
+  ///blurnessColor of tye [Color] or [GFColor] which is used to blur the backgroundColor when ever the [child] is used in [GFFloatingWidget]
   final dynamic blurnessColor;
 
+  ///type of bool which allows to show or hide the blurness of the backgroundColor whenever the [child]  is used in [GFFloatingWidget]
   final bool showblurness;
 
   @override
@@ -44,29 +45,29 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
       children: <Widget>[
         Container(
           height: MediaQuery.of(context).size.height,
-          child:  widget.body?? Container(),
+          child: widget.body ?? Container(),
         ),
-
-        Positioned( child: Container(
-            height:MediaQuery.of(context).size.height,
-            color: widget.showblurness ?widget.blurnessColor: null,
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-
-    top:
-    widget.verticalPosition != null ? widget.verticalPosition : 0.0,
-    left: widget.horizontalPosition != null
-    ? widget.horizontalPosition
-        : 0.0,
-    right: widget.horizontalPosition != null
-    ? widget.horizontalPosition
-        : 0.0,
-    child: widget.child??Container(),)
-
-              ],
-            ),
-          ))
+        Positioned(
+            child: Container(
+          height: MediaQuery.of(context).size.height,
+          color: widget.showblurness ? widget.blurnessColor : null,
+          child: Stack(
+            children: <Widget>[
+              Positioned(
+                top: widget.verticalPosition != null
+                    ? widget.verticalPosition
+                    : 0.0,
+                left: widget.horizontalPosition != null
+                    ? widget.horizontalPosition
+                    : 0.0,
+                right: widget.horizontalPosition != null
+                    ? widget.horizontalPosition
+                    : 0.0,
+                child: widget.child ?? Container(),
+              )
+            ],
+          ),
+        ))
       ],
     );
   }
