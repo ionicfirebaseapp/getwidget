@@ -408,9 +408,7 @@ class _GFAppBarState extends State<GFAppBar> {
       );
     }
 
-    searchBar = ListTile(
-      contentPadding: EdgeInsets.zero,
-      title: TextField(
+    searchBar = TextField(
         cursorColor: widget.searchBarColorTheme,
         style: widget.searchTextStyle,
         decoration: new InputDecoration(
@@ -418,6 +416,19 @@ class _GFAppBarState extends State<GFAppBar> {
             Icons.search,
             color: widget.searchBarColorTheme,
             size: 18.0,
+          ),
+          suffixIcon: GFIconButton(
+            icon: Icon(
+              Icons.close,
+              color: widget.searchBarColorTheme,
+              size: 20.0,
+            ),
+            type: GFButtonType.transparent,
+            onPressed: () {
+              setState(() {
+                showSearchBar = !showSearchBar;
+              });
+            },
           ),
           hintText: widget.searchHintText,
           hintStyle: widget.searchHintStyle,
@@ -429,20 +440,6 @@ class _GFAppBarState extends State<GFAppBar> {
         onChanged: widget.onChanged,
         controller: widget.searchController,
         onSubmitted: widget.onSubmitted,
-      ),
-      trailing: GFIconButton(
-        icon: Icon(
-          Icons.close,
-          color: widget.searchBarColorTheme,
-          size: 20.0,
-        ),
-        type: GFButtonType.transparent,
-        onPressed: () {
-          setState(() {
-            showSearchBar = !showSearchBar;
-          });
-        },
-      ),
     );
 
     if (!showSearchBar) {
