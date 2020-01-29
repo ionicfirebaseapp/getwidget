@@ -75,20 +75,20 @@ class _MyHomePageState extends State<MyHomePage>
     return Scaffold(
       drawer: GFDrawer(
 //        colorFilter: new ColorFilter.mode(
-//            Colors.pinkAccent.withOpacity(0.6), BlendMode.darken),
+//            Colors.teal.withOpacity(0.6), BlendMode.darken),
 //        backgroundImage: NetworkImage(
 //            "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
-//        gradient: LinearGradient(
-//          begin: Alignment.topRight,
-//          end: Alignment.bottomLeft,
-//          stops: [0.1, 0.5, 0.7, 0.9],
-//          colors: [
-//            Colors.teal[800],
-//            Colors.teal[600],
-//            Colors.teal[400],
-//            Colors.teal[200],
-//          ],
-//        ),
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          stops: [0.1, 0.5, 0.7, 0.9],
+          colors: [
+            Colors.teal[800],
+            Colors.teal[600],
+            Colors.teal[400],
+            Colors.teal[200],
+          ],
+        ),
         color: Colors.greenAccent,
         child: ListView(
           padding: EdgeInsets.zero,
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage>
                     "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
               ),
               decoration: BoxDecoration(
-                color: Colors.teal,
+                color: Colors.transparent,
               ),
               otherAccountsPictures: <Widget>[
                 Image(
@@ -193,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage>
               },
               overlaySearchListItemBuilder: (item) {
                 return Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(8),
                   child: Text(
                     item,
                     style: const TextStyle(fontSize: 18),

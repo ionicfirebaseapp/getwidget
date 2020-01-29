@@ -57,17 +57,16 @@ class GFDrawer extends StatelessWidget {
   /// Typically used in the [Scaffold.drawer] property.
   ///
   /// The [elevation] must be non-negative.
-  const GFDrawer(
-      {Key key,
-        this.elevation = 16.0,
-        this.child,
-        this.semanticLabel,
-        this.backgroundImage,
-        this.colorFilter,
-        this.gradient,
-        this.color,
-      })
-      : assert(elevation != null && elevation >= 0.0),
+  const GFDrawer({
+    Key key,
+    this.elevation = 16.0,
+    this.child,
+    this.semanticLabel,
+    this.backgroundImage,
+    this.colorFilter,
+    this.gradient,
+    this.color,
+  })  : assert(elevation != null && elevation >= 0.0),
         super(key: key);
 
   /// The z-coordinate at which to place this drawer relative to its parent.

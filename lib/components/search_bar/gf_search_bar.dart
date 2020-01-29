@@ -9,17 +9,17 @@ typedef QueryBuilder<T> = List<T> Function(
 );
 
 class GFSearchBar<T> extends StatefulWidget {
-  const GFSearchBar({
-    @required this.searchList,
-    @required this.overlaySearchListItemBuilder,
-    @required this.searchQueryBuilder,
-    Key key,
-    this.onItemSelected,
-    this.hideSearchBoxWhenItemSelected = false,
-    this.overlaySearchListHeight,
-    this.noItemsFoundWidget,
-    this.searchBoxInputDecoration
-  }) : super(key: key);
+  const GFSearchBar(
+      {@required this.searchList,
+      @required this.overlaySearchListItemBuilder,
+      @required this.searchQueryBuilder,
+      Key key,
+      this.onItemSelected,
+      this.hideSearchBoxWhenItemSelected = false,
+      this.overlaySearchListHeight,
+      this.noItemsFoundWidget,
+      this.searchBoxInputDecoration})
+      : super(key: key);
 
   /// List of [text] or [widget] reference for users
   final List<T> searchList;
@@ -64,6 +64,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
   final LayerLink _layerLink = LayerLink();
   final double textBoxHeight = 48;
   final TextEditingController textController = TextEditingController();
+  bool isSearchBoxSelected = false;
 
   @override
   void initState() {
@@ -71,7 +72,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
     init();
   }
 
-   init() {
+  init() {
     _searchList = <T>[];
     notifier = ValueNotifier(null);
     _focusNode = FocusNode();
@@ -138,7 +139,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
     overlaySearchListHeight = widget.overlaySearchListHeight ??
         MediaQuery.of(context).size.height / 4;
 
-    print('yyys $isFocused');
+    print('yyys $isSearchBoxSelected');
 
     searchBox = Container(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -147,29 +148,30 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
           controller: _controller,
           focusNode: _focusNode,
           style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-          decoration: widget.searchBoxInputDecoration == null ? InputDecoration(
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Color(0x4437474F),
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-            suffixIcon: isFocused ? Icon(Icons.close) : Icon(Icons.search),
-            border: InputBorder.none,
-            hintText: "Search here...",
-            contentPadding: const EdgeInsets.only(
-              left: 16,
-              right: 20,
-              top: 14,
-              bottom: 14,
-            ),
-          ) : widget.searchBoxInputDecoration,
-        )
-    );
+          decoration: widget.searchBoxInputDecoration == null
+              ? InputDecoration(
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0x4437474F),
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                  suffixIcon: Icon(Icons.search),
+                  border: InputBorder.none,
+                  hintText: "Search here...",
+                  contentPadding: const EdgeInsets.only(
+                    left: 16,
+                    right: 20,
+                    top: 14,
+                    bottom: 14,
+                  ),
+                )
+              : widget.searchBoxInputDecoration,
+        ));
 
     final searchBoxBody = Column(
       mainAxisSize: MainAxisSize.min,
@@ -185,6 +187,10 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
       ],
     );
     return searchBoxBody;
+  }
+
+  void onCloseOverlaySearchList() {
+    onSearchListItemSelected(null);
   }
 
   void onSearchListItemSelected(T item) {
@@ -206,7 +212,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
 
   void onTextFieldFocus() {
     setState(() {
-      isFocused = true;
+      isSearchBoxSelected = true;
     });
     final RenderBox searchBoxRenderBox = context.findRenderObject();
     final RenderBox overlay = Overlay.of(context).context.findRenderObject();
@@ -245,36 +251,39 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(4)),
               ),
-              title: GFListTile(
-                icon: GFIconButton(
-                    icon: Icon(Icons.close),
-                    onPressed: () {
-                      onSearchListItemSelected(null);
-                    }),
-              ),
               content: _searchList.isNotEmpty
-                  ? Container(
-                      height: overlaySearchListHeight,
-                      child: Scrollbar(
-                        child: ListView.separated(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          separatorBuilder: (context, index) => const Divider(
-                            height: 1,
-                          ),
-                          itemBuilder: (context, index) => Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              onTap: () =>
-                                  onSearchListItemSelected(_searchList[index]),
-                              child: widget.overlaySearchListItemBuilder(
-                                _searchList.elementAt(index),
+                  ? Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      InkWell(
+                        child: Icon(Icons.close, size: 22.0,),
+                        onTap: onCloseOverlaySearchList,
+                      ),
+                      Container(
+                          height: overlaySearchListHeight,
+                          child: Scrollbar(
+                            child: ListView.separated(
+                              padding: const EdgeInsets.symmetric(vertical: 4),
+                              separatorBuilder: (context, index) => const Divider(
+                                height: 1,
                               ),
+                              itemBuilder: (context, index) => Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  onTap: () =>
+                                      onSearchListItemSelected(_searchList[index]),
+                                  child: widget.overlaySearchListItemBuilder(
+                                    _searchList.elementAt(index),
+                                  ),
+                                ),
+                              ),
+                              itemCount: _searchList.length,
                             ),
                           ),
-                          itemCount: _searchList.length,
                         ),
-                      ),
-                    )
+                    ],
+                  )
                   : widget.noItemsFoundWidget != null
                       ? Center(
                           child: widget.noItemsFoundWidget,
