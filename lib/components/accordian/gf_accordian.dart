@@ -17,6 +17,7 @@ class GFAccordion extends StatefulWidget {
       this.descriptionbackgroundColor,
       this.contentChild,
         this.titleborderColor,
+        this.contentBorderColor,
       this.margin})
       : super(key: key);
 
@@ -57,6 +58,8 @@ class GFAccordion extends StatefulWidget {
   final EdgeInsets margin;
 
   final dynamic titleborderColor;
+
+  final dynamic contentBorderColor;
 
   @override
   _GFAccordionState createState() => _GFAccordionState();
@@ -114,8 +117,11 @@ class _GFAccordionState extends State<GFAccordion>
             },
             child: Container(
               decoration: BoxDecoration(
-                  border:  Border.all(
-                      color:widget.titleborderColor !=null ? widget.titleborderColor: Colors.white
+                  border: widget.titleborderColor ==null? widget.titleborderColor: Border(
+                      top: BorderSide(color: Colors.black38),
+                      left: BorderSide(color: Colors.black38),
+                      right: BorderSide(color: Colors.black38),
+                    bottom: BorderSide(color: Colors.black38)
                   ),
                 color: showAccordion? widget.titlebackgroundColor != null
                     ? widget.titlebackgroundColor
@@ -141,7 +147,7 @@ class _GFAccordionState extends State<GFAccordion>
           showAccordion
               ? Container(
              decoration: BoxDecoration(
-               border: Border(
+               border:widget.contentBorderColor ==null? widget.contentBorderColor: Border(
                  bottom: BorderSide(color: Colors.black38),
                  left: BorderSide(color: Colors.black38),
                  right: BorderSide(color: Colors.black38)
