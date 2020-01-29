@@ -9,14 +9,14 @@ class GFAccordion extends StatefulWidget {
       this.content,
       this.titlebackgroundColor,
       this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
-      this.expandedIcon =
-          const Icon(Icons.keyboard_arrow_up),
+      this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
       this.title,
       this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
       this.titlePadding,
       this.descriptionPadding,
       this.descriptionbackgroundColor,
       this.contentChild,
+        this.titleborderColor,
       this.margin})
       : super(key: key);
 
@@ -56,6 +56,8 @@ class GFAccordion extends StatefulWidget {
   ///margin of type [EdgeInsets] which is used to set the margin of the [GFAccordion]
   final EdgeInsets margin;
 
+  final dynamic titleborderColor;
+
   @override
   _GFAccordionState createState() => _GFAccordionState();
 }
@@ -86,11 +88,11 @@ class _GFAccordionState extends State<GFAccordion>
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-            color:showAccordion?  Colors.white: Colors.black38
-        ),
-      ),
+//      decoration: BoxDecoration(
+//        border: Border.all(
+//            color:widget.borderColor !=null ? widget.borderColor: Colors.white
+//        ),
+//      ),
       margin: widget.margin != null ? widget.margin : EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,6 +114,9 @@ class _GFAccordionState extends State<GFAccordion>
             },
             child: Container(
               decoration: BoxDecoration(
+                  border:  Border.all(
+                      color:widget.titleborderColor !=null ? widget.titleborderColor: Colors.white
+                  ),
                 color: showAccordion? widget.titlebackgroundColor != null
                     ? widget.titlebackgroundColor
                     : Color(0xFFE0E0E0): widget.titlebackgroundColor
