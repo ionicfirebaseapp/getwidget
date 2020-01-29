@@ -50,34 +50,20 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
       children: <Widget>[
         Container(
           height: MediaQuery.of(context).size.height,
-          child: widget.body ?? Container(),
-        ),
-        Container(
-//          color: widget.child!=null? widget.color: null,
-          child:  Stack(
-            children: <Widget>[
-              Positioned(
-                  child:Container(
-                    alignment: Alignment.topLeft,
-//                    color: widget.child!=null? widget.color: null,
-                  color: widget.blur?Colors.black38:null,
-                    child: Stack(
-                      children: <Widget>[
-                        Positioned( top:
-                        widget.verticalPosition != null ? widget.verticalPosition : 0.0,
-                          left: widget.horizontalPosition != null
-                              ? widget.horizontalPosition
-                              : 0.0,
-                          right: widget.horizontalPosition != null
-                              ? widget.horizontalPosition
-                              : 0.0,child: widget.child??Container(),)
-                      ],
-                    )
-                  )
-              ),
-            ],
+//          color: Colors.blue,
+          child:  Opacity(
+            opacity: widget.blur? 0.50: 1,
+            child: widget.body?? Container(),
           )
-        )
+        ),
+        Positioned( top:
+        widget.verticalPosition != null ? widget.verticalPosition : 0.0,
+          left: widget.horizontalPosition != null
+              ? widget.horizontalPosition
+              : 0.0,
+          right: widget.horizontalPosition != null
+              ? widget.horizontalPosition
+              : 0.0,child: widget.child??Container(),)
 
       ],
     );
