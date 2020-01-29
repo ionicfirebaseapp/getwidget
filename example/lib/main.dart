@@ -199,10 +199,10 @@ class _MyHomePageState extends State<MyHomePage>
                   ),
                 );
               },
-              noItemsFoundWidget: Container(
-                color: Colors.green,
-                child: Text("no items found"),
-              ),
+//              noItemsFoundWidget: Container(
+//                color: Colors.green,
+//                child: Text("no items found..."),
+//              ),
               onItemSelected: (item) {
                 setState(() {
                   print('ssssssss $item');
