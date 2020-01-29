@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:getflutter/colors/gf_color.dart';
 
 class GFAccordion extends StatefulWidget {
-
   const GFAccordion(
       {Key key,
       this.child,
@@ -13,11 +12,11 @@ class GFAccordion extends StatefulWidget {
       this.title,
       this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
       this.titlePadding,
-      this.descriptionPadding,
-      this.descriptionbackgroundColor,
+      this.contentbackgroundColor,
+      this.contentPadding,
       this.contentChild,
-        this.titleborderColor,
-        this.contentBorderColor,
+      this.titleborderColor,
+      this.contentBorderColor,
       this.margin})
       : super(key: key);
 
@@ -49,16 +48,18 @@ class GFAccordion extends StatefulWidget {
   final EdgeInsets titlePadding;
 
   ///descriptionPadding of type [EdgeInsets] which is used to set the padding of the [GFAccordion] description
-  final EdgeInsets descriptionPadding;
+  final EdgeInsets contentPadding;
 
   /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordion] description
-  final dynamic descriptionbackgroundColor;
+  final dynamic contentbackgroundColor;
 
   ///margin of type [EdgeInsets] which is used to set the margin of the [GFAccordion]
   final EdgeInsets margin;
 
+  ///titleborderColor of type  [Color] or [GFColor] which is used to change the border color of title
   final dynamic titleborderColor;
 
+  ///contentBorderColor of type  [Color] or [GFColor] which is used to change the border color of content
   final dynamic contentBorderColor;
 
   @override
@@ -91,11 +92,6 @@ class _GFAccordionState extends State<GFAccordion>
   @override
   Widget build(BuildContext context) {
     return Container(
-//      decoration: BoxDecoration(
-//        border: Border.all(
-//            color:widget.borderColor !=null ? widget.borderColor: Colors.white
-//        ),
-//      ),
       margin: widget.margin != null ? widget.margin : EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,17 +113,18 @@ class _GFAccordionState extends State<GFAccordion>
             },
             child: Container(
               decoration: BoxDecoration(
-                  border: widget.titleborderColor ==null? widget.titleborderColor: Border(
-                      top: BorderSide(color: Colors.black38),
-                      left: BorderSide(color: Colors.black38),
-                      right: BorderSide(color: Colors.black38),
-                    bottom: BorderSide(color: Colors.black38)
-                  ),
-                color: showAccordion? widget.titlebackgroundColor != null
-                    ? widget.titlebackgroundColor
-                    : Color(0xFFE0E0E0): widget.titlebackgroundColor
-              ),
-
+                  border: widget.titleborderColor == null
+                      ? widget.titleborderColor
+                      : Border(
+                          top: BorderSide(color: Colors.black38),
+                          left: BorderSide(color: Colors.black38),
+                          right: BorderSide(color: Colors.black38),
+                          bottom: BorderSide(color: Colors.black38)),
+                  color: showAccordion
+                      ? widget.titlebackgroundColor != null
+                          ? widget.titlebackgroundColor
+                          : Color(0xFFE0E0E0)
+                      : widget.titlebackgroundColor),
               padding: widget.titlePadding != null
                   ? widget.titlePadding
                   : EdgeInsets.all(10),
@@ -146,20 +143,20 @@ class _GFAccordionState extends State<GFAccordion>
           ),
           showAccordion
               ? Container(
-             decoration: BoxDecoration(
-               border:widget.contentBorderColor ==null? widget.contentBorderColor: Border(
-                 bottom: BorderSide(color: Colors.black38),
-                 left: BorderSide(color: Colors.black38),
-                 right: BorderSide(color: Colors.black38)
-               ),
-               color: widget.descriptionbackgroundColor != null
-                   ? widget.descriptionbackgroundColor
-                   : Colors.white70,
-             ),
+                  decoration: BoxDecoration(
+                    border: widget.contentBorderColor == null
+                        ? widget.contentBorderColor
+                        : Border(
+                            bottom: BorderSide(color: Colors.black38),
+                            left: BorderSide(color: Colors.black38),
+                            right: BorderSide(color: Colors.black38)),
+                    color: widget.contentbackgroundColor != null
+                        ? widget.contentbackgroundColor
+                        : Colors.white70,
+                  ),
                   width: MediaQuery.of(context).size.width,
-
-                  padding: widget.descriptionPadding != null
-                      ? widget.descriptionPadding
+                  padding: widget.contentPadding != null
+                      ? widget.contentPadding
                       : EdgeInsets.all(10),
                   child: SlideTransition(
                     position: offset,
