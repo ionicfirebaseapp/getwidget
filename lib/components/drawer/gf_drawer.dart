@@ -59,12 +59,14 @@ class GFDrawer extends StatelessWidget {
   /// The [elevation] must be non-negative.
   const GFDrawer(
       {Key key,
-      this.elevation = 16.0,
-      this.child,
-      this.semanticLabel,
-      this.backgroundImage,
-      this.colorFilter,
-      this.gradient})
+        this.elevation = 16.0,
+        this.child,
+        this.semanticLabel,
+        this.backgroundImage,
+        this.colorFilter,
+        this.gradient,
+        this.color,
+      })
       : assert(elevation != null && elevation >= 0.0),
         super(key: key);
 
@@ -105,6 +107,9 @@ class GFDrawer extends StatelessWidget {
   ///  applying the same transform to the entire canvas.
   final Gradient gradient;
 
+  /// Defines the background color of the drawer
+  final Color color;
+
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterialLocalizations(context));
@@ -131,7 +136,7 @@ class GFDrawer extends StatelessWidget {
           elevation: elevation,
           child: Container(
             decoration: new BoxDecoration(
-              color: Colors.teal,
+              color: color,
               gradient: gradient,
               image: backgroundImage != null
                   ? new DecorationImage(
