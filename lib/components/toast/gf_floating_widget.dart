@@ -9,8 +9,8 @@ class GFFloatingWidget extends StatefulWidget {
       this.child,
       this.horizontalPosition,
       this.verticalPosition,
-        this.color,
-        this.blur=false,
+        this.blurnessColor,
+        this.showblurness=false,
       this.body})
       : super(key: key);
 
@@ -27,15 +27,9 @@ class GFFloatingWidget extends StatefulWidget {
   final double verticalPosition;
 
 
-  final dynamic color;
+  final dynamic blurnessColor;
 
-  final bool blur;
-
-
-
-
-
-
+  final bool showblurness;
 
   @override
   _GFFloatingWidgetState createState() => _GFFloatingWidgetState();
@@ -50,21 +44,29 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
       children: <Widget>[
         Container(
           height: MediaQuery.of(context).size.height,
-//          color: Colors.blue,
-          child:  Opacity(
-            opacity: widget.blur? 0.50: 1,
-            child: widget.body?? Container(),
-          )
+          child:  widget.body?? Container(),
         ),
-        Positioned( top:
-        widget.verticalPosition != null ? widget.verticalPosition : 0.0,
-          left: widget.horizontalPosition != null
-              ? widget.horizontalPosition
-              : 0.0,
-          right: widget.horizontalPosition != null
-              ? widget.horizontalPosition
-              : 0.0,child: widget.child??Container(),)
 
+        Positioned( child: Container(
+            height:MediaQuery.of(context).size.height,
+            color: widget.showblurness ?widget.blurnessColor: null,
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+
+    top:
+    widget.verticalPosition != null ? widget.verticalPosition : 0.0,
+    left: widget.horizontalPosition != null
+    ? widget.horizontalPosition
+        : 0.0,
+    right: widget.horizontalPosition != null
+    ? widget.horizontalPosition
+        : 0.0,
+    child: widget.child??Container(),)
+
+              ],
+            ),
+          ))
       ],
     );
   }

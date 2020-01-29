@@ -84,11 +84,7 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-          height: MediaQuery.of(context).size.height,
-        ),
+    return
         FadeTransition(
           opacity: animation,
           child: Column(
@@ -142,8 +138,7 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
               ),
             ],
           ),
-        ),
-      ],
-    );
+        );
+
   }
 }
