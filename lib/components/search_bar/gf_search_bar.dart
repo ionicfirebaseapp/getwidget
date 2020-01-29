@@ -18,6 +18,7 @@ class GFSearchBar<T> extends StatefulWidget {
     this.hideSearchBoxWhenItemSelected = false,
     this.overlaySearchListHeight,
     this.noItemsFoundWidget,
+    this.searchBoxInputDecoration
   }) : super(key: key);
 
   /// List of [text] or [widget] reference for users
@@ -40,6 +41,9 @@ class GFSearchBar<T> extends StatefulWidget {
 
   /// defines what to do with onSelect [SearchList] item
   final OnItemSelected<T> onItemSelected;
+
+  ///
+  final InputDecoration searchBoxInputDecoration;
 
   @override
   MySingleChoiceSearchState<T> createState() => MySingleChoiceSearchState<T>();
@@ -140,7 +144,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
           controller: _controller,
           focusNode: _focusNode,
           style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-          decoration: InputDecoration(
+          decoration: widget.searchBoxInputDecoration == null ? InputDecoration(
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                 color: Color(0x4437474F),
@@ -160,7 +164,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
               top: 14,
               bottom: 14,
             ),
-          ),
+          ) : widget.searchBoxInputDecoration,
         )
     );
 
