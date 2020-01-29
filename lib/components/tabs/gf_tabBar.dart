@@ -32,6 +32,7 @@ class GFTabBar extends StatefulWidget {
     this.unselectedLabelStyle,
     this.tabs,
     this.controller,
+    this.shape,
   })  : assert(length != null && length >= 0),
         assert(initialIndex != null &&
             initialIndex >= 0 &&
@@ -155,6 +156,9 @@ class GFTabBar extends StatefulWidget {
   /// will be used.
   final TabController controller;
 
+  /// defines the shape of tabBar
+  final ShapeBorder shape;
+
   @override
   _GFTabBarState createState() => _GFTabBarState();
 }
@@ -167,6 +171,7 @@ class _GFTabBarState extends State<GFTabBar> {
           ? MediaQuery.of(context).size.height * 0.1
           : widget.tabBarHeight,
       child: Material(
+        shape: widget.shape,
         type: MaterialType.button,
         color: widget.tabBarColor ?? GFColors.getGFColor(GFColor.primary),
         child: TabBar(

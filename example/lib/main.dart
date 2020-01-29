@@ -59,7 +59,16 @@ class _MyHomePageState extends State<MyHomePage>
   Widget appBarTitle = new Text("UI Kit");
   Icon actionIcon = new Icon(Icons.search);
 
-  List list = ["Flutter", "Flutterjjk", "Flutterhy", "jhFlutter"];
+  List list = [
+    "Flutter",
+    "React",
+    "Ionic",
+    "Xamarin",
+    "Flutter2",
+    "React2",
+    "Ionic2",
+    "Xamarin2",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -138,15 +147,22 @@ class _MyHomePageState extends State<MyHomePage>
 //            Tab(icon: Icon(Icons.directions_bike)),
 //          ],
 //        ),
-//        searchBar: true,
+        searchBar: true,
 //        searchHintText: "aaaaaaa",
 //        searchHintStyle: TextStyle(fontSize: 18.0, color: Colors.redAccent),
 //        searchStyle: TextStyle(fontSize: 10.0, color: Colors.green),
 //        searchBarColorTheme: Colors.greenAccent,
 
         actions: <Widget>[
-          GFIconButton(icon: Icon(Icons.access_time), onPressed: () {}),
-          GFIconButton(icon: Icon(Icons.favorite), onPressed: null),
+//          GFIconButton(icon: Icon(Icons.access_time), onPressed: () {}),
+          GFIconButton(
+            icon: Icon(
+              Icons.favorite,
+              color: Colors.white,
+            ),
+            onPressed: () {},
+            type: GFButtonType.transparent,
+          ),
         ],
       ),
 //      backgroundColor: Colors.blueGrey,
@@ -164,65 +180,35 @@ class _MyHomePageState extends State<MyHomePage>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            GFIconButton(
-              icon: Icon(Icons.title),
-              onPressed: null,
-//              color: GFColor.secondary,
+            GFSearchBar(
+              searchList: list,
+              hideSearchBoxWhenItemSelected: false,
+              overlaySearchListHeight: 100.0,
+              searchQueryBuilder: (query, list) {
+                return list
+                    .where((item) =>
+                        item.toLowerCase().contains(query.toLowerCase()))
+                    .toList();
+              },
+              overlaySearchListItemBuilder: (item) {
+                return Container(
+                  padding: const EdgeInsets.all(12),
+                  child: Text(
+                    item,
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                );
+              },
+              noItemsFoundWidget: Container(
+                color: Colors.green,
+                child: Text("no items found"),
+              ),
+              onItemSelected: (item) {
+                setState(() {
+                  print('ssssssss $item');
+                });
+              },
             ),
-
-//            GFSearchBar(
-//              dataList: list,
-//              hideSearchBoxWhenItemSelected: false,
-//              listContainerHeight: MediaQuery.of(context).size.height / 4,
-//              queryBuilder: (query, list) {
-//                return list
-//                    .where((item) => item.username
-//                    .toLowerCase()
-//                    .contains(query.toLowerCase()))
-//                    .toList();
-//              },
-//              popupListItemBuilder: (item) {
-//                return item;
-//              },
-////              selectedItemBuilder: (selectedItem, deleteSelectedItem) {
-////                return SelectedItemWidget(selectedItem, deleteSelectedItem);
-////              },
-//              // widget customization
-//              noItemsFoundWidget: Container(child: Text("fgv"),),
-//              textFieldBuilder: (controller, focusNode) {
-//                return Padding(
-//                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-//                child: TextField(
-//                controller: controller,
-//                focusNode: focusNode,
-//                style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-//                decoration: InputDecoration(
-//                enabledBorder: const OutlineInputBorder(
-//                borderSide: BorderSide(
-//                color: Color(0x4437474F),
-//                ),
-//                ),
-//                focusedBorder: OutlineInputBorder(
-//                borderSide: BorderSide(color: Theme.of(context).primaryColor),
-//                ),
-//                suffixIcon: Icon(Icons.search),
-//                border: InputBorder.none,
-//                hintText: "Search here...",
-//                contentPadding: const EdgeInsets.only(
-//                left: 16,
-//                right: 20,
-//                top: 14,
-//                bottom: 14,
-//                ),
-//                ),
-//                ));
-//              },
-//              onItemSelected: (item) {
-//                setState(() {
-////                  _selectedItem = item;
-//                });
-//              },
-//            ),
 
 //            GFCard(
 //              content: Column(
@@ -1162,49 +1148,53 @@ class _MyHomePageState extends State<MyHomePage>
           ],
         ),
       ),
-//      bottomNavigationBar: GFTabBar(
-//        initialIndex: 0,
-//        length: 3,
-//        controller: tabController,
-//        tabs: [
-//          Tab(
-//            icon: Icon(Icons.directions_bike),
-//            child: Text(
-//              "Tab1",
-//            ),
-//          ),
-//          Tab(
-//            icon: Icon(Icons.directions_bus),
-//            child: Text(
-//              "Tab2",
-//            ),
-//          ),
-//          Tab(
-//            icon: Icon(Icons.directions_railway),
-//            child: Text(
-//              "Tab3",
-//            ),
-//          ),
-//        ],
-//        indicatorColor: Colors.white,
-////        indicatorSize: TabBarIndicatorSize.label,
-//        labelColor: Colors.lightGreen,
-//        labelPadding: EdgeInsets.all(8.0),
-//        tabBarColor: Colors.blueGrey,
-//        unselectedLabelColor: Colors.black,
-//        labelStyle: TextStyle(
-//          fontWeight: FontWeight.w500,
-//          fontSize: 13.0,
-//          color: Colors.deepOrange,
-//          fontFamily: 'OpenSansBold',
-//        ),
-//        unselectedLabelStyle: TextStyle(
-//          fontWeight: FontWeight.w500,
-//          fontSize: 13.0,
-//          color: Colors.black,
-//          fontFamily: 'OpenSansBold',
-//        ),
-//      ),
+      bottomNavigationBar: GFTabBar(
+        initialIndex: 0,
+        length: 3,
+        controller: tabController,
+        tabs: [
+          Tab(
+            icon: Icon(Icons.directions_bike),
+            child: Text(
+              "Tab1",
+            ),
+          ),
+          Tab(
+            icon: Icon(Icons.directions_bus),
+            child: Text(
+              "Tab2",
+            ),
+          ),
+          Tab(
+            icon: Icon(Icons.directions_railway),
+            child: Text(
+              "Tab3",
+            ),
+          ),
+        ],
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(24.0),
+                topRight: Radius.circular(24.0))),
+        indicatorColor: Colors.white,
+//        indicatorSize: TabBarIndicatorSize.label,
+        labelColor: Colors.lightGreen,
+        labelPadding: EdgeInsets.all(8.0),
+        tabBarColor: Colors.blueGrey,
+        unselectedLabelColor: Colors.black,
+        labelStyle: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 13.0,
+          color: Colors.deepOrange,
+          fontFamily: 'OpenSansBold',
+        ),
+        unselectedLabelStyle: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 13.0,
+          color: Colors.black,
+          fontFamily: 'OpenSansBold',
+        ),
+      ),
     );
   }
 }
