@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getflutter/getflutter.dart';
 
 typedef QueryListItemBuilder<T> = Widget Function(T item);
 typedef OnItemSelected<T> = void Function(T item);
@@ -132,8 +133,9 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
   Widget build(BuildContext context) {
     overlaySearchListHeight = widget.overlaySearchListHeight ??
         MediaQuery.of(context).size.height / 4;
-    searchBox = Padding(
+    searchBox = Container(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        margin: EdgeInsets.only(bottom: 12.0),
         child: TextField(
           controller: _controller,
           focusNode: _focusNode,
@@ -226,17 +228,23 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
             ),
             showWhenUnlinked: false,
             link: _layerLink,
-            child: Container(
-              height: overlaySearchListHeight,
-              margin: const EdgeInsets.symmetric(horizontal: 12),
-              child: Card(
-                color: Colors.white,
-                elevation: 5,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(4)),
-                ),
-                child: _searchList.isNotEmpty
-                    ? Scrollbar(
+            child: GFCard(
+              color: Colors.white,
+              elevation: 5,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(4)),
+              ),
+              title: GFListTile(
+                icon: GFIconButton(
+                    icon: Icon(Icons.close),
+                    onPressed: () {
+                      onSearchListItemSelected(null);
+                    }),
+              ),
+              content: _searchList.isNotEmpty
+                  ? Container(
+                      height: overlaySearchListHeight,
+                      child: Scrollbar(
                         child: ListView.separated(
                           padding: const EdgeInsets.symmetric(vertical: 4),
                           separatorBuilder: (context, index) => const Divider(
@@ -254,15 +262,15 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
                           ),
                           itemCount: _searchList.length,
                         ),
-                      )
-                    : widget.noItemsFoundWidget != null
-                        ? Center(
-                            child: widget.noItemsFoundWidget,
-                          )
-                        : Container(
-                            child: Text("no items found"),
-                          ),
-              ),
+                      ),
+                    )
+                  : widget.noItemsFoundWidget != null
+                      ? Center(
+                          child: widget.noItemsFoundWidget,
+                        )
+                      : Container(
+                          child: Text("no items found"),
+                        ),
             ),
           ),
         );
