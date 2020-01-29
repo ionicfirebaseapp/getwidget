@@ -42,7 +42,7 @@ class GFSearchBar<T> extends StatefulWidget {
   /// defines what to do with onSelect [SearchList] item
   final OnItemSelected<T> onItemSelected;
 
-  ///
+  /// defines the input decoration of [searchBox]
   final InputDecoration searchBoxInputDecoration;
 
   @override
@@ -71,7 +71,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
     init();
   }
 
-  void init() {
+   init() {
     _searchList = <T>[];
     notifier = ValueNotifier(null);
     _focusNode = FocusNode();
@@ -137,6 +137,9 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
   Widget build(BuildContext context) {
     overlaySearchListHeight = widget.overlaySearchListHeight ??
         MediaQuery.of(context).size.height / 4;
+
+    print('yyys $isFocused');
+
     searchBox = Container(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         margin: EdgeInsets.only(bottom: 12.0),
@@ -155,7 +158,15 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
                 color: Theme.of(context).primaryColor,
               ),
             ),
-            suffixIcon: Icon(Icons.search),
+            suffixIcon: isFocused ?
+                GFIconButton(
+                    icon: Icon(Icons.close),
+                    type: GFButtonType.transparent,
+                    onPressed: () {
+                      onSearchListItemSelected(null);
+                    },
+                )
+                : Icon(Icons.search),
             border: InputBorder.none,
             hintText: "Search here...",
             contentPadding: const EdgeInsets.only(
@@ -202,6 +213,9 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
   }
 
   void onTextFieldFocus() {
+    setState(() {
+      isFocused = true;
+    });
     final RenderBox searchBoxRenderBox = context.findRenderObject();
     final RenderBox overlay = Overlay.of(context).context.findRenderObject();
     final width = searchBoxRenderBox.size.width;
