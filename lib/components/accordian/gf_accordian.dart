@@ -87,11 +87,9 @@ class _GFAccordionState extends State<GFAccordion>
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-//        borderRadius: BorderRadius.all(Radius.circular(3)),
         border: Border.all(
             color:showAccordion?  Colors.white: Colors.black38
         ),
-        color: Colors.white
       ),
       margin: widget.margin != null ? widget.margin : EdgeInsets.all(10),
       child: Column(
@@ -116,7 +114,7 @@ class _GFAccordionState extends State<GFAccordion>
               decoration: BoxDecoration(
                 color: showAccordion? widget.titlebackgroundColor != null
                     ? widget.titlebackgroundColor
-                    : Color(0xFFE0E0E0): Colors.white
+                    : Color(0xFFE0E0E0): widget.titlebackgroundColor
               ),
 
               padding: widget.titlePadding != null
@@ -137,10 +135,18 @@ class _GFAccordionState extends State<GFAccordion>
           ),
           showAccordion
               ? Container(
+             decoration: BoxDecoration(
+               border: Border(
+                 bottom: BorderSide(color: Colors.black38),
+                 left: BorderSide(color: Colors.black38),
+                 right: BorderSide(color: Colors.black38)
+               ),
+               color: widget.descriptionbackgroundColor != null
+                   ? widget.descriptionbackgroundColor
+                   : Colors.white70,
+             ),
                   width: MediaQuery.of(context).size.width,
-                  color: widget.descriptionbackgroundColor != null
-                      ? widget.descriptionbackgroundColor
-                      : Colors.white70,
+
                   padding: widget.descriptionPadding != null
                       ? widget.descriptionPadding
                       : EdgeInsets.all(10),
