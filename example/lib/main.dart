@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage>
                     "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
               ),
               decoration: BoxDecoration(
-                color: Colors.transparent,
+                color: Colors.teal,
               ),
               otherAccountsPictures: <Widget>[
                 Image(
@@ -112,6 +112,7 @@ class _MyHomePageState extends State<MyHomePage>
                   child: Text("dcf"),
                 )
               ],
+//              closeButton: Text("Close"),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,6 +175,8 @@ class _MyHomePageState extends State<MyHomePage>
 //          Container(color: Colors.green),
 //          Container(color: Colors.blue)
 //      ]),
+
+
           SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -645,6 +648,7 @@ class _MyHomePageState extends State<MyHomePage>
 //            ),
 //
             GFButton(
+//              position: GFPosition.end,
 //              icon: GFBadge(
 //                child: Text("12"),
 //                color: GFColor.dark,
@@ -661,9 +665,9 @@ class _MyHomePageState extends State<MyHomePage>
 //          hoverColor: GFColor.dark,
               color: GFColor.secondary,
 //          focusColor: GFColor.danger,
-              type: GFButtonType.solid,
-              shape: GFButtonShape.pills,
-              buttonBoxShadow: true,
+//              type: GFButtonType.solid,
+//              shape: GFButtonShape.pills,
+//              buttonBoxShadow: true,
 //              boxShadow: BoxShadow(
 //                color: Colors.pink,
 //                blurRadius: 2.0,
@@ -675,7 +679,7 @@ class _MyHomePageState extends State<MyHomePage>
 //          size: GFSize.large,
 //          disabledColor: GFColor.dark,
 //          disabledTextColor: GFColor.light,
-              blockButton: true,
+//              blockButton: true,
 //          fullWidthButton: true,
 //          borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 //          borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
