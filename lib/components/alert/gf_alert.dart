@@ -16,16 +16,15 @@ class GFAlert extends StatefulWidget {
       this.contentChild,
       this.title,
       this.bottombar,
-      this.animationDuration = const Duration(milliseconds: 300),
-      this.textStyle = const TextStyle(color: Colors.black87),
+      this.contentTextStyle = const TextStyle(color: Colors.black87),
       this.titleTextStyle = const TextStyle(
           color: Colors.black87, fontSize: 17, fontWeight: FontWeight.w500)})
       : super(key: key);
 
-  /// child of  type [Widget]is alternative to text key. text will get priority over child
+  /// child of  type [Widget]is alternative to title key. title will get priority over child
   final Widget child;
 
-  /// title of type [String] used to descripe the title of the [GFAlert]
+  /// title of type [String] used to describe the title of the [GFAlert]
   final String title;
 
   /// child of  type [Widget]is alternative to title key. title will get priority over contentchild
@@ -34,13 +33,14 @@ class GFAlert extends StatefulWidget {
   /// title of type [String] used to describe the content of the [GFAlert]
   final String content;
 
+  ///type of [TextStyle] to change the style of the title not for the child
   final TextStyle titleTextStyle;
 
   ///pass color of type [Color] or [GFColor] for background of [GFAlert]
   final dynamic backgroundColor;
 
-  /// textStyle of type [textStyle] will be applicable to text only and not for the child
-  final TextStyle textStyle;
+  ///type of [TextStyle] to change the style of the content not for the contentchild
+  final TextStyle contentTextStyle;
 
   /// width of type [double] used to control the width of the [GFAlert]
   final double width;
@@ -48,10 +48,7 @@ class GFAlert extends StatefulWidget {
   ///type of [GFAlertType] which takes the type ie, basic, rounded and fullWidth for the [GFAlert]
   final GFAlertType type;
 
-  ///type of [Duration] which takes the duration of the fade in animation
-  final Duration animationDuration;
-
-  /// type of [Alignment] used to align the text inside the toast
+  /// type of [Alignment] used to align the text inside the [GFAlert]
   final Alignment alignment;
 
   ///type of [Widget] used for the buttons ie, OK, Cancel for the action in [GFAlert]
@@ -71,7 +68,6 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
         duration: const Duration(milliseconds: 300), vsync: this);
     animation = CurvedAnimation(
         parent: animationController, curve: Curves.fastOutSlowIn);
-
     animationController.forward();
     super.initState();
   }
@@ -113,9 +109,13 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                widget.title != null
-                    ? Text(widget.title, style: widget.titleTextStyle)
-                    : (widget.child ?? Container()),
+                Align(
+                  alignment: widget.alignment!=null? widget.alignment:Alignment.topLeft,
+                  child:  widget.title != null
+                      ? Text(widget.title, style: widget.titleTextStyle)
+                      : (widget.child ?? Container()),
+                ),
+
                 SizedBox(
                   height: 10,
                 ),
@@ -124,7 +124,7 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                       ? widget.alignment
                       : Alignment.topLeft,
                   child: widget.content != null
-                      ? Text(widget.content, style: widget.textStyle)
+                      ? Text(widget.content, style: widget.contentTextStyle)
                       : (widget.contentChild ?? Container()),
                 ),
                 SizedBox(
