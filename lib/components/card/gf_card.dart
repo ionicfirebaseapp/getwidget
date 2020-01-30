@@ -168,9 +168,9 @@ class GFCard extends StatelessWidget {
               clipBehavior: clipBehavior ??
                   cardTheme.clipBehavior ??
                   _defaultClipBehavior,
-              child: overlayImage ?? cardChild,
+              child: imageOverlay == null ? cardChild : overlayImage,
             )
-          : overlayImage ?? cardChild,
+          : imageOverlay == null ? cardChild : overlayImage,
     );
   }
 }
