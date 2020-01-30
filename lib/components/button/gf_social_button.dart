@@ -22,7 +22,7 @@ class GFSocialButton extends GFButton {
     this.hoverElevation = 4.0,
     this.highlightElevation = 1.0,
     this.disabledElevation = 0.0,
-    this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
+    this.padding = const EdgeInsets.symmetric(horizontal: 8),
     this.constraints,
     this.borderShape,
     this.animationDuration = kThemeChangeDuration,
