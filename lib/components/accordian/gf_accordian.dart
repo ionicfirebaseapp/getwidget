@@ -113,13 +113,7 @@ class _GFAccordionState extends State<GFAccordion>
             },
             child: Container(
               decoration: BoxDecoration(
-                  border: widget.titleborderColor == null
-                      ? widget.titleborderColor
-                      : Border(
-                          top: BorderSide(color: Colors.black38),
-                          left: BorderSide(color: Colors.black38),
-                          right: BorderSide(color: Colors.black38),
-                          bottom: BorderSide(color: Colors.black38)),
+                border: widget.titleborderColor ?? Border(),
                   color: showAccordion
                       ? widget.titlebackgroundColor != null
                           ? widget.titlebackgroundColor
@@ -144,12 +138,7 @@ class _GFAccordionState extends State<GFAccordion>
           showAccordion
               ? Container(
                   decoration: BoxDecoration(
-                    border: widget.contentBorderColor == null
-                        ? widget.contentBorderColor
-                        : Border(
-                            bottom: BorderSide(color: Colors.black38),
-                            left: BorderSide(color: Colors.black38),
-                            right: BorderSide(color: Colors.black38)),
+                    border: widget.contentBorderColor ?? Border(),
                     color: widget.contentbackgroundColor != null
                         ? widget.contentbackgroundColor
                         : Colors.white70,
