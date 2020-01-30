@@ -75,20 +75,28 @@ class _GFAccordionState extends State<GFAccordion>
   AnimationController animationController;
   AnimationController controller;
   Animation<Offset> offset;
+  bool showAccordion = false;
 
   @override
   void initState() {
-    super.initState();
-    animationController =
-        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    animationController = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
     controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 300));
-    offset = Tween(begin: const Offset(0, -0.06), end: Offset.zero).animate(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+    offset = Tween(
+      begin: const Offset(0, -0.06),
+      end: Offset.zero,
+    ).animate(
       CurvedAnimation(
         parent: controller,
         curve: Curves.fastOutSlowIn,
       ),
     );
+    super.initState();
   }
 
   @override
@@ -96,8 +104,6 @@ class _GFAccordionState extends State<GFAccordion>
     animationController.dispose();
     super.dispose();
   }
-
-  bool showAccordion = false;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -123,10 +129,11 @@ class _GFAccordionState extends State<GFAccordion>
               },
               child: Container(
                 decoration: BoxDecoration(
-                    border: widget.titleborderColor,
-                    color: showAccordion
-                        ? widget.expandedTitlebackgroundColor
-                        : widget.collapsedTitlebackgroundColor),
+                  border: widget.titleborderColor,
+                  color: showAccordion
+                      ? widget.expandedTitlebackgroundColor
+                      : widget.collapsedTitlebackgroundColor,
+                ),
                 padding: widget.titlePadding,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

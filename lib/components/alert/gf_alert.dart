@@ -5,7 +5,7 @@ import 'package:getflutter/types/gf_alert_type.dart';
 
 class GFAlert extends StatefulWidget {
   /// Alert has to be wrap inside the body like [GFFloatingWidget]. See [GFFloatingWidget]
-  GFAlert(
+  const GFAlert(
       {Key key,
       this.child,
       this.backgroundColor,
@@ -79,63 +79,58 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: animation,
-      child: Column(
-        children: <Widget>[
-          Container(
-            width: widget.type == GFAlertType.fullWidth
-                ? MediaQuery.of(context).size.width
-                : widget.width,
-            constraints: BoxConstraints(minHeight: 50.0),
-            margin: widget.type == GFAlertType.fullWidth
-                ? EdgeInsets.only(left: 0, right: 0)
-                : EdgeInsets.only(left: 20, right: 20),
-            padding: EdgeInsets.all(15),
-            decoration: BoxDecoration(
-                borderRadius: widget.type == GFAlertType.basic
-                    ? BorderRadius.circular(3.0)
-                    : widget.type == GFAlertType.rounded
-                        ? BorderRadius.circular(10.0)
-                        : BorderRadius.zero,
-                color: widget.backgroundColor != null
-                    ? GFColors.getGFColor(widget.backgroundColor)
-                    : GFColors.getGFColor(GFColor.white),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(0.40), blurRadius: 3.0)
-                ]),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Align(
-                  alignment: widget.alignment!=null? widget.alignment:Alignment.topLeft,
-                  child:  widget.title != null
-                      ? Text(widget.title, style: widget.titleTextStyle)
-                      : (widget.child ?? Container()),
-                ),
-
-                SizedBox(
-                  height: 10,
-                ),
-                Align(
-                  alignment: widget.alignment != null
-                      ? widget.alignment
-                      : Alignment.topLeft,
-                  child: widget.content != null
-                      ? Text(widget.content, style: widget.contentTextStyle)
-                      : (widget.contentChild ?? Container()),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                widget.bottombar != null ? widget.bottombar : Container(),
-              ],
+  Widget build(BuildContext context) => FadeTransition(
+        opacity: animation,
+        child: Column(
+          children: <Widget>[
+            Container(
+              width: widget.type == GFAlertType.fullWidth
+                  ? MediaQuery.of(context).size.width
+                  : widget.width,
+              constraints: const BoxConstraints(minHeight: 50),
+              margin: widget.type == GFAlertType.fullWidth
+                  ? const EdgeInsets.only(left: 0, right: 0)
+                  : const EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  borderRadius: widget.type == GFAlertType.basic
+                      ? BorderRadius.circular(3)
+                      : widget.type == GFAlertType.rounded
+                          ? BorderRadius.circular(10)
+                          : BorderRadius.zero,
+                  color: widget.backgroundColor != null
+                      ? GFColors.getGFColor(widget.backgroundColor)
+                      : GFColors.getGFColor(GFColor.white),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.40), blurRadius: 3)
+                  ]),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Align(
+                    alignment: widget.alignment ?? Alignment.topLeft,
+                    child: widget.title != null
+                        ? Text(widget.title, style: widget.titleTextStyle)
+                        : (widget.child ?? Container()),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Align(
+                    alignment: widget.alignment ?? Alignment.topLeft,
+                    child: widget.content != null
+                        ? Text(widget.content, style: widget.contentTextStyle)
+                        : (widget.contentChild ?? Container()),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  widget.bottombar ?? Container(),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
+          ],
+        ),
+      );
 }
