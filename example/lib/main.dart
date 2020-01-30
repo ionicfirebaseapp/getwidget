@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:getflutter/getflutter.dart';
 
 final List<String> imageList = [
@@ -175,7 +176,6 @@ class _MyHomePageState extends State<MyHomePage>
 //          Container(color: Colors.green),
 //          Container(color: Colors.blue)
 //      ]),
-
 
           SingleChildScrollView(
         child: Column(
