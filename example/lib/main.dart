@@ -74,10 +74,10 @@ class _MyHomePageState extends State<MyHomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: GFDrawer(
-        colorFilter: new ColorFilter.mode(
-            Colors.black.withOpacity(0.6), BlendMode.darken),
-        backgroundImage: NetworkImage(
-            "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+//        colorFilter: new ColorFilter.mode(
+//            Colors.teal.withOpacity(0.6), BlendMode.darken),
+//        backgroundImage: NetworkImage(
+//            "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
         gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
@@ -89,6 +89,7 @@ class _MyHomePageState extends State<MyHomePage>
             Colors.teal[200],
           ],
         ),
+        color: Colors.greenAccent,
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
@@ -99,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage>
                     "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
               ),
               decoration: BoxDecoration(
-                color: Colors.teal.withOpacity(0.45),
+                color: Colors.teal,
               ),
               otherAccountsPictures: <Widget>[
                 Image(
@@ -111,24 +112,23 @@ class _MyHomePageState extends State<MyHomePage>
                   child: Text("dcf"),
                 )
               ],
+//              closeButton: Text("Close"),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('user'),
-                  Text('user@asdf.com'),
+                  Text('user name'),
+                  Text('user@userid.com'),
                 ],
               ),
             ),
             ListTile(
               title: Text('Item 1'),
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap: null,
             ),
             ListTile(
               title: Text('Item 2'),
-              onTap: () {},
+              onTap: null,
             ),
           ],
         ),
@@ -175,6 +175,8 @@ class _MyHomePageState extends State<MyHomePage>
 //          Container(color: Colors.green),
 //          Container(color: Colors.blue)
 //      ]),
+
+
           SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -182,8 +184,8 @@ class _MyHomePageState extends State<MyHomePage>
           children: <Widget>[
             GFSearchBar(
               searchList: list,
-              hideSearchBoxWhenItemSelected: false,
-              overlaySearchListHeight: 100.0,
+//              hideSearchBoxWhenItemSelected: false,
+//              overlaySearchListHeight: 100.0,
               searchQueryBuilder: (query, list) {
                 return list
                     .where((item) =>
@@ -192,17 +194,17 @@ class _MyHomePageState extends State<MyHomePage>
               },
               overlaySearchListItemBuilder: (item) {
                 return Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(8),
                   child: Text(
                     item,
                     style: const TextStyle(fontSize: 18),
                   ),
                 );
               },
-              noItemsFoundWidget: Container(
-                color: Colors.green,
-                child: Text("no items found"),
-              ),
+//              noItemsFoundWidget: Container(
+//                color: Colors.green,
+//                child: Text("no items found..."),
+//              ),
               onItemSelected: (item) {
                 setState(() {
                   print('ssssssss $item');
@@ -646,6 +648,7 @@ class _MyHomePageState extends State<MyHomePage>
 //            ),
 //
             GFButton(
+//              position: GFPosition.end,
 //              icon: GFBadge(
 //                child: Text("12"),
 //                color: GFColor.dark,
@@ -662,9 +665,9 @@ class _MyHomePageState extends State<MyHomePage>
 //          hoverColor: GFColor.dark,
               color: GFColor.secondary,
 //          focusColor: GFColor.danger,
-              type: GFButtonType.solid,
-              shape: GFButtonShape.pills,
-              buttonBoxShadow: true,
+//              type: GFButtonType.solid,
+//              shape: GFButtonShape.pills,
+//              buttonBoxShadow: true,
 //              boxShadow: BoxShadow(
 //                color: Colors.pink,
 //                blurRadius: 2.0,
@@ -676,7 +679,7 @@ class _MyHomePageState extends State<MyHomePage>
 //          size: GFSize.large,
 //          disabledColor: GFColor.dark,
 //          disabledTextColor: GFColor.light,
-              blockButton: true,
+//              blockButton: true,
 //          fullWidthButton: true,
 //          borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 //          borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
