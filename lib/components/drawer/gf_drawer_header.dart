@@ -28,7 +28,7 @@ class GFDrawerHeaderPictures extends StatelessWidget {
                   Icons.close,
                   color: Colors.white,
                 ),
-                onPressed: (){
+                onPressed: () {
                   Navigator.pop(context);
                 },
                 type: GFButtonType.transparent,
@@ -80,17 +80,17 @@ class GFDrawerHeader extends StatefulWidget {
   /// Creates a material design drawer header.
   ///
   /// Requires one of its ancestors to be a [Material] widget.
-  const GFDrawerHeader({
-    Key key,
-    this.decoration,
-    this.margin = const EdgeInsets.only(bottom: 8.0),
-    this.currentAccountPicture,
-    this.otherAccountsPictures,
-    this.child,
-    this.duration = const Duration(milliseconds: 250),
-    this.curve = Curves.fastOutSlowIn,
-    this.closeButton
-  }) : super(key: key);
+  const GFDrawerHeader(
+      {Key key,
+      this.decoration,
+      this.margin = const EdgeInsets.only(bottom: 8.0),
+      this.currentAccountPicture,
+      this.otherAccountsPictures,
+      this.child,
+      this.duration = const Duration(milliseconds: 250),
+      this.curve = Curves.fastOutSlowIn,
+      this.closeButton})
+      : super(key: key);
 
   /// The header's background. If decoration is null then a [BoxDecoration]
   /// with its background color set to the current theme's primaryColor is used.
