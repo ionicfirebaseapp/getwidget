@@ -76,6 +76,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
       vsync: this,
       duration: widget.animationDuration,
     )..addListener(() => setState(() {}));
+
     fadeanimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
