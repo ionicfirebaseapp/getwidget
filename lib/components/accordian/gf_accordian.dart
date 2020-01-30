@@ -6,17 +6,18 @@ class GFAccordion extends StatefulWidget {
       {Key key,
       this.child,
       this.content,
-      this.titlebackgroundColor,
+      this.collapsedTitlebackgroundColor =  Colors.white,
+        this.expandedTitlebackgroundColor= const Color(0xFFE0E0E0),
       this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
       this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
       this.title,
       this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
-      this.titlePadding,
+      this.titlePadding = const EdgeInsets.all(10),
       this.contentbackgroundColor,
-      this.contentPadding,
+      this.contentPadding = const EdgeInsets.all(10),
       this.contentChild,
-      this.titleborderColor,
-      this.contentBorderColor,
+      this.titleborderColor = const Border(),
+      this.contentBorderColor = const Border(),
       this.margin})
       : super(key: key);
 
@@ -29,8 +30,11 @@ class GFAccordion extends StatefulWidget {
   /// contentChild of  type [Widget]is alternative to content key. content will get priority over contentChild
   final Widget contentChild;
 
-  /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordion] title
-  final dynamic titlebackgroundColor;
+  /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordion] title when it is collapsed
+  final dynamic collapsedTitlebackgroundColor;
+
+  /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordion] title when it is expanded
+  final dynamic expandedTitlebackgroundColor;
 
   ///collapsedIcon of type [Widget] which is used to show when the [GFAccordion] is collapsed
   final Widget collapsedIcon;
@@ -113,15 +117,10 @@ class _GFAccordionState extends State<GFAccordion>
             },
             child: Container(
               decoration: BoxDecoration(
-                border: widget.titleborderColor ?? Border(),
-                  color: showAccordion
-                      ? widget.titlebackgroundColor != null
-                          ? widget.titlebackgroundColor
-                          : Color(0xFFE0E0E0)
-                      : widget.titlebackgroundColor),
-              padding: widget.titlePadding != null
-                  ? widget.titlePadding
-                  : EdgeInsets.all(10),
+                border: widget.titleborderColor,
+                  color: showAccordion ? widget.expandedTitlebackgroundColor: widget.collapsedTitlebackgroundColor),
+              padding:  widget.titlePadding
+                  ,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -138,15 +137,13 @@ class _GFAccordionState extends State<GFAccordion>
           showAccordion
               ? Container(
                   decoration: BoxDecoration(
-                    border: widget.contentBorderColor ?? Border(),
+                    border: widget.contentBorderColor,
                     color: widget.contentbackgroundColor != null
                         ? widget.contentbackgroundColor
                         : Colors.white70,
                   ),
                   width: MediaQuery.of(context).size.width,
-                  padding: widget.contentPadding != null
-                      ? widget.contentPadding
-                      : EdgeInsets.all(10),
+                  padding: widget.contentPadding ,
                   child: SlideTransition(
                     position: offset,
                     child: widget.content != null
