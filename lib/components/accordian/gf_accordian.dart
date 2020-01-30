@@ -90,6 +90,11 @@ class _GFAccordionState extends State<GFAccordion>
       ),
     );
   }
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
 
   bool showAccordion = false;
 
