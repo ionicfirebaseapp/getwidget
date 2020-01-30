@@ -159,22 +159,18 @@ class GFButtonBar extends StatelessWidget {
   final List<Widget> children;
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: padding,
-      child: Wrap(
-        direction: direction,
-        alignment: alignment,
-        spacing: spacing,
-        runAlignment: runAlignment,
-        runSpacing: runSpacing,
-        crossAxisAlignment: crossAxisAlignment,
-        textDirection: textDirection,
-        verticalDirection: verticalDirection,
-        children: children.map<Widget>((Widget child) {
-          return child;
-        }).toList(),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Padding(
+        padding: padding,
+        child: Wrap(
+          direction: direction,
+          alignment: alignment,
+          spacing: spacing,
+          runAlignment: runAlignment,
+          runSpacing: runSpacing,
+          crossAxisAlignment: crossAxisAlignment,
+          textDirection: textDirection,
+          verticalDirection: verticalDirection,
+          children: children.map<Widget>((Widget child) => child).toList(),
+        ),
+      );
 }
