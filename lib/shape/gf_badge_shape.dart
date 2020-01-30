@@ -1,4 +1,4 @@
-/// [GFBadgeShape] is used to shape the [GFBadge] widget.
+/// [GFBadgeShape] is used to shape the GFBadge widget.
 enum GFBadgeShape {
   /// [GFBadgeShape.circle], used for rounded shape badge
   circle,
