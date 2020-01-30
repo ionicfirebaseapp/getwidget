@@ -3,6 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 
 class GFAvatar extends StatelessWidget {
+  /// Create Avatar of all types i,e, square, circle, standard with different sizes.
+  const GFAvatar(
+      {Key key,
+      this.child,
+      this.backgroundColor,
+      this.backgroundImage,
+      this.foregroundColor,
+      this.radius,
+      this.minRadius,
+      this.maxRadius,
+      this.borderRadius,
+      this.shape = GFAvatarShape.circle,
+      this.size = GFSize.medium})
+      : assert(radius == null || (minRadius == null && maxRadius == null)),
+        super(key: key);
+
   /// Typically a [Text] widget. If the [CircleAvatar] is to have an image, use [backgroundImage] instead.
   final Widget child;
 
@@ -37,22 +53,6 @@ class GFAvatar extends StatelessWidget {
   // /// The default max if only the min is specified.
   // static const double _defaultMaxRadius = double.infinity;
 
-  /// Create Avatar of all types i,e, square, circle, standard with different sizes.
-  const GFAvatar(
-      {Key key,
-      this.child,
-      this.backgroundColor,
-      this.backgroundImage,
-      this.foregroundColor,
-      this.radius,
-      this.minRadius,
-      this.maxRadius,
-      this.borderRadius,
-      this.shape = GFAvatarShape.circle,
-      this.size = GFSize.medium})
-      : assert(radius == null || (minRadius == null && maxRadius == null)),
-        super(key: key);
-
   double get _minDiameter {
     if (radius == null && minRadius == null && maxRadius == null) {
       return 1.5 * GFSizesClass.getGFSize(size);
@@ -83,12 +83,13 @@ class GFAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor = GFColors.getGFColor(this.backgroundColor);
-    Color foregroundColor = GFColors.getGFColor(this.foregroundColor);
+    final Color backgroundColor = GFColors.getGFColor(this.backgroundColor);
+    final Color foregroundColor = GFColors.getGFColor(this.foregroundColor);
     assert(debugCheckHasMediaQuery(context));
     final ThemeData theme = Theme.of(context);
-    TextStyle textStyle =
-        theme.primaryTextTheme.subhead.copyWith(color: foregroundColor);
+    TextStyle textStyle = theme.primaryTextTheme.subhead.copyWith(
+      color: foregroundColor,
+    );
     Color effectiveBackgroundColor = backgroundColor;
 
     if (effectiveBackgroundColor == null) {
@@ -123,18 +124,21 @@ class GFAvatar extends StatelessWidget {
       decoration: BoxDecoration(
         color: effectiveBackgroundColor,
         image: backgroundImage != null
-            ? DecorationImage(image: backgroundImage, fit: BoxFit.cover)
+            ? DecorationImage(
+                image: backgroundImage,
+                fit: BoxFit.cover,
+              )
             : null,
         shape: _avatarShape,
         borderRadius: shape == GFAvatarShape.standard && borderRadius == null
-            ? BorderRadius.circular(10.0)
+            ? BorderRadius.circular(10)
             : borderRadius,
       ),
       child: child == null
           ? null
           : Center(
               child: MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
                 child: IconTheme(
                   data: theme.iconTheme.copyWith(color: textStyle.color),
                   child: DefaultTextStyle(
