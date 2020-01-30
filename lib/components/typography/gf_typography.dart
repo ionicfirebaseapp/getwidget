@@ -4,21 +4,21 @@ import 'package:getflutter/getflutter.dart';
 class GFTypography extends StatelessWidget {
   /// Creates simple title with underline. Style of title can be changed using [GFTypographyType]
   /// showDivider is default true, can be set false.
-  const GFTypography(
-      {Key key,
-      this.type = GFTypographyType.typo4,
-      this.child,
-      this.text,
-      this.icon,
-      this.dividerBorderRadius,
-      this.textColor,
-      this.dividerAlignment,
-      this.dividerColor,
-      this.showDivider = true,
-      this.dividerWidth,
-      this.backgroundImage,
-      this.backgroundImagecolorFilter})
-      : super(key: key);
+  const GFTypography({
+    Key key,
+    this.type = GFTypographyType.typo4,
+    this.child,
+    this.text,
+    this.icon,
+    this.dividerBorderRadius,
+    this.textColor,
+    this.dividerAlignment,
+    this.dividerColor,
+    this.showDivider = true,
+    this.dividerWidth,
+    this.backgroundImage,
+    this.backgroundImagecolorFilter,
+  }) : super(key: key);
 
   /// child of  type [Widget] is alternative to text key. text will get priority over child
   final Widget child;
@@ -76,62 +76,67 @@ class GFTypography extends StatelessWidget {
     }
 
     return Container(
-        padding: EdgeInsets.all(backgroundImage != null ? 10 : 0),
-        decoration: BoxDecoration(
-          image: backgroundImage != null
-              ? DecorationImage(
-                  image: backgroundImage,
-                  fit: BoxFit.cover,
-                  colorFilter: backgroundImagecolorFilter ??
-                      ColorFilter.mode(Colors.black54, BlendMode.darken),
-                )
-              : null,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                icon != null ? icon : Container(),
-                icon != null
-                    ? Padding(padding: EdgeInsets.only(left: 10))
-                    : Container(),
-                text != null
-                    ? Expanded(
-                        child: Text(
-                        text,
-                        style: TextStyle(
-                            color: textColor != null
-                                ? GFColors.getGFColor(textColor)
-                                : backgroundImage != null
-                                    ? Colors.white
-                                    : Colors.black,
-                            fontSize: fontSize,
-                            letterSpacing: 0.3,
-                            fontWeight: FontWeight.w500),
-                      ))
-                    : child
-              ],
-            ),
-            showDivider
-                ? Container(
-                    margin: EdgeInsets.only(top: 3, bottom: 3),
-                    alignment: dividerAlignment,
-                    child: Container(
-                      width: dividerWidth != null ? dividerWidth : 70,
-                      height: fontSize / 5,
-                      decoration: BoxDecoration(
-                          color: dividerColor != null
-                              ? GFColors.getGFColor(dividerColor)
+      padding: EdgeInsets.all(backgroundImage != null ? 10 : 0),
+      decoration: BoxDecoration(
+        image: backgroundImage != null
+            ? DecorationImage(
+                image: backgroundImage,
+                fit: BoxFit.cover,
+                colorFilter: backgroundImagecolorFilter ??
+                    ColorFilter.mode(Colors.black54, BlendMode.darken),
+              )
+            : null,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              icon ?? Container(),
+              icon != null
+                  ? const Padding(padding: EdgeInsets.only(left: 10))
+                  : Container(),
+              text != null
+                  ? Expanded(
+                      child: Text(
+                      text,
+                      style: TextStyle(
+                          color: textColor != null
+                              ? GFColors.getGFColor(textColor)
                               : backgroundImage != null
                                   ? Colors.white
                                   : Colors.black,
-                          borderRadius: dividerBorderRadius != null
-                              ? dividerBorderRadius
-                              : BorderRadius.all(Radius.circular(5))),
+                          fontSize: fontSize,
+                          letterSpacing: 0.3,
+                          fontWeight: FontWeight.w500),
                     ))
-                : Container()
-          ],
-        ));
+                  : child
+            ],
+          ),
+          showDivider
+              ? Container(
+                  margin: const EdgeInsets.only(top: 3, bottom: 3),
+                  alignment: dividerAlignment,
+                  child: Container(
+                    width: dividerWidth != null ? dividerWidth : 70,
+                    height: fontSize / 5,
+                    decoration: BoxDecoration(
+                      color: dividerColor != null
+                          ? GFColors.getGFColor(dividerColor)
+                          : backgroundImage != null
+                              ? Colors.white
+                              : Colors.black,
+                      borderRadius: dividerBorderRadius != null
+                          ? dividerBorderRadius
+                          : const BorderRadius.all(
+                              Radius.circular(5),
+                            ),
+                    ),
+                  ),
+                )
+              : Container()
+        ],
+      ),
+    );
   }
 }
