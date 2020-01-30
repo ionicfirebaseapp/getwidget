@@ -27,7 +27,7 @@ enum GFDrawerAlignment {
 // Maximum width for a left nav is 400dp.
 // The right nav can vary depending on content.
 
-const double _kWidth = 304.0;
+const double _kWidth = 304;
 // const double _kEdgeDragWidth = 20.0;
 // const double _kMinFlingVelocity = 365.0;
 // const Duration _kBaseSettleDuration = Duration(milliseconds: 246);
@@ -36,7 +36,7 @@ const double _kWidth = 304.0;
 /// [Scaffold] to show navigation links in an application.
 ///
 /// GFDrawers are typically used with the [Scaffold.drawer] property. The child of
-/// the drawer is usually a [ListView] whose first child is a [GFDrawerHeader]
+/// the drawer is usually a [ListView] whose first child is a GFDrawerHeader
 /// that displays status information about the current user. The remaining
 /// drawer children are often constructed with [ListTile]s, often concluding
 /// with an [AboutListTile].
@@ -92,7 +92,7 @@ class GFDrawer extends StatelessWidget {
   ///
   /// See also:
   ///
-  ///  * [SemanticsConfiguration.namesRoute], for a description of how this
+  ///  * SemanticsConfiguration.namesRoute, for a description of how this
   ///    value is used.
   final String semanticLabel;
 
@@ -134,11 +134,11 @@ class GFDrawer extends StatelessWidget {
         child: Material(
           elevation: elevation,
           child: Container(
-            decoration: new BoxDecoration(
+            decoration: BoxDecoration(
               color: color,
               gradient: gradient,
               image: backgroundImage != null
-                  ? new DecorationImage(
+                  ? DecorationImage(
                       image: backgroundImage,
                       fit: BoxFit.cover,
                       colorFilter: colorFilter,
