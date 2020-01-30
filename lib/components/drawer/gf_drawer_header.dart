@@ -40,20 +40,19 @@ class GFDrawerHeaderPictures extends StatelessWidget {
             child: Row(
               children: (otherAccountsPictures ?? <Widget>[])
                   .take(3)
-                  .map<Widget>((Widget picture) {
-                return Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 8),
-                  child: Semantics(
-                    container: true,
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 8, bottom: 8),
-                      width: 48,
-                      height: 48,
-                      child: picture,
-                    ),
-                  ),
-                );
-              }).toList(),
+                  .map<Widget>((Widget picture) => Padding(
+                        padding: const EdgeInsetsDirectional.only(start: 8),
+                        child: Semantics(
+                          container: true,
+                          child: Container(
+                            padding: const EdgeInsets.only(left: 8, bottom: 8),
+                            width: 48,
+                            height: 48,
+                            child: picture,
+                          ),
+                        ),
+                      ))
+                  .toList(),
             ),
           ),
           Positioned(
@@ -107,7 +106,7 @@ class GFDrawerHeader extends StatefulWidget {
   /// upper-right corner. Normally a list of [CircleAvatar] widgets.
   final List<Widget> otherAccountsPictures;
 
-  /// A widget to be placed inside the drawer header, inset by the [padding].
+  /// A widget to be placed inside the drawer header, inset by the padding.
   ///
   /// This widget will be sized to the size of the header. To position the child
   /// precisely, consider using an [Align] or [Center] widget.

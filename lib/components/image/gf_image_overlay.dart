@@ -13,7 +13,7 @@ class GFImageOverlay extends StatelessWidget {
     this.padding,
     this.margin,
     this.image,
-    this.child = const Text(""),
+    this.child = const Text(''),
     this.alignment,
     this.borderRadius,
     this.colorFilter =
