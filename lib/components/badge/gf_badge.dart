@@ -129,7 +129,10 @@ class _GFBadgeState extends State<GFBadge> {
       width: counterShape == GFBadgeShape.circle ? height : width,
       child: Material(
         textStyle: textColor != null
-            ? TextStyle(color: textColor, fontSize: fontSize)
+            ? TextStyle(
+                color: textColor,
+                fontSize: fontSize,
+              )
             : widget.textStyle,
         shape: widget.borderShape ?? shape,
         color: color,
