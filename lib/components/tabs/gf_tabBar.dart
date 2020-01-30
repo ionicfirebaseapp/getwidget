@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:getflutter/getflutter.dart';
+import 'package:flutter/foundation.dart';
 
 /// A material design widget that displays a horizontal row of tabs.
 ///
@@ -14,7 +14,7 @@ class GFTabBar extends StatefulWidget {
   ///
   /// The [tabs] argument must not be null and its length must match the [controller]'s
   /// [TabController.length].
-  GFTabBar({
+  const GFTabBar({
     Key key,
     this.initialIndex = 0,
     @required this.length,
@@ -36,7 +36,8 @@ class GFTabBar extends StatefulWidget {
   })  : assert(length != null && length >= 0),
         assert(initialIndex != null &&
             initialIndex >= 0 &&
-            (length == 0 || initialIndex < length));
+            (length == 0 || initialIndex < length)),
+        super(key: key);
 
   /// The initial index of the selected tab. Defaults to zero.
   final int initialIndex;
@@ -69,7 +70,7 @@ class GFTabBar extends StatefulWidget {
 
   /// The horizontal padding for the line that appears below the selected tab.
   ///
-  /// For [isScrollable] tab bars, specifying [kTabLabelPadding] will align
+  /// For isScrollable tab bars, specifying [kTabLabelPadding] will align
   /// the indicator with the tab's text for [Tab] widgets and all but the
   /// shortest [Tab.text] values.
   ///
@@ -165,29 +166,25 @@ class GFTabBar extends StatefulWidget {
 
 class _GFTabBarState extends State<GFTabBar> {
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: widget.tabBarHeight == null
-          ? MediaQuery.of(context).size.height * 0.1
-          : widget.tabBarHeight,
-      child: Material(
-        shape: widget.shape,
-        type: MaterialType.button,
-        color: widget.tabBarColor ?? GFColors.getGFColor(GFColor.primary),
-        child: TabBar(
-          controller: widget.controller,
-          labelColor: widget.labelColor,
-          unselectedLabelColor: widget.unselectedLabelColor,
-          labelStyle: widget.labelStyle,
-          unselectedLabelStyle: widget.unselectedLabelStyle,
-          indicatorColor: widget.indicatorColor,
-          indicatorSize: widget.indicatorSize,
-          indicator: widget.indicator,
-          indicatorPadding: widget.indicatorPadding,
-          indicatorWeight: widget.indicatorWeight,
-          tabs: widget.tabs,
+  Widget build(BuildContext context) => Container(
+        height: widget.tabBarHeight ?? MediaQuery.of(context).size.height * 0.1,
+        child: Material(
+          shape: widget.shape,
+          type: MaterialType.button,
+          color: widget.tabBarColor ?? GFColors.getGFColor(GFColor.primary),
+          child: TabBar(
+            controller: widget.controller,
+            labelColor: widget.labelColor,
+            unselectedLabelColor: widget.unselectedLabelColor,
+            labelStyle: widget.labelStyle,
+            unselectedLabelStyle: widget.unselectedLabelStyle,
+            indicatorColor: widget.indicatorColor,
+            indicatorSize: widget.indicatorSize,
+            indicator: widget.indicator,
+            indicatorPadding: widget.indicatorPadding,
+            indicatorWeight: widget.indicatorWeight,
+            tabs: widget.tabs,
+          ),
         ),
-      ),
-    );
-  }
+      );
 }
