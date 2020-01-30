@@ -164,8 +164,9 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                               (widget.type == GFToggleType.custom ? 'ON' : ''),
                           style: widget.enabledTextStyle ??
                               (widget.type == GFToggleType.ios
-                                  ? TextStyle(color: Colors.white, fontSize: 12)
-                                  : TextStyle(
+                                  ? const TextStyle(
+                                      color: Colors.white, fontSize: 12)
+                                  : const TextStyle(
                                       color: Colors.white, fontSize: 8)))
                       : Text(
                           widget.disabledText ??
@@ -173,8 +174,9 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                           textAlign: TextAlign.end,
                           style: widget.disabledTextStyle ??
                               (widget.type == GFToggleType.ios
-                                  ? TextStyle(color: Colors.white, fontSize: 12)
-                                  : TextStyle(
+                                  ? const TextStyle(
+                                      color: Colors.white, fontSize: 12)
+                                  : const TextStyle(
                                       color: Colors.white, fontSize: 8)),
                         ),
                 ),
