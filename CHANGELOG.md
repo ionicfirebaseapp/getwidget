@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.3 - 2020-01-30
+
+### Fixed
+* GFToggle - minor issue fixed
+
+### Added
+* added few new components 
+    - GFAccordian
+    - GFAlert
+    - GFSearchBar
+    - GFDrawer
+    - GFAppBar
+
 
 ## 1.0.2 - 2020-01-23
 
@@ -13,6 +26,7 @@
 * added couple of new components 
     - GFToast
     - GFFloatingWidget
+    - GFToggle
 
 
 ## 1.0.0 - 2020-01-20
