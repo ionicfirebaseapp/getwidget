@@ -9,7 +9,8 @@ linter:
   rules:
     - always_declare_return_types
     - always_put_control_body_on_new_line
-    - always_put_required_named_parameters_first
+    # conflicts with the Flutter convention of putting {Key key} first and {Widget child} last
+    # - always_put_required_named_parameters_first
     - always_require_non_null_named_parameters
     - annotate_overrides
     # required to Allow bith GFColors and Colors
@@ -69,7 +70,8 @@ linter:
     - no_duplicate_case_values
     - non_constant_identifier_names
     - null_closures
-    - omit_local_variable_types
+    # we prefer strongly declared variable even local variables
+    # - omit_local_variable_types
     - one_member_abstracts
     - only_throw_errors
     - overridden_fields
