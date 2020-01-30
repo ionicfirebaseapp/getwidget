@@ -12,7 +12,7 @@ linter:
     # conflicts with the Flutter convention of putting {Key key} first and {Widget child} last
     # - always_put_required_named_parameters_first
     - always_require_non_null_named_parameters
-    - annotate_overrides
+    # - annotate_overrides
     # required to Allow bith GFColors and Colors
     # - avoid_annotating_with_dynamic
     - avoid_as
@@ -74,7 +74,8 @@ linter:
     # - omit_local_variable_types
     - one_member_abstracts
     - only_throw_errors
-    - overridden_fields
+    # in some places it is required to override fileds
+    # - overridden_fields
     - package_api_docs
     - package_names
     - package_prefixed_library_names
