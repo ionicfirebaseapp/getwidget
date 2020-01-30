@@ -652,9 +652,8 @@ class _InputPadding extends SingleChildRenderObjectWidget {
   final Size minSize;
 
   @override
-  RenderObject createRenderObject(BuildContext context) {
-    return _RenderInputPadding(minSize);
-  }
+  RenderObject createRenderObject(BuildContext context) =>
+      _RenderInputPadding(minSize);
 
   @override
   void updateRenderObject(
