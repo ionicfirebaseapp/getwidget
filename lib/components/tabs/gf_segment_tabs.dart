@@ -9,7 +9,7 @@ import 'package:getflutter/getflutter.dart';
 class GFSegmentTabs extends StatefulWidget {
   /// Creates pills like structured tab bar. See [GFTabBar]
   /// [GFSegmentTabs] are best used as an alternative for [GFTabBar].
-  GFSegmentTabs(
+  const GFSegmentTabs(
       {Key key,
       this.initialIndex = 0,
       @required this.length,
@@ -33,7 +33,8 @@ class GFSegmentTabs extends StatefulWidget {
       : assert(length != null && length >= 0),
         assert(initialIndex != null &&
             initialIndex >= 0 &&
-            (length == 0 || initialIndex < length));
+            (length == 0 || initialIndex < length)),
+        super(key: key);
 
   /// The initial index of the selected tab. Defaults to zero.
   final int initialIndex;
@@ -66,7 +67,7 @@ class GFSegmentTabs extends StatefulWidget {
 
   /// The horizontal padding for the line that appears below the selected tab.
   ///
-  /// For [isScrollable] tab bars, specifying [kTabLabelPadding] will align
+  /// For isScrollable tab bars, specifying [kTabLabelPadding] will align
   /// the indicator with the tab's text for [Tab] widgets and all but the
   /// shortest [Tab.text] values.
   ///
@@ -143,7 +144,7 @@ class GFSegmentTabs extends StatefulWidget {
 
   /// Typically a list of two or more [Tab] widgets.
   ///
-  /// The length of this list must match the [controller]'s [TabController.length]
+  /// The length of this list must match the controller's [TabController.length]
   /// and the length of the [TabBarView.children] list.
   final List<Widget> tabs;
 
@@ -168,61 +169,54 @@ class GFSegmentTabs extends StatefulWidget {
 
 class _GFSegmentTabsState extends State<GFSegmentTabs> {
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: widget.height == null ? 28.0 : widget.height,
-      width: widget.width == null ? 240.0 : widget.width,
-      decoration: BoxDecoration(
-        border: widget.border == null
-            ? Border.all(
-                color: GFColors.getGFColor(GFColor.primary), width: 1.0)
-            : widget.border,
-        borderRadius: widget.borderRadius == null
-            ? BorderRadius.circular(2.0)
-            : widget.borderRadius,
-      ),
-      child: DefaultTabController(
-        initialIndex: widget.initialIndex,
-        length: widget.length,
-        child: Material(
-          borderRadius: widget.borderRadius == null
-              ? BorderRadius.circular(2.0)
-              : widget.borderRadius,
-          type: MaterialType.button,
-          color: widget.tabBarColor ?? Colors.transparent,
-          child: TabBar(
-            controller: widget.tabController,
-            labelColor: widget.labelColor ?? GFColors.getGFColor(GFColor.white),
-            unselectedLabelColor: widget.unselectedLabelColor ??
-                GFColors.getGFColor(GFColor.primary),
-            labelStyle: widget.labelStyle ?? TextStyle(fontSize: 12.0),
-            unselectedLabelStyle:
-                widget.unselectedLabelStyle ?? TextStyle(fontSize: 12.0),
-            indicatorColor: widget.indicatorColor == null
-                ? GFColors.getGFColor(GFColor.primary)
-                : widget.indicatorColor,
-            indicatorSize: widget.indicatorSize,
-            indicator: widget.indicator == null
-                ? BoxDecoration(
-                    color: widget.indicatorColor == null
-                        ? GFColors.getGFColor(GFColor.primary)
-                        : widget.indicatorColor,
-                    border: Border.all(
-                        color: widget.indicatorColor == null
-                            ? Colors.transparent
-                            : widget.indicatorColor,
-                        width: 2.0),
-                    borderRadius: widget.borderRadius == null
-                        ? BorderRadius.circular(0.0)
-                        : widget.borderRadius,
-                  )
-                : widget.indicator,
-            indicatorPadding: widget.indicatorPadding,
-            indicatorWeight: widget.indicatorWeight,
-            tabs: widget.tabs,
+  Widget build(BuildContext context) => Container(
+        height: widget.height ?? 28,
+        width: widget.width ?? 240,
+        decoration: BoxDecoration(
+          border: widget.border ??
+              Border.all(color: GFColors.getGFColor(GFColor.primary), width: 1),
+          borderRadius: widget.borderRadius ?? BorderRadius.circular(2),
+        ),
+        child: DefaultTabController(
+          initialIndex: widget.initialIndex,
+          length: widget.length,
+          child: Material(
+            borderRadius: widget.borderRadius ?? BorderRadius.circular(2),
+            type: MaterialType.button,
+            color: widget.tabBarColor ?? Colors.transparent,
+            child: TabBar(
+              controller: widget.tabController,
+              labelColor:
+                  widget.labelColor ?? GFColors.getGFColor(GFColor.white),
+              unselectedLabelColor: widget.unselectedLabelColor ??
+                  GFColors.getGFColor(GFColor.primary),
+              labelStyle: widget.labelStyle ?? const TextStyle(fontSize: 12),
+              unselectedLabelStyle:
+                  widget.unselectedLabelStyle ?? const TextStyle(fontSize: 12),
+              indicatorColor: widget.indicatorColor == null
+                  ? GFColors.getGFColor(GFColor.primary)
+                  : widget.indicatorColor,
+              indicatorSize: widget.indicatorSize,
+              indicator: widget.indicator == null
+                  ? BoxDecoration(
+                      color: widget.indicatorColor == null
+                          ? GFColors.getGFColor(GFColor.primary)
+                          : widget.indicatorColor,
+                      border: Border.all(
+                          color: widget.indicatorColor == null
+                              ? Colors.transparent
+                              : widget.indicatorColor,
+                          width: 2),
+                      borderRadius: widget.borderRadius == null
+                          ? BorderRadius.circular(0)
+                          : widget.borderRadius,
+                    )
+                  : widget.indicator,
+              indicatorPadding: widget.indicatorPadding,
+              indicatorWeight: widget.indicatorWeight,
+              tabs: widget.tabs,
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }

@@ -3,17 +3,17 @@ import 'package:getflutter/getflutter.dart';
 
 /// A toggle button allows the user to change a setting between two states.
 ///
-/// The state of each button is controlled by [isSelected], which is a list of bools that determine
+/// The state of each button is controlled by isSelected, which is a list of bools that determine
 /// if a button is in an unselected or selected state. They are both
-/// correlated by their index in the list. The length of [isSelected] has to
-/// match the length of the [children] list.
+/// correlated by their index in the list. The length of isSelected has to
+/// match the length of the children list.
 ///
 /// ## Customizing toggle buttons
-/// Each toggle's behavior can be configured by the [onPressed] callback, which
-/// can update the [isSelected] list however it wants to.
+/// Each toggle's behavior can be configured by the onPressed callback, which
+/// can update the isSelected list however it wants to.
 class GFToggle extends StatefulWidget {
   /// Creates toggle button to switch between states onChanged.
-  GFToggle(
+  const GFToggle(
       {Key key,
       @required this.onChanged,
       this.value,
@@ -82,7 +82,6 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
   Animation<double> animation;
   AnimationController controller;
   Animation<Offset> offset;
-
   bool isOn;
 
   @override
@@ -92,16 +91,26 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
     });
     controller = AnimationController(vsync: this, duration: widget.duration);
     offset = (isOn
-            ? Tween<Offset>(begin: Offset(1.0, 0.0), end: Offset.zero)
-            : Tween<Offset>(begin: Offset.zero, end: Offset(1.0, 0.0)))
+            ? Tween<Offset>(
+                begin: const Offset(1, 0),
+                end: Offset.zero,
+              )
+            : Tween<Offset>(
+                begin: Offset.zero,
+                end: const Offset(1, 0),
+              ))
         .animate(controller);
     super.initState();
   }
 
   @override
   void dispose() {
-    if (animationController != null) animationController.dispose();
-    if (controller != null) controller.dispose();
+    if (animationController != null) {
+      animationController.dispose();
+    }
+    if (controller != null) {
+      controller.dispose();
+    }
     super.dispose();
   }
 
@@ -110,7 +119,6 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
       setState(() {
         isOn = !isOn;
       });
-
       switch (controller.status) {
         case AnimationStatus.dismissed:
           controller.forward();
@@ -125,80 +133,84 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-          height: widget.type == GFToggleType.android ? 25 : 30,
-          width: widget.type == GFToggleType.android ? 40 : 50,
-        ),
-        Positioned(
-          top: 5,
-          child: InkWell(
-            onTap: onStatusChange,
-            child: Container(
-              width: widget.type == GFToggleType.ios ? 45 : 36,
-              height: widget.type == GFToggleType.ios ? 25 : 15,
-              decoration: BoxDecoration(
-                  color: isOn
-                      ? widget.enabledTrackColor ?? Colors.lightGreen
-                      : widget.disabledTrackColor ?? Colors.grey,
-                  borderRadius: widget.type == GFToggleType.square
-                      ? BorderRadius.all(Radius.circular(0))
-                      : widget.borderRadius ??
-                          BorderRadius.all(Radius.circular(20))),
-              child: Padding(
-                padding: widget.type == GFToggleType.ios
-                    ? EdgeInsets.only(left: 3.5, right: 3.5, top: 5.4)
-                    : EdgeInsets.only(left: 3, right: 3, top: 3.4),
-                child: isOn
-                    ? Text(
-                        widget.enabledText ??
-                            (widget.type == GFToggleType.custom ? 'ON' : ''),
-                        style: widget.enabledTextStyle ??
-                            (widget.type == GFToggleType.ios
-                                ? TextStyle(color: Colors.white, fontSize: 12)
-                                : TextStyle(color: Colors.white, fontSize: 8)))
-                    : Text(
-                        widget.disabledText ??
-                            (widget.type == GFToggleType.custom ? 'OFF' : ''),
-                        textAlign: TextAlign.end,
-                        style: widget.disabledTextStyle ??
-                            (widget.type == GFToggleType.ios
-                                ? TextStyle(color: Colors.white, fontSize: 12)
-                                : TextStyle(color: Colors.white, fontSize: 8)),
-                      ),
+  Widget build(BuildContext context) => Stack(
+        children: <Widget>[
+          Container(
+            height: widget.type == GFToggleType.android ? 25 : 30,
+            width: widget.type == GFToggleType.android ? 40 : 50,
+          ),
+          Positioned(
+            top: 5,
+            child: InkWell(
+              onTap: onStatusChange,
+              child: Container(
+                width: widget.type == GFToggleType.ios ? 45 : 36,
+                height: widget.type == GFToggleType.ios ? 25 : 15,
+                decoration: BoxDecoration(
+                    color: isOn
+                        ? widget.enabledTrackColor ?? Colors.lightGreen
+                        : widget.disabledTrackColor ?? Colors.grey,
+                    borderRadius: widget.type == GFToggleType.square
+                        ? const BorderRadius.all(Radius.circular(0))
+                        : widget.borderRadius ??
+                            const BorderRadius.all(Radius.circular(20))),
+                child: Padding(
+                  padding: widget.type == GFToggleType.ios
+                      ? const EdgeInsets.only(left: 3.5, right: 3.5, top: 5.4)
+                      : const EdgeInsets.only(left: 3, right: 3, top: 3.4),
+                  child: isOn
+                      ? Text(
+                          widget.enabledText ??
+                              (widget.type == GFToggleType.custom ? 'ON' : ''),
+                          style: widget.enabledTextStyle ??
+                              (widget.type == GFToggleType.ios
+                                  ? TextStyle(color: Colors.white, fontSize: 12)
+                                  : TextStyle(
+                                      color: Colors.white, fontSize: 8)))
+                      : Text(
+                          widget.disabledText ??
+                              (widget.type == GFToggleType.custom ? 'OFF' : ''),
+                          textAlign: TextAlign.end,
+                          style: widget.disabledTextStyle ??
+                              (widget.type == GFToggleType.ios
+                                  ? TextStyle(color: Colors.white, fontSize: 12)
+                                  : TextStyle(
+                                      color: Colors.white, fontSize: 8)),
+                        ),
+                ),
               ),
             ),
           ),
-        ),
-        Positioned(
+          Positioned(
             top: widget.type == GFToggleType.ios ? 7.5 : 3,
             left: widget.type == GFToggleType.ios ? 2 : 0,
             child: InkWell(
-                onTap: onStatusChange,
-                child: SlideTransition(
-                  position: offset,
-                  child: Container(
-                    padding: EdgeInsets.only(left: 10),
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                        shape: widget.type == GFToggleType.square
-                            ? BoxShape.rectangle
-                            : widget.boxShape ?? BoxShape.circle,
-                        color: isOn
-                            ? widget.enabledThumbColor ?? Colors.white
-                            : widget.disabledThumbColor ?? Colors.white,
-                        boxShadow: [
-                          new BoxShadow(
-                              color: Colors.black.withOpacity(0.16),
-                              blurRadius: 6.0,
-                              spreadRadius: 0.0),
-                        ]),
+              onTap: onStatusChange,
+              child: SlideTransition(
+                position: offset,
+                child: Container(
+                  padding: const EdgeInsets.only(left: 10),
+                  height: 20,
+                  width: 20,
+                  decoration: BoxDecoration(
+                    shape: widget.type == GFToggleType.square
+                        ? BoxShape.rectangle
+                        : widget.boxShape ?? BoxShape.circle,
+                    color: isOn
+                        ? widget.enabledThumbColor ?? Colors.white
+                        : widget.disabledThumbColor ?? Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.16),
+                        blurRadius: 6,
+                        spreadRadius: 0,
+                      ),
+                    ],
                   ),
-                ))),
-      ],
-    );
-  }
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
 }

@@ -38,37 +38,35 @@ class GFFloatingWidget extends StatefulWidget {
 
 class _GFFloatingWidgetState extends State<GFFloatingWidget> {
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      fit: StackFit.loose,
-      children: <Widget>[
-        Container(
-          height: MediaQuery.of(context).size.height,
-          child: widget.body ?? Container(),
-        ),
-        Positioned(
-            child: Container(
-          height: MediaQuery.of(context).size.height,
-          color: widget.showblurness ? widget.blurnessColor : null,
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                top: widget.verticalPosition != null
-                    ? widget.verticalPosition
-                    : 0.0,
-                left: widget.horizontalPosition != null
-                    ? widget.horizontalPosition
-                    : 0.0,
-                right: widget.horizontalPosition != null
-                    ? widget.horizontalPosition
-                    : 0.0,
-                child: widget.child ?? Container(),
-              )
-            ],
+  Widget build(BuildContext context) => Stack(
+        alignment: Alignment.center,
+        fit: StackFit.loose,
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height,
+            child: widget.body ?? Container(),
           ),
-        ))
-      ],
-    );
-  }
+          Positioned(
+              child: Container(
+            height: MediaQuery.of(context).size.height,
+            color: widget.showblurness ? widget.blurnessColor : null,
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                  top: widget.verticalPosition != null
+                      ? widget.verticalPosition
+                      : 0.0,
+                  left: widget.horizontalPosition != null
+                      ? widget.horizontalPosition
+                      : 0.0,
+                  right: widget.horizontalPosition != null
+                      ? widget.horizontalPosition
+                      : 0.0,
+                  child: widget.child ?? Container(),
+                )
+              ],
+            ),
+          ))
+        ],
+      );
 }
