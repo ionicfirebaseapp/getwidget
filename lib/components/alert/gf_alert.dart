@@ -18,7 +18,10 @@ class GFAlert extends StatefulWidget {
       this.bottombar,
       this.contentTextStyle = const TextStyle(color: Colors.black87),
       this.titleTextStyle = const TextStyle(
-          color: Colors.black87, fontSize: 17, fontWeight: FontWeight.w500)})
+        color: Colors.black87,
+        fontSize: 17,
+        fontWeight: FontWeight.w500,
+      )})
       : super(key: key);
 
   /// child of  type [Widget]is alternative to title key. title will get priority over child
@@ -65,9 +68,13 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
   @override
   void initState() {
     animationController = AnimationController(
-        duration: const Duration(milliseconds: 300), vsync: this);
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
     animation = CurvedAnimation(
-        parent: animationController, curve: Curves.fastOutSlowIn);
+      parent: animationController,
+      curve: Curves.fastOutSlowIn,
+    );
     animationController.forward();
     super.initState();
   }
@@ -103,7 +110,9 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                       : GFColors.getGFColor(GFColor.white),
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.black.withOpacity(0.40), blurRadius: 3)
+                      color: Colors.black.withOpacity(0.40),
+                      blurRadius: 3,
+                    )
                   ]),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
