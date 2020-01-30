@@ -163,8 +163,7 @@ class _GFAccordionState extends State<GFAccordion>
                     child: widget.content != null
                         ? Text(widget.content)
                         : (widget.contentChild ?? Container()),
-                  ),
-                )
+                  ))
               : Container()
         ],
       ),
