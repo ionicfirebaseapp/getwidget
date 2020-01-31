@@ -12,7 +12,7 @@ class GFRating extends StatelessWidget {
     this.onRatingChanged,
     this.color,
     this.borderColor,
-    this.size = 25,
+    this.iconSize = 25,
     this.filledIcon,
     this.halfFilledIcon,
     this.allowHalfRating = true,
@@ -25,7 +25,7 @@ class GFRating extends StatelessWidget {
   final RatingChangeCallback onRatingChanged;
   final Color color;
   final Color borderColor;
-  final double size;
+  final double iconSize;
   final bool allowHalfRating;
   final IconData filledIcon;
   final IconData halfFilledIcon;
@@ -39,20 +39,20 @@ class GFRating extends StatelessWidget {
       icon = Icon(
         defaultIcon != null ? defaultIcon : Icons.star_border,
         color: borderColor ?? Theme.of(context).primaryColor,
-        size: size,
+        size: iconSize,
       );
     } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
         index < rating) {
       icon = Icon(
         halfFilledIcon != null ? halfFilledIcon : Icons.star_half,
         color: color ?? Theme.of(context).primaryColor,
-        size: size,
+        size: iconSize,
       );
     } else {
       icon = Icon(
         filledIcon != null ? filledIcon : Icons.star,
         color: color ?? Theme.of(context).primaryColor,
-        size: size,
+        size: iconSize,
       );
     }
 

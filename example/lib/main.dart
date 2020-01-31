@@ -216,13 +216,15 @@ class _MyHomePageState extends State<MyHomePage>
 
           GFRating(
           rating: rating,
-//          size: 65,
-          filledIconData: Icons.star,
-          halfFilledIconData: Icons.star_half,
-          defaultIconData: Icons.star_border,
+//          iconSize: 65,
+          filledIcon: Icons.star,
+          halfFilledIcon: Icons.star_half,
+          defaultIcon: Icons.star_border,
           itemCount: 5,
           allowHalfRating: false,
 //          spacing: 2.0,
+          color: Colors.teal,
+          borderColor: Colors.tealAccent,
           onRatingChanged: (value) {
             setState(() {
               rating = value;
