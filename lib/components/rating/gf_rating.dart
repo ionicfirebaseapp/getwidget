@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-typedef void RatingChangeCallback(double rating);
+typedef RatingChangeCallback = void Function(double rating);
 
 class GFRating extends StatelessWidget {
-  GFRating({
+  const GFRating({
     this.itemCount = 5,
     this.spacing = 0.0,
     this.rating = 0.0,
@@ -15,9 +15,7 @@ class GFRating extends StatelessWidget {
     this.filledIcon,
     this.halfFilledIcon,
     this.allowHalfRating = true,
-  }) {
-    assert(this.rating != null);
-  }
+  }) : assert(rating != null);
 
   /// defines total number of rating items
   final int itemCount;
@@ -61,7 +59,7 @@ class GFRating extends StatelessWidget {
         size: itemSize,
       );
     } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
-        index < rating) {
+        index <= rating) {
       icon = Icon(
         halfFilledIcon != null ? halfFilledIcon : Icons.star_half,
         color: color ?? Theme.of(context).primaryColor,
@@ -77,9 +75,10 @@ class GFRating extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        if (onRatingChanged != null) onRatingChanged(index + 1.0);
+        if (onRatingChanged != null) {
+          onRatingChanged(index + 1.0);
+        }
       },
-//      onHorizontalDragStart: ,
       child: icon,
     );
   }
@@ -88,9 +87,12 @@ class GFRating extends StatelessWidget {
   Widget build(BuildContext context) => Material(
         color: Colors.transparent,
         child: Wrap(
-            alignment: WrapAlignment.center,
-            spacing: spacing,
-            children: List.generate(
-                itemCount, (index) => buildRatingBar(context, index))),
+          alignment: WrapAlignment.center,
+          spacing: spacing,
+          children: List.generate(
+            itemCount,
+            (index) => buildRatingBar(context, index),
+          ),
+        ),
       );
 }
