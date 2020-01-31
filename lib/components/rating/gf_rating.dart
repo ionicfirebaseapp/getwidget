@@ -82,6 +82,7 @@ class GFRating extends StatelessWidget {
       onTap: () {
         if (onRatingChanged != null) onRatingChanged(index + 1.0);
       },
+      onHorizontalDragStart: ,
       child: icon,
     );
   }
