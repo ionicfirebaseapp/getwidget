@@ -17,8 +17,7 @@ class GFCard extends StatelessWidget {
       this.elevation,
       this.shape,
       this.borderOnForeground = true,
-      this.padding =
-          const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+      this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       this.margin,
       this.clipBehavior,
       this.semanticContainer,
@@ -57,7 +56,7 @@ class GFCard extends StatelessWidget {
   /// The shape of the card's [Material].
   final ShapeBorder shape;
 
-  /// Whether to paint the [shape] border in front of the [child].
+  /// Whether to paint the [shape] border in front of the child.
   final bool borderOnForeground;
 
   /// If this property is null then [ThemeData.cardTheme.clipBehavior] is used.
@@ -73,7 +72,7 @@ class GFCard extends StatelessWidget {
   /// a collection of individual semantic nodes.
   final bool semanticContainer;
 
-  /// The title to display inside the [GFTitleBar]. see [GFTitleBar]
+  /// The title to display inside the GFTitleBar. see GFTitleBar
   final GFListTile title;
 
   /// widget can be used to define content
@@ -90,8 +89,8 @@ class GFCard extends StatelessWidget {
   final GFButtonBar buttonBar;
 
   /// How the image should be inscribed into the box.
-  /// The default is [BoxFit.scaleDown] if [centerSlice] is null, and
-  /// [BoxFit.fill] if [centerSlice] is not null.
+  /// The default is [BoxFit.scaleDown] if centerSlice is null, and
+  /// [BoxFit.fill] if centerSlice is not null.
   /// [boxFit] for only [GFImageOverlay]
   final BoxFit boxFit;
 
@@ -106,36 +105,36 @@ class GFCard extends StatelessWidget {
 
   final LinearGradient gradient;
 
-  static const double _defaultElevation = 1.0;
+  static const double _defaultElevation = 1;
   static const Clip _defaultClipBehavior = Clip.none;
 
   @override
   Widget build(BuildContext context) {
     final CardTheme cardTheme = CardTheme.of(context);
 
-    Widget cardChild = Column(
+    final Widget cardChild = Column(
       children: <Widget>[
         titlePosition == GFPosition.start
-            ? title != null ? title : Container()
+            ? title ?? Container()
             : image != null
                 ? ClipRRect(
                     borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(4.0)),
+                        const BorderRadius.vertical(top: Radius.circular(4)),
                     child: image,
                   )
                 : Container(),
         titlePosition == GFPosition.start
-            ? image != null ? image : Container()
-            : title != null ? title : Container(),
+            ? image ?? Container()
+            : title ?? Container(),
         Padding(
           padding: padding,
-          child: content != null ? content : Container(),
+          child: content ?? Container(),
         ),
-        buttonBar == null ? Container() : buttonBar,
+        buttonBar ?? Container(),
       ],
     );
 
-    Widget overlayImage = GFImageOverlay(
+    final Widget overlayImage = GFImageOverlay(
       width: MediaQuery.of(context).size.width,
       child: cardChild,
       color: color ?? cardTheme.color ?? Theme.of(context).cardColor,
@@ -143,16 +142,16 @@ class GFCard extends StatelessWidget {
       boxFit: boxFit,
       colorFilter: colorFilter,
       border: border,
-      borderRadius: borderRadius ?? BorderRadius.all(Radius.circular(4.0)),
+      borderRadius: borderRadius ?? const BorderRadius.all(Radius.circular(4)),
     );
 
     return Container(
       height: height,
-      margin: margin ?? cardTheme.margin ?? const EdgeInsets.all(16.0),
+      margin: margin ?? cardTheme.margin ?? const EdgeInsets.all(16),
       decoration: gradient != null
           ? BoxDecoration(
               gradient: gradient,
-              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+              borderRadius: const BorderRadius.all(Radius.circular(4)),
             )
           : null,
       child: gradient == null
@@ -163,7 +162,7 @@ class GFCard extends StatelessWidget {
               shape: shape ??
                   cardTheme.shape ??
                   const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(4)),
                   ),
               borderOnForeground: borderOnForeground,
               clipBehavior: clipBehavior ??

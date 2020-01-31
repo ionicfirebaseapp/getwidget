@@ -1,4 +1,4 @@
-/// [GFButtonShape] is used to shape the [GFButton] widget.
+/// [GFButtonShape] is used to shape the GFButton widget.
 enum GFButtonShape {
   /// [GFButtonShape.pills], used for pills shaped button with rounded corners
   pills,

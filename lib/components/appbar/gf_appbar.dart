@@ -17,8 +17,8 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// [elevation] is specified, it must be non-negative.
   ///
   /// If [backgroundColor], [elevation], [brightness], [iconTheme],
-  /// [actionsIconTheme], or [textTheme] are null, then their [GFAppBarTheme]
-  /// values will be used. If the corresponding [GFAppBarTheme] property is null,
+  /// [actionsIconTheme], or [textTheme] are null, then their GFAppBarTheme
+  /// values will be used. If the corresponding GFAppBarTheme property is null,
   /// then the default specified in the property's documentation will be used.
   ///
   /// Typically used in the [Scaffold.appBar] property.
@@ -44,7 +44,10 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.bottomOpacity = 1.0,
     this.searchBar = false,
     this.searchHintText = 'Search...',
-    this.searchHintStyle = const TextStyle(color: Colors.white, fontSize: 14.0),
+    this.searchHintStyle = const TextStyle(
+      color: Colors.white,
+      fontSize: 14,
+    ),
     this.searchTextStyle = const TextStyle(
       color: Colors.white,
     ),
@@ -60,7 +63,8 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
         assert(toolbarOpacity != null),
         assert(bottomOpacity != null),
         preferredSize = Size.fromHeight(
-            kToolbarHeight + (bottom?.preferredSize?.height ?? 0.0)),
+          kToolbarHeight + (bottom?.preferredSize?.height ?? 0),
+        ),
         super(key: key);
 
   /// A widget to display before the [title].
@@ -90,7 +94,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// be the same as the app bar's overall height.
   ///
   /// A flexible space isn't actually flexible unless the [GFAppBar]'s container
-  /// changes the [GFAppBar]'s size. A [SliverGFAppBar] in a [CustomScrollView]
+  /// changes the [GFAppBar]'s size. A SliverGFAppBar in a [CustomScrollView]
   /// changes the [GFAppBar]'s height when scrolled.
   ///
   /// Typically a [FlexibleSpaceBar]. See [FlexibleSpaceBar] for details.
@@ -184,7 +188,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// A value of 1.0 is fully opaque, and a value of 0.0 is fully transparent.
   ///
   /// Typically, this value is not changed from its default value (1.0). It is
-  /// used by [SliverGFAppBar] to animate the opacity of the toolbar when the app
+  /// used by SliverGFAppBar to animate the opacity of the toolbar when the app
   /// bar is scrolled.
   final double toolbarOpacity;
 
@@ -193,7 +197,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// A value of 1.0 is fully opaque, and a value of 0.0 is fully transparent.
   ///
   /// Typically, this value is not changed from its default value (1.0). It is
-  /// used by [SliverGFAppBar] to animate the opacity of the toolbar when the app
+  /// used by SliverGFAppBar to animate the opacity of the toolbar when the app
   /// bar is scrolled.
   final double bottomOpacity;
 
@@ -223,9 +227,9 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///
   /// See also:
   ///
-  ///  * [inputFormatters], which are called before [onChanged]
+  ///  * inputFormatters, which are called before [onChanged]
   ///    runs and can validate and change ("format") the input value.
-  ///  * [onEditingComplete], [onSubmitted], [onSelectionChanged]:
+  ///  * onEditingComplete, [onSubmitted], [onSelectionChanged]:
   ///    which are more specialized input change notifications.
   final ValueChanged<String> onChanged;
 
@@ -254,11 +258,11 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// To unconditionally handle taps, without interfering with the text field's
   /// internal gesture detector, provide this callback.
   ///
-  /// If the text field is created with [enabled] false, taps will not be
+  /// If the text field is created with enabled false, taps will not be
   /// recognized.
   ///
   /// To be notified when the text field gains or loses the focus, provide a
-  /// [focusNode] and add a listener to that.
+  /// focusNode and add a listener to that.
   ///
   /// To listen to arbitrary pointer events without competing with the
   /// text field's internal gesture detector, use a [Listener].
@@ -266,7 +270,9 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   final GestureTapCallback onTap;
 
   bool _getEffectiveCenterTitle(ThemeData theme) {
-    if (centerTitle != null) return centerTitle;
+    if (centerTitle != null) {
+      return centerTitle;
+    }
     assert(theme.platform != null);
     switch (theme.platform) {
       case TargetPlatform.android:
@@ -284,7 +290,9 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _GFAppBarState extends State<GFAppBar> {
-  static const double _defaultElevation = 4.0;
+  static const double _defaultElevation = 4;
+  Widget searchBar;
+  bool showSearchBar = true;
 
   void _handleDrawerButton() {
     Scaffold.of(context).openDrawer();
@@ -294,9 +302,6 @@ class _GFAppBarState extends State<GFAppBar> {
     Scaffold.of(context).openEndDrawer();
   }
 
-  Widget searchBar;
-  bool showSearchBar = true;
-
   @override
   Widget build(BuildContext context) {
     assert(!widget.primary || debugCheckHasMediaQuery(context));
@@ -305,7 +310,6 @@ class _GFAppBarState extends State<GFAppBar> {
     final AppBarTheme appBarTheme = AppBarTheme.of(context);
     final ScaffoldState scaffold = Scaffold.of(context, nullOk: true);
     final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
-
     final bool hasDrawer = scaffold?.hasDrawer ?? false;
     final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
     final bool canPop = parentRoute?.canPop ?? false;
@@ -325,19 +329,27 @@ class _GFAppBarState extends State<GFAppBar> {
         theme.primaryTextTheme.body1;
 
     if (widget.toolbarOpacity != 1.0) {
-      final double opacity =
-          const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn)
-              .transform(widget.toolbarOpacity);
-      if (centerStyle?.color != null)
-        centerStyle =
-            centerStyle.copyWith(color: centerStyle.color.withOpacity(opacity));
-      if (sideStyle?.color != null)
-        sideStyle =
-            sideStyle.copyWith(color: sideStyle.color.withOpacity(opacity));
+      final double opacity = const Interval(
+        0.25,
+        1,
+        curve: Curves.fastOutSlowIn,
+      ).transform(widget.toolbarOpacity);
+      if (centerStyle?.color != null) {
+        centerStyle = centerStyle.copyWith(
+          color: centerStyle.color.withOpacity(opacity),
+        );
+      }
+      if (sideStyle?.color != null) {
+        sideStyle = sideStyle.copyWith(
+          color: sideStyle.color.withOpacity(opacity),
+        );
+      }
       overallIconTheme = overallIconTheme.copyWith(
-          opacity: opacity * (overallIconTheme.opacity ?? 1.0));
+        opacity: opacity * (overallIconTheme.opacity ?? 1.0),
+      );
       actionsIconTheme = actionsIconTheme.copyWith(
-          opacity: opacity * (actionsIconTheme.opacity ?? 1.0));
+        opacity: opacity * (actionsIconTheme.opacity ?? 1.0),
+      );
     }
 
     Widget leading = widget.leading;
@@ -349,8 +361,9 @@ class _GFAppBarState extends State<GFAppBar> {
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
         );
       } else {
-        if (canPop)
+        if (canPop) {
           leading = useCloseButton ? const CloseButton() : const BackButton();
+        }
       }
     }
     if (leading != null) {
@@ -411,17 +424,17 @@ class _GFAppBarState extends State<GFAppBar> {
     searchBar = TextField(
       cursorColor: widget.searchBarColorTheme,
       style: widget.searchTextStyle,
-      decoration: new InputDecoration(
-        prefixIcon: new Icon(
+      decoration: InputDecoration(
+        prefixIcon: Icon(
           Icons.search,
           color: widget.searchBarColorTheme,
-          size: 18.0,
+          size: 18,
         ),
         suffixIcon: GFIconButton(
           icon: Icon(
             Icons.close,
             color: widget.searchBarColorTheme,
-            size: 20.0,
+            size: 20,
           ),
           type: GFButtonType.transparent,
           onPressed: () {
@@ -433,7 +446,10 @@ class _GFAppBarState extends State<GFAppBar> {
         hintText: widget.searchHintText,
         hintStyle: widget.searchHintStyle,
         focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(width: 1, color: widget.searchBarColorTheme),
+          borderSide: BorderSide(
+            width: 1,
+            color: widget.searchBarColorTheme,
+          ),
         ),
       ),
       onTap: widget.onTap,
@@ -450,7 +466,7 @@ class _GFAppBarState extends State<GFAppBar> {
           icon: Icon(
             Icons.search,
             color: widget.searchBarColorTheme,
-            size: 20.0,
+            size: 20,
           ),
           type: GFButtonType.transparent,
           onPressed: () {
@@ -495,8 +511,11 @@ class _GFAppBarState extends State<GFAppBar> {
             ),
           ),
           Opacity(
-            opacity: const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn)
-                .transform(widget.bottomOpacity),
+            opacity: const Interval(
+              0.25,
+              1,
+              curve: Curves.fastOutSlowIn,
+            ).transform(widget.bottomOpacity),
             child: widget.bottom,
           ),
         ],
@@ -559,19 +578,20 @@ class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
   const _ToolbarContainerLayout();
 
   @override
-  BoxConstraints getConstraintsForChild(BoxConstraints constraints) {
-    return constraints.tighten(height: kToolbarHeight);
-  }
+  BoxConstraints getConstraintsForChild(BoxConstraints constraints) =>
+      constraints.tighten(
+        height: kToolbarHeight,
+      );
 
   @override
-  Size getSize(BoxConstraints constraints) {
-    return Size(constraints.maxWidth, kToolbarHeight);
-  }
+  Size getSize(BoxConstraints constraints) => Size(
+        constraints.maxWidth,
+        kToolbarHeight,
+      );
 
   @override
-  Offset getPositionForChild(Size size, Size childSize) {
-    return Offset(0.0, size.height - childSize.height);
-  }
+  Offset getPositionForChild(Size size, Size childSize) =>
+      Offset(0, size.height - childSize.height);
 
   @override
   bool shouldRelayout(_ToolbarContainerLayout oldDelegate) => false;
@@ -586,11 +606,10 @@ class GFAppBarTitleBar extends SingleChildRenderObjectWidget {
         super(key: key, child: child);
 
   @override
-  RenderGFAppBarTitleBar createRenderObject(BuildContext context) {
-    return RenderGFAppBarTitleBar(
-      textDirection: Directionality.of(context),
-    );
-  }
+  RenderGFAppBarTitleBar createRenderObject(BuildContext context) =>
+      RenderGFAppBarTitleBar(
+        textDirection: Directionality.of(context),
+      );
 
   @override
   void updateRenderObject(
@@ -604,15 +623,19 @@ class RenderGFAppBarTitleBar extends RenderAligningShiftedBox {
     RenderBox child,
     TextDirection textDirection,
   }) : super(
-            child: child,
-            alignment: Alignment.center,
-            textDirection: textDirection);
+          child: child,
+          alignment: Alignment.center,
+          textDirection: textDirection,
+        );
 
   @override
   void performLayout() {
     final BoxConstraints innerConstraints =
         constraints.copyWith(maxHeight: double.infinity);
-    child.layout(innerConstraints, parentUsesSize: true);
+    child.layout(
+      innerConstraints,
+      parentUsesSize: true,
+    );
     size = constraints.constrain(child.size);
     alignChild();
   }

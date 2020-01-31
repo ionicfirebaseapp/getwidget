@@ -11,9 +11,9 @@ enum GFSize {
 }
 
 class GFSizesClass {
-  static const double SMALL = 30.0;
-  static const double MEDIUM = 35.0;
-  static const double LARGE = 40.0;
+  static const double SMALL = 30;
+  static const double MEDIUM = 35;
+  static const double LARGE = 40;
 
   /// Pass [GFSize] or [double]
   static double getGFSize(dynamic size) {
