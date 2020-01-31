@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage>
     'Xamarin2',
   ];
 
-  var rating = 3.5;
+  double rating = 3.5;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage>
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            stops: [0.1, 0.5, 0.7, 0.9],
+            stops: const [0.1, 0.5, 0.7, 0.9],
             colors: [
               Colors.teal[800],
               Colors.teal[600],
@@ -234,21 +234,21 @@ class _MyHomePageState extends State<MyHomePage>
             GFCard(
               content: Column(
                 children: <Widget>[
-                  GFTypography(
+                  const GFTypography(
                     text: 'Toast',
                     type: GFTypographyType.typo6,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   GFToast(
                     text: 'Happy New Year',
                     button: GFButton(
                       onPressed: () {
-                        print("dfr");
+                        print('dfr');
                       },
                       text: 'OK',
                       type: GFButtonType.outline,
