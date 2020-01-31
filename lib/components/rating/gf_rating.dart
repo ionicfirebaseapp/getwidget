@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 typedef void RatingChangeCallback(double rating);
 
 class GFRating extends StatelessWidget {
-
   GFRating({
     this.itemCount = 5,
-    this.spacing=0.0,
+    this.spacing = 0.0,
     this.rating = 0.0,
     this.defaultIcon,
     this.onRatingChanged,
@@ -53,8 +52,6 @@ class GFRating extends StatelessWidget {
   /// return current rating whenever rating is updated
   final RatingChangeCallback onRatingChanged;
 
-
-
   Widget buildRatingBar(BuildContext context, int index) {
     Icon icon;
     if (index >= rating) {
@@ -89,11 +86,11 @@ class GFRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-      color: Colors.transparent,
-      child: Wrap(
-          alignment: WrapAlignment.center,
-          spacing: spacing,
-          children: List.generate(
-              itemCount, (index) => buildRatingBar(context, index))),
-    );
+        color: Colors.transparent,
+        child: Wrap(
+            alignment: WrapAlignment.center,
+            spacing: spacing,
+            children: List.generate(
+                itemCount, (index) => buildRatingBar(context, index))),
+      );
 }

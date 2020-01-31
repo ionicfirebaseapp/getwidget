@@ -16,13 +16,13 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
-      title: 'getflutter_EXAMPLE',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: const MyHomePage(title: 'getflutter_EXAMPLE'),
-    );
+        title: 'getflutter_EXAMPLE',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const MyHomePage(title: 'getflutter_EXAMPLE'),
+      );
 }
 
 class MyHomePage extends StatefulWidget {
@@ -36,7 +36,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
-  static final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  static final GlobalKey<ScaffoldState> scaffoldKey =
+      GlobalKey<ScaffoldState>();
 
   TabController tabController;
 
@@ -70,72 +71,72 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      drawer: GFDrawer(
+        drawer: GFDrawer(
 //        colorFilter: new ColorFilter.mode(
 //            Colors.teal.withOpacity(0.6), BlendMode.darken),
 //        backgroundImage: NetworkImage(
 //            "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
-        gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          stops: [0.1, 0.5, 0.7, 0.9],
-          colors: [
-            Colors.teal[800],
-            Colors.teal[600],
-            Colors.teal[400],
-            Colors.teal[200],
-          ],
-        ),
-        color: Colors.greenAccent,
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            GFDrawerHeader(
-              currentAccountPicture: const GFAvatar(
-                radius: 80,
-                backgroundImage: NetworkImage(
-                    'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.teal,
-              ),
-              otherAccountsPictures: const <Widget>[
-               Image(
-                  image: NetworkImage(
-                      'https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg'),
-                  fit: BoxFit.cover,
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            stops: [0.1, 0.5, 0.7, 0.9],
+            colors: [
+              Colors.teal[800],
+              Colors.teal[600],
+              Colors.teal[400],
+              Colors.teal[200],
+            ],
+          ),
+          color: Colors.greenAccent,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              GFDrawerHeader(
+                currentAccountPicture: const GFAvatar(
+                  radius: 80,
+                  backgroundImage: NetworkImage(
+                      'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
                 ),
-                GFAvatar(
-                  child: Text('dcf'),
-                )
-              ],
-//              closeButton: Text("Close"),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
-                  Text('user name'),
-                  Text('user@userid.com'),
+                decoration: BoxDecoration(
+                  color: Colors.teal,
+                ),
+                otherAccountsPictures: const <Widget>[
+                  Image(
+                    image: NetworkImage(
+                        'https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                  GFAvatar(
+                    child: Text('dcf'),
+                  )
                 ],
+//              closeButton: Text("Close"),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const <Widget>[
+                    Text('user name'),
+                    Text('user@userid.com'),
+                  ],
+                ),
               ),
-            ),
-            const ListTile(
-              title: Text('Item 1'),
-              onTap: null,
-            ),
-            const ListTile(
-              title: Text('Item 2'),
-              onTap: null,
-            ),
-          ],
+              const ListTile(
+                title: Text('Item 1'),
+                onTap: null,
+              ),
+              const ListTile(
+                title: Text('Item 2'),
+                onTap: null,
+              ),
+            ],
+          ),
         ),
-      ),
 
-      appBar: GFAppBar(
-        backgroundColor: Colors.teal,
+        appBar: GFAppBar(
+          backgroundColor: Colors.teal,
 //        centerTitle: true,
 //        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
-        title: const Text('UI Kit'),
+          title: const Text('UI Kit'),
 //        bottom: TabBar(
 //          controller: tabController,
 //          tabs: [
@@ -144,26 +145,26 @@ class _MyHomePageState extends State<MyHomePage>
 //            Tab(icon: Icon(Icons.directions_bike)),
 //          ],
 //        ),
-        searchBar: true,
+          searchBar: true,
 //        searchHintText: "aaaaaaa",
 //        searchHintStyle: TextStyle(fontSize: 18.0, color: Colors.redAccent),
 //        searchStyle: TextStyle(fontSize: 10.0, color: Colors.green),
 //        searchBarColorTheme: Colors.greenAccent,
 
-        actions: <Widget>[
+          actions: <Widget>[
 //          GFIconButton(icon: Icon(Icons.access_time), onPressed: () {}),
-          GFIconButton(
-            icon: Icon(
-              Icons.favorite,
-              color: Colors.white,
+            GFIconButton(
+              icon: Icon(
+                Icons.favorite,
+                color: Colors.white,
+              ),
+              onPressed: () {},
+              type: GFButtonType.transparent,
             ),
-            onPressed: () {},
-            type: GFButtonType.transparent,
-          ),
-        ],
-      ),
+          ],
+        ),
 //      backgroundColor: Colors.blueGrey,
-      body:
+        body:
 //        GFTabBarView(
 //          height: 200.0,
 //            controller: tabController,
@@ -175,11 +176,10 @@ class _MyHomePageState extends State<MyHomePage>
 
 //          SingleChildScrollView(
 //        child:
-        Column(
+            Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-
             GFSearchBar(
 //              searchBoxInputDecoration: InputDecoration(
 //                enabledBorder: OutlineInputBorder(
@@ -189,48 +189,47 @@ class _MyHomePageState extends State<MyHomePage>
 //                  borderRadius: BorderRadius.circular(50)
 //                ),
 //              ),
-              searchList: list,
+                searchList: list,
 //              hideSearchBoxWhenItemSelected: false,
 //              overlaySearchListHeight: 100.0,
-              searchQueryBuilder: (query, list) => list
+                searchQueryBuilder: (query, list) => list
                     .where((item) =>
                         item.toLowerCase().contains(query.toLowerCase()))
                     .toList(),
-              overlaySearchListItemBuilder: (item) =>Container(
-                  padding: const EdgeInsets.all(8),
-                  child: Text(
-                    item,
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                ),
+                overlaySearchListItemBuilder: (item) => Container(
+                      padding: const EdgeInsets.all(8),
+                      child: Text(
+                        item,
+                        style: const TextStyle(fontSize: 18),
+                      ),
+                    ),
 //              noItemsFoundWidget: Container(
 //                color: Colors.green,
 //                child: Text("no items found..."),
 //              ),
-              onItemSelected: (item) {
-                setState(() {
-                  print('ssssssss $item');
-                });
-              }
-            ),
+                onItemSelected: (item) {
+                  setState(() {
+                    print('ssssssss $item');
+                  });
+                }),
 
-          GFRating(
-          rating: rating,
+            GFRating(
+              rating: rating,
 //          itemSize: 65,
-          filledIcon: Icons.star,
-          halfFilledIcon: Icons.star_half,
-          defaultIcon: Icons.star_border,
-          itemCount: 5,
-          allowHalfRating: false,
-          spacing: 2.0,
-          color: Colors.teal,
-          borderColor: Colors.tealAccent,
-          onRatingChanged: (value) {
-            setState(() {
-              rating = value;
-            });
-          },
-        ),
+              filledIcon: Icons.star,
+              halfFilledIcon: Icons.star_half,
+              defaultIcon: Icons.star_border,
+              itemCount: 5,
+              allowHalfRating: false,
+              spacing: 2,
+              color: Colors.teal,
+              borderColor: Colors.tealAccent,
+              onRatingChanged: (value) {
+                setState(() {
+                  rating = value;
+                });
+              },
+            ),
 
             GFCard(
               content: Column(
@@ -1218,5 +1217,5 @@ class _MyHomePageState extends State<MyHomePage>
 //          fontFamily: 'OpenSansBold',
 //        ),
 //      ),
-    );
+      );
 }
