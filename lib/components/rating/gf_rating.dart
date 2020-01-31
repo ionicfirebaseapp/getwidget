@@ -12,7 +12,7 @@ class GFRating extends StatelessWidget {
     this.onRatingChanged,
     this.color,
     this.borderColor,
-    this.iconSize = 25,
+    this.itemSize = 25,
     this.filledIcon,
     this.halfFilledIcon,
     this.allowHalfRating = true,
@@ -20,17 +20,39 @@ class GFRating extends StatelessWidget {
     assert(this.rating != null);
   }
 
+  /// defines total number of rating items
   final int itemCount;
-  final double rating;
-  final RatingChangeCallback onRatingChanged;
+
+  /// defines the color of items
   final Color color;
+
+  /// defines the border color of [halfFilledIcon]
   final Color borderColor;
-  final double iconSize;
+
+  /// defines the size of items
+  final double itemSize;
+
+  /// if true, allow half rating of items. Default it will be in true state
   final bool allowHalfRating;
+
+  /// defines the items when filled
   final IconData filledIcon;
+
+  /// defines the items when half-filled
   final IconData halfFilledIcon;
-  final IconData defaultIcon; //this is needed only when having fullRatedIconData && halfRatedIconData
+
+  /// defines the default items, when having filledIcon && halfFilledIcon
+  final IconData defaultIcon;
+
+  /// defines the space between items
   final double spacing;
+
+  /// defines the rating value
+  final double rating;
+
+  /// return current rating whenever rating is updated
+  final RatingChangeCallback onRatingChanged;
+
 
 
   Widget buildRatingBar(BuildContext context, int index) {
@@ -39,20 +61,20 @@ class GFRating extends StatelessWidget {
       icon = Icon(
         defaultIcon != null ? defaultIcon : Icons.star_border,
         color: borderColor ?? Theme.of(context).primaryColor,
-        size: iconSize,
+        size: itemSize,
       );
     } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
         index < rating) {
       icon = Icon(
         halfFilledIcon != null ? halfFilledIcon : Icons.star_half,
         color: color ?? Theme.of(context).primaryColor,
-        size: iconSize,
+        size: itemSize,
       );
     } else {
       icon = Icon(
         filledIcon != null ? filledIcon : Icons.star,
         color: color ?? Theme.of(context).primaryColor,
-        size: iconSize,
+        size: itemSize,
       );
     }
 
