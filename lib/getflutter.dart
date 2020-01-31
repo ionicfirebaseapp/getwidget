@@ -18,7 +18,7 @@ export 'package:getflutter/components/drawer/gf_drawer_header.dart';
 export 'package:getflutter/components/image/gf_image_overlay.dart';
 export 'package:getflutter/components/list_tile/gf_list_tile.dart';
 export 'package:getflutter/components/search_bar/gf_search_bar.dart';
-export 'package:getflutter/components/tabs/gf_tabBar.dart';
+export 'package:getflutter/components/tabs/gf_tabbar.dart';
 export 'package:getflutter/components/tabs/gf_tabbar_view.dart';
 export 'package:getflutter/components/tabs/gf_tabs.dart';
 export 'package:getflutter/components/tabs/gf_segment_tabs.dart';
