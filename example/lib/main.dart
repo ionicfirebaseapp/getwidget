@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage>
     'Xamarin2',
   ];
 
-  var rating = 0.0;
+  var rating = 3.5;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -173,10 +173,10 @@ class _MyHomePageState extends State<MyHomePage>
 //          Container(color: Colors.blue)
 //      ]),
 
-          SingleChildScrollView(
-        child:
+//          SingleChildScrollView(
+//        child:
         Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
 
@@ -214,49 +214,49 @@ class _MyHomePageState extends State<MyHomePage>
               }
             ),
 
-//          SmoothStarRating(
-//          rating: rating,
-////          size: 65,
-////          filledIconData: Icons.star,
-////          halfFilledIconData: Icons.star_half,
-////          defaultIconData: Icons.star_border,
-////          starCount: 5,
-////          allowHalfRating: false,
-////          spacing: 2.0,
-//          onRatingChanged: (value) {
-//            setState(() {
-//              rating = value;
-//            });
-//          },
-//        ),
+          GFRating(
+          rating: rating,
+//          size: 65,
+          filledIconData: Icons.star,
+          halfFilledIconData: Icons.star_half,
+          defaultIconData: Icons.star_border,
+          itemCount: 5,
+          allowHalfRating: false,
+//          spacing: 2.0,
+          onRatingChanged: (value) {
+            setState(() {
+              rating = value;
+            });
+          },
+        ),
 
-//            GFCard(
-//              content: Column(
-//                children: <Widget>[
-//                  GFTypography(
-//                    text: 'Toast',
-//                    type: GFTypographyType.typo6,
-//                  ),
-//                  SizedBox(
-//                    height: 20,
-//                  ),
-//                  SizedBox(
-//                    height: 20,
-//                  ),
-//                  GFToast(
-//                    text: 'Happy New Year',
-//                    button: GFButton(
-//                      onPressed: () {
-//                        print("dfr");
-//                      },
-//                      text: 'OK',
-//                      type: GFButtonType.outline,
-//                      color: GFColor.warning,
-//                    ),
-//                  ),
-//                ],
-//              ),
-//            ),
+            GFCard(
+              content: Column(
+                children: <Widget>[
+                  GFTypography(
+                    text: 'Toast',
+                    type: GFTypographyType.typo6,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  GFToast(
+                    text: 'Happy New Year',
+                    button: GFButton(
+                      onPressed: () {
+                        print("dfr");
+                      },
+                      text: 'OK',
+                      type: GFButtonType.outline,
+                      color: GFColor.warning,
+                    ),
+                  ),
+                ],
+              ),
+            ),
 //
 //            GFCard(
 //              content: Column(
@@ -303,20 +303,20 @@ class _MyHomePageState extends State<MyHomePage>
 //              ),
 //            ),
 
-            Container(
-              height: 130,
-              width: 105,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                gradient: LinearGradient(
-                    begin: FractionalOffset.bottomLeft,
-                    end: FractionalOffset.topRight,
-                    colors: const [
-                      Color(0x5a0b486b),
-                      Color(0xFFF56217),
-                    ]),
-              ),
-            ),
+//            Container(
+//              height: 130,
+//              width: 105,
+//              decoration: BoxDecoration(
+//                borderRadius: BorderRadius.circular(8),
+//                gradient: LinearGradient(
+//                    begin: FractionalOffset.bottomLeft,
+//                    end: FractionalOffset.topRight,
+//                    colors: const [
+//                      Color(0x5a0b486b),
+//                      Color(0xFFF56217),
+//                    ]),
+//              ),
+//            ),
 
 //            GFCard(
 //              content: Column(
@@ -1168,7 +1168,7 @@ class _MyHomePageState extends State<MyHomePage>
 //            ),
           ],
         ),
-      ),
+//      ),
 //      bottomNavigationBar: GFTabBar(
 //        initialIndex: 0,
 //        length: 3,
