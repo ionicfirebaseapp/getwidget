@@ -1,4 +1,4 @@
-[![pub package](https://img.shields.io/pub/v/getflutter.svg)](https://pub.dartlang.org/packages/getflutter) [![Build Status](https://travis-ci.org/ionicfirebaseapp/getflutter.svg?branch=master)](https://travis-ci.com/ionicfirebaseapp/getflutter) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT) [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/ionicfirebaseapp/getflutter/blob/master/LICENSE) [![Gitter](https://badges.gitter.im/getflutterdev/getflutter.svg)](https://gitter.im/getflutterdev/getflutter) [![Twitter Follow](https://img.shields.io/twitter/follow/getflutterdev.svg?style=social)](https://twitter.com/getflutterdev)
+[![Financial Contributors on Open Collective](https://opencollective.com/getflutter/all/badge.svg?label=financial+contributors)](https://opencollective.com/getflutter) [![pub package](https://img.shields.io/pub/v/getflutter.svg)](https://pub.dartlang.org/packages/getflutter) [![Build Status](https://travis-ci.org/ionicfirebaseapp/getflutter.svg?branch=master)](https://travis-ci.com/ionicfirebaseapp/getflutter) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT) [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/ionicfirebaseapp/getflutter/blob/master/LICENSE) [![Gitter](https://badges.gitter.im/getflutterdev/getflutter.svg)](https://gitter.im/getflutterdev/getflutter) [![Twitter Follow](https://img.shields.io/twitter/follow/getflutterdev.svg?style=social)](https://twitter.com/getflutterdev)
 
 
 <p align="center">
@@ -83,3 +83,33 @@ Instagram: <https://www.instagram.com/getflutter.dev/>
  
  ## Copyright-and-license 
  Code and documentation Copyright 2017-2020 the [GETFLUTTER Authors](https://www.getflutter.dev) and [IONICFIREBASEAPP](https://ionicfirebaseapp.com) Code released under the [MIT License]. Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
+
+## Contributors
+
+### Code Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/ionicfirebaseapp/getflutter/graphs/contributors"><img src="https://opencollective.com/getflutter/contributors.svg?width=890&button=false" /></a>
+
+### Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/getflutter/contribute)]
+
+#### Individuals
+
+<a href="https://opencollective.com/getflutter"><img src="https://opencollective.com/getflutter/individuals.svg?width=890"></a>
+
+#### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/getflutter/contribute)]
+
+<a href="https://opencollective.com/getflutter/organization/0/website"><img src="https://opencollective.com/getflutter/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/getflutter/organization/1/website"><img src="https://opencollective.com/getflutter/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/getflutter/organization/2/website"><img src="https://opencollective.com/getflutter/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/getflutter/organization/3/website"><img src="https://opencollective.com/getflutter/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/getflutter/organization/4/website"><img src="https://opencollective.com/getflutter/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/getflutter/organization/5/website"><img src="https://opencollective.com/getflutter/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/getflutter/organization/6/website"><img src="https://opencollective.com/getflutter/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/getflutter/organization/7/website"><img src="https://opencollective.com/getflutter/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/getflutter/organization/8/website"><img src="https://opencollective.com/getflutter/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/getflutter/organization/9/website"><img src="https://opencollective.com/getflutter/organization/9/avatar.svg"></a>
