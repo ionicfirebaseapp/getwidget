@@ -117,9 +117,9 @@ class _GFRatingState extends State<GFRating> {
         }
       },
       onHorizontalDragUpdate: (dragDetails) {
-        RenderBox box = context.findRenderObject();
-        var _pos = box.globalToLocal(dragDetails.globalPosition);
-        var i = _pos.dx / widget.itemSize;
+        final RenderBox box = context.findRenderObject();
+        final _pos = box.globalToLocal(dragDetails.globalPosition);
+        final i = _pos.dx / widget.itemSize;
         var newRating = widget.allowHalfRating ? i : i.round().toDouble();
         if (newRating > widget.itemCount) {
           newRating = widget.itemCount.toDouble();
@@ -144,12 +144,14 @@ class _GFRatingState extends State<GFRating> {
             child: TextFormField(
               controller: widget.ratingController,
               keyboardType: TextInputType.number,
-              decoration: widget.inputDecorations == null ? InputDecoration(
-                border: const OutlineInputBorder(),
-                hintText: 'Enter rating',
-                labelText: 'Enter rating',
-                suffixIcon: widget.suffixIcon,
-              ) : widget.inputDecorations,
+              decoration: widget.inputDecorations == null
+                  ? InputDecoration(
+                      border: const OutlineInputBorder(),
+                      hintText: 'Enter rating',
+                      labelText: 'Enter rating',
+                      suffixIcon: widget.suffixIcon,
+                    )
+                  : widget.inputDecorations,
             ),
           ),
           Material(

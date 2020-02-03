@@ -249,7 +249,7 @@ class _MyHomePageState extends State<MyHomePage>
             ),
 
             SizedBox(
-              height: 20.0,
+              height: 20,
               child: Text('selected rating ${_rating.toStringAsFixed(1)}'),
             ),
 
