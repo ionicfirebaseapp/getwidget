@@ -79,6 +79,11 @@ class GFRating extends StatelessWidget {
           onRatingChanged(index + 1.0);
         }
       },
+      onHorizontalDragUpdate: (dragDetails) {
+        RenderBox box = context.findRenderObject();
+        var _pos = box.globalToLocal(dragDetails.globalPosition);
+
+      },
       child: icon,
     );
   }
