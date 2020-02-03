@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 typedef RatingChangeCallback = void Function(double rating);
 
-class GFRating extends StatelessWidget {
+class GFRating extends StatefulWidget {
   const GFRating({
     this.itemCount = 5,
     this.spacing = 0.0,
@@ -15,6 +15,12 @@ class GFRating extends StatelessWidget {
     this.filledIcon,
     this.halfFilledIcon,
     this.allowHalfRating = true,
+    this.textFormRating = false,
+    this.suffixIcon,
+    this.ratingController,
+    this.inputDecorations,
+    this.margin = const EdgeInsets.symmetric(vertical: 16),
+    this.padding = const EdgeInsets.symmetric(horizontal: 16),
   }) : assert(rating != null);
 
   /// defines total number of rating items
@@ -33,13 +39,13 @@ class GFRating extends StatelessWidget {
   final bool allowHalfRating;
 
   /// defines the items when filled
-  final IconData filledIcon;
+  final Widget filledIcon;
 
   /// defines the items when half-filled
-  final IconData halfFilledIcon;
+  final Widget halfFilledIcon;
 
   /// defines the default items, when having filledIcon && halfFilledIcon
-  final IconData defaultIcon;
+  final Widget defaultIcon;
 
   /// defines the space between items
   final double spacing;
@@ -50,33 +56,79 @@ class GFRating extends StatelessWidget {
   /// return current rating whenever rating is updated
   final RatingChangeCallback onRatingChanged;
 
+  /// if true, shows rating [TextFormField] with the rating bar, that allows the user input to show rating
+  final bool textFormRating;
+
+  /// defines the design and funtion of rating [TextFormField]'s suffix icon
+  final Widget suffixIcon;
+
+  /// controls the [TextField] Controller of rating [TextFormField]
+  final TextEditingController ratingController;
+
+  /// defines the [InputDecoration] of rating [TextFormField]
+  final InputDecoration inputDecorations;
+
+  /// defines the margin of rating [TextFormField]
+  final EdgeInsets margin;
+
+  /// defines the padding of rating [TextFormField]
+  final EdgeInsets padding;
+
+  @override
+  _GFRatingState createState() => _GFRatingState();
+}
+
+class _GFRatingState extends State<GFRating> {
   Widget buildRatingBar(BuildContext context, int index) {
-    Icon icon;
-    if (index >= rating) {
-      icon = Icon(
-        defaultIcon != null ? defaultIcon : Icons.star_border,
-        color: borderColor ?? Theme.of(context).primaryColor,
-        size: itemSize,
-      );
-    } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
-        index <= rating) {
-      icon = Icon(
-        halfFilledIcon != null ? halfFilledIcon : Icons.star_half,
-        color: color ?? Theme.of(context).primaryColor,
-        size: itemSize,
-      );
+    Widget icon;
+    if (index >= widget.rating) {
+      icon = widget.defaultIcon != null
+          ? widget.defaultIcon
+          : Icon(
+              Icons.star_border,
+              color: widget.borderColor ?? Theme.of(context).primaryColor,
+              size: widget.itemSize,
+            );
+    } else if (!widget.textFormRating
+        ? index > widget.rating - (widget.allowHalfRating ? 0.5 : 1.0) &&
+            index < widget.rating
+        : index + 1 == widget.rating + 0.5) {
+      icon = widget.halfFilledIcon != null
+          ? widget.halfFilledIcon
+          : Icon(
+              Icons.star_half,
+              color: widget.color ?? Theme.of(context).primaryColor,
+              size: widget.itemSize,
+            );
     } else {
-      icon = Icon(
-        filledIcon != null ? filledIcon : Icons.star,
-        color: color ?? Theme.of(context).primaryColor,
-        size: itemSize,
-      );
+      icon = widget.filledIcon != null
+          ? widget.filledIcon
+          : Icon(
+              Icons.star,
+              color: widget.color ?? Theme.of(context).primaryColor,
+              size: widget.itemSize,
+            );
     }
 
     return GestureDetector(
       onTap: () {
-        if (onRatingChanged != null) {
-          onRatingChanged(index + 1.0);
+        if (widget.onRatingChanged != null) {
+          widget.onRatingChanged(index + 1.0);
+        }
+      },
+      onHorizontalDragUpdate: (dragDetails) {
+        final RenderBox box = context.findRenderObject();
+        final _pos = box.globalToLocal(dragDetails.globalPosition);
+        final i = _pos.dx / widget.itemSize;
+        var newRating = widget.allowHalfRating ? i : i.round().toDouble();
+        if (newRating > widget.itemCount) {
+          newRating = widget.itemCount.toDouble();
+        }
+        if (newRating < 0) {
+          newRating = 0.0;
+        }
+        if (widget.onRatingChanged != null) {
+          widget.onRatingChanged(newRating);
         }
       },
       child: icon,
@@ -84,15 +136,45 @@ class GFRating extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => Material(
-        color: Colors.transparent,
-        child: Wrap(
-          alignment: WrapAlignment.center,
-          spacing: spacing,
-          children: List.generate(
-            itemCount,
-            (index) => buildRatingBar(context, index),
+  Widget build(BuildContext context) => widget.textFormRating
+      ? Column(children: <Widget>[
+          Container(
+            margin: widget.margin,
+            padding: widget.padding,
+            child: TextFormField(
+              controller: widget.ratingController,
+              keyboardType: TextInputType.number,
+              decoration: widget.inputDecorations == null
+                  ? InputDecoration(
+                      border: const OutlineInputBorder(),
+                      hintText: 'Enter rating',
+                      labelText: 'Enter rating',
+                      suffixIcon: widget.suffixIcon,
+                    )
+                  : widget.inputDecorations,
+            ),
           ),
-        ),
-      );
+          Material(
+            color: Colors.transparent,
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: widget.spacing,
+              children: List.generate(
+                widget.itemCount,
+                (index) => buildRatingBar(context, index),
+              ),
+            ),
+          )
+        ])
+      : Material(
+          color: Colors.transparent,
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            spacing: widget.spacing,
+            children: List.generate(
+              widget.itemCount,
+              (index) => buildRatingBar(context, index),
+            ),
+          ),
+        );
 }
