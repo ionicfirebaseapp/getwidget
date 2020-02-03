@@ -40,10 +40,14 @@ class _MyHomePageState extends State<MyHomePage>
       GlobalKey<ScaffoldState>();
 
   TabController tabController;
+  final _ratingController = TextEditingController();
+  double _rating = 3.5;
+  double _userRating = 4.5;
 
   @override
   void initState() {
     super.initState();
+    _ratingController.text = '4.5';
     tabController = TabController(length: 3, vsync: this);
   }
 
@@ -66,8 +70,6 @@ class _MyHomePageState extends State<MyHomePage>
     'Ionic2',
     'Xamarin2',
   ];
-
-  double rating = 3.5;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -214,50 +216,99 @@ class _MyHomePageState extends State<MyHomePage>
                 }),
 
             GFRating(
-              rating: rating,
-//          itemSize: 65,
-              filledIcon: Icons.star,
-              halfFilledIcon: Icons.star_half,
-              defaultIcon: Icons.star_border,
-              itemCount: 5,
-              allowHalfRating: false,
-              spacing: 2,
+              rating: _rating,
+              itemSize: 50,
+//              filledIcon: Image.asset(
+//                'lib/assets/heart.png',
+//                height: 50,
+//                width: 50,
+//                color: Colors.amber,
+//              ),
+//              halfFilledIcon: Image.asset(
+//                'lib/assets/heart_half.png',
+//                height: 50,
+//                width: 50,
+//                color: Colors.amber,
+//              ),
+//              defaultIcon: Image.asset(
+//                'lib/assets/heart_border.png',
+//                height: 50,
+//                width: 50,
+//                color: Colors.amber,
+//              ),
+//              allowHalfRating: false,
+              spacing: 8,
               color: Colors.teal,
               borderColor: Colors.tealAccent,
               onRatingChanged: (value) {
                 setState(() {
-                  rating = value;
+                  _rating = value;
                 });
               },
             ),
 
-            GFCard(
-              content: Column(
-                children: <Widget>[
-                  const GFTypography(
-                    text: 'Toast',
-                    type: GFTypographyType.typo6,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  GFToast(
-                    text: 'Happy New Year',
-                    button: GFButton(
-                      onPressed: () {
-                        print('dfr');
-                      },
-                      text: 'OK',
-                      type: GFButtonType.outline,
-                      color: GFColor.warning,
-                    ),
-                  ),
-                ],
+            GFRating(
+              rating: _userRating,
+              itemSize: 50,
+              filledIcon: Image.asset(
+                'lib/assets/heart.png',
+                height: 50,
+                width: 50,
+                color: Colors.amber,
+              ),
+              halfFilledIcon: Image.asset(
+                'lib/assets/heart_half.png',
+                height: 50,
+                width: 50,
+                color: Colors.amber,
+              ),
+              defaultIcon: Image.asset(
+                'lib/assets/heart_border.png',
+                height: 50,
+                width: 50,
+                color: Colors.amber,
+              ),
+              textFormRating: true,
+              spacing: 8,
+              color: Colors.teal,
+              borderColor: Colors.tealAccent,
+              suffixIcon: MaterialButton(
+                onPressed: () {
+                  setState(() {
+                    _userRating = double.parse(_ratingController.text ?? '0.0');
+                  });
+                },
+                child: const Text('Rate'),
               ),
             ),
+
+//            GFCard(
+//              content: Column(
+//                children: <Widget>[
+//                  const GFTypography(
+//                    text: 'Toast',
+//                    type: GFTypographyType.typo6,
+//                  ),
+//                  const SizedBox(
+//                    height: 20,
+//                  ),
+//                  const SizedBox(
+//                    height: 20,
+//                  ),
+//                  GFToast(
+//                    text: 'Happy New Year',
+//                    button: GFButton(
+//                      onPressed: () {
+//                        print('dfr');
+//                      },
+//                      text: 'OK',
+//                      type: GFButtonType.outline,
+//                      color: GFColor.warning,
+//                    ),
+//                  ),
+//                ],
+//              ),
+//            ),
 //
 //            GFCard(
 //              content: Column(
