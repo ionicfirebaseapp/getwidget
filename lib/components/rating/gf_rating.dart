@@ -56,16 +56,22 @@ class GFRating extends StatefulWidget {
   /// return current rating whenever rating is updated
   final RatingChangeCallback onRatingChanged;
 
+  /// if true, shows rating [TextFormField] with the rating bar, that allows the user input to show rating
   final bool textFormRating;
 
+  /// defines the design and funtion of rating [TextFormField]'s suffix icon
   final Widget suffixIcon;
 
+  /// controls the [TextField] Controller of rating [TextFormField]
   final TextEditingController ratingController;
 
+  /// defines the [InputDecoration] of rating [TextFormField]
   final InputDecoration inputDecorations;
 
+  /// defines the margin of rating [TextFormField]
   final EdgeInsets margin;
 
+  /// defines the padding of rating [TextFormField]
   final EdgeInsets padding;
 
   @override

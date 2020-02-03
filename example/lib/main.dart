@@ -248,6 +248,10 @@ class _MyHomePageState extends State<MyHomePage>
               },
             ),
 
+            SizedBox(
+              height: 20.0,
+              child: Text('selected rating ${_rating.toStringAsFixed(1)}'),
+            ),
 
             GFRating(
               rating: _userRating,
