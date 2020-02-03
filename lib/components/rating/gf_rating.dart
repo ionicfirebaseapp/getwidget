@@ -17,6 +17,7 @@ class GFRating extends StatefulWidget {
     this.allowHalfRating = true,
     this.textFormRating = false,
     this.suffixIcon,
+    this.ratingController,
   }) : assert(rating != null);
 
   /// defines total number of rating items
@@ -56,21 +57,13 @@ class GFRating extends StatefulWidget {
 
   final Widget suffixIcon;
 
-  final Controller ratingController;
+  final TextEditingController ratingController;
 
   @override
   _GFRatingState createState() => _GFRatingState();
 }
 
 class _GFRatingState extends State<GFRating> {
-
-  final _ratingController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    _ratingController.text = '4.5';
-  }
 
   Widget buildRatingBar(BuildContext context, int index) {
     Widget icon;
@@ -137,7 +130,7 @@ class _GFRatingState extends State<GFRating> {
           margin: const EdgeInsets.symmetric(vertical: 16),
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: TextFormField(
-            controller: ,
+            controller: widget.ratingController,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               border: const OutlineInputBorder(),

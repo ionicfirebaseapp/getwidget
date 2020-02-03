@@ -268,6 +268,7 @@ class _MyHomePageState extends State<MyHomePage>
                 width: 50,
                 color: Colors.amber,
               ),
+              ratingController: _ratingController,
               textFormRating: true,
               spacing: 8,
               color: Colors.teal,
