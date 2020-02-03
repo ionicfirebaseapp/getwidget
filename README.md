@@ -33,9 +33,9 @@ Read the [Getting started page](https://docs.getflutter.dev)
 Forum [Support and discussion ](https://forum.getflutter.dev)
 
 ## Features 
-In this beta release, we are going to launch the library with the following components : 
+we have launched the library with the following components : 
  
- #### [Button](https://docs.getflutter.dev/gf-button) |  [Badge](https://docs.getflutter.dev/gf-badge) |  [Avatar](https://docs.getflutter.dev/gf-avatar) |  [Image](https://docs.getflutter.dev/gf-image) |  [Card](https://docs.getflutter.dev/gf-card) |  [Carousel](https://docs.getflutter.dev/gf-carousel) | [Tile](https://docs.getflutter.dev/gf-tile) | [Tab](https://docs.getflutter.dev/gf-tab) | [Typography](https://docs.getflutter.dev/gf-typography) 
+ #### [Button](https://docs.getflutter.dev/gf-button) |  [Badge](https://docs.getflutter.dev/gf-badge) |  [Avatar](https://docs.getflutter.dev/gf-avatar) |  [Image](https://docs.getflutter.dev/gf-image) |  [Card](https://docs.getflutter.dev/gf-card) |  [Carousel](https://docs.getflutter.dev/gf-carousel) | [Tile](https://docs.getflutter.dev/gf-tile) | [Tab](https://docs.getflutter.dev/gf-tab) | [Typography](https://docs.getflutter.dev/gf-typography) | [Toast](https://docs.getflutter.dev/gf-toast) | [Toggle](https://docs.getflutter.dev/gf-toggle) | [Drawer](https://docs.getflutter.dev/gf-drawer) | [Accordian](https://docs.getflutter.dev/gf-accordion) | [Alert](https://docs.getflutter.dev/gf-alert) | [Appbar](https://docs.getflutter.dev/gf-appbar) | [Searchbar](https://docs.getflutter.dev/gf-searchbar) 
  
  
  ## Demo 
