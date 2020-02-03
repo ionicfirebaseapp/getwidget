@@ -18,6 +18,9 @@ class GFRating extends StatefulWidget {
     this.textFormRating = false,
     this.suffixIcon,
     this.ratingController,
+    this.inputDecorations,
+    this.margin,
+    this.padding,
   }) : assert(rating != null);
 
   /// defines total number of rating items
@@ -59,40 +62,46 @@ class GFRating extends StatefulWidget {
 
   final TextEditingController ratingController;
 
+  final InputDecoration inputDecorations;
+
+  final EdgeInsets margin;
+
+  final EdgeInsets padding;
+
   @override
   _GFRatingState createState() => _GFRatingState();
 }
 
 class _GFRatingState extends State<GFRating> {
-
   Widget buildRatingBar(BuildContext context, int index) {
     Widget icon;
     if (index >= widget.rating) {
       icon = widget.defaultIcon != null
           ? widget.defaultIcon
           : Icon(
-        Icons.star_border,
-        color: widget.borderColor ?? Theme.of(context).primaryColor,
-        size: widget.itemSize,
-      );
+              Icons.star_border,
+              color: widget.borderColor ?? Theme.of(context).primaryColor,
+              size: widget.itemSize,
+            );
     } else if (!widget.textFormRating
-        ? index > widget.rating - (widget.allowHalfRating ? 0.5 : 1.0) && index < widget.rating
+        ? index > widget.rating - (widget.allowHalfRating ? 0.5 : 1.0) &&
+            index < widget.rating
         : index + 1 == widget.rating + 0.5) {
       icon = widget.halfFilledIcon != null
           ? widget.halfFilledIcon
           : Icon(
-        Icons.star_half,
-        color: widget.color ?? Theme.of(context).primaryColor,
-        size: widget.itemSize,
-      );
+              Icons.star_half,
+              color: widget.color ?? Theme.of(context).primaryColor,
+              size: widget.itemSize,
+            );
     } else {
       icon = widget.filledIcon != null
           ? widget.filledIcon
           : Icon(
-        Icons.star,
-        color: widget.color ?? Theme.of(context).primaryColor,
-        size: widget.itemSize,
-      );
+              Icons.star,
+              color: widget.color ?? Theme.of(context).primaryColor,
+              size: widget.itemSize,
+            );
     }
 
     return GestureDetector(
@@ -120,48 +129,44 @@ class _GFRatingState extends State<GFRating> {
     );
   }
 
-//  Widget ratingBar(BuildContext context) => ;
-
-
-    @override
-    Widget build(BuildContext context) => widget.textFormRating ? Column(
-      children: <Widget>[
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 16),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: TextFormField(
-            controller: widget.ratingController,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              hintText: 'Enter rating',
-              labelText: 'Enter rating',
-              suffixIcon: widget.suffixIcon,
+  @override
+  Widget build(BuildContext context) => widget.textFormRating
+      ? Column(children: <Widget>[
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: TextFormField(
+              controller: widget.ratingController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                hintText: 'Enter rating',
+                labelText: 'Enter rating',
+                suffixIcon: widget.suffixIcon,
+              ),
             ),
           ),
-        ),
-        Material(
+          Material(
+            color: Colors.transparent,
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: widget.spacing,
+              children: List.generate(
+                widget.itemCount,
+                (index) => buildRatingBar(context, index),
+              ),
+            ),
+          )
+        ])
+      : Material(
           color: Colors.transparent,
           child: Wrap(
             alignment: WrapAlignment.center,
             spacing: widget.spacing,
             children: List.generate(
               widget.itemCount,
-                  (index) => buildRatingBar(context, index),
+              (index) => buildRatingBar(context, index),
             ),
           ),
-        )
-      ]
-    ) : Material(
-      color: Colors.transparent,
-      child: Wrap(
-        alignment: WrapAlignment.center,
-        spacing: widget.spacing,
-        children: List.generate(
-          widget.itemCount,
-              (index) => buildRatingBar(context, index),
-        ),
-      ),
-    );
+        );
 }
-
