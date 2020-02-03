@@ -243,9 +243,11 @@ class _MyHomePageState extends State<MyHomePage>
               onRatingChanged: (value) {
                 setState(() {
                   _rating = value;
+                  print('user selected $_rating');
                 });
               },
             ),
+
 
             GFRating(
               rating: _userRating,

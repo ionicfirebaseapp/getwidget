@@ -19,8 +19,8 @@ class GFRating extends StatefulWidget {
     this.suffixIcon,
     this.ratingController,
     this.inputDecorations,
-    this.margin,
-    this.padding,
+    this.margin = const EdgeInsets.symmetric(vertical: 16),
+    this.padding = const EdgeInsets.symmetric(horizontal: 16),
   }) : assert(rating != null);
 
   /// defines total number of rating items
@@ -133,17 +133,17 @@ class _GFRatingState extends State<GFRating> {
   Widget build(BuildContext context) => widget.textFormRating
       ? Column(children: <Widget>[
           Container(
-            margin: const EdgeInsets.symmetric(vertical: 16),
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            margin: widget.margin,
+            padding: widget.padding,
             child: TextFormField(
               controller: widget.ratingController,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: widget.inputDecorations == null ? InputDecoration(
                 border: const OutlineInputBorder(),
                 hintText: 'Enter rating',
                 labelText: 'Enter rating',
                 suffixIcon: widget.suffixIcon,
-              ),
+              ) : widget.inputDecorations,
             ),
           ),
           Material(
