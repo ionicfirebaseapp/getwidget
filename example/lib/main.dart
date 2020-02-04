@@ -138,7 +138,24 @@ class _MyHomePageState extends State<MyHomePage>
           backgroundColor: Colors.teal,
 //        centerTitle: true,
 //        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
-          title: const Text('UI Kit'),
+          title:
+//          const Text('UI Kit'),
+          GFSegmentTabs(
+            tabController: tabController,
+            initialIndex: 0,
+            length: 3,
+            tabs: const <Widget>[
+              Text(
+                'Tab1',
+              ),
+              Text(
+                'Tab2',
+              ),
+              Text(
+                'Tab3',
+              ),
+            ],
+          ),
 //        bottom: TabBar(
 //          controller: tabController,
 //          tabs: [
@@ -147,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage>
 //            Tab(icon: Icon(Icons.directions_bike)),
 //          ],
 //        ),
-          searchBar: true,
+//          searchBar: true,
 //        searchHintText: "aaaaaaa",
 //        searchHintStyle: TextStyle(fontSize: 18.0, color: Colors.redAccent),
 //        searchStyle: TextStyle(fontSize: 10.0, color: Colors.green),
