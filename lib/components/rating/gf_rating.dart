@@ -22,7 +22,6 @@ class GFRating extends StatefulWidget {
     this.inputDecorations,
     this.margin = const EdgeInsets.symmetric(vertical: 16),
     this.padding = const EdgeInsets.symmetric(horizontal: 16),
-    this.emoticon = false,
   }) : assert(value != null);
 
   /// defines total number of rating items
@@ -76,8 +75,6 @@ class GFRating extends StatefulWidget {
   /// defines the padding of rating [TextFormField]
   final EdgeInsets padding;
 
-  final bool emoticon;
-
   @override
   _GFRatingState createState() => _GFRatingState();
 }
@@ -113,43 +110,6 @@ class _GFRatingState extends State<GFRating> {
               size: GFSizesClass.getGFSize(widget.size),
             );
     }
-
-    if(widget.emoticon){
-      if(widget.value == 1){
-        return Icon(
-          Icons.sentiment_very_dissatisfied,
-          color: Colors.red,
-          size: 40,
-        );
-      } else if(widget.value == 2){
-        return Icon(
-          Icons.sentiment_dissatisfied,
-          color: Colors.redAccent,
-          size: 40,
-        );
-      } else if(widget.value == 3){
-        return Icon(
-          Icons.sentiment_neutral,
-          color: Colors.amber,
-          size: 40,
-        );
-      } else if(widget.value == 4){
-        return Icon(
-          Icons.sentiment_satisfied,
-          color: Colors.lightGreen,
-          size: 40,
-        );
-      } else {
-        return Icon(
-          Icons.sentiment_satisfied,
-          color: Colors.green,
-          size: 40,
-        );
-      }
-    }
-
-
-
 
     return GestureDetector(
       onTap: () {
