@@ -139,29 +139,35 @@ class _MyHomePageState extends State<MyHomePage>
 //        centerTitle: true,
 //        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
           title:
-//          const Text('UI Kit'),
-              GFSegmentTabs(
-            tabController: tabController,
-            initialIndex: 0,
-            length: 3,
-            tabs: const <Widget>[
-              Text(
-                'Tab1',
-              ),
-              Text(
-                'Tab2',
-              ),
-              Text(
-                'Tab3',
-              ),
-            ],
-          ),
+          const Text('UI Kit'),
+//              GFSegmentTabs(
+//            tabController: tabController,
+//            initialIndex: 0,
+//            length: 3,
+//            tabs: const <Widget>[
+//              Text(
+//                'Tab1',
+//              ),
+//              Text(
+//                'Tab2',
+//              ),
+//              Text(
+//                'Tab3',
+//              ),
+//            ],
+//          ),
 //        bottom: TabBar(
 //          controller: tabController,
-//          tabs: [
-//            Tab(icon: Icon(Icons.directions_car)),
-//            Tab(icon: Icon(Icons.directions_transit)),
-//            Tab(icon: Icon(Icons.directions_bike)),
+//          tabs: const [
+//            Text(
+//              'Tab1',
+//            ),
+//            Text(
+//              'Tab1',
+//            ),
+//            Text(
+//              'Tab1',
+//            ),
 //          ],
 //        ),
 //          searchBar: true,
@@ -804,22 +810,26 @@ class _MyHomePageState extends State<MyHomePage>
 //              backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
 //            ),
 
-//            GFSegmentTabs(
-//              tabController: tabController,
-//              initialIndex: 0,
-//              length: 3,
-//              tabs: <Widget>[
-//                Text(
-//                  "Tab1",
-//                ),
-//                Text(
-//                  "Tab2",
-//                ),
-//                Text(
-//                  "Tab3",
-//                ),
-//              ],
-//            ),
+              GFSegmentTabs(
+                tabController: tabController,
+                initialIndex: 0,
+                length: 3,
+                tabs: const <Widget>[
+                  Text(
+                    'Tab1',
+                  ),
+                  Text(
+                    'Tab2',
+                  ),
+                  Text(
+                    'Tab3',
+                  ),
+                ],
+                indicatorColor: Colors.teal,
+                border: Border.all(color: Colors.teal),
+                unselectedLabelStyle: TextStyle(color: Colors.teal),
+                labelStyle: TextStyle(color: Colors.teal),
+              ),
 //
 //            GFTabBarView(controller: tabController, children: <Widget>[
 //              Container(color: Colors.red),
@@ -1235,53 +1245,50 @@ class _MyHomePageState extends State<MyHomePage>
 //            ),
             ],
           ),
-//      ),
-//      bottomNavigationBar: GFTabBar(
-//        initialIndex: 0,
-//        length: 3,
-//        controller: tabController,
-//        tabs: [
-//          Tab(
-//            icon: Icon(Icons.directions_bike),
-//            child: Text(
-//              "Tab1",
-//            ),
-//          ),
-//          Tab(
-//            icon: Icon(Icons.directions_bus),
-//            child: Text(
-//              "Tab2",
-//            ),
-//          ),
-//          Tab(
-//            icon: Icon(Icons.directions_railway),
-//            child: Text(
-//              "Tab3",
-//            ),
-//          ),
-//        ],
-//        shape: RoundedRectangleBorder(
-//            borderRadius: BorderRadius.only(
-//                topLeft: Radius.circular(24.0),
-//                topRight: Radius.circular(24.0))),
-//        indicatorColor: Colors.white,
-////        indicatorSize: TabBarIndicatorSize.label,
-//        labelColor: Colors.lightGreen,
-//        labelPadding: EdgeInsets.all(8.0),
-//        tabBarColor: Colors.blueGrey,
-//        unselectedLabelColor: Colors.black,
-//        labelStyle: TextStyle(
-//          fontWeight: FontWeight.w500,
-//          fontSize: 13.0,
-//          color: Colors.deepOrange,
-//          fontFamily: 'OpenSansBold',
-//        ),
-//        unselectedLabelStyle: TextStyle(
-//          fontWeight: FontWeight.w500,
-//          fontSize: 13.0,
-//          color: Colors.black,
-//          fontFamily: 'OpenSansBold',
-//        ),
+        ),
+        bottomNavigationBar: GFTabBar(
+          initialIndex: 0,
+          length: 3,
+          controller: tabController,
+          tabs: const [
+            Text(
+              'Tab1',
+            ),
+            Tab(
+              icon: Icon(Icons.directions_bus),
+              child: Text(
+                'Tab2',
+              ),
+            ),
+            Tab(
+              icon: Icon(Icons.directions_railway),
+              child: Text(
+                'Tab3',
+              ),
+            ),
+          ],
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(24.0),
+                  topRight: Radius.circular(24.0))),
+//          indicatorColor: Colors.white,
+//        indicatorSize: TabBarIndicatorSize.label,
+//          labelColor: Colors.lightGreen,
+//          labelPadding: EdgeInsets.all(8.0),
+//          tabBarColor: Colors.blueGrey,
+//          unselectedLabelColor: Colors.black,
+          labelStyle: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 13.0,
+            color: Colors.deepOrange,
+            fontFamily: 'OpenSansBold',
+          ),
+          unselectedLabelStyle: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 13.0,
+            color: Colors.black,
+            fontFamily: 'OpenSansBold',
+          ),
         ),
       );
 }
