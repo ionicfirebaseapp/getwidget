@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getflutter/getflutter.dart';
 
 typedef RatingChangeCallback = void Function(double rating);
 
@@ -11,7 +12,7 @@ class GFRating extends StatefulWidget {
     this.onChanged,
     this.color,
     this.borderColor,
-    this.size = 30,
+    this.size = GFSize.medium,
     this.filledIcon,
     this.halfFilledIcon,
     this.allowHalfRating = true,
@@ -33,7 +34,7 @@ class GFRating extends StatefulWidget {
   final Color borderColor;
 
   /// defines the size of items
-  final double size;
+  final dynamic size;
 
   /// if true, allow half rating of items. Default it will be in true state
   final bool allowHalfRating;
@@ -79,7 +80,12 @@ class GFRating extends StatefulWidget {
 }
 
 class _GFRatingState extends State<GFRating> {
+
+
   Widget buildRatingBar(BuildContext context, int index) {
+
+    print('jkkl  ${GFSizesClass.getGFSize(widget.size)}');
+
     Widget icon;
     if (index >= widget.value) {
       icon = widget.defaultIcon != null
@@ -87,7 +93,7 @@ class _GFRatingState extends State<GFRating> {
           : Icon(
               Icons.star_border,
               color: widget.borderColor ?? Theme.of(context).primaryColor,
-              size: widget.size,
+              size: GFSizesClass.getGFSize(widget.size).toDouble(),
             );
     } else if (!widget.textForm
         ? index > widget.value - (widget.allowHalfRating ? 0.5 : 1.0) &&
@@ -98,7 +104,7 @@ class _GFRatingState extends State<GFRating> {
           : Icon(
               Icons.star_half,
               color: widget.color ?? Theme.of(context).primaryColor,
-              size: widget.size,
+              size: GFSizesClass.getGFSize(widget.size).toDouble(),
             );
     } else {
       icon = widget.filledIcon != null
@@ -106,7 +112,7 @@ class _GFRatingState extends State<GFRating> {
           : Icon(
               Icons.star,
               color: widget.color ?? Theme.of(context).primaryColor,
-              size: widget.size,
+              size: GFSizesClass.getGFSize(widget.size).toDouble(),
             );
     }
 
