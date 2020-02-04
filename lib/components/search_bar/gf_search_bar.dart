@@ -229,72 +229,71 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
       Offset.zero & overlay.size,
     );
     overlaySearchList = OverlayEntry(
-      builder: (context) {
-        final height = MediaQuery.of(context).size.height;
-        return Positioned(
-          left: position.left,
-          width: width,
-          child: CompositedTransformFollower(
-            offset: const Offset(
-              0, 56,
-            ),
-            showWhenUnlinked: false,
-            link: _layerLink,
-            child: GFCard(
-              color: Colors.white,
-              elevation: 5,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(4)),
-              ),
-              content: _searchList.isNotEmpty
-                  ? Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        InkWell(
-                          child: Icon(
-                            Icons.close,
-                            size: 22,
-                          ),
-                          onTap: onCloseOverlaySearchList,
-                        ),
-                        Container(
-                          height: overlaySearchListHeight,
-                          child: Scrollbar(
-                            child: ListView.separated(
-                              padding: const EdgeInsets.symmetric(vertical: 4),
-                              separatorBuilder: (context, index) =>
-                                  const Divider(
-                                height: 1,
+        builder: (context) => Positioned(
+              left: position.left,
+              width: width,
+              child: CompositedTransformFollower(
+                offset: const Offset(
+                  0,
+                  56,
+                ),
+                showWhenUnlinked: false,
+                link: _layerLink,
+                child: GFCard(
+                  color: Colors.white,
+                  elevation: 5,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(4)),
+                  ),
+                  content: _searchList.isNotEmpty
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: <Widget>[
+                            InkWell(
+                              child: Icon(
+                                Icons.close,
+                                size: 22,
                               ),
-                              itemBuilder: (context, index) => Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  onTap: () => onSearchListItemSelected(
-                                      _searchList[index]),
-                                  child: widget.overlaySearchListItemBuilder(
-                                    _searchList.elementAt(index),
+                              onTap: onCloseOverlaySearchList,
+                            ),
+                            Container(
+                              height: overlaySearchListHeight,
+                              child: Scrollbar(
+                                child: ListView.separated(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 4),
+                                  separatorBuilder: (context, index) =>
+                                      const Divider(
+                                    height: 1,
                                   ),
+                                  itemBuilder: (context, index) => Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      onTap: () => onSearchListItemSelected(
+                                          _searchList[index]),
+                                      child:
+                                          widget.overlaySearchListItemBuilder(
+                                        _searchList.elementAt(index),
+                                      ),
+                                    ),
+                                  ),
+                                  itemCount: _searchList.length,
                                 ),
                               ),
-                              itemCount: _searchList.length,
                             ),
-                          ),
-                        ),
-                      ],
-                    )
-                  : widget.noItemsFoundWidget != null
-                      ? Center(
-                          child: widget.noItemsFoundWidget,
+                          ],
                         )
-                      : Container(
-                          child: const Text('no items found'),
-                        ),
-            ),
-          ),
-        );
-      },
-    );
+                      : widget.noItemsFoundWidget != null
+                          ? Center(
+                              child: widget.noItemsFoundWidget,
+                            )
+                          : Container(
+                              child: const Text('no items found'),
+                            ),
+                ),
+              ),
+            ));
     Overlay.of(context).insert(overlaySearchList);
   }
 }
