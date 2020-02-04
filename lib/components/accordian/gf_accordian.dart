@@ -107,8 +107,7 @@ class _GFAccordionState extends State<GFAccordion>
 
   @override
   Widget build(BuildContext context) => Container(
-        margin:
-            widget.margin != null ? widget.margin : const EdgeInsets.all(10),
+        margin: widget.margin ?? const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -152,9 +151,7 @@ class _GFAccordionState extends State<GFAccordion>
                 ? Container(
                     decoration: BoxDecoration(
                       border: widget.contentBorderColor,
-                      color: widget.contentbackgroundColor != null
-                          ? widget.contentbackgroundColor
-                          : Colors.white70,
+                      color: widget.contentbackgroundColor ?? Colors.white70,
                     ),
                     width: MediaQuery.of(context).size.width,
                     padding: widget.contentPadding,

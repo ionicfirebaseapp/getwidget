@@ -110,9 +110,7 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                       : GFColors.getGFColor(GFColor.white),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.40),
-                      blurRadius: 3,
-                    )
+                        color: Colors.black.withOpacity(0.40), blurRadius: 3)
                   ]),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
