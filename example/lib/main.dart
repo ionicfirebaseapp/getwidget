@@ -193,10 +193,16 @@ class _MyHomePageState extends State<MyHomePage>
 //          Container(color: Colors.blue)
 //      ]),
 
+<<<<<<< HEAD
+          SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+=======
 //          SingleChildScrollView(
 //        child:
             Column(
           mainAxisAlignment: MainAxisAlignment.start,
+>>>>>>> ccc97fde38d7e90bca8ef572ba85c4254a92c687
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             GFSearchBar(
