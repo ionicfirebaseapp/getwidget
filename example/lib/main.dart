@@ -140,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage>
 //        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
           title:
 //          const Text('UI Kit'),
-          GFSegmentTabs(
+              GFSegmentTabs(
             tabController: tabController,
             initialIndex: 0,
             length: 3,
@@ -192,20 +192,12 @@ class _MyHomePageState extends State<MyHomePage>
 //          Container(color: Colors.green),
 //          Container(color: Colors.blue)
 //      ]),
-
-<<<<<<< HEAD
-          SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-=======
-//          SingleChildScrollView(
-//        child:
-            Column(
-          mainAxisAlignment: MainAxisAlignment.start,
->>>>>>> ccc97fde38d7e90bca8ef572ba85c4254a92c687
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            GFSearchBar(
+            SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              GFSearchBar(
 //              searchBoxInputDecoration: InputDecoration(
 //                enabledBorder: OutlineInputBorder(
 //                  borderSide: BorderSide(
@@ -214,83 +206,96 @@ class _MyHomePageState extends State<MyHomePage>
 //                  borderRadius: BorderRadius.circular(50)
 //                ),
 //              ),
-                searchList: list,
+                  searchList: list,
 //              hideSearchBoxWhenItemSelected: false,
 //              overlaySearchListHeight: 100.0,
-                searchQueryBuilder: (query, list) => list
-                    .where((item) =>
-                        item.toLowerCase().contains(query.toLowerCase()))
-                    .toList(),
-                overlaySearchListItemBuilder: (item) => Container(
-                      padding: const EdgeInsets.all(8),
-                      child: Text(
-                        item,
-                        style: const TextStyle(fontSize: 18),
+                  searchQueryBuilder: (query, list) => list
+                      .where((item) =>
+                          item.toLowerCase().contains(query.toLowerCase()))
+                      .toList(),
+                  overlaySearchListItemBuilder: (item) => Container(
+                        padding: const EdgeInsets.all(8),
+                        child: Text(
+                          item,
+                          style: const TextStyle(fontSize: 18),
+                        ),
                       ),
-                    ),
 //              noItemsFoundWidget: Container(
 //                color: Colors.green,
 //                child: Text("no items found..."),
 //              ),
-                onItemSelected: (item) {
-                  setState(() {
-                    print('ssssssss $item');
-                  });
-                }),
+                  onItemSelected: (item) {
+                    setState(() {
+                      print('ssssssss $item');
+                    });
+                  }),
 
-            GFRating(
-              value: _rating,
+              GFRating(
+                value: _rating,
 //              size: 50,
-              filledIcon: Icon(Icons.done_outline, size: 40, color: Colors.teal,),
-              halfFilledIcon: Icon(Icons.done_all, size: 40, color: Colors.teal.withOpacity(0.75),),
-              defaultIcon: Icon(Icons.done, size: 40, color: Colors.teal.withOpacity(0.25),),
-              spacing: 8,
+                filledIcon: Icon(
+                  Icons.done_outline,
+                  size: 40,
+                  color: Colors.teal,
+                ),
+                halfFilledIcon: Icon(
+                  Icons.done_all,
+                  size: 40,
+                  color: Colors.teal.withOpacity(0.75),
+                ),
+                defaultIcon: Icon(
+                  Icons.done,
+                  size: 40,
+                  color: Colors.teal.withOpacity(0.25),
+                ),
+                spacing: 8,
 //              color: Colors.teal,
 //              borderColor: Colors.tealAccent,
 //              allowHalfRating: false,
-              onChanged: (value) {
-                setState(() {
-                  _rating = value;
-                  print('user selected ${_rating}');
-                });
-              },
-            ),
-
-            GFRating(
-              value: _userRating,
-              filledIcon: Image.asset(
-                'lib/assets/heart.png',
-                height: 50,
-                width: 50,
-                color: Colors.amber,
-              ),
-              halfFilledIcon: Image.asset(
-                'lib/assets/heart_half.png',
-                height: 50,
-                width: 50,
-                color: Colors.amber,
-              ),
-              defaultIcon: Image.asset(
-                'lib/assets/heart_border.png',
-                height: 50,
-                width: 50,
-                color: Colors.amber,
-              ),
-              spacing: 8,
-              color: Colors.teal,
-              borderColor: Colors.tealAccent,
-              controller: _ratingController,
-              textForm: true,
-              suffixIcon: GFButton(
-                type: GFButtonType.transparent,
-                onPressed: () {
+                onChanged: (value) {
                   setState(() {
-                    _userRating = double.parse(_ratingController.text ?? '0.0');
+                    _rating = value;
+                    print('user selected $_rating');
                   });
                 },
-                child: const Text('Rate'),
               ),
-            ),
+
+              GFRating(
+                value: _userRating,
+                filledIcon: Image.asset(
+                  'lib/assets/heart.png',
+                  height: 50,
+                  width: 50,
+                  color: Colors.amber,
+                ),
+                halfFilledIcon: Image.asset(
+                  'lib/assets/heart_half.png',
+                  height: 50,
+                  width: 50,
+                  color: Colors.amber,
+                ),
+                defaultIcon: Image.asset(
+                  'lib/assets/heart_border.png',
+                  height: 50,
+                  width: 50,
+                  color: Colors.amber,
+                ),
+                spacing: 8,
+                color: Colors.teal,
+                borderColor: Colors.tealAccent,
+                controller: _ratingController,
+                textForm: true,
+                suffixIcon: GFButton(
+                  type: GFButtonType.transparent,
+                  onPressed: () {
+                    setState(() {
+                      _userRating =
+                          double.parse(_ratingController.text ?? '0.0');
+                    });
+                  },
+                  child: const Text('Rate'),
+                ),
+              ),
 
 //            GFCard(
 //              content: Column(
@@ -657,12 +662,12 @@ class _MyHomePageState extends State<MyHomePage>
 //              ],
 //            )),
 
-            // Image.asset(
-            //   'lib/assets/food.jpeg',
-            //   fit: BoxFit.cover,
-            //   color: Color(0xff0d69ff).withOpacity(1.0),
-            //   colorBlendMode: BlendMode.softLight,
-            // ),
+              // Image.asset(
+              //   'lib/assets/food.jpeg',
+              //   fit: BoxFit.cover,
+              //   color: Color(0xff0d69ff).withOpacity(1.0),
+              //   colorBlendMode: BlendMode.softLight,
+              // ),
 
 //            GFCard(
 //              content: Container(
@@ -1128,7 +1133,7 @@ class _MyHomePageState extends State<MyHomePage>
 ////              border: Border.all(color: Colors.pink, width: 2.0),
 //            ),
 //            GFAvatar(
-            //              radius: 20.0,
+              //              radius: 20.0,
 //                 maxRadius: 50,
 
 //              child: Text("de"),
@@ -1228,8 +1233,8 @@ class _MyHomePageState extends State<MyHomePage>
 ////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 ////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
 //            ),
-          ],
-        ),
+            ],
+          ),
 //      ),
 //      bottomNavigationBar: GFTabBar(
 //        initialIndex: 0,
@@ -1277,6 +1282,6 @@ class _MyHomePageState extends State<MyHomePage>
 //          color: Colors.black,
 //          fontFamily: 'OpenSansBold',
 //        ),
-//      ),
+        ),
       );
 }

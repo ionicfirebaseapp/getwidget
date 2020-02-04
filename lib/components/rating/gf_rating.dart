@@ -80,10 +80,7 @@ class GFRating extends StatefulWidget {
 }
 
 class _GFRatingState extends State<GFRating> {
-
-
   Widget buildRatingBar(BuildContext context, int index) {
-
     Widget icon;
     if (index >= widget.value) {
       icon = widget.defaultIcon != null
