@@ -169,6 +169,18 @@ class _MyHomePageState extends State<MyHomePage>
 //              'Tab1',
 //            ),
 //          ],
+//          labelStyle: TextStyle(
+//            fontWeight: FontWeight.w900,
+//            fontSize: 19,
+//            color: Colors.deepOrange,
+//            fontFamily: 'OpenSansBold',
+//          ),
+//          unselectedLabelStyle: TextStyle(
+//            fontWeight: FontWeight.w500,
+//            fontSize: 13,
+//            color: Colors.black,
+//            fontFamily: 'OpenSansBold',
+//          ),
 //        ),
 //          searchBar: true,
 //        searchHintText: "aaaaaaa",
@@ -827,8 +839,16 @@ class _MyHomePageState extends State<MyHomePage>
                 ],
                 indicatorColor: Colors.teal,
                 border: Border.all(color: Colors.teal),
-                unselectedLabelStyle: TextStyle(color: Colors.teal),
-                labelStyle: TextStyle(color: Colors.teal),
+                labelColor: Colors.white,
+                unselectedLabelColor: Colors.teal,
+                labelStyle: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                ),
+                unselectedLabelStyle: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                ),
               ),
 //
 //            GFTabBarView(controller: tabController, children: <Widget>[
@@ -1246,49 +1266,46 @@ class _MyHomePageState extends State<MyHomePage>
             ],
           ),
         ),
-        bottomNavigationBar: GFTabBar(
-          initialIndex: 0,
-          length: 3,
-          controller: tabController,
-          tabs: const [
-            Text(
-              'Tab1',
-            ),
-            Tab(
-              icon: Icon(Icons.directions_bus),
-              child: Text(
-                'Tab2',
-              ),
-            ),
-            Tab(
-              icon: Icon(Icons.directions_railway),
-              child: Text(
-                'Tab3',
-              ),
-            ),
-          ],
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(24.0),
-                  topRight: Radius.circular(24.0))),
-//          indicatorColor: Colors.white,
+//        bottomNavigationBar: GFTabBar(
+//          initialIndex: 0,
+//          length: 3,
+//          controller: tabController,
+//          tabs: const [
+//            Text(
+//              'Tab1',
+//            ),
+//            Text(
+//              'Tab2',
+//            ),
+//            Tab(
+//              icon: Icon(Icons.directions_railway),
+//              child: Text(
+//                'Tab3',
+//              ),
+//            ),
+//          ],
+//          shape: RoundedRectangleBorder(
+//              borderRadius: BorderRadius.only(
+//                  topLeft: Radius.circular(24.0),
+//                  topRight: Radius.circular(24.0))),
+////          indicatorColor: Colors.white,
 //        indicatorSize: TabBarIndicatorSize.label,
-//          labelColor: Colors.lightGreen,
-//          labelPadding: EdgeInsets.all(8.0),
-//          tabBarColor: Colors.blueGrey,
-//          unselectedLabelColor: Colors.black,
-          labelStyle: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 13.0,
-            color: Colors.deepOrange,
-            fontFamily: 'OpenSansBold',
-          ),
-          unselectedLabelStyle: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 13.0,
-            color: Colors.black,
-            fontFamily: 'OpenSansBold',
-          ),
-        ),
+////          labelColor: Colors.lightGreen,
+////          labelPadding: EdgeInsets.all(8.0),
+////          tabBarColor: Colors.blueGrey,
+////          unselectedLabelColor: Colors.black,
+//          labelStyle: TextStyle(
+//            fontWeight: FontWeight.w500,
+//            fontSize: 13,
+//            color: Colors.deepOrange,
+//            fontFamily: 'OpenSansBold',
+//          ),
+//          unselectedLabelStyle: TextStyle(
+//            fontWeight: FontWeight.w500,
+//            fontSize: 13,
+//            color: Colors.black,
+//            fontFamily: 'OpenSansBold',
+//          ),
+//        ),
       );
 }
