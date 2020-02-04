@@ -251,22 +251,22 @@ class _MyHomePageState extends State<MyHomePage>
               GFRating(
                 value: _rating,
 //              size: 50,
-                filledIcon: Icon(
-                  Icons.done_outline,
-                  size: 40,
-                  color: Colors.teal,
-                ),
-                halfFilledIcon: Icon(
-                  Icons.done_all,
-                  size: 40,
-                  color: Colors.teal.withOpacity(0.75),
-                ),
-                defaultIcon: Icon(
-                  Icons.done,
-                  size: 40,
-                  color: Colors.teal.withOpacity(0.25),
-                ),
-                spacing: 8,
+//                filledIcon: Icon(
+//                  Icons.done_outline,
+//                  size: 40,
+//                  color: Colors.teal,
+//                ),
+//                halfFilledIcon: Icon(
+//                  Icons.done_all,
+//                  size: 40,
+//                  color: Colors.teal.withOpacity(0.75),
+//                ),
+//                defaultIcon: Icon(
+//                  Icons.done,
+//                  size: 40,
+//                  color: Colors.teal.withOpacity(0.25),
+//                ),
+//                spacing: 8,
 //              color: Colors.teal,
 //              borderColor: Colors.tealAccent,
 //              allowHalfRating: false,
