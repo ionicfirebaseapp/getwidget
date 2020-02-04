@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage>
 
   TabController tabController;
   final _ratingController = TextEditingController();
-  double _rating = 3.5;
+  double _rating = 3;
   double _userRating = 4.5;
 
   @override
@@ -216,8 +216,8 @@ class _MyHomePageState extends State<MyHomePage>
                 }),
 
             GFRating(
-              rating: _rating,
-              itemSize: 50,
+              value: _rating,
+//              size: 50,
 //              filledIcon: Image.asset(
 //                'lib/assets/heart.png',
 //                height: 50,
@@ -236,50 +236,45 @@ class _MyHomePageState extends State<MyHomePage>
 //                width: 50,
 //                color: Colors.amber,
 //              ),
+//              spacing: 8,
+//              color: Colors.teal,
+//              borderColor: Colors.tealAccent,
 //              allowHalfRating: false,
-              spacing: 8,
-              color: Colors.teal,
-              borderColor: Colors.tealAccent,
-              onRatingChanged: (value) {
+              onChanged: (value) {
                 setState(() {
                   _rating = value;
-                  print('user selected $_rating');
+                  print('user selected ${_rating}');
                 });
               },
             ),
 
-            SizedBox(
-              height: 20,
-              child: Text('selected rating ${_rating.toStringAsFixed(1)}'),
-            ),
-
             GFRating(
-              rating: _userRating,
-              itemSize: 50,
-              filledIcon: Image.asset(
-                'lib/assets/heart.png',
-                height: 50,
-                width: 50,
-                color: Colors.amber,
-              ),
-              halfFilledIcon: Image.asset(
-                'lib/assets/heart_half.png',
-                height: 50,
-                width: 50,
-                color: Colors.amber,
-              ),
-              defaultIcon: Image.asset(
-                'lib/assets/heart_border.png',
-                height: 50,
-                width: 50,
-                color: Colors.amber,
-              ),
-              ratingController: _ratingController,
-              textFormRating: true,
-              spacing: 8,
-              color: Colors.teal,
-              borderColor: Colors.tealAccent,
-              suffixIcon: MaterialButton(
+              value: _userRating,
+//              filledIcon: Image.asset(
+//                'lib/assets/heart.png',
+//                height: 50,
+//                width: 50,
+//                color: Colors.amber,
+//              ),
+//              halfFilledIcon: Image.asset(
+//                'lib/assets/heart_half.png',
+//                height: 50,
+//                width: 50,
+//                color: Colors.amber,
+//              ),
+//              defaultIcon: Image.asset(
+//                'lib/assets/heart_border.png',
+//                height: 50,
+//                width: 50,
+//                color: Colors.amber,
+//              ),
+//              spacing: 8,
+//              color: Colors.teal,
+//              borderColor: Colors.tealAccent,
+              controller: _ratingController,
+              textForm: true,
+              suffixIcon: GFButton(
+                type: GFButtonType.transparent,
                 onPressed: () {
                   setState(() {
                     _userRating = double.parse(_ratingController.text ?? '0.0');
