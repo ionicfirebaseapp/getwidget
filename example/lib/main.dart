@@ -176,7 +176,6 @@ class _MyHomePageState extends State<MyHomePage>
 //          Container(color: Colors.blue)
 //      ]),
 
-
           SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

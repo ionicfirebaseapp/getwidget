@@ -6,8 +6,8 @@ class GFAccordion extends StatefulWidget {
       {Key key,
       this.child,
       this.content,
-      this.collapsedTitlebackgroundColor =  Colors.white,
-        this.expandedTitlebackgroundColor= const Color(0xFFE0E0E0),
+      this.collapsedTitlebackgroundColor = Colors.white,
+      this.expandedTitlebackgroundColor = const Color(0xFFE0E0E0),
       this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
       this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
       this.title,
@@ -90,6 +90,7 @@ class _GFAccordionState extends State<GFAccordion>
       ),
     );
   }
+
   @override
   void dispose() {
     animationController.dispose();
@@ -122,10 +123,11 @@ class _GFAccordionState extends State<GFAccordion>
             },
             child: Container(
               decoration: BoxDecoration(
-                border: widget.titleborderColor,
-                  color: showAccordion ? widget.expandedTitlebackgroundColor: widget.collapsedTitlebackgroundColor),
-              padding:  widget.titlePadding
-                  ,
+                  border: widget.titleborderColor,
+                  color: showAccordion
+                      ? widget.expandedTitlebackgroundColor
+                      : widget.collapsedTitlebackgroundColor),
+              padding: widget.titlePadding,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -148,7 +150,7 @@ class _GFAccordionState extends State<GFAccordion>
                         : Colors.white70,
                   ),
                   width: MediaQuery.of(context).size.width,
-                  padding: widget.contentPadding ,
+                  padding: widget.contentPadding,
                   child: SlideTransition(
                     position: offset,
                     child: widget.content != null

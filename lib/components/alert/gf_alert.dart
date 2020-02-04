@@ -110,12 +110,13 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Align(
-                  alignment: widget.alignment!=null? widget.alignment:Alignment.topLeft,
-                  child:  widget.title != null
+                  alignment: widget.alignment != null
+                      ? widget.alignment
+                      : Alignment.topLeft,
+                  child: widget.title != null
                       ? Text(widget.title, style: widget.titleTextStyle)
                       : (widget.child ?? Container()),
                 ),
-
                 SizedBox(
                   height: 10,
                 ),
