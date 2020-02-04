@@ -23,6 +23,17 @@ typedef GFItemsCarouselSlideCallback = void Function(DragUpdateDetails details);
 typedef GFItemsCarouselSlideEndCallback = void Function(DragEndDetails details);
 
 class GFItemsCarousel extends StatefulWidget {
+  /// Creates slide show of Images and [Widget] with animation for sliding.
+  /// Shows multiple items on one slide, items number depends on rowCount.
+  const GFItemsCarousel(
+      {Key key,
+      this.rowCount,
+      this.children,
+      this.onSlideStart,
+      this.onSlide,
+      this.onSlideEnd})
+      : super(key: key);
+
   /// Count of visible cells
   final int rowCount;
 
@@ -40,26 +51,17 @@ class GFItemsCarousel extends StatefulWidget {
   /// and moving is no longer in contact with the screen.
   final GFItemsCarouselSlideEndCallback onSlideEnd;
 
-  /// Creates slide show of [Images] and [Widget] with animation for sliding.
-  /// Shows multiple items on one slide, items number depends on rowCount.
-  GFItemsCarousel(
-      {this.rowCount,
-      this.children,
-      this.onSlideStart,
-      this.onSlide,
-      this.onSlideEnd});
-
   @override
-  _GFItemsCarouselState createState() => new _GFItemsCarouselState();
+  _GFItemsCarouselState createState() => _GFItemsCarouselState();
 }
 
 class _GFItemsCarouselState extends State<GFItemsCarousel>
     with TickerProviderStateMixin {
   /// In milliseconds
-  static final int dragAnimationDuration = 1000;
+  static const int dragAnimationDuration = 1000;
 
   /// In milliseconds
-  static final int shiftAnimationDuration = 300;
+  static const int shiftAnimationDuration = 300;
 
   /// Size of cell
   double size = 0;
@@ -74,129 +76,127 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
 
   @override
   void initState() {
-    super.initState();
-
-    this.offset = 0;
-
-    this.animationController = AnimationController(
-        duration: new Duration(milliseconds: dragAnimationDuration),
-        vsync: this);
-
-    new Future.delayed(Duration.zero, () {
-      this.setState(() {
-        double width = MediaQuery.of(context).size.width;
-        this.width = width;
-        this.size = this.width / widget.rowCount;
+    offset = 0;
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: dragAnimationDuration),
+      vsync: this,
+    );
+    Future.delayed(Duration.zero, () {
+      setState(() {
+        final double localWidth = MediaQuery.of(context).size.width;
+        width = localWidth;
+        size = width / widget.rowCount;
       });
     });
+    super.initState();
   }
 
   double calculateOffset(double shift) {
-    double offset = this.offset + shift;
-    double rightLimit = this.size * (widget.children.length - widget.rowCount);
+    double localOffset = offset + shift;
+    final double rightLimit = size * (widget.children.length - widget.rowCount);
 
     /// Check cells container limits
-    if (offset > 0) {
-      offset = 0;
-    } else if (offset < -rightLimit) {
-      offset = -rightLimit;
+    if (localOffset > 0) {
+      localOffset = 0;
+    } else if (localOffset < -rightLimit) {
+      localOffset = -rightLimit;
     }
-
-    return offset;
+    return localOffset;
   }
 
-  onSlideStart(DragStartDetails details) {
-    this.animationController.stop();
-    if (widget.onSlideStart != null) widget.onSlideStart(details);
+  void onSlideStart(DragStartDetails details) {
+    animationController.stop();
+    if (widget.onSlideStart != null) {
+      widget.onSlideStart(details);
+    }
   }
 
-  onSlide(DragUpdateDetails details) {
+  void onSlide(DragUpdateDetails details) {
     setState(() {
-      this.offset = this.calculateOffset(3 * details.delta.dx);
+      offset = calculateOffset(3 * details.delta.dx);
     });
-
-    if (widget.onSlide != null) widget.onSlide(details);
+    if (widget.onSlide != null) {
+      widget.onSlide(details);
+    }
   }
 
-  onSlideEnd(DragEndDetails details) {
-    double dx = details.velocity.pixelsPerSecond.dx;
+  void onSlideEnd(DragEndDetails details) {
+    final double dx = details.velocity.pixelsPerSecond.dx;
 
     if (dx == 0) {
-      return this.slideAnimation();
+      return slideAnimation();
     }
 
-    this.animationController = new AnimationController(
-        duration: new Duration(milliseconds: dragAnimationDuration),
-        vsync: this);
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: dragAnimationDuration),
+      vsync: this,
+    );
 
-    Tween tween = new Tween<double>(
-        begin: this.offset, end: this.calculateOffset(0.5 * dx));
-
-    Animation animation = tween.animate(new CurvedAnimation(
-      parent: this.animationController,
+    final Tween tween =
+        Tween<double>(begin: offset, end: calculateOffset(0.5 * dx));
+    Animation animation;
+    animation = tween.animate(CurvedAnimation(
+      parent: animationController,
       curve: Curves.easeOut,
     ));
-
     animation.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed) {
-        this.slideAnimation();
+        slideAnimation();
       }
     });
-
     animation.addListener(() {
       setState(() {
-        this.offset = animation.value;
+        offset = animation.value;
       });
     });
 
-    this.animationController.forward();
-    if (widget.onSlideEnd != null) widget.onSlideEnd(details);
+    animationController.forward();
+    if (widget.onSlideEnd != null) {
+      widget.onSlideEnd(details);
+    }
   }
 
-  slideAnimation() {
-    double beginAnimation = this.offset;
-    double endAnimation =
-        this.size * (this.offset / this.size).round().toDouble();
-
-    this.animationController = new AnimationController(
-        duration: new Duration(milliseconds: shiftAnimationDuration),
-        vsync: this);
-    Tween tween = new Tween<double>(begin: beginAnimation, end: endAnimation);
-    Animation animation = tween.animate(this.animationController);
-
+  void slideAnimation() {
+    final double beginAnimation = offset;
+    final double endAnimation = size * (offset / size).round().toDouble();
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: shiftAnimationDuration),
+      vsync: this,
+    );
+    final Tween tween = Tween<double>(begin: beginAnimation, end: endAnimation);
+    final Animation animation = tween.animate(animationController);
     animation.addListener(() {
       setState(() {
-        this.offset = animation.value;
+        offset = animation.value;
       });
     });
-
-    this.animationController.forward();
+    animationController.forward();
   }
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onHorizontalDragStart: this.onSlideStart,
-      onHorizontalDragUpdate: this.onSlide,
-      onHorizontalDragEnd: this.onSlideEnd,
-      child: Container(
-        width: double.infinity,
-        height: this.size,
-        child: Stack(children: [
-          Positioned(
-            left: this.offset,
-            child: Row(
-              children: widget.children.map((child) {
-                return Container(
-                  width: this.size,
-                  height: this.size,
-                  child: child,
-                );
-              }).toList(),
-            ),
+  Widget build(BuildContext context) => GestureDetector(
+        onHorizontalDragStart: onSlideStart,
+        onHorizontalDragUpdate: onSlide,
+        onHorizontalDragEnd: onSlideEnd,
+        child: Container(
+          width: double.infinity,
+          height: size,
+          child: Stack(
+            children: [
+              Positioned(
+                left: offset,
+                child: Row(
+                  children: widget.children
+                      .map((child) => Container(
+                            width: size,
+                            height: size,
+                            child: child,
+                          ))
+                      .toList(),
+                ),
+              ),
+            ],
           ),
-        ]),
-      ),
-    );
-  }
+        ),
+      );
 }

@@ -1,4 +1,4 @@
-/// [GFAvatarShape] is used to shape the [GFAvatar] widget.
+/// [GFAvatarShape] is used to shape the GFAvatar widget.
 enum GFAvatarShape {
   /// Default shape is [GFAvatarShape.circle], used for rounded avatar
   circle,

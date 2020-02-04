@@ -1,9 +1,17 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:flutter/material.dart';
 import 'package:getflutter/types/gf_loader_type.dart';
 
-
 class GFLoader extends StatefulWidget {
+  const GFLoader(
+      {Key key,
+      this.loaderColorOne = Colors.redAccent,
+      this.loaderColorTwo = Colors.green,
+      this.loaderColorThree = Colors.blueAccent,
+      this.duration = const Duration(milliseconds: 1000),
+      this.loaderType = LoaderDotType.circle,
+      this.loaderIcon = const Icon(Icons.blur_on)})
+      : super(key: key);
 
   final Color loaderColorOne;
   final Color loaderColorTwo;
@@ -11,15 +19,6 @@ class GFLoader extends StatefulWidget {
   final Duration duration;
   final LoaderDotType loaderType;
   final Icon loaderIcon;
-
-  GFLoader({
-    this.loaderColorOne = Colors.redAccent,
-    this.loaderColorTwo = Colors.green,
-    this.loaderColorThree = Colors.blueAccent,
-    this.duration = const Duration(milliseconds: 1000),
-    this.loaderType = LoaderDotType.circle,
-    this.loaderIcon = const Icon(Icons.blur_on)
-  });
 
   @override
   _GFLoaderState createState() => _GFLoaderState();
@@ -36,27 +35,38 @@ class _GFLoaderState extends State<GFLoader>
   void initState() {
     super.initState();
 
-    controller = AnimationController(
-        duration: widget.duration, vsync: this);
+    controller = AnimationController(duration: widget.duration, vsync: this);
 
-    animation_1 = Tween(begin: 0.0, end: 1.0).animate(
+    animation_1 = Tween(begin: 0, end: 1.0).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Interval(0.0, 0.70, curve: Curves.linear),
+        curve: const Interval(
+          0,
+          0.70,
+          curve: Curves.linear,
+        ),
       ),
     );
 
-    animation_2 = Tween(begin: 0.0, end: 1.0).animate(
+    animation_2 = Tween(begin: 0, end: 1.0).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Interval(0.1, 0.80, curve: Curves.linear),
+        curve: const Interval(
+          0.1,
+          0.80,
+          curve: Curves.linear,
+        ),
       ),
     );
 
-    animation_3 = Tween(begin: 0.0, end: 1.0).animate(
+    animation_3 = Tween(begin: 0, end: 1.0).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Interval(0.2, 0.90, curve: Curves.linear),
+        curve: const Interval(
+          0.2,
+          0.90,
+          curve: Curves.linear,
+        ),
       ),
     );
 
@@ -70,86 +80,98 @@ class _GFLoaderState extends State<GFLoader>
   }
 
   @override
-  Widget build(BuildContext context) {
-//    print(animation_1.value <= 0.4 ? 2.5 * animation_1.value : (animation_1.value > 0.40 && animation_1.value <= 0.60) ? 1.0 : 2.5 - (2.5 * animation_1.value));
-    return Container(
-      child: new Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Opacity(
-            opacity: (animation_1.value <= 0.4 ? 2.5 * animation_1.value :
-            (animation_1.value > 0.40 && animation_1.value <= 0.60) ? 1.0 : 2.5 - (2.5 * animation_1.value)),
+  Widget build(BuildContext context) => Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Opacity(
+              opacity: animation_1.value <= 0.4
+                  ? 2.5 * animation_1.value
+                  : (animation_1.value > 0.40 && animation_1.value <= 0.60)
+                      ? 1.0
+                      : 2.5 - (2.5 * animation_1.value),
 //            opacity: (animation_1.value <= 0.4 ? 2.5 * animation_1.value : (animation_1.value > 0.40 && animation_1.value <= 0.60) ? 1.0 : 2.5 - (2.5 * animation_1.value)),
-            child: new Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Dot(
-                radius: 10.0,
-                color: widget.loaderColorOne,
-                type: widget.loaderType,
-                icon: widget.loaderIcon,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Dot(
+                  radius: 10,
+                  color: widget.loaderColorOne,
+                  type: widget.loaderType,
+                  icon: widget.loaderIcon,
+                ),
               ),
             ),
-          ),
-          Opacity(
-            opacity: (animation_2.value <= 0.4 ? 2.5 * animation_2.value :
-            (animation_2.value > 0.40 && animation_2.value <= 0.60)? 1.0 : 2.5 - (2.5 * animation_2.value)),
-            child: new Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Dot(
-                radius: 10.0,
-                color: widget.loaderColorTwo,
-                type: widget.loaderType,
-                icon: widget.loaderIcon,
+            Opacity(
+              opacity: animation_2.value <= 0.4
+                  ? 2.5 * animation_2.value
+                  : (animation_2.value > 0.40 && animation_2.value <= 0.60)
+                      ? 1.0
+                      : 2.5 - (2.5 * animation_2.value),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Dot(
+                  radius: 10,
+                  color: widget.loaderColorTwo,
+                  type: widget.loaderType,
+                  icon: widget.loaderIcon,
+                ),
               ),
             ),
-          ),
-          Opacity(
-            opacity: (animation_3.value <= 0.4 ? 2.5 * animation_3.value :
-            (animation_3.value > 0.40 && animation_3.value <= 0.60) ? 1.0 : 2.5 - (2.5 * animation_3.value)),
-            child: new Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Dot(
-                radius: 10.0,
-                color: widget.loaderColorThree,
-                type: widget.loaderType,
-                icon: widget.loaderIcon,
+            Opacity(
+              opacity: animation_3.value <= 0.4
+                  ? 2.5 * animation_3.value
+                  : (animation_3.value > 0.40 && animation_3.value <= 0.60)
+                      ? 1.0
+                      : 2.5 - (2.5 * animation_3.value),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Dot(
+                  radius: 10,
+                  color: widget.loaderColorThree,
+                  type: widget.loaderType,
+                  icon: widget.loaderIcon,
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
+          ],
+        ),
+      );
 
   @override
   void dispose() {
-
     controller.dispose();
     super.dispose();
   }
 }
 
 class Dot extends StatelessWidget {
+  const Dot({Key key, this.radius, this.color, this.type, this.icon})
+      : super(key: key);
+
   final double radius;
   final Color color;
   final LoaderDotType type;
   final Icon icon;
 
-  Dot({this.radius, this.color, this.type, this.icon});
-
   @override
-  Widget build(BuildContext context) {
-    return new Center(
-      child: type == LoaderDotType.icon ?
-      Icon(icon.icon, color: color, size: 1.3 * radius,)
-          : new Transform.rotate(
-        angle: type == LoaderDotType.diamond ? pi/4 : 0.0,
-        child: Container(
-          width: radius,
-          height: radius,
-          decoration: BoxDecoration(color: color, shape: type == LoaderDotType.circle? BoxShape.circle : BoxShape.rectangle),
-        ),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Center(
+        child: type == LoaderDotType.icon
+            ? Icon(
+                icon.icon,
+                color: color,
+                size: 1.3 * radius,
+              )
+            : Transform.rotate(
+                angle: type == LoaderDotType.diamond ? pi / 4 : 0.0,
+                child: Container(
+                  width: radius,
+                  height: radius,
+                  decoration: BoxDecoration(
+                      color: color,
+                      shape: type == LoaderDotType.circle
+                          ? BoxShape.circle
+                          : BoxShape.rectangle),
+                ),
+              ),
+      );
 }

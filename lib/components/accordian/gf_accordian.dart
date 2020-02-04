@@ -75,20 +75,28 @@ class _GFAccordionState extends State<GFAccordion>
   AnimationController animationController;
   AnimationController controller;
   Animation<Offset> offset;
+  bool showAccordion = false;
 
   @override
   void initState() {
-    super.initState();
-    animationController =
-        AnimationController(duration: Duration(seconds: 2), vsync: this);
-    controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    offset = Tween(begin: Offset(0.0, -0.06), end: Offset.zero).animate(
+    animationController = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+    offset = Tween(
+      begin: const Offset(0, -0.06),
+      end: Offset.zero,
+    ).animate(
       CurvedAnimation(
         parent: controller,
         curve: Curves.fastOutSlowIn,
       ),
     );
+    super.initState();
   }
 
   @override
@@ -97,69 +105,64 @@ class _GFAccordionState extends State<GFAccordion>
     super.dispose();
   }
 
-  bool showAccordion = false;
-
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: widget.margin != null ? widget.margin : EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                switch (controller.status) {
-                  case AnimationStatus.completed:
-                    controller.forward(from: 0);
-                    break;
-                  case AnimationStatus.dismissed:
-                    controller.forward();
-                    break;
-                  default:
-                }
-                showAccordion = !showAccordion;
-              });
-            },
-            child: Container(
-              decoration: BoxDecoration(
+  Widget build(BuildContext context) => Container(
+        margin: widget.margin ?? const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  switch (controller.status) {
+                    case AnimationStatus.completed:
+                      controller.forward(from: 0);
+                      break;
+                    case AnimationStatus.dismissed:
+                      controller.forward();
+                      break;
+                    default:
+                  }
+                  showAccordion = !showAccordion;
+                });
+              },
+              child: Container(
+                decoration: BoxDecoration(
                   border: widget.titleborderColor,
                   color: showAccordion
                       ? widget.expandedTitlebackgroundColor
-                      : widget.collapsedTitlebackgroundColor),
-              padding: widget.titlePadding,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Expanded(
-                    child: widget.title != null
-                        ? Text(widget.title, style: widget.textStyle)
-                        : (widget.child ?? Container()),
-                  ),
-                  showAccordion ? widget.expandedIcon : widget.collapsedIcon
-                ],
+                      : widget.collapsedTitlebackgroundColor,
+                ),
+                padding: widget.titlePadding,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Expanded(
+                      child: widget.title != null
+                          ? Text(widget.title, style: widget.textStyle)
+                          : (widget.child ?? Container()),
+                    ),
+                    showAccordion ? widget.expandedIcon : widget.collapsedIcon
+                  ],
+                ),
               ),
             ),
-          ),
-          showAccordion
-              ? Container(
-                  decoration: BoxDecoration(
-                    border: widget.contentBorderColor,
-                    color: widget.contentbackgroundColor != null
-                        ? widget.contentbackgroundColor
-                        : Colors.white70,
-                  ),
-                  width: MediaQuery.of(context).size.width,
-                  padding: widget.contentPadding,
-                  child: SlideTransition(
-                    position: offset,
-                    child: widget.content != null
-                        ? Text(widget.content)
-                        : (widget.contentChild ?? Container()),
-                  ))
-              : Container()
-        ],
-      ),
-    );
-  }
+            showAccordion
+                ? Container(
+                    decoration: BoxDecoration(
+                      border: widget.contentBorderColor,
+                      color: widget.contentbackgroundColor ?? Colors.white70,
+                    ),
+                    width: MediaQuery.of(context).size.width,
+                    padding: widget.contentPadding,
+                    child: SlideTransition(
+                      position: offset,
+                      child: widget.content != null
+                          ? Text(widget.content)
+                          : (widget.contentChild ?? Container()),
+                    ))
+                : Container()
+          ],
+        ),
+      );
 }

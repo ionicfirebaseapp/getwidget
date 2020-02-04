@@ -1,4 +1,4 @@
-/// [GFTypographyType] is used to change the type of [GFTypography] title widget.
+/// [GFTypographyType] is used to change the type of GFTypography title widget.
 enum GFTypographyType {
   /// [GFTypographyType.typo1] type used for title widget with fontSize = 25.0
   typo1,
