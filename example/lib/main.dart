@@ -138,8 +138,7 @@ class _MyHomePageState extends State<MyHomePage>
           backgroundColor: Colors.teal,
 //        centerTitle: true,
 //        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
-          title:
-          const Text('UI Kit'),
+          title: const Text('UI Kit'),
 //              GFSegmentTabs(
 //            tabController: tabController,
 //            initialIndex: 0,
@@ -215,30 +214,63 @@ class _MyHomePageState extends State<MyHomePage>
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-
+              GFRating(
+                value: _rating,
+                onChanged: (value) {
+                  setState(() {
+                    _rating = value;
+                    print('user selected $_rating');
+                  });
+                },
+              ),
 
               GFRating(
                 value: _rating,
 //              size: 50,
-//                filledIcon: Icon(
-//                  Icons.done_outline,
-//                  size: 40,
-//                  color: Colors.teal,
-//                ),
-//                halfFilledIcon: Icon(
-//                  Icons.done_all,
-//                  size: 40,
-//                  color: Colors.teal.withOpacity(0.75),
-//                ),
-//                defaultIcon: Icon(
-//                  Icons.done,
-//                  size: 40,
-//                  color: Colors.teal.withOpacity(0.25),
-//                ),
+                filledIcon: Icon(
+                  Icons.done_outline,
+                  size: 40,
+                  color: Colors.teal,
+                ),
+                halfFilledIcon: Icon(
+                  Icons.done_all,
+                  size: 40,
+                  color: Colors.teal.withOpacity(0.75),
+                ),
+                defaultIcon: Icon(
+                  Icons.done,
+                  size: 40,
+                  color: Colors.teal.withOpacity(0.25),
+                ),
 //                spacing: 8,
 //              color: Colors.teal,
 //              borderColor: Colors.tealAccent,
 //              allowHalfRating: false,
+                onChanged: (value) {
+                  setState(() {
+                    _rating = value;
+                    print('user selected $_rating');
+                  });
+                },
+              ),
+
+              GFRating(
+                value: _rating,
+                filledIcon: Icon(
+                  Icons.sentiment_very_satisfied,
+                  color: Colors.green,
+                  size: 50,
+                ),
+                halfFilledIcon: Icon(
+                  Icons.sentiment_neutral,
+                  color: Colors.amber,
+                  size: 50,
+                ),
+                defaultIcon: Icon(
+                  Icons.sentiment_very_dissatisfied,
+                  color: Colors.red,
+                  size: 50,
+                ),
                 onChanged: (value) {
                   setState(() {
                     _rating = value;
@@ -271,7 +303,7 @@ class _MyHomePageState extends State<MyHomePage>
                 color: Colors.teal,
                 borderColor: Colors.tealAccent,
                 controller: _ratingController,
-                textForm: true,
+                showTextForm: true,
                 suffixIcon: GFButton(
                   type: GFButtonType.transparent,
                   onPressed: () {
@@ -298,22 +330,22 @@ class _MyHomePageState extends State<MyHomePage>
 //              overlaySearchListHeight: 100.0,
                   searchQueryBuilder: (query, list) => list
                       .where((item) =>
-                      item.toLowerCase().contains(query.toLowerCase()))
+                          item.toLowerCase().contains(query.toLowerCase()))
                       .toList(),
                   overlaySearchListItemBuilder: (item) => Container(
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      item,
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                  ),
+                        padding: const EdgeInsets.all(8),
+                        child: Text(
+                          item,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                      ),
 //              noItemsFoundWidget: Container(
 //                color: Colors.green,
 //                child: Text("no items found..."),
 //              ),
                   onItemSelected: (item) {
                     setState(() {
-                      print('ssssssss $item');
+                      print('selected item $item');
                     });
                   }),
 
@@ -587,13 +619,13 @@ class _MyHomePageState extends State<MyHomePage>
 //            )
 //            ),
 
-            GFButton(
-              type: GFButtonType.transparent,
-              color: GFColor.warning,
-              onPressed: (){},
-              text: 'whatsapp',
-              icon: Icon(Icons.directions_bike),
-            ),
+              GFButton(
+                type: GFButtonType.transparent,
+                color: GFColor.warning,
+                onPressed: () {},
+                text: 'whatsapp',
+                icon: Icon(Icons.directions_bike),
+              ),
 //
 //            GFButton(
 //              text: "linkedin",
