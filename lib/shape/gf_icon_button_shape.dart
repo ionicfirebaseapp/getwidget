@@ -1,4 +1,4 @@
-/// [GFIconButtonShape] is used to shape the [GFIconButton] widget.
+/// [GFIconButtonShape] is used to shape the GFIconButton widget.
 enum GFIconButtonShape {
   /// [GFIconButtonShape.circle], used for rounded shape icon button
   circle,

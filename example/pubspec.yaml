@@ -28,3 +28,6 @@ flutter:
   assets:
     - lib/assets/food.jpeg
     - lib/assets/img.png
+    - lib/assets/heart.png
+    - lib/assets/heart_border.png
+    - lib/assets/heart_half.png

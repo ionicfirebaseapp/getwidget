@@ -6,17 +6,18 @@ class GFAccordion extends StatefulWidget {
       {Key key,
       this.child,
       this.content,
-      this.titlebackgroundColor,
+      this.collapsedTitlebackgroundColor = Colors.white,
+      this.expandedTitlebackgroundColor = const Color(0xFFE0E0E0),
       this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
       this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
       this.title,
       this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
-      this.titlePadding,
+      this.titlePadding = const EdgeInsets.all(10),
       this.contentbackgroundColor,
-      this.contentPadding,
+      this.contentPadding = const EdgeInsets.all(10),
       this.contentChild,
-      this.titleborderColor,
-      this.contentBorderColor,
+      this.titleborderColor = const Border(),
+      this.contentBorderColor = const Border(),
       this.margin})
       : super(key: key);
 
@@ -29,8 +30,11 @@ class GFAccordion extends StatefulWidget {
   /// contentChild of  type [Widget]is alternative to content key. content will get priority over contentChild
   final Widget contentChild;
 
-  /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordion] title
-  final dynamic titlebackgroundColor;
+  /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordion] title when it is collapsed
+  final dynamic collapsedTitlebackgroundColor;
+
+  /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordion] title when it is expanded
+  final dynamic expandedTitlebackgroundColor;
 
   ///collapsedIcon of type [Widget] which is used to show when the [GFAccordion] is collapsed
   final Widget collapsedIcon;
@@ -71,102 +75,97 @@ class _GFAccordionState extends State<GFAccordion>
   AnimationController animationController;
   AnimationController controller;
   Animation<Offset> offset;
+  bool showAccordion = false;
 
   @override
   void initState() {
-    super.initState();
-    animationController =
-        AnimationController(duration: Duration(seconds: 2), vsync: this);
-    controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    offset = Tween(begin: Offset(0.0, -0.06), end: Offset.zero).animate(
+    animationController = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+    offset = Tween(
+      begin: const Offset(0, -0.06),
+      end: Offset.zero,
+    ).animate(
       CurvedAnimation(
         parent: controller,
         curve: Curves.fastOutSlowIn,
       ),
     );
+    super.initState();
   }
-
-  bool showAccordion = false;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: widget.margin != null ? widget.margin : EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                switch (controller.status) {
-                  case AnimationStatus.completed:
-                    controller.forward(from: 0);
-                    break;
-                  case AnimationStatus.dismissed:
-                    controller.forward();
-                    break;
-                  default:
-                }
-                showAccordion = !showAccordion;
-              });
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                  border: widget.titleborderColor == null
-                      ? widget.titleborderColor
-                      : Border(
-                          top: BorderSide(color: Colors.black38),
-                          left: BorderSide(color: Colors.black38),
-                          right: BorderSide(color: Colors.black38),
-                          bottom: BorderSide(color: Colors.black38)),
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Container(
+        margin:
+            widget.margin != null ? widget.margin : const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  switch (controller.status) {
+                    case AnimationStatus.completed:
+                      controller.forward(from: 0);
+                      break;
+                    case AnimationStatus.dismissed:
+                      controller.forward();
+                      break;
+                    default:
+                  }
+                  showAccordion = !showAccordion;
+                });
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  border: widget.titleborderColor,
                   color: showAccordion
-                      ? widget.titlebackgroundColor != null
-                          ? widget.titlebackgroundColor
-                          : Color(0xFFE0E0E0)
-                      : widget.titlebackgroundColor),
-              padding: widget.titlePadding != null
-                  ? widget.titlePadding
-                  : EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Expanded(
-                    child: widget.title != null
-                        ? Text(widget.title, style: widget.textStyle)
-                        : (widget.child ?? Container()),
-                  ),
-                  showAccordion ? widget.expandedIcon : widget.collapsedIcon
-                ],
+                      ? widget.expandedTitlebackgroundColor
+                      : widget.collapsedTitlebackgroundColor,
+                ),
+                padding: widget.titlePadding,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Expanded(
+                      child: widget.title != null
+                          ? Text(widget.title, style: widget.textStyle)
+                          : (widget.child ?? Container()),
+                    ),
+                    showAccordion ? widget.expandedIcon : widget.collapsedIcon
+                  ],
+                ),
               ),
             ),
-          ),
-          showAccordion
-              ? Container(
-                  decoration: BoxDecoration(
-                    border: widget.contentBorderColor == null
-                        ? widget.contentBorderColor
-                        : Border(
-                            bottom: BorderSide(color: Colors.black38),
-                            left: BorderSide(color: Colors.black38),
-                            right: BorderSide(color: Colors.black38)),
-                    color: widget.contentbackgroundColor != null
-                        ? widget.contentbackgroundColor
-                        : Colors.white70,
-                  ),
-                  width: MediaQuery.of(context).size.width,
-                  padding: widget.contentPadding != null
-                      ? widget.contentPadding
-                      : EdgeInsets.all(10),
-                  child: SlideTransition(
-                    position: offset,
-                    child: widget.content != null
-                        ? Text(widget.content)
-                        : (widget.contentChild ?? Container()),
-                  ))
-              : Container()
-        ],
-      ),
-    );
-  }
+            showAccordion
+                ? Container(
+                    decoration: BoxDecoration(
+                      border: widget.contentBorderColor,
+                      color: widget.contentbackgroundColor != null
+                          ? widget.contentbackgroundColor
+                          : Colors.white70,
+                    ),
+                    width: MediaQuery.of(context).size.width,
+                    padding: widget.contentPadding,
+                    child: SlideTransition(
+                      position: offset,
+                      child: widget.content != null
+                          ? Text(widget.content)
+                          : (widget.contentChild ?? Container()),
+                    ))
+                : Container()
+          ],
+        ),
+      );
 }

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart' show DragStartBehavior;
@@ -85,13 +85,16 @@ class _GFTabBarViewState extends State<GFTabBarView> {
       return true;
     }());
 
-    if (newController == _controller) return;
-
-    if (_controllerIsValid)
+    if (newController == _controller) {
+      return;
+    }
+    if (_controllerIsValid) {
       _controller.animation.removeListener(_handleTabControllerAnimationTick);
+    }
     _controller = newController;
-    if (_controller != null)
+    if (_controller != null) {
       _controller.animation.addListener(_handleTabControllerAnimationTick);
+    }
   }
 
   @override
@@ -111,15 +114,19 @@ class _GFTabBarViewState extends State<GFTabBarView> {
   @override
   void didUpdateWidget(GFTabBarView oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.controller != oldWidget.controller) _updateTabController();
-    if (widget.children != oldWidget.children && _warpUnderwayCount == 0)
+    if (widget.controller != oldWidget.controller) {
+      _updateTabController();
+    }
+    if (widget.children != oldWidget.children && _warpUnderwayCount == 0) {
       _updateChildren();
+    }
   }
 
   @override
   void dispose() {
-    if (_controllerIsValid)
+    if (_controllerIsValid) {
       _controller.animation.removeListener(_handleTabControllerAnimationTick);
+    }
     _controller = null;
     // We don't own the _controller Animation, so it's not disposed here.
     super.dispose();
@@ -131,8 +138,9 @@ class _GFTabBarViewState extends State<GFTabBarView> {
   }
 
   void _handleTabControllerAnimationTick() {
-    if (_warpUnderwayCount > 0 || !_controller.indexIsChanging)
-      return; // This widget is driving the controller's animation.
+    if (_warpUnderwayCount > 0 || !_controller.indexIsChanging) {
+      return;
+    } // This widget is driving the controller's animation.
 
     if (_controller.index != _currentIndex) {
       _currentIndex = _controller.index;
@@ -141,15 +149,19 @@ class _GFTabBarViewState extends State<GFTabBarView> {
   }
 
   Future<void> _warpToCurrentIndex() async {
-    if (!mounted) return Future<void>.value();
-
-    if (_pageController.page == _currentIndex.toDouble())
+    if (!mounted) {
       return Future<void>.value();
+    }
+
+    if (_pageController.page == _currentIndex.toDouble()) {
+      return Future<void>.value();
+    }
 
     final int previousIndex = _controller.previousIndex;
-    if ((_currentIndex - previousIndex).abs() == 1)
+    if ((_currentIndex - previousIndex).abs() == 1) {
       return _pageController.animateToPage(_currentIndex,
           duration: kTabScrollDuration, curve: Curves.ease);
+    }
 
     assert((_currentIndex - previousIndex).abs() > 1);
     final int initialPage =
@@ -157,7 +169,6 @@ class _GFTabBarViewState extends State<GFTabBarView> {
     final List<Widget> originalChildren = _childrenWithKey;
     setState(() {
       _warpUnderwayCount += 1;
-
       _childrenWithKey = List<Widget>.from(_childrenWithKey, growable: false);
       final Widget temp = _childrenWithKey[initialPage];
       _childrenWithKey[initialPage] = _childrenWithKey[previousIndex];
@@ -167,7 +178,9 @@ class _GFTabBarViewState extends State<GFTabBarView> {
 
     await _pageController.animateToPage(_currentIndex,
         duration: kTabScrollDuration, curve: Curves.ease);
-    if (!mounted) return Future<void>.value();
+    if (!mounted) {
+      return Future<void>.value();
+    }
     setState(() {
       _warpUnderwayCount -= 1;
       if (widget.children != _children) {
@@ -180,9 +193,12 @@ class _GFTabBarViewState extends State<GFTabBarView> {
 
   // Called when the PageView scrolls
   bool _handleScrollNotification(ScrollNotification notification) {
-    if (_warpUnderwayCount > 0) return false;
-
-    if (notification.depth != 0) return false;
+    if (_warpUnderwayCount > 0) {
+      return false;
+    }
+    if (notification.depth != 0) {
+      return false;
+    }
 
     _warpUnderwayCount += 1;
     if (notification is ScrollUpdateNotification &&
@@ -198,7 +214,6 @@ class _GFTabBarViewState extends State<GFTabBarView> {
       _currentIndex = _controller.index;
     }
     _warpUnderwayCount -= 1;
-
     return false;
   }
 
@@ -215,9 +230,7 @@ class _GFTabBarViewState extends State<GFTabBarView> {
     return NotificationListener<ScrollNotification>(
       onNotification: _handleScrollNotification,
       child: Container(
-        height: widget.height == null
-            ? MediaQuery.of(context).size.height
-            : widget.height,
+        height: widget.height ?? MediaQuery.of(context).size.height,
         child: PageView(
           dragStartBehavior: widget.dragStartBehavior,
           controller: _pageController,

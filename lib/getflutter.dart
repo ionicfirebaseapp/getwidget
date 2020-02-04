@@ -18,14 +18,15 @@ export 'package:getflutter/components/drawer/gf_drawer_header.dart';
 export 'package:getflutter/components/image/gf_image_overlay.dart';
 export 'package:getflutter/components/list_tile/gf_list_tile.dart';
 export 'package:getflutter/components/search_bar/gf_search_bar.dart';
-export 'package:getflutter/components/tabs/gf_tabBar.dart';
-export 'package:getflutter/components/tabs/gf_tabBarView.dart';
+export 'package:getflutter/components/tabs/gf_tabbar.dart';
+export 'package:getflutter/components/tabs/gf_tabbar_view.dart';
 export 'package:getflutter/components/tabs/gf_tabs.dart';
 export 'package:getflutter/components/tabs/gf_segment_tabs.dart';
 export 'package:getflutter/components/toast/gf_floating_widget.dart';
 export 'package:getflutter/components/toast/gf_toast.dart';
 export 'package:getflutter/components/toggle/gf_toggle.dart';
 export 'package:getflutter/components/typography/gf_typography.dart';
+export 'package:getflutter/components/rating/gf_rating.dart';
 
 // exports shape, color, position, size, types
 export 'colors/gf_color.dart';
@@ -35,7 +36,7 @@ export 'shape/gf_badge_shape.dart';
 export 'shape/gf_button_shape.dart';
 export 'shape/gf_icon_button_shape.dart';
 export 'size/gf_size.dart';
-export 'types/gf_toggle_type.dart';
 export 'types/gf_button_type.dart';
-export 'types/gf_typography_type.dart';
 export 'types/gf_toast_type.dart';
+export 'types/gf_toggle_type.dart';
+export 'types/gf_typography_type.dart';
