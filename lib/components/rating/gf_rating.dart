@@ -33,7 +33,7 @@ class GFRating extends StatefulWidget {
   /// defines the border color of [halfFilledIcon]
   final Color borderColor;
 
-  /// defines the size of items
+  /// defines the size of items. GFSize can be used for size variations like small. medium. large
   final dynamic size;
 
   /// if true, allow half rating of items. Default it will be in true state

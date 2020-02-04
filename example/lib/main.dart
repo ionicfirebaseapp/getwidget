@@ -250,27 +250,27 @@ class _MyHomePageState extends State<MyHomePage>
 
             GFRating(
               value: _userRating,
-//              filledIcon: Image.asset(
-//                'lib/assets/heart.png',
-//                height: 50,
-//                width: 50,
-//                color: Colors.amber,
-//              ),
-//              halfFilledIcon: Image.asset(
-//                'lib/assets/heart_half.png',
-//                height: 50,
-//                width: 50,
-//                color: Colors.amber,
-//              ),
-//              defaultIcon: Image.asset(
-//                'lib/assets/heart_border.png',
-//                height: 50,
-//                width: 50,
-//                color: Colors.amber,
-//              ),
-//              spacing: 8,
-//              color: Colors.teal,
-//              borderColor: Colors.tealAccent,
+              filledIcon: Image.asset(
+                'lib/assets/heart.png',
+                height: 50,
+                width: 50,
+                color: Colors.amber,
+              ),
+              halfFilledIcon: Image.asset(
+                'lib/assets/heart_half.png',
+                height: 50,
+                width: 50,
+                color: Colors.amber,
+              ),
+              defaultIcon: Image.asset(
+                'lib/assets/heart_border.png',
+                height: 50,
+                width: 50,
+                color: Colors.amber,
+              ),
+              spacing: 8,
+              color: Colors.teal,
+              borderColor: Colors.tealAccent,
               controller: _ratingController,
               textForm: true,
               suffixIcon: GFButton(
