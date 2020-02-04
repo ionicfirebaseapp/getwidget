@@ -16,7 +16,7 @@ class GFRating extends StatefulWidget {
     this.filledIcon,
     this.halfFilledIcon,
     this.allowHalfRating = true,
-    this.textForm = false,
+    this.showTextForm = false,
     this.suffixIcon,
     this.controller,
     this.inputDecorations,
@@ -58,7 +58,7 @@ class GFRating extends StatefulWidget {
   final RatingChangeCallback onChanged;
 
   /// if true, shows rating [TextFormField] with the rating bar, that allows the user input to show rating
-  final bool textForm;
+  final bool showTextForm;
 
   /// defines the design and funtion of rating [TextFormField]'s suffix icon
   final Widget suffixIcon;
@@ -90,7 +90,7 @@ class _GFRatingState extends State<GFRating> {
               color: widget.borderColor ?? Theme.of(context).primaryColor,
               size: GFSizesClass.getGFSize(widget.size),
             );
-    } else if (!widget.textForm
+    } else if (!widget.showTextForm
         ? index > widget.value - (widget.allowHalfRating ? 0.5 : 1.0) &&
             index < widget.value
         : index + 1 == widget.value + 0.5) {
@@ -137,7 +137,7 @@ class _GFRatingState extends State<GFRating> {
   }
 
   @override
-  Widget build(BuildContext context) => widget.textForm
+  Widget build(BuildContext context) => widget.showTextForm
       ? Column(children: <Widget>[
           Container(
             margin: widget.margin,

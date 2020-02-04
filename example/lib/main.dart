@@ -138,31 +138,48 @@ class _MyHomePageState extends State<MyHomePage>
           backgroundColor: Colors.teal,
 //        centerTitle: true,
 //        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
-          title:
-//          const Text('UI Kit'),
-              GFSegmentTabs(
-            tabController: tabController,
-            initialIndex: 0,
-            length: 3,
-            tabs: const <Widget>[
-              Text(
-                'Tab1',
-              ),
-              Text(
-                'Tab2',
-              ),
-              Text(
-                'Tab3',
-              ),
-            ],
-          ),
+          title: const Text('UI Kit'),
+//              GFSegmentTabs(
+//            tabController: tabController,
+//            initialIndex: 0,
+//            length: 3,
+//            tabs: const <Widget>[
+//              Text(
+//                'Tab1',
+//              ),
+//              Text(
+//                'Tab2',
+//              ),
+//              Text(
+//                'Tab3',
+//              ),
+//            ],
+//          ),
 //        bottom: TabBar(
 //          controller: tabController,
-//          tabs: [
-//            Tab(icon: Icon(Icons.directions_car)),
-//            Tab(icon: Icon(Icons.directions_transit)),
-//            Tab(icon: Icon(Icons.directions_bike)),
+//          tabs: const [
+//            Text(
+//              'Tab1',
+//            ),
+//            Text(
+//              'Tab1',
+//            ),
+//            Text(
+//              'Tab1',
+//            ),
 //          ],
+//          labelStyle: TextStyle(
+//            fontWeight: FontWeight.w900,
+//            fontSize: 19,
+//            color: Colors.deepOrange,
+//            fontFamily: 'OpenSansBold',
+//          ),
+//          unselectedLabelStyle: TextStyle(
+//            fontWeight: FontWeight.w500,
+//            fontSize: 13,
+//            color: Colors.black,
+//            fontFamily: 'OpenSansBold',
+//          ),
 //        ),
 //          searchBar: true,
 //        searchHintText: "aaaaaaa",
@@ -197,38 +214,15 @@ class _MyHomePageState extends State<MyHomePage>
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              GFSearchBar(
-//              searchBoxInputDecoration: InputDecoration(
-//                enabledBorder: OutlineInputBorder(
-//                  borderSide: BorderSide(
-//                    color: Colors.teal,
-//                  ),
-//                  borderRadius: BorderRadius.circular(50)
-//                ),
-//              ),
-                  searchList: list,
-//              hideSearchBoxWhenItemSelected: false,
-//              overlaySearchListHeight: 100.0,
-                  searchQueryBuilder: (query, list) => list
-                      .where((item) =>
-                          item.toLowerCase().contains(query.toLowerCase()))
-                      .toList(),
-                  overlaySearchListItemBuilder: (item) => Container(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(
-                          item,
-                          style: const TextStyle(fontSize: 18),
-                        ),
-                      ),
-//              noItemsFoundWidget: Container(
-//                color: Colors.green,
-//                child: Text("no items found..."),
-//              ),
-                  onItemSelected: (item) {
-                    setState(() {
-                      print('ssssssss $item');
-                    });
-                  }),
+              GFRating(
+                value: _rating,
+                onChanged: (value) {
+                  setState(() {
+                    _rating = value;
+                    print('user selected $_rating');
+                  });
+                },
+              ),
 
               GFRating(
                 value: _rating,
@@ -248,10 +242,35 @@ class _MyHomePageState extends State<MyHomePage>
                   size: 40,
                   color: Colors.teal.withOpacity(0.25),
                 ),
-                spacing: 8,
+//                spacing: 8,
 //              color: Colors.teal,
 //              borderColor: Colors.tealAccent,
 //              allowHalfRating: false,
+                onChanged: (value) {
+                  setState(() {
+                    _rating = value;
+                    print('user selected $_rating');
+                  });
+                },
+              ),
+
+              GFRating(
+                value: _rating,
+                filledIcon: Icon(
+                  Icons.sentiment_very_satisfied,
+                  color: Colors.green,
+                  size: 50,
+                ),
+                halfFilledIcon: Icon(
+                  Icons.sentiment_neutral,
+                  color: Colors.amber,
+                  size: 50,
+                ),
+                defaultIcon: Icon(
+                  Icons.sentiment_very_dissatisfied,
+                  color: Colors.red,
+                  size: 50,
+                ),
                 onChanged: (value) {
                   setState(() {
                     _rating = value;
@@ -284,7 +303,7 @@ class _MyHomePageState extends State<MyHomePage>
                 color: Colors.teal,
                 borderColor: Colors.tealAccent,
                 controller: _ratingController,
-                textForm: true,
+                showTextForm: true,
                 suffixIcon: GFButton(
                   type: GFButtonType.transparent,
                   onPressed: () {
@@ -296,6 +315,39 @@ class _MyHomePageState extends State<MyHomePage>
                   child: const Text('Rate'),
                 ),
               ),
+
+              GFSearchBar(
+//              searchBoxInputDecoration: InputDecoration(
+//                enabledBorder: OutlineInputBorder(
+//                  borderSide: BorderSide(
+//                    color: Colors.teal,
+//                  ),
+//                  borderRadius: BorderRadius.circular(50)
+//                ),
+//              ),
+                  searchList: list,
+//              hideSearchBoxWhenItemSelected: false,
+//              overlaySearchListHeight: 100.0,
+                  searchQueryBuilder: (query, list) => list
+                      .where((item) =>
+                          item.toLowerCase().contains(query.toLowerCase()))
+                      .toList(),
+                  overlaySearchListItemBuilder: (item) => Container(
+                        padding: const EdgeInsets.all(8),
+                        child: Text(
+                          item,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                      ),
+//              noItemsFoundWidget: Container(
+//                color: Colors.green,
+//                child: Text("no items found..."),
+//              ),
+                  onItemSelected: (item) {
+                    setState(() {
+                      print('selected item $item');
+                    });
+                  }),
 
 //            GFCard(
 //              content: Column(
@@ -567,11 +619,13 @@ class _MyHomePageState extends State<MyHomePage>
 //            )
 //            ),
 
-//            GFButton(
-//              onPressed: (){},
-//              text: "whatsapp",
-//              icon: Icon(Icons.directions_bike),
-//            ),
+              GFButton(
+                type: GFButtonType.transparent,
+                color: GFColor.warning,
+                onPressed: () {},
+                text: 'whatsapp',
+                icon: Icon(Icons.directions_bike),
+              ),
 //
 //            GFButton(
 //              text: "linkedin",
@@ -804,22 +858,34 @@ class _MyHomePageState extends State<MyHomePage>
 //              backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
 //            ),
 
-//            GFSegmentTabs(
-//              tabController: tabController,
-//              initialIndex: 0,
-//              length: 3,
-//              tabs: <Widget>[
-//                Text(
-//                  "Tab1",
-//                ),
-//                Text(
-//                  "Tab2",
-//                ),
-//                Text(
-//                  "Tab3",
-//                ),
-//              ],
-//            ),
+              GFSegmentTabs(
+                tabController: tabController,
+                initialIndex: 0,
+                length: 3,
+                tabs: const <Widget>[
+                  Text(
+                    'Tab1',
+                  ),
+                  Text(
+                    'Tab2',
+                  ),
+                  Text(
+                    'Tab3',
+                  ),
+                ],
+                indicatorColor: Colors.teal,
+                border: Border.all(color: Colors.teal),
+                labelColor: Colors.white,
+                unselectedLabelColor: Colors.teal,
+                labelStyle: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                ),
+                unselectedLabelStyle: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                ),
+              ),
 //
 //            GFTabBarView(controller: tabController, children: <Widget>[
 //              Container(color: Colors.red),
@@ -1235,53 +1301,47 @@ class _MyHomePageState extends State<MyHomePage>
 //            ),
             ],
           ),
-//      ),
-//      bottomNavigationBar: GFTabBar(
-//        initialIndex: 0,
-//        length: 3,
-//        controller: tabController,
-//        tabs: [
-//          Tab(
-//            icon: Icon(Icons.directions_bike),
-//            child: Text(
-//              "Tab1",
-//            ),
-//          ),
-//          Tab(
-//            icon: Icon(Icons.directions_bus),
-//            child: Text(
-//              "Tab2",
-//            ),
-//          ),
-//          Tab(
-//            icon: Icon(Icons.directions_railway),
-//            child: Text(
-//              "Tab3",
-//            ),
-//          ),
-//        ],
-//        shape: RoundedRectangleBorder(
-//            borderRadius: BorderRadius.only(
-//                topLeft: Radius.circular(24.0),
-//                topRight: Radius.circular(24.0))),
-//        indicatorColor: Colors.white,
-////        indicatorSize: TabBarIndicatorSize.label,
-//        labelColor: Colors.lightGreen,
-//        labelPadding: EdgeInsets.all(8.0),
-//        tabBarColor: Colors.blueGrey,
-//        unselectedLabelColor: Colors.black,
-//        labelStyle: TextStyle(
-//          fontWeight: FontWeight.w500,
-//          fontSize: 13.0,
-//          color: Colors.deepOrange,
-//          fontFamily: 'OpenSansBold',
-//        ),
-//        unselectedLabelStyle: TextStyle(
-//          fontWeight: FontWeight.w500,
-//          fontSize: 13.0,
-//          color: Colors.black,
-//          fontFamily: 'OpenSansBold',
-//        ),
         ),
+//        bottomNavigationBar: GFTabBar(
+//          initialIndex: 0,
+//          length: 3,
+//          controller: tabController,
+//          tabs: const [
+//            Text(
+//              'Tab1',
+//            ),
+//            Text(
+//              'Tab2',
+//            ),
+//            Tab(
+//              icon: Icon(Icons.directions_railway),
+//              child: Text(
+//                'Tab3',
+//              ),
+//            ),
+//          ],
+//          shape: RoundedRectangleBorder(
+//              borderRadius: BorderRadius.only(
+//                  topLeft: Radius.circular(24.0),
+//                  topRight: Radius.circular(24.0))),
+////          indicatorColor: Colors.white,
+//        indicatorSize: TabBarIndicatorSize.label,
+////          labelColor: Colors.lightGreen,
+////          labelPadding: EdgeInsets.all(8.0),
+////          tabBarColor: Colors.blueGrey,
+////          unselectedLabelColor: Colors.black,
+//          labelStyle: TextStyle(
+//            fontWeight: FontWeight.w500,
+//            fontSize: 13,
+//            color: Colors.deepOrange,
+//            fontFamily: 'OpenSansBold',
+//          ),
+//          unselectedLabelStyle: TextStyle(
+//            fontWeight: FontWeight.w500,
+//            fontSize: 13,
+//            color: Colors.black,
+//            fontFamily: 'OpenSansBold',
+//          ),
+//        ),
       );
 }
