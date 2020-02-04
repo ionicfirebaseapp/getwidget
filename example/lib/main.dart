@@ -256,21 +256,22 @@ class _MyHomePageState extends State<MyHomePage>
 
               GFRating(
                 value: _rating,
-                filledIcon: Icon(
-                  Icons.sentiment_very_satisfied,
-                  color: Colors.green,
-                  size: 50,
-                ),
-                halfFilledIcon: Icon(
-                  Icons.sentiment_neutral,
-                  color: Colors.amber,
-                  size: 50,
-                ),
-                defaultIcon: Icon(
-                  Icons.sentiment_very_dissatisfied,
-                  color: Colors.red,
-                  size: 50,
-                ),
+//                filledIcon: Icon(
+//                  Icons.sentiment_very_satisfied,
+//                  color: Colors.green,
+//                  size: 50,
+//                ),
+//                halfFilledIcon: Icon(
+//                  Icons.sentiment_neutral,
+//                  color: Colors.amber,
+//                  size: 50,
+//                ),
+//                defaultIcon: Icon(
+//                  Icons.sentiment_very_dissatisfied,
+//                  color: Colors.red,
+//                  size: 50,
+//                ),
+              emoticon: true,
                 onChanged: (value) {
                   setState(() {
                     _rating = value;
