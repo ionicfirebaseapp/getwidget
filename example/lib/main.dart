@@ -40,10 +40,14 @@ class _MyHomePageState extends State<MyHomePage>
       GlobalKey<ScaffoldState>();
 
   TabController tabController;
+  final _ratingController = TextEditingController();
+  double _rating = 3;
+  double _userRating = 4.5;
 
   @override
   void initState() {
     super.initState();
+    _ratingController.text = '4.5';
     tabController = TabController(length: 3, vsync: this);
   }
 
@@ -67,8 +71,6 @@ class _MyHomePageState extends State<MyHomePage>
     'Xamarin2',
   ];
 
-  var rating = 3.5;
-
   @override
   Widget build(BuildContext context) => Scaffold(
         drawer: GFDrawer(
@@ -79,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage>
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            stops: [0.1, 0.5, 0.7, 0.9],
+            stops: const [0.1, 0.5, 0.7, 0.9],
             colors: [
               Colors.teal[800],
               Colors.teal[600],
@@ -137,15 +139,49 @@ class _MyHomePageState extends State<MyHomePage>
 //        centerTitle: true,
 //        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
           title: const Text('UI Kit'),
+//              GFSegmentTabs(
+//            tabController: tabController,
+//            initialIndex: 0,
+//            length: 3,
+//            tabs: const <Widget>[
+//              Text(
+//                'Tab1',
+//              ),
+//              Text(
+//                'Tab2',
+//              ),
+//              Text(
+//                'Tab3',
+//              ),
+//            ],
+//          ),
 //        bottom: TabBar(
 //          controller: tabController,
-//          tabs: [
-//            Tab(icon: Icon(Icons.directions_car)),
-//            Tab(icon: Icon(Icons.directions_transit)),
-//            Tab(icon: Icon(Icons.directions_bike)),
+//          tabs: const [
+//            Text(
+//              'Tab1',
+//            ),
+//            Text(
+//              'Tab1',
+//            ),
+//            Text(
+//              'Tab1',
+//            ),
 //          ],
+//          labelStyle: TextStyle(
+//            fontWeight: FontWeight.w900,
+//            fontSize: 19,
+//            color: Colors.deepOrange,
+//            fontFamily: 'OpenSansBold',
+//          ),
+//          unselectedLabelStyle: TextStyle(
+//            fontWeight: FontWeight.w500,
+//            fontSize: 13,
+//            color: Colors.black,
+//            fontFamily: 'OpenSansBold',
+//          ),
 //        ),
-          searchBar: true,
+//          searchBar: true,
 //        searchHintText: "aaaaaaa",
 //        searchHintStyle: TextStyle(fontSize: 18.0, color: Colors.redAccent),
 //        searchStyle: TextStyle(fontSize: 10.0, color: Colors.green),
@@ -173,14 +209,114 @@ class _MyHomePageState extends State<MyHomePage>
 //          Container(color: Colors.green),
 //          Container(color: Colors.blue)
 //      ]),
+            SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              GFRating(
+                value: _rating,
+                onChanged: (value) {
+                  setState(() {
+                    _rating = value;
+                    print('user selected $_rating');
+                  });
+                },
+              ),
 
-//          SingleChildScrollView(
-//        child:
-            Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            GFSearchBar(
+              GFRating(
+                value: _rating,
+//              size: 50,
+                filledIcon: Icon(
+                  Icons.done_outline,
+                  size: 40,
+                  color: Colors.teal,
+                ),
+                halfFilledIcon: Icon(
+                  Icons.done_all,
+                  size: 40,
+                  color: Colors.teal.withOpacity(0.75),
+                ),
+                defaultIcon: Icon(
+                  Icons.done,
+                  size: 40,
+                  color: Colors.teal.withOpacity(0.25),
+                ),
+//                spacing: 8,
+//              color: Colors.teal,
+//              borderColor: Colors.tealAccent,
+//              allowHalfRating: false,
+                onChanged: (value) {
+                  setState(() {
+                    _rating = value;
+                    print('user selected $_rating');
+                  });
+                },
+              ),
+
+              GFRating(
+                value: _rating,
+                filledIcon: Icon(
+                  Icons.sentiment_very_satisfied,
+                  color: Colors.green,
+                  size: 50,
+                ),
+                halfFilledIcon: Icon(
+                  Icons.sentiment_neutral,
+                  color: Colors.amber,
+                  size: 50,
+                ),
+                defaultIcon: Icon(
+                  Icons.sentiment_very_dissatisfied,
+                  color: Colors.red,
+                  size: 50,
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _rating = value;
+                    print('user selected $_rating');
+                  });
+                },
+              ),
+
+              GFRating(
+                value: _userRating,
+                filledIcon: Image.asset(
+                  'lib/assets/heart.png',
+                  height: 50,
+                  width: 50,
+                  color: Colors.amber,
+                ),
+                halfFilledIcon: Image.asset(
+                  'lib/assets/heart_half.png',
+                  height: 50,
+                  width: 50,
+                  color: Colors.amber,
+                ),
+                defaultIcon: Image.asset(
+                  'lib/assets/heart_border.png',
+                  height: 50,
+                  width: 50,
+                  color: Colors.amber,
+                ),
+                spacing: 8,
+                color: Colors.teal,
+                borderColor: Colors.tealAccent,
+                controller: _ratingController,
+                showTextForm: true,
+                suffixIcon: GFButton(
+                  type: GFButtonType.transparent,
+                  onPressed: () {
+                    setState(() {
+                      _userRating =
+                          double.parse(_ratingController.text ?? '0.0');
+                    });
+                  },
+                  child: const Text('Rate'),
+                ),
+              ),
+
+              GFSearchBar(
 //              searchBoxInputDecoration: InputDecoration(
 //                enabledBorder: OutlineInputBorder(
 //                  borderSide: BorderSide(
@@ -189,75 +325,57 @@ class _MyHomePageState extends State<MyHomePage>
 //                  borderRadius: BorderRadius.circular(50)
 //                ),
 //              ),
-                searchList: list,
+                  searchList: list,
 //              hideSearchBoxWhenItemSelected: false,
 //              overlaySearchListHeight: 100.0,
-                searchQueryBuilder: (query, list) => list
-                    .where((item) =>
-                        item.toLowerCase().contains(query.toLowerCase()))
-                    .toList(),
-                overlaySearchListItemBuilder: (item) => Container(
-                      padding: const EdgeInsets.all(8),
-                      child: Text(
-                        item,
-                        style: const TextStyle(fontSize: 18),
+                  searchQueryBuilder: (query, list) => list
+                      .where((item) =>
+                          item.toLowerCase().contains(query.toLowerCase()))
+                      .toList(),
+                  overlaySearchListItemBuilder: (item) => Container(
+                        padding: const EdgeInsets.all(8),
+                        child: Text(
+                          item,
+                          style: const TextStyle(fontSize: 18),
+                        ),
                       ),
-                    ),
 //              noItemsFoundWidget: Container(
 //                color: Colors.green,
 //                child: Text("no items found..."),
 //              ),
-                onItemSelected: (item) {
-                  setState(() {
-                    print('ssssssss $item');
-                  });
-                }),
+                  onItemSelected: (item) {
+                    setState(() {
+                      print('selected item $item');
+                    });
+                  }),
 
-            GFRating(
-              rating: rating,
-//          itemSize: 65,
-              filledIcon: Icons.star,
-              halfFilledIcon: Icons.star_half,
-              defaultIcon: Icons.star_border,
-              itemCount: 5,
-              allowHalfRating: false,
-              spacing: 2,
-              color: Colors.teal,
-              borderColor: Colors.tealAccent,
-              onRatingChanged: (value) {
-                setState(() {
-                  rating = value;
-                });
-              },
-            ),
-
-            GFCard(
-              content: Column(
-                children: <Widget>[
-                  GFTypography(
-                    text: 'Toast',
-                    type: GFTypographyType.typo6,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  GFToast(
-                    text: 'Happy New Year',
-                    button: GFButton(
-                      onPressed: () {
-                        print("dfr");
-                      },
-                      text: 'OK',
-                      type: GFButtonType.outline,
-                      color: GFColor.warning,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+//            GFCard(
+//              content: Column(
+//                children: <Widget>[
+//                  const GFTypography(
+//                    text: 'Toast',
+//                    type: GFTypographyType.typo6,
+//                  ),
+//                  const SizedBox(
+//                    height: 20,
+//                  ),
+//                  const SizedBox(
+//                    height: 20,
+//                  ),
+//                  GFToast(
+//                    text: 'Happy New Year',
+//                    button: GFButton(
+//                      onPressed: () {
+//                        print('dfr');
+//                      },
+//                      text: 'OK',
+//                      type: GFButtonType.outline,
+//                      color: GFColor.warning,
+//                    ),
+//                  ),
+//                ],
+//              ),
+//            ),
 //
 //            GFCard(
 //              content: Column(
@@ -501,11 +619,13 @@ class _MyHomePageState extends State<MyHomePage>
 //            )
 //            ),
 
-//            GFButton(
-//              onPressed: (){},
-//              text: "whatsapp",
-//              icon: Icon(Icons.directions_bike),
-//            ),
+              GFButton(
+                type: GFButtonType.transparent,
+                color: GFColor.warning,
+                onPressed: () {},
+                text: 'whatsapp',
+                icon: Icon(Icons.directions_bike),
+              ),
 //
 //            GFButton(
 //              text: "linkedin",
@@ -596,12 +716,12 @@ class _MyHomePageState extends State<MyHomePage>
 //              ],
 //            )),
 
-            // Image.asset(
-            //   'lib/assets/food.jpeg',
-            //   fit: BoxFit.cover,
-            //   color: Color(0xff0d69ff).withOpacity(1.0),
-            //   colorBlendMode: BlendMode.softLight,
-            // ),
+              // Image.asset(
+              //   'lib/assets/food.jpeg',
+              //   fit: BoxFit.cover,
+              //   color: Color(0xff0d69ff).withOpacity(1.0),
+              //   colorBlendMode: BlendMode.softLight,
+              // ),
 
 //            GFCard(
 //              content: Container(
@@ -738,22 +858,34 @@ class _MyHomePageState extends State<MyHomePage>
 //              backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
 //            ),
 
-//            GFSegmentTabs(
-//              tabController: tabController,
-//              initialIndex: 0,
-//              length: 3,
-//              tabs: <Widget>[
-//                Text(
-//                  "Tab1",
-//                ),
-//                Text(
-//                  "Tab2",
-//                ),
-//                Text(
-//                  "Tab3",
-//                ),
-//              ],
-//            ),
+              GFSegmentTabs(
+                tabController: tabController,
+                initialIndex: 0,
+                length: 3,
+                tabs: const <Widget>[
+                  Text(
+                    'Tab1',
+                  ),
+                  Text(
+                    'Tab2',
+                  ),
+                  Text(
+                    'Tab3',
+                  ),
+                ],
+                indicatorColor: Colors.teal,
+                border: Border.all(color: Colors.teal),
+                labelColor: Colors.white,
+                unselectedLabelColor: Colors.teal,
+                labelStyle: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                ),
+                unselectedLabelStyle: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                ),
+              ),
 //
 //            GFTabBarView(controller: tabController, children: <Widget>[
 //              Container(color: Colors.red),
@@ -1067,7 +1199,7 @@ class _MyHomePageState extends State<MyHomePage>
 ////              border: Border.all(color: Colors.pink, width: 2.0),
 //            ),
 //            GFAvatar(
-            //              radius: 20.0,
+              //              radius: 20.0,
 //                 maxRadius: 50,
 
 //              child: Text("de"),
@@ -1167,55 +1299,49 @@ class _MyHomePageState extends State<MyHomePage>
 ////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 ////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
 //            ),
-          ],
+            ],
+          ),
         ),
-//      ),
-//      bottomNavigationBar: GFTabBar(
-//        initialIndex: 0,
-//        length: 3,
-//        controller: tabController,
-//        tabs: [
-//          Tab(
-//            icon: Icon(Icons.directions_bike),
-//            child: Text(
-//              "Tab1",
+//        bottomNavigationBar: GFTabBar(
+//          initialIndex: 0,
+//          length: 3,
+//          controller: tabController,
+//          tabs: const [
+//            Text(
+//              'Tab1',
 //            ),
-//          ),
-//          Tab(
-//            icon: Icon(Icons.directions_bus),
-//            child: Text(
-//              "Tab2",
+//            Text(
+//              'Tab2',
 //            ),
-//          ),
-//          Tab(
-//            icon: Icon(Icons.directions_railway),
-//            child: Text(
-//              "Tab3",
+//            Tab(
+//              icon: Icon(Icons.directions_railway),
+//              child: Text(
+//                'Tab3',
+//              ),
 //            ),
+//          ],
+//          shape: RoundedRectangleBorder(
+//              borderRadius: BorderRadius.only(
+//                  topLeft: Radius.circular(24.0),
+//                  topRight: Radius.circular(24.0))),
+////          indicatorColor: Colors.white,
+//        indicatorSize: TabBarIndicatorSize.label,
+////          labelColor: Colors.lightGreen,
+////          labelPadding: EdgeInsets.all(8.0),
+////          tabBarColor: Colors.blueGrey,
+////          unselectedLabelColor: Colors.black,
+//          labelStyle: TextStyle(
+//            fontWeight: FontWeight.w500,
+//            fontSize: 13,
+//            color: Colors.deepOrange,
+//            fontFamily: 'OpenSansBold',
 //          ),
-//        ],
-//        shape: RoundedRectangleBorder(
-//            borderRadius: BorderRadius.only(
-//                topLeft: Radius.circular(24.0),
-//                topRight: Radius.circular(24.0))),
-//        indicatorColor: Colors.white,
-////        indicatorSize: TabBarIndicatorSize.label,
-//        labelColor: Colors.lightGreen,
-//        labelPadding: EdgeInsets.all(8.0),
-//        tabBarColor: Colors.blueGrey,
-//        unselectedLabelColor: Colors.black,
-//        labelStyle: TextStyle(
-//          fontWeight: FontWeight.w500,
-//          fontSize: 13.0,
-//          color: Colors.deepOrange,
-//          fontFamily: 'OpenSansBold',
+//          unselectedLabelStyle: TextStyle(
+//            fontWeight: FontWeight.w500,
+//            fontSize: 13,
+//            color: Colors.black,
+//            fontFamily: 'OpenSansBold',
+//          ),
 //        ),
-//        unselectedLabelStyle: TextStyle(
-//          fontWeight: FontWeight.w500,
-//          fontSize: 13.0,
-//          color: Colors.black,
-//          fontFamily: 'OpenSansBold',
-//        ),
-//      ),
       );
 }
