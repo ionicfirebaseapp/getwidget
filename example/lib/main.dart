@@ -215,38 +215,7 @@ class _MyHomePageState extends State<MyHomePage>
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              GFSearchBar(
-//              searchBoxInputDecoration: InputDecoration(
-//                enabledBorder: OutlineInputBorder(
-//                  borderSide: BorderSide(
-//                    color: Colors.teal,
-//                  ),
-//                  borderRadius: BorderRadius.circular(50)
-//                ),
-//              ),
-                  searchList: list,
-//              hideSearchBoxWhenItemSelected: false,
-//              overlaySearchListHeight: 100.0,
-                  searchQueryBuilder: (query, list) => list
-                      .where((item) =>
-                          item.toLowerCase().contains(query.toLowerCase()))
-                      .toList(),
-                  overlaySearchListItemBuilder: (item) => Container(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(
-                          item,
-                          style: const TextStyle(fontSize: 18),
-                        ),
-                      ),
-//              noItemsFoundWidget: Container(
-//                color: Colors.green,
-//                child: Text("no items found..."),
-//              ),
-                  onItemSelected: (item) {
-                    setState(() {
-                      print('ssssssss $item');
-                    });
-                  }),
+
 
               GFRating(
                 value: _rating,
@@ -314,6 +283,39 @@ class _MyHomePageState extends State<MyHomePage>
                   child: const Text('Rate'),
                 ),
               ),
+
+              GFSearchBar(
+//              searchBoxInputDecoration: InputDecoration(
+//                enabledBorder: OutlineInputBorder(
+//                  borderSide: BorderSide(
+//                    color: Colors.teal,
+//                  ),
+//                  borderRadius: BorderRadius.circular(50)
+//                ),
+//              ),
+                  searchList: list,
+//              hideSearchBoxWhenItemSelected: false,
+//              overlaySearchListHeight: 100.0,
+                  searchQueryBuilder: (query, list) => list
+                      .where((item) =>
+                      item.toLowerCase().contains(query.toLowerCase()))
+                      .toList(),
+                  overlaySearchListItemBuilder: (item) => Container(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      item,
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                  ),
+//              noItemsFoundWidget: Container(
+//                color: Colors.green,
+//                child: Text("no items found..."),
+//              ),
+                  onItemSelected: (item) {
+                    setState(() {
+                      print('ssssssss $item');
+                    });
+                  }),
 
 //            GFCard(
 //              content: Column(
@@ -585,11 +587,13 @@ class _MyHomePageState extends State<MyHomePage>
 //            )
 //            ),
 
-//            GFButton(
-//              onPressed: (){},
-//              text: "whatsapp",
-//              icon: Icon(Icons.directions_bike),
-//            ),
+            GFButton(
+              type: GFButtonType.transparent,
+              color: GFColor.warning,
+              onPressed: (){},
+              text: 'whatsapp',
+              icon: Icon(Icons.directions_bike),
+            ),
 //
 //            GFButton(
 //              text: "linkedin",

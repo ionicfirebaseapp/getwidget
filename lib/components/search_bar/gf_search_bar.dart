@@ -235,11 +235,8 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
           left: position.left,
           width: width,
           child: CompositedTransformFollower(
-            offset: Offset(
-              0,
-              height - position.bottom < overlaySearchListHeight
-                  ? (textBoxHeight + 6.0)
-                  : -(overlaySearchListHeight - 8.0),
+            offset: const Offset(
+              0, 56,
             ),
             showWhenUnlinked: false,
             link: _layerLink,
