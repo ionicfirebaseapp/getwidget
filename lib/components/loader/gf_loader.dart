@@ -5,20 +5,20 @@ import 'package:getflutter/types/gf_loader_type.dart';
 
 class GFLoader extends StatefulWidget {
 
-  final Color dotOneColor;
-  final Color dotTwoColor;
-  final Color dotThreeColor;
+  final Color loaderColorOne;
+  final Color loaderColorTwo;
+  final Color loaderColorThree;
   final Duration duration;
-  final LoaderDotType dotType;
-  final Icon dotIcon;
+  final LoaderDotType loaderType;
+  final Icon loaderIcon;
 
   GFLoader({
-    this.dotOneColor = Colors.redAccent,
-    this.dotTwoColor = Colors.green,
-    this.dotThreeColor = Colors.blueAccent,
+    this.loaderColorOne = Colors.redAccent,
+    this.loaderColorTwo = Colors.green,
+    this.loaderColorThree = Colors.blueAccent,
     this.duration = const Duration(milliseconds: 1000),
-    this.dotType = LoaderDotType.circle,
-    this.dotIcon = const Icon(Icons.blur_on)
+    this.loaderType = LoaderDotType.circle,
+    this.loaderIcon = const Icon(Icons.blur_on)
   });
 
   @override
@@ -71,44 +71,48 @@ class _GFLoaderState extends State<GFLoader>
 
   @override
   Widget build(BuildContext context) {
-    //print(animation_1.value <= 0.4 ? 2.5 * animation_1.value : (animation_1.value > 0.40 && animation_1.value <= 0.60) ? 1.0 : 2.5 - (2.5 * animation_1.value));
+//    print(animation_1.value <= 0.4 ? 2.5 * animation_1.value : (animation_1.value > 0.40 && animation_1.value <= 0.60) ? 1.0 : 2.5 - (2.5 * animation_1.value));
     return Container(
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Opacity(
-            opacity: (animation_1.value <= 0.4 ? 2.5 * animation_1.value : (animation_1.value > 0.40 && animation_1.value <= 0.60) ? 1.0 : 2.5 - (2.5 * animation_1.value)),
+            opacity: (animation_1.value <= 0.4 ? 2.5 * animation_1.value :
+            (animation_1.value > 0.40 && animation_1.value <= 0.60) ? 1.0 : 2.5 - (2.5 * animation_1.value)),
+//            opacity: (animation_1.value <= 0.4 ? 2.5 * animation_1.value : (animation_1.value > 0.40 && animation_1.value <= 0.60) ? 1.0 : 2.5 - (2.5 * animation_1.value)),
             child: new Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: Dot(
                 radius: 10.0,
-                color: widget.dotOneColor,
-                type: widget.dotType,
-                icon: widget.dotIcon,
+                color: widget.loaderColorOne,
+                type: widget.loaderType,
+                icon: widget.loaderIcon,
               ),
             ),
           ),
           Opacity(
-            opacity: (animation_2.value <= 0.4 ? 2.5 * animation_2.value : (animation_2.value > 0.40 && animation_2.value <= 0.60)? 1.0 : 2.5 - (2.5 * animation_2.value)),
+            opacity: (animation_2.value <= 0.4 ? 2.5 * animation_2.value :
+            (animation_2.value > 0.40 && animation_2.value <= 0.60)? 1.0 : 2.5 - (2.5 * animation_2.value)),
             child: new Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: Dot(
                 radius: 10.0,
-                color: widget.dotTwoColor,
-                type: widget.dotType,
-                icon: widget.dotIcon,
+                color: widget.loaderColorTwo,
+                type: widget.loaderType,
+                icon: widget.loaderIcon,
               ),
             ),
           ),
           Opacity(
-            opacity: (animation_3.value <= 0.4 ? 2.5 * animation_3.value : (animation_3.value > 0.40 && animation_3.value <= 0.60) ? 1.0 : 2.5 - (2.5 * animation_3.value)),
+            opacity: (animation_3.value <= 0.4 ? 2.5 * animation_3.value :
+            (animation_3.value > 0.40 && animation_3.value <= 0.60) ? 1.0 : 2.5 - (2.5 * animation_3.value)),
             child: new Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: Dot(
                 radius: 10.0,
-                color: widget.dotThreeColor,
-                type: widget.dotType,
-                icon: widget.dotIcon,
+                color: widget.loaderColorThree,
+                type: widget.loaderType,
+                icon: widget.loaderIcon,
               ),
             ),
           ),
