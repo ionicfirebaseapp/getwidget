@@ -12,8 +12,13 @@ class GFDrawerHeaderPictures extends StatelessWidget {
     this.closeButton,
   }) : super(key: key);
 
+  /// A widget placed in the upper-left corner that represents the current
+  /// user's account. Normally a [CircleAvatar].
   final Widget currentAccountPicture;
 
+  /// A list of widgets that represent the current user's other accounts.
+  /// Up to three of these widgets will be arranged in a row in the header's
+  /// upper-right corner. Normally a list of [CircleAvatar] widgets.
   final List<Widget> otherAccountsPictures;
 
   /// widget onTap drawer get closed

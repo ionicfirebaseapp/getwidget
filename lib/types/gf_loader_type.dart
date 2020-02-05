@@ -1,3 +1,1 @@
-enum LoaderDotType {
-  square, circle, diamond, icon
-}
+enum LoaderDotType { square, circle, diamond, icon }
