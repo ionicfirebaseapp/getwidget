@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.4 - 2020-02-04
+
+### Fixed
+* GFSearchBar - minor issue fixed
+
+### Added
+* added new component
+    - GFRating
+
+
+
+
 ## 1.0.3 - 2020-01-30
 
 ### Fixed
