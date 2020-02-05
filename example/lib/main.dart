@@ -256,6 +256,7 @@ class _MyHomePageState extends State<MyHomePage>
 
               GFRating(
                 value: _rating,
+                size: GFSize.large,
                 filledIcon: Icon(
                   Icons.sentiment_very_satisfied,
                   color: Colors.green,
