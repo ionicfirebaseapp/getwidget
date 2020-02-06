@@ -181,7 +181,7 @@ class _MyHomePageState extends State<MyHomePage>
 //            fontFamily: 'OpenSansBold',
 //          ),
 //        ),
-//          searchBar: true,
+          searchBar: true,
 //        searchHintText: "aaaaaaa",
 //        searchHintStyle: TextStyle(fontSize: 18.0, color: Colors.redAccent),
 //        searchStyle: TextStyle(fontSize: 10.0, color: Colors.green),
@@ -1303,7 +1303,8 @@ class _MyHomePageState extends State<MyHomePage>
             ],
           ),
         ),
-//        bottomNavigationBar: GFTabBar(
+//        bottomNavigationBar:
+//  GFTabBar(
 //          initialIndex: 0,
 //          length: 3,
 //          controller: tabController,

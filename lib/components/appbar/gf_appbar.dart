@@ -292,7 +292,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _GFAppBarState extends State<GFAppBar> {
   static const double _defaultElevation = 4;
   Widget searchBar;
-  bool showSearchBar = true;
+  bool showSearchBar = false;
 
   void _handleDrawerButton() {
     Scaffold.of(context).openDrawer();
@@ -421,42 +421,44 @@ class _GFAppBarState extends State<GFAppBar> {
       );
     }
 
-    searchBar = TextField(
-      cursorColor: widget.searchBarColorTheme,
-      style: widget.searchTextStyle,
-      decoration: InputDecoration(
-        prefixIcon: Icon(
-          Icons.search,
-          color: widget.searchBarColorTheme,
-          size: 18,
-        ),
-        suffixIcon: GFIconButton(
-          icon: Icon(
-            Icons.close,
+    if(showSearchBar) {
+      searchBar = TextField(
+        cursorColor: widget.searchBarColorTheme,
+        style: widget.searchTextStyle,
+        decoration: InputDecoration(
+          prefixIcon: Icon(
+            Icons.search,
             color: widget.searchBarColorTheme,
-            size: 20,
+            size: 18,
           ),
-          type: GFButtonType.transparent,
-          onPressed: () {
-            setState(() {
-              showSearchBar = !showSearchBar;
-            });
-          },
-        ),
-        hintText: widget.searchHintText,
-        hintStyle: widget.searchHintStyle,
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            width: 1,
-            color: widget.searchBarColorTheme,
+          suffixIcon: GFIconButton(
+            icon: Icon(
+              Icons.close,
+              color: widget.searchBarColorTheme,
+              size: 20,
+            ),
+            type: GFButtonType.transparent,
+            onPressed: () {
+              setState(() {
+                showSearchBar = !showSearchBar;
+              });
+            },
+          ),
+          hintText: widget.searchHintText,
+          hintStyle: widget.searchHintStyle,
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              width: 1,
+              color: widget.searchBarColorTheme,
+            ),
           ),
         ),
-      ),
-      onTap: widget.onTap,
-      onChanged: widget.onChanged,
-      controller: widget.searchController,
-      onSubmitted: widget.onSubmitted,
-    );
+        onTap: widget.onTap,
+        onChanged: widget.onChanged,
+        controller: widget.searchController,
+        onSubmitted: widget.onSubmitted,
+      );
+    }
 
     if (!showSearchBar) {
       searchBar = ListTile(
@@ -471,7 +473,7 @@ class _GFAppBarState extends State<GFAppBar> {
           type: GFButtonType.transparent,
           onPressed: () {
             setState(() {
-              showSearchBar = !showSearchBar;
+              showSearchBar = true;
             });
           },
         ),
