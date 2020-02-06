@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:getflutter/getflutter.dart';
+import 'package:getflutter/components/slidable/gf_slidable_action_pane.dart';
 
 final List<String> imageList = [
   'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg',
@@ -225,16 +226,42 @@ class _MyHomePageState extends State<MyHomePage>
                 },
               ),
 
-              GFSlidable(
-                child:  GFListTile(
-                  padding: const EdgeInsets.all(30),
-                  color: Colors.teal,
-                  avatar: const GFAvatar(child: Text('tb'),),
-                  title: const Text('title'),
-                  subTitle: const Text('subtitle'),
-                  icon: const Icon(Icons.favorite),
+
+                Slidable(
+                  actionPane: SlidableDrawerActionPane(),
+                  actionExtentRatio: 0.25,
+                  child: Container(
+                    color: Colors.white,
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.indigoAccent,
+                        child: Text('3'),
+                        foregroundColor: Colors.white,
+                      ),
+                      title: Text('Tile n 3'),
+                      subtitle: Text('SlidableDrawerDelegate'),
+                    ),
+                  ),
+                  actions: <Widget>[
+                    GFIconButton(icon: Icon(Icons.favorite), onPressed: (){},),
+                    GFIconButton(icon: Icon(Icons.favorite_border), onPressed: (){},),
+                  ],
+                  secondaryActions: <Widget>[
+                    GFIconButton(icon: Icon(Icons.print), onPressed: (){},),
+                    GFIconButton(icon: Icon(Icons.widgets), onPressed: (){},),
+                  ],
                 ),
-              ),
+
+//              Slidable(
+//                child:  GFListTile(
+//                  padding: const EdgeInsets.all(30),
+//                  color: Colors.teal,
+//                  avatar: const GFAvatar(child: Text('tb'),),
+//                  title: const Text('title'),
+//                  subTitle: const Text('subtitle'),
+//                  icon: const Icon(Icons.favorite),
+//                ),
+//              ),
 
 
 
