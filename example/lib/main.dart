@@ -214,6 +214,7 @@ class _MyHomePageState extends State<MyHomePage>
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+
               GFRating(
                 value: _rating,
                 onChanged: (value) {
@@ -224,61 +225,74 @@ class _MyHomePageState extends State<MyHomePage>
                 },
               ),
 
-              GFRating(
-                value: _rating,
-//              size: 50,
-                filledIcon: Icon(
-                  Icons.done_outline,
-                  size: 40,
+              GFSlidable(
+                child:  GFListTile(
+                  padding: const EdgeInsets.all(30),
                   color: Colors.teal,
+                  avatar: const GFAvatar(child: Text('tb'),),
+                  title: const Text('title'),
+                  subTitle: const Text('subtitle'),
+                  icon: const Icon(Icons.favorite),
                 ),
-                halfFilledIcon: Icon(
-                  Icons.done_all,
-                  size: 40,
-                  color: Colors.teal.withOpacity(0.75),
-                ),
-                defaultIcon: Icon(
-                  Icons.done,
-                  size: 40,
-                  color: Colors.teal.withOpacity(0.25),
-                ),
-//                spacing: 8,
-//              color: Colors.teal,
-//              borderColor: Colors.tealAccent,
-//              allowHalfRating: false,
-                onChanged: (value) {
-                  setState(() {
-                    _rating = value;
-                    print('user selected $_rating');
-                  });
-                },
               ),
 
-              GFRating(
-                value: _rating,
-                size: GFSize.large,
-                filledIcon: Icon(
-                  Icons.sentiment_very_satisfied,
-                  color: Colors.green,
-                  size: 50,
-                ),
-                halfFilledIcon: Icon(
-                  Icons.sentiment_neutral,
-                  color: Colors.amber,
-                  size: 50,
-                ),
-                defaultIcon: Icon(
-                  Icons.sentiment_very_dissatisfied,
-                  color: Colors.red,
-                  size: 50,
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    _rating = value;
-                    print('user selected $_rating');
-                  });
-                },
-              ),
+
+
+//              GFRating(
+//                value: _rating,
+////              size: 50,
+//                filledIcon: Icon(
+//                  Icons.done_outline,
+//                  size: 40,
+//                  color: Colors.teal,
+//                ),
+//                halfFilledIcon: Icon(
+//                  Icons.done_all,
+//                  size: 40,
+//                  color: Colors.teal.withOpacity(0.75),
+//                ),
+//                defaultIcon: Icon(
+//                  Icons.done,
+//                  size: 40,
+//                  color: Colors.teal.withOpacity(0.25),
+//                ),
+////                spacing: 8,
+////              color: Colors.teal,
+////              borderColor: Colors.tealAccent,
+////              allowHalfRating: false,
+//                onChanged: (value) {
+//                  setState(() {
+//                    _rating = value;
+//                    print('user selected $_rating');
+//                  });
+//                },
+//              ),
+//
+//              GFRating(
+//                value: _rating,
+//                size: GFSize.large,
+//                filledIcon: Icon(
+//                  Icons.sentiment_very_satisfied,
+//                  color: Colors.green,
+//                  size: 50,
+//                ),
+//                halfFilledIcon: Icon(
+//                  Icons.sentiment_neutral,
+//                  color: Colors.amber,
+//                  size: 50,
+//                ),
+//                defaultIcon: Icon(
+//                  Icons.sentiment_very_dissatisfied,
+//                  color: Colors.red,
+//                  size: 50,
+//                ),
+//                onChanged: (value) {
+//                  setState(() {
+//                    _rating = value;
+//                    print('user selected $_rating');
+//                  });
+//                },
+//              ),
 
               GFRating(
                 value: _userRating,
