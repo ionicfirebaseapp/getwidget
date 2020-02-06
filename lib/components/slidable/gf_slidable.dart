@@ -1,33 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/button/gf_icon_button.dart';
 
+/// A controller that keep tracks of the active [SlidableState] and close
+/// the previous one.
+class GFSlidableController {
+  GFSlidableState _activeState;
+  gfSlidableState get activeState => _activeState;
+  set activeState(SlidableState value) {
+    _activeState?.close();
+    _activeState = value;
+  }
+}
+
 class GFSlidable extends StatefulWidget {
-  const GFSlidable({
-    this.child,
+  GFSlidable({
+    Key key,
+    @required Widget child,
+    GFSlidableController controller,
+  }) : this.builder(
+    key: key,
+    child: child,
+    controller: controller,
+  );
+
+  GFSlidable.builder({
+    Key key,
+    @required this.child,
+    this.controller,
   });
 
-  /// defines main widget
+  /// widget below this widget in the tree
   final Widget child;
+
+  /// controller that tracks active [GFSlidable] and keep only one open
+  final GFSlidableController controller;
+
+  /// The state from the closest instance of this class that encloses the given context.
+  static GFSlidableState of(BuildContext context) {
+    return context.ancestorStateOfType(const TypeMatcher<SlidableState>());
+  }
 
   @override
   _GFSlidableState createState() => _GFSlidableState();
 }
 
+
 class _GFSlidableState extends State<GFSlidable> {
 
-bool showAction = false;
-  
-  void _onDragStart(DragEndDetails details) {
-    if (details.primaryVelocity == 0)
-      return; // user have just tapped on screen (no dragging)
+  bool _onDrag = false;
 
-    if (details.primaryVelocity.compareTo(0) == 1) {
-       setState(() {
-         showAction = true;
-       });
-    }
+
+ void _onDragStart(DragStartDetails details) {
+  _onDrag = true;
+  widget.controller?.activeState = this;
+  _dragExtent = _actionsMoveController.value *
+      _actionsDragAxisExtent *
+      _dragExtent.sign;
+  if (_overallMoveController.isAnimating) {
+    _overallMoveController.stop();
   }
-  
+
+  if (_actionsMoveController.isAnimating) {
+    _actionsMoveController.stop();
+  }
+}
+
   Widget action = Row(
     children: <Widget>[
       GFIconButton(icon: Icon(Icons.favorite), onPressed: null)
@@ -37,7 +74,7 @@ bool showAction = false;
   @override
   Widget build(BuildContext context) =>
       GestureDetector(
-        onHorizontalDragEnd: (DragEndDetails details) => _onDragStart(details),
-  child: !showAction ?  widget.child : action,
+        onHorizontalDragStart: _onDragStart,
+  child: widget.child,
       );
 }
