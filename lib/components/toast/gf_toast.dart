@@ -72,7 +72,6 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
     animation = CurvedAnimation(
       parent: animationController,
       curve: Curves.easeIn,
-
     );
 
     animationController.forward();

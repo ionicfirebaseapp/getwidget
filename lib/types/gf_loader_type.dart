@@ -1,1 +1,7 @@
-enum GFLoaderType { android, ios, square, circle, custom ,}
+enum GFLoaderType {
+  android,
+  ios,
+  square,
+  circle,
+  custom,
+}
