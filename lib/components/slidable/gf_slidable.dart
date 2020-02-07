@@ -1,32 +1,32 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'gf_slidable_dissmissal.dart';
 import 'gf_fractionally_aligned_sized_box.dart';
+import 'gf_slidable_dissmissal.dart';
+
 
 const double _kActionsExtentRatio = 0.25;
-const double _kFastThreshold = 2500.0;
+const double _kFastThreshold = 2500;
 const double _kDismissThreshold = 0.75;
-const Curve _kResizeTimeCurve = const Interval(0.4, 1.0, curve: Curves.ease);
-const Duration _kMovementDuration = const Duration(milliseconds: 200);
+const Curve _kResizeTimeCurve = Interval(0.4, 1, curve: Curves.ease);
+const Duration _kMovementDuration = Duration(milliseconds: 200);
 
-/// The rendering mode in which the [Slidable] is.
-enum SlidableRenderingMode {
-  /// The [Slidable] is not showing actions.
+/// The rendering mode in which the [GFSlidable] is.
+enum GFSlidableRenderingMode {
+  /// The [GFSlidable] is not showing actions.
   none,
 
-  /// The [Slidable] is showing actions during sliding.
+  /// The [GFSlidable] is showing actions during sliding.
   slide,
 
-  /// The [Slidable] is showing actions during dismissing.
+  /// The [GFSlidable] is showing actions during dismissing.
   dismiss,
 
-  /// The [Slidable] is resizing after dismissing.
+  /// The [GFSlidable] is resizing after dismissing.
   resize,
 }
 
-/// The type of slide action that is currently been showed by the [Slidable].
+/// The type of slide action that is currently been showed by the [GFSlidable].
 enum SlideActionType {
   /// The [actions] are being shown.
   primary,
@@ -49,7 +49,7 @@ typedef FutureOr<bool> SlideActionWillBeDismissed(SlideActionType actionType);
 
 /// Signature for the builder callback used to create slide actions.
 typedef Widget SlideActionBuilder(BuildContext context, int index,
-    Animation<double> animation, SlidableRenderingMode step);
+    Animation<double> animation, GFSlidableRenderingMode step);
 
 /// A delegate that supplies slide actions.
 ///
@@ -72,7 +72,7 @@ abstract class SlideActionDelegate {
   ///
   /// Must not return null.
   Widget build(BuildContext context, int index, Animation<double> animation,
-      SlidableRenderingMode step);
+      GFSlidableRenderingMode step);
 
   /// Returns the number of actions this delegate will build.
   int get actionCount;
@@ -108,7 +108,7 @@ class SlideActionBuilderDelegate extends SlideActionDelegate {
 
   @override
   Widget build(BuildContext context, int index, Animation<double> animation,
-      SlidableRenderingMode step) =>
+          GFSlidableRenderingMode step) =>
       builder(context, index, animation, step);
 }
 
@@ -140,26 +140,26 @@ class SlideActionListDelegate extends SlideActionDelegate {
 
   @override
   Widget build(BuildContext context, int index, Animation<double> animation,
-      SlidableRenderingMode step) =>
+          GFSlidableRenderingMode step) =>
       actions[index];
 }
 
-class _SlidableScope extends InheritedWidget {
-  _SlidableScope({
+class _GFSlidableScope extends InheritedWidget {
+  _GFSlidableScope({
     Key key,
     @required this.state,
     @required Widget child,
   }) : super(key: key, child: child);
 
-  final SlidableState state;
+  final GFSlidableState state;
 
   @override
-  bool updateShouldNotify(_SlidableScope oldWidget) => oldWidget.state != state;
+  bool updateShouldNotify(_GFSlidableScope oldWidget) => oldWidget.state != state;
 }
 
-/// The data used by a [Slidable].
-class SlidableData extends InheritedWidget {
-  SlidableData({
+/// The data used by a [GFSlidable].
+class GFSlidableData extends InheritedWidget {
+  GFSlidableData({
     Key key,
     @required this.actionType,
     @required this.renderingMode,
@@ -176,11 +176,11 @@ class SlidableData extends InheritedWidget {
     @required Widget child,
   }) : super(key: key, child: child);
 
-  /// The type of slide action that is currently been showed by the [Slidable].
+  /// The type of slide action that is currently been showed by the [GFSlidable].
   final SlideActionType actionType;
 
-  /// The rendering mode in which the [Slidable] is.
-  final SlidableRenderingMode renderingMode;
+  /// The rendering mode in which the [GFSlidable] is.
+  final GFSlidableRenderingMode renderingMode;
 
   /// The total extent of all the actions
   final double totalActionsExtent;
@@ -189,7 +189,7 @@ class SlidableData extends InheritedWidget {
   /// dismissed.
   final double dismissThreshold;
 
-  /// Indicates whether the [Slidable] can be dismissed.
+  /// Indicates whether the [GFSlidable] can be dismissed.
   final bool dismissible;
 
   /// The current actions that have to be shown.
@@ -205,7 +205,7 @@ class SlidableData extends InheritedWidget {
   final Animation<double> dismissAnimation;
 
   /// The slidable.
-  final Slidable slidable;
+  final GFSlidable slidable;
 
   /// Relative ratio between one slide action and the extent of the child.
   final double actionExtentRatio;
@@ -227,9 +227,9 @@ class SlidableData extends InheritedWidget {
 
   /// The alignment of the actions.
   Alignment get alignment => Alignment(
-    directionIsXAxis ? -actionSign : 0.0,
-    directionIsXAxis ? 0.0 : -actionSign,
-  );
+        directionIsXAxis ? -actionSign : 0.0,
+        directionIsXAxis ? 0.0 : -actionSign,
+      );
 
   /// If the [direction] is horizontal, returns the [totalActionsExtent]
   /// otherwise null.
@@ -242,8 +242,8 @@ class SlidableData extends InheritedWidget {
       directionIsXAxis ? null : totalActionsExtent;
 
   /// The data from the closest instance of this class that encloses the given context.
-  static SlidableData of(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(SlidableData);
+  static GFSlidableData of(BuildContext context) {
+    return context.inheritFromWidgetOfExactType(GFSlidableData);
   }
 
   /// Gets the the given offset related to the current direction.
@@ -281,12 +281,12 @@ class SlidableData extends InheritedWidget {
   }) {
     return FractionallyAlignedSizedBox(
       leftFactor:
-      directionIsXAxis ? (showActions ? positionFactor : null) : 0.0,
+          directionIsXAxis ? (showActions ? positionFactor : null) : 0.0,
       rightFactor:
-      directionIsXAxis ? (showActions ? null : positionFactor) : 0.0,
+          directionIsXAxis ? (showActions ? null : positionFactor) : 0.0,
       topFactor: directionIsXAxis ? 0.0 : (showActions ? positionFactor : null),
       bottomFactor:
-      directionIsXAxis ? 0.0 : (showActions ? null : positionFactor),
+          directionIsXAxis ? 0.0 : (showActions ? null : positionFactor),
       widthFactor: directionIsXAxis ? extentFactor : null,
       heightFactor: directionIsXAxis ? null : extentFactor,
       child: child,
@@ -297,38 +297,38 @@ class SlidableData extends InheritedWidget {
   List<Widget> buildActions(BuildContext context) {
     return List.generate(
       actionCount,
-          (int index) => actionDelegate.build(
+      (int index) => actionDelegate.build(
         context,
         index,
         actionsMoveAnimation,
-        SlidableRenderingMode.slide,
+        GFSlidableRenderingMode.slide,
       ),
     );
   }
 
   /// Whether the framework should notify widgets that inherit from this widget.
   @override
-  bool updateShouldNotify(SlidableData oldWidget) =>
+  bool updateShouldNotify(GFSlidableData oldWidget) =>
       (oldWidget.actionType != actionType) ||
-          (oldWidget.renderingMode != renderingMode) ||
-          (oldWidget.totalActionsExtent != totalActionsExtent) ||
-          (oldWidget.dismissThreshold != dismissThreshold) ||
-          (oldWidget.dismissible != dismissible) ||
-          (oldWidget.actionDelegate != actionDelegate) ||
-          (oldWidget.overallMoveAnimation != overallMoveAnimation) ||
-          (oldWidget.actionsMoveAnimation != actionsMoveAnimation) ||
-          (oldWidget.dismissAnimation != dismissAnimation) ||
-          (oldWidget.slidable != slidable) ||
-          (oldWidget.actionExtentRatio != actionExtentRatio) ||
-          (oldWidget.direction != direction);
+      (oldWidget.renderingMode != renderingMode) ||
+      (oldWidget.totalActionsExtent != totalActionsExtent) ||
+      (oldWidget.dismissThreshold != dismissThreshold) ||
+      (oldWidget.dismissible != dismissible) ||
+      (oldWidget.actionDelegate != actionDelegate) ||
+      (oldWidget.overallMoveAnimation != overallMoveAnimation) ||
+      (oldWidget.actionsMoveAnimation != actionsMoveAnimation) ||
+      (oldWidget.dismissAnimation != dismissAnimation) ||
+      (oldWidget.slidable != slidable) ||
+      (oldWidget.actionExtentRatio != actionExtentRatio) ||
+      (oldWidget.direction != direction);
 }
 
-/// A controller that keep tracks of the active [SlidableState] and close
+/// A controller that keep tracks of the active [GFSlidableState] and close
 /// the previous one.
-class SlidableController {
-  /// Creates a controller that keep tracks of the active [SlidableState] and close
+class GFSlidableController {
+  /// Creates a controller that keep tracks of the active [GFSlidableState] and close
   /// the previous one.
-  SlidableController({
+  GFSlidableController({
     this.onSlideAnimationChanged,
     this.onSlideIsOpenChanged,
   });
@@ -336,20 +336,20 @@ class SlidableController {
   /// Function called when the animation changed.
   final ValueChanged<Animation<double>> onSlideAnimationChanged;
 
-  /// Function called when the [Slidable] open status changed.
+  /// Function called when the [GFSlidable] open status changed.
   final ValueChanged<bool> onSlideIsOpenChanged;
 
   bool _isSlideOpen;
 
   Animation<double> _slideAnimation;
 
-  SlidableState _activeState;
+  GFSlidableState _activeState;
 
-  /// The state of the active [Slidable].
-  SlidableState get activeState => _activeState;
+  /// The state of the active [GFSlidable].
+  GFSlidableState get activeState => _activeState;
 
-  /// Changes the state of the active [Slidable].
-  set activeState(SlidableState value) {
+  /// Changes the state of the active [GFSlidable].
+  set activeState(GFSlidableState value) {
     _activeState?._flingAnimationController();
 
     _activeState = value;
@@ -384,7 +384,7 @@ class SlidableController {
 /// otherwise this widget can be slid up or slid down.
 ///
 /// By sliding in one of these direction, slide actions will appear.
-class Slidable extends StatefulWidget {
+class GFSlidable extends StatefulWidget {
   /// Creates a widget that can be slid.
   ///
   /// The [actions] contains the slide actions that appears when the child has been dragged down or to the right.
@@ -394,13 +394,13 @@ class Slidable extends StatefulWidget {
   /// and [showAllActionsThreshold] arguments must be greater or equal than 0 and less or equal than 1.
   ///
   /// The [key] argument must not be null if the `slideToDismissDelegate`
-  /// is provided because [Slidable]s are commonly
+  /// is provided because [GFSlidable]s are commonly
   /// used in lists and removed from the list when dismissed. Without keys, the
   /// default behavior is to sync widgets based on their index in the list,
   /// which means the item after the dismissed item would be synced with the
   /// state of the dismissed item. Using keys causes the widgets to sync
   /// according to their keys and avoids this pitfall.
-  Slidable({
+  GFSlidable({
     Key key,
     @required Widget child,
     @required Widget actionPane,
@@ -412,26 +412,26 @@ class Slidable extends StatefulWidget {
     Axis direction = Axis.horizontal,
     bool closeOnScroll = true,
     bool enabled = true,
-    SlidableDismissal dismissal,
-    SlidableController controller,
+//    GFSlidableDismissal dismissal,
+    GFSlidableController controller,
     double fastThreshold,
   }) : this.builder(
-    key: key,
-    child: child,
-    actionPane: actionPane,
-    actionDelegate: SlideActionListDelegate(actions: actions),
-    secondaryActionDelegate:
-    SlideActionListDelegate(actions: secondaryActions),
-    showAllActionsThreshold: showAllActionsThreshold,
-    actionExtentRatio: actionExtentRatio,
-    movementDuration: movementDuration,
-    direction: direction,
-    closeOnScroll: closeOnScroll,
-    enabled: enabled,
-    dismissal: dismissal,
-    controller: controller,
-    fastThreshold: fastThreshold,
-  );
+          key: key,
+          child: child,
+          actionPane: actionPane,
+          actionDelegate: SlideActionListDelegate(actions: actions),
+          secondaryActionDelegate:
+              SlideActionListDelegate(actions: secondaryActions),
+          showAllActionsThreshold: showAllActionsThreshold,
+          actionExtentRatio: actionExtentRatio,
+          movementDuration: movementDuration,
+          direction: direction,
+          closeOnScroll: closeOnScroll,
+          enabled: enabled,
+//          dismissal: dismissal,
+          controller: controller,
+          fastThreshold: fastThreshold,
+        );
 
   /// Creates a widget that can be slid.
   ///
@@ -442,13 +442,13 @@ class Slidable extends StatefulWidget {
   /// and [showAllActionsThreshold] arguments must be greater or equal than 0 and less or equal than 1.
   ///
   /// The [key] argument must not be null if the `slideToDismissDelegate`
-  /// is provided because [Slidable]s are commonly
+  /// is provided because [GFSlidable]s are commonly
   /// used in lists and removed from the list when dismissed. Without keys, the
   /// default behavior is to sync widgets based on their index in the list,
   /// which means the item after the dismissed item would be synced with the
   /// state of the dismissed item. Using keys causes the widgets to sync
   /// according to their keys and avoids this pitfall.
-  Slidable.builder({
+  GFSlidable.builder({
     Key key,
     @required this.child,
     @required this.actionPane,
@@ -460,35 +460,36 @@ class Slidable extends StatefulWidget {
     this.direction = Axis.horizontal,
     this.closeOnScroll = true,
     this.enabled = true,
-    this.dismissal,
+//    this.dismissal,
     this.controller,
     double fastThreshold,
-  })  : assert(actionPane != null),
-        assert(direction != null),
+  })  :
+//        assert(actionPane != null),
+//        assert(direction != null),
         assert(
-        showAllActionsThreshold != null &&
-            showAllActionsThreshold >= .0 &&
-            showAllActionsThreshold <= 1.0,
-        'showAllActionsThreshold must be between 0.0 and 1.0'),
+            showAllActionsThreshold != null &&
+                showAllActionsThreshold >= .0 &&
+                showAllActionsThreshold <= 1.0,
+            'showAllActionsThreshold must be between 0.0 and 1.0'),
         assert(
-        actionExtentRatio != null &&
-            actionExtentRatio >= .0 &&
-            actionExtentRatio <= 1.0,
-        'actionExtentRatio must be between 0.0 and 1.0'),
+            actionExtentRatio != null &&
+                actionExtentRatio >= .0 &&
+                actionExtentRatio <= 1.0,
+            'actionExtentRatio must be between 0.0 and 1.0'),
         assert(closeOnScroll != null),
         assert(enabled != null),
-        assert(dismissal == null || key != null,
-        'a key must be provided if slideToDismissDelegate is set'),
+//        assert(dismissal == null || key != null,
+//            'a key must be provided if slideToDismissDelegate is set'),
         assert(fastThreshold == null || fastThreshold >= .0,
-        'fastThreshold must be positive'),
+            'fastThreshold must be positive'),
         fastThreshold = fastThreshold ?? _kFastThreshold,
         super(key: key);
 
   /// The widget below this widget in the tree.
   final Widget child;
 
-  /// The controller that tracks the active [Slidable] and keep only one open.
-  final SlidableController controller;
+  /// The controller that tracks the active [GFSlidable] and keep only one open.
+  final GFSlidableController controller;
 
   /// A delegate that builds slide actions that appears when the child has been dragged
   /// down or to the right.
@@ -502,7 +503,7 @@ class Slidable extends StatefulWidget {
   final Widget actionPane;
 
   /// A delegate that controls how to dismiss the item.
-  final SlidableDismissal dismissal;
+//  final GFSlidableDismissal dismissal;
 
   /// Relative ratio between one slide action and the extent of the child.
   final double actionExtentRatio;
@@ -536,28 +537,28 @@ class Slidable extends StatefulWidget {
   final double fastThreshold;
 
   /// The state from the closest instance of this class that encloses the given context.
-  static SlidableState of(BuildContext context) {
-    final _SlidableScope scope =
-    context.inheritFromWidgetOfExactType(_SlidableScope);
+  static GFSlidableState of(BuildContext context) {
+    final _GFSlidableScope scope =
+        context.inheritFromWidgetOfExactType(_GFSlidableScope);
     return scope?.state;
   }
 
   @override
-  SlidableState createState() => SlidableState();
+  GFSlidableState createState() => GFSlidableState();
 }
 
-/// The state of [Slidable] widget.
-/// You can open or close the [Slidable] by calling the corresponding methods of
+/// The state of [GFSlidable] widget.
+/// You can open or close the [GFSlidable] by calling the corresponding methods of
 /// this object.
-class SlidableState extends State<Slidable>
-    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin<Slidable> {
+class GFSlidableState extends State<GFSlidable>
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin<GFSlidable> {
   @override
   void initState() {
     super.initState();
-    _overallMoveController =
-    AnimationController(duration: widget.movementDuration, vsync: this)
-      ..addStatusListener(_handleDismissStatusChanged)
-      ..addListener(_handleOverallPositionChanged);
+//    _overallMoveController =
+//        AnimationController(duration: widget.movementDuration, vsync: this)
+//          ..addStatusListener(_handleDismissStatusChanged)
+//          ..addListener(_handleOverallPositionChanged);
     _initAnimations();
   }
 
@@ -587,8 +588,8 @@ class SlidableState extends State<Slidable>
 
   double _dragExtent = 0.0;
 
-  SlidableRenderingMode _renderingMode = SlidableRenderingMode.none;
-  SlidableRenderingMode get renderingMode => _renderingMode;
+  GFSlidableRenderingMode _renderingMode = GFSlidableRenderingMode.none;
+  GFSlidableRenderingMode get renderingMode => _renderingMode;
 
   ScrollPosition _scrollPosition;
   bool _dragUnderway = false;
@@ -606,21 +607,21 @@ class SlidableState extends State<Slidable>
 
   double get _totalActionsExtent => widget.actionExtentRatio * (_actionCount);
 
-  double get _dismissThreshold {
-    if (widget.dismissal == null)
-      return _kDismissThreshold;
-    else
-      return widget.dismissal.dismissThresholds[actionType] ??
-          _kDismissThreshold;
-  }
+//  double get _dismissThreshold {
+//    if (widget.dismissal == null)
+//      return _kDismissThreshold;
+//    else
+//      return widget.dismissal.dismissThresholds[actionType] ??
+//          _kDismissThreshold;
+//  }
 
-  bool get _dismissible => widget.dismissal != null && _dismissThreshold < 1.0;
+//  bool get _dismissible => widget.dismissal != null && _dismissThreshold < 1.0;
 
   @override
   bool get wantKeepAlive =>
       !widget.closeOnScroll &&
-          (_overallMoveController?.isAnimating == true ||
-              _resizeController?.isAnimating == true);
+      (_overallMoveController?.isAnimating == true ||
+          _resizeController?.isAnimating == true);
 
   /// The current actions that have to be shown.
   SlideActionDelegate get _actionDelegate =>
@@ -647,7 +648,7 @@ class SlidableState extends State<Slidable>
   }
 
   @override
-  void didUpdateWidget(Slidable oldWidget) {
+  void didUpdateWidget(GFSlidable oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.closeOnScroll != oldWidget.closeOnScroll) {
@@ -679,7 +680,7 @@ class SlidableState extends State<Slidable>
     super.dispose();
   }
 
-  /// Opens the [Slidable].
+  /// Opens the [GFSlidable].
   /// By default it's open the [SlideActionType.primary] action pane, but you
   /// can modify this by setting [actionType].
   void open({SlideActionType actionType}) {
@@ -699,7 +700,7 @@ class SlidableState extends State<Slidable>
     }
   }
 
-  /// Closes this [Slidable].
+  /// Closes this [GFSlidable].
   void close() {
     if (!_overallMoveController.isDismissed) {
       if (widget.controller?.activeState == this) {
@@ -716,22 +717,22 @@ class SlidableState extends State<Slidable>
     }
   }
 
-  /// Dismisses this [Slidable].
+  /// Dismisses this [GFSlidable].
   /// By default it's dismiss by showing the [SlideActionType.primary] action pane, but you
   /// can modify this by setting [actionType].
-  void dismiss({SlideActionType actionType}) {
-    if (_dismissible) {
-      _dismissing = true;
-      actionType ??= _actionType;
-      if (actionType != _actionType) {
-        setState(() {
-          this.actionType = actionType;
-        });
-      }
-
-      _overallMoveController.fling(velocity: 1.0);
-    }
-  }
+//  void dismiss({SlideActionType actionType}) {
+//    if (_dismissible) {
+//      _dismissing = true;
+//      actionType ??= _actionType;
+//      if (actionType != _actionType) {
+//        setState(() {
+//          this.actionType = actionType;
+//        });
+//      }
+//
+//      _overallMoveController.fling(velocity: 1.0);
+//    }
+//  }
 
   void _isScrollingListener() {
     if (!widget.closeOnScroll || _scrollPosition == null) return;
@@ -757,25 +758,25 @@ class SlidableState extends State<Slidable>
       return;
     }
 
-    final double delta = details.primaryDelta;
-    _dragExtent += delta;
-    setState(() {
-      actionType = _dragExtent.sign >= 0
-          ? SlideActionType.primary
-          : SlideActionType.secondary;
-      if (_actionCount > 0) {
-        if (_dismissible && !widget.dismissal.dragDismissible) {
-          // If the widget is not dismissible by dragging, clamp drag result
-          // so the widget doesn't slide past [_totalActionsExtent].
-          _overallMoveController.value =
-              (_dragExtent.abs() / _overallDragAxisExtent)
-                  .clamp(0.0, _totalActionsExtent);
-        } else {
-          _overallMoveController.value =
-              _dragExtent.abs() / _overallDragAxisExtent;
-        }
-      }
-    });
+//    final double delta = details.primaryDelta;
+//    _dragExtent += delta;
+//    setState(() {
+//      actionType = _dragExtent.sign >= 0
+//          ? SlideActionType.primary
+//          : SlideActionType.secondary;
+//      if (_actionCount > 0) {
+//        if (_dismissible && !widget.dismissal.dragDismissible) {
+//          // If the widget is not dismissible by dragging, clamp drag result
+//          // so the widget doesn't slide past [_totalActionsExtent].
+//          _overallMoveController.value =
+//              (_dragExtent.abs() / _overallDragAxisExtent)
+//                  .clamp(0.0, _totalActionsExtent);
+//        } else {
+//          _overallMoveController.value =
+//              _dragExtent.abs() / _overallDragAxisExtent;
+//        }
+//      }
+//    });
   }
 
   void _handleDragEnd(DragEndDetails details) {
@@ -788,19 +789,19 @@ class SlidableState extends State<Slidable>
     final bool shouldOpen = velocity.sign == _dragExtent.sign;
     final bool fast = velocity.abs() > widget.fastThreshold;
 
-    if (_dismissible && overallMoveAnimation.value > _totalActionsExtent) {
-      // We are in a dismiss state.
-      if (overallMoveAnimation.value >= _dismissThreshold) {
-        dismiss();
-      } else {
-        open();
-      }
-    } else if (_actionsMoveAnimation.value >= widget.showAllActionsThreshold ||
-        (shouldOpen && fast)) {
-      open();
-    } else {
-      close();
-    }
+//    if (_dismissible && overallMoveAnimation.value > _totalActionsExtent) {
+//      // We are in a dismiss state.
+//      if (overallMoveAnimation.value >= _dismissThreshold) {
+//        dismiss();
+//      } else {
+//        open();
+//      }
+//    } else if (_actionsMoveAnimation.value >= widget.showAllActionsThreshold ||
+//        (shouldOpen && fast)) {
+//      open();
+//    } else {
+//      close();
+//    }
   }
 
   void _handleShowAllActionsStatusChanged(AnimationStatus status) {
@@ -817,77 +818,77 @@ class SlidableState extends State<Slidable>
   void _handleOverallPositionChanged() {
     final double value = _overallMoveController.value;
     if (value == _overallMoveController.lowerBound) {
-      _renderingMode = SlidableRenderingMode.none;
+      _renderingMode = GFSlidableRenderingMode.none;
     } else if (value <= _totalActionsExtent) {
-      _renderingMode = SlidableRenderingMode.slide;
+      _renderingMode = GFSlidableRenderingMode.slide;
     } else {
-      _renderingMode = SlidableRenderingMode.dismiss;
+      _renderingMode = GFSlidableRenderingMode.dismiss;
     }
 
     setState(() {});
   }
 
-  void _handleDismissStatusChanged(AnimationStatus status) async {
-    if (_dismissible) {
-      if (status == AnimationStatus.completed &&
-          _overallMoveController.value == _overallMoveController.upperBound &&
-          !_dragUnderway) {
-        if (widget.dismissal.onWillDismiss == null ||
-            await widget.dismissal.onWillDismiss(actionType)) {
-          _startResizeAnimation();
-        } else {
-          _dismissing = false;
-          if (widget.dismissal?.closeOnCanceled == true) {
-            close();
-          } else {
-            open();
-          }
-        }
-      }
-      updateKeepAlive();
-    }
-  }
+//  void _handleDismissStatusChanged(AnimationStatus status) async {
+//    if (_dismissible) {
+//      if (status == AnimationStatus.completed &&
+//          _overallMoveController.value == _overallMoveController.upperBound &&
+//          !_dragUnderway) {
+//        if (widget.dismissal.onWillDismiss == null ||
+//            await widget.dismissal.onWillDismiss(actionType)) {
+//          _startResizeAnimation();
+//        } else {
+//          _dismissing = false;
+//          if (widget.dismissal?.closeOnCanceled == true) {
+//            close();
+//          } else {
+//            open();
+//          }
+//        }
+//      }
+//      updateKeepAlive();
+//    }
+//  }
 
-  void _handleDismiss() {
-    widget.controller?.activeState = null;
-    final SlidableDismissal dismissal = widget.dismissal;
-    if (dismissal.onDismissed != null) {
-      assert(actionType != null);
-      dismissal.onDismissed(actionType);
-    }
-  }
+//  void _handleDismiss() {
+//    widget.controller?.activeState = null;
+//    final GFSlidableDismissal dismissal = widget.dismissal;
+//    if (dismissal.onDismissed != null) {
+//      assert(actionType != null);
+//      dismissal.onDismissed(actionType);
+//    }
+//  }
 
-  void _startResizeAnimation() {
-    assert(_overallMoveController != null);
-    assert(_overallMoveController.isCompleted);
-    assert(_resizeController == null);
-    assert(_sizePriorToCollapse == null);
-    final SlidableDismissal dismissal = widget.dismissal;
-    if (dismissal.resizeDuration == null) {
-      _handleDismiss();
-    } else {
-      _resizeController =
-      AnimationController(duration: dismissal.resizeDuration, vsync: this)
-        ..addListener(_handleResizeProgressChanged)
-        ..addStatusListener((AnimationStatus status) => updateKeepAlive());
-      _resizeController.forward();
-      setState(() {
-        _renderingMode = SlidableRenderingMode.resize;
-        _sizePriorToCollapse = context.size;
-        _resizeAnimation = Tween<double>(begin: 1.0, end: 0.0).animate(
-            CurvedAnimation(
-                parent: _resizeController, curve: _kResizeTimeCurve));
-      });
-    }
-  }
+//  void _startResizeAnimation() {
+//    assert(_overallMoveController != null);
+//    assert(_overallMoveController.isCompleted);
+//    assert(_resizeController == null);
+//    assert(_sizePriorToCollapse == null);
+//    final GFSlidableDismissal dismissal = widget.dismissal;
+//    if (dismissal.resizeDuration == null) {
+//      _handleDismiss();
+//    } else {
+//      _resizeController =
+//          AnimationController(duration: dismissal.resizeDuration, vsync: this)
+//            ..addListener(_handleResizeProgressChanged)
+//            ..addStatusListener((AnimationStatus status) => updateKeepAlive());
+//      _resizeController.forward();
+//      setState(() {
+//        _renderingMode = GFSlidableRenderingMode.resize;
+//        _sizePriorToCollapse = context.size;
+//        _resizeAnimation = Tween<double>(begin: 1.0, end: 0.0).animate(
+//            CurvedAnimation(
+//                parent: _resizeController, curve: _kResizeTimeCurve));
+//      });
+//    }
+//  }
 
-  void _handleResizeProgressChanged() {
-    if (_resizeController.isCompleted) {
-      _handleDismiss();
-    } else {
-      widget.dismissal.onResize?.call();
-    }
-  }
+//  void _handleResizeProgressChanged() {
+//    if (_resizeController.isCompleted) {
+//      _handleDismiss();
+//    } else {
+//      widget.dismissal.onResize?.call();
+//    }
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -897,44 +898,44 @@ class SlidableState extends State<Slidable>
 
     if (!(!widget.enabled ||
         ((widget.actionDelegate == null ||
-            widget.actionDelegate.actionCount == 0) &&
+                widget.actionDelegate.actionCount == 0) &&
             (widget.secondaryActionDelegate == null ||
                 widget.secondaryActionDelegate.actionCount == 0)))) {
       if (actionType == SlideActionType.primary &&
-          widget.actionDelegate != null &&
-          widget.actionDelegate.actionCount > 0 ||
+              widget.actionDelegate != null &&
+              widget.actionDelegate.actionCount > 0 ||
           actionType == SlideActionType.secondary &&
               widget.secondaryActionDelegate != null &&
               widget.secondaryActionDelegate.actionCount > 0) {
-        if (_dismissible) {
-          content = widget.dismissal;
-
-          if (_resizeAnimation != null) {
-            // we've been dragged aside, and are now resizing.
-            assert(() {
-              if (_resizeAnimation.status != AnimationStatus.forward) {
-                assert(_resizeAnimation.status == AnimationStatus.completed);
-                throw FlutterError(
-                    'A dismissed Slidable widget is still part of the tree.\n'
-                        'Make sure to implement the onDismissed handler and to immediately remove the Slidable\n'
-                        'widget from the application once that handler has fired.');
-              }
-              return true;
-            }());
-
-            content = SizeTransition(
-              sizeFactor: _resizeAnimation,
-              axis: _directionIsXAxis ? Axis.vertical : Axis.horizontal,
-              child: SizedBox(
-                width: _sizePriorToCollapse.width,
-                height: _sizePriorToCollapse.height,
-                child: content,
-              ),
-            );
-          }
-        } else {
-          content = widget.actionPane;
-        }
+//        if (_dismissible) {
+//          content = widget.dismissal;
+//
+//          if (_resizeAnimation != null) {
+//            // we've been dragged aside, and are now resizing.
+//            assert(() {
+//              if (_resizeAnimation.status != AnimationStatus.forward) {
+//                assert(_resizeAnimation.status == AnimationStatus.completed);
+//                throw FlutterError(
+//                    'A dismissed GFSlidable widget is still part of the tree.\n'
+//                    'Make sure to implement the onDismissed handler and to immediately remove the GFSlidable\n'
+//                    'widget from the application once that handler has fired.');
+//              }
+//              return true;
+//            }());
+//
+//            content = SizeTransition(
+//              sizeFactor: _resizeAnimation,
+//              axis: _directionIsXAxis ? Axis.vertical : Axis.horizontal,
+//              child: SizedBox(
+//                width: _sizePriorToCollapse.width,
+//                height: _sizePriorToCollapse.height,
+//                child: content,
+//              ),
+//            );
+//          }
+//        } else {
+//          content = widget.actionPane;
+//        }
       }
 
       content = GestureDetector(
@@ -949,14 +950,14 @@ class SlidableState extends State<Slidable>
       );
     }
 
-    return _SlidableScope(
+    return _GFSlidableScope(
       state: this,
-      child: SlidableData(
+      child: GFSlidableData(
         actionType: actionType,
         renderingMode: _renderingMode,
         totalActionsExtent: _totalActionsExtent,
-        dismissThreshold: _dismissThreshold,
-        dismissible: _dismissible,
+//        dismissThreshold: _dismissThreshold,
+//        dismissible: _dismissible,
         actionDelegate: _actionDelegate,
         overallMoveAnimation: overallMoveAnimation,
         actionsMoveAnimation: _actionsMoveAnimation,
