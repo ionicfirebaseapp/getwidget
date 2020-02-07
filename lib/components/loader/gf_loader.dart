@@ -20,7 +20,7 @@ class GFLoader extends StatefulWidget {
       this.child})
       : super(key: key);
 
-  /// Type of [Widget] used only in custom type and it is prominent over the icon in custom type
+  /// Type of [Widget] used only in custom type and it is prominent over the loaderIconOne, loaderIconTwo, loaderIconThree in custom type
   final Widget child;
 
   /// Type of [GFColor] or [Color] which defines the color of the first dot in only  circle or square type of loader
@@ -32,7 +32,7 @@ class GFLoader extends StatefulWidget {
   /// Type of [GFColor] or [Color] which defines the color of the third dot in only  circle or square type of loader
   final dynamic loaderColorThree;
 
-  /// Type of duration which defines the animation duration of the loader only in circle and square type
+  /// Type of duration which defines the animation duration of the loader only in circle and square type of loader
   final Duration duration;
 
   /// Type of [GFLoaderType] ie, android, ios, circle , square and custom
