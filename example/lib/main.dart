@@ -20,22 +20,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-  _launchPlayStore() async {
-    const url = 'https://play.google.com/store/apps/details?id=dev.getflutter.appkit';
+  Future _launchUrl(url) async {
     if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+      return await launch(url);
     }
-  }
-  _launchGitHub() async {
-    const url = 'https://github.com/ionicfirebaseapp/getflutter-app-kit';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+    return Future.value(false);
   }
 
   @override
@@ -53,21 +42,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 const Padding(
                   padding: EdgeInsets.only(bottom: 25),
                   child: Center(
-                    child: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ',
-                      style: TextStyle(fontSize: 16, color: GFColors.WHITE, ),
+                    child: Text(
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: GFColors.WHITE,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
                 ),
                 GFButton(
-                  size: GFSize.large,
-                  text: 'View on Github',
-                  textStyle: const TextStyle(fontSize: 16, color: GFColors.WHITE, ),
-                  icon: SvgPicture.asset('lib/assets/github.svg', height: 22,),
-                  color: GFColors.SUCCESS,
-                  blockButton: true,
-                  onPressed: _launchGitHub
-                ),
+                    size: GFSize.large,
+                    text: 'View on Github',
+                    textStyle: const TextStyle(
+                      fontSize: 16,
+                      color: GFColors.WHITE,
+                    ),
+                    icon: SvgPicture.asset(
+                      'lib/assets/github.svg',
+                      height: 22,
+                    ),
+                    color: GFColors.SUCCESS,
+                    blockButton: true,
+                    onPressed: () {
+                      _launchUrl(
+                          'https://github.com/ionicfirebaseapp/getflutter-app-kit');
+                    }),
               ],
             ),
             Column(
@@ -75,21 +76,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 const Padding(
                   padding: EdgeInsets.only(bottom: 25),
                   child: Center(
-                    child: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ',
-                      style: TextStyle(fontSize: 16, color: GFColors.WHITE, ),
+                    child: Text(
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: GFColors.WHITE,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
                 ),
                 GFButton(
-                  size: GFSize.large,
-                  text: 'View on Playstore',
-                  textStyle: const TextStyle(fontSize: 16, color: GFColors.WHITE),
-                  icon: SvgPicture.asset('lib/assets/playstore.svg', height: 20,),
-                  color: GFColors.SUCCESS,
-                  blockButton: true,
-                  onPressed: _launchPlayStore
-                ),
+                    size: GFSize.large,
+                    text: 'View on Playstore',
+                    textStyle:
+                        const TextStyle(fontSize: 16, color: GFColors.WHITE),
+                    icon: SvgPicture.asset(
+                      'lib/assets/playstore.svg',
+                      height: 20,
+                    ),
+                    color: GFColors.SUCCESS,
+                    blockButton: true,
+                    onPressed: () {
+                      _launchUrl(
+                          'https://play.google.com/store/apps/details?id=dev.getflutter.appkit');
+                    }),
               ],
             ),
           ],

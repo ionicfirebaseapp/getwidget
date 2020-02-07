@@ -421,7 +421,7 @@ class _GFAppBarState extends State<GFAppBar> {
       );
     }
 
-    if(showSearchBar) {
+    if (showSearchBar) {
       searchBar = TextField(
         cursorColor: widget.searchBarColorTheme,
         style: widget.searchTextStyle,
