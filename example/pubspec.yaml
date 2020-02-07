@@ -11,8 +11,9 @@ dependencies:
     sdk: flutter
   getflutter:
     path: ../
-
   cupertino_icons: ^0.1.2
+  flutter_svg: ^0.17.1
+  url_launcher: ^5.4.1
 
 dev_dependencies:
   flutter_test:
@@ -20,14 +21,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  fonts:
-    - family: icomoon
-      fonts:
-        - asset: lib/fonts/icomoon.ttf
 
   assets:
-    - lib/assets/food.jpeg
-    - lib/assets/img.png
-    - lib/assets/heart.png
-    - lib/assets/heart_border.png
-    - lib/assets/heart_half.png
+    - lib/assets/github.svg
+    - lib/assets/logo.svg
+    - lib/assets/playstore.svg
