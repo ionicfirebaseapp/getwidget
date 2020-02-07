@@ -1,6 +1,9 @@
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/types/gf_loader_type.dart';
+import 'package:getflutter/size/gf_size.dart';
+import 'package:getflutter/colors/gf_color.dart';
 
 class GFLoader extends StatefulWidget {
   const GFLoader(
@@ -9,16 +12,40 @@ class GFLoader extends StatefulWidget {
       this.loaderColorTwo = Colors.green,
       this.loaderColorThree = Colors.blueAccent,
       this.duration = const Duration(milliseconds: 1000),
-      this.loaderType = LoaderDotType.circle,
-      this.loaderIcon = const Icon(Icons.blur_on)})
+      this.type = GFLoaderType.android,
+      this.loaderIconOne = const Icon(Icons.blur_on),
+        this.loaderIconTwo,
+        this.loaderIconThree,
+//        this.loaderSizeOne,
+//        this.loaderSizeTwo,
+//        this.loaderSizeThree,
+        this.androidLoaderColor,
+        this.loaderSize = 15.0,
+        this.loaderstrokeWidth= 4.0,
+        this.size = GFSize.medium,
+        this.child
+
+
+
+      })
       : super(key: key);
 
   final Color loaderColorOne;
   final Color loaderColorTwo;
   final Color loaderColorThree;
   final Duration duration;
-  final LoaderDotType loaderType;
-  final Icon loaderIcon;
+  final GFLoaderType type;
+  final Widget loaderIconOne;
+//  final dynamic loaderSize;
+//  final double loaderSizeTwo;
+//  final double loaderSizeThree;
+  final Widget loaderIconTwo;
+  final Widget loaderIconThree;
+  final Animation<Color> androidLoaderColor;
+  final dynamic loaderSize;
+  final double loaderstrokeWidth;
+  final dynamic size;
+  final Widget child;
 
   @override
   _GFLoaderState createState() => _GFLoaderState();
@@ -37,34 +64,35 @@ class _GFLoaderState extends State<GFLoader>
 
     controller = AnimationController(duration: widget.duration, vsync: this);
 
-    animation_1 = Tween(begin: 0, end: 1.0).animate(
+    animation_1 = Tween<double>(begin: 0, end: 1.0).animate(
       CurvedAnimation(
         parent: controller,
         curve: const Interval(
           0,
-          0.70,
+          0.71,
           curve: Curves.linear,
         ),
       ),
     );
 
-    animation_2 = Tween(begin: 0, end: 1.0).animate(
+
+    animation_2 = Tween<double>(begin: 0, end: 1.0).animate(
       CurvedAnimation(
         parent: controller,
         curve: const Interval(
           0.1,
-          0.80,
+          0.81,
           curve: Curves.linear,
         ),
       ),
     );
 
-    animation_3 = Tween(begin: 0, end: 1.0).animate(
+    animation_3 = Tween<double>(begin: 0, end: 1.0).animate(
       CurvedAnimation(
         parent: controller,
         curve: const Interval(
           0.2,
-          0.90,
+          0.91,
           curve: Curves.linear,
         ),
       ),
@@ -81,55 +109,78 @@ class _GFLoaderState extends State<GFLoader>
 
   @override
   Widget build(BuildContext context) => Container(
-        child: Row(
+        child: widget.type==GFLoaderType.android? Center(
+          child:Container(
+            height: GFSizesClass.getGFSize(widget.size)* 0.7,
+            width: GFSizesClass.getGFSize(widget.size)* 0.7,
+            child:  CircularProgressIndicator(
+              valueColor: widget.androidLoaderColor,
+              strokeWidth: widget.loaderstrokeWidth,
+//              value: 20,
+            ),
+          )
+        ):widget.type==GFLoaderType.ios?Center(
+          child: CupertinoActivityIndicator(
+              radius: GFSizesClass.getGFSize(widget.size)* 0.4
+
+          ),
+        ):widget.type==GFLoaderType.custom?
+        Container(
+//          color: Colors.amber,
+//          height: GFSizesClass.getGFSize(widget.size)* 10,
+//          width: GFSizesClass.getGFSize(widget.size)* 10,
+          child: widget.child,
+
+        ):Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Opacity(
-              opacity: animation_1.value <= 0.4
+              opacity: animation_1.value <= 0.3
                   ? 2.5 * animation_1.value
-                  : (animation_1.value > 0.40 && animation_1.value <= 0.60)
-                      ? 1.0
-                      : 2.5 - (2.5 * animation_1.value),
+                  : (animation_1.value > 0.30 && animation_1.value <= 0.70)
+                  ? 1.0
+                  : 2.5 - (2.5 * animation_1.value),
 //            opacity: (animation_1.value <= 0.4 ? 2.5 * animation_1.value : (animation_1.value > 0.40 && animation_1.value <= 0.60) ? 1.0 : 2.5 - (2.5 * animation_1.value)),
               child: Padding(
                 padding: const EdgeInsets.only(right: 8),
-                child: Dot(
-                  radius: 10,
+                child: Loader(
+                  radius:GFSizesClass.getGFSize(widget.size)*0.3,
                   color: widget.loaderColorOne,
-                  type: widget.loaderType,
-                  icon: widget.loaderIcon,
+                  type: widget.type,
+                  icon: widget.loaderIconOne,
                 ),
               ),
             ),
             Opacity(
-              opacity: animation_2.value <= 0.4
+              opacity: animation_2.value <= 0.3
                   ? 2.5 * animation_2.value
-                  : (animation_2.value > 0.40 && animation_2.value <= 0.60)
-                      ? 1.0
-                      : 2.5 - (2.5 * animation_2.value),
+                  : (animation_2.value > 0.30 && animation_2.value <= 0.70)
+                  ? 1.0
+                  : 2.5 - (2.5 * animation_2.value),
               child: Padding(
                 padding: const EdgeInsets.only(right: 8),
-                child: Dot(
-                  radius: 10,
+                child: Loader(
+                  radius: GFSizesClass.getGFSize(widget.size)*0.44,
                   color: widget.loaderColorTwo,
-                  type: widget.loaderType,
-                  icon: widget.loaderIcon,
+                  type: widget.type,
+                  icon: widget.loaderIconTwo,
                 ),
               ),
             ),
             Opacity(
-              opacity: animation_3.value <= 0.4
+              opacity: animation_3.value <= 0.3
                   ? 2.5 * animation_3.value
-                  : (animation_3.value > 0.40 && animation_3.value <= 0.60)
-                      ? 1.0
-                      : 2.5 - (2.5 * animation_3.value),
+                  : (animation_3.value > 0.30 && animation_3.value <= 0.70)
+                  ? 1.0
+                  : 2.5 - (2.5 * animation_3.value),
               child: Padding(
                 padding: const EdgeInsets.only(right: 8),
-                child: Dot(
-                  radius: 10,
+                child: Loader(
+                  radius: GFSizesClass.getGFSize(widget.size)*0.3,
                   color: widget.loaderColorThree,
-                  type: widget.loaderType,
-                  icon: widget.loaderIcon,
+                  type: widget.type,
+                  icon: widget.loaderIconThree
+                  ,
                 ),
               ),
             ),
@@ -144,34 +195,26 @@ class _GFLoaderState extends State<GFLoader>
   }
 }
 
-class Dot extends StatelessWidget {
-  const Dot({Key key, this.radius, this.color, this.type, this.icon})
+class Loader extends StatelessWidget {
+  const Loader({Key key, this.radius, this.color, this.type, this.icon})
       : super(key: key);
 
   final double radius;
   final Color color;
-  final LoaderDotType type;
+  final GFLoaderType type;
   final Icon icon;
+
 
   @override
   Widget build(BuildContext context) => Center(
-        child: type == LoaderDotType.icon
-            ? Icon(
-                icon.icon,
-                color: color,
-                size: 1.3 * radius,
-              )
-            : Transform.rotate(
-                angle: type == LoaderDotType.diamond ? pi / 4 : 0.0,
-                child: Container(
-                  width: radius,
-                  height: radius,
-                  decoration: BoxDecoration(
-                      color: color,
-                      shape: type == LoaderDotType.circle
-                          ? BoxShape.circle
-                          : BoxShape.rectangle),
-                ),
-              ),
+        child:Container(
+          width: radius,
+          height: radius,
+          decoration: BoxDecoration(
+              color: color,
+              shape: type == GFLoaderType.circle
+                  ? BoxShape.circle
+                  : BoxShape.rectangle),
+        )
       );
 }
