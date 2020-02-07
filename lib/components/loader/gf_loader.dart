@@ -31,7 +31,7 @@ class GFLoader extends StatefulWidget {
   final Color loaderColorThree;
   final Duration duration;
   final GFLoaderType type;
-  final Widget loaderIconOne;
+  final Widget loaderIconOne ;
   final Widget loaderIconTwo;
   final Widget loaderIconThree;
   final Animation<Color> androidLoaderColor;
@@ -45,9 +45,9 @@ class GFLoader extends StatefulWidget {
 
 class _GFLoaderState extends State<GFLoader>
     with SingleTickerProviderStateMixin {
-  Animation<double> animation_1;
-  Animation<double> animation_2;
-  Animation<double> animation_3;
+  Animation<double> loader_animation1;
+  Animation<double> loader_animation2;
+  Animation<double> loader_animation3;
   AnimationController controller;
 
   @override
@@ -56,7 +56,7 @@ class _GFLoaderState extends State<GFLoader>
 
     controller = AnimationController(duration: widget.duration, vsync: this);
 
-    animation_1 = Tween<double>(begin: 0, end: 1.0).animate(
+    loader_animation1 = Tween<double>(begin: 0, end: 1.0).animate(
       CurvedAnimation(
         parent: controller,
         curve: const Interval(
@@ -68,7 +68,7 @@ class _GFLoaderState extends State<GFLoader>
     );
 
 
-    animation_2 = Tween<double>(begin: 0, end: 1.0).animate(
+    loader_animation2 = Tween<double>(begin: 0, end: 1.0).animate(
       CurvedAnimation(
         parent: controller,
         curve: const Interval(
@@ -79,7 +79,7 @@ class _GFLoaderState extends State<GFLoader>
       ),
     );
 
-    animation_3 = Tween<double>(begin: 0, end: 1.0).animate(
+    loader_animation3 = Tween<double>(begin: 0, end: 1.0).animate(
       CurvedAnimation(
         parent: controller,
         curve: const Interval(
@@ -92,7 +92,7 @@ class _GFLoaderState extends State<GFLoader>
 
     controller.addListener(() {
       setState(() {
-        //print(animation_1.value);
+        //print(loader_animation1.value);
       });
     });
 
@@ -125,12 +125,12 @@ class _GFLoaderState extends State<GFLoader>
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Opacity(
-              opacity: animation_1.value <= 0.3
-                  ? 2.5 * animation_1.value
-                  : (animation_1.value > 0.30 && animation_1.value <= 0.70)
+              opacity: loader_animation1.value <= 0.3
+                  ? 2.5 * loader_animation1.value
+                  : (loader_animation1.value > 0.30 && loader_animation1.value <= 0.70)
                   ? 1.0
-                  : 2.5 - (2.5 * animation_1.value),
-//            opacity: (animation_1.value <= 0.4 ? 2.5 * animation_1.value : (animation_1.value > 0.40 && animation_1.value <= 0.60) ? 1.0 : 2.5 - (2.5 * animation_1.value)),
+                  : 2.5 - (2.5 * loader_animation1.value),
+//            opacity: (loader_animation1.value <= 0.4 ? 2.5 * loader_animation1.value : (loader_animation1.value > 0.40 && loader_animation1.value <= 0.60) ? 1.0 : 2.5 - (2.5 * loader_animation1.value)),
               child: Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: Loader(
@@ -143,11 +143,11 @@ class _GFLoaderState extends State<GFLoader>
               ),
             ),
             Opacity(
-              opacity: animation_2.value <= 0.3
-                  ? 2.5 * animation_2.value
-                  : (animation_2.value > 0.30 && animation_2.value <= 0.70)
+              opacity: loader_animation2.value <= 0.3
+                  ? 2.5 * loader_animation2.value
+                  : (loader_animation2.value > 0.30 && loader_animation2.value <= 0.70)
                   ? 1.0
-                  : 2.5 - (2.5 * animation_2.value),
+                  : 2.5 - (2.5 * loader_animation2.value),
               child: Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: Loader(
@@ -160,11 +160,11 @@ class _GFLoaderState extends State<GFLoader>
               ),
             ),
             Opacity(
-              opacity: animation_3.value <= 0.3
-                  ? 2.5 * animation_3.value
-                  : (animation_3.value > 0.30 && animation_3.value <= 0.70)
+              opacity: loader_animation3.value <= 0.3
+                  ? 2.5 * loader_animation3.value
+                  : (loader_animation3.value > 0.30 && loader_animation3.value <= 0.70)
                   ? 1.0
-                  : 2.5 - (2.5 * animation_3.value),
+                  : 2.5 - (2.5 * loader_animation3.value),
               child: Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: Loader(
