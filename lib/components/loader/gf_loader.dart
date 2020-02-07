@@ -13,14 +13,14 @@ class GFLoader extends StatefulWidget {
       this.loaderColorThree = Colors.blueAccent,
       this.duration = const Duration(milliseconds: 1000),
       this.type = GFLoaderType.android,
-      this.loaderIconOne = const Icon(Icons.blur_on),
-        this.loaderIconTwo,
-        this.loaderIconThree,
+      this.loaderIconOne ,
+        this.loaderIconTwo ,
+        this.loaderIconThree ,
 //        this.loaderSizeOne,
 //        this.loaderSizeTwo,
 //        this.loaderSizeThree,
         this.androidLoaderColor,
-        this.loaderSize = 15.0,
+//        this.loaderSize = 15.0,
         this.loaderstrokeWidth= 4.0,
         this.size = GFSize.medium,
         this.child
@@ -42,7 +42,7 @@ class GFLoader extends StatefulWidget {
   final Widget loaderIconTwo;
   final Widget loaderIconThree;
   final Animation<Color> androidLoaderColor;
-  final dynamic loaderSize;
+//  final dynamic loaderSize;
   final double loaderstrokeWidth;
   final dynamic size;
   final Widget child;
@@ -109,7 +109,12 @@ class _GFLoaderState extends State<GFLoader>
 
   @override
   Widget build(BuildContext context) => Container(
-        child: widget.type==GFLoaderType.android? Center(
+        child: widget.child !=null? Loader(
+  radius:GFSizesClass.getGFSize(widget.size)*0.3,
+  type: widget.type,
+  child: widget.child,
+
+  ):widget.type==GFLoaderType.android? Center(
           child:Container(
             height: GFSizesClass.getGFSize(widget.size)* 0.7,
             width: GFSizesClass.getGFSize(widget.size)* 0.7,
@@ -124,13 +129,6 @@ class _GFLoaderState extends State<GFLoader>
               radius: GFSizesClass.getGFSize(widget.size)* 0.4
 
           ),
-        ):widget.type==GFLoaderType.custom?
-        Container(
-//          color: Colors.amber,
-//          height: GFSizesClass.getGFSize(widget.size)* 10,
-//          width: GFSizesClass.getGFSize(widget.size)* 10,
-          child: widget.child,
-
         ):Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -148,6 +146,7 @@ class _GFLoaderState extends State<GFLoader>
                   color: widget.loaderColorOne,
                   type: widget.type,
                   icon: widget.loaderIconOne,
+                  child: widget.child,
                 ),
               ),
             ),
@@ -164,6 +163,7 @@ class _GFLoaderState extends State<GFLoader>
                   color: widget.loaderColorTwo,
                   type: widget.type,
                   icon: widget.loaderIconTwo,
+//
                 ),
               ),
             ),
@@ -179,8 +179,9 @@ class _GFLoaderState extends State<GFLoader>
                   radius: GFSizesClass.getGFSize(widget.size)*0.3,
                   color: widget.loaderColorThree,
                   type: widget.type,
-                  icon: widget.loaderIconThree
-                  ,
+                  icon: widget.loaderIconThree,
+//
+
                 ),
               ),
             ),
@@ -196,25 +197,31 @@ class _GFLoaderState extends State<GFLoader>
 }
 
 class Loader extends StatelessWidget {
-  const Loader({Key key, this.radius, this.color, this.type, this.icon})
+  const Loader({Key key, this.radius, this.color, this.type, this.icon, this.size, this.child})
       : super(key: key);
 
   final double radius;
   final Color color;
   final GFLoaderType type;
-  final Icon icon;
+  final Widget icon;
+  final dynamic size;
+  final Widget child;
 
 
   @override
   Widget build(BuildContext context) => Center(
-        child:Container(
-          width: radius,
-          height: radius,
-          decoration: BoxDecoration(
-              color: color,
-              shape: type == GFLoaderType.circle
-                  ? BoxShape.circle
-                  : BoxShape.rectangle),
-        )
+        child:type== GFLoaderType.custom? Container(
+          child: child!=null ?child:icon??Container())
+          :Container(
+        width: radius,
+        height: radius,
+            decoration: BoxDecoration(
+            color: color,
+            shape: type == GFLoaderType.circle
+        ? BoxShape.circle
+            : BoxShape.rectangle),
+  )
+
       );
 }
+
