@@ -16,11 +16,7 @@ class GFLoader extends StatefulWidget {
       this.loaderIconOne ,
         this.loaderIconTwo ,
         this.loaderIconThree ,
-//        this.loaderSizeOne,
-//        this.loaderSizeTwo,
-//        this.loaderSizeThree,
         this.androidLoaderColor,
-//        this.loaderSize = 15.0,
         this.loaderstrokeWidth= 4.0,
         this.size = GFSize.medium,
         this.child
@@ -36,13 +32,9 @@ class GFLoader extends StatefulWidget {
   final Duration duration;
   final GFLoaderType type;
   final Widget loaderIconOne;
-//  final dynamic loaderSize;
-//  final double loaderSizeTwo;
-//  final double loaderSizeThree;
   final Widget loaderIconTwo;
   final Widget loaderIconThree;
   final Animation<Color> androidLoaderColor;
-//  final dynamic loaderSize;
   final double loaderstrokeWidth;
   final dynamic size;
   final Widget child;
