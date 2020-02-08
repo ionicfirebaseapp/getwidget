@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.only(bottom: 25),
                   child: Center(
                     child: Text(
-                      'To keep library size small and code clean we manage example on different repository. which includes clear usage of each and every component that we provide in getfltter library. Please have a look there.',
+                      'To keep library size small and code clean we manage example on different repository. which includes clear usage of each and every component that we provide in GetFlutter library. Please have a look there.',
                       style: TextStyle(
                         fontSize: 16,
                         color: GFColors.WHITE,
