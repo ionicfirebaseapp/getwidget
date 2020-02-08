@@ -8,7 +8,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
-        title: 'getflutter_EXAMPLE',
+        title: 'GetFlutter',
         debugShowCheckedModeBanner: false,
         home: MyHomePage(),
       );
@@ -20,6 +20,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final String _playStoreLink =
+      'https://play.google.com/store/apps/details?id=dev.getflutter.appkit';
+  // final String _appStoreLink = 'Coming Soon';
+  final String _githuAppRepoLink =
+      'https://github.com/ionicfirebaseapp/getflutter-app-kit';
+  final String _githubLibraryRepoLink =
+      'https://github.com/ionicfirebaseapp/getflutter';
+
   Future _launchUrl(url) async {
     if (await canLaunch(url)) {
       return await launch(url);
@@ -34,7 +42,12 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            SvgPicture.asset('lib/assets/logo.svg'),
+            InkWell(
+              onTap: () {
+                _launchUrl(_githubLibraryRepoLink);
+              },
+              child: SvgPicture.asset('lib/assets/logo.svg'),
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.only(bottom: 25),
                   child: Center(
                     child: Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ',
+                      'To keep library size small and code clean we manage example on different repository. which includes clear usage of each and every component that we provide in getfltter library. Please have a look there.',
                       style: TextStyle(
                         fontSize: 16,
                         color: GFColors.WHITE,
@@ -66,8 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: GFColors.SUCCESS,
                     blockButton: true,
                     onPressed: () {
-                      _launchUrl(
-                          'https://github.com/ionicfirebaseapp/getflutter-app-kit');
+                      _launchUrl(_githuAppRepoLink);
                     }),
               ],
             ),
@@ -77,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.only(bottom: 25),
                   child: Center(
                     child: Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ',
+                      'We also have same app on playstore. It shows various possibilities that you can achieve using GetFlutter library.',
                       style: TextStyle(
                         fontSize: 16,
                         color: GFColors.WHITE,
@@ -98,8 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: GFColors.SUCCESS,
                     blockButton: true,
                     onPressed: () {
-                      _launchUrl(
-                          'https://play.google.com/store/apps/details?id=dev.getflutter.appkit');
+                      _launchUrl(_playStoreLink);
                     }),
               ],
             ),
