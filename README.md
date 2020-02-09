@@ -1,5 +1,7 @@
-[![Financial Contributors on Open Collective](https://opencollective.com/getflutter/all/badge.svg?label=financial+contributors)](https://opencollective.com/getflutter) [![pub package](https://img.shields.io/pub/v/getflutter.svg)](https://pub.dartlang.org/packages/getflutter) [![Build Status](https://travis-ci.org/ionicfirebaseapp/getflutter.svg?branch=master)](https://travis-ci.com/ionicfirebaseapp/getflutter) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT) [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/ionicfirebaseapp/getflutter/blob/master/LICENSE) [![Gitter](https://badges.gitter.im/getflutterdev/getflutter.svg)](https://gitter.im/getflutterdev/getflutter) [![Twitter Follow](https://img.shields.io/twitter/follow/getflutterdev.svg?style=social)](https://twitter.com/getflutterdev)
-
+[![Financial Contributors on Open Collective](https://opencollective.com/getflutter/all/badge.svg?label=financial+contributors)](https://opencollective.com/getflutter) [![pub package](https://img.shields.io/pub/v/getflutter.svg)](https://pub.dartlang.org/packages/getflutter)
+[![Build Status](https://travis-ci.org/ionicfirebaseapp/getflutter.svg?branch=master)](https://travis-ci.com/ionicfirebaseapp/getflutter) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/ionicfirebaseapp/getflutter/blob/master/LICENSE) [![Gitter](https://badges.gitter.im/getflutterdev/getflutter.svg)](https://gitter.im/getflutterdev/getflutter)
+[![Twitter Follow](https://img.shields.io/twitter/follow/getflutterdev.svg?style=social)](https://twitter.com/getflutterdev)
 
 <p align="center">
   <a href="https://www.getflutter.dev/" target="_blank">
@@ -7,20 +9,21 @@
   </a>
 </p>
 
-[**GetFlutter**](https://www.getflutter.dev) is a 100% free Flutter open-source UI library built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever. GetFlutter has 1000+ pre-build widgets that you can reuse to develop both Flutter mobile app and web app. Our motto is to provide the best Flutter UI library to the Flutter community to speed up their development process and build awesome apps with pre-build Flutter Library Components.
+[**GetFlutter**](https://www.getflutter.dev) is a 100% free Flutter open-source UI library built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever. GetFlutter has 1000+ pre-build widgets that you can reuse to develop both
+Flutter mobile app and web app. Our motto is to provide the best Flutter UI library to the Flutter community to speed up their development process and build awesome apps with pre-build Flutter Library Components.
 
-## Table of contents 
+## Table of contents
 
-- [Screenshot](#screenshot)
-- [Quick start](#quick-start)
-- [Features](#features)
-- [Demo](#demo)
-- [Contributing](#contributing)
-- [Documentation](#documentation)
-- [Copyright and license](#copyright-and-license)
+-   [Screenshot](#screenshot)
+-   [Quick start](#quick-start)
+-   [Features](#features)
+-   [Demo](#demo)
+-   [Contributing](#contributing)
+-   [Documentation](#documentation)
+-   [Copyright and license](#copyright-and-license)
 
- 
- ## Screenshot
+## Screenshot
+
  <p align="center">
   <a target="_blank" href="https://www.getflutter.dev/">
     <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/GitHub-full_0QqS07XrO.png" alt="Get Flutter Screens">
@@ -29,18 +32,18 @@
 
 ## Quick start
 
-Read the [Getting started page](https://docs.getflutter.dev) 
-Forum [Support and discussion ](https://forum.getflutter.dev)
+Read the [Getting started page](https://docs.getflutter.dev) Forum [Support and discussion ](https://forum.getflutter.dev)
 
-## Features 
-we have launched the library with the following components : 
- 
- #### [Button](https://docs.getflutter.dev/gf-button) |  [Badge](https://docs.getflutter.dev/gf-badge) |  [Avatar](https://docs.getflutter.dev/gf-avatar) |  [Image](https://docs.getflutter.dev/gf-image) |  [Card](https://docs.getflutter.dev/gf-card) |  [Carousel](https://docs.getflutter.dev/gf-carousel) | [Tile](https://docs.getflutter.dev/gf-tile) | [Tab](https://docs.getflutter.dev/gf-tab) | [Typography](https://docs.getflutter.dev/gf-typography) | [Toast](https://docs.getflutter.dev/gf-toast) | [Toggle](https://docs.getflutter.dev/gf-toggle) | [Drawer](https://docs.getflutter.dev/gf-drawer) | [Accordian](https://docs.getflutter.dev/gf-accordion) | [Alert](https://docs.getflutter.dev/gf-alert) | [Appbar](https://docs.getflutter.dev/gf-appbar) | [Searchbar](https://docs.getflutter.dev/gf-searchbar) 
- 
- 
- ## Demo 
- 
-   ### Play Store 
+## Features
+
+we have launched the library with the following components :
+
+#### [Button](https://docs.getflutter.dev/gf-button) | [Badge](https://docs.getflutter.dev/gf-badge) | [Avatar](https://docs.getflutter.dev/gf-avatar) | [Image](https://docs.getflutter.dev/gf-image) | [Card](https://docs.getflutter.dev/gf-card) | [Carousel](https://docs.getflutter.dev/gf-carousel) | [Tile](https://docs.getflutter.dev/gf-tile) | [Tab](https://docs.getflutter.dev/gf-tab) | [Typography](https://docs.getflutter.dev/gf-typography) | [Toast](https://docs.getflutter.dev/gf-toast) | [Toggle](https://docs.getflutter.dev/gf-toggle) | [Drawer](https://docs.getflutter.dev/gf-drawer) | [Accordian](https://docs.getflutter.dev/gf-accordion) | [Alert](https://docs.getflutter.dev/gf-alert) | [Appbar](https://docs.getflutter.dev/gf-appbar) | [Searchbar](https://docs.getflutter.dev/gf-searchbar) | [Rating](https://docs.getflutter.dev/flutter-rating) | [Loader](https://docs.getflutter.dev/flutter-loader)
+
+## Demo
+
+### Play Store
+
    <p align="left">
         <a href="https://play.google.com/store/apps/details?id=dev.getflutter.appkit" target="_blank">
           <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/playstore_NQQBiJIQ1.png" alt="Get Flutter playstore Demo">
@@ -77,19 +80,19 @@ Facebook: <https://www.facebook.com/getflutter>
 
 Linkedin: <https://www.linkedin.com/company/getflutter>
 
-Instagram: <https://www.instagram.com/getflutter.dev/> 
+Instagram: <https://www.instagram.com/getflutter.dev/>
 
-### Note: GetFlutter is not directly and/or indirectly associated/affiliated with Flutter or Google LLC. We are the team of Flutter Developers and we built this open-source library for the Flutter development community to made app development more easier. 
- 
- ## Copyright-and-license 
- Code and documentation Copyright 2017-2020 the [GETFLUTTER Authors](https://www.getflutter.dev) and [IONICFIREBASEAPP](https://ionicfirebaseapp.com) Code released under the [MIT License]. Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
+### Note: GetFlutter is not directly and/or indirectly associated/affiliated with Flutter or Google LLC. We are the team of Flutter Developers and we built this open-source library for the Flutter development community to made app development more easier.
+
+## Copyright-and-license
+
+Code and documentation Copyright 2017-2020 the [GETFLUTTER Authors](https://www.getflutter.dev) and [IONICFIREBASEAPP](https://ionicfirebaseapp.com) Code released under the [MIT License]. Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
 
 ## Contributors
 
 ### Code Contributors
 
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/ionicfirebaseapp/getflutter/graphs/contributors"><img src="https://opencollective.com/getflutter/contributors.svg?width=890&button=false" /></a>
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)]. <a href="https://github.com/ionicfirebaseapp/getflutter/graphs/contributors"><img src="https://opencollective.com/getflutter/contributors.svg?width=890&button=false" /></a>
 
 ### Financial Contributors
 
