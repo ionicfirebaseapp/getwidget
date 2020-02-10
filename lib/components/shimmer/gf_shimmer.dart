@@ -10,13 +10,13 @@ class GFShimmer extends StatefulWidget {
     @required this.child,
     @required this.gradient,
     this.direction = GFShimmerDirection.ltr,
-    this.period = const Duration(milliseconds: 1500),
+    this.duration = const Duration(milliseconds: 1500),
     this.loop = 0,
     this.enabled = true,
   }) : super(key: key);
 
   final Widget child;
-  final Duration period;
+  final Duration duration;
   final GFShimmerDirection direction;
   final Gradient gradient;
   final int loop;
@@ -27,7 +27,7 @@ class GFShimmer extends StatefulWidget {
     @required this.child,
     @required Color baseColor,
     @required Color highlightColor,
-    this.period = const Duration(milliseconds: 1500),
+    this.duration = const Duration(milliseconds: 1500),
     this.direction = GFShimmerDirection.ltr,
     this.loop = 0,
     this.enabled = true,
@@ -62,7 +62,7 @@ class _GFShimmerState extends State<GFShimmer> with SingleTickerProviderStateMix
   void initState() {
     super.initState();
     _count = 0;
-    _controller = AnimationController(vsync: this, duration: widget.period)
+    _controller = AnimationController(vsync: this, duration: widget.duration)
       ..addStatusListener((AnimationStatus status) {
         if (status != AnimationStatus.completed) {
           return;
@@ -101,7 +101,6 @@ class _GFShimmerState extends State<GFShimmer> with SingleTickerProviderStateMix
         enabled: widget.enabled,
       ),
     );
-
 
   @override
   void dispose() {
