@@ -61,9 +61,9 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
                   left: widget.horizontalPosition != null
                       ? widget.horizontalPosition
                       : 0.0,
-                  right: widget.horizontalPosition != null
-                      ? widget.horizontalPosition
-                      : 0.0,
+//                  right: widget.horizontalPosition != null
+//                      ? widget.horizontalPosition
+//                      : 0.0,
                   child: widget.child ?? Container(),
                 )
               ],

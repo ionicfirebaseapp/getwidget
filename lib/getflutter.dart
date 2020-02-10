@@ -22,7 +22,7 @@ export 'package:getflutter/components/tabs/gf_tabbar.dart';
 export 'package:getflutter/components/tabs/gf_tabbar_view.dart';
 export 'package:getflutter/components/tabs/gf_tabs.dart';
 export 'package:getflutter/components/tabs/gf_segment_tabs.dart';
-export 'package:getflutter/components/toast/gf_floating_widget.dart';
+export 'package:getflutter/components/floating_widget/gf_floating_widget.dart';
 export 'package:getflutter/components/toast/gf_toast.dart';
 export 'package:getflutter/components/toggle/gf_toggle.dart';
 export 'package:getflutter/components/typography/gf_typography.dart';
