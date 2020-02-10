@@ -112,7 +112,7 @@ class _GFShimmerState extends State<GFShimmer> with SingleTickerProviderStateMix
 //        child: child,
 //        direction: widget.direction,
 //        gradient: widget.gradient,
-//        percent: _controller.value,
+//        controllerValue: _controller.value,
 //        enabled: widget.enabled,
 //      ),
     );
@@ -128,30 +128,30 @@ class _GFShimmerState extends State<GFShimmer> with SingleTickerProviderStateMix
 //class _GFShimmer extends SingleChildRenderObjectWidget {
 //  const _GFShimmer({
 //    Widget child,
-//    this.percent,
+//    this.controllerValue,
 //    this.direction,
 //    this.gradient,
 //    this.enabled,
 //  }) : super(child: child);
 //
-//  final double percent;
+//  final double controllerValue;
 //  final GFShimmerDirection direction;
 //  final Gradient gradient;
 //  final bool enabled;
 //
 //  @override
-//  _GFShimmerFilter createRenderObject(BuildContext context) => _GFShimmerFilter(percent, direction, gradient, enabled);
+//  _GFShimmerFilter createRenderObject(BuildContext context) => _GFShimmerFilter(controllerValue, direction, gradient, enabled);
 //
 //  @override
 //  void updateRenderObject(BuildContext context, _GFShimmerFilter shimmer) {
-//    shimmer.percent = percent;
+//    shimmer.controllerValue = controllerValue;
 //    shimmer.enabled = enabled;
 //  }
 //}
 //
 //class _GFShimmerFilter extends RenderProxyBox {
 //
-//  _GFShimmerFilter(this._percent, this._direction, this._gradient, this.enabled)
+//  _GFShimmerFilter(this._controllerValue, this._direction, this._gradient, this.enabled)
 //      : _gradientPaint = Paint()..blendMode = BlendMode.srcIn;
 //
 //  final Paint _clearPaint = Paint();
@@ -159,17 +159,17 @@ class _GFShimmerState extends State<GFShimmer> with SingleTickerProviderStateMix
 //  final Gradient _gradient;
 //  final GFShimmerDirection _direction;
 //  bool enabled;
-//  double _percent;
+//  double _controllerValue;
 //  Rect _rect;
 //
 //  @override
 //  bool get alwaysNeedsCompositing => child != null;
 //
-//  set percent(double newValue) {
-//    if (newValue == _percent) {
+//  set controllerValue(double newValue) {
+//    if (newValue == _controllerValue) {
 //      return;
 //    }
-//    _percent = newValue;
+//    _controllerValue = newValue;
 //    markNeedsPaint();
 //  }
 //
@@ -188,19 +188,19 @@ class _GFShimmerState extends State<GFShimmer> with SingleTickerProviderStateMix
 //    Rect rect;
 //    double dx, dy;
 //    if (_direction == GFShimmerDirection.rightToLeft) {
-//      dx = _offset(width, -width, _percent);
+//      dx = _offset(width, -width, _controllerValue);
 //      dy = 0.0;
 //      rect = Rect.fromLTWH(offset.dx - width, offset.dy, 3 * width, height);
 //    } else if (_direction == GFShimmerDirection.topToBottom) {
 //      dx = 0.0;
-//      dy = _offset(-height, height, _percent);
+//      dy = _offset(-height, height, _controllerValue);
 //      rect = Rect.fromLTWH(offset.dx, offset.dy - height, width, 3 * height);
 //    } else if (_direction == GFShimmerDirection.bottomToTop) {
 //      dx = 0.0;
-//      dy = _offset(height, -height, _percent);
+//      dy = _offset(height, -height, _controllerValue);
 //      rect = Rect.fromLTWH(offset.dx, offset.dy - height, width, 3 * height);
 //    } else {
-//      dx = _offset(-width, width, _percent);
+//      dx = _offset(-width, width, _controllerValue);
 //      dy = 0.0;
 //      rect = Rect.fromLTWH(offset.dx - width, offset.dy, 3 * width, height);
 //    }
@@ -213,5 +213,5 @@ class _GFShimmerState extends State<GFShimmer> with SingleTickerProviderStateMix
 //    context.canvas.restore();
 //  }
 //
-//  double _offset(double start, double end, double percent) => start + (end - start) * percent;
+//  double _offset(double start, double end, double controllerValue) => start + (end - start) * controllerValue;
 //}
