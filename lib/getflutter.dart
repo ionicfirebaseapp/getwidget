@@ -39,7 +39,8 @@ export 'shape/gf_button_shape.dart';
 export 'shape/gf_icon_button_shape.dart';
 export 'size/gf_size.dart';
 export 'types/gf_button_type.dart';
+export 'types/gf_loader_type.dart';
 export 'types/gf_toast_type.dart';
 export 'types/gf_toggle_type.dart';
 export 'types/gf_typography_type.dart';
-export 'types/gf_loader_type.dart';
+
