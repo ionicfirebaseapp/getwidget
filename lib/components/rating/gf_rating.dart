@@ -83,32 +83,29 @@ class _GFRatingState extends State<GFRating> {
   Widget buildRatingBar(BuildContext context, int index) {
     Widget icon;
     if (index >= widget.value) {
-      icon = widget.defaultIcon != null
-          ? widget.defaultIcon
-          : Icon(
-              Icons.star_border,
-              color: widget.borderColor ?? Theme.of(context).primaryColor,
-              size: GFSizesClass.getGFSize(widget.size),
-            );
+      icon = widget.defaultIcon ??
+          Icon(
+            Icons.star_border,
+            color: widget.borderColor ?? Theme.of(context).primaryColor,
+            size: GFSizesClass.getGFSize(widget.size),
+          );
     } else if (!widget.showTextForm
         ? index > widget.value - (widget.allowHalfRating ? 0.5 : 1.0) &&
             index < widget.value
         : index + 1 == widget.value + 0.5) {
-      icon = widget.halfFilledIcon != null
-          ? widget.halfFilledIcon
-          : Icon(
-              Icons.star_half,
-              color: widget.color ?? Theme.of(context).primaryColor,
-              size: GFSizesClass.getGFSize(widget.size),
-            );
+      icon = widget.halfFilledIcon ??
+          Icon(
+            Icons.star_half,
+            color: widget.color ?? Theme.of(context).primaryColor,
+            size: GFSizesClass.getGFSize(widget.size),
+          );
     } else {
-      icon = widget.filledIcon != null
-          ? widget.filledIcon
-          : Icon(
-              Icons.star,
-              color: widget.color ?? Theme.of(context).primaryColor,
-              size: GFSizesClass.getGFSize(widget.size),
-            );
+      icon = widget.filledIcon ??
+          Icon(
+            Icons.star,
+            color: widget.color ?? Theme.of(context).primaryColor,
+            size: GFSizesClass.getGFSize(widget.size),
+          );
     }
 
     return GestureDetector(
@@ -145,14 +142,13 @@ class _GFRatingState extends State<GFRating> {
             child: TextFormField(
               controller: widget.controller,
               keyboardType: TextInputType.number,
-              decoration: widget.inputDecorations == null
-                  ? InputDecoration(
-                      border: const OutlineInputBorder(),
-                      hintText: 'Enter rating',
-                      labelText: 'Enter rating',
-                      suffixIcon: widget.suffixIcon,
-                    )
-                  : widget.inputDecorations,
+              decoration: widget.inputDecorations ??
+                  InputDecoration(
+                    border: const OutlineInputBorder(),
+                    hintText: 'Enter rating',
+                    labelText: 'Enter rating',
+                    suffixIcon: widget.suffixIcon,
+                  ),
             ),
           ),
           Material(

@@ -1,6 +1,6 @@
 analyzer:
   exclude:
-    - example/lib
+    - example
     - getflutter_app
     - getflutter-app-kit
     - getflutter-web-kit
