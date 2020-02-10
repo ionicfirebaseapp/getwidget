@@ -33,6 +33,8 @@ getflutter-app-kit
 getflutter-web-kit
 getflutter_app
 test/.test_coverage.dart
+example
+getflutter/lib/components/slidable
 
 # Android related
 **/android/**/gradle-wrapper.jar
