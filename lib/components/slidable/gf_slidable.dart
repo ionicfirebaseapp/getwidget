@@ -932,9 +932,9 @@ class GFSlidableState extends State<GFSlidable>
         onHorizontalDragStart: _directionIsXAxis ? _handleDragStart : null,
         onHorizontalDragUpdate: _directionIsXAxis ? _handleDragUpdate : null,
         onHorizontalDragEnd: _directionIsXAxis ? _handleDragEnd : null,
-        onVerticalDragStart: _directionIsXAxis ? null : _handleDragStart,
-        onVerticalDragUpdate: _directionIsXAxis ? null : _handleDragUpdate,
-        onVerticalDragEnd: _directionIsXAxis ? null : _handleDragEnd,
+//        onVerticalDragStart: _directionIsXAxis ? null : _handleDragStart,
+//        onVerticalDragUpdate: _directionIsXAxis ? null : _handleDragUpdate,
+//        onVerticalDragEnd: _directionIsXAxis ? null : _handleDragEnd,
         behavior: HitTestBehavior.opaque,
         child: content,
       );

@@ -85,19 +85,19 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         Column(
           children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.only(bottom: 25),
-              child: Center(
-                child: Text(
-                  'We also have same app on playstore. It shows various possibilities that you can achieve using GetFlutter library.',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: GFColors.WHITE,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
+//            const Padding(
+//              padding: EdgeInsets.only(bottom: 25),
+//              child: Center(
+//                child: Text(
+//                  'We also have same app on playstore. It shows various possibilities that you can achieve using GetFlutter library.',
+//                  style: TextStyle(
+//                    fontSize: 16,
+//                    color: GFColors.WHITE,
+//                  ),
+//                  textAlign: TextAlign.center,
+//                ),
+//              ),
+//            ),
             GFButton(
                 size: GFSize.large,
                 text: 'View on Playstore',
