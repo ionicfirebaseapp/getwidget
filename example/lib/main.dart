@@ -226,6 +226,29 @@ class _MyHomePageState extends State<MyHomePage>
             },
           ),
 
+          GFShimmer(
+            child: const Text(
+              'Slide to unlock',
+              style: TextStyle(
+                fontSize: 48,
+                fontWeight: FontWeight.w700
+              ),
+            ),
+//            direction: ShimmerDirection.ltr,
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.red[900],
+                Colors.red[600],
+                Colors.red[400],
+                Colors.red[100],
+              ],),
+//            baseColor: Colors.teal,
+//            highlightColor: Colors.tealAccent,
+            loop: 3,
+          ),
+
 
 //              GFRating(
 //                value: _rating,
