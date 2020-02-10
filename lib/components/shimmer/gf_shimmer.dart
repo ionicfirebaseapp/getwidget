@@ -15,11 +15,22 @@ class GFShimmer extends StatefulWidget {
     this.enabled = true,
   }) : super(key: key);
 
+  /// The widget below this widget in the tree.
   final Widget child;
+
+  /// Controls the speed of the shimmer effect. The default value is 1500 milliseconds.
   final Duration duration;
+
+  /// Controls the direction of the shimmer effect. The default value is GFShimmerDirection.leftToRight.
   final GFShimmerDirection direction;
+
+  /// Controls the [child]'s shades of color.
   final Gradient gradient;
+
+  /// Controls the animation loop. The default value is '0', that makes animation forever.
   final int loop;
+
+  /// Controls animation effect, defaults true state that makes animation active.
   final bool enabled;
 
   GFShimmer.withColors({

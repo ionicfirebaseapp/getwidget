@@ -103,6 +103,7 @@ class GFCard extends StatelessWidget {
   /// A border to draw above the [GFCard].
   final Border border;
 
+  /// defines the gradient background
   final LinearGradient gradient;
 
   static const double _defaultElevation = 1;
