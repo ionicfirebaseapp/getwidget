@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-enum GFShimmerDirection {leftToRight, rightToLeft, topToBottom, bottomToTop}
+enum GFShimmerDirection { leftToRight, rightToLeft, topToBottom, bottomToTop }
 
 @immutable
 class GFShimmer extends StatefulWidget {
@@ -33,39 +33,12 @@ class GFShimmer extends StatefulWidget {
   /// Controls animation effect, defaults true state that makes animation active.
   final bool enabled;
 
-  GFShimmer.withColors({
-    Key key,
-    @required this.child,
-    @required Color baseColor,
-    @required Color highlightColor,
-    this.duration = const Duration(milliseconds: 1500),
-    this.direction = GFShimmerDirection.leftToRight,
-    this.loop = 0,
-    this.enabled = true,
-  })  : gradient = LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.centerRight,
-      colors: <Color>[
-        baseColor,
-        baseColor,
-        highlightColor,
-        baseColor,
-        baseColor
-      ],
-      stops: const <double>[
-        0,
-        0.3,
-        0.5,
-        0.7,
-        1
-      ]),
-        super(key: key);
-
   @override
   _GFShimmerState createState() => _GFShimmerState();
 }
 
-class _GFShimmerState extends State<GFShimmer> with SingleTickerProviderStateMixin {
+class _GFShimmerState extends State<GFShimmer>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   int _count;
 
@@ -102,13 +75,13 @@ class _GFShimmerState extends State<GFShimmer> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
-      animation: _controller,
-      child: widget.child,
-    builder: (BuildContext context, Widget child) => Transform.rotate(
-        angle: _controller.value * 2.0 * 22/7,
-        child: child,
-      ),
-    );
+        animation: _controller,
+        child: widget.child,
+        builder: (BuildContext context, Widget child) => Transform.rotate(
+          angle: _controller.value * 2.0 * 22 / 7,
+          child: child,
+        ),
+      );
 
   @override
   void dispose() {
@@ -116,4 +89,3 @@ class _GFShimmerState extends State<GFShimmer> with SingleTickerProviderStateMix
     super.dispose();
   }
 }
-

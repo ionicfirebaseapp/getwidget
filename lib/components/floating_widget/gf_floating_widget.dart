@@ -6,12 +6,12 @@ class GFFloatingWidget extends StatefulWidget {
   /// Inside floating widget [GFToast] can be used as body. See [GFToast]
   const GFFloatingWidget(
       {Key key,
-        this.child,
-        this.horizontalPosition,
-        this.verticalPosition,
-        this.blurnessColor,
-        this.showblurness = false,
-        this.body})
+      this.child,
+      this.horizontalPosition,
+      this.verticalPosition,
+      this.blurnessColor,
+      this.showblurness = false,
+      this.body})
       : super(key: key);
 
   ///child of  type [Widget] which floats across the body based on horizontal and vertical position
@@ -39,17 +39,17 @@ class GFFloatingWidget extends StatefulWidget {
 class _GFFloatingWidgetState extends State<GFFloatingWidget> {
   @override
   Widget build(BuildContext context) => Stack(
-    alignment: Alignment.center,
-    fit: StackFit.loose,
-    children: <Widget>[
-      Container(
-        height: MediaQuery.of(context).size.height,
-        child: widget.body ?? Container(),
-      ),
-      Positioned(
-          child: Container(
+        alignment: Alignment.center,
+        fit: StackFit.loose,
+        children: <Widget>[
+          Container(
             height: MediaQuery.of(context).size.height,
-            width:  MediaQuery.of(context).size.width,
+            child: widget.body ?? Container(),
+          ),
+          Positioned(
+              child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
             color: widget.showblurness
                 ? widget.blurnessColor ?? Colors.black54
                 : null,
@@ -67,6 +67,6 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
               ],
             ),
           ))
-    ],
-  );
+        ],
+      );
 }

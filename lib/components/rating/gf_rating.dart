@@ -86,7 +86,8 @@ class _GFRatingState extends State<GFRating> {
       icon = widget.defaultIcon ??
           Icon(
             Icons.star_border,
-            color: GFColors.getGFColor(widget.borderColor) ?? Theme.of(context).primaryColor,
+            color: GFColors.getGFColor(widget.borderColor) ??
+                Theme.of(context).primaryColor,
             size: GFSizesClass.getGFSize(widget.size),
           );
     } else if (!widget.showTextForm
@@ -96,14 +97,16 @@ class _GFRatingState extends State<GFRating> {
       icon = widget.halfFilledIcon ??
           Icon(
             Icons.star_half,
-            color: GFColors.getGFColor(widget.color) ?? Theme.of(context).primaryColor,
+            color: GFColors.getGFColor(widget.color) ??
+                Theme.of(context).primaryColor,
             size: GFSizesClass.getGFSize(widget.size),
           );
     } else {
       icon = widget.filledIcon ??
           Icon(
             Icons.star,
-            color: GFColors.getGFColor(widget.color) ?? Theme.of(context).primaryColor,
+            color: GFColors.getGFColor(widget.color) ??
+                Theme.of(context).primaryColor,
             size: GFSizesClass.getGFSize(widget.size),
           );
     }

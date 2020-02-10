@@ -48,5 +48,3 @@ export 'types/gf_loader_type.dart';
 export 'types/gf_toast_type.dart';
 export 'types/gf_toggle_type.dart';
 export 'types/gf_typography_type.dart';
-
-
