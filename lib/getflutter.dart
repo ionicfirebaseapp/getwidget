@@ -31,6 +31,7 @@ export 'package:getflutter/components/typography/gf_typography.dart';
 export 'package:getflutter/components/rating/gf_rating.dart';
 export 'package:getflutter/components/slidable/gf_slidable.dart';
 export 'package:getflutter/components/loader/gf_loader.dart';
+export 'package:getflutter/components/progress_indicator/gf_progress_indicator.dart';
 
 // exports shape, color, position, size, types
 
