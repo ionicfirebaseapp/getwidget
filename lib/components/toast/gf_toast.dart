@@ -73,6 +73,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
       parent: animationController,
       curve: Curves.easeIn,
     );
+
     animationController.forward();
     fadeanimationController = AnimationController(
       vsync: this,
