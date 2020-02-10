@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'gf_fractionally_aligned_sized_box.dart';
-import 'gf_slidable_dissmissal.dart';
 
 
 const double _kActionsExtentRatio = 0.25;
@@ -268,23 +266,23 @@ class GFSlidableData extends InheritedWidget {
     );
 
 
-  /// Creates a [FractionallyAlignedSizedBox] related to the current direction and showed actions.
-  FractionallyAlignedSizedBox createFractionallyAlignedSizedBox({
-    Widget child,
-    double extentFactor,
-    double positionFactor,
-  }) => FractionallyAlignedSizedBox(
-      leftFactor:
-          directionIsXAxis ? (showActions ? positionFactor : null) : 0.0,
-      rightFactor:
-          directionIsXAxis ? (showActions ? null : positionFactor) : 0.0,
-      topFactor: directionIsXAxis ? 0.0 : (showActions ? positionFactor : null),
-      bottomFactor:
-          directionIsXAxis ? 0.0 : (showActions ? null : positionFactor),
-      widthFactor: directionIsXAxis ? extentFactor : null,
-      heightFactor: directionIsXAxis ? null : extentFactor,
-      child: child,
-    );
+//  /// Creates a [FractionallyAlignedSizedBox] related to the current direction and showed actions.
+//  FractionallyAlignedSizedBox createFractionallyAlignedSizedBox({
+//    Widget child,
+//    double extentFactor,
+//    double positionFactor,
+//  }) => FractionallyAlignedSizedBox(
+//      leftFactor:
+//          directionIsXAxis ? (showActions ? positionFactor : null) : 0.0,
+//      rightFactor:
+//          directionIsXAxis ? (showActions ? null : positionFactor) : 0.0,
+//      topFactor: directionIsXAxis ? 0.0 : (showActions ? positionFactor : null),
+//      bottomFactor:
+//          directionIsXAxis ? 0.0 : (showActions ? null : positionFactor),
+//      widthFactor: directionIsXAxis ? extentFactor : null,
+//      heightFactor: directionIsXAxis ? null : extentFactor,
+//      child: child,
+//    );
 
 
   /// Builds the slide actions using the active [SlideActionDelegate]'s builder.
