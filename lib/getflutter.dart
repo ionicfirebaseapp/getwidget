@@ -27,6 +27,7 @@ export 'package:getflutter/components/toast/gf_toast.dart';
 export 'package:getflutter/components/toggle/gf_toggle.dart';
 export 'package:getflutter/components/typography/gf_typography.dart';
 export 'package:getflutter/components/rating/gf_rating.dart';
+export 'package:getflutter/components/slidable/gf_slidable.dart';
 
 // exports shape, color, position, size, types
 export 'colors/gf_color.dart';

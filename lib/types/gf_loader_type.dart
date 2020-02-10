@@ -1,1 +1,7 @@
-enum LoaderDotType { square, circle, diamond, icon }
+enum GFLoaderType {
+  android,
+  ios,
+  square,
+  circle,
+  custom,
+}
