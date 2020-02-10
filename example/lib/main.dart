@@ -234,7 +234,7 @@ class _MyHomePageState extends State<MyHomePage>
                 fontWeight: FontWeight.w700
               ),
             ),
-//            direction: ShimmerDirection.ltr,
+            direction: GFShimmerDirection.rightToLeft,
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
