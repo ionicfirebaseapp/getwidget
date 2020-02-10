@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.5 - 2020-02-07
+
+### Fixed
+* GFRating - minor issue fixed
+
+### Added
+* added new component
+    - GFLoader
+
+
+
+
 ## 1.0.4 - 2020-02-04
 
 ### Fixed
