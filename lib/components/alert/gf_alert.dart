@@ -93,7 +93,7 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
             Container(
               width: widget.type == GFAlertType.fullWidth
                   ? MediaQuery.of(context).size.width
-                  : widget.width?? MediaQuery.of(context).size.width*0.885,
+                  : widget.width ?? MediaQuery.of(context).size.width * 0.885,
               constraints: const BoxConstraints(minHeight: 50),
               margin: widget.type == GFAlertType.fullWidth
                   ? const EdgeInsets.only(left: 0, right: 0)

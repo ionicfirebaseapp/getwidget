@@ -30,6 +30,7 @@ export 'package:getflutter/components/toggle/gf_toggle.dart';
 export 'package:getflutter/components/typography/gf_typography.dart';
 export 'package:getflutter/components/rating/gf_rating.dart';
 export 'package:getflutter/components/slidable/gf_slidable.dart';
+export 'package:getflutter/components/shimmer/gf_shimmer.dart';
 export 'package:getflutter/components/loader/gf_loader.dart';
 
 // exports shape, color, position, size, types
@@ -47,5 +48,3 @@ export 'types/gf_loader_type.dart';
 export 'types/gf_toast_type.dart';
 export 'types/gf_toggle_type.dart';
 export 'types/gf_typography_type.dart';
-
-
