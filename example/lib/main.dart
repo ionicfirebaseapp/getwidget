@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 _launchUrl(_githubLibraryRepoLink);
               },
               child: SvgPicture.asset('lib/assets/logo.svg'),
-            ),
+            ), //
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,

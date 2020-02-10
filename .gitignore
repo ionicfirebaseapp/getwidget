@@ -33,7 +33,6 @@ getflutter-app-kit
 getflutter-web-kit
 getflutter_app
 test/.test_coverage.dart
-example/
 
 # Android related
 **/android/**/gradle-wrapper.jar

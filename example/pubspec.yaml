@@ -21,7 +21,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
   assets:
     - lib/assets/github.svg
     - lib/assets/logo.svg
