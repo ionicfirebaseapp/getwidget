@@ -23,13 +23,13 @@ class GFLoader extends StatefulWidget {
   final Widget child;
 
   /// Type of GFColor or [Color] which defines the color of the first dot in only  circle or square type of loader
-  final dynamic loaderColorOne;
+  final Color loaderColorOne;
 
   /// Type of GFColor or [Color] which defines the color of the second dot in only  circle or square type of loader
-  final dynamic loaderColorTwo;
+  final Color loaderColorTwo;
 
   /// Type of GFColor or [Color] which defines the color of the third dot in only  circle or square type of loader
-  final dynamic loaderColorThree;
+  final Color loaderColorThree;
 
   /// Type of duration which defines the animation duration of the loader only in circle and square type of loader
   final Duration duration;

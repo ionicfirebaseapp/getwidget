@@ -27,7 +27,7 @@ class GFBadge extends StatefulWidget {
   final GFBadgeShape shape;
 
   /// Pass [GFColors] or [Color]
-  final dynamic color;
+  final Color color;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
   final double size;
@@ -42,7 +42,7 @@ class GFBadge extends StatefulWidget {
   final TextStyle textStyle;
 
   /// Pass [GFColors] or [Color]
-  final dynamic textColor;
+  final Color textColor;
 
   @override
   _GFBadgeState createState() => _GFBadgeState();

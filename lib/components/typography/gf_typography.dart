@@ -99,15 +99,17 @@ class GFTypography extends StatelessWidget {
               text != null
                   ? Expanded(
                       child: Text(
-                      text,
-                      style: TextStyle(
-                          color: textColor ?? backgroundImage != null
-                              ? Colors.white
-                              : Colors.black,
-                          fontSize: fontSize,
-                          letterSpacing: 0.3,
-                          fontWeight: FontWeight.w500),
-                    ))
+                        text,
+                        style: TextStyle(
+                            color: textColor ??
+                                (backgroundImage != null
+                                    ? Colors.white
+                                    : Colors.black),
+                            fontSize: fontSize,
+                            letterSpacing: 0.3,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    )
                   : child
             ],
           ),
@@ -119,9 +121,10 @@ class GFTypography extends StatelessWidget {
                     width: dividerWidth != null ? dividerWidth : 70,
                     height: fontSize / 5,
                     decoration: BoxDecoration(
-                      color: dividerColor ?? backgroundImage != null
-                          ? Colors.white
-                          : Colors.black,
+                      color: dividerColor ??
+                          (backgroundImage != null
+                              ? Colors.white
+                              : Colors.black),
                       borderRadius: dividerBorderRadius ??
                           const BorderRadius.all(
                             Radius.circular(5),
