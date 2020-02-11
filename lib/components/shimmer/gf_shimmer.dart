@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:getflutter/getflutter.dart';
 
 enum GFShimmerDirection { leftToRight, rightToLeft, topToBottom, bottomToTop }
 
@@ -11,9 +12,37 @@ class GFShimmer extends StatefulWidget {
     @required this.gradient,
     this.direction = GFShimmerDirection.leftToRight,
     this.duration = const Duration(milliseconds: 1500),
-    this.loop = 0,
-    this.enabled = true,
+    this.shimmerEffectCount = 0,
+    this.showShimmerEffect = true,
   }) : super(key: key);
+
+  GFShimmer.withColors({
+    Key key,
+    @required this.child,
+    dynamic baseColor = GFColor.primary,
+    dynamic highlightColor = GFColor.light,
+    this.direction = GFShimmerDirection.leftToRight,
+    this.duration = const Duration(milliseconds: 1500),
+    this.shimmerEffectCount = 0,
+    this.showShimmerEffect = true,
+  })  : gradient = LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.centerRight,
+            colors: <Color>[
+              GFColors.getGFColor(baseColor),
+              GFColors.getGFColor(baseColor),
+              GFColors.getGFColor(highlightColor),
+              GFColors.getGFColor(baseColor),
+              GFColors.getGFColor(baseColor)
+            ],
+            stops: const <double>[
+              0,
+              0.3,
+              0.5,
+              0.7,
+              1
+            ]),
+        super(key: key);
 
   /// The widget below this widget in the tree.
   final Widget child;
@@ -27,11 +56,17 @@ class GFShimmer extends StatefulWidget {
   /// Controls the [child]'s shades of color.
   final Gradient gradient;
 
-  /// Controls the animation loop. The default value is '0', that makes animation forever.
-  final int loop;
+  /// Controls the animation shimmerEffectCount. The default value is '0', that makes animation forever.
+  final int shimmerEffectCount;
 
   /// Controls animation effect, defaults true state that makes animation active.
-  final bool enabled;
+  final bool showShimmerEffect;
+
+  /// defines the base color of the [child]'s shimmer effect.
+ /// dynamic baseColor;
+
+  /// defines the highLight color of the [child]'s shimmer effect.
+ /// dynamic highLightColor;
 
   @override
   _GFShimmerState createState() => _GFShimmerState();
@@ -52,20 +87,20 @@ class _GFShimmerState extends State<GFShimmer>
           return;
         }
         _count++;
-        if (widget.loop <= 0) {
+        if (widget.shimmerEffectCount <= 0) {
           _controller.repeat();
-        } else if (_count < widget.loop) {
+        } else if (_count < widget.shimmerEffectCount) {
           _controller.forward(from: 0);
         }
       });
-    if (widget.enabled) {
+    if (widget.showShimmerEffect) {
       _controller.forward();
     }
   }
 
   @override
   void didUpdateWidget(GFShimmer oldWidget) {
-    if (widget.enabled) {
+    if (widget.showShimmerEffect) {
       _controller.forward();
     } else {
       _controller.stop();
@@ -77,9 +112,12 @@ class _GFShimmerState extends State<GFShimmer>
   Widget build(BuildContext context) => AnimatedBuilder(
         animation: _controller,
         child: widget.child,
-        builder: (BuildContext context, Widget child) => Transform.rotate(
-          angle: _controller.value * 2.0 * 22 / 7,
+        builder: (BuildContext context, Widget child) => _GFShimmer(
           child: child,
+          direction: widget.direction,
+          gradient: widget.gradient,
+          controllerValue: _controller.value,
+          showShimmerEffect: widget.showShimmerEffect,
         ),
       );
 
@@ -88,4 +126,123 @@ class _GFShimmerState extends State<GFShimmer>
     _controller.dispose();
     super.dispose();
   }
+}
+
+@immutable
+class _GFShimmer extends SingleChildRenderObjectWidget {
+  const _GFShimmer({
+    Widget child,
+    this.controllerValue,
+    this.direction,
+    this.gradient,
+    this.showShimmerEffect,
+  }) : super(child: child);
+
+  /// value that controls the animation controller
+  final double controllerValue;
+
+  /// Controls the direction of the shimmer effect. The default value is GFShimmerDirection.leftToRight.
+  final GFShimmerDirection direction;
+
+  /// Controls the [child]'s shades of color.
+  final Gradient gradient;
+
+  /// Controls animation effect, defaults true state that makes animation active.
+  final bool showShimmerEffect;
+
+  @override
+  GFShimmerFilter createRenderObject(BuildContext context) => GFShimmerFilter(
+      value: controllerValue,
+      direction: direction,
+      gradient: gradient,
+      showShimmerEffect: showShimmerEffect);
+
+  @override
+  void updateRenderObject(BuildContext context, GFShimmerFilter shimmer) {
+    shimmer.controllerValue = controllerValue;
+    shimmer.showShimmerEffect = showShimmerEffect;
+  }
+}
+
+class GFShimmerFilter extends RenderProxyBox {
+  GFShimmerFilter(
+      {this.value, this.direction, this.gradient, this.showShimmerEffect})
+      : gradientPaint = Paint()..blendMode = BlendMode.srcIn;
+
+  /// Constructs an empty [Paint] object with all fields initialized to their defaults.
+  final Paint initialPaint = Paint();
+
+  /// Shader that paints a color gradient.
+  final Paint gradientPaint;
+
+  /// Controls the [child]'s shades of color.
+  final Gradient gradient;
+
+  /// Controls the direction of the shimmer effect. The default value is GFShimmerDirection.leftToRight.
+  final GFShimmerDirection direction;
+
+  /// Controls animation effect, defaults true state that makes animation active.
+  bool showShimmerEffect;
+
+  /// value that controls the animation controller
+  double value;
+
+  /// Construct a rectangle from its left, top, right, and bottom edges.
+  Rect _rect;
+
+  @override
+  bool get alwaysNeedsCompositing => child != null;
+
+  double get controllerValue => value;
+
+  set controllerValue(double newValue) {
+    if (newValue == value) {
+      return;
+    }
+    value = newValue;
+    markNeedsPaint();
+  }
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    if (child == null) {
+      return;
+    }
+    assert(needsCompositing);
+
+    context.canvas.saveLayer(offset & child.size, initialPaint);
+    context.paintChild(child, offset);
+    Rect rect;
+    double dx, dy;
+    final double width = child.size.width;
+    final double height = child.size.height;
+
+    if (direction == GFShimmerDirection.rightToLeft) {
+      dx = _offset(width, -width, value);
+      dy = 0.0;
+      rect = Rect.fromLTWH(offset.dx - width, offset.dy, 3 * width, height);
+    } else if (direction == GFShimmerDirection.bottomToTop) {
+      dx = 0.0;
+      dy = _offset(height, -height, value);
+      rect = Rect.fromLTWH(offset.dx, offset.dy - height, width, 3 * height);
+    } else if (direction == GFShimmerDirection.topToBottom) {
+      dx = 0.0;
+      dy = _offset(-height, height, value);
+      rect = Rect.fromLTWH(offset.dx, offset.dy - height, width, 3 * height);
+    } else {
+      dx = _offset(-width, width, value);
+      dy = 0.0;
+      rect = Rect.fromLTWH(offset.dx - width, offset.dy, 3 * width, height);
+    }
+    if (_rect != rect) {
+      gradientPaint.shader = gradient.createShader(rect);
+      _rect = rect;
+    }
+    context.canvas.translate(dx, dy);
+    context.canvas.drawRect(rect, gradientPaint);
+    context.canvas.restore();
+  }
+
+  double _offset(double start, double end, double controllerValue) =>
+      start + (end - start) * controllerValue;
 }
