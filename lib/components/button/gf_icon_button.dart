@@ -26,7 +26,7 @@ class GFIconButton extends StatefulWidget {
     this.color = GFColor.primary,
     this.borderShape,
     this.boxShadow,
-    this.size = GFSize.medium,
+    this.size = GFSize.MEDIUM,
     this.buttonBoxShadow,
     this.borderSide,
   })  : assert(iconSize != null),
@@ -91,7 +91,7 @@ class GFIconButton extends StatefulWidget {
   final ShapeBorder borderShape;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
-  final dynamic size;
+  final double size;
 
   /// on true state default box shadow appears around button, if GFButtonType is solid
   final bool buttonBoxShadow;
@@ -224,15 +224,15 @@ class _GFIconButtonState extends State<GFIconButton> {
       );
     }
 
-    if (widget.size == GFSize.small) {
+    if (widget.size == GFSize.SMALL) {
       height = 30.0;
       width = 30.0;
       iconPixel = 18.0;
-    } else if (widget.size == GFSize.medium) {
+    } else if (widget.size == GFSize.MEDIUM) {
       height = 35.0;
       width = 35.0;
       iconPixel = 18.0;
-    } else if (widget.size == GFSize.large) {
+    } else if (widget.size == GFSize.LARGE) {
       height = 40.0;
       width = 40.0;
       iconPixel = 18.0;

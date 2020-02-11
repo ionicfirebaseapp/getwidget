@@ -15,7 +15,7 @@ class GFAvatar extends StatelessWidget {
       this.maxRadius,
       this.borderRadius,
       this.shape = GFAvatarShape.circle,
-      this.size = GFSize.medium})
+      this.size = GFSize.MEDIUM})
       : assert(radius == null || (minRadius == null && maxRadius == null)),
         super(key: key);
 
@@ -41,7 +41,7 @@ class GFAvatar extends StatelessWidget {
   final double maxRadius;
 
   /// size of avatar. use [GFSize] or [double] i.e, 1.2, small, medium, large etc.
-  final dynamic size;
+  final double size;
 
   /// shape of avatar [GFAvatarShape] i.e, standard, circle, square
   final GFAvatarShape shape;
@@ -55,7 +55,7 @@ class GFAvatar extends StatelessWidget {
 
   double get _minDiameter {
     if (radius == null && minRadius == null && maxRadius == null) {
-      return 1.5 * GFSizesClass.getGFSize(size);
+      return 1.5 * size;
     } else {
       return 2.0 * (radius ?? minRadius ?? 0);
     }
@@ -63,7 +63,7 @@ class GFAvatar extends StatelessWidget {
 
   double get _maxDiameter {
     if (radius == null && minRadius == null && maxRadius == null) {
-      return 1.5 * GFSizesClass.getGFSize(size);
+      return 1.5 * size;
     } else {
       return 2.0 * (radius ?? maxRadius ?? 0);
     }

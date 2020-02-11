@@ -35,7 +35,7 @@ class GFButtonBadge extends GFButton {
     this.color = GFColor.primary,
     this.textColor,
     this.position = GFPosition.end,
-    this.size = GFSize.medium,
+    this.size = GFSize.MEDIUM,
     this.borderSide,
     this.text,
     this.blockButton,
@@ -168,7 +168,7 @@ class GFButtonBadge extends GFButton {
   final dynamic disabledTextColor;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
-  final dynamic size;
+  final double size;
 
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
@@ -225,7 +225,7 @@ class GFButtonBadge extends GFButton {
           minWidth: 98,
         ),
         child: Container(
-          height: GFSizesClass.getGFSize(size),
+          height: size,
           child: GFButton(
             onPressed: onPressed,
             onHighlightChanged: onHighlightChanged,
@@ -253,7 +253,7 @@ class GFButtonBadge extends GFButton {
             color: color,
             textColor: textColor,
             position: position,
-            size: GFSizesClass.getGFSize(size),
+            size: size,
             borderSide: borderSide,
             text: text,
             icon: icon,

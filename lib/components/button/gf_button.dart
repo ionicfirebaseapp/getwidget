@@ -38,7 +38,7 @@ class GFButton extends StatefulWidget {
     this.color = GFColor.primary,
     this.textColor,
     this.position = GFPosition.start,
-    this.size = GFSize.medium,
+    this.size = GFSize.MEDIUM,
     this.borderSide,
     this.text,
     this.icon,
@@ -174,7 +174,7 @@ class GFButton extends StatefulWidget {
   final dynamic disabledTextColor;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
-  final dynamic size;
+  final double size;
 
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
@@ -254,7 +254,7 @@ class _GFButtonState extends State<GFButton> {
     onPressed = widget.onPressed;
     type = widget.type;
     shape = widget.shape;
-    size = GFSizesClass.getGFSize(widget.size);
+    size = widget.size;
     position = widget.position;
     disabledColor = GFColors.getGFColor(widget.disabledColor);
     disabledTextColor = GFColors.getGFColor(widget.disabledTextColor);
@@ -524,18 +524,18 @@ class _GFButtonState extends State<GFButton> {
     }
 
     TextStyle getTextStyle() {
-      if (widget.size == GFSize.small) {
+      if (widget.size == GFSize.SMALL) {
         return TextStyle(
           color: widget.enabled ? getTextColor() : getDisabledTextColor(),
           fontSize: 12,
         );
-      } else if (widget.size == GFSize.medium) {
+      } else if (widget.size == GFSize.MEDIUM) {
         return TextStyle(
           color: widget.enabled ? getTextColor() : getDisabledTextColor(),
           fontSize: 13,
           fontWeight: FontWeight.w400,
         );
-      } else if (widget.size == GFSize.large) {
+      } else if (widget.size == GFSize.LARGE) {
         return TextStyle(
           color: widget.enabled ? getTextColor() : getDisabledTextColor(),
           fontSize: 14,

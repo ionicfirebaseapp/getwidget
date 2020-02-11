@@ -10,7 +10,7 @@ class GFBadge extends StatefulWidget {
     this.shape = GFBadgeShape.standard,
     this.color = GFColor.danger,
     this.textColor = GFColor.white,
-    this.size = GFSize.small,
+    this.size = GFSize.SMALL,
     this.border,
     this.text,
     this.child,
@@ -30,7 +30,7 @@ class GFBadge extends StatefulWidget {
   final dynamic color;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
-  final dynamic size;
+  final double size;
 
   /// child of type [Widget] is alternative to child. text will get priority over child
   final Widget child;
@@ -64,7 +64,7 @@ class _GFBadgeState extends State<GFBadge> {
     textColor = GFColors.getGFColor(widget.textColor);
     child = widget.text != null ? Text(widget.text ?? '') : widget.child;
     counterShape = widget.shape;
-    size = GFSizesClass.getGFSize(widget.size);
+    size = widget.size;
     super.initState();
   }
 
@@ -106,15 +106,15 @@ class _GFBadgeState extends State<GFBadge> {
       );
     }
 
-    if (widget.size == GFSize.small) {
+    if (widget.size == GFSize.SMALL) {
       height = size * 0.56;
       width = size * 0.73;
       fontSize = size * 0.31;
-    } else if (widget.size == GFSize.medium) {
+    } else if (widget.size == GFSize.MEDIUM) {
       height = size * 0.58;
       width = size * 0.76;
       fontSize = size * 0.34;
-    } else if (widget.size == GFSize.large) {
+    } else if (widget.size == GFSize.LARGE) {
       height = size * 0.6;
       width = size * 0.79;
       fontSize = size * 0.37;

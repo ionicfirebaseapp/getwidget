@@ -16,7 +16,7 @@ class GFLoader extends StatefulWidget {
       this.loaderIconThree,
       this.androidLoaderColor,
       this.loaderstrokeWidth = 4.0,
-      this.size = GFSize.medium,
+      this.size = GFSize.MEDIUM,
       this.child})
       : super(key: key);
 
@@ -118,15 +118,15 @@ class _GFLoaderState extends State<GFLoader>
   Widget build(BuildContext context) => Container(
         child: widget.child != null
             ? Loader(
-                radius: GFSizesClass.getGFSize(widget.size) * 0.3,
+                radius: widget.size * 0.3,
                 type: widget.type,
                 child: widget.child,
               )
             : widget.type == GFLoaderType.android
                 ? Center(
                     child: Container(
-                    height: GFSizesClass.getGFSize(widget.size) * 0.7,
-                    width: GFSizesClass.getGFSize(widget.size) * 0.7,
+                    height: widget.size * 0.7,
+                    width: widget.size * 0.7,
                     child: CircularProgressIndicator(
                       valueColor: widget.androidLoaderColor,
                       strokeWidth: widget.loaderstrokeWidth,
@@ -136,7 +136,7 @@ class _GFLoaderState extends State<GFLoader>
                 : widget.type == GFLoaderType.ios
                     ? Center(
                         child: CupertinoActivityIndicator(
-                            radius: GFSizesClass.getGFSize(widget.size) * 0.4),
+                            radius: widget.size * 0.4),
                       )
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -151,8 +151,7 @@ class _GFLoaderState extends State<GFLoader>
                             child: Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: Loader(
-                                radius:
-                                    GFSizesClass.getGFSize(widget.size) * 0.3,
+                                radius: widget.size * 0.3,
                                 color: widget.loaderColorOne,
                                 type: widget.type,
                                 icon: widget.loaderIconOne,
@@ -170,8 +169,7 @@ class _GFLoaderState extends State<GFLoader>
                             child: Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: Loader(
-                                radius:
-                                    GFSizesClass.getGFSize(widget.size) * 0.44,
+                                radius: widget.size * 0.44,
                                 color: widget.loaderColorTwo,
                                 type: widget.type,
                                 icon: widget.loaderIconTwo,
@@ -189,8 +187,7 @@ class _GFLoaderState extends State<GFLoader>
                             child: Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: Loader(
-                                radius:
-                                    GFSizesClass.getGFSize(widget.size) * 0.3,
+                                radius: widget.size * 0.3,
                                 color: widget.loaderColorThree,
                                 type: widget.type,
                                 icon: widget.loaderIconThree,

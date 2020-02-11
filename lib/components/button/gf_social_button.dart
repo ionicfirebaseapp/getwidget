@@ -36,7 +36,7 @@ class GFSocialButton extends GFButton {
     this.color = GFColor.primary,
     this.textColor,
     this.position = GFPosition.start,
-    this.size = GFSize.medium,
+    this.size = GFSize.MEDIUM,
     this.borderSide,
     this.text,
     this.icon,
@@ -175,7 +175,7 @@ class GFSocialButton extends GFButton {
   final dynamic disabledTextColor;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
-  final dynamic size;
+  final double size;
 
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
@@ -253,7 +253,7 @@ class GFSocialButton extends GFButton {
         color: GFColor.primary,
         textColor: textColor,
         position: GFPosition.start,
-        size: GFSize.medium,
+        size: size,
         borderSide: borderSide,
         text: text,
         icon: icon,
