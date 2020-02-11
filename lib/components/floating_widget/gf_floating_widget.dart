@@ -49,6 +49,7 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
           Positioned(
               child: Container(
             height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
             color: widget.showblurness
                 ? widget.blurnessColor ?? Colors.black54
                 : null,
@@ -59,9 +60,6 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
                       ? widget.verticalPosition
                       : 0.0,
                   left: widget.horizontalPosition != null
-                      ? widget.horizontalPosition
-                      : 0.0,
-                  right: widget.horizontalPosition != null
                       ? widget.horizontalPosition
                       : 0.0,
                   child: widget.child ?? Container(),

@@ -16,8 +16,8 @@ class GFToast extends StatefulWidget {
     this.type = GFToastType.basic,
     this.autoDismiss = true,
     this.alignment,
-    this.animationDuration = const Duration(seconds: 2),
-    this.duration = const Duration(seconds: 2),
+    this.animationDuration = const Duration(milliseconds: 300),
+    this.duration = const Duration(milliseconds: 300),
     this.textStyle = const TextStyle(color: Colors.white70),
   }) : super(key: key);
 
@@ -66,7 +66,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
   @override
   void initState() {
     animationController = AnimationController(
-      duration: const Duration(milliseconds: 2000),
+      duration: widget.duration,
       vsync: this,
     );
     animation = CurvedAnimation(
@@ -118,7 +118,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
               Container(
                 width: widget.type == GFToastType.fullWidth
                     ? MediaQuery.of(context).size.width
-                    : widget.width,
+                    : widget.width ?? MediaQuery.of(context).size.width * 0.885,
                 constraints: const BoxConstraints(minHeight: 50),
                 margin: widget.type == GFToastType.fullWidth
                     ? const EdgeInsets.only(left: 0, right: 0)
@@ -167,6 +167,5 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
                 ),
               ),
             ],
-          ),
-        );
+          ));
 }

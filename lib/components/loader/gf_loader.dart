@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/types/gf_loader_type.dart';
-import 'package:getflutter/size/gf_size.dart';
+import 'package:getflutter/getflutter.dart';
 
 class GFLoader extends StatefulWidget {
   const GFLoader(

@@ -87,7 +87,7 @@ class GFAvatar extends StatelessWidget {
     final Color foregroundColor = GFColors.getGFColor(this.foregroundColor);
     assert(debugCheckHasMediaQuery(context));
     final ThemeData theme = Theme.of(context);
-    TextStyle textStyle = theme.primaryTextTheme.subhead.copyWith(
+    TextStyle textStyle = theme.primaryTextTheme.subtitle1.copyWith(
       color: foregroundColor,
     );
     Color effectiveBackgroundColor = backgroundColor;
