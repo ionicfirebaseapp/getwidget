@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 GFButton(
-                    size: GFSize.large,
+                    size: GFSize.LARGE,
                     text: 'View on Github',
                     textStyle: const TextStyle(
                       fontSize: 16,
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 GFButton(
-                    size: GFSize.large,
+                    size: GFSize.LARGE,
                     text: 'View on Playstore',
                     textStyle:
                         const TextStyle(fontSize: 16, color: GFColors.WHITE),

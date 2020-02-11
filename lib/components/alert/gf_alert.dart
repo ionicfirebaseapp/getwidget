@@ -38,8 +38,8 @@ class GFAlert extends StatefulWidget {
   ///type of [TextStyle] to change the style of the title not for the child
   final TextStyle titleTextStyle;
 
-  ///pass color of type [Color] or [GFColor] for background of [GFAlert]
-  final dynamic backgroundColor;
+  ///pass color of type [Color] or [GFColors] for background of [GFAlert]
+  final Color backgroundColor;
 
   ///type of [TextStyle] to change the style of the content not for the contentchild
   final TextStyle contentTextStyle;
