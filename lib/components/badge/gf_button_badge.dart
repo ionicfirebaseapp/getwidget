@@ -32,10 +32,10 @@ class GFButtonBadge extends GFButton {
     MaterialTapTargetSize materialTapTargetSize,
     this.type = GFButtonType.solid,
     this.shape = GFButtonShape.standard,
-    this.color = GFColor.primary,
+    this.color = GFColors.PRIMARY,
     this.textColor,
     this.position = GFPosition.end,
-    this.size = GFSize.medium,
+    this.size = GFSize.MEDIUM,
     this.borderSide,
     this.text,
     this.blockButton,
@@ -75,17 +75,17 @@ class GFButtonBadge extends GFButton {
   /// The box shadow for the badge's [Material].
   final BoxShadow boxShadow;
 
-  /// Pass [GFColor] or [Color]. The color for the badge's [Material] when it has the input focus.
-  final dynamic focusColor;
+  /// Pass [GFColors] or [Color]. The color for the badge's [Material] when it has the input focus.
+  final Color focusColor;
 
-  /// Pass [GFColor] or [Color]. The color for the badge's [Material] when a pointer is hovering over it.
-  final dynamic hoverColor;
+  /// Pass [GFColors] or [Color]. The color for the badge's [Material] when a pointer is hovering over it.
+  final Color hoverColor;
 
-  /// Pass [GFColor] or [Color]. The highlight color for the badge's [InkWell].
-  final dynamic highlightColor;
+  /// Pass [GFColors] or [Color]. The highlight color for the badge's [InkWell].
+  final Color highlightColor;
 
-  /// Pass [GFColor] or [Color]. The splash color for the badge's [InkWell].
-  final dynamic splashColor;
+  /// Pass [GFColors] or [Color]. The splash color for the badge's [InkWell].
+  final Color splashColor;
 
   /// The elevation for the badge's [Material] when the badge is [enabled] but not pressed.
   final double elevation;
@@ -135,8 +135,8 @@ class GFButtonBadge extends GFButton {
   /// Button type of GFButtonBadgeShape i.e, standard, pills, square, shadow, icons
   final GFButtonShape shape;
 
-  /// Pass [GFColor] or [Color]
-  final dynamic color;
+  /// Pass [GFColors] or [Color]
+  final Color color;
 
   /// The fill color of the badge when the badge is disabled.
   ///
@@ -146,10 +146,10 @@ class GFButtonBadge extends GFButton {
   /// See also:
   ///
   ///  * [color] - the fill color of the badge when the badge is [enabled].
-  final dynamic disabledColor;
+  final Color disabledColor;
 
-  /// Pass [GFColor] or [Color]
-  final dynamic textColor;
+  /// Pass [GFColors] or [Color]
+  final Color textColor;
 
   /// The color to use for this badge's text when the badge is disabled.
   ///
@@ -165,10 +165,10 @@ class GFButtonBadge extends GFButton {
   /// See also:
   ///
   ///  * [textColor] - The color to use for this badge's text when the badge is [enabled].
-  final dynamic disabledTextColor;
+  final Color disabledTextColor;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
-  final dynamic size;
+  final double size;
 
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
@@ -225,7 +225,7 @@ class GFButtonBadge extends GFButton {
           minWidth: 98,
         ),
         child: Container(
-          height: GFSizesClass.getGFSize(size),
+          height: size,
           child: GFButton(
             onPressed: onPressed,
             onHighlightChanged: onHighlightChanged,
@@ -247,13 +247,12 @@ class GFButtonBadge extends GFButton {
             clipBehavior: clipBehavior,
             focusNode: focusNode,
             autofocus: autofocus,
-            //  child: child,
             type: type,
             shape: shape,
             color: color,
             textColor: textColor,
             position: position,
-            size: GFSizesClass.getGFSize(size),
+            size: size,
             borderSide: borderSide,
             text: text,
             icon: icon,

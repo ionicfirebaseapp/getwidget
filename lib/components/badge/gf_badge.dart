@@ -8,9 +8,9 @@ class GFBadge extends StatefulWidget {
     this.textStyle,
     this.borderShape,
     this.shape = GFBadgeShape.standard,
-    this.color = GFColor.danger,
-    this.textColor = GFColor.white,
-    this.size = GFSize.small,
+    this.color = GFColors.DANGER,
+    this.textColor = GFColors.WHITE,
+    this.size = GFSize.SMALL,
     this.border,
     this.text,
     this.child,
@@ -26,11 +26,11 @@ class GFBadge extends StatefulWidget {
   /// Counter type of [GFBadgeShape] i.e, standard, pills, square, circle
   final GFBadgeShape shape;
 
-  /// Pass [GFColor] or [Color]
-  final dynamic color;
+  /// Pass [GFColors] or [Color]
+  final Color color;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
-  final dynamic size;
+  final double size;
 
   /// child of type [Widget] is alternative to child. text will get priority over child
   final Widget child;
@@ -41,8 +41,8 @@ class GFBadge extends StatefulWidget {
   /// text style of counter text.
   final TextStyle textStyle;
 
-  /// Pass [GFColor] or [Color]
-  final dynamic textColor;
+  /// Pass [GFColors] or [Color]
+  final Color textColor;
 
   @override
   _GFBadgeState createState() => _GFBadgeState();
@@ -60,11 +60,11 @@ class _GFBadgeState extends State<GFBadge> {
 
   @override
   void initState() {
-    color = GFColors.getGFColor(widget.color);
-    textColor = GFColors.getGFColor(widget.textColor);
+    color = widget.color;
+    textColor = widget.textColor;
     child = widget.text != null ? Text(widget.text ?? '') : widget.child;
     counterShape = widget.shape;
-    size = GFSizesClass.getGFSize(widget.size);
+    size = widget.size;
     super.initState();
   }
 
@@ -106,15 +106,15 @@ class _GFBadgeState extends State<GFBadge> {
       );
     }
 
-    if (widget.size == GFSize.small) {
+    if (widget.size == GFSize.SMALL) {
       height = size * 0.56;
       width = size * 0.73;
       fontSize = size * 0.31;
-    } else if (widget.size == GFSize.medium) {
+    } else if (widget.size == GFSize.MEDIUM) {
       height = size * 0.58;
       width = size * 0.76;
       fontSize = size * 0.34;
-    } else if (widget.size == GFSize.large) {
+    } else if (widget.size == GFSize.LARGE) {
       height = size * 0.6;
       width = size * 0.79;
       fontSize = size * 0.37;

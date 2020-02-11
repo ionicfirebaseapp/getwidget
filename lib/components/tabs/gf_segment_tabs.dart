@@ -173,8 +173,8 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
         height: widget.height ?? 28,
         width: widget.width ?? 240,
         decoration: BoxDecoration(
-          border: widget.border ??
-              Border.all(color: GFColors.getGFColor(GFColor.primary), width: 1),
+          border:
+              widget.border ?? Border.all(color: GFColors.PRIMARY, width: 1),
           borderRadius: widget.borderRadius ?? BorderRadius.circular(2),
         ),
         child: DefaultTabController(
@@ -186,32 +186,24 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
             color: widget.tabBarColor ?? Colors.transparent,
             child: TabBar(
               controller: widget.tabController,
-              labelColor:
-                  widget.labelColor ?? GFColors.getGFColor(GFColor.white),
-              unselectedLabelColor: widget.unselectedLabelColor ??
-                  GFColors.getGFColor(GFColor.primary),
+              labelColor: widget.labelColor ?? GFColors.WHITE,
+              unselectedLabelColor:
+                  widget.unselectedLabelColor ?? GFColors.PRIMARY,
               labelStyle: widget.labelStyle ?? const TextStyle(fontSize: 12),
               unselectedLabelStyle:
                   widget.unselectedLabelStyle ?? const TextStyle(fontSize: 12),
-              indicatorColor: widget.indicatorColor == null
-                  ? GFColors.getGFColor(GFColor.primary)
-                  : widget.indicatorColor,
+              indicatorColor: widget.indicatorColor ?? GFColors.PRIMARY,
               indicatorSize: widget.indicatorSize,
-              indicator: widget.indicator == null
-                  ? BoxDecoration(
-                      color: widget.indicatorColor == null
-                          ? GFColors.getGFColor(GFColor.primary)
-                          : widget.indicatorColor,
-                      border: Border.all(
-                          color: widget.indicatorColor == null
-                              ? Colors.transparent
-                              : widget.indicatorColor,
-                          width: 2),
-                      borderRadius: widget.borderRadius == null
-                          ? BorderRadius.circular(0)
-                          : widget.borderRadius,
-                    )
-                  : widget.indicator,
+              indicator: widget.indicator ??
+                  BoxDecoration(
+                    color: widget.indicatorColor ?? GFColors.PRIMARY,
+                    border: Border.all(
+                        color: widget.indicatorColor ?? Colors.transparent,
+                        width: 2),
+                    borderRadius: widget.borderRadius == null
+                        ? BorderRadius.circular(0)
+                        : widget.borderRadius,
+                  ),
               indicatorPadding: widget.indicatorPadding,
               indicatorWeight: widget.indicatorWeight,
               tabs: widget.tabs,

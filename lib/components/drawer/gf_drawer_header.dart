@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/components/button/gf_icon_button.dart';
 import 'package:getflutter/getflutter.dart';
 
 class GFDrawerHeaderPictures extends StatelessWidget {
