@@ -34,7 +34,7 @@ class GFRating extends StatefulWidget {
   final dynamic borderColor;
 
   /// defines the size of items. GFSize can be used for size variations like small. medium. large
-  final dynamic size;
+  final double size;
 
   /// if true, allow half rating of items. Default it will be in true state
   final bool allowHalfRating;

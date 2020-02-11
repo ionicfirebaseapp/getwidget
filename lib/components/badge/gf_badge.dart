@@ -8,8 +8,8 @@ class GFBadge extends StatefulWidget {
     this.textStyle,
     this.borderShape,
     this.shape = GFBadgeShape.standard,
-    this.color = GFColor.danger,
-    this.textColor = GFColor.white,
+    this.color = GFColors.DANGER,
+    this.textColor = GFColors.WHITE,
     this.size = GFSize.SMALL,
     this.border,
     this.text,
@@ -26,7 +26,7 @@ class GFBadge extends StatefulWidget {
   /// Counter type of [GFBadgeShape] i.e, standard, pills, square, circle
   final GFBadgeShape shape;
 
-  /// Pass [GFColor] or [Color]
+  /// Pass [GFColors] or [Color]
   final dynamic color;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
@@ -41,7 +41,7 @@ class GFBadge extends StatefulWidget {
   /// text style of counter text.
   final TextStyle textStyle;
 
-  /// Pass [GFColor] or [Color]
+  /// Pass [GFColors] or [Color]
   final dynamic textColor;
 
   @override
@@ -60,8 +60,8 @@ class _GFBadgeState extends State<GFBadge> {
 
   @override
   void initState() {
-    color = GFColors.getGFColor(widget.color);
-    textColor = GFColors.getGFColor(widget.textColor);
+    color = widget.color;
+    textColor = widget.textColor;
     child = widget.text != null ? Text(widget.text ?? '') : widget.child;
     counterShape = widget.shape;
     size = widget.size;

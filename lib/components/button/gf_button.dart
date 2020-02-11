@@ -35,7 +35,7 @@ class GFButton extends StatefulWidget {
     this.child,
     this.type = GFButtonType.solid,
     this.shape = GFButtonShape.standard,
-    this.color = GFColor.primary,
+    this.color = GFColors.PRIMARY,
     this.textColor,
     this.position = GFPosition.start,
     this.size = GFSize.MEDIUM,
@@ -78,17 +78,17 @@ class GFButton extends StatefulWidget {
   /// The box shadow for the button's [Material], if GFButtonType is solid
   final BoxShadow boxShadow;
 
-  /// Pass [GFColor] or [Color]. The color for the button's [Material] when it has the input focus.
-  final dynamic focusColor;
+  /// Pass [GFColors] or [Color]. The color for the button's [Material] when it has the input focus.
+  final Color focusColor;
 
-  /// Pass [GFColor] or [Color]. The color for the button's [Material] when a pointer is hovering over it.
-  final dynamic hoverColor;
+  /// Pass [GFColors] or [Color]. The color for the button's [Material] when a pointer is hovering over it.
+  final Color hoverColor;
 
-  /// Pass [GFColor] or [Color]. The highlight color for the button's [InkWell].
-  final dynamic highlightColor;
+  /// Pass [GFColors] or [Color]. The highlight color for the button's [InkWell].
+  final Color highlightColor;
 
-  /// Pass [GFColor] or [Color]. The splash color for the button's [InkWell].
-  final dynamic splashColor;
+  /// Pass [GFColors] or [Color]. The splash color for the button's [InkWell].
+  final Color splashColor;
 
   /// The elevation for the button's [Material] when the button is [enabled] but not pressed.
   final double elevation;
@@ -141,8 +141,8 @@ class GFButton extends StatefulWidget {
   /// Button type of [GFButtonShape] i.e, standard, pills, square, shadow, icons
   final GFButtonShape shape;
 
-  /// Pass [GFColor] or [Color]
-  final dynamic color;
+  /// Pass [GFColors] or [Color]
+  final Color color;
 
   /// The fill color of the button when the button is disabled.
   ///
@@ -152,10 +152,10 @@ class GFButton extends StatefulWidget {
   /// See also:
   ///
   ///  * [color] - the fill color of the button when the button is [enabled].
-  final dynamic disabledColor;
+  final Color disabledColor;
 
-  /// Pass [GFColor] or [Color]
-  final dynamic textColor;
+  /// Pass [GFColors] or [Color]
+  final Color textColor;
 
   /// The color to use for this button's text when the button is disabled.
   ///
@@ -171,7 +171,7 @@ class GFButton extends StatefulWidget {
   /// See also:
   ///
   ///  * [textColor] - The color to use for this button's text when the button is [enabled].
-  final dynamic disabledTextColor;
+  final Color disabledTextColor;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
   final double size;
@@ -247,8 +247,8 @@ class _GFButtonState extends State<GFButton> {
 
   @override
   void initState() {
-    color = GFColors.getGFColor(widget.color);
-    textColor = GFColors.getGFColor(widget.textColor);
+    color = widget.color;
+    textColor = widget.textColor;
     child = widget.text != null ? Text(widget.text) : widget.child;
     icon = widget.icon;
     onPressed = widget.onPressed;
@@ -256,8 +256,8 @@ class _GFButtonState extends State<GFButton> {
     shape = widget.shape;
     size = widget.size;
     position = widget.position;
-    disabledColor = GFColors.getGFColor(widget.disabledColor);
-    disabledTextColor = GFColors.getGFColor(widget.disabledTextColor);
+    disabledColor = widget.disabledColor;
+    disabledTextColor = widget.disabledTextColor;
     _updateState(
       MaterialState.disabled,
       !widget.enabled,
@@ -348,8 +348,7 @@ class _GFButtonState extends State<GFButton> {
 
     Color getBorderColor() {
       if (widget.enabled) {
-        final Color fillColor =
-            color == null ? GFColors.getGFColor(GFColor.primary) : color;
+        final Color fillColor = color ?? GFColors.PRIMARY;
         if (fillColor != null) {
           return fillColor;
         }
@@ -360,7 +359,7 @@ class _GFButtonState extends State<GFButton> {
           return color.withOpacity(0.48);
         }
       }
-      return color == null ? GFColors.getGFColor(GFColor.primary) : color;
+      return color ?? GFColors.PRIMARY;
     }
 
     Color getDisabledFillColor() {
@@ -382,8 +381,7 @@ class _GFButtonState extends State<GFButton> {
           widget.type == GFButtonType.outline2x) {
         return Colors.transparent;
       }
-      final Color fillColor =
-          color == null ? GFColors.getGFColor(GFColor.primary) : color;
+      final Color fillColor = color ?? GFColors.PRIMARY;
       return fillColor;
     }
 
@@ -395,7 +393,7 @@ class _GFButtonState extends State<GFButton> {
           widget.type == GFButtonType.transparent) {
         return color;
       } else {
-        return GFColors.getGFColor(GFColor.dark);
+        return GFColors.DARK;
       }
     }
 
@@ -405,17 +403,15 @@ class _GFButtonState extends State<GFButton> {
           widget.type == GFButtonType.transparent) {
         return widget.enabled
             ? textColor == null
-                ? color == GFColors.getGFColor(GFColor.transparent)
-                    ? GFColors.getGFColor(GFColor.dark)
-                    : color
+                ? color == GFColors.TRANSPARENT ? GFColors.DARK : color
                 : textColor
             : getDisabledTextColor();
       }
       if (textColor == null) {
-        if (color == GFColors.getGFColor(GFColor.transparent)) {
-          return GFColors.getGFColor(GFColor.dark);
+        if (color == GFColors.TRANSPARENT) {
+          return GFColors.DARK;
         } else {
-          return GFColors.getGFColor(GFColor.white);
+          return GFColors.WHITE;
         }
       } else {
         return textColor;
@@ -453,12 +449,11 @@ class _GFButtonState extends State<GFButton> {
     final BorderSide shapeBorder = widget.type == GFButtonType.outline ||
             widget.type == GFButtonType.outline2x
         ? outlineBorder
-        : widget.borderSide != null
-            ? widget.borderSide
-            : BorderSide(
-                color: color == null ? themeColor : getBorderColor(),
-                width: 0,
-              );
+        : widget.borderSide ??
+            BorderSide(
+              color: color == null ? themeColor : getBorderColor(),
+              width: 0,
+            );
 
     if (shape == GFButtonShape.pills) {
       shapeBorderType = RoundedRectangleBorder(
@@ -574,10 +569,10 @@ class _GFButtonState extends State<GFButton> {
           onTap: widget.onPressed,
           onLongPress: widget.onLongPress,
           enableFeedback: widget.enableFeedback,
-          splashColor: GFColors.getGFColor(widget.splashColor),
-          highlightColor: GFColors.getGFColor(widget.highlightColor),
-          focusColor: GFColors.getGFColor(widget.focusColor),
-          hoverColor: GFColors.getGFColor(widget.hoverColor),
+          splashColor: widget.splashColor,
+          highlightColor: widget.highlightColor,
+          focusColor: widget.focusColor,
+          hoverColor: widget.hoverColor,
           customBorder: widget.type == GFButtonType.transparent
               ? null
               : widget.borderShape ?? shapeBorderType,

@@ -22,11 +22,11 @@ class GFAvatar extends StatelessWidget {
   /// Typically a [Text] widget. If the [CircleAvatar] is to have an image, use [backgroundImage] instead.
   final Widget child;
 
-  /// use [Color] or [GFColor]. The color with which to fill the circle.
-  final dynamic backgroundColor;
+  /// use [Color] or [GFColors]. The color with which to fill the circle.
+  final Color backgroundColor;
 
-  /// use [Color] or [GFColor]. The default text color for text in the circle.
-  final dynamic foregroundColor;
+  /// use [Color] or [GFColors]. The default text color for text in the circle.
+  final Color foregroundColor;
 
   /// The background image of the circle.
   final ImageProvider backgroundImage;
@@ -83,8 +83,8 @@ class GFAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color backgroundColor = GFColors.getGFColor(this.backgroundColor);
-    final Color foregroundColor = GFColors.getGFColor(this.foregroundColor);
+    final Color backgroundColor = this.backgroundColor;
+    final Color foregroundColor = this.foregroundColor;
     assert(debugCheckHasMediaQuery(context));
     final ThemeData theme = Theme.of(context);
     TextStyle textStyle = theme.primaryTextTheme.subtitle1.copyWith(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:getflutter/getflutter.dart';
-import 'package:getflutter/types/gf_alert_type.dart';
 
 class GFAlert extends StatefulWidget {
   /// Alert has to be wrap inside the body like [GFFloatingWidget]. See [GFFloatingWidget]
@@ -106,8 +105,8 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                           ? BorderRadius.circular(10)
                           : BorderRadius.zero,
                   color: widget.backgroundColor != null
-                      ? GFColors.getGFColor(widget.backgroundColor)
-                      : GFColors.getGFColor(GFColor.white),
+                      ? widget.backgroundColor
+                      : GFColors.WHITE,
                   boxShadow: [
                     BoxShadow(
                         color: Colors.black.withOpacity(0.40), blurRadius: 3)

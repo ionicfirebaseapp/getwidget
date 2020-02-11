@@ -54,7 +54,7 @@ class GFLoader extends StatefulWidget {
 
   /// type of [double] or [GFSize] ie, small , medium or large which is used
   /// to change the size of android, ios, circle and square loaders only
-  final dynamic size;
+  final double size;
 
   @override
   _GFLoaderState createState() => _GFLoaderState();
@@ -220,7 +220,7 @@ class Loader extends StatelessWidget {
   final Color color;
   final GFLoaderType type;
   final Widget icon;
-  final dynamic size;
+  final double size;
   final Widget child;
 
   @override
