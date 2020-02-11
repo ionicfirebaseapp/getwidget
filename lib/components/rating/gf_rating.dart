@@ -28,10 +28,10 @@ class GFRating extends StatefulWidget {
   final int itemCount;
 
   /// defines the color of items
-  final dynamic color;
+  final Color color;
 
   /// defines the border color of [halfFilledIcon]
-  final dynamic borderColor;
+  final Color borderColor;
 
   /// defines the size of items. GFSize can be used for size variations like small. medium. large
   final double size;
@@ -86,8 +86,7 @@ class _GFRatingState extends State<GFRating> {
       icon = widget.defaultIcon ??
           Icon(
             Icons.star_border,
-            color: GFColors.getGFColor(widget.borderColor) ??
-                Theme.of(context).primaryColor,
+            color: widget.borderColor ?? Theme.of(context).primaryColor,
             size: widget.size,
           );
     } else if (!widget.showTextForm
@@ -97,16 +96,14 @@ class _GFRatingState extends State<GFRating> {
       icon = widget.halfFilledIcon ??
           Icon(
             Icons.star_half,
-            color: GFColors.getGFColor(widget.color) ??
-                Theme.of(context).primaryColor,
+            color: widget.color ?? Theme.of(context).primaryColor,
             size: widget.size,
           );
     } else {
       icon = widget.filledIcon ??
           Icon(
             Icons.star,
-            color: GFColors.getGFColor(widget.color) ??
-                Theme.of(context).primaryColor,
+            color: widget.color ?? Theme.of(context).primaryColor,
             size: widget.size,
           );
     }
