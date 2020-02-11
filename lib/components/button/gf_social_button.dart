@@ -33,10 +33,10 @@ class GFSocialButton extends GFButton {
     this.child,
     this.type = GFButtonType.solid,
     this.shape = GFButtonShape.standard,
-    this.color = GFColor.primary,
+    this.color = GFColors.PRIMARY,
     this.textColor,
     this.position = GFPosition.start,
-    this.size = GFSize.medium,
+    this.size = GFSize.MEDIUM,
     this.borderSide,
     this.text,
     this.icon,
@@ -79,17 +79,17 @@ class GFSocialButton extends GFButton {
   /// The box shadow for the button's [Material], if GFButtonType is solid
   final BoxShadow boxShadow;
 
-  /// Pass [GFColor] or [Color]. The color for the button's [Material] when it has the input focus.
-  final dynamic focusColor;
+  /// Pass [GFColors] or [Color]. The color for the button's [Material] when it has the input focus.
+  final Color focusColor;
 
-  /// Pass [GFColor] or [Color]. The color for the button's [Material] when a pointer is hovering over it.
-  final dynamic hoverColor;
+  /// Pass [GFColors] or [Color]. The color for the button's [Material] when a pointer is hovering over it.
+  final Color hoverColor;
 
-  /// Pass [GFColor] or [Color]. The highlight color for the button's [InkWell].
-  final dynamic highlightColor;
+  /// Pass [GFColors] or [Color]. The highlight color for the button's [InkWell].
+  final Color highlightColor;
 
-  /// Pass [GFColor] or [Color]. The splash color for the button's [InkWell].
-  final dynamic splashColor;
+  /// Pass [GFColors] or [Color]. The splash color for the button's [InkWell].
+  final Color splashColor;
 
   /// The elevation for the button's [Material] when the button is [enabled] but not pressed.
   final double elevation;
@@ -142,8 +142,8 @@ class GFSocialButton extends GFButton {
   /// Button type of GFSocialButtonShape i.e, standard, pills, square, shadow, icons
   final GFButtonShape shape;
 
-  /// Pass [GFColor] or [Color]
-  final dynamic color;
+  /// Pass [GFColors] or [Color]
+  final Color color;
 
   /// The fill color of the button when the button is disabled.
   ///
@@ -153,10 +153,10 @@ class GFSocialButton extends GFButton {
   /// See also:
   ///
   ///  * [color] - the fill color of the button when the button is [enabled].
-  final dynamic disabledColor;
+  final Color disabledColor;
 
-  /// Pass [GFColor] or [Color]
-  final dynamic textColor;
+  /// Pass [GFColors] or [Color]
+  final Color textColor;
 
   /// The color to use for this button's text when the button is disabled.
   ///
@@ -172,10 +172,10 @@ class GFSocialButton extends GFButton {
   /// See also:
   ///
   ///  * [textColor] - The color to use for this button's text when the button is [enabled].
-  final dynamic disabledTextColor;
+  final Color disabledTextColor;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
-  final dynamic size;
+  final double size;
 
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
@@ -250,10 +250,10 @@ class GFSocialButton extends GFButton {
         child: child,
         type: GFButtonType.solid,
         shape: GFButtonShape.standard,
-        color: GFColor.primary,
+        color: GFColors.PRIMARY,
         textColor: textColor,
         position: GFPosition.start,
-        size: GFSize.medium,
+        size: size,
         borderSide: borderSide,
         text: text,
         icon: icon,

@@ -16,8 +16,8 @@ class GFToast extends StatefulWidget {
     this.type = GFToastType.basic,
     this.autoDismiss = true,
     this.alignment,
-    this.animationDuration = const Duration(seconds: 2),
-    this.duration = const Duration(seconds: 2),
+    this.animationDuration = const Duration(milliseconds: 300),
+    this.duration = const Duration(milliseconds: 300),
     this.textStyle = const TextStyle(color: Colors.white70),
   }) : super(key: key);
 
@@ -27,8 +27,8 @@ class GFToast extends StatefulWidget {
   /// button of type [Widget],or you can use [GFButton] for easy implementation with [GFToast]
   final Widget button;
 
-  ///pass color of type [Color] or [GFColor] for background of [GFToast]
-  final dynamic backgroundColor;
+  ///pass color of type [Color] or [GFColors] for background of [GFToast]
+  final Color backgroundColor;
 
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
@@ -66,7 +66,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
   @override
   void initState() {
     animationController = AnimationController(
-      duration: const Duration(milliseconds: 2000),
+      duration: widget.duration,
       vsync: this,
     );
     animation = CurvedAnimation(
@@ -118,7 +118,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
               Container(
                 width: widget.type == GFToastType.fullWidth
                     ? MediaQuery.of(context).size.width
-                    : widget.width,
+                    : widget.width ?? MediaQuery.of(context).size.width * 0.885,
                 constraints: const BoxConstraints(minHeight: 50),
                 margin: widget.type == GFToastType.fullWidth
                     ? const EdgeInsets.only(left: 0, right: 0)
@@ -130,9 +130,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
                         : widget.type == GFToastType.rounded
                             ? BorderRadius.circular(10)
                             : BorderRadius.zero,
-                    color: widget.backgroundColor != null
-                        ? GFColors.getGFColor(widget.backgroundColor)
-                        : const Color(0xff323232),
+                    color: widget.backgroundColor ?? const Color(0xff323232),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.40),
@@ -167,6 +165,5 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
                 ),
               ),
             ],
-          ),
-        );
+          ));
 }

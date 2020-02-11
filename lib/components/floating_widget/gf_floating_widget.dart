@@ -26,8 +26,8 @@ class GFFloatingWidget extends StatefulWidget {
   /// verticalPosition of type [double] which  aligns the child vertically across the body
   final double verticalPosition;
 
-  ///blurnessColor of tye [Color] or [GFColor] which is used to blur the backgroundColor when ever the [child] is used in [GFFloatingWidget]
-  final dynamic blurnessColor;
+  ///blurnessColor of tye [Color] or [GFColors] which is used to blur the backgroundColor when ever the [child] is used in [GFFloatingWidget]
+  final Color blurnessColor;
 
   ///type of bool which allows to show or hide the blurness of the backgroundColor whenever the [child]  is used in [GFFloatingWidget]
   final bool showblurness;
@@ -49,6 +49,7 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
           Positioned(
               child: Container(
             height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
             color: widget.showblurness
                 ? widget.blurnessColor ?? Colors.black54
                 : null,
@@ -59,9 +60,6 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
                       ? widget.verticalPosition
                       : 0.0,
                   left: widget.horizontalPosition != null
-                      ? widget.horizontalPosition
-                      : 0.0,
-                  right: widget.horizontalPosition != null
                       ? widget.horizontalPosition
                       : 0.0,
                   child: widget.child ?? Container(),

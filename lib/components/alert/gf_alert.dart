@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:getflutter/getflutter.dart';
-import 'package:getflutter/types/gf_alert_type.dart';
 
 class GFAlert extends StatefulWidget {
   /// Alert has to be wrap inside the body like [GFFloatingWidget]. See [GFFloatingWidget]
@@ -39,8 +38,8 @@ class GFAlert extends StatefulWidget {
   ///type of [TextStyle] to change the style of the title not for the child
   final TextStyle titleTextStyle;
 
-  ///pass color of type [Color] or [GFColor] for background of [GFAlert]
-  final dynamic backgroundColor;
+  ///pass color of type [Color] or [GFColors] for background of [GFAlert]
+  final Color backgroundColor;
 
   ///type of [TextStyle] to change the style of the content not for the contentchild
   final TextStyle contentTextStyle;
@@ -93,7 +92,7 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
             Container(
               width: widget.type == GFAlertType.fullWidth
                   ? MediaQuery.of(context).size.width
-                  : widget.width,
+                  : widget.width ?? MediaQuery.of(context).size.width * 0.885,
               constraints: const BoxConstraints(minHeight: 50),
               margin: widget.type == GFAlertType.fullWidth
                   ? const EdgeInsets.only(left: 0, right: 0)
@@ -106,8 +105,8 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                           ? BorderRadius.circular(10)
                           : BorderRadius.zero,
                   color: widget.backgroundColor != null
-                      ? GFColors.getGFColor(widget.backgroundColor)
-                      : GFColors.getGFColor(GFColor.white),
+                      ? widget.backgroundColor
+                      : GFColors.WHITE,
                   boxShadow: [
                     BoxShadow(
                         color: Colors.black.withOpacity(0.40), blurRadius: 3)

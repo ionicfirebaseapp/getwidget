@@ -29,11 +29,11 @@ class GFTypography extends StatelessWidget {
   ///icon of type [Widget] used to pass icon or image
   final Widget icon;
 
-  /// Pass [GFColor] or [Color] for dividerColor
-  final dynamic dividerColor;
+  /// Pass [GFColors] or [Color] for dividerColor
+  final Color dividerColor;
 
-  /// Pass [GFColor] or [Color] for textColor
-  final dynamic textColor;
+  /// Pass [GFColors] or [Color] for textColor
+  final Color textColor;
 
   /// dividerBorderRadius of type [BorderRadius] to alter the radius of the divider
   final BorderRadius dividerBorderRadius;
@@ -99,17 +99,17 @@ class GFTypography extends StatelessWidget {
               text != null
                   ? Expanded(
                       child: Text(
-                      text,
-                      style: TextStyle(
-                          color: textColor != null
-                              ? GFColors.getGFColor(textColor)
-                              : backgroundImage != null
-                                  ? Colors.white
-                                  : Colors.black,
-                          fontSize: fontSize,
-                          letterSpacing: 0.3,
-                          fontWeight: FontWeight.w500),
-                    ))
+                        text,
+                        style: TextStyle(
+                            color: textColor ??
+                                (backgroundImage != null
+                                    ? Colors.white
+                                    : Colors.black),
+                            fontSize: fontSize,
+                            letterSpacing: 0.3,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    )
                   : child
             ],
           ),
@@ -121,16 +121,14 @@ class GFTypography extends StatelessWidget {
                     width: dividerWidth != null ? dividerWidth : 70,
                     height: fontSize / 5,
                     decoration: BoxDecoration(
-                      color: dividerColor != null
-                          ? GFColors.getGFColor(dividerColor)
-                          : backgroundImage != null
+                      color: dividerColor ??
+                          (backgroundImage != null
                               ? Colors.white
-                              : Colors.black,
-                      borderRadius: dividerBorderRadius != null
-                          ? dividerBorderRadius
-                          : const BorderRadius.all(
-                              Radius.circular(5),
-                            ),
+                              : Colors.black),
+                      borderRadius: dividerBorderRadius ??
+                          const BorderRadius.all(
+                            Radius.circular(5),
+                          ),
                     ),
                   ),
                 )
