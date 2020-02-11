@@ -92,7 +92,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.0.5"
+    version: "1.0.7"
   image:
     dependency: transitive
     description:
