@@ -171,7 +171,7 @@ class _GFTabBarState extends State<GFTabBar> {
         child: Material(
           shape: widget.shape,
           type: MaterialType.button,
-          color: widget.tabBarColor ?? GFColors.getGFColor(GFColor.primary),
+          color: widget.tabBarColor ?? GFColors.PRIMARY,
           child: TabBar(
             controller: widget.controller,
             labelColor: widget.labelColor,

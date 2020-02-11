@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:getflutter/colors/gf_color.dart';
+import 'package:getflutter/getflutter.dart';
 
 class GFAccordion extends StatefulWidget {
   const GFAccordion(
       {Key key,
       this.child,
       this.content,
-      this.collapsedTitlebackgroundColor = Colors.white,
+      this.collapsedTitlebackgroundColor = GFColors.WHITE,
       this.expandedTitlebackgroundColor = const Color(0xFFE0E0E0),
       this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
       this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
@@ -16,8 +16,8 @@ class GFAccordion extends StatefulWidget {
       this.contentbackgroundColor,
       this.contentPadding = const EdgeInsets.all(10),
       this.contentChild,
-      this.titleborderColor = const Border(),
-      this.contentBorderColor = const Border(),
+      this.titleborder = const Border(),
+      this.contentBorder = const Border(),
       this.margin})
       : super(key: key);
 
@@ -30,11 +30,11 @@ class GFAccordion extends StatefulWidget {
   /// contentChild of  type [Widget]is alternative to content key. content will get priority over contentChild
   final Widget contentChild;
 
-  /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordion] title when it is collapsed
-  final dynamic collapsedTitlebackgroundColor;
+  /// type of [Color] or [GFColors] which is used to change the background color of the [GFAccordion] title when it is collapsed
+  final Color collapsedTitlebackgroundColor;
 
-  /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordion] title when it is expanded
-  final dynamic expandedTitlebackgroundColor;
+  /// type of [Color] or [GFColors] which is used to change the background color of the [GFAccordion] title when it is expanded
+  final Color expandedTitlebackgroundColor;
 
   ///collapsedIcon of type [Widget] which is used to show when the [GFAccordion] is collapsed
   final Widget collapsedIcon;
@@ -54,17 +54,17 @@ class GFAccordion extends StatefulWidget {
   ///descriptionPadding of type [EdgeInsets] which is used to set the padding of the [GFAccordion] description
   final EdgeInsets contentPadding;
 
-  /// type of [Color] or [GFColor] which is used to change the background color of the [GFAccordion] description
-  final dynamic contentbackgroundColor;
+  /// type of [Color] or [GFColors] which is used to change the background color of the [GFAccordion] description
+  final Color contentbackgroundColor;
 
   ///margin of type [EdgeInsets] which is used to set the margin of the [GFAccordion]
   final EdgeInsets margin;
 
-  ///titleborderColor of type  [Color] or [GFColor] which is used to change the border color of title
-  final dynamic titleborderColor;
+  ///titleborderColor of type  [Color] or [GFColors] which is used to change the border color of title
+  final Border titleborder;
 
-  ///contentBorderColor of type  [Color] or [GFColor] which is used to change the border color of content
-  final dynamic contentBorderColor;
+  ///contentBorderColor of type  [Color] or [GFColors] which is used to change the border color of content
+  final Border contentBorder;
 
   @override
   _GFAccordionState createState() => _GFAccordionState();
@@ -128,7 +128,7 @@ class _GFAccordionState extends State<GFAccordion>
               },
               child: Container(
                 decoration: BoxDecoration(
-                  border: widget.titleborderColor,
+                  border: widget.titleborder,
                   color: showAccordion
                       ? widget.expandedTitlebackgroundColor
                       : widget.collapsedTitlebackgroundColor,
@@ -150,7 +150,7 @@ class _GFAccordionState extends State<GFAccordion>
             showAccordion
                 ? Container(
                     decoration: BoxDecoration(
-                      border: widget.contentBorderColor,
+                      border: widget.contentBorder,
                       color: widget.contentbackgroundColor ?? Colors.white70,
                     ),
                     width: MediaQuery.of(context).size.width,

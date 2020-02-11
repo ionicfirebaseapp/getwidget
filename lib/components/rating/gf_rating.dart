@@ -12,7 +12,7 @@ class GFRating extends StatefulWidget {
     this.onChanged,
     this.color,
     this.borderColor,
-    this.size = GFSize.medium,
+    this.size = GFSize.MEDIUM,
     this.filledIcon,
     this.halfFilledIcon,
     this.allowHalfRating = true,
@@ -34,7 +34,7 @@ class GFRating extends StatefulWidget {
   final Color borderColor;
 
   /// defines the size of items. GFSize can be used for size variations like small. medium. large
-  final dynamic size;
+  final double size;
 
   /// if true, allow half rating of items. Default it will be in true state
   final bool allowHalfRating;
@@ -87,7 +87,7 @@ class _GFRatingState extends State<GFRating> {
           Icon(
             Icons.star_border,
             color: widget.borderColor ?? Theme.of(context).primaryColor,
-            size: GFSizesClass.getGFSize(widget.size),
+            size: widget.size,
           );
     } else if (!widget.showTextForm
         ? index > widget.value - (widget.allowHalfRating ? 0.5 : 1.0) &&
@@ -97,14 +97,14 @@ class _GFRatingState extends State<GFRating> {
           Icon(
             Icons.star_half,
             color: widget.color ?? Theme.of(context).primaryColor,
-            size: GFSizesClass.getGFSize(widget.size),
+            size: widget.size,
           );
     } else {
       icon = widget.filledIcon ??
           Icon(
             Icons.star,
             color: widget.color ?? Theme.of(context).primaryColor,
-            size: GFSizesClass.getGFSize(widget.size),
+            size: widget.size,
           );
     }
 
@@ -117,7 +117,7 @@ class _GFRatingState extends State<GFRating> {
       onHorizontalDragUpdate: (dragDetails) {
         final RenderBox box = context.findRenderObject();
         final _pos = box.globalToLocal(dragDetails.globalPosition);
-        final i = _pos.dx / GFSizesClass.getGFSize(widget.size);
+        final i = _pos.dx / widget.size;
         var newRating = widget.allowHalfRating ? i : i.round().toDouble();
         if (newRating > widget.itemCount) {
           newRating = widget.itemCount.toDouble();
