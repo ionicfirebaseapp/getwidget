@@ -177,7 +177,8 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
     if (widget.header != null) {
       items.add(widget.header);
     }
-    items.add(Container(
+    items.add(
+        Container(
         height: widget.radius + widget.lineWidth,
         width: widget.radius,
         child: CustomPaint(
@@ -279,19 +280,6 @@ class CirclePainter extends CustomPainter {
       _paintLine.maskFilter = maskFilter;
     }
     if (linearGradient != null) {
-      /*
-      _paintLine.shader = SweepGradient(
-              center: FractionalOffset.center,
-              startAngle: math.radians(-90.0 + startAngle),
-              endAngle: math.radians(progress),
-              //tileMode: TileMode.mirror,
-              colors: linearGradient.colors)
-          .createShader(
-        Rect.fromCircle(
-          center: center,
-          radius: radius,
-        ),
-      );*/
       _paintLine.shader = linearGradient.createShader(
         Rect.fromCircle(
           center: center,
