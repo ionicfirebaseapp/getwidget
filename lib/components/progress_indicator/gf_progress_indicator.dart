@@ -16,11 +16,11 @@
 
 import 'package:flutter/material.dart';
 
-enum LinearStrokeCap { butt, round, roundAll }
+enum LinearStrokeCap { butt, round, roundAll , circular}
 
 class GFProgressIndicator extends StatefulWidget {
   ///Percent value between 0.0 and 1.0
-  final double percent;
+  final double progressPercent;
   final double width;
 
   ///Height of the line
@@ -58,7 +58,7 @@ class GFProgressIndicator extends StatefulWidget {
   ///padding to the GFProgressIndicator
   final EdgeInsets padding;
 
-  /// set true if you want to animate the linear from the last percent value you set
+  /// set true if you want to animate the linear from the last progressPercent value you set
   final bool animateFromLastPercent;
 
   /// If present, this will make the progress bar colored by this gradient.
@@ -75,13 +75,13 @@ class GFProgressIndicator extends StatefulWidget {
   /// Creates a mask filter that takes the progress shape being drawn and blurs it.
   final MaskFilter maskFilter;
 
-  /// Set true if you want to display only part of [linearGradient] based on percent value
+  /// Set true if you want to display only part of [linearGradient] based on progressPercent value
   /// (ie. create 'VU effect'). If no [linearGradient] is specified this option is ignored.
   final bool clipLinearGradient;
 
   GFProgressIndicator({
     Key key,
-    this.percent = 0.0,
+    this.progressPercent = 0.0,
     this.lineHeight = 5.0,
     this.width,
     this.backgroundColor = const Color(0xFFB8C7CB),
@@ -107,7 +107,7 @@ class GFProgressIndicator extends StatefulWidget {
     }
     _progressColor = progressColor ?? Colors.red;
 
-    if (percent < 0.0 || percent > 1.0) {
+    if (progressPercent < 0.0 || progressPercent > 1.0) {
       throw new Exception("Percent value must be a double between 0.0 and 1.0");
     }
   }
@@ -120,7 +120,7 @@ class _GFProgressIndicatorState extends State<GFProgressIndicator>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AnimationController _animationController;
   Animation _animation;
-  double _percent = 0.0;
+  double _progressPercent = 0.0;
 
   @override
   void dispose() {
@@ -137,10 +137,10 @@ class _GFProgressIndicatorState extends State<GFProgressIndicator>
           vsync: this,
           duration: Duration(milliseconds: widget.animationDuration));
       _animation =
-      Tween(begin: 0.0, end: widget.percent).animate(_animationController)
+      Tween(begin: 0.0, end: widget.progressPercent).animate(_animationController)
         ..addListener(() {
           setState(() {
-            _percent = _animation.value;
+            _progressPercent = _animation.value;
           });
         });
       _animationController.forward();
@@ -153,13 +153,13 @@ class _GFProgressIndicatorState extends State<GFProgressIndicator>
   @override
   void didUpdateWidget(GFProgressIndicator oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.percent != widget.percent) {
+    if (oldWidget.progressPercent != widget.progressPercent) {
       if (_animationController != null) {
         _animationController.duration =
             Duration(milliseconds: widget.animationDuration);
         _animation = Tween(
-            begin: widget.animateFromLastPercent ? oldWidget.percent : 0.0,
-            end: widget.percent)
+            begin: widget.animateFromLastPercent ? oldWidget.progressPercent : 0.0,
+            end: widget.progressPercent)
             .animate(_animationController);
         _animationController.forward(from: 0.0);
       } else {
@@ -170,7 +170,7 @@ class _GFProgressIndicatorState extends State<GFProgressIndicator>
 
   _updateProgress() {
     setState(() {
-      _percent = widget.percent;
+      _progressPercent = widget.progressPercent;
     });
   }
 
@@ -189,7 +189,7 @@ class _GFProgressIndicatorState extends State<GFProgressIndicator>
       child: CustomPaint(
         painter: LinearPainter(
           isRTL: widget.isRTL,
-          progress: _percent,
+          progress: _progressPercent,
           center: widget.center,
           progressColor: widget.progressColor,
           linearGradient: widget.linearGradient,
