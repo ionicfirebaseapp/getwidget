@@ -183,14 +183,6 @@ class _GFProgressBarState extends State<GFProgressBar>
   double _percent = 0.0;
 
   @override
-  void dispose() {
-    if (_animationController != null) {
-      _animationController.dispose();
-    }
-    super.dispose();
-  }
-
-  @override
   void initState() {
     if (widget.animation) {
       _animationController = new AnimationController(
@@ -209,6 +201,16 @@ class _GFProgressBarState extends State<GFProgressBar>
     }
     super.initState();
   }
+
+
+  @override
+  void dispose() {
+    if (_animationController != null) {
+      _animationController.dispose();
+    }
+    super.dispose();
+  }
+
 
   @override
   void didUpdateWidget(GFProgressBar oldWidget) {
@@ -266,7 +268,14 @@ class _GFProgressBarState extends State<GFProgressBar>
             ?  widget.center
             : Container(),
       ),
-    ): CircularPercentIndicator(radius: 20.0);
+    ): CircularPercentIndicator(radius: 100.0,
+              lineWidth: widget.lineWidth!=null? widget.lineWidth:10,
+              percent: widget.progressPercent!=null? widget.progressPercent: 0.6,
+              center: widget.center,
+              circularStrokeCap: widget.circularStrokeCap,
+              backgroundColor: widget.backgroundColor,
+              maskFilter:widget.maskFilter,
+              linearGradient: widget.linearGradient);
 
     if (hasSetWidth) {
       items.add(containerWidget);
@@ -499,6 +508,8 @@ class CircularPercentIndicator extends StatefulWidget {
   _CircularPercentIndicatorState createState() =>
       _CircularPercentIndicatorState();
 }
+
+
 
 class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
