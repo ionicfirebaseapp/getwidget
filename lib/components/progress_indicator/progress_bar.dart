@@ -28,7 +28,7 @@ class _ProgressBarDemoState extends State<ProgressBarDemo> {
 //          color: Colors.orange,
         border: Border.all(color: Colors.orange, width: 3),
 //shape: BoxShape.rectangle
-        shape: widget.type == GFProgressType.round?BoxShape.circle?? widget.type==GFProgressType.square:BoxShape.rectangle
+//        shape: widget.type == GFProgressType.round?BoxShape.circle?? widget.type==GFProgressType.square:BoxShape.rectangle
       ),
       
       child: Text('75%'),

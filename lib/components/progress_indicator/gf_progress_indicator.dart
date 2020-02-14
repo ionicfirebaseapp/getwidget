@@ -3,14 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:getflutter/types/gf_progress_type.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
 
-enum LinearBarType { butt, round, roundAll , circular}
-
-enum CircularBarType { butt, round, square }
-
-enum ArcType {
-  HALF,
-  FULL,
-}
 
 class GFProgressBar extends StatefulWidget {
 
@@ -48,8 +40,6 @@ class GFProgressBar extends StatefulWidget {
   ///type of Widget which is used to identity the percentage of progress complete
   final Widget child;
 
-  ///the types of linear progress bar which will be reflected on the edges and of types,  butt, round, roundAll
-  final LinearBarType linearBarType;
 
   ///type of MainAxisAlignment used to align the leading, trailing and the progress bar in a fashion
   final MainAxisAlignment alignment;
@@ -82,20 +72,16 @@ class GFProgressBar extends StatefulWidget {
   ///type of [GFProgressType] which changes the shape of progress bar based on the type ie, circle and linear
   final GFProgressType type ;
 
+
+  final GFProgressHeadType progressHeadType;
+
   ///type of double which defines the width of the Circle in CircularProgressBar
   final double circleWidth;
 
-  ///the types of Circular progress bar which will be reflected on the arcs and of types,  butt, round, roundAll
-  final CircularBarType circularBarType;
 
   ///type of double in which the angle on the circle starts to progress (in degrees, eg: 0.0, 45.0, 90.0)
   final double circleStartAngle;
 
-  ///type of ArcType which defines different types arcs in Circular Progress Bar ie, round and square
-  final ArcType arcType;
-
-  ///type of [Color] or [GFColor] used to set  background color of the arc in CircularProgress Bar
-  final dynamic arcBackgroundColor;
 
   ///type of bool used  to display the progress in reverse mode
   final bool reverse;
@@ -121,19 +107,16 @@ class GFProgressBar extends StatefulWidget {
     this.animationDuration = 500,
     this.child,
     this.autoAlive = true,
-    this.circularBarType,
-    this.arcBackgroundColor,
-    this.arcType,
     this.animateFromLastPercentage = false,
     this.reverse = false,
     this.mask,
     this.type,
+    this.progressHeadType,
     this.lineHeight = 5.0,
     this.width,
     this.fromRightToLeft = false,
     this.leading,
     this.trailing,
-    this.linearBarType,
     this.padding = const EdgeInsets.symmetric(horizontal: 10.0),
     this.alignment = MainAxisAlignment.start,
     this.clipLinearGradient = false,
@@ -150,9 +133,6 @@ class GFProgressBar extends StatefulWidget {
       throw Exception("Percent value must be a double between 0.0 and 1.0");
     }
 
-    if (arcType == null && arcBackgroundColor != null) {
-      throw ArgumentError('arcType is required when you arcBackgroundColor');
-    }
   }
 
   @override
@@ -278,19 +258,19 @@ _updateProgress() {
     var containerWidget = Container(
       width: hasSetWidth ? widget.width : double.infinity,
       decoration: BoxDecoration(
-          shape: widget.type == GFProgressType.round?BoxShape.circle?? widget.type==GFProgressType.square:BoxShape.rectangle
+//          shape: widget.type == GFProgressType.round?BoxShape.circle?? widget.type==GFProgressType.square:BoxShape.rectangle
       ),
       height: widget.lineHeight,
       padding: widget.padding,
       child:  widget.type==GFProgressType.linear?CustomPaint(
         painter: LinearPainter(
+          progressHeadType: widget.progressHeadType,
           fromRightToLeft: widget.fromRightToLeft,
           progress: _progressPercent,
           child: widget.child,
           progressBarColor: widget.progressBarColor,
           linearGradient: widget.linearGradient,
           backgroundColor: widget.backgroundColor,
-          linearBarType: widget.linearBarType,
           circleWidth: widget.lineHeight,
           mask: widget.mask,
           clipLinearGradient: widget.clipLinearGradient,
@@ -301,15 +281,13 @@ _updateProgress() {
             : Container(),
       ):CustomPaint(
         painter: CirclePainter(
+            progressHeadType: widget.progressHeadType,
             progress: _percentage * 360,
             progressBarColor: widget.progressBarColor,
             backgroundColor: widget.backgroundColor,
             circleStartAngle: widget.circleStartAngle,
-            circularBarType: widget.circularBarType,
             radius: (widget.radius / 2) - widget.circleWidth / 2,
             circleWidth: widget.circleWidth,
-            arcBackgroundColor: widget.arcBackgroundColor,
-            arcType: widget.arcType,
             reverse: widget.reverse,
             linearGradient: widget.linearGradient,
             mask: widget.mask),
@@ -365,10 +343,10 @@ class LinearPainter extends CustomPainter {
   final fromRightToLeft;
   final Color progressBarColor;
   final Color backgroundColor;
-  final LinearBarType linearBarType;
   final LinearGradient linearGradient;
   final MaskFilter mask;
   final bool clipLinearGradient;
+  final GFProgressHeadType progressHeadType;
 
   LinearPainter({
     this.circleWidth,
@@ -377,7 +355,7 @@ class LinearPainter extends CustomPainter {
     this.fromRightToLeft,
     this.progressBarColor,
     this.backgroundColor,
-    this.linearBarType = LinearBarType.butt,
+    this.progressHeadType,
     this.linearGradient,
     this.mask,
     this.clipLinearGradient,
@@ -392,13 +370,10 @@ class LinearPainter extends CustomPainter {
     _paintLine.style = PaintingStyle.stroke;
     _paintLine.strokeWidth = circleWidth;
 
-    if (linearBarType == LinearBarType.round) {
+    if (progressHeadType == GFProgressHeadType.circular) {
       _paintLine.strokeCap = StrokeCap.round;
-    } else if (linearBarType == LinearBarType.butt) {
-      _paintLine.strokeCap = StrokeCap.butt;
-    } else {
-      _paintLine.strokeCap = StrokeCap.round;
-      _paintBackground.strokeCap = StrokeCap.round;
+    } else if (progressHeadType == GFProgressHeadType.square) {
+      _paintLine.strokeCap = StrokeCap.square;
     }
   }
 
@@ -467,26 +442,24 @@ class CirclePainter extends CustomPainter {
   final double radius;
   final Color progressBarColor;
   final Color backgroundColor;
-  final CircularBarType circularBarType;
   final double circleStartAngle;
   final LinearGradient linearGradient;
   final Color arcBackgroundColor;
-  final ArcType arcType;
   final bool reverse;
   final MaskFilter mask;
+  final GFProgressHeadType progressHeadType;
 
   CirclePainter(
       {this.circleWidth,
         this.progress,
         @required this.radius,
+        this.progressHeadType,
         this.progressBarColor,
         this.backgroundColor,
         this.circleStartAngle = 0.0,
-        this.circularBarType = CircularBarType.round,
         this.linearGradient,
         this.reverse,
         this.arcBackgroundColor,
-        this.arcType,
         this.mask}) {
     _paintBackground.color = backgroundColor;
     _paintBackground.style = PaintingStyle.stroke;
@@ -501,11 +474,9 @@ class CirclePainter extends CustomPainter {
     _paintLine.color = progressBarColor;
     _paintLine.style = PaintingStyle.stroke;
     _paintLine.strokeWidth = circleWidth;
-    if (circularBarType == CircularBarType.round) {
+    if (progressHeadType == GFProgressHeadType.circular) {
       _paintLine.strokeCap = StrokeCap.round;
-    } else if (circularBarType == CircularBarType.butt) {
-      _paintLine.strokeCap = StrokeCap.butt;
-    } else {
+    } else if (progressHeadType == GFProgressHeadType.square) {
       _paintLine.strokeCap = StrokeCap.square;
     }
   }
@@ -530,15 +501,7 @@ class CirclePainter extends CustomPainter {
     double fixedStartAngle = circleStartAngle;
 
     double circleStartAngleFixedMargin = 1.0;
-    if (arcType != null) {
-      if (arcType == ArcType.FULL) {
-        fixedStartAngle = 220;
-        circleStartAngleFixedMargin = 172 / fixedStartAngle;
-      } else {
-        fixedStartAngle = 270;
-        circleStartAngleFixedMargin = 135 / fixedStartAngle;
-      }
-    }
+
 
     if (arcBackgroundColor != null) {
       canvas.drawArc(

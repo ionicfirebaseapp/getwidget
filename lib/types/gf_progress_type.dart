@@ -1,1 +1,3 @@
-enum GFProgressType {round, linear, square}
+enum GFProgressType {round, linear}
+
+enum GFProgressHeadType{circular, square }
