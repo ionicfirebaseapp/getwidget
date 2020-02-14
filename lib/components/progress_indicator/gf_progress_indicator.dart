@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:getflutter/types/gf_progress_type.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
 
-enum LinearStrokeCap { butt, round, roundAll }
-
 class GFProgressBar extends StatefulWidget {
   ///width of the Circular Progress bar
   final double width;
@@ -27,7 +25,6 @@ class GFProgressBar extends StatefulWidget {
 
   ///type of Widget which can be used in the first place before the progress bar
   final Widget leading;
-
 
   ///type of Widget which can be used in the last place after the progress bar
   final Widget trailing;
@@ -83,14 +80,8 @@ class GFProgressBar extends StatefulWidget {
   ///type of double which should be from 0 to 1 to indicate the progress of the ProgressBars
   final double percentage;
 
-  final LinearStrokeCap linearStrokeCap;
-
-
-
-
   GFProgressBar({
     Key key,
-    this.linearStrokeCap,
     this.percentage = 0.2,
     this.circleWidth = 5.0,
     this.circleStartAngle = 0.0,
@@ -112,7 +103,7 @@ class GFProgressBar extends StatefulWidget {
     this.fromRightToLeft = false,
     this.leading,
     this.trailing,
-    this.padding = const EdgeInsets.symmetric(horizontal: 10.0),
+    this.padding = const EdgeInsets.symmetric(horizontal: 10),
     this.alignment = MainAxisAlignment.start,
     this.clipLinearGradient = false,
   }) : super(key: key) {
@@ -124,7 +115,7 @@ class GFProgressBar extends StatefulWidget {
 
     assert(circleStartAngle >= 0.0);
     if (percentage < 0.0 || percentage > 1.0) {
-      throw Exception("Percent value must be a double between 0.0 and 1.0");
+      throw Exception('Percent value must be a double between 0.0 and 1.0');
     }
   }
 
@@ -256,7 +247,6 @@ class _GFProgressBarState extends State<GFProgressBar>
                   linearGradient: widget.linearGradient,
                   backgroundColor: widget.backgroundColor,
                   circleWidth: widget.lineHeight,
-                  linearStrokeCap: widget.linearStrokeCap,
                   mask: widget.mask,
                   clipLinearGradient: widget.clipLinearGradient,
                 ),
@@ -301,11 +291,10 @@ class _GFProgressBarState extends State<GFProgressBar>
             )),
           )
         : Material(
-
             child: Container(
                 child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: item,
             )),
           );
@@ -327,12 +316,10 @@ class LinearPainter extends CustomPainter {
   final LinearGradient linearGradient;
   final MaskFilter mask;
   final bool clipLinearGradient;
-  GFProgressHeadType progressHeadType = GFProgressHeadType.circular;
-  final LinearStrokeCap linearStrokeCap;
+  GFProgressHeadType progressHeadType;
 
   LinearPainter({
     this.circleWidth,
-    this.linearStrokeCap = LinearStrokeCap.butt,
     this.progress,
     this.child,
     this.fromRightToLeft,
@@ -353,32 +340,12 @@ class LinearPainter extends CustomPainter {
     _paintLine.style = PaintingStyle.stroke;
     _paintLine.strokeWidth = circleWidth;
 
-//    if (progressHeadType == GFProgressHeadType.circular) {
-//      _paintLine.strokeCap = StrokeCap.round;
-//    } else if (progressHeadType == GFProgressHeadType.square) {
-//      _paintLine.strokeCap = StrokeCap.square;
-//    }
-
-
-    if (linearStrokeCap == LinearStrokeCap.round) {
-      _paintLine.strokeCap = StrokeCap.round;
-    } else if (linearStrokeCap == LinearStrokeCap.butt) {
-      _paintLine.strokeCap = StrokeCap.butt;
-    } else {
-      _paintLine.strokeCap = StrokeCap.round;
-      _paintBackground.strokeCap = StrokeCap.round;
-    }
-
-
-    if (progressHeadType == GFProgressHeadType.circular) {
-      _paintLine.strokeCap = StrokeCap.round;
-    } else if (progressHeadType == GFProgressHeadType.square) {
+    if (progressHeadType == GFProgressHeadType.square) {
       _paintLine.strokeCap = StrokeCap.square;
     } else {
       _paintLine.strokeCap = StrokeCap.round;
       _paintBackground.strokeCap = StrokeCap.round;
     }
-
   }
 
   @override
@@ -438,7 +405,6 @@ class LinearPainter extends CustomPainter {
 class CirclePainter extends CustomPainter {
   final Paint _paintBackground = Paint();
   final Paint _paintLine = Paint();
-  final Paint _paintBackgroundStartAngle = Paint();
   final double circleWidth;
   final double progress;
   final double radius;
@@ -475,8 +441,6 @@ class CirclePainter extends CustomPainter {
     } else if (progressHeadType == GFProgressHeadType.square) {
       _paintLine.strokeCap = StrokeCap.square;
     }
-
-
   }
 
   @override
@@ -499,16 +463,6 @@ class CirclePainter extends CustomPainter {
     double fixedStartAngle = circleStartAngle;
 
     double circleStartAngleFixedMargin = 1.0;
-
-//    if (arcBackgroundColor != null) {
-//      canvas.drawArc(
-//        Rect.fromCircle(center: child, radius: radius),
-//        math.radians(-90.0 + fixedStartAngle),
-//        math.radians(360 * circleStartAngleFixedMargin),
-//        false,
-//        _paintBackgroundStartAngle,
-//      );
-//    }
 
     if (reverse) {
       final start = math
