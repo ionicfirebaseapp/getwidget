@@ -3,7 +3,6 @@ import 'package:getflutter/types/gf_progress_type.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
 
 class GFProgressBar extends StatefulWidget {
-
   GFProgressBar({
     Key key,
     this.percentage = 0.2,
@@ -11,38 +10,36 @@ class GFProgressBar extends StatefulWidget {
     this.circleStartAngle = 0.0,
     this.radius,
     this.backgroundColor = const Color(0xFFB8C7CB),
-    Color progressBarColor,
+    this.progressBarColor = Colors.red,
     this.linearGradient,
     this.animation = false,
-    this.animationDuration = 500,
+    this.animationDuration = 700,
     this.child,
     this.autoLive = true,
     this.animateFromLastPercentage = false,
     this.reverse = false,
     this.mask,
-    this.type,
+    this.type = GFProgressType.linear,
     this.progressHeadType,
     this.lineHeight = 5.0,
     this.width,
     this.fromRightToLeft = false,
     this.leading,
     this.trailing,
-    this.padding = const EdgeInsets.symmetric(horizontal: 10),
+    this.padding ,
     this.alignment = MainAxisAlignment.start,
     this.clipLinearGradient = false,
   }) : super(key: key) {
     if (linearGradient != null && progressBarColor != null) {
       throw ArgumentError(
-          'Cannot provide both linearGradient and progressBarColor');
+          ' linearGradient and progressBarColor cannot be given');
     }
-    _progressBarColor = progressBarColor ?? Colors.red;
 
     assert(circleStartAngle >= 0.0);
     if (percentage < 0.0 || percentage > 1.0) {
-      throw Exception('Percent value must be a double between 0.0 and 1.0');
+      throw Exception('Percentage value must be between 0.0 and 1.0');
     }
   }
-
 
   ///width of the  Progress bar
   final double width;
@@ -50,13 +47,11 @@ class GFProgressBar extends StatefulWidget {
   ///Height of the  Progress Bar
   final double lineHeight;
 
-  ///type of [Color] or [GFColor] used to change the backgroundColor of the  progress bar
+  ///type of [Color] or GFColors used to change the backgroundColor of the  progress bar
   final dynamic backgroundColor;
 
-  Color get progressBarColor => _progressBarColor;
-
   ///type of Color , used to change the color of the active progress line
-  dynamic _progressBarColor;
+  final Color progressBarColor;
 
   ///type of bool which allows the progress line to animate when the percentage values are changed
   final bool animation;
@@ -79,7 +74,7 @@ class GFProgressBar extends StatefulWidget {
   ///type of EdgeInsets which gives padding to the GFProgressBar
   final EdgeInsets padding;
 
-  /// set true if you want to animate the linear from the last progressPercentage value you set
+  /// set true if you want to animate the progress bar  from the last percentage value you set
   final bool animateFromLastPercentage;
 
   /// If present, this will make the progress bar colored by this gradient.
@@ -100,19 +95,19 @@ class GFProgressBar extends StatefulWidget {
   ///  If no [linearGradient] is specified this option is ignored.
   final bool clipLinearGradient;
 
-  ///type of [GFProgressType] which changes the shape of progress bar based on the type ie, circle and linear
+  ///type of [GFProgressType] which changes the shape of progress bar based on the type ie, circular and linear
   final GFProgressType type;
 
   ///type of [GFProgressHeadType] which changes the shape of progress head based on the type ie, circular and square
   final GFProgressHeadType progressHeadType;
 
-  ///type of double which defines the width of the arc Circle in CircularProgressBar
+  ///type of double which defines the thickness of the circle's arc in Circular Progress bar
   final double circleWidth;
 
   ///type of double in which the angle on the circle starts to progress (in degrees, eg: 0.0, 45.0, 90.0)
   final double circleStartAngle;
 
-  ///type of bool used  to display the progress in reverse mode
+  ///type of bool used  to display the progress in reverse direction
   final bool reverse;
 
   ///type of double used to show the radius of Circular Progress Bar
@@ -121,27 +116,26 @@ class GFProgressBar extends StatefulWidget {
   ///type of double which should be from 0 to 1 to indicate the progress of the ProgressBars
   final double percentage;
 
-
-
   @override
   _GFProgressBarState createState() => _GFProgressBarState();
 }
 
 class _GFProgressBarState extends State<GFProgressBar>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  AnimationController _animationController, circular_animation_controller;
-  Animation _animation, circular_animation;
-  double _progressPercent = 0.0;
-  double _percentage = 0.0;
+  AnimationController _animationController, circularAnimationController;
+  Animation _animation, circularAnimation;
+  double _progressPercent = 0;
+  double _percentage = 0;
 
   @override
   void initState() {
+    super.initState();
     if (widget.animation) {
-      _animationController =  AnimationController(
+      _animationController = AnimationController(
           vsync: this,
           duration: Duration(milliseconds: widget.animationDuration));
-      _animation = Tween(begin: 0.0, end: widget.percentage)
-          .animate(_animationController)
+      _animation =
+          Tween(begin: 0, end: widget.percentage).animate(_animationController)
             ..addListener(() {
               setState(() {
                 _progressPercent = _animation.value;
@@ -153,17 +147,17 @@ class _GFProgressBarState extends State<GFProgressBar>
     }
 
     if (widget.animation) {
-      circular_animation_controller =  AnimationController(
+      circularAnimationController = AnimationController(
           vsync: this,
           duration: Duration(milliseconds: widget.animationDuration));
-      circular_animation = Tween(begin: 0.0, end: widget.percentage)
-          .animate(circular_animation_controller)
+      circularAnimation = Tween(begin: 0, end: widget.percentage)
+          .animate(circularAnimationController)
             ..addListener(() {
               setState(() {
-                _percentage = circular_animation.value;
+                _percentage = circularAnimation.value;
               });
             });
-      circular_animation_controller.forward();
+      circularAnimationController.forward();
     } else {
       _updateProgress();
     }
@@ -175,7 +169,7 @@ class _GFProgressBarState extends State<GFProgressBar>
     });
   }
 
- void _updateprogressPercent() {
+  void _updateprogressPercent() {
     setState(() {
       _progressPercent = widget.percentage;
     });
@@ -186,8 +180,8 @@ class _GFProgressBarState extends State<GFProgressBar>
     if (_animationController != null) {
       _animationController.dispose();
     }
-    if (circular_animation_controller != null) {
-      circular_animation_controller.dispose();
+    if (circularAnimationController != null) {
+      circularAnimationController.dispose();
     }
     super.dispose();
   }
@@ -205,23 +199,23 @@ class _GFProgressBarState extends State<GFProgressBar>
                     : 0.0,
                 end: widget.percentage)
             .animate(_animationController);
-        _animationController.forward(from: 0.0);
+        _animationController.forward(from: 0);
       } else {
         _updateprogressPercent();
       }
     }
     if (oldWidget.percentage != widget.percentage ||
         oldWidget.circleStartAngle != widget.circleStartAngle) {
-      if (circular_animation_controller != null) {
-        circular_animation_controller.duration =
+      if (circularAnimationController != null) {
+        circularAnimationController.duration =
             Duration(milliseconds: widget.animationDuration);
-        circular_animation = Tween(
+        circularAnimation = Tween(
                 begin: widget.animateFromLastPercentage
                     ? oldWidget.percentage
                     : 0.0,
                 end: widget.percentage)
-            .animate(circular_animation_controller);
-        circular_animation_controller.forward(from: 0.0);
+            .animate(circularAnimationController);
+        circularAnimationController.forward(from: 0);
       } else {
         _updateProgress();
       }
@@ -231,13 +225,14 @@ class _GFProgressBarState extends State<GFProgressBar>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final item = List<Widget>();
+    final item = <Widget>[];
     if (widget.leading != null) {
       item.add(widget.leading);
     }
     final hasSetWidth = widget.width != null;
-    var containerWidget = Container(
-        width: hasSetWidth ? widget.width : double.infinity,
+    final containerWidget = Container(
+      margin: EdgeInsets.only(left: 10, right: 10),
+        width: hasSetWidth ? widget.width : MediaQuery.of(context).size.width,
         height: widget.lineHeight,
         padding: widget.padding,
         child: widget.type == GFProgressType.linear
@@ -287,7 +282,8 @@ class _GFProgressBarState extends State<GFProgressBar>
     return widget.type == GFProgressType.linear
         ? Material(
             color: Colors.transparent,
-            child:  Container(
+            child: Container(
+                width: MediaQuery.of(context).size.width,
                 child: Row(
               mainAxisAlignment: widget.alignment,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -296,8 +292,9 @@ class _GFProgressBarState extends State<GFProgressBar>
           )
         : Material(
             child: Container(
+                width: MediaQuery.of(context).size.width,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: item,
             )),
@@ -309,19 +306,6 @@ class _GFProgressBarState extends State<GFProgressBar>
 }
 
 class LinearPainter extends CustomPainter {
-  final Paint _paintBackground = new Paint();
-  final Paint _paintLine = new Paint();
-  final circleWidth;
-  final progress;
-  final child;
-  final fromRightToLeft;
-  final Color progressBarColor;
-  final Color backgroundColor;
-  final LinearGradient linearGradient;
-  final MaskFilter mask;
-  final bool clipLinearGradient;
-  GFProgressHeadType progressHeadType;
-
   LinearPainter({
     this.circleWidth,
     this.progress,
@@ -338,23 +322,36 @@ class LinearPainter extends CustomPainter {
     _paintBackground.style = PaintingStyle.stroke;
     _paintBackground.strokeWidth = circleWidth;
 
-    _paintLine.color = progress.toString() == "0.0"
-        ? progressBarColor.withOpacity(0.0)
+    _paintLine.color = progress.toString() == '0.0'
+        ? progressBarColor.withOpacity(0)
         : progressBarColor;
     _paintLine.style = PaintingStyle.stroke;
     _paintLine.strokeWidth = circleWidth;
 
     if (progressHeadType == GFProgressHeadType.square) {
-      _paintLine.strokeCap = StrokeCap.square;
+      _paintLine.strokeCap = StrokeCap.butt;
     } else {
       _paintLine.strokeCap = StrokeCap.round;
       _paintBackground.strokeCap = StrokeCap.round;
     }
   }
 
+  final Paint _paintBackground = Paint();
+  final Paint _paintLine = Paint();
+  final double circleWidth;
+  final double progress;
+  final Widget child;
+  final bool fromRightToLeft;
+  final Color progressBarColor;
+  final Color backgroundColor;
+  final LinearGradient linearGradient;
+  final MaskFilter mask;
+  final bool clipLinearGradient;
+  GFProgressHeadType progressHeadType;
+
   @override
   void paint(Canvas canvas, Size size) {
-    final start = Offset(0.0, size.height / 2);
+    final start = Offset(0, size.height / 2);
     final end = Offset(size.width, size.height / 2);
     canvas.drawLine(start, end, _paintBackground);
 
@@ -378,7 +375,7 @@ class LinearPainter extends CustomPainter {
   }
 
   Shader _createGradientShaderRightToLeft(Size size, double xProgress) {
-    Offset shaderEndPoint =
+    final Offset shaderEndPoint =
         clipLinearGradient ? Offset.zero : Offset(xProgress, size.height);
     return linearGradient.createShader(
       Rect.fromPoints(
@@ -389,7 +386,7 @@ class LinearPainter extends CustomPainter {
   }
 
   Shader _createGradientShaderLeftToRight(Size size, double xProgress) {
-    Offset shaderEndPoint = clipLinearGradient
+    final Offset shaderEndPoint = clipLinearGradient
         ? Offset(size.width, size.height)
         : Offset(xProgress, size.height);
     return linearGradient.createShader(
@@ -401,26 +398,10 @@ class LinearPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
-  }
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
 
 class CirclePainter extends CustomPainter {
-  final Paint _paintBackground = Paint();
-  final Paint _paintLine = Paint();
-  final double circleWidth;
-  final double progress;
-  final double radius;
-  final Color progressBarColor;
-  final Color backgroundColor;
-  final double circleStartAngle;
-  final LinearGradient linearGradient;
-  final Color arcBackgroundColor;
-  final bool reverse;
-  final MaskFilter mask;
-  final GFProgressHeadType progressHeadType;
-
   CirclePainter(
       {this.circleWidth,
       this.progress,
@@ -446,6 +427,19 @@ class CirclePainter extends CustomPainter {
       _paintLine.strokeCap = StrokeCap.square;
     }
   }
+  final Paint _paintBackground = Paint();
+  final Paint _paintLine = Paint();
+  final double circleWidth;
+  final double progress;
+  final double radius;
+  final Color progressBarColor;
+  final Color backgroundColor;
+  final double circleStartAngle;
+  final LinearGradient linearGradient;
+  final Color arcBackgroundColor;
+  final bool reverse;
+  final MaskFilter mask;
+  final GFProgressHeadType progressHeadType;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -464,9 +458,9 @@ class CirclePainter extends CustomPainter {
       );
     }
 
-    double fixedStartAngle = circleStartAngle;
+    final double fixedStartAngle = circleStartAngle;
 
-    double circleStartAngleFixedMargin = 1.0;
+    const double circleStartAngleFixedMargin = 1;
 
     if (reverse) {
       final start = math
@@ -499,7 +493,6 @@ class CirclePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
-  }
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
+
