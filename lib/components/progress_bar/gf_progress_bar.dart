@@ -9,14 +9,14 @@ class GFProgressBar extends StatefulWidget {
     this.percentage = 0.2,
     this.circleWidth = 5.0,
     this.circleStartAngle = 0.0,
-    @required this.radius,
+    this.radius,
     this.backgroundColor = const Color(0xFFB8C7CB),
     Color progressBarColor,
     this.linearGradient,
     this.animation = false,
     this.animationDuration = 500,
     this.child,
-    this.autoAlive = true,
+    this.autoLive = true,
     this.animateFromLastPercentage = false,
     this.reverse = false,
     this.mask,
@@ -44,13 +44,13 @@ class GFProgressBar extends StatefulWidget {
   }
 
 
-  ///width of the Circular Progress bar
+  ///width of the  Progress bar
   final double width;
 
-  ///Height of the Linear Progress Bar
+  ///Height of the  Progress Bar
   final double lineHeight;
 
-  ///type of dynamic , backgroundColor used to change the backgroundColor of the  progress bar
+  ///type of [Color] or [GFColor] used to change the backgroundColor of the  progress bar
   final dynamic backgroundColor;
 
   Color get progressBarColor => _progressBarColor;
@@ -70,7 +70,7 @@ class GFProgressBar extends StatefulWidget {
   ///type of Widget which can be used in the last place after the progress bar
   final Widget trailing;
 
-  ///type of Widget which is used to identity the percentage of progress complete
+  ///type of Widget which can be text , icon etc which is  generally used to show the percentage of progress complete
   final Widget child;
 
   ///type of MainAxisAlignment used to align the leading, trailing and the progress bar in a fashion
@@ -88,7 +88,7 @@ class GFProgressBar extends StatefulWidget {
   final LinearGradient linearGradient;
 
   /// set false if you don't want to preserve the state of the widget
-  final bool autoAlive;
+  final bool autoLive;
 
   /// set true if you want to animate the linear bar from the right to left
   final bool fromRightToLeft;
@@ -106,7 +106,7 @@ class GFProgressBar extends StatefulWidget {
   ///type of [GFProgressHeadType] which changes the shape of progress head based on the type ie, circular and square
   final GFProgressHeadType progressHeadType;
 
-  ///type of double which defines the width of the Circle in CircularProgressBar
+  ///type of double which defines the width of the arc Circle in CircularProgressBar
   final double circleWidth;
 
   ///type of double in which the angle on the circle starts to progress (in degrees, eg: 0.0, 45.0, 90.0)
@@ -305,7 +305,7 @@ class _GFProgressBarState extends State<GFProgressBar>
   }
 
   @override
-  bool get wantKeepAlive => widget.autoAlive;
+  bool get wantKeepAlive => widget.autoLive;
 }
 
 class LinearPainter extends CustomPainter {
