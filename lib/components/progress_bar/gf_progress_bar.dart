@@ -3,6 +3,47 @@ import 'package:getflutter/types/gf_progress_type.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
 
 class GFProgressBar extends StatefulWidget {
+
+  GFProgressBar({
+    Key key,
+    this.percentage = 0.2,
+    this.circleWidth = 5.0,
+    this.circleStartAngle = 0.0,
+    @required this.radius,
+    this.backgroundColor = const Color(0xFFB8C7CB),
+    Color progressBarColor,
+    this.linearGradient,
+    this.animation = false,
+    this.animationDuration = 500,
+    this.child,
+    this.autoAlive = true,
+    this.animateFromLastPercentage = false,
+    this.reverse = false,
+    this.mask,
+    this.type,
+    this.progressHeadType,
+    this.lineHeight = 5.0,
+    this.width,
+    this.fromRightToLeft = false,
+    this.leading,
+    this.trailing,
+    this.padding = const EdgeInsets.symmetric(horizontal: 10),
+    this.alignment = MainAxisAlignment.start,
+    this.clipLinearGradient = false,
+  }) : super(key: key) {
+    if (linearGradient != null && progressBarColor != null) {
+      throw ArgumentError(
+          'Cannot provide both linearGradient and progressBarColor');
+    }
+    _progressBarColor = progressBarColor ?? Colors.red;
+
+    assert(circleStartAngle >= 0.0);
+    if (percentage < 0.0 || percentage > 1.0) {
+      throw Exception('Percent value must be a double between 0.0 and 1.0');
+    }
+  }
+
+
   ///width of the Circular Progress bar
   final double width;
 
@@ -80,44 +121,7 @@ class GFProgressBar extends StatefulWidget {
   ///type of double which should be from 0 to 1 to indicate the progress of the ProgressBars
   final double percentage;
 
-  GFProgressBar({
-    Key key,
-    this.percentage = 0.2,
-    this.circleWidth = 5.0,
-    this.circleStartAngle = 0.0,
-    @required this.radius,
-    this.backgroundColor = const Color(0xFFB8C7CB),
-    Color progressBarColor,
-    this.linearGradient,
-    this.animation = false,
-    this.animationDuration = 500,
-    this.child,
-    this.autoAlive = true,
-    this.animateFromLastPercentage = false,
-    this.reverse = false,
-    this.mask,
-    this.type,
-    this.progressHeadType,
-    this.lineHeight = 5.0,
-    this.width,
-    this.fromRightToLeft = false,
-    this.leading,
-    this.trailing,
-    this.padding = const EdgeInsets.symmetric(horizontal: 10),
-    this.alignment = MainAxisAlignment.start,
-    this.clipLinearGradient = false,
-  }) : super(key: key) {
-    if (linearGradient != null && progressBarColor != null) {
-      throw ArgumentError(
-          'Cannot provide both linearGradient and progressBarColor');
-    }
-    _progressBarColor = progressBarColor ?? Colors.red;
 
-    assert(circleStartAngle >= 0.0);
-    if (percentage < 0.0 || percentage > 1.0) {
-      throw Exception('Percent value must be a double between 0.0 and 1.0');
-    }
-  }
 
   @override
   _GFProgressBarState createState() => _GFProgressBarState();
@@ -133,7 +137,7 @@ class _GFProgressBarState extends State<GFProgressBar>
   @override
   void initState() {
     if (widget.animation) {
-      _animationController = new AnimationController(
+      _animationController =  AnimationController(
           vsync: this,
           duration: Duration(milliseconds: widget.animationDuration));
       _animation = Tween(begin: 0.0, end: widget.percentage)
@@ -149,7 +153,7 @@ class _GFProgressBarState extends State<GFProgressBar>
     }
 
     if (widget.animation) {
-      circular_animation_controller = new AnimationController(
+      circular_animation_controller =  AnimationController(
           vsync: this,
           duration: Duration(milliseconds: widget.animationDuration));
       circular_animation = Tween(begin: 0.0, end: widget.percentage)
@@ -165,13 +169,13 @@ class _GFProgressBarState extends State<GFProgressBar>
     }
   }
 
-  _updateProgress() {
+  void _updateProgress() {
     setState(() {
       _percentage = widget.percentage;
     });
   }
 
-  _updateprogressPercent() {
+ void _updateprogressPercent() {
     setState(() {
       _progressPercent = widget.percentage;
     });
@@ -227,7 +231,7 @@ class _GFProgressBarState extends State<GFProgressBar>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    var item = List<Widget>();
+    final item = List<Widget>();
     if (widget.leading != null) {
       item.add(widget.leading);
     }
@@ -283,7 +287,7 @@ class _GFProgressBarState extends State<GFProgressBar>
     return widget.type == GFProgressType.linear
         ? Material(
             color: Colors.transparent,
-            child: new Container(
+            child:  Container(
                 child: Row(
               mainAxisAlignment: widget.alignment,
               crossAxisAlignment: CrossAxisAlignment.center,

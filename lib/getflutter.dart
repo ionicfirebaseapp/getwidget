@@ -32,8 +32,8 @@ export 'package:getflutter/components/rating/gf_rating.dart';
 export 'package:getflutter/components/slidable/gf_slidable.dart';
 // export 'package:getflutter/components/shimmer/gf_shimmer.dart';
 export 'package:getflutter/components/loader/gf_loader.dart';
-export 'package:getflutter/components/progress_indicator/gf_progress_indicator.dart';
-export 'package:getflutter/components/progress_indicator/progress_bar.dart';
+export 'package:getflutter/components/progress_bar/gf_progress_bar.dart';
+
 
 // exports shape, color, position, size, types
 
