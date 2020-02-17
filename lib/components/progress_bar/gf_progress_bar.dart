@@ -26,7 +26,7 @@ class GFProgressBar extends StatefulWidget {
     this.fromRightToLeft = false,
     this.leading,
     this.trailing,
-    this.padding ,
+    this.padding,
     this.alignment = MainAxisAlignment.start,
     this.clipLinearGradient = false,
   }) : super(key: key) {
@@ -231,7 +231,7 @@ class _GFProgressBarState extends State<GFProgressBar>
     }
     final hasSetWidth = widget.width != null;
     final containerWidget = Container(
-      margin: EdgeInsets.only(left: 10, right: 10),
+        margin: const EdgeInsets.only(left: 10, right: 10),
         width: hasSetWidth ? widget.width : MediaQuery.of(context).size.width,
         height: widget.lineHeight,
         padding: widget.padding,
@@ -285,19 +285,19 @@ class _GFProgressBarState extends State<GFProgressBar>
             child: Container(
                 width: MediaQuery.of(context).size.width,
                 child: Row(
-              mainAxisAlignment: widget.alignment,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: item,
-            )),
+                  mainAxisAlignment: widget.alignment,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: item,
+                )),
           )
         : Material(
             child: Container(
                 width: MediaQuery.of(context).size.width,
                 child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: item,
-            )),
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: item,
+                )),
           );
   }
 
@@ -495,4 +495,3 @@ class CirclePainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
-
