@@ -32,6 +32,7 @@ export 'package:getflutter/components/rating/gf_rating.dart';
 export 'package:getflutter/components/slidable/gf_slidable.dart';
 // export 'package:getflutter/components/shimmer/gf_shimmer.dart';
 export 'package:getflutter/components/loader/gf_loader.dart';
+export 'package:getflutter/components/progress_bar/gf_progress_bar.dart';
 
 // exports shape, color, position, size, types
 
@@ -45,6 +46,7 @@ export 'size/gf_size.dart';
 export 'types/gf_alert_type.dart';
 export 'types/gf_button_type.dart';
 export 'types/gf_loader_type.dart';
+export 'types/gf_progress_type.dart';
 export 'types/gf_toast_type.dart';
 export 'types/gf_toggle_type.dart';
 export 'types/gf_typography_type.dart';
