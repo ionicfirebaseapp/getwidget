@@ -741,8 +741,6 @@
 //  }
 //}
 
-
-
 import 'dart:math' as math;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -795,9 +793,9 @@ class GFButton extends StatefulWidget {
     this.disabledColor,
     this.disabledTextColor,
   })  : materialTapTargetSize =
-      materialTapTargetSize ?? MaterialTapTargetSize.padded,
+            materialTapTargetSize ?? MaterialTapTargetSize.padded,
         assert(shape != null, 'Button shape can not be null'),
-  // assert(elevation != null && elevation >= 0.0),
+        // assert(elevation != null && elevation >= 0.0),
         assert(focusElevation != null && focusElevation >= 0.0),
         assert(hoverElevation != null && hoverElevation >= 0.0),
         assert(highlightElevation != null && highlightElevation >= 0.0),
@@ -1010,8 +1008,6 @@ class _GFButtonState extends State<GFButton> {
     super.initState();
   }
 
-
-
   bool get _hovered => _states.contains(MaterialState.hovered);
   bool get _focused => _states.contains(MaterialState.focused);
   bool get _pressed => _states.contains(MaterialState.pressed);
@@ -1165,8 +1161,8 @@ class _GFButtonState extends State<GFButton> {
           widget.type == GFButtonType.transparent) {
         return widget.enabled
             ? textColor == null
-            ? color == GFColors.TRANSPARENT ? GFColors.DARK : color
-            : textColor
+                ? color == GFColors.TRANSPARENT ? GFColors.DARK : color
+                : textColor
             : getDisabledTextColor();
       }
       if (textColor == null) {
@@ -1183,13 +1179,13 @@ class _GFButtonState extends State<GFButton> {
     final Color effectiveTextColor = MaterialStateProperty.resolveAs<Color>(
         widget.textStyle?.color, _states);
     final Color themeColor =
-    Theme.of(context).colorScheme.onSurface.withOpacity(0.12);
+        Theme.of(context).colorScheme.onSurface.withOpacity(0.12);
     final BorderSide outlineBorder = BorderSide(
       color: color == null
           ? themeColor
           : widget.borderSide == null
-          ? getBorderColor()
-          : widget.borderSide.color,
+              ? getBorderColor()
+              : widget.borderSide.color,
       width: widget.borderSide?.width == null
           ? widget.type == GFButtonType.outline2x ? 2.0 : 1.0
           : widget.borderSide?.width,
@@ -1209,13 +1205,13 @@ class _GFButtonState extends State<GFButton> {
     }
 
     final BorderSide shapeBorder = widget.type == GFButtonType.outline ||
-        widget.type == GFButtonType.outline2x
+            widget.type == GFButtonType.outline2x
         ? outlineBorder
         : widget.borderSide ??
-        BorderSide(
-          color: color == null ? themeColor : getBorderColor(),
-          width: 0,
-        );
+            BorderSide(
+              color: color == null ? themeColor : getBorderColor(),
+              width: 0,
+            );
 
     if (shape == GFButtonShape.pills) {
       shapeBorderType = RoundedRectangleBorder(
@@ -1248,31 +1244,31 @@ class _GFButtonState extends State<GFButton> {
         } else {
           return BoxDecoration(
             color: widget.type == GFButtonType.transparent ||
-                widget.type == GFButtonType.outline ||
-                widget.type == GFButtonType.outline2x
+                    widget.type == GFButtonType.outline ||
+                    widget.type == GFButtonType.outline2x
                 ? Colors.transparent
                 : color,
             borderRadius: widget.shape == GFButtonShape.pills
                 ? BorderRadius.circular(50)
                 : widget.shape == GFButtonShape.standard
-                ? BorderRadius.circular(5)
-                : BorderRadius.zero,
+                    ? BorderRadius.circular(5)
+                    : BorderRadius.zero,
             boxShadow: [
               widget.boxShadow == null && widget.buttonBoxShadow == true
                   ? BoxShadow(
-                color: themeColor,
-                blurRadius: 1.5,
-                spreadRadius: 2,
-                offset: Offset.zero,
-              )
+                      color: themeColor,
+                      blurRadius: 1.5,
+                      spreadRadius: 2,
+                      offset: Offset.zero,
+                    )
                   : widget.boxShadow != null
-                  ? widget.boxShadow
-                  : BoxShadow(
-                color: Theme.of(context).canvasColor,
-                blurRadius: 0,
-                spreadRadius: 0,
-                offset: Offset.zero,
-              ),
+                      ? widget.boxShadow
+                      : BoxShadow(
+                          color: Theme.of(context).canvasColor,
+                          blurRadius: 0,
+                          spreadRadius: 0,
+                          offset: Offset.zero,
+                        ),
             ],
           );
         }
@@ -1348,25 +1344,25 @@ class _GFButtonState extends State<GFButton> {
                 widthFactor: 1,
                 heightFactor: 1,
                 child: icon != null &&
-                    (position == GFPosition.start || position == null)
+                        (position == GFPosition.start || position == null)
                     ? Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    icon,
-                    const SizedBox(width: 8),
-                    child
-                  ],
-                )
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          icon,
+                          const SizedBox(width: 8),
+                          child
+                        ],
+                      )
                     : icon != null && (position == GFPosition.end)
-                    ? Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    child,
-                    const SizedBox(width: 8),
-                    icon
-                  ],
-                )
-                    : child,
+                        ? Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              child,
+                              const SizedBox(width: 8),
+                              icon
+                            ],
+                          )
+                        : child,
               ),
             ),
           ),
@@ -1402,9 +1398,9 @@ class _InputPadding extends SingleChildRenderObjectWidget {
     Widget child,
     this.minSize,
   }) : super(
-    key: key,
-    child: child,
-  );
+          key: key,
+          child: child,
+        );
 
   final Size minSize;
 

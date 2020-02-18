@@ -61,13 +61,11 @@ class GFAlert extends StatefulWidget {
 }
 
 class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
-
   AnimationController animationController;
   Animation<double> animation;
 
   @override
   void initState() {
-
     animationController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
