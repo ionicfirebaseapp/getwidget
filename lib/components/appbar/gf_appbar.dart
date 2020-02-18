@@ -321,12 +321,12 @@ class _GFAppBarState extends State<GFAppBar> {
     IconThemeData actionsIconTheme = widget.actionsIconTheme ??
         appBarTheme.actionsIconTheme ??
         overallIconTheme;
-    TextStyle centerStyle = widget.textTheme?.headline6 ??
-        appBarTheme.textTheme?.headline6 ??
-        theme.primaryTextTheme.headline6;
-    TextStyle sideStyle = widget.textTheme?.bodyText2 ??
-        appBarTheme.textTheme?.bodyText2 ??
-        theme.primaryTextTheme.bodyText2;
+    TextStyle centerStyle = widget.textTheme?.headline ??
+        appBarTheme.textTheme?.headline ??
+        theme.primaryTextTheme.headline;
+    TextStyle sideStyle = widget.textTheme?.body1 ??
+        appBarTheme.textTheme?.body1 ??
+        theme.primaryTextTheme.body1;
 
     if (widget.toolbarOpacity != 1.0) {
       final double opacity = const Interval(
