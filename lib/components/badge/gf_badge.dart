@@ -69,7 +69,7 @@ class _GFBadgeState extends State<GFBadge> {
   }
 
   @override
-  void didUpdateWidget(GFBadge oldWidget) {
+  void didUpdateWidget(GFBadge oldWidget){
     color = widget.color;
     textColor = widget.textColor;
     child = widget.text != null ? Text(widget.text ?? '') : widget.child;
