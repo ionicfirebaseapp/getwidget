@@ -586,27 +586,32 @@ class _GFButtonState extends State<GFButton> {
               child: Center(
                 widthFactor: 1,
                 heightFactor: 1,
-child: widget.child,
-//                child: icon != null &&
-//                        (position == GFPosition.start || position == null)
-//                    ? Row(
-//                        mainAxisSize: MainAxisSize.min,
-//                        children: <Widget>[
-//                          icon,
-//                          const SizedBox(width: 8),
-//                          child
-//                        ],
-//                      )
-//                    : icon != null && (position == GFPosition.end)
-//                        ? Row(
-//                            mainAxisSize: MainAxisSize.min,
-//                            children: <Widget>[
-//                              child,
-//                              const SizedBox(width: 8),
-//                              icon
-//                            ],
-//                          )
-//                        : child,
+//            child: widget.child !=null? widget.child:Row(
+//          children: <Widget>[
+//    widget.icon!=null?widget.icon:Icons.sentiment_very_satisfied,
+//    widget.child !=null? widget.child:Text('k')
+//  ],
+//),
+                child: icon != null &&
+                        (position == GFPosition.start || position == null)
+                    ? Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          icon,
+                          const SizedBox(width: 8),
+                         child
+                        ],
+                      )
+                    : icon != null && (position == GFPosition.end)
+                        ? Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                             child,
+                              const SizedBox(width: 8),
+                              icon
+                            ],
+                          )
+                        : widget.child,
               ),
             ),
           ),

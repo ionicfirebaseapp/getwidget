@@ -4,7 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 
-class GFButtonBadge extends GFButton {
+
+class GFButtonBadge extends StatefulWidget {
   /// Create badges badges of all types. check out [GFIconButton] for icon badges, and [GFBadge] for badges
   const GFButtonBadge({
     Key key,
@@ -47,9 +48,9 @@ class GFButtonBadge extends GFButton {
     this.disabledTextColor,
     this.icon,
   })  : materialTapTargetSize =
-            materialTapTargetSize ?? MaterialTapTargetSize.padded,
+      materialTapTargetSize ?? MaterialTapTargetSize.padded,
         assert(shape != null, 'Button shape can not be null'),
-        //  assert(elevation != null && elevation >= 0.0),
+  //  assert(elevation != null && elevation >= 0.0),
         assert(focusElevation != null && focusElevation >= 0.0),
         assert(hoverElevation != null && hoverElevation >= 0.0),
         assert(highlightElevation != null && highlightElevation >= 0.0),
@@ -58,7 +59,7 @@ class GFButtonBadge extends GFButton {
         assert(animationDuration != null),
         assert(clipBehavior != null),
         assert(autofocus != null),
-        super(key: key, onPressed: onPressed);
+        super(key: key, );
 
   /// Called when the button is tapped or otherwise activated.
   final VoidCallback onPressed;
@@ -219,48 +220,106 @@ class GFButtonBadge extends GFButton {
   /// Can be used to display GFBadge, [Icons] inside badge design
   final Widget icon;
 
-  Widget build(BuildContext context) => ConstrainedBox(
-        constraints: const BoxConstraints(
-          minHeight: 26,
-          minWidth: 98,
-        ),
-        child: Container(
-          height: size,
-          child: GFButton(
-            onPressed: onPressed,
-            onHighlightChanged: onHighlightChanged,
-            textStyle: textStyle,
-            boxShadow: boxShadow,
-            buttonBoxShadow: badgeBoxShadow,
-            focusColor: focusColor,
-            hoverColor: hoverColor,
-            highlightColor: highlightColor,
-            splashColor: splashColor,
-            elevation: elevation,
-            focusElevation: focusElevation,
-            hoverElevation: hoverElevation,
-            highlightElevation: highlightElevation,
-            disabledElevation: disabledElevation,
-            constraints: constraints,
-            borderShape: borderShape,
-            animationDuration: animationDuration,
-            clipBehavior: clipBehavior,
-            focusNode: focusNode,
-            autofocus: autofocus,
-            type: type,
-            shape: shape,
-            color: color,
-            textColor: textColor,
-            position: position,
-            size: size,
-            borderSide: borderSide,
-            text: text,
-            icon: icon,
-            blockButton: blockButton,
-            fullWidthButton: fullWidthButton,
-            disabledColor: disabledTextColor,
-            disabledTextColor: disabledColor,
-          ),
-        ),
-      );
+  @override
+  _GFButtonBadgeState createState() => _GFButtonBadgeState();
 }
+
+class _GFButtonBadgeState extends State<GFButtonBadge> {
+  @override
+  Widget build(BuildContext context) => ConstrainedBox(
+    constraints: const BoxConstraints(
+      minHeight: 26,
+      minWidth: 98,
+    ),
+    child: Container(
+      height: widget.size,
+      child: GFButton(
+        onPressed: widget.onPressed,
+        onHighlightChanged: widget.onHighlightChanged,
+        textStyle: widget.textStyle,
+        boxShadow: widget.boxShadow,
+        buttonBoxShadow: widget.badgeBoxShadow,
+        focusColor: widget.focusColor,
+        hoverColor: widget.hoverColor,
+        highlightColor: widget.highlightColor,
+        splashColor: widget.splashColor,
+        elevation: widget.elevation,
+        focusElevation: widget.focusElevation,
+        hoverElevation: widget.hoverElevation,
+        highlightElevation: widget.highlightElevation,
+        disabledElevation: widget.disabledElevation,
+        constraints: widget.constraints,
+        borderShape: widget.borderShape,
+        animationDuration: widget.animationDuration,
+        clipBehavior: widget.clipBehavior,
+        focusNode: widget.focusNode,
+        autofocus: widget.autofocus,
+        type: widget.type,
+        shape: widget.shape,
+        color: widget.color,
+        textColor: widget.textColor,
+        position: widget.position,
+        size: widget.size,
+        borderSide: widget.borderSide,
+        text: widget.text,
+        icon: widget.icon,
+        blockButton: widget.blockButton,
+        fullWidthButton: widget.fullWidthButton,
+        disabledColor: widget.disabledTextColor,
+        disabledTextColor: widget.disabledColor,
+      ),
+    ),
+  );
+}
+
+
+
+//
+//class GFButtonBadge extends GFButton {
+//
+//
+//  Widget build(BuildContext context) => ConstrainedBox(
+//        constraints: const BoxConstraints(
+//          minHeight: 26,
+//          minWidth: 98,
+//        ),
+//        child: Container(
+//          height: size,
+//          child: GFButton(
+//            onPressed: onPressed,
+//            onHighlightChanged: onHighlightChanged,
+//            textStyle: textStyle,
+//            boxShadow: boxShadow,
+//            buttonBoxShadow: badgeBoxShadow,
+//            focusColor: focusColor,
+//            hoverColor: hoverColor,
+//            highlightColor: highlightColor,
+//            splashColor: splashColor,
+//            elevation: elevation,
+//            focusElevation: focusElevation,
+//            hoverElevation: hoverElevation,
+//            highlightElevation: highlightElevation,
+//            disabledElevation: disabledElevation,
+//            constraints: constraints,
+//            borderShape: borderShape,
+//            animationDuration: animationDuration,
+//            clipBehavior: clipBehavior,
+//            focusNode: focusNode,
+//            autofocus: autofocus,
+//            type: type,
+//            shape: shape,
+//            color: color,
+//            textColor: textColor,
+//            position: position,
+//            size: size,
+//            borderSide: borderSide,
+//            text: text,
+//            icon: icon,
+//            blockButton: blockButton,
+//            fullWidthButton: fullWidthButton,
+//            disabledColor: disabledTextColor,
+//            disabledTextColor: disabledColor,
+//          ),
+//        ),
+//      );
+//}
