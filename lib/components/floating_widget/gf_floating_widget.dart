@@ -37,6 +37,20 @@ class GFFloatingWidget extends StatefulWidget {
 }
 
 class _GFFloatingWidgetState extends State<GFFloatingWidget> {
+
+ Widget child;
+
+  @override
+  void initState() {
+    child=widget.child;
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(GFFloatingWidget oldWidget){
+    child=widget.child;
+    super.didUpdateWidget(oldWidget);
+  }
   @override
   Widget build(BuildContext context) => Stack(
         alignment: Alignment.center,
