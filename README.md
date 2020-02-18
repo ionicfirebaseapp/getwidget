@@ -27,7 +27,6 @@
   </a>
 </p>
 
-https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/gf-full_bYPXDEx6g.png
 
 ## Quick start
 
