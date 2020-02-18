@@ -69,6 +69,16 @@ class _GFBadgeState extends State<GFBadge> {
   }
 
   @override
+  void didUpdateWidget(GFBadge oldWidget) {
+    color = widget.color;
+    textColor = widget.textColor;
+    child = widget.text != null ? Text(widget.text ?? '') : widget.child;
+    counterShape = widget.shape;
+    size = widget.size;
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final BorderSide shapeBorder = widget.border != null
         ? widget.border
