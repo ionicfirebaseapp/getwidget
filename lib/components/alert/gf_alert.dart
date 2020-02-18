@@ -61,23 +61,12 @@ class GFAlert extends StatefulWidget {
 }
 
 class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
-  String title;
-  String content;
-  Widget child;
-  Widget contentChild;
-  Widget bottombar;
-
 
   AnimationController animationController;
   Animation<double> animation;
 
   @override
   void initState() {
-    content= widget.content;
-    title = widget.title;
-    child=widget.child;
-    contentChild=widget.contentChild;
-    bottombar=widget.bottombar;
 
     animationController = AnimationController(
       duration: const Duration(milliseconds: 300),
@@ -95,18 +84,6 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
   void dispose() {
     animationController.dispose();
     super.dispose();
-  }
-
-
-
-  @override
-  void didUpdateWidget(GFAlert oldWidget){
-    content= widget.content;
-    title = widget.title;
-    child=widget.child;
-    contentChild=widget.contentChild;
-    bottombar=widget.bottombar;
-    super.didUpdateWidget(oldWidget);
   }
 
   @override
