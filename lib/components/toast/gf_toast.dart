@@ -27,8 +27,8 @@ class GFToast extends StatefulWidget {
   /// button of type [Widget],or you can use [GFButton] for easy implementation with [GFToast]
   final Widget button;
 
-  ///pass color of type [Color] or [GFColor] for background of [GFToast]
-  final dynamic backgroundColor;
+  ///pass color of type [Color] or [GFColors] for background of [GFToast]
+  final Color backgroundColor;
 
   /// text of type [String] is alternative to child. text will get priority over child
   final String text;
@@ -130,9 +130,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
                         : widget.type == GFToastType.rounded
                             ? BorderRadius.circular(10)
                             : BorderRadius.zero,
-                    color: widget.backgroundColor != null
-                        ? GFColors.getGFColor(widget.backgroundColor)
-                        : const Color(0xff323232),
+                    color: widget.backgroundColor ?? const Color(0xff323232),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.40),

@@ -23,10 +23,10 @@ class GFIconButton extends StatefulWidget {
     this.tooltip,
     this.type = GFButtonType.solid,
     this.shape = GFIconButtonShape.standard,
-    this.color = GFColor.primary,
+    this.color = GFColors.PRIMARY,
     this.borderShape,
     this.boxShadow,
-    this.size = GFSize.medium,
+    this.size = GFSize.MEDIUM,
     this.buttonBoxShadow,
     this.borderSide,
   })  : assert(iconSize != null),
@@ -60,17 +60,17 @@ class GFIconButton extends StatefulWidget {
   /// Button type of [GFIconButtonShape] i.e, standard, pills, square, shadow, icons
   final GFIconButtonShape shape;
 
-  /// Pass [GFColor] or [Color]
-  final dynamic color;
+  /// Pass [GFColors] or [Color]
+  final Color color;
 
-  /// Pass [GFColor] or [Color]. The primary color of the button when the button is in the down (pressed) state.
-  final dynamic splashColor;
+  /// Pass [GFColors] or [Color]. The primary color of the button when the button is in the down (pressed) state.
+  final Color splashColor;
 
-  /// Pass [GFColor] or [Color]. The secondary color of the button when the button is in the down (pressed) state.
-  final dynamic highlightColor;
+  /// Pass [GFColors] or [Color]. The secondary color of the button when the button is in the down (pressed) state.
+  final Color highlightColor;
 
-  /// Pass [GFColor] or [Color]. The color to use for the icon inside the button, if the icon is disabled.
-  final dynamic disabledColor;
+  /// Pass [GFColors] or [Color]. The color to use for the icon inside the button, if the icon is disabled.
+  final Color disabledColor;
 
   /// The callback that is called when the button is tapped or otherwise activated.
   final VoidCallback onPressed;
@@ -91,7 +91,7 @@ class GFIconButton extends StatefulWidget {
   final ShapeBorder borderShape;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
-  final dynamic size;
+  final double size;
 
   /// on true state default box shadow appears around button, if GFButtonType is solid
   final bool buttonBoxShadow;
@@ -115,7 +115,7 @@ class _GFIconButtonState extends State<GFIconButton> {
 
   @override
   void initState() {
-    color = GFColors.getGFColor(widget.color);
+    color = widget.color;
     onPressed = widget.onPressed;
     type = widget.type;
     shape = widget.shape;
@@ -162,16 +162,12 @@ class _GFIconButtonState extends State<GFIconButton> {
         widget.type == GFButtonType.outline ||
         widget.type == GFButtonType.outline2x) {
       return widget.onPressed != null
-          ? color == GFColors.getGFColor(GFColor.transparent)
-              ? GFColors.getGFColor(GFColor.dark)
-              : color
+          ? color == GFColors.TRANSPARENT ? GFColors.DARK : color
           : color.withOpacity(0.48);
-    } else if (color == GFColors.getGFColor(GFColor.transparent)) {
-      return widget.onPressed != null
-          ? GFColors.getGFColor(GFColor.dark)
-          : GFColors.getGFColor(GFColor.white);
+    } else if (color == GFColors.TRANSPARENT) {
+      return widget.onPressed != null ? GFColors.DARK : GFColors.WHITE;
     } else {
-      return GFColors.getGFColor(GFColor.white);
+      return GFColors.WHITE;
     }
   }
 
@@ -193,12 +189,11 @@ class _GFIconButtonState extends State<GFIconButton> {
     final BorderSide shapeBorder = widget.type == GFButtonType.outline ||
             widget.type == GFButtonType.outline2x
         ? outlineBorder
-        : widget.borderSide != null
-            ? widget.borderSide
-            : BorderSide(
-                color: color,
-                width: 0,
-              );
+        : widget.borderSide ??
+            BorderSide(
+              color: color,
+              width: 0,
+            );
 
     ShapeBorder shapeBorderType;
 
@@ -224,15 +219,15 @@ class _GFIconButtonState extends State<GFIconButton> {
       );
     }
 
-    if (widget.size == GFSize.small) {
+    if (widget.size == GFSize.SMALL) {
       height = 30.0;
       width = 30.0;
       iconPixel = 18.0;
-    } else if (widget.size == GFSize.medium) {
+    } else if (widget.size == GFSize.MEDIUM) {
       height = 35.0;
       width = 35.0;
       iconPixel = 18.0;
-    } else if (widget.size == GFSize.large) {
+    } else if (widget.size == GFSize.LARGE) {
       height = 40.0;
       width = 40.0;
       iconPixel = 18.0;
@@ -288,14 +283,13 @@ class _GFIconButtonState extends State<GFIconButton> {
                         spreadRadius: 2,
                         offset: Offset.zero,
                       )
-                    : widget.boxShadow != null
-                        ? widget.boxShadow
-                        : BoxShadow(
-                            color: Theme.of(context).canvasColor,
-                            blurRadius: 0,
-                            spreadRadius: 0,
-                            offset: Offset.zero,
-                          )
+                    : widget.boxShadow ??
+                        BoxShadow(
+                          color: Theme.of(context).canvasColor,
+                          blurRadius: 0,
+                          spreadRadius: 0,
+                          offset: Offset.zero,
+                        )
               ]);
         }
       }
@@ -321,9 +315,7 @@ class _GFIconButtonState extends State<GFIconButton> {
             child: Material(
               shape: widget.type == GFButtonType.transparent
                   ? null
-                  : widget.borderShape == null
-                      ? shapeBorderType
-                      : widget.borderShape,
+                  : widget.borderShape ?? shapeBorderType,
               color: widget.onPressed != null
                   ? getColor()
                   : getDisabledFillColor(),
@@ -333,18 +325,12 @@ class _GFIconButtonState extends State<GFIconButton> {
               child: InkResponse(
                 onTap: widget.onPressed,
                 child: result,
-                focusColor: widget.focusColor != null
-                    ? GFColors.getGFColor(widget.focusColor)
-                    : Theme.of(context).focusColor,
-                hoverColor: widget.hoverColor != null
-                    ? GFColors.getGFColor(widget.hoverColor)
-                    : Theme.of(context).hoverColor,
-                highlightColor: widget.highlightColor != null
-                    ? GFColors.getGFColor(widget.highlightColor)
-                    : Theme.of(context).highlightColor,
-                splashColor: widget.splashColor != null
-                    ? GFColors.getGFColor(widget.splashColor)
-                    : Theme.of(context).splashColor,
+                focusColor: widget.focusColor ?? Theme.of(context).focusColor,
+                hoverColor: widget.hoverColor ?? Theme.of(context).hoverColor,
+                highlightColor:
+                    widget.highlightColor ?? Theme.of(context).highlightColor,
+                splashColor:
+                    widget.splashColor ?? Theme.of(context).splashColor,
                 radius: math.max(
                     Material.defaultSplashRadius,
                     (widget.iconSize +

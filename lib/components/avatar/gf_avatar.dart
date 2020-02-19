@@ -15,18 +15,18 @@ class GFAvatar extends StatelessWidget {
       this.maxRadius,
       this.borderRadius,
       this.shape = GFAvatarShape.circle,
-      this.size = GFSize.medium})
+      this.size = GFSize.MEDIUM})
       : assert(radius == null || (minRadius == null && maxRadius == null)),
         super(key: key);
 
   /// Typically a [Text] widget. If the [CircleAvatar] is to have an image, use [backgroundImage] instead.
   final Widget child;
 
-  /// use [Color] or [GFColor]. The color with which to fill the circle.
-  final dynamic backgroundColor;
+  /// use [Color] or [GFColors]. The color with which to fill the circle.
+  final Color backgroundColor;
 
-  /// use [Color] or [GFColor]. The default text color for text in the circle.
-  final dynamic foregroundColor;
+  /// use [Color] or [GFColors]. The default text color for text in the circle.
+  final Color foregroundColor;
 
   /// The background image of the circle.
   final ImageProvider backgroundImage;
@@ -41,7 +41,7 @@ class GFAvatar extends StatelessWidget {
   final double maxRadius;
 
   /// size of avatar. use [GFSize] or [double] i.e, 1.2, small, medium, large etc.
-  final dynamic size;
+  final double size;
 
   /// shape of avatar [GFAvatarShape] i.e, standard, circle, square
   final GFAvatarShape shape;
@@ -55,7 +55,7 @@ class GFAvatar extends StatelessWidget {
 
   double get _minDiameter {
     if (radius == null && minRadius == null && maxRadius == null) {
-      return 1.5 * GFSizesClass.getGFSize(size);
+      return 1.5 * size;
     } else {
       return 2.0 * (radius ?? minRadius ?? 0);
     }
@@ -63,7 +63,7 @@ class GFAvatar extends StatelessWidget {
 
   double get _maxDiameter {
     if (radius == null && minRadius == null && maxRadius == null) {
-      return 1.5 * GFSizesClass.getGFSize(size);
+      return 1.5 * size;
     } else {
       return 2.0 * (radius ?? maxRadius ?? 0);
     }
@@ -83,11 +83,11 @@ class GFAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color backgroundColor = GFColors.getGFColor(this.backgroundColor);
-    final Color foregroundColor = GFColors.getGFColor(this.foregroundColor);
+    final Color backgroundColor = this.backgroundColor;
+    final Color foregroundColor = this.foregroundColor;
     assert(debugCheckHasMediaQuery(context));
     final ThemeData theme = Theme.of(context);
-    TextStyle textStyle = theme.primaryTextTheme.subtitle1.copyWith(
+    TextStyle textStyle = theme.primaryTextTheme.subtitle.copyWith(
       color: foregroundColor,
     );
     Color effectiveBackgroundColor = backgroundColor;
