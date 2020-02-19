@@ -15,7 +15,7 @@ class GFLoader extends StatefulWidget {
       this.loaderIconThree,
       this.androidLoaderColor,
       this.loaderstrokeWidth = 4.0,
-      this.size = GFSize.medium,
+      this.size = GFSize.MEDIUM,
       this.child})
       : super(key: key);
 
@@ -23,13 +23,13 @@ class GFLoader extends StatefulWidget {
   final Widget child;
 
   /// Type of GFColor or [Color] which defines the color of the first dot in only  circle or square type of loader
-  final dynamic loaderColorOne;
+  final Color loaderColorOne;
 
   /// Type of GFColor or [Color] which defines the color of the second dot in only  circle or square type of loader
-  final dynamic loaderColorTwo;
+  final Color loaderColorTwo;
 
   /// Type of GFColor or [Color] which defines the color of the third dot in only  circle or square type of loader
-  final dynamic loaderColorThree;
+  final Color loaderColorThree;
 
   /// Type of duration which defines the animation duration of the loader only in circle and square type of loader
   final Duration duration;
@@ -54,7 +54,7 @@ class GFLoader extends StatefulWidget {
 
   /// type of [double] or [GFSize] ie, small , medium or large which is used
   /// to change the size of android, ios, circle and square loaders only
-  final dynamic size;
+  final double size;
 
   @override
   _GFLoaderState createState() => _GFLoaderState();
@@ -117,15 +117,15 @@ class _GFLoaderState extends State<GFLoader>
   Widget build(BuildContext context) => Container(
         child: widget.child != null
             ? Loader(
-                radius: GFSizesClass.getGFSize(widget.size) * 0.3,
+                radius: widget.size * 0.3,
                 type: widget.type,
                 child: widget.child,
               )
             : widget.type == GFLoaderType.android
                 ? Center(
                     child: Container(
-                    height: GFSizesClass.getGFSize(widget.size) * 0.7,
-                    width: GFSizesClass.getGFSize(widget.size) * 0.7,
+                    height: widget.size * 0.7,
+                    width: widget.size * 0.7,
                     child: CircularProgressIndicator(
                       valueColor: widget.androidLoaderColor,
                       strokeWidth: widget.loaderstrokeWidth,
@@ -135,7 +135,7 @@ class _GFLoaderState extends State<GFLoader>
                 : widget.type == GFLoaderType.ios
                     ? Center(
                         child: CupertinoActivityIndicator(
-                            radius: GFSizesClass.getGFSize(widget.size) * 0.4),
+                            radius: widget.size * 0.4),
                       )
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -150,8 +150,7 @@ class _GFLoaderState extends State<GFLoader>
                             child: Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: Loader(
-                                radius:
-                                    GFSizesClass.getGFSize(widget.size) * 0.3,
+                                radius: widget.size * 0.3,
                                 color: widget.loaderColorOne,
                                 type: widget.type,
                                 icon: widget.loaderIconOne,
@@ -169,8 +168,7 @@ class _GFLoaderState extends State<GFLoader>
                             child: Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: Loader(
-                                radius:
-                                    GFSizesClass.getGFSize(widget.size) * 0.44,
+                                radius: widget.size * 0.44,
                                 color: widget.loaderColorTwo,
                                 type: widget.type,
                                 icon: widget.loaderIconTwo,
@@ -188,8 +186,7 @@ class _GFLoaderState extends State<GFLoader>
                             child: Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: Loader(
-                                radius:
-                                    GFSizesClass.getGFSize(widget.size) * 0.3,
+                                radius: widget.size * 0.3,
                                 color: widget.loaderColorThree,
                                 type: widget.type,
                                 icon: widget.loaderIconThree,
@@ -223,7 +220,7 @@ class Loader extends StatelessWidget {
   final Color color;
   final GFLoaderType type;
   final Widget icon;
-  final dynamic size;
+  final double size;
   final Widget child;
 
   @override

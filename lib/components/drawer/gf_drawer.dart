@@ -107,7 +107,7 @@ class GFDrawer extends StatelessWidget {
   final Gradient gradient;
 
   /// Defines the background color of the drawer
-  final dynamic color;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
