@@ -2,71 +2,55 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:getflutter/getflutter.dart';
 
-enum GFShimmerDirection { leftToRight, rightToLeft, topToBottom, bottomToTop }
-
-@immutable
 class GFShimmer extends StatefulWidget {
   const GFShimmer({
     Key key,
     @required this.child,
-    @required this.gradient,
+    this.gradient,
     this.direction = GFShimmerDirection.leftToRight,
     this.duration = const Duration(milliseconds: 1500),
     this.shimmerEffectCount = 0,
     this.showShimmerEffect = true,
+    this.showGradient = false,
+    this.mainColor = GFColors.PRIMARY,
+    this.secondaryColor = GFColors.LIGHT,
   }) : super(key: key);
 
-  GFShimmer.withColors({
-    Key key,
-    @required this.child,
-    dynamic baseColor = GFColor.primary,
-    dynamic highlightColor = GFColor.light,
-    this.direction = GFShimmerDirection.leftToRight,
-    this.duration = const Duration(milliseconds: 1500),
-    this.shimmerEffectCount = 0,
-    this.showShimmerEffect = true,
-  })  : gradient = LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.centerRight,
-            colors: <Color>[
-              GFColors.getGFColor(baseColor),
-              GFColors.getGFColor(baseColor),
-              GFColors.getGFColor(highlightColor),
-              GFColors.getGFColor(baseColor),
-              GFColors.getGFColor(baseColor)
-            ],
-            stops: const <double>[
-              0,
-              0.3,
-              0.5,
-              0.7,
-              1
-            ]),
-        super(key: key);
-
-  /// The widget below this widget in the tree.
+  /// The child of type [Widget] to display shimmer effect.
   final Widget child;
 
-  /// Controls the speed of the shimmer effect. The default value is 1500 milliseconds.
+  /// Controls the speed of the shimmer effect.
+  /// The default value is 1500 milliseconds.
   final Duration duration;
 
-  /// Controls the direction of the shimmer effect. The default value is GFShimmerDirection.leftToRight.
+  /// Controls the direction of the shimmer effect.
+  /// The default direction is GFShimmerDirection.leftToRight.
   final GFShimmerDirection direction;
 
-  /// Controls the [child]'s shades of color.
+  /// Controls the [child]'s shades of color using Linear gradient.
+  /// Child [Widget] only takes gradient color, If [showGradient] is true.
   final Gradient gradient;
 
-  /// Controls the animation shimmerEffectCount. The default value is '0', that makes animation forever.
+  /// Controls the animation shimmerEffectCount.
+  /// The default value is '0', that displays child [Widget]'s shimmer effect forever.
   final int shimmerEffectCount;
 
   /// Controls animation effect, defaults true state that makes animation active.
   final bool showShimmerEffect;
 
-  /// defines the base color of the [child]'s shimmer effect.
- /// dynamic baseColor;
+  /// If true, takes gradient color [gradient] for the [child]'s shimmer effect.
+  /// Default set to false.
+  final bool showGradient;
 
-  /// defines the highLight color of the [child]'s shimmer effect.
- /// dynamic highLightColor;
+  /// Defines the mai color of the [child]'s shimmer effect.
+  /// Child [Widget] takes main color, only if [showGradient] is false.
+  /// Default [showGradient] will be false.
+  final dynamic mainColor;
+
+  /// defines the secondary color of the [child]'s shimmer effect.
+  /// Child [Widget] takes secondary color, only if [showGradient] is false.
+  /// Default [showGradient] will be false.
+  final dynamic secondaryColor;
 
   @override
   _GFShimmerState createState() => _GFShimmerState();
@@ -115,7 +99,25 @@ class _GFShimmerState extends State<GFShimmer>
         builder: (BuildContext context, Widget child) => _GFShimmer(
           child: child,
           direction: widget.direction,
-          gradient: widget.gradient,
+          gradient: widget.showGradient
+              ? widget.gradient
+              : LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.centerRight,
+                  colors: <Color>[
+                      widget.mainColor,
+                      widget.mainColor,
+                      widget.secondaryColor,
+                      widget.mainColor,
+                      widget.mainColor
+                    ],
+                  stops: const <double>[
+                      0,
+                      0.3,
+                      0.5,
+                      0.7,
+                      1
+                    ]),
           controllerValue: _controller.value,
           showShimmerEffect: widget.showShimmerEffect,
         ),
@@ -141,7 +143,8 @@ class _GFShimmer extends SingleChildRenderObjectWidget {
   /// value that controls the animation controller
   final double controllerValue;
 
-  /// Controls the direction of the shimmer effect. The default value is GFShimmerDirection.leftToRight.
+  /// Controls the direction of the shimmer effect.
+  /// The default direction is GFShimmerDirection.leftToRight.
   final GFShimmerDirection direction;
 
   /// Controls the [child]'s shades of color.
@@ -165,8 +168,7 @@ class _GFShimmer extends SingleChildRenderObjectWidget {
 }
 
 class GFShimmerFilter extends RenderProxyBox {
-  GFShimmerFilter(
-      {this.value, this.direction, this.gradient, this.showShimmerEffect})
+  GFShimmerFilter({this.value, this.direction, this.gradient, this.showShimmerEffect})
       : gradientPaint = Paint()..blendMode = BlendMode.srcIn;
 
   /// Constructs an empty [Paint] object with all fields initialized to their defaults.
@@ -178,13 +180,14 @@ class GFShimmerFilter extends RenderProxyBox {
   /// Controls the [child]'s shades of color.
   final Gradient gradient;
 
-  /// Controls the direction of the shimmer effect. The default value is GFShimmerDirection.leftToRight.
+  /// Controls the direction of the shimmer effect.
+  /// The default direction is GFShimmerDirection.leftToRight.
   final GFShimmerDirection direction;
 
   /// Controls animation effect, defaults true state that makes animation active.
   bool showShimmerEffect;
 
-  /// value that controls the animation controller
+  /// value that controls the animation controller.
   double value;
 
   /// Construct a rectangle from its left, top, right, and bottom edges.
@@ -217,8 +220,8 @@ class GFShimmerFilter extends RenderProxyBox {
     final double width = child.size.width;
     final double height = child.size.height;
 
-    if (direction == GFShimmerDirection.rightToLeft) {
-      dx = _offset(width, -width, value);
+    if (direction == GFShimmerDirection.leftToRight) {
+      dx = _offset(-width, width, value);
       dy = 0.0;
       rect = Rect.fromLTWH(offset.dx - width, offset.dy, 3 * width, height);
     } else if (direction == GFShimmerDirection.bottomToTop) {
@@ -230,7 +233,7 @@ class GFShimmerFilter extends RenderProxyBox {
       dy = _offset(-height, height, value);
       rect = Rect.fromLTWH(offset.dx, offset.dy - height, width, 3 * height);
     } else {
-      dx = _offset(-width, width, value);
+      dx = _offset(width, -width, value);
       dy = 0.0;
       rect = Rect.fromLTWH(offset.dx - width, offset.dy, 3 * width, height);
     }
