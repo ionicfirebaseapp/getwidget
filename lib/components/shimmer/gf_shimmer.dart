@@ -168,7 +168,8 @@ class _GFShimmer extends SingleChildRenderObjectWidget {
 }
 
 class GFShimmerFilter extends RenderProxyBox {
-  GFShimmerFilter({this.value, this.direction, this.gradient, this.showShimmerEffect})
+  GFShimmerFilter(
+      {this.value, this.direction, this.gradient, this.showShimmerEffect})
       : gradientPaint = Paint()..blendMode = BlendMode.srcIn;
 
   /// Constructs an empty [Paint] object with all fields initialized to their defaults.

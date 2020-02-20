@@ -232,13 +232,7 @@ class _MyHomePageState extends State<MyHomePage>
                 gradient: LinearGradient(
                   begin: Alignment.bottomRight,
                   end: Alignment.centerLeft,
-                  stops: const <double>[
-                    0,
-                    0.3,
-                    0.6,
-                    0.9,
-                    1
-                  ],
+                  stops: const <double>[0, 0.3, 0.6, 0.9, 1],
                   colors: [
                     Colors.teal[100],
                     Colors.teal[200],
