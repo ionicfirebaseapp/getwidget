@@ -41,44 +41,43 @@ class GFProgressBar extends StatefulWidget {
     }
   }
 
-  ///width of the  Progress bar
+  /// width of the  Progress bar
   final double width;
 
-  ///Height of the  Progress Bar
+  /// Height of the  Progress Bar
   final double lineHeight;
 
-  ///type of [Color] or GFColors used to change the backgroundColor of the  progress bar
-  final dynamic backgroundColor;
+  /// type of [Color] or GFColors used to change the backgroundColor of the  progress bar
+  final Color backgroundColor;
 
-  ///type of Color , used to change the color of the active progress line
+  /// type of Color , used to change the color of the active progress line
   final Color progressBarColor;
 
-  ///type of bool which allows the progress line to animate when the percentage values are changed
+  /// type of bool which allows the progress line to animate when the percentage values are changed
   final bool animation;
 
-  ///duration of the animation in milliseconds, It only applies if animation attribute is true
+  /// duration of the animation in milliseconds, It only applies if animation attribute is true
   final int animationDuration;
 
-  ///type of Widget which can be used in the first place before the progress bar
+  /// type of Widget which comes before the progress bar
   final Widget leading;
 
-  ///type of Widget which can be used in the last place after the progress bar
+  /// type of Widget which comes after the progress bar
   final Widget trailing;
 
-  ///type of Widget which can be text , icon etc which is  generally used to show the percentage of progress complete
+  /// type of Widget which can be text , icon etc which is  generally used to show the percentage of progress complete
   final Widget child;
 
-  ///type of MainAxisAlignment used to align the leading, trailing and the progress bar in a fashion
+  /// type of MainAxisAlignment used to align the leading, trailing and the progress bar in a fashion
   final MainAxisAlignment alignment;
 
-  ///type of EdgeInsets which gives padding to the GFProgressBar
+  /// type of EdgeInsets which gives padding to the GFProgressBar
   final EdgeInsets padding;
 
   /// set true if you want to animate the progress bar  from the last percentage value you set
   final bool animateFromLastPercentage;
 
   /// If present, this will make the progress bar colored by this gradient.
-  ///
   /// This will override [progressBarColor]. It is an error to provide both.
   final LinearGradient linearGradient;
 
@@ -95,25 +94,25 @@ class GFProgressBar extends StatefulWidget {
   ///  If no [linearGradient] is specified this option is ignored.
   final bool clipLinearGradient;
 
-  ///type of [GFProgressType] which changes the shape of progress bar based on the type ie, circular and linear
+  /// type of [GFProgressType] which changes the shape of progress bar based on the type ie, circular and linear
   final GFProgressType type;
 
-  ///type of [GFProgressHeadType] which changes the shape of progress head based on the type ie, circular and square
+  /// type of [GFProgressHeadType] which changes the shape of progress head based on the type ie, circular and square
   final GFProgressHeadType progressHeadType;
 
-  ///type of double which defines the thickness of the circle's arc in Circular Progress bar
+  /// type of double which defines the thickness of the circle's arc in Circular Progress bar
   final double circleWidth;
 
-  ///type of double in which the angle on the circle starts to progress (in degrees, eg: 0.0, 45.0, 90.0)
+  /// type of double in which the angle on the circle starts to progress (in degrees, eg: 0.0, 45.0, 90.0)
   final double circleStartAngle;
 
-  ///type of bool used  to display the progress in reverse direction
+  /// type of bool used  to display the progress in reverse direction
   final bool reverse;
 
-  ///type of double used to show the radius of Circular Progress Bar
+  /// type of double used to show the radius of Circular Progress Bar
   final double radius;
 
-  ///type of double which should be from 0 to 1 to indicate the progress of the ProgressBars
+  /// type of double which should be from 0 to 1 to indicate the progress of the ProgressBars
   final double percentage;
 
   @override
