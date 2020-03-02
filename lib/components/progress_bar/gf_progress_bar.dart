@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:getflutter/types/gf_progress_type.dart';
-import 'package:vector_math/vector_math_64.dart' as math;
 
 class GFProgressBar extends StatefulWidget {
   GFProgressBar({
@@ -462,9 +461,9 @@ class CirclePainter extends CustomPainter {
     const double circleStartAngleFixedMargin = 1;
 
     if (reverse) {
-      final start = math
-          .radians(360 * circleStartAngleFixedMargin - 90.0 + fixedStartAngle);
-      final end = math.radians(-progress * circleStartAngleFixedMargin);
+      final start =
+          radians(360 * circleStartAngleFixedMargin - 90.0 + fixedStartAngle);
+      final end = radians(-progress * circleStartAngleFixedMargin);
       canvas.drawArc(
         Rect.fromCircle(
           center: child,
@@ -476,8 +475,8 @@ class CirclePainter extends CustomPainter {
         _paintLine,
       );
     } else {
-      final start = math.radians(-90.0 + fixedStartAngle);
-      final end = math.radians(progress * circleStartAngleFixedMargin);
+      final start = radians(-90.0 + fixedStartAngle);
+      final end = radians(progress * circleStartAngleFixedMargin);
       canvas.drawArc(
         Rect.fromCircle(
           center: child,
@@ -490,6 +489,8 @@ class CirclePainter extends CustomPainter {
       );
     }
   }
+
+  double radians(double degrees) => degrees * (3.141592 / 180.0);
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
