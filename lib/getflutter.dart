@@ -35,7 +35,6 @@ export 'package:getflutter/components/loader/gf_loader.dart';
 export 'package:getflutter/components/progress_bar/gf_progress_bar.dart';
 
 // exports shape, color, position, size, types
-
 export 'colors/gf_color.dart';
 export 'position/gf_position.dart';
 export 'shape/gf_avatar_shape.dart';
