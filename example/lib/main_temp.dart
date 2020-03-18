@@ -975,33 +975,31 @@ class _MyHomePageState extends State<MyHomePage>
 //              ).toList(),
 //            ),
 //
-//            GFCarousel(
-////              pagerSize: 12.0,
-////              activeIndicator: Colors.pink,
-////              passiveIndicator: Colors.pink.withOpacity(0.4),
-////              viewportFraction: 1.0,
-////              aspectRatio: 1.0,
-////              autoPlay: true,
-////              enlargeMainPage: true,
-////              pagination: true,
-//              items: imageList.map(
-//                (url) {
-//                  return Container(
-//                    margin: EdgeInsets.all(8.0),
-//                    child: ClipRRect(
-//                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-//                      child:
-//                          Image.network(url, fit: BoxFit.cover, width: 1000.0),
-//                    ),
-//                  );
-//                },
-//              ).toList(),
-//              onPageChanged: (index) {
-//                setState(() {
-//                  // index;
-//                });
-//              },
-//            ),
+            GFCarousel(
+              pagerSize: 12,
+              activeIndicator: Colors.pink,
+              passiveIndicator: Colors.pink.withOpacity(0.4),
+              viewportFraction: 1.0,
+//              aspectRatio: 1,
+              autoPlay: true,
+              enlargeMainPage: true,
+              pagination: true,
+              items: imageList.map(
+                (url) => Container(
+                    margin: const EdgeInsets.all(12),
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
+                      child:
+                          Image.network(url, fit: BoxFit.cover, width: 1000),
+                    ),
+                  )
+              ).toList(),
+              onPageChanged: (index) {
+                setState(() {
+                  // index;
+                });
+              },
+            ),
 
 //            GFTabs(
 //              initialIndex: 0,
