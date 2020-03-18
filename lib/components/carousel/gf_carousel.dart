@@ -85,6 +85,7 @@ class GFCarousel extends StatefulWidget {
 
   /// Determines if current page should be larger then the side images,
   /// creating a feeling of depth in the carousel. Defaults to false.
+  /// works only if viewportFraction set to 1.0.
   final bool enlargeMainPage;
 
   /// The axis along which the page view scrolls. Defaults to [Axis.horizontal].

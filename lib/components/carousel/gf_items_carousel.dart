@@ -25,14 +25,15 @@ typedef GFItemsCarouselSlideEndCallback = void Function(DragEndDetails details);
 class GFItemsCarousel extends StatefulWidget {
   /// Creates slide show of Images and [Widget] with animation for sliding.
   /// Shows multiple items on one slide, items number depends on rowCount.
-  const GFItemsCarousel(
-      {Key key,
-      this.rowCount,
-      this.children,
-      this.onSlideStart,
-      this.onSlide,
-      this.onSlideEnd})
-      : super(key: key);
+  const GFItemsCarousel({
+    Key key,
+    this.rowCount,
+    this.children,
+    this.onSlideStart,
+    this.onSlide,
+    this.onSlideEnd,
+    this.itemHeight = 200,
+  }) : super(key: key);
 
   /// Count of visible cells
   final int rowCount;
@@ -50,6 +51,9 @@ class GFItemsCarousel extends StatefulWidget {
   /// When a pointer that was previously in contact with the screen
   /// and moving is no longer in contact with the screen.
   final GFItemsCarouselSlideEndCallback onSlideEnd;
+
+  /// defines the height of items
+  final double itemHeight;
 
   @override
   _GFItemsCarouselState createState() => _GFItemsCarouselState();
@@ -180,7 +184,7 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
         onHorizontalDragEnd: onSlideEnd,
         child: Container(
           width: double.infinity,
-          height: size,
+          height: widget.itemHeight,
           child: Stack(
             children: [
               Positioned(
@@ -189,7 +193,7 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
                   children: widget.children
                       .map((child) => Container(
                             width: size,
-                            height: size,
+                            height: widget.itemHeight,
                             child: child,
                           ))
                       .toList(),

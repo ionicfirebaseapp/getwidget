@@ -15,6 +15,7 @@ class GFListTile extends StatelessWidget {
     this.description,
     this.icon,
     this.padding = const EdgeInsets.all(8),
+    this.margin = const EdgeInsets.all(16),
   }) : super(key: key);
 
   ///type of [String] used to pass text, alternative to title property and gets higher priority than title
@@ -41,13 +42,17 @@ class GFListTile extends StatelessWidget {
   /// The icon to display inside the [GFListTile]. see [Icon]
   final Widget icon;
 
+  /// defines the margin of GFListTile
+  final EdgeInsets margin;
+
+  /// defines the padding of GFListTile
   final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) => Container(
         constraints: const BoxConstraints(minHeight: 50),
-        padding: const EdgeInsets.all(8),
-        // margin: padding,
+        padding: padding,
+        margin: margin,
         decoration: BoxDecoration(
           color: color,
           borderRadius: const BorderRadius.all(Radius.circular(5)),
@@ -58,7 +63,7 @@ class GFListTile extends StatelessWidget {
             avatar ?? Container(),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
