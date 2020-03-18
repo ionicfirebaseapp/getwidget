@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.0.9 - 2020-03-02
+
+### Fixed
+* Few minor fixes
+
+### Added
+* added new component
+    - GFShimmer
+
+## 1.0.8 - 2020-02-18
+
+### Fixed
+* Hot reload in GFButton
+
+### Added
+* added new component
+    - GFProgressBar
+
+
+
+
 ## 1.0.7 - 2020-02-11
 
 ### Fixed

@@ -30,13 +30,13 @@ export 'package:getflutter/components/toggle/gf_toggle.dart';
 export 'package:getflutter/components/typography/gf_typography.dart';
 export 'package:getflutter/components/rating/gf_rating.dart';
 export 'package:getflutter/components/slidable/gf_slidable.dart';
-// export 'package:getflutter/components/shimmer/gf_shimmer.dart';
+export 'package:getflutter/components/shimmer/gf_shimmer.dart';
 export 'package:getflutter/components/loader/gf_loader.dart';
 export 'package:getflutter/components/progress_bar/gf_progress_bar.dart';
 
-// exports shape, color, position, size, types
-
+// exports shape, color, position, size, types, direction
 export 'colors/gf_color.dart';
+export 'direction/gf_shimmer_direction.dart';
 export 'position/gf_position.dart';
 export 'shape/gf_avatar_shape.dart';
 export 'shape/gf_badge_shape.dart';
