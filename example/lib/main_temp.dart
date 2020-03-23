@@ -8,7 +8,9 @@ final List<String> imageList = [
   'https://cdn.pixabay.com/photo/2019/12/19/10/55/christmas-market-4705877_960_720.jpg',
   'https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg',
   'https://cdn.pixabay.com/photo/2019/12/22/04/18/x-mas-4711785__340.jpg',
-  'https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg'
+  'https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg',
+  'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg',
+  'https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg',
 ];
 
 void main() => runApp(MyApp());
@@ -69,73 +71,113 @@ class _MyHomePageState extends State<MyHomePage>
   ];
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        drawer: GFDrawer(
+  Widget build(BuildContext context) {
+    final Widget emptyBlock = Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 54,
+            height: 46,
+            color: Colors.white,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  height: 8,
+                  color: Colors.white,
+                ),
+                const SizedBox(height: 6),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  height: 8,
+                  color: Colors.white,
+                ),
+                const SizedBox(height: 6),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.25,
+                  height: 8,
+                  color: Colors.white,
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+
+    return Scaffold(
+      drawer: GFDrawer(
 //        colorFilter: new ColorFilter.mode(
 //            Colors.teal.withOpacity(0.6), BlendMode.DARKen),
 //        backgroundImage: NetworkImage(
 //            "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            stops: const [0.1, 0.5, 0.7, 0.9],
-            colors: [
-              Colors.teal[800],
-              Colors.teal[600],
-              Colors.teal[400],
-              Colors.teal[200],
-            ],
-          ),
-          color: Colors.greenAccent,
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              GFDrawerHeader(
-                currentAccountPicture: const GFAvatar(
-                  radius: 80,
-                  backgroundImage: NetworkImage(
-                      'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.teal,
-                ),
-                otherAccountsPictures: const <Widget>[
-                  Image(
-                    image: NetworkImage(
-                        'https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg'),
-                    fit: BoxFit.cover,
-                  ),
-                  GFAvatar(
-                    child: Text('dcf'),
-                  )
-                ],
-//              closeButton: Text("Close"),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const <Widget>[
-                    Text('user name'),
-                    Text('user@userid.com'),
-                  ],
-                ),
-              ),
-              const ListTile(
-                title: Text('Item 1'),
-                onTap: null,
-              ),
-              const ListTile(
-                title: Text('Item 2'),
-                onTap: null,
-              ),
-            ],
-          ),
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          stops: const [0.1, 0.5, 0.7, 0.9],
+          colors: [
+            Colors.teal[800],
+            Colors.teal[600],
+            Colors.teal[400],
+            Colors.teal[200],
+          ],
         ),
+        color: Colors.greenAccent,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            GFDrawerHeader(
+              currentAccountPicture: const GFAvatar(
+                radius: 80,
+                backgroundImage: NetworkImage(
+                    'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.teal,
+              ),
+              otherAccountsPictures: const <Widget>[
+                Image(
+                  image: NetworkImage(
+                      'https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg'),
+                  fit: BoxFit.cover,
+                ),
+                GFAvatar(
+                  child: Text('dcf'),
+                )
+              ],
+//              closeButton: Text("Close"),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const <Widget>[
+                  Text('user name'),
+                  Text('user@userid.com'),
+                ],
+              ),
+            ),
+            const ListTile(
+              title: Text('Item 1'),
+              onTap: null,
+            ),
+            const ListTile(
+              title: Text('Item 2'),
+              onTap: null,
+            ),
+          ],
+        ),
+      ),
 
-        appBar: GFAppBar(
-          backgroundColor: Colors.teal,
+      appBar: GFAppBar(
+        backgroundColor: Colors.teal,
 //        centerTitle: true,
 //        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
-          title: const Text('UI Kit'),
+        title: const Text('UI Kit'),
 //              GFSegmentTabs(
 //            tabController: tabController,
 //            initialIndex: 0,
@@ -178,26 +220,26 @@ class _MyHomePageState extends State<MyHomePage>
 //            fontFamily: 'OpenSansBold',
 //          ),
 //        ),
-          searchBar: true,
+        searchBar: true,
 //        searchHintText: "aaaaaaa",
 //        searchHintStyle: TextStyle(fontSize: 18.0, color: Colors.redAccent),
 //        searchStyle: TextStyle(fontSize: 10.0, color: Colors.green),
 //        searchBarColorTheme: Colors.greenAccent,
 
-          actions: <Widget>[
+        actions: <Widget>[
 //          GFIconButton(icon: Icon(Icons.access_time), onPressed: () {}),
-            GFIconButton(
-              icon: Icon(
-                Icons.favorite,
-                color: GFColors.WHITE,
-              ),
-              onPressed: () {},
-              type: GFButtonType.transparent,
+          GFIconButton(
+            icon: Icon(
+              Icons.favorite,
+              color: GFColors.WHITE,
             ),
-          ],
-        ),
+            onPressed: () {},
+            type: GFButtonType.transparent,
+          ),
+        ],
+      ),
 //      backgroundColor: Colors.blueGrey,
-        body:
+      body:
 //        GFTabBarView(
 //          height: 200.0,
 //            controller: tabController,
@@ -206,104 +248,71 @@ class _MyHomePageState extends State<MyHomePage>
 //          Container(color: Colors.green),
 //          Container(color: Colors.blue)
 //      ]),
-            SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              GFRating(
-                value: _rating,
-                color: GFColors.DANGER,
-                borderColor: GFColors.WARNING,
-                onChanged: (value) {
-                  setState(() {
-                    _rating = value;
-                  });
-                },
-              ),
+          SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
 
-              GFShimmer(
-                child: const Text(
-                  'GF Shimmer',
-                  style: TextStyle(fontSize: 48, fontWeight: FontWeight.w700),
-                ),
-                direction: GFShimmerDirection.rightToLeft,
-                showGradient: true,
-                gradient: LinearGradient(
-                  begin: Alignment.bottomRight,
-                  end: Alignment.centerLeft,
-                  stops: const <double>[0, 0.3, 0.6, 0.9, 1],
-                  colors: [
-                    Colors.teal[100],
-                    Colors.teal[200],
-                    Colors.teal[300],
-                    Colors.teal[400],
-                    Colors.teal[500],
-                  ],
-                ),
-//              showShimmerEffect: false,
-//                shimmerEffectCount: 3,
-              ),
+            GFAccordion(
+              titleChild: Text('fgk'),
+              contentChild: Text('hhjk'),
+//                title: 'GF Accordion',
+//                content: 'GetFlutter is an open source library that comes with pre-build 1000+ UI components.',
+                collapsedIcon: Text('Show'),
+                expandedIcon: Text('Hide')
+            ),
 
-              GFShimmer(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 54,
-                        height: 46,
-                        color: Colors.white,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 6),
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              width: double.infinity,
-                              height: 8,
-                              color: Colors.white,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 2),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.5,
-                              height: 8,
-                              color: Colors.white,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 2),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.25,
-                              height: 8,
-                              color: Colors.white,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-//                Text(
-//                  'GF Shimmer',
-//                  style: TextStyle(
-//                      fontSize: 48,
-//                      fontWeight: FontWeight.w800,
-//                      fontStyle: FontStyle.italic),
+//            GFFloatingWidget(
+//                child: GFToast(
+//                  text: 'This item already has the label “travel”',
+//                  autoDismiss: true,
 //                ),
-//                showGradient: true,
-//                direction: GFShimmerDirection.rightToLeft,
-//              showShimmerEffect: false,
-//                mainColor: Colors.teal,
-//                secondaryColor: Colors.tealAccent,
-//                shimmerEffectCount: 3,
-              ),
+//                body: Container(
+//                  color: Colors.blueAccent,
+//                  child: Text('body or any kind of widget here..'),
+//                )),
+
+//            GFRating(
+//              value: _rating,
+//              color: GFColors.DANGER,
+//              borderColor: GFColors.WARNING,
+//              onChanged: (value) {
+//                setState(() {
+//                  _rating = value;
+//                });
+//              },
+//            ),
+
+//            GFShimmer(
+//              child: const Text(
+//                'GF Shimmer',
+//                style: TextStyle(fontSize: 48, fontWeight: FontWeight.w700),
+//              ),
+//              showGradient: true,
+//              gradient: LinearGradient(
+//                begin: Alignment.bottomRight,
+//                end: Alignment.centerLeft,
+//                stops: const <double>[0, 0.3, 0.6, 0.9, 1],
+//                colors: [
+//                  Colors.teal[100],
+//                  Colors.teal[200],
+//                  Colors.teal[300],
+//                  Colors.teal[400],
+//                  Colors.teal[500],
+//                ],
+//              ),
+//            ),
+
+//            GFShimmer(
+//              child: emptyBlock,
+////              mainColor: GFColors.DARK,
+////              secondaryColor: GFColors.LIGHT,
+////              direction: GFShimmerDirection.rightToLeft,
+////              duration: const Duration(milliseconds: 1200),
+////              shimmerEffectCount: 3,
+////              showShimmerEffect: false,
+//            ),
 
 //              GFRating(
 //                value: _rating,
@@ -361,73 +370,72 @@ class _MyHomePageState extends State<MyHomePage>
 //                },
 //              ),
 
-              GFRating(
-                value: _userRating,
-//                filledIcon: Image.asset(
-//                  'lib/assets/heart.png',
-//                  height: 50,
-//                  width: 50,
-//                  color: Colors.amber,
-//                ),
-//                halfFilledIcon: Image.asset(
-//                  'lib/assets/heart_half.png',
-//                  height: 50,
-//                  width: 50,
-//                  color: Colors.amber,
-//                ),
-//                defaultIcon: Image.asset(
-//                  'lib/assets/heart_border.png',
-//                  height: 50,
-//                  width: 50,
-//                  color: Colors.amber,
-//                ),
-//                spacing: 8,
-                controller: _ratingController,
-                showTextForm: true,
-                suffixIcon: GFButton(
-                  type: GFButtonType.transparent,
-                  onPressed: () {
-                    setState(() {
-                      _userRating =
-                          double.parse(_ratingController.text ?? '0.0');
-                    });
-                  },
-                  child: const Text('Rate'),
-                ),
-              ),
+//            GFRating(
+//              value: _userRating,
+////                filledIcon: Image.asset(
+////                  'lib/assets/heart.png',
+////                  height: 50,
+////                  width: 50,
+////                  color: Colors.amber,
+////                ),
+////                halfFilledIcon: Image.asset(
+////                  'lib/assets/heart_half.png',
+////                  height: 50,
+////                  width: 50,
+////                  color: Colors.amber,
+////                ),
+////                defaultIcon: Image.asset(
+////                  'lib/assets/heart_border.png',
+////                  height: 50,
+////                  width: 50,
+////                  color: Colors.amber,
+////                ),
+////                spacing: 8,
+//              controller: _ratingController,
+//              showTextForm: true,
+//              suffixIcon: GFButton(
+//                type: GFButtonType.transparent,
+//                onPressed: () {
+//                  setState(() {
+//                    _userRating = double.parse(_ratingController.text ?? '0.0');
+//                  });
+//                },
+//                child: const Text('Rate'),
+//              ),
+//            ),
 
-              GFSearchBar(
-//              searchBoxInputDecoration: InputDecoration(
-//                enabledBorder: OutlineInputBorder(
-//                  borderSide: BorderSide(
-//                    color: Colors.teal,
-//                  ),
-//                  borderRadius: BorderRadius.circular(50)
-//                ),
-//              ),
-                  searchList: list,
-//              hideSearchBoxWhenItemSelected: false,
-//              overlaySearchListHeight: 100.0,
-                  searchQueryBuilder: (query, list) => list
-                      .where((item) =>
-                          item.toLowerCase().contains(query.toLowerCase()))
-                      .toList(),
-                  overlaySearchListItemBuilder: (item) => Container(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(
-                          item,
-                          style: const TextStyle(fontSize: 18),
-                        ),
-                      ),
-//              noItemsFoundWidget: Container(
-//                color: Colors.green,
-//                child: Text("no items found..."),
-//              ),
-                  onItemSelected: (item) {
-                    setState(() {
-                      print('selected item $item');
-                    });
-                  }),
+//            GFSearchBar(
+////              searchBoxInputDecoration: InputDecoration(
+////                enabledBorder: OutlineInputBorder(
+////                  borderSide: BorderSide(
+////                    color: Colors.teal,
+////                  ),
+////                  borderRadius: BorderRadius.circular(50)
+////                ),
+////              ),
+//                searchList: list,
+////              hideSearchBoxWhenItemSelected: false,
+////              overlaySearchListHeight: 100.0,
+//                searchQueryBuilder: (query, list) => list
+//                    .where((item) =>
+//                        item.toLowerCase().contains(query.toLowerCase()))
+//                    .toList(),
+//                overlaySearchListItemBuilder: (item) => Container(
+//                      padding: const EdgeInsets.all(8),
+//                      child: Text(
+//                        item,
+//                        style: const TextStyle(fontSize: 18),
+//                      ),
+//                    ),
+////              noItemsFoundWidget: Container(
+////                color: Colors.green,
+////                child: Text("no items found..."),
+////              ),
+//                onItemSelected: (item) {
+//                  setState(() {
+//                    print('selected item $item');
+//                  });
+//                }),
 
 //            GFCard(
 //              content: Column(
@@ -699,37 +707,38 @@ class _MyHomePageState extends State<MyHomePage>
 //            )
 //            ),
 
-              GFButton(
-                type: GFButtonType.transparent,
-                color: GFColors.WARNING,
-                onPressed: () {},
-                text: 'whatsapp',
-                icon: Icon(Icons.directions_bike),
-              ),
+//            GFButton(
+//              type: GFButtonType.transparent,
+//              color: GFColors.WARNING,
+//              onPressed: () {},
+//              text: 'whatsapp',
+//              icon: Icon(Icons.directions_bike),
+//            ),
 //
 //            GFButton(
 //              text: "linkedin",
 //              icon: Icon(Icons.directions_bike),
 //            ),
 
-//            GFListTile(
-//              padding: const EdgeInsets.all(30.0),
-//              color: Colors.redAccent,
-//              avatar: const GFAvatar(
-//                child: Text('tb'),
-//              ),
-//              title: Text('title'),
-//              subTitle: Text('subtitle'),
-//              description: Text('A page view that displays the widget which '
-//                  'corresponds to the currently selected tab. This widget is typically used in'),
-//              icon: Text("99"),
-////              dividerColor: Colors.blue,
-////              dividerEndIndent: 20.0,
-////              dividerHeight: 2.0,
-////              dividerIndent: 30.0,
-////              dividerThickness: 5.0,
-////              showDivider: false,
-//            ),
+            GFListTile(
+//              padding: EdgeInsets.all(30.0),
+//              margin: EdgeInsets.all(50.0),
+              color: Colors.blueGrey,
+              avatar: const GFAvatar(
+                child: Text('tb'),
+              ),
+              title: const Text('title'),
+              subTitle: const Text('subtitle'),
+              description:
+                  const Text('A page view that displays the widget which '),
+              icon: const Icon(Icons.category),
+//              dividerColor: Colors.blue,
+//              dividerEndIndent: 20.0,
+//              dividerHeight: 2.0,
+//              dividerIndent: 30.0,
+//              dividerThickness: 5.0,
+//              showDivider: false,
+            ),
 
 //            GFCard(
 //              title: GFListTile(
@@ -796,12 +805,12 @@ class _MyHomePageState extends State<MyHomePage>
 //              ],
 //            )),
 
-              // Image.asset(
-              //   'lib/assets/food.jpeg',
-              //   fit: BoxFit.cover,
-              //   color: Color(0xff0d69ff).withOpacity(1.0),
-              //   colorBlendMode: BlendMode.softLight,
-              // ),
+            // Image.asset(
+            //   'lib/assets/food.jpeg',
+            //   fit: BoxFit.cover,
+            //   color: Color(0xff0d69ff).withOpacity(1.0),
+            //   colorBlendMode: BlendMode.softLight,
+            // ),
 
 //            GFCard(
 //              content: Container(
@@ -938,34 +947,34 @@ class _MyHomePageState extends State<MyHomePage>
 //              backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
 //            ),
 
-              GFSegmentTabs(
-                tabController: tabController,
-                initialIndex: 0,
-                length: 3,
-                tabs: const <Widget>[
-                  Text(
-                    'Tab1',
-                  ),
-                  Text(
-                    'Tab2',
-                  ),
-                  Text(
-                    'Tab3',
-                  ),
-                ],
-                indicatorColor: Colors.teal,
-                border: Border.all(color: Colors.teal),
-                labelColor: GFColors.WHITE,
-                unselectedLabelColor: Colors.teal,
-                labelStyle: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                ),
-                unselectedLabelStyle: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 12,
-                ),
-              ),
+//            GFSegmentTabs(
+//              tabController: tabController,
+//              initialIndex: 0,
+//              length: 3,
+//              tabs: const <Widget>[
+//                Text(
+//                  'Tab1',
+//                ),
+//                Text(
+//                  'Tab2',
+//                ),
+//                Text(
+//                  'Tab3',
+//                ),
+//              ],
+//              indicatorColor: Colors.teal,
+//              border: Border.all(color: Colors.teal),
+//              labelColor: GFColors.WHITE,
+//              unselectedLabelColor: Colors.teal,
+//              labelStyle: TextStyle(
+//                fontWeight: FontWeight.w500,
+//                fontSize: 14,
+//              ),
+//              unselectedLabelStyle: TextStyle(
+//                fontWeight: FontWeight.w400,
+//                fontSize: 12,
+//              ),
+//            ),
 //
 //            GFTabBarView(controller: tabController, children: <Widget>[
 //              Container(color: Colors.red),
@@ -973,49 +982,51 @@ class _MyHomePageState extends State<MyHomePage>
 //              Container(color: Colors.blue)
 //            ]),
 
-//            GFItemsCarousel(
-//              rowCount: 3,
-//              children: imageList.map(
-//                (url) {
-//                  return Container(
-//                    margin: EdgeInsets.all(5.0),
-//                    child: ClipRRect(
-//                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-//                      child:
-//                          Image.network(url, fit: BoxFit.cover, width: 1000.0),
-//                    ),
-//                  );
-//                },
-//              ).toList(),
-//            ),
+            GFItemsCarousel(
+              rowCount: 6,
+//              itemHeight: 600,
+              children: imageList
+                  .map((url) => Container(
+                        margin: const EdgeInsets.all(5),
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
+                          child: Image.network(
+                            url,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ))
+                  .toList(),
+            ),
 //
-//            GFCarousel(
-////              pagerSize: 12.0,
-////              activeIndicator: Colors.pink,
-////              passiveIndicator: Colors.pink.withOpacity(0.4),
-////              viewportFraction: 1.0,
-////              aspectRatio: 1.0,
-////              autoPlay: true,
-////              enlargeMainPage: true,
-////              pagination: true,
-//              items: imageList.map(
-//                (url) {
-//                  return Container(
-//                    margin: EdgeInsets.all(8.0),
-//                    child: ClipRRect(
-//                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-//                      child:
-//                          Image.network(url, fit: BoxFit.cover, width: 1000.0),
-//                    ),
-//                  );
-//                },
-//              ).toList(),
-//              onPageChanged: (index) {
-//                setState(() {
-//                  // index;
-//                });
-//              },
-//            ),
+            GFCarousel(
+              pagerSize: 12,
+              activeIndicator: Colors.pink,
+              passiveIndicator: Colors.pink.withOpacity(0.4),
+              viewportFraction: 1.0,
+//              aspectRatio: 1,
+//              autoPlay: true,
+              enlargeMainPage: true,
+              pagination: true,
+              items: imageList
+                  .map((url) => Container(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        margin: const EdgeInsets.all(12),
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
+                          child: Image.network(url,
+                              fit: BoxFit.cover, width: 1000),
+                        ),
+                      ))
+                  .toList(),
+              onPageChanged: (index) {
+                setState(() {
+                  // index;
+                });
+              },
+            ),
 
 //            GFTabs(
 //              initialIndex: 0,
@@ -1194,92 +1205,93 @@ class _MyHomePageState extends State<MyHomePage>
 //                icon: Icon(Icons.favorite_border),
 //              ),
 //            ),
-//            GFImageOverlay(
-//              width: MediaQuery.of(context).size.width,
-//              margin: EdgeInsets.all(16.0),
-//              padding: EdgeInsets.all(16.0),
-//              child: Column(
-//                children: <Widget>[
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                  new Text(
-//                    'Hello world',
-//                    style: TextStyle(color: Colors.WHITE),
-//                  ),
-//                ],
-//              ),
-////              color: Colors.orange,
-//              image: AssetImage("lib/assets/food.jpeg"),
-//              boxFit: BoxFit.cover,
-//              colorFilter: new ColorFilter.mode(
-//                  Colors.black.withOpacity(0.6), BlendMode.DARKen),
-//              borderRadius: new BorderRadius.circular(5.0),
-////              border: Border.all(color: Colors.pink, width: 2.0),
-//            ),
+            GFImageOverlay(
+              width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Hello world',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+              color: Colors.orange,
+              image: const NetworkImage(
+                  'https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg'),
+              boxFit: BoxFit.fitHeight,
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.6), BlendMode.darken),
+              borderRadius: BorderRadius.circular(5),
+//              border: Border.all(color: Colors.pink, width: 2.0),
+            ),
 //            GFAvatar(
-              //              radius: 20.0,
+            //              radius: 20.0,
 //                 maxRadius: 50,
 
 //              child: Text("de"),
@@ -1316,7 +1328,7 @@ class _MyHomePageState extends State<MyHomePage>
 ////
 ////                border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 ////
-////                textColor: GFColors.WHITE,
+////                textColor: GFColors.white,
 ////
 ////                textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
 ////
@@ -1379,9 +1391,9 @@ class _MyHomePageState extends State<MyHomePage>
 ////              borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
 ////              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
 //            ),
-            ],
-          ),
+          ],
         ),
+      ),
 //        bottomNavigationBar:
 //  GFTabBar(
 //          initialIndex: 0,
@@ -1424,5 +1436,6 @@ class _MyHomePageState extends State<MyHomePage>
 //            fontFamily: 'OpenSansBold',
 //          ),
 //        ),
-      );
+    );
+  }
 }

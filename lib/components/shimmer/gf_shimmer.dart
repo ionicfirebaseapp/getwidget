@@ -12,7 +12,7 @@ class GFShimmer extends StatefulWidget {
     this.shimmerEffectCount = 0,
     this.showShimmerEffect = true,
     this.showGradient = false,
-    this.mainColor = GFColors.PRIMARY,
+    this.mainColor = Colors.grey,
     this.secondaryColor = GFColors.LIGHT,
   }) : super(key: key);
 
@@ -42,7 +42,7 @@ class GFShimmer extends StatefulWidget {
   /// Default set to false.
   final bool showGradient;
 
-  /// Defines the mai color of the [child]'s shimmer effect.
+  /// Defines the main color of the [child]'s shimmer effect.
   /// Child [Widget] takes main color, only if [showGradient] is false.
   /// Default [showGradient] will be false.
   final dynamic mainColor;
