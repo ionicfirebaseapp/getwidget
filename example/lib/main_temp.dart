@@ -253,15 +253,25 @@ class _MyHomePageState extends State<MyHomePage>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            GFFloatingWidget(
-                child: GFToast(
-                  text: 'This item already has the label “travel”',
-                  autoDismiss: true,
-                ),
-                body: Container(
-                  color: Colors.blueAccent,
-                  child: Text('body or any kind of widget here..'),
-                )),
+
+            GFAccordion(
+              titleChild: Text('fgk'),
+              contentChild: Text('hhjk'),
+//                title: 'GF Accordion',
+//                content: 'GetFlutter is an open source library that comes with pre-build 1000+ UI components.',
+                collapsedIcon: Text('Show'),
+                expandedIcon: Text('Hide')
+            ),
+
+//            GFFloatingWidget(
+//                child: GFToast(
+//                  text: 'This item already has the label “travel”',
+//                  autoDismiss: true,
+//                ),
+//                body: Container(
+//                  color: Colors.blueAccent,
+//                  child: Text('body or any kind of widget here..'),
+//                )),
 
 //            GFRating(
 //              value: _rating,
