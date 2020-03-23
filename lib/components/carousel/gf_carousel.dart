@@ -85,6 +85,7 @@ class GFCarousel extends StatefulWidget {
 
   /// Determines if current page should be larger then the side images,
   /// creating a feeling of depth in the carousel. Defaults to false.
+  /// works only if viewportFraction set to 1.0.
   final bool enlargeMainPage;
 
   /// The axis along which the page view scrolls. Defaults to [Axis.horizontal].
@@ -223,7 +224,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
             scrollDirection: widget.scrollDirection,
             controller: widget.pageController,
             reverse: widget.reverse,
-            itemCount: widget.enableInfiniteScroll ? null : widget.items.length,
+            itemCount: widget.items.length == 1 ? widget.items.length : widget.enableInfiniteScroll ? null : widget.items.length,
             onPageChanged: (int index) {
               int currentPage;
               currentPage = _getRealIndex(index + widget.initialPage,
