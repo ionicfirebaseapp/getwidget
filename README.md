@@ -51,7 +51,7 @@ we have launched the library with the following components :
   ### IOS Store and Web Demo
    Coming Soon
  
- ### An Open-Source Flutter News App Built With Flutter
+ ### An Open-Source News App Built With GetFlutter & Flutter
  Ionicfirebaseapp.com has been developed an open-source News Mobile App with GetFlutter, So can start building app faster to get an overview and do customization. You can Download News App Souce Code here: https://www.ionicfirebaseapp.com/products/flutter-news-app  
  ## Contributing
  
