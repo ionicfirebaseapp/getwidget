@@ -113,27 +113,30 @@ class GFCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final CardTheme cardTheme = CardTheme.of(context);
 
-    final Widget cardChild = Column(
-      children: <Widget>[
-        titlePosition == GFPosition.start
-            ? title ?? Container()
-            : image != null
-                ? ClipRRect(
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(4)),
-                    child: image,
-                  )
-                : Container(),
-        titlePosition == GFPosition.start
-            ? image ?? Container()
-            : title ?? Container(),
-        Padding(
-          padding: padding,
-          child: content ?? Container(),
-        ),
-        buttonBar ?? Container(),
-      ],
-    );
+    final Widget cardChild = Padding(
+                      padding: padding,
+                      child: Column(
+                      children: <Widget>[
+                        titlePosition == GFPosition.start
+                            ? title ?? Container()
+                            : image != null
+                                ? ClipRRect(
+                                    borderRadius:
+                                        const BorderRadius.vertical(top: Radius.circular(4)),
+                                    child: image,
+                                  )
+                                : Container(),
+                        titlePosition == GFPosition.start
+                            ? image ?? Container()
+                            : title ?? Container(),
+                        Padding(
+                          padding: padding,
+                          child: content ?? Container(),
+                        ),
+                        buttonBar ?? Container(),
+                      ],
+                     ),
+                    );
 
     final Widget overlayImage = GFImageOverlay(
       width: MediaQuery.of(context).size.width,
