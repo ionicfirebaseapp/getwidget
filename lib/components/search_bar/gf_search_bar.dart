@@ -15,7 +15,7 @@ class GFSearchBar<T> extends StatefulWidget {
     @required this.overlaySearchListItemBuilder,
     @required this.searchQueryBuilder,
     Key key,
-    this.controller = TextEditingController(),
+    this.controller = const TextEditingController(),
     this.onItemSelected,
     this.hideSearchBoxWhenItemSelected = false,
     this.overlaySearchListHeight,
