@@ -48,7 +48,7 @@ class GFSearchBar<T> extends StatefulWidget {
   final InputDecoration searchBoxInputDecoration;
   
   /// defines the input controller of searchBox
-  final controller;
+  final TextEditingController controller;
   
 
   @override
