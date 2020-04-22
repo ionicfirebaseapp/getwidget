@@ -15,6 +15,7 @@ class GFSearchBar<T> extends StatefulWidget {
     @required this.overlaySearchListItemBuilder,
     @required this.searchQueryBuilder,
     Key key,
+    this.controller = TextEditingController(),
     this.onItemSelected,
     this.hideSearchBoxWhenItemSelected = false,
     this.overlaySearchListHeight,
@@ -45,13 +46,16 @@ class GFSearchBar<T> extends StatefulWidget {
 
   /// defines the input decoration of searchBox
   final InputDecoration searchBoxInputDecoration;
+  
+  /// defines the input controller of searchBox
+  final controller;
+  
 
   @override
   MySingleChoiceSearchState<T> createState() => MySingleChoiceSearchState<T>();
 }
 
 class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
-  final _controller = TextEditingController();
   List<T> _list;
   List<T> _searchList;
   bool isFocused;
@@ -82,7 +86,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
     _searchList.addAll(_list);
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus) {
-        _controller.clear();
+        widget.controller.clear();
         if (overlaySearchList != null) {
           overlaySearchList.remove();
         }
@@ -98,8 +102,8 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
         }
       }
     });
-    _controller.addListener(() {
-      final text = _controller.text;
+    widget.controller.addListener(() {
+      final text = widget.controller.text;
       if (text.trim().isNotEmpty) {
         _searchList.clear();
         final filterList = widget.searchQueryBuilder(text, widget.searchList);
@@ -142,7 +146,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       margin: const EdgeInsets.only(bottom: 12),
       child: TextField(
-        controller: _controller,
+        controller: widget.controller,
         focusNode: _focusNode,
         style: TextStyle(fontSize: 16, color: Colors.grey[600]),
         decoration: widget.searchBoxInputDecoration == null
@@ -196,7 +200,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
       overlaySearchList.remove();
     }
     overlaySearchList = null;
-    _controller.clear();
+    widget.controller = item;
     _focusNode.unfocus();
     setState(() {
       notifier.value = item;
