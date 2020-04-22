@@ -200,9 +200,9 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
       overlaySearchList.remove();
     }
     overlaySearchList = null;
-    widget.controller = item;
     _focusNode.unfocus();
     setState(() {
+      widget.controller.text = item;
       notifier.value = item;
       isFocused = false;
       isRequiredCheckFailed = false;
