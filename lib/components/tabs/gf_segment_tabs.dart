@@ -11,7 +11,7 @@ class GFSegmentTabs extends StatefulWidget {
   /// [GFSegmentTabs] are best used as an alternative for [GFTabBar].
   const GFSegmentTabs(
       {Key key,
-      this.initialIndex = 0,
+//      this.initialIndex = 0,
       @required this.length,
       this.height,
       this.width,
@@ -31,13 +31,13 @@ class GFSegmentTabs extends StatefulWidget {
       this.tabs,
       this.tabController})
       : assert(length != null && length >= 0),
-        assert(initialIndex != null &&
-            initialIndex >= 0 &&
-            (length == 0 || initialIndex < length)),
+//        assert(initialIndex != null &&
+//            initialIndex >= 0 &&
+//            (length == 0 || initialIndex < length)),
         super(key: key);
 
-  /// The initial index of the selected tab. Defaults to zero.
-  final int initialIndex;
+//  /// The initial index of the selected tab. Defaults to zero.
+//  final int initialIndex;
 
   /// The total number of tabs. Typically greater than one. Must match [TabBar.tabs]'s and
   /// [TabBarView.children]'s length.
@@ -178,7 +178,7 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
           borderRadius: widget.borderRadius ?? BorderRadius.circular(2),
         ),
         child: DefaultTabController(
-          initialIndex: widget.initialIndex,
+//          initialIndex: widget.initialIndex,
           length: widget.length,
           child: Material(
             borderRadius: widget.borderRadius ?? BorderRadius.circular(2),

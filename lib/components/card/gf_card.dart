@@ -106,6 +106,7 @@ class GFCard extends StatelessWidget {
   /// defines the gradient background
   final LinearGradient gradient;
 
+
   static const double _defaultElevation = 1;
   static const Clip _defaultClipBehavior = Clip.none;
 
@@ -121,7 +122,7 @@ class GFCard extends StatelessWidget {
                             ? title ?? Container()
                             : image != null
                                 ? ClipRRect(
-                                    borderRadius:
+                                    borderRadius: borderRadius ??
                                         const BorderRadius.vertical(top: Radius.circular(4)),
                                     child: image,
                                   )
@@ -155,7 +156,7 @@ class GFCard extends StatelessWidget {
       decoration: gradient != null
           ? BoxDecoration(
               gradient: gradient,
-              borderRadius: const BorderRadius.all(Radius.circular(4)),
+              borderRadius: borderRadius ?? const BorderRadius.all(Radius.circular(4)),
             )
           : null,
       child: gradient == null
