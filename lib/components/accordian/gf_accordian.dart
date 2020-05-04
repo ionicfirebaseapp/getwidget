@@ -4,7 +4,7 @@ import 'package:getflutter/getflutter.dart';
 class GFAccordion extends StatefulWidget {
   const GFAccordion(
       {Key key,
-      this.child,
+      this.titleChild,
       this.content,
       this.collapsedTitlebackgroundColor = GFColors.WHITE,
       this.expandedTitlebackgroundColor = const Color(0xFFE0E0E0),
@@ -21,8 +21,8 @@ class GFAccordion extends StatefulWidget {
       this.margin})
       : super(key: key);
 
-  /// child of  type [Widget]is alternative to title key. title will get priority over child
-  final Widget child;
+  /// child of  type [Widget]is alternative to title key. title will get priority over titleChild
+  final Widget titleChild;
 
   /// content of type[String] which shows the messages after the [GFAccordion] is expanded
   final String content;
@@ -42,7 +42,7 @@ class GFAccordion extends StatefulWidget {
   ///expandedIcon of type[Widget] which is used when the [GFAccordion] is expanded
   final Widget expandedIcon;
 
-  /// text of type [String] is alternative to child. text will get priority over child
+  /// text of type [String] is alternative to child. text will get priority over titleChild
   final String title;
 
   /// textStyle of type [textStyle] will be applicable to text only and not for the child
@@ -102,6 +102,7 @@ class _GFAccordionState extends State<GFAccordion>
   @override
   void dispose() {
     animationController.dispose();
+    controller.dispose();
     super.dispose();
   }
 
@@ -140,7 +141,7 @@ class _GFAccordionState extends State<GFAccordion>
                     Expanded(
                       child: widget.title != null
                           ? Text(widget.title, style: widget.textStyle)
-                          : (widget.child ?? Container()),
+                          : (widget.titleChild ?? Container()),
                     ),
                     showAccordion ? widget.expandedIcon : widget.collapsedIcon
                   ],
