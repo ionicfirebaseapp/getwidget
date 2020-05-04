@@ -151,32 +151,35 @@ class _GFCheckboxListTileState extends State<GFCheckboxListTile> {
 //           isSelected = !isSelected;
 //         });
 //       },
-       child:  GFListTile(
+       child:  GestureDetector(
 
-         avatar:  widget.avatar,
-         titleText: widget.titleText,
-         subTitle: widget.subTitle,
-         subtitleText: widget.subtitleText,
-         description: widget.description,
-         color: widget.color,
-         padding: widget.padding,
-         margin: widget.margin,
-         title: widget.title,
-         icon:  GFCheckbox(
-           size: widget.size,
-           activebgColor: widget.activebgColor,
-           onChanged:widget.onChanged,
-           value: widget.value,
-           inactiveIcon: widget.inactiveIcon,
-           activeBorderColor: widget.activeBorderColor,
-           inactivebgColor: widget.inactivebgColor,
-           activeIcon: widget.activeIcon,
-           inactiveBorderColor: widget.inactiveBorderColor,
-           custombgColor: widget.custombgColor,
-           checkColor: widget.checkColor,
-           type: widget.type,
+         child: GFListTile(
+           avatar:  widget.avatar,
+           titleText: widget.titleText,
+           subTitle: widget.subTitle,
+           subtitleText: widget.subtitleText,
+           description: widget.description,
+           color: widget.color,
+           padding: widget.padding,
+           margin: widget.margin,
+           title: widget.title,
+
+           icon:  GFCheckbox(
+             size: widget.size,
+             activebgColor: widget.activebgColor,
+//             onChanged:widget.onChanged,
+//             value: widget.value,
+             inactiveIcon: widget.inactiveIcon,
+             activeBorderColor: widget.activeBorderColor,
+             inactivebgColor: widget.inactivebgColor,
+             activeIcon: widget.activeIcon,
+             inactiveBorderColor: widget.inactiveBorderColor,
+             custombgColor: widget.custombgColor,
+             checkColor: widget.checkColor,
+             type: widget.type,
+           ),
          ),
-       ),
+       )
      );
 //      InkWell(
 //        onTap: onStatusChange,
