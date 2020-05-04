@@ -289,6 +289,7 @@ class _GFProgressBarState extends State<GFProgressBar>
                 )),
           )
         : Material(
+            color: Colors.transparent,
             child: Container(
                 width: MediaQuery.of(context).size.width,
                 child: Column(
