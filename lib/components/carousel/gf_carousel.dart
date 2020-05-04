@@ -23,6 +23,7 @@ class GFCarousel extends StatefulWidget {
     this.pauseAutoPlayOnTouch,
     this.enlargeMainPage = false,
     this.onPageChanged,
+    this.onPageIndex,
     this.scrollPhysics,
     this.scrollDirection = Axis.horizontal,
   })  : realPage = enableInfiniteScroll ? realPage + initialPage : initialPage,
@@ -93,6 +94,8 @@ class GFCarousel extends StatefulWidget {
 
   /// Called whenever the page in the center of the viewport changes.
   final Function(int index) onPageChanged;
+
+  int onPageIndex;
 
   /// How the carousel should respond to user input.
   ///
@@ -216,6 +219,12 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
     timer?.cancel();
   }
 
+  onPageChanged(index) {
+    setState(() {
+      index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) => Stack(
         children: <Widget>[
@@ -229,8 +238,8 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
               int currentPage;
               currentPage = _getRealIndex(index + widget.initialPage,
                   widget.realPage, widget.items.length);
-              if (widget.onPageChanged != null) {
-                widget.onPageChanged(currentPage);
+              if (widget.pagination == true) {
+                onPageChanged(currentPage);
                 _current = currentPage;
               }
               _current = currentPage;

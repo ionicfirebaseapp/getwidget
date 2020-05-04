@@ -163,7 +163,6 @@ class _GFCheckboxListTileState extends State<GFCheckboxListTile> {
            padding: widget.padding,
            margin: widget.margin,
            title: widget.title,
-
            icon:  GFCheckbox(
              size: widget.size,
              activebgColor: widget.activebgColor,
