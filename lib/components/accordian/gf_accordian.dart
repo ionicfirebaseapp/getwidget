@@ -102,6 +102,7 @@ class _GFAccordionState extends State<GFAccordion>
   @override
   void dispose() {
     animationController.dispose();
+    controller.dispose();
     super.dispose();
   }
 
