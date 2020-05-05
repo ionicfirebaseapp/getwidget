@@ -18,8 +18,12 @@ class GFAccordion extends StatefulWidget {
       this.contentChild,
       this.titleborder = const Border(),
       this.contentBorder = const Border(),
-      this.margin})
+      this.margin,
+      this.showAccordion})
       : super(key: key);
+
+  /// controls if the accordion should be collapsed or not making it possible to be controlled from outside
+  final bool showAccordion;
 
   /// child of  type [Widget]is alternative to title key. title will get priority over titleChild
   final Widget titleChild;
@@ -75,10 +79,11 @@ class _GFAccordionState extends State<GFAccordion>
   AnimationController animationController;
   AnimationController controller;
   Animation<Offset> offset;
-  bool showAccordion = false;
+  bool showAccordion;
 
   @override
   void initState() {
+    showAccordion = widget.showAccordion;
     animationController = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
