@@ -19,8 +19,11 @@ class GFAccordion extends StatefulWidget {
       this.titleborder = const Border(),
       this.contentBorder = const Border(),
       this.margin,
-      this.showAccordion = false})
+      this.showAccordion = false,
+      this.onToggleCollapsed})
       : super(key: key);
+
+  final Function(bool) onToggleCollapsed;
 
   /// controls if the accordion should be collapsed or not making it possible to be controlled from outside
   final bool showAccordion;
@@ -119,18 +122,7 @@ class _GFAccordionState extends State<GFAccordion>
           children: <Widget>[
             GestureDetector(
               onTap: () {
-                setState(() {
-                  switch (controller.status) {
-                    case AnimationStatus.completed:
-                      controller.forward(from: 0);
-                      break;
-                    case AnimationStatus.dismissed:
-                      controller.forward();
-                      break;
-                    default:
-                  }
-                  showAccordion = !showAccordion;
-                });
+                _toggleCollapsed();
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -171,4 +163,22 @@ class _GFAccordionState extends State<GFAccordion>
           ],
         ),
       );
+
+  void _toggleCollapsed() {
+    setState(() {
+      switch (controller.status) {
+        case AnimationStatus.completed:
+          controller.forward(from: 0);
+          break;
+        case AnimationStatus.dismissed:
+          controller.forward();
+          break;
+        default:
+      }
+      showAccordion = !showAccordion;
+    });
+    if (widget.onToggleCollapsed != null) {
+      widget.onToggleCollapsed(showAccordion);
+    }
+  }
 }
