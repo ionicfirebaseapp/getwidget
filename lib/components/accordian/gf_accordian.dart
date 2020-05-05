@@ -176,9 +176,9 @@ class _GFAccordionState extends State<GFAccordion>
         default:
       }
       showAccordion = !showAccordion;
+      if (widget.onToggleCollapsed != null) {
+        widget.onToggleCollapsed(showAccordion);
+      }
     });
-    if (widget.onToggleCollapsed != null) {
-      widget.onToggleCollapsed(showAccordion);
-    }
   }
 }
