@@ -19,7 +19,7 @@ class GFAccordion extends StatefulWidget {
       this.titleborder = const Border(),
       this.contentBorder = const Border(),
       this.margin,
-      this.showAccordion})
+      this.showAccordion = false})
       : super(key: key);
 
   /// controls if the accordion should be collapsed or not making it possible to be controlled from outside
