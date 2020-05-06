@@ -1,4 +1,4 @@
-[![Financial Contributors on Open Collective](https://opencollective.com/getflutter/all/badge.svg?label=financial+contributors)](https://opencollective.com/getflutter) [![pub package](https://img.shields.io/pub/v/getflutter.svg)](https://pub.dartlang.org/packages/getflutter) [![Build Status](https://travis-ci.org/ionicfirebaseapp/getflutter.svg?branch=master)](https://travis-ci.com/ionicfirebaseapp/getflutter) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT) [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/ionicfirebaseapp/getflutter/blob/master/LICENSE) [![Gitter](https://badges.gitter.im/getflutterdev/getflutter.svg)](https://gitter.im/getflutterdev/getflutter) [![Twitter Follow](https://img.shields.io/twitter/follow/getflutterdev.svg?style=social)](https://twitter.com/getwidgetdev)
+[![Financial Contributors on Open Collective](https://opencollective.com/getflutter/all/badge.svg?label=financial+contributors)](https://opencollective.com/getflutter) [![pub package](https://img.shields.io/pub/v/getflutter.svg)](https://pub.dartlang.org/packages/getflutter) [![Build Status](https://travis-ci.org/ionicfirebaseapp/getflutter.svg?branch=master)](https://travis-ci.com/ionicfirebaseapp/getflutter) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT) [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/ionicfirebaseapp/getwidget/blob/master/LICENSE) [![Gitter](https://badges.gitter.im/getflutterdev/getflutter.svg)](https://gitter.im/getflutterdev/getflutter) [![Twitter Follow](https://img.shields.io/twitter/follow/getflutterdev.svg?style=social)](https://twitter.com/getwidgetdev)
 
 
 <p align="center">
@@ -7,7 +7,7 @@
   </a>
 </p>
 
-[**GetWidget**](https://www.getwidget.dev) is a 100% free Flutter open-source UI library built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever. GetFlutter has 1000+ pre-build widgets that you can reuse to develop both Flutter mobile app and web app. Our motto is to provide the best Flutter UI library to the Flutter community to speed up their development process and build awesome apps with pre-build Flutter Library Components.
+[**GetWidget**](https://www.getwidget.dev) is a 100% free Flutter open-source UI library built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever. GetWidget has 1000+ pre-build widgets that you can reuse to develop both Flutter mobile app and web app. Our motto is to provide the best Flutter UI library to the Flutter community to speed up their development process and build awesome apps with pre-build Flutter Library Components.
 
 ## Table of contents 
 
@@ -52,10 +52,10 @@ we have launched the library with the following components :
    Coming Soon
  
  ### An Open-Source News App Built With GetWidget & Flutter
- Ionicfirebaseapp.com has been developed an open-source News Mobile App with GetFlutter, So can start building app faster to get an overview and do customization. You can Download News App Souce Code here: https://www.ionicfirebaseapp.com/products/flutter-news-app  
+ Ionicfirebaseapp.com has been developed an open-source News Mobile App with GetWidget, So can start building app faster to get an overview and do customization. You can Download News App Souce Code here: https://www.ionicfirebaseapp.com/products/flutter-news-app  
  ## Contributing
  
-  GetFlutter is **100% free** and **open source**. We encourage and support an active, healthy community that accepts contributions from the public &ndash; including you. There are a couple of ways in which you can contribute to the growing community of `getflutter`.
+  GetWidget is **100% free** and **open source**. We encourage and support an active, healthy community that accepts contributions from the public &ndash; including you. There are a couple of ways in which you can contribute to the growing community of `getwidget`.
   
   * Pick up any issue marked with ["good first issue"](https://github.com/ionicfirebaseapp/getflutter/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
   * Fix a bug
@@ -68,30 +68,29 @@ we have launched the library with the following components :
  
  ## Documentation
  
-  [**Installation Guide**](https://docs.getflutter.dev)
+  [**Installation Guide**](https://docs.getwidget.dev)
   
  
 ### Social Media
 
-Twitter: <https://twitter.com/getflutterdev>
+Twitter: <https://twitter.com/getwidgetdev>
 
-Facebook: <https://www.facebook.com/getflutter>
+Facebook: <https://www.facebook.com/getwidget>
 
-Linkedin: <https://www.linkedin.com/company/getflutter>
+Linkedin: <https://www.linkedin.com/showcase/getwidget/>
 
-Instagram: <https://www.instagram.com/getflutter.dev/> 
+Instagram: <https://www.instagram.com/getwidget.dev/> 
 
-### Note: GetFlutter is not directly and/or indirectly associated/affiliated with Flutter or Google LLC. We are the team of Flutter Developers and we built this open-source library for the Flutter development community to made app development more easier. 
  
  ## Copyright-and-license 
- Code and documentation Copyright 2017-2020 the [GETFLUTTER Authors](https://www.getflutter.dev) and [IONICFIREBASEAPP](https://ionicfirebaseapp.com) Code released under the [MIT License]. Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
+ Code and documentation Copyright 2017-2020 the [GETFLUTTER Authors](https://www.getwidget.dev) and [IONICFIREBASEAPP](https://ionicfirebaseapp.com) Code released under the [MIT License]. Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
 
 ## Contributors
 
 ### Code Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/ionicfirebaseapp/getflutter/graphs/contributors"><img src="https://opencollective.com/getflutter/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/ionicfirebaseapp/getwidget/graphs/contributors"><img src="https://opencollective.com/getflutter/contributors.svg?width=890&button=false" /></a>
 
 ### Financial Contributors
 
