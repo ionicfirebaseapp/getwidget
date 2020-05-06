@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://www.getwidget.dev/" target="_blank">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:w-auto-300/gf-logo-g-b_SYSBeqUrR.png" alt="Get Flutter">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/logo.black_iOBoLWdj2I.png" alt="Get Flutter">
   </a>
 </p>
 
@@ -22,8 +22,8 @@
  
  ## Screenshot
  <p align="center">
-  <a target="_blank" href="https://www.getflutter.dev/">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/gf-full_bYPXDEx6g.png" alt="Get Flutter Screens">
+  <a target="_blank" href="https://www.getwidget.dev/">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/GitHub_1_O8ZlrxSIo.png" alt="Get Flutter Screens">
   </a>
 </p>
 
