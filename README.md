@@ -62,7 +62,7 @@ we have launched the library with the following components :
   * Write and improve some **documentation**. Documentation is very critical to us. We would appreciate help in adding multiple languages to our docs.
   * If you are a developer, feel free to check out the source and submit pull requests.
   * Dig into [**CONTRIBUTING.MD**](CONTRIBUTING.md), which covers submitting bugs, requesting new features, preparing your code for a pull request, etc.
-  * Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](http://forum.getflutter.dev) to keep up to date with the latest GetFlutter development. 
+  * Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](http://forum.getflutter.dev) to keep up to date with the latest GetWidget development. 
   * Not sure what to work on? [**We've got lots ideas.**](https://roadmap.getflutter.dev)
  
  
@@ -83,7 +83,7 @@ Instagram: <https://www.instagram.com/getwidget.dev/>
 
  
  ## Copyright-and-license 
- Code and documentation Copyright 2017-2020 the [GETFLUTTER Authors](https://www.getwidget.dev) and [IONICFIREBASEAPP](https://ionicfirebaseapp.com) Code released under the [MIT License]. Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
+ Code and documentation Copyright 2017-2020 the [GETWIDGET Authors](https://www.getwidget.dev) and [IONICFIREBASEAPP](https://ionicfirebaseapp.com) Code released under the [MIT License]. Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
 
 ## Contributors
 
