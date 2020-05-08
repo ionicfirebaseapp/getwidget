@@ -50,7 +50,7 @@ class GFListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        constraints: const BoxConstraints(minHeight: 50),
+//        constraints: const BoxConstraints(minHeight: 50),
         padding: padding,
         margin: margin,
         decoration: BoxDecoration(
