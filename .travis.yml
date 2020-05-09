@@ -11,7 +11,7 @@ cache:
     - $HOME/.pub-cache
 
 env:
-  - FLUTTER_VERSION=stable
+  - FLUTTER_VERSION=beta
 
 # Only building master means that we don't run two builds for each pull request.
 branches:
