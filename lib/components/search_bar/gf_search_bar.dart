@@ -46,10 +46,9 @@ class GFSearchBar<T> extends StatefulWidget {
 
   /// defines the input decoration of searchBox
   final InputDecoration searchBoxInputDecoration;
-  
+
   /// defines the input controller of searchBox
   final TextEditingController controller;
-  
 
   @override
   MySingleChoiceSearchState<T> createState() => MySingleChoiceSearchState<T>();
@@ -255,7 +254,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
                             InkWell(
-                              child: Icon(
+                              child: const Icon(
                                 Icons.close,
                                 size: 22,
                               ),
