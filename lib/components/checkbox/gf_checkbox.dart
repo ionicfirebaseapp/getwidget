@@ -63,13 +63,12 @@ class GFCheckbox extends StatefulWidget {
 }
 
 class _GFCheckboxState extends State<GFCheckbox> {
-//
-
   bool isSelected = false;
 
   @override
-  void initState(){
-    isSelected = widget.value??false;
+  void initState() {
+    super.initState();
+    isSelected = widget.value ?? false;
   }
 
   void onStatusChange() {
@@ -80,6 +79,7 @@ class _GFCheckboxState extends State<GFCheckbox> {
       widget.onChanged(isSelected);
     }
   }
+
   @override
   Widget build(BuildContext context) => InkWell(
         onTap: onStatusChange,
@@ -111,7 +111,7 @@ class _GFCheckboxState extends State<GFCheckbox> {
                           alignment: Alignment.center,
                         ),
                         Container(
-                          margin: const  EdgeInsets.all(5),
+                          margin: const EdgeInsets.all(5),
                           alignment: Alignment.center,
                           width: widget.size * 0.8,
                           height: widget.size * 0.8,

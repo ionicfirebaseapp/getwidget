@@ -21,7 +21,7 @@ before_script:
   - cd ../
   - git clone https://github.com/flutter/flutter.git -b $FLUTTER_VERSION
   - ./flutter/bin/flutter doctor
-  - cd getflutter/
+  - cd getwidget/
 
 script:
   - ./../flutter/bin/flutter analyze .

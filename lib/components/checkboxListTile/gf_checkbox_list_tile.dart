@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 
-
 class GFCheckboxListTile extends StatefulWidget {
-
   const GFCheckboxListTile({
     Key key,
     this.titleText,
@@ -54,7 +52,6 @@ class GFCheckboxListTile extends StatefulWidget {
   /// The description to display inside the [GFListTile]. see [Text]
   final Widget description;
 
-
   /// defines the margin of GFListTile
   final EdgeInsets margin;
 
@@ -97,19 +94,16 @@ class GFCheckboxListTile extends StatefulWidget {
   /// type of [Color] used to change the background color of the custom active  checkbox only
   final Color custombgColor;
 
-
-
   @override
   _GFCheckboxListTileState createState() => _GFCheckboxListTileState();
 }
 
 class _GFCheckboxListTileState extends State<GFCheckboxListTile> {
-
-
   bool isSelected = false;
   @override
-  void initState(){
-    isSelected = widget.value??false;
+  void initState() {
+    super.initState();
+    isSelected = widget.value ?? false;
   }
 
   void onStatusChange() {
@@ -120,7 +114,6 @@ class _GFCheckboxListTileState extends State<GFCheckboxListTile> {
       widget.onChanged(isSelected);
     }
   }
-
 
 //  void onStatusChange() {
 //    if (widget.onChanged != null) {
@@ -141,45 +134,42 @@ class _GFCheckboxListTileState extends State<GFCheckboxListTile> {
 //    }
 ////  }
   @override
-  Widget build(BuildContext context) =>
-     InkWell(
+  Widget build(BuildContext context) => InkWell(
 //       onTap: widget.onChanged != null ? () { widget.onChanged(isSelected); } : null,
-       onTap: onStatusChange,
+      onTap: onStatusChange,
 
 //       onTap: (){
 //         setState((){
 //           isSelected = !isSelected;
 //         });
 //       },
-       child:  GestureDetector(
-
-         child: GFListTile(
-           avatar:  widget.avatar,
-           titleText: widget.titleText,
-           subTitle: widget.subTitle,
-           subtitleText: widget.subtitleText,
-           description: widget.description,
-           color: widget.color,
-           padding: widget.padding,
-           margin: widget.margin,
-           title: widget.title,
-           icon:  GFCheckbox(
-             size: widget.size,
-             activebgColor: widget.activebgColor,
+      child: GestureDetector(
+        child: GFListTile(
+          avatar: widget.avatar,
+          titleText: widget.titleText,
+          subTitle: widget.subTitle,
+          subtitleText: widget.subtitleText,
+          description: widget.description,
+          color: widget.color,
+          padding: widget.padding,
+          margin: widget.margin,
+          title: widget.title,
+          icon: GFCheckbox(
+            size: widget.size,
+            activebgColor: widget.activebgColor,
 //             onChanged:widget.onChanged,
 //             value: widget.value,
-             inactiveIcon: widget.inactiveIcon,
-             activeBorderColor: widget.activeBorderColor,
-             inactivebgColor: widget.inactivebgColor,
-             activeIcon: widget.activeIcon,
-             inactiveBorderColor: widget.inactiveBorderColor,
-             custombgColor: widget.custombgColor,
-             checkColor: widget.checkColor,
-             type: widget.type,
-           ),
-         ),
-       )
-     );
+            inactiveIcon: widget.inactiveIcon,
+            activeBorderColor: widget.activeBorderColor,
+            inactivebgColor: widget.inactivebgColor,
+            activeIcon: widget.activeIcon,
+            inactiveBorderColor: widget.inactiveBorderColor,
+            custombgColor: widget.custombgColor,
+            checkColor: widget.checkColor,
+            type: widget.type,
+          ),
+        ),
+      ));
 //      InkWell(
 //        onTap: onStatusChange,
 //        child: Container(
@@ -244,4 +234,3 @@ class _GFCheckboxListTileState extends State<GFCheckboxListTile> {
 //  ),
 //      );
 }
-

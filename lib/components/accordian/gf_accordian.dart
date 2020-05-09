@@ -120,10 +120,8 @@ class _GFAccordionState extends State<GFAccordion>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            GestureDetector(
-              onTap: () {
-                _toggleCollapsed();
-              },
+            InkWell(
+              onTap: _toggleCollapsed,
               child: Container(
                 decoration: BoxDecoration(
                   border: widget.titleborder,

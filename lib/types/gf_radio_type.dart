@@ -1,1 +1,1 @@
-enum GFRadioButtonType { basic, square , custom, blunt}
+enum GFRadioButtonType { basic, square, custom, blunt }
