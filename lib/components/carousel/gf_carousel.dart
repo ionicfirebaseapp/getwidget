@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class GFCarousel extends StatefulWidget {
   /// Creates slide show of Images and [Widget] with animation for sliding.
   GFCarousel({
@@ -23,7 +24,7 @@ class GFCarousel extends StatefulWidget {
     this.pauseAutoPlayOnTouch,
     this.enlargeMainPage = false,
     this.onPageChanged,
-    this.onPageIndex,
+//    this.onPageIndex,
     this.scrollPhysics,
     this.scrollDirection = Axis.horizontal,
   })  : realPage = enableInfiniteScroll ? realPage + initialPage : initialPage,
@@ -95,7 +96,7 @@ class GFCarousel extends StatefulWidget {
   /// Called whenever the page in the center of the viewport changes.
   final Function(int index) onPageChanged;
 
-  int onPageIndex;
+//  int onPageIndex;
 
   /// How the carousel should respond to user input.
   ///
@@ -166,7 +167,7 @@ class GFCarousel extends StatefulWidget {
 
 class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
   Timer timer;
-  int _current = 0;
+//  int _current = 0;
 
   /// Size of cell
   double size = 0;
@@ -215,15 +216,15 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    super.dispose();
     timer?.cancel();
+    super.dispose();
   }
 
-  onPageChanged(index) {
-    setState(() {
-      index;
-    });
+  void onPageSlide(int index) {
+    setState(() => index);
   }
+
+  int currentSlide;
 
   @override
   Widget build(BuildContext context) => Stack(
@@ -233,16 +234,21 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
             scrollDirection: widget.scrollDirection,
             controller: widget.pageController,
             reverse: widget.reverse,
-            itemCount: widget.items.length == 1 ? widget.items.length : widget.enableInfiniteScroll ? null : widget.items.length,
+            itemCount: widget.items.length == 1
+                ? widget.items.length
+                : widget.enableInfiniteScroll ? null : widget.items.length,
             onPageChanged: (int index) {
               int currentPage;
               currentPage = _getRealIndex(index + widget.initialPage,
                   widget.realPage, widget.items.length);
-              if (widget.pagination == true) {
-                onPageChanged(currentPage);
-                _current = currentPage;
+              if (widget.onPageChanged != null) {
+                widget.onPageChanged(currentPage);
               }
-              _current = currentPage;
+              if (widget.pagination == true && widget.onPageChanged == null) {
+                onPageSlide(currentPage);
+//                _current = currentPage;
+              }
+//              _current = currentPage;
             },
             itemBuilder: (BuildContext context, int i) {
               final int index = _getRealIndex(
@@ -250,7 +256,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                 widget.realPage,
                 widget.items.length,
               );
-
+              currentSlide = index;
               return AnimatedBuilder(
                 animation: widget.pageController,
                 child: widget.items[index],
@@ -303,7 +309,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: widget.map<Widget>(
                         widget.items,
-                        (indexx, url) => Container(
+                        (pagerIndex, url) => Container(
                           width:
                               widget.pagerSize == null ? 8.0 : widget.pagerSize,
                           height:
@@ -312,7 +318,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                               vertical: 10, horizontal: 2),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: _current == indexx
+                            color: currentSlide == pagerIndex
                                 ? widget.activeIndicator == null
                                     ? const Color.fromRGBO(0, 0, 0, 0.9)
                                     : widget.activeIndicator

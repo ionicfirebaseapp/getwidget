@@ -180,12 +180,13 @@ class _GFTabBarState extends State<GFTabBar> {
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
-    dragStartBehavior: dragStartBehavior,
-    scrollDirection: Axis.horizontal,
-    controller: _scrollController,
-    child: Container(
-      width: MediaQuery.of(context).size.width,
-          height: widget.tabBarHeight ?? MediaQuery.of(context).size.height * 0.1,
+        dragStartBehavior: dragStartBehavior,
+        scrollDirection: Axis.horizontal,
+        controller: _scrollController,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height:
+              widget.tabBarHeight ?? MediaQuery.of(context).size.height * 0.1,
           child: Material(
             shape: widget.shape,
             type: MaterialType.button,
@@ -206,5 +207,5 @@ class _GFTabBarState extends State<GFTabBar> {
             ),
           ),
         ),
-  );
+      );
 }

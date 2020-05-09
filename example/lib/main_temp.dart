@@ -289,7 +289,6 @@ class _MyHomePageState extends State<MyHomePage>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-
 //            GFAccordion(
 //              titleChild: Text('fgk'),
 //              contentChild: Text('hhjk'),
@@ -651,11 +650,11 @@ class _MyHomePageState extends State<MyHomePage>
 //                  child: Text("dszndc"),
 //                  icon: Icon(Icons.WARNING),
 //                ),
-                GFButtonBadge(
-                  onPressed: null,
-                  text: "djvhcfdscc",
-                  icon: Icon(Icons.label),
-                ),
+            GFButtonBadge(
+              onPressed: null,
+              text: "djvhcfdscc",
+              icon: Icon(Icons.label),
+            ),
 //                GFButton(
 //                  onPressed: null,
 //                  child: Text("gcnjd"),
@@ -1166,7 +1165,6 @@ class _MyHomePageState extends State<MyHomePage>
 //         ),
 //       ),
 
-
             GFCheckbox(
               size: GFSize.SMALL,
               activebgColor: GFColors.DANGER,
@@ -1177,25 +1175,23 @@ class _MyHomePageState extends State<MyHomePage>
               inactiveIcon: null,
             ),
 
-
-
             GFRadioButton(
               size: GFSize.SMALL,
               value: true,
-                type: GFRadioButtonType.basic,
-                radioColor: GFColors.SUCCESS,
+              type: GFRadioButtonType.basic,
+              radioColor: GFColors.SUCCESS,
 //                activebgColor: GFColors.ALT,
 //                inactivebgColor: GFColors.PRIMARY,
 //                activeBorderColor: GFColors.DANGER,
 //                inactiveBorderColor: GFColors.DARK,
-                onChanged: (val) {
-                  print('on change val $val');
-                },
-                activeIcon: const Icon(
-                  Icons.check,
-                  size: 20,
-                  color: GFColors.DARK,
-                ),
+              onChanged: (val) {
+                print('on change val $val');
+              },
+              activeIcon: const Icon(
+                Icons.check,
+                size: 20,
+                color: GFColors.DARK,
+              ),
 //                inactiveIcon: const Icon(Icons.close, size: 20, color: GFColors.DARK,),
 //                custombgColor: GFColors.SUCCESS,
 //                groupValue:
@@ -1384,7 +1380,9 @@ class _MyHomePageState extends State<MyHomePage>
               subTitle: Text('subtitle'),
 //              titleText: 'sdfg',
 //              subtitleText: 'sdfg',
-              avatar: GFAvatar(backgroundColor: GFColors.SUCCESS,),
+              avatar: GFAvatar(
+                backgroundColor: GFColors.SUCCESS,
+              ),
               description: Text('description'),
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.all(16),
@@ -1405,38 +1403,42 @@ class _MyHomePageState extends State<MyHomePage>
                 print('on change val $val');
               },
               value: true,
-              inactiveIcon: Icon(Icons.close, color: GFColors.DARK, size: 16,),
+              inactiveIcon: Icon(
+                Icons.close,
+                color: GFColors.DARK,
+                size: 16,
+              ),
             ),
 
-////
-//            GFCarousel(
-//              pagerSize: 12,
-//              activeIndicator: Colors.pink,
-//              passiveIndicator: Colors.pink.withOpacity(0.4),
-//              viewportFraction: 1.0,
-////              aspectRatio: 1,
-//              autoPlay: true,
-//              enlargeMainPage: true,
-//              pagination: true,
-//              items: imageList
-//                  .map((url) => Container(
-//                        padding: const EdgeInsets.only(bottom: 16),
-//                        margin: const EdgeInsets.all(12),
-//                        child: ClipRRect(
-//                          borderRadius:
-//                              const BorderRadius.all(Radius.circular(5)),
-//                          child: Image.network(url,
-//                              fit: BoxFit.cover, width: 1000),
-//                        ),
-//                      ))
-//                  .toList(),
-////              onPageChanged: (index) {
-////                setState(() {
-//////                   index;
-////                });
-////              },
-//            ),
-
+//
+            GFCarousel(
+//              initialPage: 1,
+              pagerSize: 12,
+              activeIndicator: Colors.pink,
+              passiveIndicator: Colors.pink.withOpacity(0.4),
+              viewportFraction: 1.0,
+//              aspectRatio: 1,
+              autoPlay: true,
+              enlargeMainPage: true,
+              pagination: true,
+              items: imageList
+                  .map((url) => Container(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        margin: const EdgeInsets.all(12),
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
+                          child: Image.network(url,
+                              fit: BoxFit.cover, width: 1000),
+                        ),
+                      ))
+                  .toList(),
+//              onPageChanged: (int index) {
+//                setState(() {
+//                   index;
+//                });
+//              },
+            ),
 
 //
 //              GFCarousel(
@@ -1656,7 +1658,6 @@ class _MyHomePageState extends State<MyHomePage>
 //              borderRadius: BorderRadius.circular(5),
 ////              border: Border.all(color: Colors.pink, width: 2.0),
 //            ),
-
 
 //            GFAvatar(
             //              radius: 20.0,
