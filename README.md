@@ -2,12 +2,12 @@
 
 
 <p align="center">
-  <a href="https://www.getwidget.dev/" target="_blank">
+  <a href="https://docs.getwidget.dev/" target="_blank">
     <img src="https://ik.imagekit.io/ionicfirebaseapp/logo.black_iOBoLWdj2I.png" alt="Get Flutter">
   </a>
 </p>
 
-[**GetWidget**](https://www.getwidget.dev) is a 100% free Flutter open-source UI library built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever. GetWidget has 1000+ pre-build widgets that you can reuse to develop both Flutter mobile app and web app. Our motto is to provide the best Flutter UI library to the Flutter community to speed up their development process and build awesome apps with pre-build Flutter Library Components.
+[**GetWidget**](https://docs.getwidget.dev) is a 100% free Flutter open-source UI library built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever. GetWidget has 1000+ pre-build widgets that you can reuse to develop both Flutter mobile app and web app. Our motto is to provide the best Flutter UI library to the Flutter community to speed up their development process and build awesome apps with pre-build Flutter Library Components.
 
 ## Table of contents 
 
@@ -22,7 +22,7 @@
  
  ## Screenshot
  <p align="center">
-  <a target="_blank" href="https://www.getwidget.dev/">
+  <a target="_blank" href="https://docs.getwidget.dev/">
     <img src="https://ik.imagekit.io/ionicfirebaseapp/GitHub_1_O8ZlrxSIo.png" alt="Get Flutter Screens">
   </a>
 </p>
