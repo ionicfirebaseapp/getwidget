@@ -2,8 +2,8 @@
 
 
 <p align="center">
-  <a href="https://www.getwidget.dev/" target="_blank">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/logo.black_iOBoLWdj2I.png" alt="Get Widget">
+  <a href="https://docs.getwidget.dev/" target="_blank">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/logo.black_iOBoLWdj2I.png" alt="GetWidget">
   </a>
 </p>
 
@@ -23,7 +23,7 @@
  ## Screenshot
  <p align="center">
   <a target="_blank" href="https://docs.getwidget.dev/">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/GitHub_1_O8ZlrxSIo.png" alt="Get Flutter Screens">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/GitHub_1_O8ZlrxSIo.png" alt="GetWidget Screens">
   </a>
 </p>
 
@@ -44,7 +44,7 @@ we have launched the library with the following components :
    ### Play Store 
    <p align="left">
         <a href="https://play.google.com/store/apps/details?id=dev.getflutter.appkit" target="_blank">
-          <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/playstore_NQQBiJIQ1.png" alt="Get Flutter playstore Demo">
+          <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/playstore_NQQBiJIQ1.png" alt="GetWidget playstore Demo">
         </a>
       </p>
   
