@@ -1,13 +1,13 @@
-[![Financial Contributors on Open Collective](https://opencollective.com/getflutter/all/badge.svg?label=financial+contributors)](https://opencollective.com/getflutter) [![pub package](https://img.shields.io/pub/v/getflutter.svg)](https://pub.dartlang.org/packages/getflutter) [![Build Status](https://travis-ci.org/ionicfirebaseapp/getflutter.svg?branch=master)](https://travis-ci.com/ionicfirebaseapp/getflutter) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT) [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/ionicfirebaseapp/getflutter/blob/master/LICENSE) [![Gitter](https://badges.gitter.im/getflutterdev/getflutter.svg)](https://gitter.im/getflutterdev/getflutter) [![Twitter Follow](https://img.shields.io/twitter/follow/getflutterdev.svg?style=social)](https://twitter.com/getflutterdev)
+[![Financial Contributors on Open Collective](https://opencollective.com/getflutter/all/badge.svg?label=financial+contributors)](https://opencollective.com/getflutter) [![pub package](https://img.shields.io/pub/v/getflutter.svg)](https://pub.dartlang.org/packages/getflutter) [![Build Status](https://travis-ci.org/ionicfirebaseapp/getflutter.svg?branch=master)](https://travis-ci.com/ionicfirebaseapp/getflutter) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT) [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/ionicfirebaseapp/getwidget/blob/master/LICENSE) [![Gitter](https://badges.gitter.im/getflutterdev/getflutter.svg)](https://gitter.im/getflutterdev/getflutter) [![Twitter Follow](https://img.shields.io/twitter/follow/getflutterdev.svg?style=social)](https://twitter.com/getwidgetdev)
 
 
 <p align="center">
-  <a href="https://www.getflutter.dev/" target="_blank">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:w-auto-300/gf-logo-g-b_SYSBeqUrR.png" alt="Get Flutter">
+  <a href="https://docs.getwidget.dev/" target="_blank">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/logo.black_iOBoLWdj2I.png" alt="Get Flutter">
   </a>
 </p>
 
-[**GetFlutter**](https://www.getflutter.dev) is a 100% free Flutter open-source UI library built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever. GetFlutter has 1000+ pre-build widgets that you can reuse to develop both Flutter mobile app and web app. Our motto is to provide the best Flutter UI library to the Flutter community to speed up their development process and build awesome apps with pre-build Flutter Library Components.
+[**GetWidget**](https://docs.getwidget.dev) is a 100% free Flutter open-source UI library built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever. GetWidget has 1000+ pre-build widgets that you can reuse to develop both Flutter mobile app and web app. Our motto is to provide the best Flutter UI library to the Flutter community to speed up their development process and build awesome apps with pre-build Flutter Library Components.
 
 ## Table of contents 
 
@@ -22,21 +22,21 @@
  
  ## Screenshot
  <p align="center">
-  <a target="_blank" href="https://www.getflutter.dev/">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/gf-full_bYPXDEx6g.png" alt="Get Flutter Screens">
+  <a target="_blank" href="https://docs.getwidget.dev/">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/GitHub_1_O8ZlrxSIo.png" alt="Get Flutter Screens">
   </a>
 </p>
 
 
 ## Quick start
 
-Read the [Getting started page](https://docs.getflutter.dev) 
-Forum [Support and discussion ](https://forum.getflutter.dev)
+Read the [Getting started page](https://docs.getwidget.dev) 
+Forum [Support and discussion ](https://forum.getwidget.dev)
 
 ## Features 
 we have launched the library with the following components : 
  
- #### [Button](https://docs.getflutter.dev/gf-button) |  [Badge](https://docs.getflutter.dev/gf-badge) |  [Avatar](https://docs.getflutter.dev/gf-avatar) |  [Image](https://docs.getflutter.dev/gf-image) |  [Card](https://docs.getflutter.dev/gf-card) |  [Carousel](https://docs.getflutter.dev/gf-carousel) | [Tile](https://docs.getflutter.dev/gf-tile) | [Tab](https://docs.getflutter.dev/gf-tab) | [Typography](https://docs.getflutter.dev/gf-typography) | [Toast](https://docs.getflutter.dev/gf-toast) | [Toggle](https://docs.getflutter.dev/gf-toggle) | [Drawer](https://docs.getflutter.dev/gf-drawer) | [Accordian](https://docs.getflutter.dev/gf-accordion) | [Alert](https://docs.getflutter.dev/gf-alert) | [Appbar](https://docs.getflutter.dev/gf-appbar) | [Searchbar](https://docs.getflutter.dev/gf-searchbar) 
+ #### [Button](https://docs.getwidget.dev/gf-button) |  [Badge](https://docs.getwidget.dev/gf-badge) |  [Avatar](https://docs.getwidget.dev/gf-avatar) |  [Image](https://docs.getwidget.dev/gf-image) |  [Card](https://docs.getwidget.dev/gf-card) |  [Carousel](https://docs.getwidget.dev/gf-carousel) | [Tile](https://docs.getwidget.dev/gf-tile) | [Tab](https://docs.getwidget.dev/gf-tab) | [Typography](https://docs.getwidget.dev/gf-typography) | [Toast](https://docs.getwidget.dev/gf-toast) | [Toggle](https://docs.getwidget.dev/gf-toggle) | [Drawer](https://docs.getwidget.dev/gf-drawer) | [Accordian](https://docs.getwidget.dev/gf-accordion) | [Alert](https://docs.getwidget.dev/gf-alert) | [Appbar](https://docs.getwidget.dev/gf-appbar) | [Searchbar](https://docs.getwidget.dev/gf-searchbar) 
  
  
  ## Demo 
@@ -51,46 +51,46 @@ we have launched the library with the following components :
   ### IOS Store and Web Demo
    Coming Soon
  
- 
+ ### An Open-Source News App Built With GetWidget & Flutter
+ Ionicfirebaseapp.com has been developed an open-source News Mobile App with GetWidget, So can start building app faster to get an overview and do customization. You can Download News App Souce Code here: https://www.ionicfirebaseapp.com/products/flutter-news-app  
  ## Contributing
  
-  GetFlutter is **100% free** and **open source**. We encourage and support an active, healthy community that accepts contributions from the public &ndash; including you. There are a couple of ways in which you can contribute to the growing community of `getflutter`.
+  GetWidget is **100% free** and **open source**. We encourage and support an active, healthy community that accepts contributions from the public &ndash; including you. There are a couple of ways in which you can contribute to the growing community of `getwidget`.
   
   * Pick up any issue marked with ["good first issue"](https://github.com/ionicfirebaseapp/getflutter/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
   * Fix a bug
   * Write and improve some **documentation**. Documentation is very critical to us. We would appreciate help in adding multiple languages to our docs.
   * If you are a developer, feel free to check out the source and submit pull requests.
   * Dig into [**CONTRIBUTING.MD**](CONTRIBUTING.md), which covers submitting bugs, requesting new features, preparing your code for a pull request, etc.
-  * Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](http://forum.getflutter.dev) to keep up to date with the latest GetFlutter development. 
+  * Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](http://forum.getflutter.dev) to keep up to date with the latest GetWidget development. 
   * Not sure what to work on? [**We've got lots ideas.**](https://roadmap.getflutter.dev)
  
  
  ## Documentation
  
-  [**Installation Guide**](https://docs.getflutter.dev)
+  [**Installation Guide**](https://docs.getwidget.dev)
   
  
 ### Social Media
 
-Twitter: <https://twitter.com/getflutterdev>
+Twitter: <https://twitter.com/getwidgetdev>
 
-Facebook: <https://www.facebook.com/getflutter>
+Facebook: <https://www.facebook.com/getwidget>
 
-Linkedin: <https://www.linkedin.com/company/getflutter>
+Linkedin: <https://www.linkedin.com/showcase/getwidget/>
 
-Instagram: <https://www.instagram.com/getflutter.dev/> 
+Instagram: <https://www.instagram.com/getwidget.dev/> 
 
-### Note: GetFlutter is not directly and/or indirectly associated/affiliated with Flutter or Google LLC. We are the team of Flutter Developers and we built this open-source library for the Flutter development community to made app development more easier. 
  
  ## Copyright-and-license 
- Code and documentation Copyright 2017-2020 the [GETFLUTTER Authors](https://www.getflutter.dev) and [IONICFIREBASEAPP](https://ionicfirebaseapp.com) Code released under the [MIT License]. Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
+ Code and documentation Copyright 2017-2020 the [GETWIDGET Authors](https://www.getwidget.dev) and [IONICFIREBASEAPP](https://ionicfirebaseapp.com) Code released under the [MIT License]. Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
 
 ## Contributors
 
 ### Code Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/ionicfirebaseapp/getflutter/graphs/contributors"><img src="https://opencollective.com/getflutter/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/ionicfirebaseapp/getwidget/graphs/contributors"><img src="https://opencollective.com/getflutter/contributors.svg?width=890&button=false" /></a>
 
 ### Financial Contributors
 

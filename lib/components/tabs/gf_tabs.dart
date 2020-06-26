@@ -15,6 +15,7 @@ class GFTabs extends StatefulWidget {
     Key key,
     this.initialIndex = 0,
     @required this.length,
+    this.isScrollable = false,
     this.height,
     this.tabBarColor,
     this.indicatorColor,
@@ -167,6 +168,13 @@ class GFTabs extends StatefulWidget {
   /// defines the shape of tabBar
   final ShapeBorder shape;
 
+  /// Whether this tab bar can be scrolled horizontally.
+  ///
+  /// If [isScrollable] is true, then each tab is as wide as needed for its label
+  /// and the entire [TabBar] is scrollable. Otherwise each tab gets an equal
+  /// share of the available space.
+  final bool isScrollable;
+
   @override
   _GFTabsState createState() => _GFTabsState();
 }
@@ -182,9 +190,10 @@ class _GFTabsState extends State<GFTabs> {
             child: Column(
               children: <Widget>[
                 GFTabBar(
+                  isScrollable: widget.isScrollable,
                   shape: widget.shape,
                   length: widget.length,
-                  initialIndex: widget.initialIndex,
+//                  initialIndex: widget.initialIndex,
                   tabBarHeight: widget.tabBarHeight,
                   tabBarColor: widget.tabBarColor ?? GFColors.PRIMARY,
                   controller: widget.controller,

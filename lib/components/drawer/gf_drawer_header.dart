@@ -28,7 +28,7 @@ class GFDrawerHeaderPictures extends StatelessWidget {
         children: <Widget>[
           closeButton == null
               ? GFIconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.close,
                     color: Colors.white,
                   ),

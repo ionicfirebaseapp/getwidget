@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,8 +17,9 @@ class GFTabBar extends StatefulWidget {
   /// [TabController.length].
   const GFTabBar({
     Key key,
-    this.initialIndex = 0,
+//    this.initialIndex = 0,
     @required this.length,
+    this.isScrollable = false,
     this.tabBarHeight,
     this.tabBarColor,
     this.indicatorColor,
@@ -34,13 +36,14 @@ class GFTabBar extends StatefulWidget {
     this.controller,
     this.shape,
   })  : assert(length != null && length >= 0),
-        assert(initialIndex != null &&
-            initialIndex >= 0 &&
-            (length == 0 || initialIndex < length)),
+        assert(isScrollable != null),
+//        assert(initialIndex != null &&
+//            initialIndex >= 0 &&
+//            (length == 0 || initialIndex < length)),
         super(key: key);
 
-  /// The initial index of the selected tab. Defaults to zero.
-  final int initialIndex;
+//  /// The initial index of the selected tab. Defaults to zero.
+//  final int initialIndex;
 
   /// The total number of tabs. Typically greater than one. Must match [TabBar.tabs]'s and
   /// [TabBarView.children]'s length.
@@ -151,6 +154,13 @@ class GFTabBar extends StatefulWidget {
   /// and the length of the [TabBarView.children] list.
   final List<Widget> tabs;
 
+  /// Whether this tab bar can be scrolled horizontally.
+  ///
+  /// If [isScrollable] is true, then each tab is as wide as needed for its label
+  /// and the entire [TabBar] is scrollable. Otherwise each tab gets an equal
+  /// share of the available space.
+  final bool isScrollable;
+
   /// This widget's selection and animation state.
   ///
   /// If [TabController] is not provided, then the value of [DefaultTabController.of]
@@ -165,25 +175,36 @@ class GFTabBar extends StatefulWidget {
 }
 
 class _GFTabBarState extends State<GFTabBar> {
+  ScrollController _scrollController;
+  DragStartBehavior dragStartBehavior = DragStartBehavior.start;
+
   @override
-  Widget build(BuildContext context) => Container(
-        height: widget.tabBarHeight ?? MediaQuery.of(context).size.height * 0.1,
-        child: Material(
-          shape: widget.shape,
-          type: MaterialType.button,
-          color: widget.tabBarColor ?? GFColors.PRIMARY,
-          child: TabBar(
-            controller: widget.controller,
-            labelColor: widget.labelColor,
-            unselectedLabelColor: widget.unselectedLabelColor,
-            labelStyle: widget.labelStyle,
-            unselectedLabelStyle: widget.unselectedLabelStyle,
-            indicatorColor: widget.indicatorColor,
-            indicatorSize: widget.indicatorSize,
-            indicator: widget.indicator,
-            indicatorPadding: widget.indicatorPadding,
-            indicatorWeight: widget.indicatorWeight,
-            tabs: widget.tabs,
+  Widget build(BuildContext context) => SingleChildScrollView(
+        dragStartBehavior: dragStartBehavior,
+        scrollDirection: Axis.horizontal,
+        controller: _scrollController,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height:
+              widget.tabBarHeight ?? MediaQuery.of(context).size.height * 0.1,
+          child: Material(
+            shape: widget.shape,
+            type: MaterialType.button,
+            color: widget.tabBarColor ?? GFColors.PRIMARY,
+            child: TabBar(
+              isScrollable: widget.isScrollable,
+              controller: widget.controller,
+              labelColor: widget.labelColor,
+              unselectedLabelColor: widget.unselectedLabelColor,
+              labelStyle: widget.labelStyle,
+              unselectedLabelStyle: widget.unselectedLabelStyle,
+              indicatorColor: widget.indicatorColor,
+              indicatorSize: widget.indicatorSize,
+              indicator: widget.indicator,
+              indicatorPadding: widget.indicatorPadding,
+              indicatorWeight: widget.indicatorWeight,
+              tabs: widget.tabs,
+            ),
           ),
         ),
       );
