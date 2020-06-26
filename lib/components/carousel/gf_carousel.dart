@@ -182,7 +182,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
   }
 
   Timer getPlayTimer() => Timer.periodic(widget.autoPlayInterval, (_) {
-        if (widget.autoPlay) {
+        if (widget.autoPlay && widget.items.length > 1) {
           widget.pageController.nextPage(
               duration: widget.autoPlayAnimationDuration,
               curve: widget.autoPlayCurve);
@@ -221,7 +221,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
   }
 
   void onPageSlide(int index) {
-    setState(() => index);
+    setState(() => currentSlide = index);
   }
 
   int currentSlide;
