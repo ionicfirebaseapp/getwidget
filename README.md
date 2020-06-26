@@ -57,13 +57,13 @@ we have launched the library with the following components :
  
   GetWidget is **100% free** and **open source**. We encourage and support an active, healthy community that accepts contributions from the public &ndash; including you. There are a couple of ways in which you can contribute to the growing community of `getwidget`.
   
-  * Pick up any issue marked with ["good first issue"](https://github.com/ionicfirebaseapp/getwidget/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+  * Pick up any issue marked with ["good first issue"](https://github.com/ionicfirebaseapp/getflutter/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
   * Fix a bug
   * Write and improve some **documentation**. Documentation is very critical to us. We would appreciate help in adding multiple languages to our docs.
   * If you are a developer, feel free to check out the source and submit pull requests.
   * Dig into [**CONTRIBUTING.MD**](CONTRIBUTING.md), which covers submitting bugs, requesting new features, preparing your code for a pull request, etc.
-  * Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](http://forum.getwidget.dev) to keep up to date with the latest GetWidget development. 
-  * Not sure what to work on? [**We've got lots ideas.**](https://roadmap.getwidget.dev)
+  * Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](http://forum.getflutter.dev) to keep up to date with the latest GetWidget development. 
+  * Not sure what to work on? [**We've got lots ideas.**](https://roadmap.getflutter.dev)
  
  
  ## Documentation

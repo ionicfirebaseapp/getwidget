@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/getwidget.dart';
+import 'package:getwidget/getwidget.dart';
 
 class GFListTile extends StatelessWidget {
   /// Creates ListTile with leading, title, trailing, image widget for almost every type of ListTile design.

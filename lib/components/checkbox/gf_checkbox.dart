@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getflutter/getwidget.dart';
+import 'package:getwidget/getwidget.dart';
 
 class GFCheckbox extends StatefulWidget {
   const GFCheckbox({

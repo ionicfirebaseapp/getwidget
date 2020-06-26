@@ -30,9 +30,6 @@
 .pub/
 build/
 web/
-getflutter-app-kit
-getflutter-web-kit
-getflutter_app
 getwidget-app-kit
 getwidget-web-kit
 getwidget_app

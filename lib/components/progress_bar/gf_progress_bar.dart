@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getflutter/types/gf_progress_type.dart';
+import 'package:getwidget/getwidget.dart';
 
 class GFProgressBar extends StatefulWidget {
   GFProgressBar({
