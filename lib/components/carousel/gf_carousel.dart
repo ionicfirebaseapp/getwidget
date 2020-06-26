@@ -224,7 +224,9 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
             scrollDirection: widget.scrollDirection,
             controller: widget.pageController,
             reverse: widget.reverse,
-            itemCount: widget.items.length == 1 ? widget.items.length : widget.enableInfiniteScroll ? null : widget.items.length,
+            itemCount: widget.items.length == 1
+                ? widget.items.length
+                : widget.enableInfiniteScroll ? null : widget.items.length,
             onPageChanged: (int index) {
               int currentPage;
               currentPage = _getRealIndex(index + widget.initialPage,

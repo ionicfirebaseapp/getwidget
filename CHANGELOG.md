@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.11 - 2020-03-11
+
+### Fixed
+*  Resolved issues.
+
+## 1.0.10 - 2020-03-11
+
+### Fixed
+* Few minor fixes
+
 ## 1.0.9 - 2020-03-02
 
 ### Fixed
