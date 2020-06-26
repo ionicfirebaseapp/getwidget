@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart' show DragStartBehavior;
-import 'package:getflutter/getflutter.dart';
+import 'package:getflutter/getwidget.dart';
 
 /// A page view that displays the widget which corresponds to the currently
 /// selected tab.

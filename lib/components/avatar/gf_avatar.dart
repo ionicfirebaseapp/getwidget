@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/getflutter.dart';
+import 'package:getflutter/getwidget.dart';
 
 class GFAvatar extends StatelessWidget {
   /// Create Avatar of all types i,e, square, circle, standard with different sizes.
@@ -87,7 +87,7 @@ class GFAvatar extends StatelessWidget {
     final Color foregroundColor = this.foregroundColor;
     assert(debugCheckHasMediaQuery(context));
     final ThemeData theme = Theme.of(context);
-    TextStyle textStyle = theme.primaryTextTheme.subtitle.copyWith(
+    TextStyle textStyle = theme.primaryTextTheme.subtitle1.copyWith(
       color: foregroundColor,
     );
     Color effectiveBackgroundColor = backgroundColor;

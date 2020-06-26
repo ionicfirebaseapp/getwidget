@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/getflutter.dart';
+import 'package:getflutter/getwidget.dart';
 
 /// A material design card. A card has slightly rounded corners and a shadow.
 ///
@@ -113,26 +113,29 @@ class GFCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final CardTheme cardTheme = CardTheme.of(context);
 
-    final Widget cardChild = Column(
-      children: <Widget>[
-        titlePosition == GFPosition.start
-            ? title ?? Container()
-            : image != null
-                ? ClipRRect(
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(4)),
-                    child: image,
-                  )
-                : Container(),
-        titlePosition == GFPosition.start
-            ? image ?? Container()
-            : title ?? Container(),
-        Padding(
-          padding: padding,
-          child: content ?? Container(),
-        ),
-        buttonBar ?? Container(),
-      ],
+    final Widget cardChild = Padding(
+      padding: padding,
+      child: Column(
+        children: <Widget>[
+          titlePosition == GFPosition.start
+              ? title ?? Container()
+              : image != null
+                  ? ClipRRect(
+                      borderRadius: borderRadius ??
+                          const BorderRadius.vertical(top: Radius.circular(4)),
+                      child: image,
+                    )
+                  : Container(),
+          titlePosition == GFPosition.start
+              ? image ?? Container()
+              : title ?? Container(),
+          Padding(
+            padding: padding,
+            child: content ?? Container(),
+          ),
+          buttonBar ?? Container(),
+        ],
+      ),
     );
 
     final Widget overlayImage = GFImageOverlay(
@@ -152,7 +155,8 @@ class GFCard extends StatelessWidget {
       decoration: gradient != null
           ? BoxDecoration(
               gradient: gradient,
-              borderRadius: const BorderRadius.all(Radius.circular(4)),
+              borderRadius:
+                  borderRadius ?? const BorderRadius.all(Radius.circular(4)),
             )
           : null,
       child: gradient == null

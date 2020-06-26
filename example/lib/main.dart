@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:getflutter/getflutter.dart';
+import 'package:getflutter/getwidget.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
-        title: 'GetFlutter',
+        title: 'GetWidget',
         debugShowCheckedModeBanner: false,
         home: MyHomePage(),
       );
@@ -25,9 +25,9 @@ class _MyHomePageState extends State<MyHomePage> {
       'https://play.google.com/store/apps/details?id=dev.getflutter.appkit';
   // final String _appStoreLink = 'Coming Soon';
   final String _githuAppRepoLink =
-      'https://github.com/ionicfirebaseapp/getflutter-app-kit';
+      'https://github.com/ionicfirebaseapp/getwidget-app-kit';
   final String _githubLibraryRepoLink =
-      'https://github.com/ionicfirebaseapp/getflutter';
+      'https://github.com/ionicfirebaseapp/getwidget';
 
   Future _launchUrl(url) async {
     if (await canLaunch(url)) {
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.only(bottom: 25),
                   child: Center(
                     child: Text(
-                      'To keep library size small and code clean we manage example on different repository. which includes clear usage of each and every component that we provide in GetFlutter library. Please have a look there.',
+                      'To keep library size small and code clean we manage example on different repository. which includes clear usage of each and every component that we provide in GetWidget library. Please have a look there.',
                       style: TextStyle(
                         fontSize: 16,
                         color: GFColors.WHITE,
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.only(bottom: 25),
                   child: Center(
                     child: Text(
-                      'We also have same app on playstore. It shows various possibilities that you can achieve using GetFlutter library.',
+                      'We also have same app on playstore. It shows various possibilities that you can achieve using GetWidget library.',
                       style: TextStyle(
                         fontSize: 16,
                         color: GFColors.WHITE,

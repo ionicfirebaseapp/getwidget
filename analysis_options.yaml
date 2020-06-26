@@ -4,6 +4,9 @@ analyzer:
     - getflutter_app
     - getflutter-app-kit
     - getflutter-web-kit
+    - getwidget_app
+    - getwidget-app-kit
+    - getwidget-web-kit
     - test/.test_coverage.dart
 
 linter:
