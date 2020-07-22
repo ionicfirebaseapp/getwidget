@@ -79,7 +79,7 @@ class GFListTile extends StatelessWidget {
                     subtitleText != null
                         ? Text(
                             subtitleText,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 14.5,
                               color: Colors.black54,
                             ),
