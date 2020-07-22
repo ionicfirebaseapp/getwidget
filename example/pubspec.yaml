@@ -1,5 +1,5 @@
 name: example
-description: GetFlutter Demo app
+description: GetWidget Demo app
 
 version: 1.0.0+1
 
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  getflutter:
+  getwidget:
     path: ../
   cupertino_icons: ^0.1.2
   flutter_svg: ^0.17.1

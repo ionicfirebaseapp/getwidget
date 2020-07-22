@@ -1,4 +1,4 @@
-package com.example.getflutter_example
+package com.ionicfirebaseapp.getwidget_example
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
