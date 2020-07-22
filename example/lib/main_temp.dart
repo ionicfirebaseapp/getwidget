@@ -40,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   TabController tabController;
   final _ratingController = TextEditingController();
+  bool check = false;
 
   @override
   void initState() {
@@ -1146,54 +1147,111 @@ class _MyHomePageState extends State<MyHomePage>
 //                  .toList(),
 //            ),
 
-//            Container(
-//         alignment: Alignment.center,
-//         child: GFCheckbox(
-//           size: GFSize.SMALL,
-//           onChanged: (val) {
-//             print('on change val $val');
-//           },
-//           value: true,
-//           type: GFCheckboxType.circle,
-////           checkColor: GFColors.DANGER,
-////activebgColor: Colors.green,
-////inactivebgColor: Colors.white,
-////activeBorderColor: Colors.red,
-////           backgroundColor: Colors.green,
-//         ),
-//       ),
+              CheckboxListTile(
+                title: Text("title text"),
+                value: check,
+                onChanged: (newValue) {
+                  setState(() {
+                    check = newValue;
+                  });
+                },
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+
+              GFCheckboxListTile(
+                color: Colors.blueGrey.withOpacity(0.3),
+                title: const Text('title'),
+                subTitle: const Text('subtitle'),
+//                avatar: const GFAvatar(
+//                  backgroundColor: GFColors.SUCCESS,
+//                ),
+                description: const Text('description'),
+//                padding: const EdgeInsets.all(16),
+//                margin: const EdgeInsets.all(16),
+//                size: 24,
+//                type: GFCheckboxType.basic,
+//                checkColor: Colors.white,
+//                activebgColor: Colors.red,
+//                inactivebgColor: Colors.red.withOpacity(0.3),
+//                activeBorderColor: Colors.red,
+//                inactiveBorderColor: Colors.red.withOpacity(0.3),
+//                custombgColor: GFColors.SUCCESS,
+                value: check,
+                onChanged: (val) {
+                  setState(() {
+                    check = val;
+                  });
+                },
+//                inactiveIcon: const Icon(
+//                  Icons.close,
+//                  color: GFColors.DARK,
+//                  size: 16,
+//                ),
+//                activeIcon: const Icon(
+//                  Icons.check,
+//                  size: 20,
+//                  color: GFColors.WHITE,
+//                ),
+              ),
+
+              Checkbox(
+                  value: check,
+                  onChanged: null,
+//                      (val){
+//                    print('on change val $val');
+//                  }
+              ),
+
+
 
               GFCheckbox(
                 size: GFSize.SMALL,
                 activebgColor: GFColors.DANGER,
-                onChanged: (val) {
-                  print('on change val $val');
+                onChanged:
+//                null,
+                    (val) {
+                  setState(() {
+                    check = val;
+                  });
                 },
-                value: true,
+                value: check,
                 inactiveIcon: null,
               ),
 
-              GFRadioButton(
-                size: GFSize.SMALL,
-                value: true,
-                type: GFRadioButtonType.basic,
-                radioColor: GFColors.SUCCESS,
-//                activebgColor: GFColors.ALT,
-//                inactivebgColor: GFColors.PRIMARY,
-//                activeBorderColor: GFColors.DANGER,
-//                inactiveBorderColor: GFColors.DARK,
-                onChanged: (val) {
-                  print('on change val $val');
-                },
-                activeIcon: const Icon(
-                  Icons.check,
-                  size: 20,
-                  color: GFColors.DARK,
-                ),
-//                inactiveIcon: const Icon(Icons.close, size: 20, color: GFColors.DARK,),
-//                custombgColor: GFColors.SUCCESS,
-//                groupValue:
-              ),
+//              GFCheckbox(
+//                size: GFSize.SMALL,
+//                onChanged: (val) {
+//                  print('on change val $val');
+//                },
+//                value: true,
+//                type: GFCheckboxType.circle,
+//                checkColor: GFColors.DANGER,
+////                  activebgColor: Colors.green,
+////                  inactivebgColor: Colors.white,
+////                  activeBorderColor: Colors.red,
+//              ),
+//
+//              GFRadioButton(
+//                size: GFSize.SMALL,
+//                value: true,
+//                type: GFRadioButtonType.basic,
+//                radioColor: GFColors.SUCCESS,
+////                activebgColor: GFColors.ALT,
+////                inactivebgColor: GFColors.PRIMARY,
+////                activeBorderColor: GFColors.DANGER,
+////                inactiveBorderColor: GFColors.DARK,
+//                onChanged: (val) {
+//                  print('on change val $val');
+//                },
+//                activeIcon: const Icon(
+//                  Icons.check,
+//                  size: 20,
+//                  color: GFColors.DARK,
+//                ),
+////                inactiveIcon: const Icon(Icons.close, size: 20, color: GFColors.DARK,),
+////                custombgColor: GFColors.SUCCESS,
+////                groupValue:
+//              ),
 
 //            const Padding(
 //              padding: EdgeInsets.only(left: 15, top: 30),
@@ -1371,70 +1429,39 @@ class _MyHomePageState extends State<MyHomePage>
 //                ],
 //              ),
 //            ),
-//
-              GFCheckboxListTile(
-                color: GFColors.ALT,
-                title: const Text('title'),
-                subTitle: const Text('subtitle'),
-//              titleText: 'sdfg',
-//              subtitleText: 'sdfg',
-                avatar: const GFAvatar(
-                  backgroundColor: GFColors.SUCCESS,
-                ),
-                description: const Text('description'),
-                padding: const EdgeInsets.all(16),
-                margin: const EdgeInsets.all(16),
-                size: 24,
-                type: GFCheckboxType.basic,
-                checkColor: GFColors.WHITE,
-                activebgColor: GFColors.PRIMARY,
-                inactivebgColor: GFColors.WHITE,
-                activeBorderColor: GFColors.WHITE,
-                inactiveBorderColor: GFColors.DARK,
-                activeIcon: const Icon(
-                  Icons.check,
-                  size: 20,
-                  color: GFColors.WHITE,
-                ),
-                custombgColor: GFColors.SUCCESS,
-                onChanged: (val) {},
-                value: true,
-                inactiveIcon: const Icon(
-                  Icons.close,
-                  color: GFColors.DARK,
-                  size: 16,
-                ),
-              ),
 
 //
-              GFCarousel(
-//              initialPage: 1,
-                pagerSize: 12,
-                activeIndicator: Colors.pink,
-                passiveIndicator: Colors.pink.withOpacity(0.4),
-                viewportFraction: 1.0,
-//              aspectRatio: 1,
-                autoPlay: true,
-                enlargeMainPage: true,
-                pagination: true,
-                items: imageList
-                    .map((url) => Container(
-                          padding: const EdgeInsets.only(bottom: 16),
-                          margin: const EdgeInsets.all(12),
-                          child: ClipRRect(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(5)),
-                            child: Image.network(url,
-                                fit: BoxFit.cover, width: 1000),
-                          ),
-                        ))
-                    .toList(),
-//              onPageChanged: (int index) {
-//                setState(() {
-//                   index;
-//                });
-//              },
-              ),
+
+
+//
+//              GFCarousel(
+////              initialPage: 1,
+//                pagerSize: 12,
+//                activeIndicator: Colors.pink,
+//                passiveIndicator: Colors.pink.withOpacity(0.4),
+//                viewportFraction: 1.0,
+////              aspectRatio: 1,
+//                autoPlay: true,
+//                enlargeMainPage: true,
+//                pagination: true,
+//                items: imageList
+//                    .map((url) => Container(
+//                          padding: const EdgeInsets.only(bottom: 16),
+//                          margin: const EdgeInsets.all(12),
+//                          child: ClipRRect(
+//                            borderRadius:
+//                                const BorderRadius.all(Radius.circular(5)),
+//                            child: Image.network(url,
+//                                fit: BoxFit.cover, width: 1000),
+//                          ),
+//                        ))
+//                    .toList(),
+////              onPageChanged: (int index) {
+////                setState(() {
+////                   index;
+////                });
+////              },
+//              ),
 
 //
 //              GFCarousel(
@@ -1674,14 +1701,14 @@ class _MyHomePageState extends State<MyHomePage>
 //              borderRadius: BorderRadius.circular(10.0),
 //            ),
 
-              const GFIconBadge(
-                child: GFAvatar(
-                  backgroundColor: GFColors.SUCCESS,
-                ),
-                counterChild: GFBadge(
-                  text: '12',
-                ),
-              ),
+//              const GFIconBadge(
+//                child: GFAvatar(
+//                  backgroundColor: GFColors.SUCCESS,
+//                ),
+//                counterChild: GFBadge(
+//                  text: '12',
+//                ),
+//              ),
 
 //            GFIconButton(
 //              onPressed: () {},
