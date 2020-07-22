@@ -83,18 +83,20 @@ class _GFCheckboxState extends State<GFCheckbox> {
 
   @override
   Widget build(BuildContext context) => FocusableActionDetector(
-    enabled: enabled,
-    child: InkWell(
+        enabled: enabled,
+        child: InkWell(
           onTap: onStatusChange,
           child: Container(
             height: widget.size,
             width: widget.size,
             decoration: BoxDecoration(
-                color: enabled ? isSelected
-                    ? widget.type == GFCheckboxType.custom
-                        ? Colors.white
-                        : widget.activebgColor
-                    : widget.inactivebgColor : Colors.grey,
+                color: enabled
+                    ? isSelected
+                        ? widget.type == GFCheckboxType.custom
+                            ? Colors.white
+                            : widget.activebgColor
+                        : widget.inactivebgColor
+                    : Colors.grey,
                 borderRadius: widget.type == GFCheckboxType.basic
                     ? BorderRadius.circular(3)
                     : widget.type == GFCheckboxType.circle
@@ -128,5 +130,5 @@ class _GFCheckboxState extends State<GFCheckbox> {
                 : widget.inactiveIcon,
           ),
         ),
-  );
+      );
 }

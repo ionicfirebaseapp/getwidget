@@ -1195,14 +1195,12 @@ class _MyHomePageState extends State<MyHomePage>
               ),
 
               Checkbox(
-                  value: check,
-                  onChanged: null,
+                value: check,
+                onChanged: null,
 //                      (val){
 //                    print('on change val $val');
 //                  }
               ),
-
-
 
               GFCheckbox(
                 size: GFSize.SMALL,
@@ -1431,7 +1429,6 @@ class _MyHomePageState extends State<MyHomePage>
 //            ),
 
 //
-
 
 //
 //              GFCarousel(

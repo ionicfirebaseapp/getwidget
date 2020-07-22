@@ -83,7 +83,7 @@ class GFTypography extends StatelessWidget {
                 image: backgroundImage,
                 fit: BoxFit.cover,
                 colorFilter: backgroundImagecolorFilter ??
-                    ColorFilter.mode(Colors.black54, BlendMode.darken),
+                    const ColorFilter.mode(Colors.black54, BlendMode.darken),
               )
             : null,
       ),
