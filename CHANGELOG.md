@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.1.2 - 2020-07-30
+
+### Fixed
+* [GFAppBar] clear button does not fire onChanged #149
+* [GFCarousel] initialPage Not Honored if Page Indicators Enabled. #144
+* [GFCarousel] timer of the autoPlay is not disposed #143
+* [GFCarousel] active page indicator is not being updated without "onPageChanged" #139
+* [GFTabBar] Docs say about isScrollable which is not supported #132
+
+### Update
+* couple of compoenents (WIP)
+    - GFCheckboxTile
+    - GFRadioTile
+    
+
+
 ## 1.1.1 - 2020-06-26
 
 ### Added
