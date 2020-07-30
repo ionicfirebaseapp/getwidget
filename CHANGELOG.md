@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.2 - 2020-07-30
+## 1.1.3 - 2020-07-30
 
 ### Fixed
 * [GFAppBar] clear button does not fire onChanged #149
