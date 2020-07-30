@@ -1,5 +1,37 @@
 # Changelog
 
+## 1.1.1 - 2020-06-26
+
+### Added
+* added new components
+    - GFCheckbox
+    - GFRadio
+
+### Update
+* Changed name to GetWidget
+
+### Fixed
+*  Many minor issues fixed
+
+
+
+
+## 1.0.11 - 2020-03-11
+
+### Fixed
+*  Resolved issues.
+
+
+
+
+## 1.0.10 - 2020-03-11
+
+### Fixed
+* Few minor fixes
+
+
+
+
 ## 1.0.9 - 2020-03-02
 
 ### Fixed
@@ -8,6 +40,9 @@
 ### Added
 * added new component
     - GFShimmer
+
+
+
 
 ## 1.0.8 - 2020-02-18
 

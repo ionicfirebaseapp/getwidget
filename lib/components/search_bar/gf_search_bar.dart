@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getflutter/getflutter.dart';
+import 'package:getwidget/getwidget.dart';
 
 typedef QueryListItemBuilder<T> = Widget Function(T item);
 typedef OnItemSelected<T> = void Function(T item);
@@ -161,7 +161,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
                     color: Theme.of(context).primaryColor,
                   ),
                 ),
-                suffixIcon: Icon(Icons.search),
+                suffixIcon: const Icon(Icons.search),
                 border: InputBorder.none,
                 hintText: 'Search here...',
                 contentPadding: const EdgeInsets.only(

@@ -1,11 +1,9 @@
-name: getflutter
-description: GetFlutter is open source libraries that come with pre-build 1000+ UI components. It makes development faster & more enjoyable. You can customize the component as per your need.
-version: 1.0.9
-#author: GetFlutter <info@getflutter.dev>
-homepage: https://github.com/ionicfirebaseapp/getflutter
+name: getwidget
+description: GetWidget is open source libraries that come with pre-build 1000+ UI components. It makes development faster & more enjoyable. You can customize the component as per your need.
+version: 1.1.1
+homepage: https://github.com/ionicfirebaseapp/getwidget
 
 environment:
-  #  sdk: ">=2.1.0 <3.0.0"
   sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
