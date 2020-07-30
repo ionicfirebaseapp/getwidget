@@ -13,7 +13,7 @@ linter:
     # conflicts with the Flutter convention of putting {Key key} first and {Widget child} last
     # - always_put_required_named_parameters_first
     - always_require_non_null_named_parameters
-    # - annotate_overrides
+    - annotate_overrides
     - avoid_annotating_with_dynamic
     - avoid_as
     - avoid_bool_literals_in_conditional_expressions
@@ -33,7 +33,7 @@ linter:
     - avoid_relative_lib_imports
     - avoid_renaming_method_parameters
     - avoid_return_types_on_setters
-    # - avoid_returning_null
+    - avoid_returning_null
     - avoid_returning_null_for_void
     - avoid_returning_this
     - avoid_setters_without_getters
@@ -49,6 +49,7 @@ linter:
     # - cascade_invocations
     - close_sinks
     - comment_references
+    # required for couple of GetWidget pattern
     # - constant_identifier_names
     - control_flow_in_finally
     - curly_braces_in_flow_control_structures
@@ -75,7 +76,7 @@ linter:
     # - omit_local_variable_types
     - one_member_abstracts
     - only_throw_errors
-    # in some places it is required to override fileds
+    # in some places it is required to override fields
     # - overridden_fields
     - package_api_docs
     - package_names

@@ -1019,7 +1019,7 @@ class _GFButtonState extends State<GFButton> {
     } else if (widget.fullWidthButton == true) {
       return MediaQuery.of(context).size.width;
     } else {
-      return null;
+      return MediaQuery.of(context).size.width * 0.88;
     }
   }
 
