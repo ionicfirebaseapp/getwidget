@@ -321,9 +321,9 @@ class _GFAppBarState extends State<GFAppBar> {
     IconThemeData actionsIconTheme = widget.actionsIconTheme ??
         appBarTheme.actionsIconTheme ??
         overallIconTheme;
-    TextStyle centerStyle = widget.textTheme?.headline1 ??
-        appBarTheme.textTheme?.headline1 ??
-        theme.primaryTextTheme.headline1;
+    TextStyle centerStyle = widget.textTheme?.headline5 ??
+        appBarTheme.textTheme?.headline5 ??
+        theme.primaryTextTheme.headline5;
     TextStyle sideStyle = widget.textTheme?.bodyText1 ??
         appBarTheme.textTheme?.bodyText1 ??
         theme.primaryTextTheme.bodyText1;

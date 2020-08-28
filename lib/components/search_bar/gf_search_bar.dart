@@ -161,7 +161,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T>> {
                     color: Theme.of(context).primaryColor,
                   ),
                 ),
-                suffixIcon: Icon(Icons.search),
+                suffixIcon: const Icon(Icons.search),
                 border: InputBorder.none,
                 hintText: 'Search here...',
                 contentPadding: const EdgeInsets.only(

@@ -63,6 +63,7 @@ class GFCheckbox extends StatefulWidget {
 }
 
 class _GFCheckboxState extends State<GFCheckbox> {
+  bool get enabled => widget.onChanged != null;
   bool isSelected = false;
 
   @override
@@ -81,48 +82,53 @@ class _GFCheckboxState extends State<GFCheckbox> {
   }
 
   @override
-  Widget build(BuildContext context) => InkWell(
-        onTap: onStatusChange,
-        child: Container(
-          height: widget.size,
-          width: widget.size,
-          decoration: BoxDecoration(
-              color: isSelected
-                  ? widget.type == GFCheckboxType.custom
-                      ? Colors.white
-                      : widget.activebgColor
-                  : widget.inactivebgColor,
-              borderRadius: widget.type == GFCheckboxType.basic
-                  ? BorderRadius.circular(3)
-                  : widget.type == GFCheckboxType.circle
-                      ? BorderRadius.circular(50)
-                      : BorderRadius.zero,
-              border: Border.all(
-                  color: isSelected
-                      ? widget.type == GFCheckboxType.custom
-                          ? Colors.black87
-                          : widget.activeBorderColor
-                      : widget.inactiveBorderColor)),
-          child: isSelected
-              ? widget.type == GFCheckboxType.custom
-                  ? Stack(
-                      children: <Widget>[
-                        Container(
-                          alignment: Alignment.center,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.all(5),
-                          alignment: Alignment.center,
-                          width: widget.size * 0.8,
-                          height: widget.size * 0.8,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              color: widget.custombgColor),
-                        )
-                      ],
-                    )
-                  : widget.activeIcon
-              : widget.inactiveIcon,
+  Widget build(BuildContext context) => FocusableActionDetector(
+        enabled: enabled,
+        child: InkWell(
+          onTap: onStatusChange,
+          child: Container(
+            height: widget.size,
+            width: widget.size,
+            decoration: BoxDecoration(
+                color: enabled
+                    ? isSelected
+                        ? widget.type == GFCheckboxType.custom
+                            ? Colors.white
+                            : widget.activebgColor
+                        : widget.inactivebgColor
+                    : Colors.grey,
+                borderRadius: widget.type == GFCheckboxType.basic
+                    ? BorderRadius.circular(3)
+                    : widget.type == GFCheckboxType.circle
+                        ? BorderRadius.circular(50)
+                        : BorderRadius.zero,
+                border: Border.all(
+                    color: isSelected
+                        ? widget.type == GFCheckboxType.custom
+                            ? Colors.black87
+                            : widget.activeBorderColor
+                        : widget.inactiveBorderColor)),
+            child: isSelected
+                ? widget.type == GFCheckboxType.custom
+                    ? Stack(
+                        children: <Widget>[
+                          Container(
+                            alignment: Alignment.center,
+                          ),
+                          Container(
+                            margin: const EdgeInsets.all(5),
+                            alignment: Alignment.center,
+                            width: widget.size * 0.8,
+                            height: widget.size * 0.8,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                color: widget.custombgColor),
+                          )
+                        ],
+                      )
+                    : widget.activeIcon
+                : widget.inactiveIcon,
+          ),
         ),
       );
 }
