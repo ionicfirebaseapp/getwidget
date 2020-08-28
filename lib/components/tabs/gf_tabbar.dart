@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:getflutter/colors/gf_color.dart';
-import 'package:getflutter/components/tabs/gf_tabBarView.dart';
-import 'package:getflutter/colors/gf_color.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:flutter/foundation.dart';
 
 /// A material design widget that displays a horizontal row of tabs.
 ///
@@ -16,10 +15,11 @@ class GFTabBar extends StatefulWidget {
   ///
   /// The [tabs] argument must not be null and its length must match the [controller]'s
   /// [TabController.length].
-  GFTabBar({
+  const GFTabBar({
     Key key,
-    this.initialIndex = 0,
+//    this.initialIndex = 0,
     @required this.length,
+    this.isScrollable = false,
     this.tabBarHeight,
     this.tabBarColor,
     this.indicatorColor,
@@ -32,16 +32,18 @@ class GFTabBar extends StatefulWidget {
     this.labelPadding,
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
-    this.tabBarView,
     this.tabs,
     this.controller,
+    this.shape,
   })  : assert(length != null && length >= 0),
-        assert(initialIndex != null &&
-            initialIndex >= 0 &&
-            (length == 0 || initialIndex < length));
+        assert(isScrollable != null),
+//        assert(initialIndex != null &&
+//            initialIndex >= 0 &&
+//            (length == 0 || initialIndex < length)),
+        super(key: key);
 
-  /// The initial index of the selected tab. Defaults to zero.
-  final int initialIndex;
+//  /// The initial index of the selected tab. Defaults to zero.
+//  final int initialIndex;
 
   /// The total number of tabs. Typically greater than one. Must match [TabBar.tabs]'s and
   /// [TabBarView.children]'s length.
@@ -71,7 +73,7 @@ class GFTabBar extends StatefulWidget {
 
   /// The horizontal padding for the line that appears below the selected tab.
   ///
-  /// For [isScrollable] tab bars, specifying [kTabLabelPadding] will align
+  /// For isScrollable tab bars, specifying [kTabLabelPadding] will align
   /// the indicator with the tab's text for [Tab] widgets and all but the
   /// shortest [Tab.text] values.
   ///
@@ -146,47 +148,64 @@ class GFTabBar extends StatefulWidget {
   /// body2 definition is used.
   final TextStyle unselectedLabelStyle;
 
-  /// One widget per tab.
-  /// Its length must match the length of the [GFTabBar.tabs]
-  /// list, as well as the [controller]'s [GFTabBar.length].
-  final GFTabBarView tabBarView;
-
   /// Typically a list of two or more [Tab] widgets.
   ///
   /// The length of this list must match the [controller]'s [TabController.length]
   /// and the length of the [TabBarView.children] list.
   final List<Widget> tabs;
 
+  /// Whether this tab bar can be scrolled horizontally.
+  ///
+  /// If [isScrollable] is true, then each tab is as wide as needed for its label
+  /// and the entire [TabBar] is scrollable. Otherwise each tab gets an equal
+  /// share of the available space.
+  final bool isScrollable;
+
+  /// This widget's selection and animation state.
+  ///
+  /// If [TabController] is not provided, then the value of [DefaultTabController.of]
+  /// will be used.
   final TabController controller;
+
+  /// defines the shape of tabBar
+  final ShapeBorder shape;
 
   @override
   _GFTabBarState createState() => _GFTabBarState();
 }
 
 class _GFTabBarState extends State<GFTabBar> {
+  ScrollController _scrollController;
+  DragStartBehavior dragStartBehavior = DragStartBehavior.start;
+
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: widget.tabBarHeight == null
-          ? MediaQuery.of(context).size.height * 0.1
-          : widget.tabBarHeight,
-      child: Material(
-        type: MaterialType.button,
-        color: widget.tabBarColor ?? getGFColor(GFColor.primary),
-        child: TabBar(
-          controller: widget.controller,
-          labelColor: widget.labelColor,
-          unselectedLabelColor: widget.unselectedLabelColor,
-          labelStyle: widget.labelStyle,
-          unselectedLabelStyle: widget.unselectedLabelStyle,
-          indicatorColor: widget.indicatorColor,
-          indicatorSize: widget.indicatorSize,
-          indicator: widget.indicator,
-          indicatorPadding: widget.indicatorPadding,
-          indicatorWeight: widget.indicatorWeight,
-          tabs: widget.tabs,
+  Widget build(BuildContext context) => SingleChildScrollView(
+        dragStartBehavior: dragStartBehavior,
+        scrollDirection: Axis.horizontal,
+        controller: _scrollController,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height:
+              widget.tabBarHeight ?? MediaQuery.of(context).size.height * 0.1,
+          child: Material(
+            shape: widget.shape,
+            type: MaterialType.button,
+            color: widget.tabBarColor ?? GFColors.PRIMARY,
+            child: TabBar(
+              isScrollable: widget.isScrollable,
+              controller: widget.controller,
+              labelColor: widget.labelColor,
+              unselectedLabelColor: widget.unselectedLabelColor,
+              labelStyle: widget.labelStyle,
+              unselectedLabelStyle: widget.unselectedLabelStyle,
+              indicatorColor: widget.indicatorColor,
+              indicatorSize: widget.indicatorSize,
+              indicator: widget.indicator,
+              indicatorPadding: widget.indicatorPadding,
+              indicatorWeight: widget.indicatorWeight,
+              tabs: widget.tabs,
+            ),
+          ),
         ),
-      ),
-    );
-  }
+      );
 }

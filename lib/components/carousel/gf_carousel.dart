@@ -1,41 +1,34 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-List<T> map<T>(List list, Function handler) {
-  List<T> result = [];
-  for (var i = 0; i < list.length; i++) {
-    result.add(handler(i, list[i]));
-  }
-  return result;
-}
-
+// ignore: must_be_immutable
 class GFCarousel extends StatefulWidget {
-  /// Creates slide show of [Images] and [Widget] with animation for sliding.
-  GFCarousel(
-      {@required this.items,
-      this.pagerSize,
-      this.passiveIndicator,
-      this.activeIndicator,
-      this.pagination,
-      this.height,
-      this.aspectRatio: 16 / 9,
-      this.viewportFraction: 0.8,
-      this.initialPage: 0,
-      int realPage: 10000,
-      this.enableInfiniteScroll: true,
-      this.reverse: false,
-      this.autoPlay: false,
-      this.autoPlayInterval: const Duration(seconds: 4),
-      this.autoPlayAnimationDuration = const Duration(milliseconds: 800),
-      this.autoPlayCurve: Curves.fastOutSlowIn,
-      this.pauseAutoPlayOnTouch,
-      this.enlargeMainPage = false,
-      this.onPageChanged,
-      this.scrollPhysics,
-      this.scrollDirection: Axis.horizontal})
-      : this.realPage =
-            enableInfiniteScroll ? realPage + initialPage : initialPage,
-        this.pageController = PageController(
+  /// Creates slide show of Images and [Widget] with animation for sliding.
+  GFCarousel({
+    @required this.items,
+    this.pagerSize,
+    this.passiveIndicator,
+    this.activeIndicator,
+    this.pagination,
+    this.height,
+    this.aspectRatio = 16 / 9,
+    this.viewportFraction = 0.8,
+    this.initialPage = 0,
+    int realPage = 10000,
+    this.enableInfiniteScroll = true,
+    this.reverse = false,
+    this.autoPlay = false,
+    this.autoPlayInterval = const Duration(seconds: 4),
+    this.autoPlayAnimationDuration = const Duration(milliseconds: 800),
+    this.autoPlayCurve = Curves.fastOutSlowIn,
+    this.pauseAutoPlayOnTouch,
+    this.enlargeMainPage = false,
+    this.onPageChanged,
+//    this.onPageIndex,
+    this.scrollPhysics,
+    this.scrollDirection = Axis.horizontal,
+  })  : realPage = enableInfiniteScroll ? realPage + initialPage : initialPage,
+        pageController = PageController(
           viewportFraction: viewportFraction,
           initialPage:
               enableInfiniteScroll ? realPage + initialPage : initialPage,
@@ -94,6 +87,7 @@ class GFCarousel extends StatefulWidget {
 
   /// Determines if current page should be larger then the side images,
   /// creating a feeling of depth in the carousel. Defaults to false.
+  /// works only if viewportFraction set to 1.0.
   final bool enlargeMainPage;
 
   /// The axis along which the page view scrolls. Defaults to [Axis.horizontal].
@@ -101,6 +95,8 @@ class GFCarousel extends StatefulWidget {
 
   /// Called whenever the page in the center of the viewport changes.
   final Function(int index) onPageChanged;
+
+//  int onPageIndex;
 
   /// How the carousel should respond to user input.
   ///
@@ -121,17 +117,15 @@ class GFCarousel extends StatefulWidget {
   ///
   /// The animation lasts for the given duration and follows the given curve.
   /// The returned [Future] resolves when the animation completes.
-  Future<void> nextPage({Duration duration, Curve curve}) {
-    return pageController.nextPage(duration: duration, curve: curve);
-  }
+  Future<void> nextPage({Duration duration, Curve curve}) =>
+      pageController.nextPage(duration: duration, curve: curve);
 
   /// Animates the controlled [GFCarousel] to the previous page.
   ///
   /// The animation lasts for the given duration and follows the given curve.
   /// The returned [Future] resolves when the animation completes.
-  Future<void> previousPage({Duration duration, Curve curve}) {
-    return pageController.previousPage(duration: duration, curve: curve);
-  }
+  Future<void> previousPage({Duration duration, Curve curve}) =>
+      pageController.previousPage(duration: duration, curve: curve);
 
   /// Changes which page is displayed in the controlled [GFCarousel].
   ///
@@ -152,9 +146,19 @@ class GFCarousel extends StatefulWidget {
     final index =
         _getRealIndex(pageController.page.toInt(), realPage, items.length);
     return pageController.animateToPage(
-        pageController.page.toInt() + page - index,
-        duration: duration,
-        curve: curve);
+      pageController.page.toInt() + page - index,
+      duration: duration,
+      curve: curve,
+    );
+  }
+
+  List<T> map<T>(List list, Function handler) {
+    List<T> result;
+    result = [];
+    for (var i = 0; i < list.length; i++) {
+      result.add(handler(i, list[i]));
+    }
+    return result;
   }
 
   @override
@@ -163,6 +167,7 @@ class GFCarousel extends StatefulWidget {
 
 class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
   Timer timer;
+//  int _current = 0;
 
   /// Size of cell
   double size = 0;
@@ -176,15 +181,13 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
     timer = getPlayTimer();
   }
 
-  Timer getPlayTimer() {
-    return Timer.periodic(widget.autoPlayInterval, (_) {
-      if (widget.autoPlay) {
-        widget.pageController.nextPage(
-            duration: widget.autoPlayAnimationDuration,
-            curve: widget.autoPlayCurve);
-      }
-    });
-  }
+  Timer getPlayTimer() => Timer.periodic(widget.autoPlayInterval, (_) {
+        if (widget.autoPlay && widget.items.length > 1) {
+          widget.pageController.nextPage(
+              duration: widget.autoPlayAnimationDuration,
+              curve: widget.autoPlayCurve);
+        }
+      });
 
   void pauseOnTouch() {
     timer.cancel();
@@ -213,113 +216,124 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    super.dispose();
     timer?.cancel();
+    super.dispose();
   }
 
-  int _current = 0;
+  void onPageSlide(int index) {
+    setState(() => currentSlide = index);
+  }
+
+  int currentSlide;
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        getPageWrapper(PageView.builder(
-          physics: widget.scrollPhysics,
-          scrollDirection: widget.scrollDirection,
-          controller: widget.pageController,
-          reverse: widget.reverse,
-          itemCount: widget.enableInfiniteScroll ? null : widget.items.length,
-          onPageChanged: (int index) {
-            int currentPage = _getRealIndex(index + widget.initialPage,
-                widget.realPage, widget.items.length);
-            if (widget.onPageChanged != null) {
-              widget.onPageChanged(currentPage);
-              _current = currentPage;
-            }
-            _current = currentPage;
-          },
-          itemBuilder: (BuildContext context, int i) {
-            final int index = _getRealIndex(
-                i + widget.initialPage, widget.realPage, widget.items.length);
+  Widget build(BuildContext context) => Stack(
+        children: <Widget>[
+          getPageWrapper(PageView.builder(
+            physics: widget.scrollPhysics,
+            scrollDirection: widget.scrollDirection,
+            controller: widget.pageController,
+            reverse: widget.reverse,
+            itemCount: widget.items.length == 1
+                ? widget.items.length
+                : widget.enableInfiniteScroll ? null : widget.items.length,
+            onPageChanged: (int index) {
+              int currentPage;
+              currentPage = _getRealIndex(index + widget.initialPage,
+                  widget.realPage, widget.items.length);
+              if (widget.onPageChanged != null) {
+                widget.onPageChanged(currentPage);
+              }
+              if (widget.pagination == true && widget.onPageChanged == null) {
+                onPageSlide(currentPage);
+//                _current = currentPage;
+              }
+//              _current = currentPage;
+            },
+            itemBuilder: (BuildContext context, int i) {
+              final int index = _getRealIndex(
+                i + widget.initialPage,
+                widget.realPage,
+                widget.items.length,
+              );
+              currentSlide = index;
+              return AnimatedBuilder(
+                animation: widget.pageController,
+                child: widget.items[index],
+                builder: (BuildContext context, child) {
+                  // on the first render, the pageController.page is null,
+                  // this is a dirty hack
+                  if (widget.pageController.position.minScrollExtent == null ||
+                      widget.pageController.position.maxScrollExtent == null) {
+                    Future.delayed(const Duration(microseconds: 1), () {
+                      setState(() {});
+                    });
+                    return Container();
+                  }
+                  double value = widget.pageController.page - i;
+                  value = (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
 
-            return AnimatedBuilder(
-              animation: widget.pageController,
-              child: widget.items[index],
-              builder: (BuildContext context, child) {
-                // on the first render, the pageController.page is null,
-                // this is a dirty hack
-                if (widget.pageController.position.minScrollExtent == null ||
-                    widget.pageController.position.maxScrollExtent == null) {
-                  Future.delayed(Duration(microseconds: 1), () {
-                    setState(() {});
-                  });
-                  return Container();
-                }
-                double value = widget.pageController.page - i;
-                value = (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
+                  final double height = widget.height ??
+                      MediaQuery.of(context).size.width *
+                          (1 / widget.aspectRatio);
+                  final double distortionValue = widget.enlargeMainPage
+                      ? Curves.easeOut.transform(value)
+                      : 1.0;
 
-                final double height = widget.height ??
-                    MediaQuery.of(context).size.width *
-                        (1 / widget.aspectRatio);
-                final double distortionValue = widget.enlargeMainPage
-                    ? Curves.easeOut.transform(value)
-                    : 1.0;
-
-                if (widget.scrollDirection == Axis.horizontal) {
-                  return Center(
-                    child: SizedBox(
-                        height: distortionValue * height, child: child),
-                  );
-                } else {
-                  return Center(
-                    child: SizedBox(
-                        width:
-                            distortionValue * MediaQuery.of(context).size.width,
-                        child: child),
-                  );
-                }
-              },
-            );
-          },
-        )),
-        widget.pagination == true
-            ? Positioned(
-                left: 0.0,
-                right: 0.0,
-                bottom: 0.0,
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: map<Widget>(
-                      widget.items,
-                      (indexx, url) {
-                        return Container(
+                  if (widget.scrollDirection == Axis.horizontal) {
+                    return Center(
+                      child: SizedBox(
+                        height: distortionValue * height,
+                        child: child,
+                      ),
+                    );
+                  } else {
+                    return Center(
+                      child: SizedBox(
+                          width: distortionValue *
+                              MediaQuery.of(context).size.width,
+                          child: child),
+                    );
+                  }
+                },
+              );
+            },
+          )),
+          widget.pagination == true
+              ? Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: widget.map<Widget>(
+                        widget.items,
+                        (pagerIndex, url) => Container(
                           width:
                               widget.pagerSize == null ? 8.0 : widget.pagerSize,
                           height:
                               widget.pagerSize == null ? 8.0 : widget.pagerSize,
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 2.0),
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 2),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: _current == indexx
+                            color: currentSlide == pagerIndex
                                 ? widget.activeIndicator == null
-                                    ? Color.fromRGBO(0, 0, 0, 0.9)
+                                    ? const Color.fromRGBO(0, 0, 0, 0.9)
                                     : widget.activeIndicator
                                 : widget.passiveIndicator == null
-                                    ? Color.fromRGBO(0, 0, 0, 0.4)
+                                    ? const Color.fromRGBO(0, 0, 0, 0.4)
                                     : widget.passiveIndicator,
                           ),
-                        );
-                      },
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              )
-            : Container(),
-      ],
-    );
-  }
+                )
+              : Container(),
+        ],
+      );
 }
 
 /// Converts an index of a set size to the corresponding index of a collection of another size

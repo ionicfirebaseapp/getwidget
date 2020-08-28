@@ -27,7 +27,7 @@ enum GFDrawerAlignment {
 // Maximum width for a left nav is 400dp.
 // The right nav can vary depending on content.
 
-const double _kWidth = 304.0;
+const double _kWidth = 304;
 // const double _kEdgeDragWidth = 20.0;
 // const double _kMinFlingVelocity = 365.0;
 // const Duration _kBaseSettleDuration = Duration(milliseconds: 246);
@@ -36,7 +36,7 @@ const double _kWidth = 304.0;
 /// [Scaffold] to show navigation links in an application.
 ///
 /// GFDrawers are typically used with the [Scaffold.drawer] property. The child of
-/// the drawer is usually a [ListView] whose first child is a [GFDrawerHeader]
+/// the drawer is usually a [ListView] whose first child is a GFDrawerHeader
 /// that displays status information about the current user. The remaining
 /// drawer children are often constructed with [ListTile]s, often concluding
 /// with an [AboutListTile].
@@ -57,15 +57,16 @@ class GFDrawer extends StatelessWidget {
   /// Typically used in the [Scaffold.drawer] property.
   ///
   /// The [elevation] must be non-negative.
-  const GFDrawer(
-      {Key key,
-      this.elevation = 16.0,
-      this.child,
-      this.semanticLabel,
-      this.backgroundImage,
-      this.colorFilter,
-      this.gradient})
-      : assert(elevation != null && elevation >= 0.0),
+  const GFDrawer({
+    Key key,
+    this.elevation = 16.0,
+    this.child,
+    this.semanticLabel,
+    this.backgroundImage,
+    this.colorFilter,
+    this.gradient,
+    this.color,
+  })  : assert(elevation != null && elevation >= 0.0),
         super(key: key);
 
   /// The z-coordinate at which to place this drawer relative to its parent.
@@ -91,7 +92,7 @@ class GFDrawer extends StatelessWidget {
   ///
   /// See also:
   ///
-  ///  * [SemanticsConfiguration.namesRoute], for a description of how this
+  ///  * SemanticsConfiguration.namesRoute, for a description of how this
   ///    value is used.
   final String semanticLabel;
 
@@ -105,6 +106,9 @@ class GFDrawer extends StatelessWidget {
   ///  applying the same transform to the entire canvas.
   final Gradient gradient;
 
+  /// Defines the background color of the drawer
+  final Color color;
+
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterialLocalizations(context));
@@ -116,6 +120,9 @@ class GFDrawer extends StatelessWidget {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
         label = semanticLabel ?? MaterialLocalizations.of(context)?.drawerLabel;
+        break;
+      default:
+        break;
     }
     return Semantics(
       scopesRoute: true,
@@ -127,18 +134,19 @@ class GFDrawer extends StatelessWidget {
         child: Material(
           elevation: elevation,
           child: Container(
-              decoration: new BoxDecoration(
-                color: Colors.teal,
-                gradient: gradient,
-                image: backgroundImage != null
-                    ? new DecorationImage(
-                        image: backgroundImage,
-                        fit: BoxFit.cover,
-                        colorFilter: colorFilter,
-                      )
-                    : null,
-              ),
-              child: child),
+            decoration: BoxDecoration(
+              color: color,
+              gradient: gradient,
+              image: backgroundImage != null
+                  ? DecorationImage(
+                      image: backgroundImage,
+                      fit: BoxFit.cover,
+                      colorFilter: colorFilter,
+                    )
+                  : null,
+            ),
+            child: child,
+          ),
         ),
       ),
     );

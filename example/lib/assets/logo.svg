@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="53.624" viewBox="0 0 256 53.624">
+  <g id="Group_2168" data-name="Group 2168" transform="translate(4052 2678)">
+    <g id="Group_730" data-name="Group 730" transform="translate(-4052 -2678)">
+      <path id="XMLID_128_" d="M232.614,260.041v7.966a14.468,14.468,0,0,1-14.451,14.451H178.99V269.207h8.791v4.46h30.382a5.666,5.666,0,0,0,5.66-5.66v-7.966H196.9V251.25h35.712Z" transform="translate(-178.99 -228.834)" fill="#fff"/>
+      <path id="XMLID_148_" d="M232.614,163.658V160.9a14.468,14.468,0,0,0-14.451-14.451H178.99v35.37h8.791V155.241h30.382a5.666,5.666,0,0,1,5.66,5.66v2.757Z" transform="translate(-178.99 -146.45)" fill="#19ca4b"/>
+    </g>
+    <text id="Get_Widget" data-name="Get Widget" transform="translate(-3986 -2639)" fill="#fff" font-size="35" font-family="Montserrat-Regular, Montserrat"><tspan x="0" y="0">Get </tspan><tspan y="0" fill="#19ca4b">Flutter</tspan></text>
+  </g>
+</svg>

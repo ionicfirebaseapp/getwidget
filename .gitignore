@@ -8,6 +8,7 @@
 .buildlog/
 .history
 .svn/
+.vscode
 
 # IntelliJ related
 *.iml
@@ -28,6 +29,11 @@
 .pub-cache/
 .pub/
 build/
+web/
+getwidget-app-kit
+getwidget-web-kit
+getwidget_app
+test/.test_coverage.dart
 
 # Android related
 **/android/**/gradle-wrapper.jar

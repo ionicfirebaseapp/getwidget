@@ -1,57 +1,77 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:getwidget/getwidget.dart';
 
 class GFDrawerHeaderPictures extends StatelessWidget {
   const GFDrawerHeaderPictures({
     Key key,
     this.currentAccountPicture,
     this.otherAccountsPictures,
+    this.closeButton,
   }) : super(key: key);
 
+  /// A widget placed in the upper-left corner that represents the current
+  /// user's account. Normally a [CircleAvatar].
   final Widget currentAccountPicture;
+
+  /// A list of widgets that represent the current user's other accounts.
+  /// Up to three of these widgets will be arranged in a row in the header's
+  /// upper-right corner. Normally a list of [CircleAvatar] widgets.
   final List<Widget> otherAccountsPictures;
 
+  /// widget onTap drawer get closed
+  final Widget closeButton;
+
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        PositionedDirectional(
-          top: 0.0,
-          end: 0.0,
-          child: Row(
-            children: (otherAccountsPictures ?? <Widget>[])
-                .take(3)
-                .map<Widget>((Widget picture) {
-              return Padding(
-                padding: const EdgeInsetsDirectional.only(start: 8.0),
-                child: Semantics(
-                  container: true,
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
-                    width: 48.0,
-                    height: 48.0,
-                    child: picture,
+  Widget build(BuildContext context) => Stack(
+        children: <Widget>[
+          closeButton == null
+              ? GFIconButton(
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.white,
                   ),
-                ),
-              );
-            }).toList(),
-          ),
-        ),
-        Positioned(
-          top: 0.0,
-          child: Semantics(
-            explicitChildNodes: true,
-            child: SizedBox(
-              width: 72.0,
-              height: 72.0,
-              child: currentAccountPicture,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  type: GFButtonType.transparent,
+                )
+              : closeButton,
+          PositionedDirectional(
+            top: 0,
+            end: 0,
+            child: Row(
+              children: (otherAccountsPictures ?? <Widget>[])
+                  .take(3)
+                  .map<Widget>((Widget picture) => Padding(
+                        padding: const EdgeInsetsDirectional.only(start: 8),
+                        child: Semantics(
+                          container: true,
+                          child: Container(
+                            padding: const EdgeInsets.only(left: 8, bottom: 8),
+                            width: 48,
+                            height: 48,
+                            child: picture,
+                          ),
+                        ),
+                      ))
+                  .toList(),
             ),
           ),
-        ),
-      ],
-    );
-  }
+          Positioned(
+            top: 40,
+            child: Semantics(
+              explicitChildNodes: true,
+              child: SizedBox(
+                width: 72,
+                height: 72,
+                child: currentAccountPicture,
+              ),
+            ),
+          ),
+        ],
+      );
 }
 
 /// A material design [Drawer] header that identifies the app's user.
@@ -65,12 +85,13 @@ class GFDrawerHeader extends StatefulWidget {
   const GFDrawerHeader({
     Key key,
     this.decoration,
-    this.margin = const EdgeInsets.only(bottom: 8.0),
+    this.margin = const EdgeInsets.only(bottom: 8),
     this.currentAccountPicture,
     this.otherAccountsPictures,
     this.child,
     this.duration = const Duration(milliseconds: 250),
     this.curve = Curves.fastOutSlowIn,
+    this.closeButton,
   }) : super(key: key);
 
   /// The header's background. If decoration is null then a [BoxDecoration]
@@ -89,7 +110,7 @@ class GFDrawerHeader extends StatefulWidget {
   /// upper-right corner. Normally a list of [CircleAvatar] widgets.
   final List<Widget> otherAccountsPictures;
 
-  /// A widget to be placed inside the drawer header, inset by the [padding].
+  /// A widget to be placed inside the drawer header, inset by the padding.
   ///
   /// This widget will be sized to the size of the header. To position the child
   /// precisely, consider using an [Align] or [Center] widget.
@@ -103,6 +124,9 @@ class GFDrawerHeader extends StatefulWidget {
   /// The curve for animations of the [decoration].
   final Curve curve;
 
+  /// widget onTap drawer get closed
+  final Widget closeButton;
+
   @override
   _GFDrawerHeaderState createState() => _GFDrawerHeaderState();
 }
@@ -112,35 +136,41 @@ class _GFDrawerHeaderState extends State<GFDrawerHeader> {
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterial(context));
     assert(debugCheckHasMaterialLocalizations(context));
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+
     return Semantics(
       container: true,
       label: MaterialLocalizations.of(context).signedInLabel,
-      child: DrawerHeader(
+      child: Container(
+        height: statusBarHeight + 185.0,
         decoration: widget.decoration ??
             BoxDecoration(
               color: Theme.of(context).primaryColor,
             ),
         margin: widget.margin,
-        padding: const EdgeInsetsDirectional.only(top: 16.0, start: 16.0),
+        padding: const EdgeInsetsDirectional.only(top: 16, start: 16),
         child: SafeArea(
           bottom: false,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.only(end: 16.0),
+                  padding: const EdgeInsetsDirectional.only(end: 16),
                   child: GFDrawerHeaderPictures(
                     currentAccountPicture: widget.currentAccountPicture,
                     otherAccountsPictures: widget.otherAccountsPictures,
+                    closeButton: widget.closeButton,
                   ),
                 ),
               ),
               AnimatedContainer(
-                  padding: EdgeInsets.only(bottom: 16.0),
-                  duration: widget.duration,
-                  curve: widget.curve,
-                  child: widget.child),
+                padding: const EdgeInsets.only(bottom: 16),
+                duration: widget.duration,
+                curve: widget.curve,
+                child: widget.child,
+              ),
             ],
           ),
         ),

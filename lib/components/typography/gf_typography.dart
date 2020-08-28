@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:getflutter/colors/gf_color.dart';
-import 'package:getflutter/types/gf_typography_type.dart';
-export 'package:getflutter/types/gf_typography_type.dart';
+import 'package:getwidget/getwidget.dart';
 
 class GFTypography extends StatelessWidget {
   /// Creates simple title with underline. Style of title can be changed using [GFTypographyType]
   /// showDivider is default true, can be set false.
-  const GFTypography(
-      {Key key,
-      this.type = GFTypographyType.typo4,
-      this.child,
-      this.text,
-      this.icon,
-      this.dividerBorderRadius,
-      this.textColor,
-      this.dividerAlignment,
-      this.dividerColor,
-      this.showDivider = true,
-      this.dividerWidth,
-      this.backgroundImage,
-      this.backgroundImagecolorFilter})
-      : super(key: key);
+  const GFTypography({
+    Key key,
+    this.type = GFTypographyType.typo4,
+    this.child,
+    this.text,
+    this.icon,
+    this.dividerBorderRadius,
+    this.textColor,
+    this.dividerAlignment,
+    this.dividerColor,
+    this.showDivider = true,
+    this.dividerWidth,
+    this.backgroundImage,
+    this.backgroundImagecolorFilter,
+  }) : super(key: key);
 
   /// child of  type [Widget] is alternative to text key. text will get priority over child
   final Widget child;
@@ -31,11 +29,11 @@ class GFTypography extends StatelessWidget {
   ///icon of type [Widget] used to pass icon or image
   final Widget icon;
 
-  /// Pass [GFColor] or [Color] for dividerColor
-  final dynamic dividerColor;
+  /// Pass [GFColors] or [Color] for dividerColor
+  final Color dividerColor;
 
-  /// Pass [GFColor] or [Color] for textColor
-  final dynamic textColor;
+  /// Pass [GFColors] or [Color] for textColor
+  final Color textColor;
 
   /// dividerBorderRadius of type [BorderRadius] to alter the radius of the divider
   final BorderRadius dividerBorderRadius;
@@ -78,62 +76,65 @@ class GFTypography extends StatelessWidget {
     }
 
     return Container(
-        padding: EdgeInsets.all(backgroundImage != null ? 10 : 0),
-        decoration: BoxDecoration(
-          image: backgroundImage != null
-              ? DecorationImage(
-                  image: backgroundImage,
-                  fit: BoxFit.cover,
-                  colorFilter: backgroundImagecolorFilter ??
-                      ColorFilter.mode(Colors.black54, BlendMode.darken),
-                )
-              : null,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                icon != null ? icon : Container(),
-                icon != null
-                    ? Padding(padding: EdgeInsets.only(left: 10))
-                    : Container(),
-                text != null
-                    ? Expanded(
-                        child: Text(
+      padding: EdgeInsets.all(backgroundImage != null ? 10 : 0),
+      decoration: BoxDecoration(
+        image: backgroundImage != null
+            ? DecorationImage(
+                image: backgroundImage,
+                fit: BoxFit.cover,
+                colorFilter: backgroundImagecolorFilter ??
+                    const ColorFilter.mode(Colors.black54, BlendMode.darken),
+              )
+            : null,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              icon ?? Container(),
+              icon != null
+                  ? const Padding(padding: EdgeInsets.only(left: 10))
+                  : Container(),
+              text != null
+                  ? Expanded(
+                      child: Text(
                         text,
                         style: TextStyle(
-                            color: textColor != null
-                                ? getGFColor(textColor)
-                                : backgroundImage != null
+                            color: textColor ??
+                                (backgroundImage != null
                                     ? Colors.white
-                                    : Colors.black,
+                                    : Colors.black),
                             fontSize: fontSize,
                             letterSpacing: 0.3,
                             fontWeight: FontWeight.w500),
-                      ))
-                    : child
-              ],
-            ),
-            showDivider
-                ? Container(
-                    margin: EdgeInsets.only(top: 3, bottom: 3),
-                    alignment: dividerAlignment,
-                    child: Container(
-                      width: dividerWidth != null ? dividerWidth : 70,
-                      height: fontSize / 5,
-                      decoration: BoxDecoration(
-                          color: dividerColor != null
-                              ? getGFColor(dividerColor)
-                              : backgroundImage != null
-                                  ? Colors.white
-                                  : Colors.black,
-                          borderRadius: dividerBorderRadius != null
-                              ? dividerBorderRadius
-                              : BorderRadius.all(Radius.circular(5))),
-                    ))
-                : Container()
-          ],
-        ));
+                      ),
+                    )
+                  : child
+            ],
+          ),
+          showDivider
+              ? Container(
+                  margin: const EdgeInsets.only(top: 3, bottom: 3),
+                  alignment: dividerAlignment,
+                  child: Container(
+                    width: dividerWidth != null ? dividerWidth : 70,
+                    height: fontSize / 5,
+                    decoration: BoxDecoration(
+                      color: dividerColor ??
+                          (backgroundImage != null
+                              ? Colors.white
+                              : Colors.black),
+                      borderRadius: dividerBorderRadius ??
+                          const BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                    ),
+                  ),
+                )
+              : Container()
+        ],
+      ),
+    );
   }
 }

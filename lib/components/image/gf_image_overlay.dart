@@ -13,12 +13,12 @@ class GFImageOverlay extends StatelessWidget {
     this.padding,
     this.margin,
     this.image,
-    this.child = const Text(""),
+    this.child = const Text(''),
     this.alignment,
     this.borderRadius,
     this.colorFilter =
         const ColorFilter.mode(Colors.black26, BlendMode.colorBurn),
-    this.boxFit,
+    this.boxFit = BoxFit.fill,
     this.border,
     this.shape = BoxShape.rectangle,
   })  : assert(shape != null),
@@ -49,8 +49,8 @@ class GFImageOverlay extends StatelessWidget {
   final AlignmentGeometry alignment;
 
   /// How the image should be inscribed into the box.
-  /// The default is [BoxFit.scaleDown] if [centerSlice] is null, and
-  /// [BoxFit.fill] if [centerSlice] is not null.
+  /// The default is [BoxFit.scaleDown] if centerSlice is null, and
+  /// [BoxFit.fill] if centerSlice is not null.
   final BoxFit boxFit;
 
   /// A color filter to apply to the image before painting it.
@@ -62,8 +62,8 @@ class GFImageOverlay extends StatelessWidget {
   /// A border to draw above the [GFImageOverlay].
   final Border border;
 
-  /// The shape to fill the background [color], [gradient], and [image] into and
-  /// to cast as the [boxShadow].
+  /// The shape to fill the background [color], gradient, and [image] into and
+  /// to cast as the boxShadow.
   ///
   /// If this is [BoxShape.circle] then [borderRadius] is ignored.
   ///
@@ -78,24 +78,23 @@ class GFImageOverlay extends StatelessWidget {
   final BoxShape shape;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: alignment,
-      height: height,
-      width: width ?? MediaQuery.of(context).size.width,
-      margin: margin,
-      padding: padding,
-      child: child,
-      decoration: new BoxDecoration(
-        shape: shape,
-        borderRadius: borderRadius,
-        border: border,
-        color: color,
-        image: new DecorationImage(
-            fit: BoxFit.fill,
+  Widget build(BuildContext context) => Container(
+        alignment: alignment,
+        height: height,
+        width: width ?? MediaQuery.of(context).size.width,
+        margin: margin,
+        padding: padding,
+        child: child,
+        decoration: BoxDecoration(
+          shape: shape,
+          borderRadius: borderRadius,
+          border: border,
+          color: color,
+          image: DecorationImage(
+            fit: boxFit,
             colorFilter: child != null ? colorFilter : null,
-            image: image),
-      ),
-    );
-  }
+            image: image,
+          ),
+        ),
+      );
 }
