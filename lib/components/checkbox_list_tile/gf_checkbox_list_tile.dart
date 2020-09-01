@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
-class GFCheckboxListTile extends StatefulWidget {
+class GFCheckboxListTile extends StatelessWidget {
   const GFCheckboxListTile({
     Key key,
+    @required this.value,
+    @required this.onChanged,
     this.titleText,
     this.subtitleText,
     this.color,
@@ -20,8 +22,6 @@ class GFCheckboxListTile extends StatefulWidget {
     this.inactivebgColor = GFColors.WHITE,
     this.activeBorderColor = GFColors.WHITE,
     this.inactiveBorderColor = GFColors.DARK,
-    this.onChanged,
-    this.value,
     this.activeIcon = const Icon(
       Icons.check,
       size: 20,
@@ -30,8 +30,10 @@ class GFCheckboxListTile extends StatefulWidget {
     this.inactiveIcon = const Icon(Icons.close),
     this.custombgColor = GFColors.SUCCESS,
     this.selected = false,
+    this.autofocus = false,
   }) : assert(value != null),
         assert(selected != null),
+        assert(autofocus != null),
         super(key: key);
 
   ///type of [String] used to pass text, alternative to title property and gets higher priority than title
@@ -106,44 +108,88 @@ class GFCheckboxListTile extends StatefulWidget {
   /// Normally, this property is left to its default value, false.
   final bool selected;
 
-  @override
-  _GFCheckboxListTileState createState() => _GFCheckboxListTileState();
-}
-
-class _GFCheckboxListTileState extends State<GFCheckboxListTile> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  /// {@macro flutter.widgets.Focus.autofocus}
+  final bool autofocus;
 
   @override
-  Widget build(BuildContext context) => GFListTile(
-    autofocus: ,
-    enabled: widget.onChanged != null,
-    onTap: widget.onChanged != null ? () { widget.onChanged(!widget.value); } : null,
-    selected: widget.selected,
-    avatar: widget.avatar,
-    titleText: widget.titleText,
-    subTitle: widget.subTitle,
-    subtitleText: widget.subtitleText,
-    description: widget.description,
-    color: widget.color,
-    padding: widget.padding,
-    margin: widget.margin,
-    title: widget.title,
-    icon: GFCheckbox(
-      size: widget.size,
-      activebgColor: widget.activebgColor,
-      onChanged:widget.onChanged,
-      value: widget.value,
-      inactiveIcon: widget.inactiveIcon,
-      activeBorderColor: widget.activeBorderColor,
-      inactivebgColor: widget.inactivebgColor,
-      activeIcon: widget.activeIcon,
-      inactiveBorderColor: widget.inactiveBorderColor,
-      custombgColor: widget.custombgColor,
-      checkColor: widget.checkColor,
-      type: widget.type,
-    ),
-  );
+  Widget build(BuildContext context) => MergeSemantics(
+      child: ListTileTheme.merge(
+//        selectedColor: activeColor ?? Theme.of(context).accentColor,
+        child: GFListTile(
+          autofocus: autofocus,
+          enabled: onChanged != null,
+          onTap: onChanged != null ? () { onChanged(!value); } : null,
+          selected: selected,
+          avatar: avatar,
+          titleText: titleText,
+          subTitle: subTitle,
+          subtitleText: subtitleText,
+          description: description,
+          color: color,
+          padding: padding,
+          margin: margin,
+          title: title,
+          icon: GFCheckbox(
+            autofocus: autofocus,
+            onChanged: onChanged,
+            value: value,
+            size: size,
+            activebgColor: activebgColor,
+            inactiveIcon: inactiveIcon,
+            activeBorderColor: activeBorderColor,
+            inactivebgColor: inactivebgColor,
+            activeIcon: activeIcon,
+            inactiveBorderColor: inactiveBorderColor,
+            custombgColor: custombgColor,
+            checkColor: checkColor,
+            type: type,
+          ),
+        ),
+      ),
+    );
 }
+
+
+//class GFCheckboxListTile extends StatefulWidget {
+//
+//
+//  @override
+//  _GFCheckboxListTileState createState() => _GFCheckboxListTileState();
+//}
+//
+//class _GFCheckboxListTileState extends State<GFCheckboxListTile> {
+//
+//
+//
+//  @override
+//  Widget build(BuildContext context) => GFListTile(
+//    autofocus: widget.autofocus,
+//    enabled: widget.onChanged != null,
+//    onTap: widget.onChanged != null ? () { widget.onChanged(!widget.value); } : null,
+//    selected: widget.selected,
+//    avatar: widget.avatar,
+//    titleText: widget.titleText,
+//    subTitle: widget.subTitle,
+//    subtitleText: widget.subtitleText,
+//    description: widget.description,
+//    color: widget.color,
+//    padding: widget.padding,
+//    margin: widget.margin,
+//    title: widget.title,
+//    icon: GFCheckbox(
+//      autofocus: widget.autofocus,
+//      onChanged:widget.onChanged,
+//      value: widget.value,
+//      size: widget.size,
+//      activebgColor: widget.activebgColor,
+//      inactiveIcon: widget.inactiveIcon,
+//      activeBorderColor: widget.activeBorderColor,
+//      inactivebgColor: widget.inactivebgColor,
+//      activeIcon: widget.activeIcon,
+//      inactiveBorderColor: widget.inactiveBorderColor,
+//      custombgColor: widget.custombgColor,
+//      checkColor: widget.checkColor,
+//      type: widget.type,
+//    ),
+//  );
+//}

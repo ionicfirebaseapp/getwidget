@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+
+
 class GFCheckbox extends StatefulWidget {
   const GFCheckbox({
     Key key,
@@ -20,7 +25,10 @@ class GFCheckbox extends StatefulWidget {
     ),
     this.inactiveIcon = const Icon(Icons.close),
     this.custombgColor = GFColors.SUCCESS,
-  }) : super(key: key);
+    this.autofocus = false,
+    this.focusNode
+  }) : assert(autofocus != null),
+        super(key: key);
 
   /// type of [GFCheckboxType] which is of four type is basic, sqaure, circular and custom
   final GFCheckboxType type;
@@ -58,18 +66,42 @@ class GFCheckbox extends StatefulWidget {
   /// type of [Color] used to change the background color of the custom active  checkbox only
   final Color custombgColor;
 
+  /// {@macro flutter.widgets.Focus.autofocus}
+  final bool autofocus;
+
+  /// {@macro flutter.widgets.Focus.focusNode}
+  final FocusNode focusNode;
+
   @override
   _GFCheckboxState createState() => _GFCheckboxState();
 }
 
 class _GFCheckboxState extends State<GFCheckbox> {
   bool get enabled => widget.onChanged != null;
+  Map<Type, Action<Intent>> _actionMap;
   bool isSelected = false;
 
   @override
   void initState() {
     super.initState();
-    isSelected = widget.value ?? false;
+    _actionMap = <Type, Action<Intent>>{
+      ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: _actionHandler),
+    };
+  }
+
+  void _actionHandler(ActivateIntent intent) {
+    if (widget.onChanged != null) {
+      switch (widget.value) {
+        case false:
+          widget.onChanged(true);
+          break;
+        default: // case null:
+          widget.onChanged(false);
+          break;
+      }
+    }
+    final RenderObject renderObject = context.findRenderObject();
+    renderObject.sendSemanticsEvent(const TapSemanticEvent());
   }
 
   void onStatusChange() {
@@ -83,6 +115,9 @@ class _GFCheckboxState extends State<GFCheckbox> {
 
   @override
   Widget build(BuildContext context) => FocusableActionDetector(
+    actions: _actionMap,
+    focusNode: widget.focusNode,
+        autofocus: widget.autofocus,
         enabled: enabled,
         child: InkWell(
           onTap: onStatusChange,
