@@ -44,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage>
   bool check = false;
   String searchData;
   final TextEditingController _searchController = TextEditingController();
+  int groupValue = 0;
 
   @override
   void initState() {
@@ -158,8 +159,30 @@ class _MyHomePageState extends State<MyHomePage>
                 height: 10,
               ),
 
-              Radio(value: null, groupValue: null, onChanged: null),
-              RadioListTile(value: null, groupValue: null, onChanged: null),
+              Radio(
+                value: 0,
+                groupValue: groupValue,
+                onChanged: (val) {
+                  print('val $val');
+                  setState(() {
+                    groupValue = val;
+                  });
+                  print('radio $groupValue $val');
+                },
+              ),
+
+              Radio(
+                value: 1,
+                groupValue: groupValue,
+                onChanged: (val) {
+                  print('val $val');
+                  setState(() {
+                    groupValue = val;
+                  });
+                  print('radio $groupValue $val');
+                },
+              ),
+//              RadioListTile(value: null, groupValue: null, onChanged: null),
 
               GFRadioButton(
                 size: GFSize.SMALL,
@@ -169,14 +192,14 @@ class _MyHomePageState extends State<MyHomePage>
 //                inactivebgColor: GFColors.PRIMARY,
 //                activeBorderColor: GFColors.DANGER,
 //                inactiveBorderColor: GFColors.DARK,
-                value: check,
-                groupValue: check,
+                value: 0,
+                groupValue: groupValue,
                 onChanged: (val) {
                   print('val $val');
                   setState(() {
-                    check = val;
+                    groupValue = val;
                   });
-                  print('cch $check $val');
+                  print('radio $groupValue $val');
                 },
                 activeIcon: const Icon(
                   Icons.check,

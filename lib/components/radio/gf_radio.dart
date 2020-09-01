@@ -100,13 +100,17 @@ class _GFRadioButtonState extends State<GFRadioButton> {
   }
 
 
-  void _handleChanged() {
-    if (widget.value == null) {
+  void _handleChanged(bool selected) {
+    bool selected = false;
+    if(widget.value == widget.groupValue){
+      selected = true;
+    }
+    if (selected == null) {
       widget.onChanged(null);
       return;
     }
-    if (widget.value) {
-      widget.onChanged(!widget.value);
+    if (selected) {
+      widget.onChanged(widget.value);
     }
   }
 
@@ -117,23 +121,36 @@ class _GFRadioButtonState extends State<GFRadioButton> {
     enabled: enabled,
     child: InkWell(
         canRequestFocus: enabled,
-        onTap: widget.onChanged != null ? () {widget.onChanged(widget.value);} : null,
+        onTap: widget.onChanged != null ?
+            () {
+              bool selected = false;
+              if(widget.value == widget.groupValue){
+                selected = widget.value;
+              }
+              if (selected == null) {
+                widget.onChanged(null);
+              }
+              if (selected) {
+                widget.onChanged(widget.value);
+              }
+          return selected;
+        } : null,
 //        onTap: enabled ? _handleChanged : null,
         child: Container(
             height: widget.size,
             width: widget.size,
             decoration: BoxDecoration(
-                color: widget.value ? widget.activebgColor : widget.inactivebgColor,
+                color: enabled ? widget.activebgColor : widget.inactivebgColor,
                 borderRadius: widget.type == GFRadioButtonType.basic
                     ? BorderRadius.circular(50)
                     : widget.type == GFRadioButtonType.square
                         ? BorderRadius.circular(0)
                         : BorderRadius.circular(10),
                 border: Border.all(
-                    color: widget.value
+                    color: enabled
                         ? widget.activeBorderColor
                         : widget.inactiveBorderColor)),
-            child: widget.value
+            child: enabled
                 ? widget.type == GFRadioButtonType.basic ||
                         widget.type == GFRadioButtonType.square
                     ? Stack(
