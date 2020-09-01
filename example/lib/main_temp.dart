@@ -157,8 +157,7 @@ class _MyHomePageState extends State<MyHomePage>
               Container(
                 height: 10,
               ),
-              
-//              CheckboxListTile(value: null, onChanged: null),
+
 
               GFCheckboxListTile(
                 color: GFColors.LIGHT,
@@ -189,7 +188,6 @@ class _MyHomePageState extends State<MyHomePage>
                 size: GFSize.SMALL,
                 activebgColor: GFColors.DANGER,
                 onChanged:
-//                null,
                     (val) {
                   setState(() {
                     check = val;
@@ -234,6 +232,8 @@ class _MyHomePageState extends State<MyHomePage>
 //                groupValue:
               ),
 
+
+
               const Padding(
                 padding: EdgeInsets.only(left: 15, top: 30),
                 child: GFTypography(
@@ -270,7 +270,7 @@ class _MyHomePageState extends State<MyHomePage>
                       onChanged: (val) {
                         print('on change val $val');
                       },
-                      value: true,
+                      value: false,
                       inactiveIcon: null,
                     ),
                   ],
