@@ -197,7 +197,33 @@ class _MyHomePageState extends State<MyHomePage>
                 onChanged: (val) {
                   print('val $val');
                   setState(() {
-                    groupValue = val;
+                    groupValue = 0;
+                  });
+                  print('radio $groupValue $val');
+                },
+                activeIcon: const Icon(
+                  Icons.check,
+                  size: 20,
+                  color: GFColors.DARK,
+                ),
+//                inactiveIcon: const Icon(Icons.close, size: 20, color: GFColors.DARK,),
+//                custombgColor: GFColors.SUCCESS,
+              ),
+
+              GFRadioButton(
+                size: GFSize.SMALL,
+                type: GFRadioButtonType.basic,
+                radioColor: GFColors.SUCCESS,
+//                activebgColor: GFColors.ALT,
+//                inactivebgColor: GFColors.PRIMARY,
+//                activeBorderColor: GFColors.DANGER,
+//                inactiveBorderColor: GFColors.DARK,
+                value: 1,
+                groupValue: groupValue,
+                onChanged: (val) {
+                  print('val $val');
+                  setState(() {
+                    groupValue = 1;
                   });
                   print('radio $groupValue $val');
                 },
