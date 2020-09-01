@@ -158,6 +158,8 @@ class _MyHomePageState extends State<MyHomePage>
                 height: 10,
               ),
 
+              Radio(value: null, groupValue: null, onChanged: null),
+              RadioListTile(value: null, groupValue: null, onChanged: null),
 
               GFCheckboxListTile(
                 color: GFColors.LIGHT,
@@ -201,7 +203,7 @@ class _MyHomePageState extends State<MyHomePage>
 
               GFCheckbox(
                 size: GFSize.SMALL,
-                onChanged:  (val) {
+                onChanged: (val) {
                   setState(() {
                     check = val;
                   });
