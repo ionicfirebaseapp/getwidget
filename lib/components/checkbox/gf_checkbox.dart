@@ -120,7 +120,8 @@ class _GFCheckboxState extends State<GFCheckbox> {
         autofocus: widget.autofocus,
         enabled: enabled,
         child: InkWell(
-          onTap: onStatusChange,
+          onTap: enabled ? onStatusChange() : null,
+          canRequestFocus: enabled,
           child: Container(
             height: widget.size,
             width: widget.size,
