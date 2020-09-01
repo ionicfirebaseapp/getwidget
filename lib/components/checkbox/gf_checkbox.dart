@@ -84,6 +84,7 @@ class _GFCheckboxState extends State<GFCheckbox> {
   @override
   void initState() {
     super.initState();
+    isSelected = widget.value;
     _actionMap = <Type, Action<Intent>>{
       ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: _actionHandler),
     };
@@ -113,6 +114,7 @@ class _GFCheckboxState extends State<GFCheckbox> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) => FocusableActionDetector(
     actions: _actionMap,
@@ -120,8 +122,16 @@ class _GFCheckboxState extends State<GFCheckbox> {
         autofocus: widget.autofocus,
         enabled: enabled,
         child: InkWell(
-          onTap: enabled ? onStatusChange() : null,
-          canRequestFocus: enabled,
+//          onTap: onStatusChange,
+//          canRequestFocus: enabled,
+          canRequestFocus: widget.onChanged != null,
+          onTap: widget.onChanged != null ?
+              () {
+                setState(() {
+                  isSelected = !isSelected;
+                });
+            widget.onChanged(!widget.value);
+          } : null,
           child: Container(
             height: widget.size,
             width: widget.size,

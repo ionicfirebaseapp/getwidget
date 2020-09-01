@@ -113,9 +113,7 @@ class GFCheckboxListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MergeSemantics(
-      child: ListTileTheme.merge(
-//        selectedColor: activeColor ?? Theme.of(context).accentColor,
-        child: GFListTile(
+      child: GFListTile(
           autofocus: autofocus,
           enabled: onChanged != null,
           onTap: onChanged != null ? () { onChanged(!value); } : null,
@@ -145,7 +143,6 @@ class GFCheckboxListTile extends StatelessWidget {
             type: type,
           ),
         ),
-      ),
     );
 }
 
