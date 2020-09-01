@@ -161,6 +161,32 @@ class _MyHomePageState extends State<MyHomePage>
               Radio(value: null, groupValue: null, onChanged: null),
               RadioListTile(value: null, groupValue: null, onChanged: null),
 
+              GFRadioButton(
+                size: GFSize.SMALL,
+                type: GFRadioButtonType.basic,
+                radioColor: GFColors.SUCCESS,
+//                activebgColor: GFColors.ALT,
+//                inactivebgColor: GFColors.PRIMARY,
+//                activeBorderColor: GFColors.DANGER,
+//                inactiveBorderColor: GFColors.DARK,
+                value: check,
+                groupValue: check,
+                onChanged: (val) {
+                  print('val $val');
+                  setState(() {
+                    check = val;
+                  });
+                  print('cch $check $val');
+                },
+                activeIcon: const Icon(
+                  Icons.check,
+                  size: 20,
+                  color: GFColors.DARK,
+                ),
+//                inactiveIcon: const Icon(Icons.close, size: 20, color: GFColors.DARK,),
+//                custombgColor: GFColors.SUCCESS,
+              ),
+
               GFCheckboxListTile(
                 color: GFColors.LIGHT,
                 title: const Text('is checked'),
@@ -218,28 +244,6 @@ class _MyHomePageState extends State<MyHomePage>
                 inactiveIcon: Icon(Icons.check_box_outline_blank),
                 activeIcon: Icon(Icons.check_box),
                 autofocus: true,
-              ),
-
-              GFRadioButton(
-                size: GFSize.SMALL,
-                value: true,
-                type: GFRadioButtonType.basic,
-                radioColor: GFColors.SUCCESS,
-//                activebgColor: GFColors.ALT,
-//                inactivebgColor: GFColors.PRIMARY,
-//                activeBorderColor: GFColors.DANGER,
-//                inactiveBorderColor: GFColors.DARK,
-                onChanged: (val) {
-                  print('on change val $val');
-                },
-                activeIcon: const Icon(
-                  Icons.check,
-                  size: 20,
-                  color: GFColors.DARK,
-                ),
-//                inactiveIcon: const Icon(Icons.close, size: 20, color: GFColors.DARK,),
-//                custombgColor: GFColors.SUCCESS,
-//                groupValue:
               ),
 
               Checkbox(
@@ -426,28 +430,6 @@ class _MyHomePageState extends State<MyHomePage>
                     ),
                   ],
                 ),
-              ),
-
-              GFRadioButton(
-                size: GFSize.SMALL,
-                value: true,
-                type: GFRadioButtonType.basic,
-                radioColor: GFColors.SUCCESS,
-//                activebgColor: GFColors.ALT,
-//                inactivebgColor: GFColors.PRIMARY,
-//                activeBorderColor: GFColors.DANGER,
-//                inactiveBorderColor: GFColors.DARK,
-                onChanged: (val) {
-                  print('on change val $val');
-                },
-                activeIcon: const Icon(
-                  Icons.check,
-                  size: 20,
-                  color: GFColors.DARK,
-                ),
-//                inactiveIcon: const Icon(Icons.close, size: 20, color: GFColors.DARK,),
-//                custombgColor: GFColors.SUCCESS,
-//                groupValue:
               ),
 
               GFImageOverlay(
