@@ -162,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage>
               GFCheckboxListTile(
                 color: GFColors.LIGHT,
                 title: const Text('is checked'),
-                size: GFSize.SMALL,
+                size: GFSize.LARGE,
                 activebgColor: GFColors.DANGER,
                 onChanged: (val) {
                   setState(() {
@@ -177,9 +177,11 @@ class _MyHomePageState extends State<MyHomePage>
               GFListTile(
                 title: Text('title'),
                 subTitle: Text('subtitle'),
-                color: GFColors.LIGHT,
+                color: check ? GFColors.LIGHT : GFColors.DARK,
                 onTap: (){
-                  print('fghj');
+                  setState(() {
+                    check = !check;
+                  });
                 },
               ),
 
@@ -199,15 +201,21 @@ class _MyHomePageState extends State<MyHomePage>
 
               GFCheckbox(
                 size: GFSize.SMALL,
-                onChanged: (val) {
-                  print('on change val $val');
+                onChanged:  (val) {
+                  setState(() {
+                    check = val;
+                  });
                 },
-                value: true,
+                value: check,
                 type: GFCheckboxType.circle,
                 checkColor: GFColors.DANGER,
-//                  activebgColor: Colors.green,
-//                  inactivebgColor: Colors.white,
-//                  activeBorderColor: Colors.red,
+                  activebgColor: Colors.green,
+                  inactivebgColor: Colors.white54,
+                  activeBorderColor: Colors.red,
+                inactiveBorderColor: Colors.black12,
+                inactiveIcon: Icon(Icons.check_box_outline_blank),
+                activeIcon: Icon(Icons.check_box),
+                autofocus: true,
               ),
 
               GFRadioButton(
@@ -232,7 +240,14 @@ class _MyHomePageState extends State<MyHomePage>
 //                groupValue:
               ),
 
-
+              Checkbox(
+                value: check,
+                onChanged: (bool value) {
+                  setState(() {
+                    check = value;
+                  });
+                },
+              ),
 
               const Padding(
                 padding: EdgeInsets.only(left: 15, top: 30),

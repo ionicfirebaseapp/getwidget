@@ -69,7 +69,7 @@ class GFCheckboxListTile extends StatelessWidget {
   /// type of [double] which is GFSize ie, small, medium and large and can use any double value
   final double size;
 
-  // type pf [Color] used to change the checkcolor when the checkbox is active
+  /// type pf [Color] used to change the checkcolor when the checkbox is active
   final Color checkColor;
 
   /// type of [Color] used to change the backgroundColor of the active checkbox
@@ -145,48 +145,3 @@ class GFCheckboxListTile extends StatelessWidget {
         ),
     );
 }
-
-
-//class GFCheckboxListTile extends StatefulWidget {
-//
-//
-//  @override
-//  _GFCheckboxListTileState createState() => _GFCheckboxListTileState();
-//}
-//
-//class _GFCheckboxListTileState extends State<GFCheckboxListTile> {
-//
-//
-//
-//  @override
-//  Widget build(BuildContext context) => GFListTile(
-//    autofocus: widget.autofocus,
-//    enabled: widget.onChanged != null,
-//    onTap: widget.onChanged != null ? () { widget.onChanged(!widget.value); } : null,
-//    selected: widget.selected,
-//    avatar: widget.avatar,
-//    titleText: widget.titleText,
-//    subTitle: widget.subTitle,
-//    subtitleText: widget.subtitleText,
-//    description: widget.description,
-//    color: widget.color,
-//    padding: widget.padding,
-//    margin: widget.margin,
-//    title: widget.title,
-//    icon: GFCheckbox(
-//      autofocus: widget.autofocus,
-//      onChanged:widget.onChanged,
-//      value: widget.value,
-//      size: widget.size,
-//      activebgColor: widget.activebgColor,
-//      inactiveIcon: widget.inactiveIcon,
-//      activeBorderColor: widget.activeBorderColor,
-//      inactivebgColor: widget.inactivebgColor,
-//      activeIcon: widget.activeIcon,
-//      inactiveBorderColor: widget.inactiveBorderColor,
-//      custombgColor: widget.custombgColor,
-//      checkColor: widget.checkColor,
-//      type: widget.type,
-//    ),
-//  );
-//}

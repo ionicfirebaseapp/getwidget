@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-
-
 class GFCheckbox extends StatefulWidget {
   const GFCheckbox({
     Key key,
@@ -36,7 +31,7 @@ class GFCheckbox extends StatefulWidget {
   /// type of [double] which is GFSize ie, small, medium and large and can use any double value
   final double size;
 
-  // type pf [Color] used to change the checkcolor when the checkbox is active
+  /// type pf [Color] used to change the checkcolor when the checkbox is active
   final Color checkColor;
 
   /// type of [Color] used to change the backgroundColor of the active checkbox
@@ -78,54 +73,20 @@ class GFCheckbox extends StatefulWidget {
 
 class _GFCheckboxState extends State<GFCheckbox> {
   bool get enabled => widget.onChanged != null;
-//  Map<Type, Action<Intent>> _actionMap;
-//  bool isSelected = false;
 
   @override
   void initState() {
     super.initState();
-//    isSelected = widget.value;
-//    _actionMap = <Type, Action<Intent>>{
-//      ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: _actionHandler),
-//    };
   }
-
-//  void _actionHandler(ActivateIntent intent) {
-//    if (widget.onChanged != null) {
-//      switch (widget.value) {
-//        case false:
-//          widget.onChanged(true);
-//          break;
-//        default: // case null:
-//          widget.onChanged(false);
-//          break;
-//      }
-//    }
-//    final RenderObject renderObject = context.findRenderObject();
-//    renderObject.sendSemanticsEvent(const TapSemanticEvent());
-//  }
-
-//  void onStatusChange() {
-//    setState(() {
-//      isSelected = !isSelected;
-//    });
-//    if (widget.onChanged != null) {
-//      widget.onChanged(isSelected);
-//    }
-//  }
-
 
   @override
   Widget build(BuildContext context) => FocusableActionDetector(
-//    actions: _actionMap,
     focusNode: widget.focusNode,
         autofocus: widget.autofocus,
         enabled: enabled,
         child: InkWell(
-//          onTap: onStatusChange,
           canRequestFocus: enabled,
-          onTap: widget.onChanged != null ?
-              () {widget.onChanged(!widget.value);} : null,
+          onTap: widget.onChanged != null ? () {widget.onChanged(!widget.value);} : null,
           child: Container(
             height: widget.size,
             width: widget.size,
