@@ -31,7 +31,7 @@ class GFCheckboxListTile extends StatelessWidget {
     this.custombgColor = GFColors.SUCCESS,
     this.selected = false,
     this.autofocus = false,
-  }) : assert(value != null),
+  })  : assert(value != null),
         assert(selected != null),
         assert(autofocus != null),
         super(key: key);
@@ -99,12 +99,7 @@ class GFCheckboxListTile extends StatelessWidget {
   /// type of [Color] used to change the background color of the custom active  checkbox only
   final Color custombgColor;
 
-  /// Whether to render icons and text in the [activeColor].
-  ///
-  /// No effort is made to automatically coordinate the [selected] state and the
-  /// [value] state. To have the list tile appear selected when the checkbox is
-  /// checked, pass the same value to both.
-  ///
+  /// To have the list tile appear selected when the checkbox is checked, pass the same value to both.
   /// Normally, this property is left to its default value, false.
   final bool selected;
 
@@ -113,10 +108,14 @@ class GFCheckboxListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MergeSemantics(
-      child: GFListTile(
+        child: GFListTile(
           autofocus: autofocus,
           enabled: onChanged != null,
-          onTap: onChanged != null ? () { onChanged(!value); } : null,
+          onTap: onChanged != null
+              ? () {
+                  onChanged(!value);
+                }
+              : null,
           selected: selected,
           avatar: avatar,
           titleText: titleText,
@@ -143,5 +142,5 @@ class GFCheckboxListTile extends StatelessWidget {
             type: type,
           ),
         ),
-    );
+      );
 }

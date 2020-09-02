@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
-
 class GFCheckbox extends StatefulWidget {
-  const GFCheckbox({
-    Key key,
-    this.size = GFSize.MEDIUM,
-    this.type = GFCheckboxType.basic,
-    this.checkColor = GFColors.WHITE,
-    this.activebgColor = GFColors.PRIMARY,
-    this.inactivebgColor = GFColors.WHITE,
-    this.activeBorderColor = GFColors.WHITE,
-    this.inactiveBorderColor = GFColors.DARK,
-    this.onChanged,
-    this.value,
-    this.activeIcon = const Icon(
-      Icons.check,
-      size: 20,
-      color: GFColors.WHITE,
-    ),
-    this.inactiveIcon = const Icon(Icons.close),
-    this.custombgColor = GFColors.SUCCESS,
-    this.autofocus = false,
-    this.focusNode
-  }) : assert(autofocus != null),
+  const GFCheckbox(
+      {Key key,
+      this.size = GFSize.MEDIUM,
+      this.type = GFCheckboxType.basic,
+      this.checkColor = GFColors.WHITE,
+      this.activebgColor = GFColors.PRIMARY,
+      this.inactivebgColor = GFColors.WHITE,
+      this.activeBorderColor = GFColors.WHITE,
+      this.inactiveBorderColor = GFColors.DARK,
+      this.onChanged,
+      this.value,
+      this.activeIcon = const Icon(
+        Icons.check,
+        size: 20,
+        color: GFColors.WHITE,
+      ),
+      this.inactiveIcon = const Icon(Icons.close),
+      this.custombgColor = GFColors.SUCCESS,
+      this.autofocus = false,
+      this.focusNode})
+      : assert(autofocus != null),
         super(key: key);
 
   /// type of [GFCheckboxType] which is of four type is basic, sqaure, circular and custom
@@ -82,12 +81,16 @@ class _GFCheckboxState extends State<GFCheckbox> {
 
   @override
   Widget build(BuildContext context) => FocusableActionDetector(
-    focusNode: widget.focusNode,
+        focusNode: widget.focusNode,
         autofocus: widget.autofocus,
         enabled: enabled,
         child: InkWell(
           canRequestFocus: enabled,
-          onTap: widget.onChanged != null ? () {widget.onChanged(!widget.value);} : null,
+          onTap: widget.onChanged != null
+              ? () {
+                  widget.onChanged(!widget.value);
+                }
+              : null,
           child: Container(
             height: widget.size,
             width: widget.size,

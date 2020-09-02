@@ -19,13 +19,13 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
-    title: 'GetWidget Example',
-    theme: ThemeData(
-      primarySwatch: Colors.blue,
-    ),
-    debugShowCheckedModeBanner: false,
-    home: const MyHomePage(title: 'GetWidget Example'),
-  );
+        title: 'GetWidget Example',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const MyHomePage(title: 'GetWidget Example'),
+      );
 }
 
 class MyHomePage extends StatefulWidget {
@@ -74,8 +74,7 @@ class _MyHomePageState extends State<MyHomePage>
   ];
 
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(
+  Widget build(BuildContext context) => Scaffold(
         appBar: GFAppBar(
           backgroundColor: Colors.blueGrey,
           title: const Text('UI Kit'),
@@ -149,8 +148,7 @@ class _MyHomePageState extends State<MyHomePage>
 //      ],
 //    ),
 
-
-        SingleChildScrollView(
+            SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -255,19 +253,17 @@ class _MyHomePageState extends State<MyHomePage>
                 title: Text('title'),
                 subTitle: Text('subtitle'),
                 color: check ? GFColors.LIGHT : GFColors.DARK,
-                onTap: (){
+                onTap: () {
                   setState(() {
                     check = !check;
                   });
                 },
               ),
 
-
               GFCheckbox(
                 size: GFSize.SMALL,
                 activebgColor: GFColors.DANGER,
-                onChanged:
-                    (val) {
+                onChanged: (val) {
                   setState(() {
                     check = val;
                   });
@@ -286,9 +282,9 @@ class _MyHomePageState extends State<MyHomePage>
                 value: check,
                 type: GFCheckboxType.circle,
                 checkColor: GFColors.DANGER,
-                  activebgColor: Colors.green,
-                  inactivebgColor: Colors.white54,
-                  activeBorderColor: Colors.red,
+                activebgColor: Colors.green,
+                inactivebgColor: Colors.white54,
+                activeBorderColor: Colors.red,
                 inactiveBorderColor: Colors.black12,
                 inactiveIcon: Icon(Icons.check_box_outline_blank),
                 activeIcon: Icon(Icons.check_box),
@@ -484,33 +480,35 @@ class _MyHomePageState extends State<MyHomePage>
               GFImageOverlay(
                 height: 200.0,
                 width: 200.0,
-                image: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+                image: NetworkImage(
+                    "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
                 boxFit: BoxFit.cover,
                 colorFilter: new ColorFilter.mode(
-                  Colors.black.withOpacity(0.5), BlendMode.darken,
+                  Colors.black.withOpacity(0.5),
+                  BlendMode.darken,
                 ),
                 shape: BoxShape.circle,
               ),
 
               GFCard(
-                  content:
-                  GFImageOverlay(
-                    height: 200.0,
-                    width: 304.0,
-                    image: NetworkImage("https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
-                    boxFit: BoxFit.cover,
-                    colorFilter: new ColorFilter.mode(
-                      Colors.black.withOpacity(0.5), BlendMode.darken,
-                    ),
-                  )
-              ),
+                  content: GFImageOverlay(
+                height: 200.0,
+                width: 304.0,
+                image: NetworkImage(
+                    "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg"),
+                boxFit: BoxFit.cover,
+                colorFilter: new ColorFilter.mode(
+                  Colors.black.withOpacity(0.5),
+                  BlendMode.darken,
+                ),
+              )),
 
               RaisedButton(
-                onPressed: (){},
+                onPressed: () {},
                 child: Text('hbjh'),
               ),
               GFButton(
-                onPressed: (){},
+                onPressed: () {},
                 child: Text('hbjh'),
               ),
               GFButtonBar(
@@ -527,8 +525,7 @@ class _MyHomePageState extends State<MyHomePage>
                       child: Text("dszndc"),
                       icon: Icon(Icons.arrow_drop_down),
                     ),
-                  ]
-              ),
+                  ]),
 
               GFButtonBadge(
                 onPressed: null,
@@ -620,7 +617,9 @@ class _MyHomePageState extends State<MyHomePage>
 //
               GFIconButton(
                 onPressed: null,
-                icon: Icon(Icons.ac_unit,),
+                icon: Icon(
+                  Icons.ac_unit,
+                ),
 //              iconSize: 12.0,
                 type: GFButtonType.solid,
 //          shape: GFButtonShape.pills,
@@ -639,7 +638,7 @@ class _MyHomePageState extends State<MyHomePage>
 
               RaisedButton(
                 child: Text('goodiesMaterialButton button '),
-                onPressed: (){},
+                onPressed: () {},
 //          color: Colors.blueGrey,
 //          hoverColor: Colors.blueGrey,
 //          focusColor: Colors.teal,
@@ -662,7 +661,7 @@ class _MyHomePageState extends State<MyHomePage>
                   ),
                   GFButton(
                     color: Colors.teal,
-                    onPressed: (){},
+                    onPressed: () {},
                     child: Text("share"),
                     icon: Icon(Icons.share),
                     type: GFButtonType.outline,
@@ -679,7 +678,6 @@ class _MyHomePageState extends State<MyHomePage>
                   shape: GFBadgeShape.circle,
                 ),
               ),
-
 
               GFIconButton(
                 onPressed: () {},
@@ -700,22 +698,16 @@ class _MyHomePageState extends State<MyHomePage>
 //              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
               ),
 
-
               RaisedButton(
-                onPressed: (){
-
-                },
+                onPressed: () {},
                 child: Text('fvb'),
               ),
 
               GFButton(
-                onPressed: (){
-
-                },
+                onPressed: () {},
                 fullWidthButton: true,
                 child: Text('fvb'),
               ),
-
 
               GFButton(
                 type: GFButtonType.outline,

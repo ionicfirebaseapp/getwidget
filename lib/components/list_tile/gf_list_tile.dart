@@ -24,7 +24,7 @@ class GFListTile extends StatelessWidget {
     this.hoverColor,
     this.focusNode,
     this.autofocus = false,
-  }) :  assert(enabled != null),
+  })  : assert(enabled != null),
         assert(selected != null),
         assert(autofocus != null),
         super(key: key);
@@ -96,17 +96,17 @@ class GFListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => InkWell(
-    onTap: enabled ? onTap : null,
-    onLongPress: enabled ? onLongPress : null,
-    canRequestFocus: enabled,
-    focusNode: focusNode,
-    focusColor: focusColor,
-    hoverColor: hoverColor,
-    autofocus: autofocus,
-    child: Semantics(
-      selected: selected,
-      enabled: enabled,
-      child: Container(
+        onTap: enabled ? onTap : null,
+        onLongPress: enabled ? onLongPress : null,
+        canRequestFocus: enabled,
+        focusNode: focusNode,
+        focusColor: focusColor,
+        hoverColor: hoverColor,
+        autofocus: autofocus,
+        child: Semantics(
+          selected: selected,
+          enabled: enabled,
+          child: Container(
 //        constraints: const BoxConstraints(minHeight: 50),
             padding: padding,
             margin: margin,
@@ -151,6 +151,6 @@ class GFListTile extends StatelessWidget {
               ],
             ),
           ),
-    ),
-  );
+        ),
+      );
 }
