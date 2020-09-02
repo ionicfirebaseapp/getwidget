@@ -525,7 +525,7 @@ class _GFAppBarState extends State<GFAppBar> {
       );
     }
 
-    // The padding applies to the toolbar and tabbar, not the flexible space.
+    // The padding applies to the toolbar and tabBar, not the flexible space.
     if (widget.primary) {
       appBar = SafeArea(
         top: true,

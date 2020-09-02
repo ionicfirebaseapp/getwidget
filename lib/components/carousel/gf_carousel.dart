@@ -24,7 +24,6 @@ class GFCarousel extends StatefulWidget {
     this.pauseAutoPlayOnTouch,
     this.enlargeMainPage = false,
     this.onPageChanged,
-//    this.onPageIndex,
     this.scrollPhysics,
     this.scrollDirection = Axis.horizontal,
   })  : realPage = enableInfiniteScroll ? realPage + initialPage : initialPage,
