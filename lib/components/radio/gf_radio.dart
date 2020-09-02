@@ -30,7 +30,8 @@ class GFRadio<T> extends StatefulWidget {
       this.custombgColor = GFColors.SUCCESS,
       this.autofocus = false,
       this.focusNode,
-      this.toggleable = false})
+      this.toggleable = false
+      })
       : assert(autofocus != null),
         assert(toggleable != null),
         super(key: key);
@@ -41,7 +42,7 @@ class GFRadio<T> extends StatefulWidget {
   /// type of [double] which is GFSize ie, small, medium and large and can use any double value
   final double size;
 
-  // type pf [Color] used to change the checkcolor when the checkbox is active
+  /// type pf [Color] used to change the checkcolor when the checkbox is active
   final Color radioColor;
 
   /// type of [Color] used to change the backgroundColor of the active checkbox
