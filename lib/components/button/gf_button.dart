@@ -4,7 +4,7 @@
 //import 'package:flutter/rendering.dart';
 //import 'package:flutter/widgets.dart';
 //import 'package:flutter/material.dart';
-//import 'package:getflutter/getflutter.dart';
+//import 'package:getwidget/getwidget.dart';
 //
 //class GFButton extends StatefulWidget {
 //  /// Create buttons of all types. check out [GFIconButton] for icon buttons, and [GFBadge] for badges
@@ -747,7 +747,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/getflutter.dart';
+import 'package:getwidget/getwidget.dart';
 
 class GFButton extends StatefulWidget {
   /// Create buttons of all types. check out [GFIconButton] for icon buttons, and [GFBadge] for badges
@@ -1014,13 +1014,15 @@ class _GFButtonState extends State<GFButton> {
   bool get _disabled => _states.contains(MaterialState.disabled);
 
   double buttonWidth() {
+    double buttonWidth = 0;
     if (widget.blockButton == true) {
-      return MediaQuery.of(context).size.width * 0.88;
+      buttonWidth = MediaQuery.of(context).size.width * 0.88;
     } else if (widget.fullWidthButton == true) {
-      return MediaQuery.of(context).size.width;
+      buttonWidth = MediaQuery.of(context).size.width;
     } else {
-      return null;
+      buttonWidth = null;
     }
+    return buttonWidth;
   }
 
   void _updateState(MaterialState state, bool value) {

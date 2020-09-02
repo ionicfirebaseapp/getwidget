@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/getflutter.dart';
+import 'package:getwidget/getwidget.dart';
 
 /// An app bar consists of a toolbar and potentially other widgets, such as a
 /// [GFTabBar][TabBar] and a [FlexibleSpaceBar].
@@ -293,6 +293,7 @@ class _GFAppBarState extends State<GFAppBar> {
   static const double _defaultElevation = 4;
   Widget searchBar;
   bool showSearchBar = false;
+  final TextEditingController _searchController = TextEditingController();
 
   void _handleDrawerButton() {
     Scaffold.of(context).openDrawer();
@@ -321,12 +322,12 @@ class _GFAppBarState extends State<GFAppBar> {
     IconThemeData actionsIconTheme = widget.actionsIconTheme ??
         appBarTheme.actionsIconTheme ??
         overallIconTheme;
-    TextStyle centerStyle = widget.textTheme?.headline ??
-        appBarTheme.textTheme?.headline ??
-        theme.primaryTextTheme.headline;
-    TextStyle sideStyle = widget.textTheme?.body1 ??
-        appBarTheme.textTheme?.body1 ??
-        theme.primaryTextTheme.body1;
+    TextStyle centerStyle = widget.textTheme?.headline5 ??
+        appBarTheme.textTheme?.headline5 ??
+        theme.primaryTextTheme.headline5;
+    TextStyle sideStyle = widget.textTheme?.bodyText1 ??
+        appBarTheme.textTheme?.bodyText1 ??
+        theme.primaryTextTheme.bodyText1;
 
     if (widget.toolbarOpacity != 1.0) {
       final double opacity = const Interval(
@@ -455,7 +456,7 @@ class _GFAppBarState extends State<GFAppBar> {
         ),
         onTap: widget.onTap,
         onChanged: widget.onChanged,
-        controller: widget.searchController,
+        controller: _searchController ?? widget.searchController,
         onSubmitted: widget.onSubmitted,
       );
     }

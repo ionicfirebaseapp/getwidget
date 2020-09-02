@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:getflutter/getflutter.dart';
+import 'package:getwidget/getwidget.dart';
 
 class GFToast extends StatefulWidget {
   ///Creates [GFToast] that can be used to display quick warning or error messages.
@@ -19,6 +19,7 @@ class GFToast extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 300),
     this.duration = const Duration(milliseconds: 300),
     this.textStyle = const TextStyle(color: Colors.white70),
+    this.autoDismissDuration = const Duration(milliseconds: 3000),
   }) : super(key: key);
 
   /// child of  type [Widget]is alternative to text key. text will get priority over child
@@ -51,6 +52,9 @@ class GFToast extends StatefulWidget {
   ///type of [Duration] which takes the duration of the animation
   final Duration duration;
 
+  ///type of [Duration] which takes the duration of the autoDismiss
+  final Duration autoDismissDuration;
+
   /// type of [Alignment] used to align the text inside the toast
   final Alignment alignment;
 
@@ -74,30 +78,34 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
       curve: Curves.easeIn,
     );
 
-    animationController.forward();
-    fadeanimationController = AnimationController(
-      vsync: this,
-      duration: widget.animationDuration,
-    )..addListener(() => setState(() {}));
-    fadeanimation = Tween<double>(
-      begin: 0,
-      end: 1,
-    ).animate(fadeanimationController);
-    Timer(widget.duration, () {
-      fadeanimationController.forward();
-    });
+    if (mounted) {
+      animationController.forward();
+      fadeanimationController = AnimationController(
+        vsync: this,
+        duration: widget.animationDuration,
+      )..addListener(() => setState(() {}));
+      fadeanimation = Tween<double>(
+        begin: 0,
+        end: 1,
+      ).animate(fadeanimationController);
+      Timer(widget.duration, () {
+        if (mounted) {
+          fadeanimationController.forward();
+        }
+      });
+      fadeanimation = Tween<double>(
+        begin: 1,
+        end: 0,
+      ).animate(fadeanimationController);
+      fadeanimation.addStatusListener((AnimationStatus state) {
+        if (fadeanimation.isCompleted && widget.autoDismiss) {
+          setState(() {
+            hideToast = true;
+          });
+        }
+      });
+    }
 
-    fadeanimation = Tween<double>(
-      begin: 1,
-      end: 0,
-    ).animate(fadeanimationController);
-    fadeanimation.addStatusListener((AnimationStatus state) {
-      if (fadeanimation.isCompleted && widget.autoDismiss) {
-        setState(() {
-          hideToast = true;
-        });
-      }
-    });
     super.initState();
   }
 
@@ -105,6 +113,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
   void dispose() {
     animationController.dispose();
     fadeanimationController.dispose();
+
     super.dispose();
   }
 

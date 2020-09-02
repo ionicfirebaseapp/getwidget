@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getflutter/types/gf_progress_type.dart';
+import 'package:getwidget/getwidget.dart';
 
 class GFProgressBar extends StatefulWidget {
   GFProgressBar({
@@ -289,6 +289,7 @@ class _GFProgressBarState extends State<GFProgressBar>
                 )),
           )
         : Material(
+            color: Colors.transparent,
             child: Container(
                 width: MediaQuery.of(context).size.width,
                 child: Column(

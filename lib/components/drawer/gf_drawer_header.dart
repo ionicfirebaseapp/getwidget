@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/getflutter.dart';
+import 'package:getwidget/getwidget.dart';
 
 class GFDrawerHeaderPictures extends StatelessWidget {
   const GFDrawerHeaderPictures({
@@ -28,7 +28,7 @@ class GFDrawerHeaderPictures extends StatelessWidget {
         children: <Widget>[
           closeButton == null
               ? GFIconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.close,
                     color: Colors.white,
                   ),

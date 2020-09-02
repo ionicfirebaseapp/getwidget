@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getflutter/getflutter.dart';
+import 'package:getwidget/getwidget.dart';
 
 class GFListTile extends StatelessWidget {
   /// Creates ListTile with leading, title, trailing, image widget for almost every type of ListTile design.
@@ -50,7 +50,7 @@ class GFListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        constraints: const BoxConstraints(minHeight: 50),
+//        constraints: const BoxConstraints(minHeight: 50),
         padding: padding,
         margin: margin,
         decoration: BoxDecoration(
@@ -79,7 +79,7 @@ class GFListTile extends StatelessWidget {
                     subtitleText != null
                         ? Text(
                             subtitleText,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 14.5,
                               color: Colors.black54,
                             ),

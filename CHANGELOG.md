@@ -1,5 +1,53 @@
 # Changelog
 
+## 1.1.3 - 2020-07-30
+
+### Fixed
+* [GFAppBar] clear button does not fire onChanged #149
+* [GFCarousel] initialPage Not Honored if Page Indicators Enabled. #144
+* [GFCarousel] timer of the autoPlay is not disposed #143
+* [GFCarousel] active page indicator is not being updated without "onPageChanged" #139
+* [GFTabBar] Docs say about isScrollable which is not supported #132
+
+### Update
+* couple of compoenents (WIP)
+    - GFCheckboxTile
+    - GFRadioTile
+    
+
+
+## 1.1.1 - 2020-06-26
+
+### Added
+* added new components
+    - GFCheckbox
+    - GFRadio
+
+### Update
+* Changed name to GetWidget
+
+### Fixed
+*  Many minor issues fixed
+
+
+
+
+## 1.0.11 - 2020-03-11
+
+### Fixed
+*  Resolved issues.
+
+
+
+
+## 1.0.10 - 2020-03-11
+
+### Fixed
+* Few minor fixes
+
+
+
+
 ## 1.0.9 - 2020-03-02
 
 ### Fixed
@@ -8,6 +56,9 @@
 ### Added
 * added new component
     - GFShimmer
+
+
+
 
 ## 1.0.8 - 2020-02-18
 
