@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
-class GFRadioButton extends StatefulWidget {
+class GFRadioButton<T> extends StatefulWidget {
   const GFRadioButton(
       {Key key,
       this.size = GFSize.SMALL,
@@ -24,8 +24,13 @@ class GFRadioButton extends StatefulWidget {
         color: GFColors.DARK,
       ),
       this.custombgColor = GFColors.SUCCESS,
-      this.groupValue})
-      : super(key: key);
+      this.groupValue,
+      this.autofocus = false,
+      this.focusNode,
+      this.toggleable = false})
+      : assert(autofocus != null),
+        assert(toggleable != null),
+        super(key: key);
 
   /// type of [GFRadioButtonType] which is of four type is basic, sqaure, circular and custom
   final GFRadioButtonType type;
@@ -51,8 +56,14 @@ class GFRadioButton extends StatefulWidget {
   /// Called when the user checks or unchecks the checkbox.
   final ValueChanged<bool> onChanged;
 
-  ///Used to set the current state of the checkbox
-  final bool value;
+//  ///Used to set the current state of the checkbox
+//  final bool value;
+//
+//  /// The currently selected value for a group of radio buttons.
+//  ///
+//  /// This radio button is considered selected if its [value] matches the
+//  /// [groupValue].
+//  final bool groupValue;
 
   ///type of Widget used to change the  checkbox's active icon
   final Widget activeIcon;
@@ -63,15 +74,30 @@ class GFRadioButton extends StatefulWidget {
   /// type of [Color] used to change the background color of the custom active  checkbox only
   final Color custombgColor;
 
-  final bool groupValue;
+  /// {@macro flutter.widgets.Focus.focusNode}
+  final FocusNode focusNode;
+
+  /// {@macro flutter.widgets.Focus.autofocus}
+  final bool autofocus;
+
+  /// The value represented by this radio button.
+  final T value;
+
+  /// The currently selected value for a group of radio buttons.
+  ///
+  /// This radio button is considered selected if its [value] matches the
+  /// [groupValue].
+  final T groupValue;
+
+  final bool toggleable;
 
   @override
-  _GFRadioButtonState createState() => _GFRadioButtonState();
+  _GFRadioButtonState<T> createState() => _GFRadioButtonState<T>();
 }
 
-class _GFRadioButtonState extends State<GFRadioButton> {
-//
-
+class _GFRadioButtonState<T> extends State<GFRadioButton<T>>
+    with TickerProviderStateMixin {
+  bool get enabled => widget.onChanged != null;
   bool isSelected = false;
 
   @override
@@ -91,6 +117,7 @@ class _GFRadioButtonState extends State<GFRadioButton> {
 
   @override
   Widget build(BuildContext context) => InkWell(
+      enableFeedback: enabled,
       onTap: onStatusChange,
       child: Container(
           height: widget.size,

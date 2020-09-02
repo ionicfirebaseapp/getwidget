@@ -293,6 +293,7 @@ class _GFAppBarState extends State<GFAppBar> {
   static const double _defaultElevation = 4;
   Widget searchBar;
   bool showSearchBar = false;
+  final TextEditingController _searchController = TextEditingController();
 
   void _handleDrawerButton() {
     Scaffold.of(context).openDrawer();
@@ -455,7 +456,7 @@ class _GFAppBarState extends State<GFAppBar> {
         ),
         onTap: widget.onTap,
         onChanged: widget.onChanged,
-        controller: widget.searchController,
+        controller: _searchController ?? widget.searchController,
         onSubmitted: widget.onSubmitted,
       );
     }
