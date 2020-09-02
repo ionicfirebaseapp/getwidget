@@ -17,7 +17,7 @@ class GFAccordion extends StatefulWidget {
       this.contentPadding = const EdgeInsets.all(10),
       this.contentChild,
       this.titleBorder = const Border(),
-      this.contentBorder = const Border(),
+      this.contentborder = const Border(),
       this.margin,
       this.showAccordion = false,
       this.onToggleCollapsed,
@@ -73,7 +73,7 @@ class GFAccordion extends StatefulWidget {
   final Border titleBorder;
 
   ///contentBorderColor of type  [Color] or [GFColors] which is used to change the border color of content
-  final Border contentBorder;
+  final Border contentborder;
 
   ///titleBorderRadius of type  [Radius]  which is used to change the border radius of title
   final BorderRadius titleBorderRadius;
@@ -156,7 +156,7 @@ class _GFAccordionState extends State<GFAccordion>
                 ? Container(
                     decoration: BoxDecoration(
                       borderRadius: widget.contentBorderRadius,
-                      border: widget.contentBorder,
+                      border: widget.contentborder,
                       color: widget.contentBackgroundColor ?? Colors.white70,
                     ),
                     width: MediaQuery.of(context).size.width,
