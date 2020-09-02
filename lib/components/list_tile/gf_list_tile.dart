@@ -16,7 +16,18 @@ class GFListTile extends StatelessWidget {
     this.icon,
     this.padding = const EdgeInsets.all(8),
     this.margin = const EdgeInsets.all(16),
-  }) : super(key: key);
+    this.enabled = true,
+    this.onTap,
+    this.onLongPress,
+    this.selected = false,
+    this.focusColor,
+    this.hoverColor,
+    this.focusNode,
+    this.autofocus = false,
+  })  : assert(enabled != null),
+        assert(selected != null),
+        assert(autofocus != null),
+        super(key: key);
 
   ///type of [String] used to pass text, alternative to title property and gets higher priority than title
   final String titleText;
@@ -48,50 +59,98 @@ class GFListTile extends StatelessWidget {
   /// defines the padding of GFListTile
   final EdgeInsets padding;
 
+  /// Whether this list tile is interactive.
+  ///
+  /// If false, this list tile is styled with the disabled color from the
+  /// current [Theme] and the [onTap] and [onLongPress] callbacks are
+  /// inoperative.
+  final bool enabled;
+
+  /// Called when the user taps this list tile.
+  ///
+  /// Inoperative if [enabled] is false.
+  final GestureTapCallback onTap;
+
+  /// Called when the user long-presses on this list tile.
+  ///
+  /// Inoperative if [enabled] is false.
+  final GestureLongPressCallback onLongPress;
+
+  /// If this tile is also [enabled] then icons and text are rendered with the same color.
+  ///
+  /// By default the selected color is the theme's primary color. The selected color
+  /// can be overridden with a [ListTileTheme].
+  final bool selected;
+
+  /// The color for the tile's [Material] when it has the input focus.
+  final Color focusColor;
+
+  /// The color for the tile's [Material] when a pointer is hovering over it.
+  final Color hoverColor;
+
+  /// {@macro flutter.widgets.Focus.focusNode}
+  final FocusNode focusNode;
+
+  /// {@macro flutter.widgets.Focus.autofocus}
+  final bool autofocus;
+
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(BuildContext context) => InkWell(
+        onTap: enabled ? onTap : null,
+        onLongPress: enabled ? onLongPress : null,
+        canRequestFocus: enabled,
+        focusNode: focusNode,
+        focusColor: focusColor,
+        hoverColor: hoverColor,
+        autofocus: autofocus,
+        child: Semantics(
+          selected: selected,
+          enabled: enabled,
+          child: Container(
 //        constraints: const BoxConstraints(minHeight: 50),
-        padding: padding,
-        margin: margin,
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: const BorderRadius.all(Radius.circular(5)),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            avatar ?? Container(),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    titleText != null
-                        ? Text(
-                            titleText,
-                            style: const TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500,
-                                color: GFColors.DARK),
-                          )
-                        : title ?? Container(),
-                    subtitleText != null
-                        ? Text(
-                            subtitleText,
-                            style: const TextStyle(
-                              fontSize: 14.5,
-                              color: Colors.black54,
-                            ),
-                          )
-                        : subTitle ?? Container(),
-                    description ?? Container()
-                  ],
-                ),
-              ),
+            padding: padding,
+            margin: margin,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: const BorderRadius.all(Radius.circular(5)),
             ),
-            icon ?? Container(),
-          ],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                avatar ?? Container(),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        titleText != null
+                            ? Text(
+                                titleText,
+                                style: const TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500,
+                                    color: GFColors.DARK),
+                              )
+                            : title ?? Container(),
+                        subtitleText != null
+                            ? Text(
+                                subtitleText,
+                                style: const TextStyle(
+                                  fontSize: 14.5,
+                                  color: Colors.black54,
+                                ),
+                              )
+                            : subTitle ?? Container(),
+                        description ?? Container()
+                      ],
+                    ),
+                  ),
+                ),
+                icon ?? Container(),
+              ],
+            ),
+          ),
         ),
       );
 }
