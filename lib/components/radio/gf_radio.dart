@@ -99,29 +99,6 @@ class _GFRadioButtonState extends State<GFRadioButton> {
     super.initState();
   }
 
-  void _handle(){
-    bool selected = false;
-    if(widget.value == widget.groupValue){
-      selected = false;
-    }
-    print('sel $selected');
-    _handleChanged(selected);
-  }
-
-
-  void _handleChanged(bool selected) {
-
-    if (selected == null) {
-      widget.onChanged(null);
-      return;
-    }
-    if (selected) {
-      widget.onChanged(widget.value);
-    }
-  }
-
-
-
   @override
   Widget build(BuildContext context) => FocusableActionDetector(
     focusNode: widget.focusNode,
@@ -129,7 +106,7 @@ class _GFRadioButtonState extends State<GFRadioButton> {
     enabled: enabled,
     child: InkWell(
         canRequestFocus: enabled,
-        onTap: enabled ? _handle : null,
+        onTap: widget.onChanged != null ? () {widget.onChanged(!widget.value);} : null,
         child: Container(
             height: widget.size,
             width: widget.size,

@@ -196,9 +196,9 @@ class _MyHomePageState extends State<MyHomePage>
                 groupValue: groupValue,
                 onChanged: (val) {
                   print('val $val');
-                  setState(() {
-                    groupValue = 0;
-                  });
+//                  setState(() {
+//                    groupValue = val;
+//                  });
                   print('radio $groupValue $val');
                 },
                 activeIcon: const Icon(
@@ -222,9 +222,9 @@ class _MyHomePageState extends State<MyHomePage>
                 groupValue: groupValue,
                 onChanged: (val) {
                   print('val $val');
-                  setState(() {
-                    groupValue = 1;
-                  });
+//                  setState(() {
+//                    groupValue = val;
+//                  });
                   print('radio $groupValue $val');
                 },
                 activeIcon: const Icon(
