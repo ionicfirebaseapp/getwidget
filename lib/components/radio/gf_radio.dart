@@ -7,9 +7,9 @@ import 'package:flutter/widgets.dart';
 class GFRadio<T> extends StatefulWidget {
   const GFRadio(
       {Key key,
-        @required this.value,
-        @required this.groupValue,
-        @required this.onChanged,
+      @required this.value,
+      @required this.groupValue,
+      @required this.onChanged,
       this.size = GFSize.SMALL,
       this.type = GFRadioType.basic,
       this.radioColor = GFColors.SUCCESS,
@@ -30,8 +30,7 @@ class GFRadio<T> extends StatefulWidget {
       this.custombgColor = GFColors.SUCCESS,
       this.autofocus = false,
       this.focusNode,
-      this.toggleable = false
-      })
+      this.toggleable = false})
       : assert(autofocus != null),
         assert(toggleable != null),
         super(key: key);
@@ -60,15 +59,6 @@ class GFRadio<T> extends StatefulWidget {
   /// Called when the user checks or unchecks the checkbox.
   final ValueChanged<T> onChanged;
 
-//  ///Used to set the current state of the checkbox
-//  final bool value;
-//
-//  /// The currently selected value for a group of radio buttons.
-//  ///
-//  /// This radio button is considered selected if its [value] matches the
-//  /// [groupValue].
-//  final bool groupValue;
-
   ///type of Widget used to change the  checkbox's active icon
   final Widget activeIcon;
 
@@ -87,23 +77,21 @@ class GFRadio<T> extends StatefulWidget {
   /// The value represented by this radio button.
   final T value;
 
-  /// The currently selected value for a group of radio buttons.
-  ///
-  /// This radio button is considered selected if its [value] matches the
+  /// The currently selected value for a group of radio buttons. Radio button is considered selected if its [value] matches the
   /// [groupValue].
   final T groupValue;
 
+  /// sets the radio value
   final bool toggleable;
 
   @override
   _GFRadioState<T> createState() => _GFRadioState<T>();
 }
 
-class _GFRadioState<T> extends State<GFRadio<T>>
-    with TickerProviderStateMixin {
+class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
   bool get enabled => widget.onChanged != null;
   bool selected = false;
-  var groupValue;
+  T groupValue;
 
   void onStatusChange() {
     print('wer ${widget.value == widget.groupValue}');
@@ -134,56 +122,56 @@ class _GFRadioState<T> extends State<GFRadio<T>>
             height: widget.size,
             width: widget.size,
             decoration: BoxDecoration(
-                color: selected ? widget.activebgColor : widget
-                    .inactivebgColor,
+                color: selected ? widget.activebgColor : widget.inactivebgColor,
                 borderRadius: widget.type == GFRadioType.basic
                     ? BorderRadius.circular(50)
                     : widget.type == GFRadioType.square
-                    ? BorderRadius.circular(0)
-                    : BorderRadius.circular(10),
+                        ? BorderRadius.circular(0)
+                        : BorderRadius.circular(10),
                 border: Border.all(
                     color: selected
                         ? widget.activeBorderColor
                         : widget.inactiveBorderColor)),
             child: selected
                 ? widget.type == GFRadioType.basic ||
-                widget.type == GFRadioType.square
-                ? Stack(
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.center,
-                ),
-                Container(
-                  margin: const EdgeInsets.all(5),
-                  alignment: Alignment.center,
-                  width: widget.size * 0.7,
-                  height: widget.size * 0.7,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: widget.radioColor),
-                )
-              ],
-            )
-                : widget.type == GFRadioType.blunt
-                ? Stack(
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.center,
-                ),
-                Container(
-                  margin: const EdgeInsets.all(5),
-                  alignment: Alignment.center,
-                  width: widget.size * 0.8,
-                  height: widget.size * 0.8,
-                  decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(
-                          Radius.circular(50)),
-                      color: widget.custombgColor),
-                )
-              ],
-            )
-                : widget.type == GFRadioType.custom
-                ? widget.activeIcon
-                : widget.inactiveIcon
+                        widget.type == GFRadioType.square
+                    ? Stack(
+                        children: <Widget>[
+                          Container(
+                            alignment: Alignment.center,
+                          ),
+                          Container(
+                            margin: const EdgeInsets.all(5),
+                            alignment: Alignment.center,
+                            width: widget.size * 0.7,
+                            height: widget.size * 0.7,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: widget.radioColor),
+                          )
+                        ],
+                      )
+                    : widget.type == GFRadioType.blunt
+                        ? Stack(
+                            children: <Widget>[
+                              Container(
+                                alignment: Alignment.center,
+                              ),
+                              Container(
+                                margin: const EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                width: widget.size * 0.8,
+                                height: widget.size * 0.8,
+                                decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(50)),
+                                    color: widget.custombgColor),
+                              )
+                            ],
+                          )
+                        : widget.type == GFRadioType.custom
+                            ? widget.activeIcon
+                            : widget.inactiveIcon
                 : widget.inactiveIcon));
   }
 }

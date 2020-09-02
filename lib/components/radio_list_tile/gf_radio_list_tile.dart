@@ -44,8 +44,7 @@ class GFRadioListTile<T> extends StatelessWidget {
     this.selected = false,
     this.focusColor,
     this.hoverColor,
-  })
-      : assert(autofocus != null),
+  })  : assert(autofocus != null),
         assert(toggleable != null),
         assert(enabled != null),
         assert(selected != null),
@@ -140,15 +139,6 @@ class GFRadioListTile<T> extends StatelessWidget {
   /// Called when the user checks or unchecks the checkbox.
   final ValueChanged<T> onChanged;
 
-//  ///Used to set the current state of the checkbox
-//  final bool value;
-//
-//  /// The currently selected value for a group of radio buttons.
-//  ///
-//  /// This radio button is considered selected if its [value] matches the
-//  /// [groupValue].
-//  final bool groupValue;
-
   ///type of Widget used to change the  checkbox's active icon
   final Widget activeIcon;
 
@@ -161,57 +151,56 @@ class GFRadioListTile<T> extends StatelessWidget {
   /// The value represented by this radio button.
   final T value;
 
-  /// The currently selected value for a group of radio buttons.
-  ///
-  /// This radio button is considered selected if its [value] matches the
+  /// The currently selected value for a group of radio buttons. Radio button is considered selected if its [value] matches the
   /// [groupValue].
   final T groupValue;
 
+  /// sets the radio value
   final bool toggleable;
 
-  /// Whether this radio button is checked.
-  ///
-  /// To control this value, set [value] and [groupValue] appropriately.
+  /// Whether this radio button is checked. To control this value, set [value] and [groupValue] appropriately.
   bool get checked => value == groupValue;
 
   @override
   Widget build(BuildContext context) => MergeSemantics(
-    child: GFListTile(
-      autofocus: autofocus,
-      enabled: onChanged != null,
-      onTap: onChanged != null ? () {
-        if (toggleable && checked) {
-          onChanged(null);
-          return;
-        }
-        if (!checked) {
-          onChanged(value);
-        }
-      } : null,
-      selected: selected,
-      avatar: avatar,
-      titleText: titleText,
-      subTitle: subTitle,
-      subtitleText: subtitleText,
-      description: description,
-      color: color,
-      padding: padding,
-      margin: margin,
-      title: title,
-      icon: GFRadio(
-        autofocus: autofocus,
-        onChanged: onChanged,
-        value: value,
-        groupValue: groupValue,
-        size: size,
-        activebgColor: activebgColor,
-        inactiveIcon: inactiveIcon,
-        activeBorderColor: activeBorderColor,
-        inactivebgColor: inactivebgColor,
-        activeIcon: activeIcon,
-        inactiveBorderColor: inactiveBorderColor,
-        custombgColor: custombgColor,
-      ),
-    ),
-  );
+        child: GFListTile(
+          autofocus: autofocus,
+          enabled: onChanged != null,
+          onTap: onChanged != null
+              ? () {
+                  if (toggleable && checked) {
+                    onChanged(null);
+                    return;
+                  }
+                  if (!checked) {
+                    onChanged(value);
+                  }
+                }
+              : null,
+          selected: selected,
+          avatar: avatar,
+          titleText: titleText,
+          subTitle: subTitle,
+          subtitleText: subtitleText,
+          description: description,
+          color: color,
+          padding: padding,
+          margin: margin,
+          title: title,
+          icon: GFRadio(
+            autofocus: autofocus,
+            onChanged: onChanged,
+            value: value,
+            groupValue: groupValue,
+            size: size,
+            activebgColor: activebgColor,
+            inactiveIcon: inactiveIcon,
+            activeBorderColor: activeBorderColor,
+            inactivebgColor: inactivebgColor,
+            activeIcon: activeIcon,
+            inactiveBorderColor: inactiveBorderColor,
+            custombgColor: custombgColor,
+          ),
+        ),
+      );
 }
