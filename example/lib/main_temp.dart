@@ -161,11 +161,9 @@ class _MyHomePageState extends State<MyHomePage>
                 value: 0,
                 groupValue: groupValue,
                 onChanged: (val) {
-                  print('val $val');
                   setState(() {
                     groupValue = val;
                   });
-                  print('radio $groupValue $val');
                 },
               ),
 
@@ -173,18 +171,36 @@ class _MyHomePageState extends State<MyHomePage>
                 value: 1,
                 groupValue: groupValue,
                 onChanged: (val) {
-                  print('val $val');
                   setState(() {
                     groupValue = val;
                   });
-                  print('radio $groupValue $val');
                 },
               ),
-//              RadioListTile(value: null, groupValue: null, onChanged: null),
+              GFRadioListTile(
+                title: Text("hjj"),
+                value: 0,
+                groupValue: groupValue,
+                onChanged: (val) {
+                  setState(() {
+                    groupValue = val;
+                  });
+                },
+              ),
 
-              GFRadioButton(
+              GFRadioListTile(
+                title: Text("hjjnjklklk"),
+                value: 1,
+                groupValue: groupValue,
+                onChanged: (val) {
+                  setState(() {
+                    groupValue = val;
+                  });
+                },
+              ),
+
+              GFRadio(
                 size: GFSize.SMALL,
-                type: GFRadioButtonType.basic,
+                type: GFRadioType.basic,
                 radioColor: GFColors.SUCCESS,
 //                activebgColor: GFColors.ALT,
 //                inactivebgColor: GFColors.PRIMARY,
@@ -193,11 +209,9 @@ class _MyHomePageState extends State<MyHomePage>
                 value: 0,
                 groupValue: groupValue,
                 onChanged: (val) {
-                  print('val $val');
-//                  setState(() {
-//                    groupValue = val;
-//                  });
-                  print('radio $groupValue $val');
+                  setState(() {
+                    groupValue = val;
+                  });
                 },
                 activeIcon: const Icon(
                   Icons.check,
@@ -207,10 +221,10 @@ class _MyHomePageState extends State<MyHomePage>
 //                inactiveIcon: const Icon(Icons.close, size: 20, color: GFColors.DARK,),
 //                custombgColor: GFColors.SUCCESS,
               ),
-
-              GFRadioButton(
+//
+              GFRadio(
                 size: GFSize.SMALL,
-                type: GFRadioButtonType.basic,
+                type: GFRadioType.basic,
                 radioColor: GFColors.SUCCESS,
 //                activebgColor: GFColors.ALT,
 //                inactivebgColor: GFColors.PRIMARY,
@@ -219,11 +233,9 @@ class _MyHomePageState extends State<MyHomePage>
                 value: 1,
                 groupValue: groupValue,
                 onChanged: (val) {
-                  print('val $val');
-//                  setState(() {
-//                    groupValue = val;
-//                  });
-                  print('radio $groupValue $val');
+                  setState(() {
+                    groupValue = val;
+                  });
                 },
                 activeIcon: const Icon(
                   Icons.check,
