@@ -992,8 +992,43 @@ class _ModalGFBottomSheetState<T> extends State<_ModalGFBottomSheet<T>>    with 
     final MaterialLocalizations localizations = MaterialLocalizations.of(context);
     final String routeLabel = _getRouteLabel(localizations);
 
+//    return AnimatedBuilder(
+//      animation: _controller,
+//      builder: (_, Widget child) {
+//        if (_controller.isAnimating) {
+//          _positionOffset = _animationMinOffset +
+//              _controller.value * _draggableHeight;
+//        }
+//        return Positioned(
+//          top: _positionOffset,
+//          right: 0.0,
+//          left: 0.0,
+//          child: child,
+//        );
+//      },
+//
+//      child: GestureDetector(
+//        onVerticalDragDown: _dragDown,
+//        onVerticalDragUpdate: _dragUpdate,
+//        onVerticalDragEnd: _dragEnd,
+//        child: Column(
+//          mainAxisSize: MainAxisSize.min,
+//          children: <Widget>[
+//            Container(
+//                key: _headerKey,
+//                child: widget.persistentHeader ?? Container()),
+//            Container(
+//              key: _contentKey,
+//              child: widget.expandableContent,
+//            ),
+//          ],
+//        ),
+//      ),
+//    );
+
+
     return AnimatedBuilder(
-      animation: _controller,
+      animation: widget.route.animation,
       builder: (_, Widget child) {
         if (_controller.isAnimating) {
           _positionOffset = _animationMinOffset +
@@ -1006,12 +1041,10 @@ class _ModalGFBottomSheetState<T> extends State<_ModalGFBottomSheet<T>>    with 
           child: child,
         );
       },
-
       child: GestureDetector(
         onVerticalDragDown: _dragDown,
         onVerticalDragUpdate: _dragUpdate,
         onVerticalDragEnd: _dragEnd,
-
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -1025,46 +1058,41 @@ class _ModalGFBottomSheetState<T> extends State<_ModalGFBottomSheet<T>>    with 
           ],
         ),
       ),
+      builder: (BuildContext context, Widget child) {
+        // Disable the initial animation when accessible navigation is on so
+        // that the semantics are added to the tree at the correct time.
+        final double animationValue = animationCurve.transform(
+            mediaQuery.accessibleNavigation ? 1.0 : widget.route.animation.value
+        );
+        return Semantics(
+          scopesRoute: true,
+          namesRoute: true,
+          label: routeLabel,
+          explicitChildNodes: true,
+          child: ClipRect(
+            child: CustomSingleChildLayout(
+              delegate: _ModalGFBottomSheetLayout(animationValue, widget.isScrollControlled),
+              child: GFBottomSheet(
+                animationController: widget.route._animationController,
+                onClosing: () {
+                  if (widget.route.isCurrent) {
+                    Navigator.pop(context);
+                  }
+                },
+                builder: widget.route.builder,
+                backgroundColor: widget.backgroundColor,
+                elevation: widget.elevation,
+                shape: widget.shape,
+                clipBehavior: widget.clipBehavior,
+                enableDrag: widget.enableDrag,
+                onDragStart: handleDragStart,
+//                onDragEnd: handleDragEnd,
+              ),
+            ),
+          ),
+        );
+      },
     );
-
-
-//    return AnimatedBuilder(
-//      animation: widget.route.animation,
-//      builder: (BuildContext context, Widget child) {
-//        // Disable the initial animation when accessible navigation is on so
-//        // that the semantics are added to the tree at the correct time.
-//        final double animationValue = animationCurve.transform(
-//            mediaQuery.accessibleNavigation ? 1.0 : widget.route.animation.value
-//        );
-//        return Semantics(
-//          scopesRoute: true,
-//          namesRoute: true,
-//          label: routeLabel,
-//          explicitChildNodes: true,
-//          child: ClipRect(
-//            child: CustomSingleChildLayout(
-//              delegate: _ModalGFBottomSheetLayout(animationValue, widget.isScrollControlled),
-//              child: GFBottomSheet(
-//                animationController: widget.route._animationController,
-//                onClosing: () {
-//                  if (widget.route.isCurrent) {
-//                    Navigator.pop(context);
-//                  }
-//                },
-//                builder: widget.route.builder,
-//                backgroundColor: widget.backgroundColor,
-//                elevation: widget.elevation,
-//                shape: widget.shape,
-//                clipBehavior: widget.clipBehavior,
-//                enableDrag: widget.enableDrag,
-//                onDragStart: handleDragStart,
-////                onDragEnd: handleDragEnd,
-//              ),
-//            ),
-//          ),
-//        );
-//      },
-//    );
   }
 }
 

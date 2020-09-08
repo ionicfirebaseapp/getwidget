@@ -276,22 +276,59 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
               ),
             builder: (BuildContext context) =>
                 Container(
-                height: 200,
-                color: Colors.amber,
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      const Text('Modal BottomSheet'),
-                      RaisedButton(
-                        child: const Text('Close BottomSheet'),
-                        onPressed: () => Navigator.pop(context),
-                      )
-                    ],
+                  constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.8),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const <Widget>[
+                        GFListTile(
+                          titleText: 'dfg',
+                          description: Text('df hgdata '),
+                        ),
+                        GFListTile(
+                          titleText: 'dfg',
+                          description: Text('df hgdata '),
+                        ),
+                        GFListTile(
+                          titleText: 'dfg',
+                          description: Text('df hgdata '),
+                        ),
+                        GFListTile(
+                          titleText: 'dfg',
+                          description: Text('df hgdata '),
+                        ),
+                        GFListTile(
+                          titleText: 'dfg',
+                          description: Text('df hgdata '),
+                        ),
+                        GFListTile(
+                          titleText: 'dfg',
+                          description: Text('df hgdata '),
+                        ),
+                        GFListTile(
+                          titleText: 'dfg',
+                          description: Text('df hgdata '),
+                        ),
+                        GFListTile(
+                          titleText: 'dfg',
+                          description: Text('df hgdata '),
+                        ),
+                        GFListTile(
+                          titleText: 'dfg',
+                          description: Text('df hgdata '),
+                        ),
+                        GFListTile(
+                          titleText: 'dfg',
+                          description: Text('df hgdata '),
+                        ),
+                        GFListTile(
+                          titleText: 'dfg',
+                          description: Text('df hgdata '),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              )
           );
           },),
 
