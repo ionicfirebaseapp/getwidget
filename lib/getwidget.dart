@@ -37,6 +37,7 @@ export 'package:getwidget/components/checkbox/gf_checkbox.dart';
 export 'package:getwidget/components/checkbox_list_tile/gf_checkbox_list_tile.dart';
 export 'package:getwidget/components/radio/gf_radio.dart';
 export 'package:getwidget/components/radio_list_tile/gf_radio_list_tile.dart';
+export 'package:getwidget/components/bottom_sheet/gf_bottom_sheet.dart';
 
 // exports shape, color, position, size, types, direction
 export 'colors/gf_color.dart';
