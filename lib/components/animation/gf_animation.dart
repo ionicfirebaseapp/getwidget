@@ -29,6 +29,8 @@ class GFAnimation extends StatefulWidget {
     this.textWidthBasis,
     this.fontSize,
     this.fontWeight,
+    this.changedWidth,
+    this.changedHeight,
   }) : super(key: key);
 
   /// The duration for animations of the [Decoration].
@@ -49,8 +51,17 @@ class GFAnimation extends StatefulWidget {
   ///type of [GFAnimation] which takes the type ie, align, size, container, rotateTransition, scaleTransition, slideTransition, and textStyle for the [GFAnimation]
   final GFAnimationType type;
 
+  /// [AnimatedContainer] initial width
   final double width;
+
+  /// [AnimatedContainer] changed width
+  final double changedWidth;
+
+  /// [AnimatedContainer] initial height
   final double height;
+
+  /// [AnimatedContainer] changed height
+  final double changedHeight;
 
   /// defines the color of items when onTap triggers
   final Color activeColor;
@@ -83,6 +94,8 @@ class GFAnimation extends StatefulWidget {
   final TextStyle style;
   final TextAlign textAlign;
   final TextOverflow textOverflow;
+
+  /// [AnimatedDefaultTextStyle] maxlines
   final int maxLines;
   final TextWidthBasis textWidthBasis;
   final double fontSize;
@@ -95,7 +108,6 @@ class GFAnimation extends StatefulWidget {
 class _GFAnimationState extends State<GFAnimation>
     with SingleTickerProviderStateMixin {
   bool selected = false;
-  bool expand = false;
 
   AnimationController controller;
   Animation<double> animation;
@@ -158,8 +170,10 @@ class _GFAnimationState extends State<GFAnimation>
         child: AnimatedContainer(
           margin: widget.margin ?? const EdgeInsets.all(0),
           padding: widget.padding ?? const EdgeInsets.all(8),
-          width: selected ? widget.width ?? 200.0 : 100.0,
-          height: selected ? widget.width ?? 100.0 : 200.0,
+          width:
+              selected ? widget.changedWidth ?? 200.0 : widget.width ?? 100.0,
+          height:
+              selected ? widget.changedHeight ?? 200.0 : widget.height ?? 100.0,
           color: selected
               ? widget.activeColor ?? Colors.red
               : widget.color ?? Colors.blue,
@@ -174,10 +188,14 @@ class _GFAnimationState extends State<GFAnimation>
 
   Widget buildAnimatedAlignWidget() => GestureDetector(
         onTap: () {
-          if (mounted) {
-            setState(() {
-              selected = !selected;
-            });
+          if (widget.onTap == null) {
+            if (mounted) {
+              setState(() {
+                selected = !selected;
+              });
+            }
+          } else {
+            widget.onTap();
           }
         },
         child: Container(
