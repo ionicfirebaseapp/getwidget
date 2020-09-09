@@ -129,6 +129,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       ),
     bottomSheet: GFBottomSheet(
       controller: _controller,
+      maxHeight: 600,
+      smoothness: GFSmoothness.HIGH,
       stickyHeader: Container(
         color: Theme.of(context).primaryColor,
         height: 50,

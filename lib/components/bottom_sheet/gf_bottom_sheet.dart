@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:getwidget/smoothness/gf_smoothness.dart';
+
 
 class GFBottomSheet extends StatefulWidget {
   // This controls the minimum height of the body. Must be greater or equal of
@@ -19,10 +21,6 @@ class GFBottomSheet extends StatefulWidget {
 
   final Widget stickyFooter;
 
-  // This property defines how 'smooth' or fast will be the animation. Low is
-  // the slowest velocity and high is the fastest. By default is medium.
-  final Smoothness smoothness;
-
   // This property is the elevation of the bottomSheet. Must be greater or equal
   // to 0. By default is 0.
   final double elevation;
@@ -33,6 +31,8 @@ class GFBottomSheet extends StatefulWidget {
   // to check widget visibility on a screen
   SolidController controller;
 
+  final int smoothness;
+
   GFBottomSheet({
     Key key,
     @required this.stickyHeader,
@@ -40,23 +40,24 @@ class GFBottomSheet extends StatefulWidget {
     this.stickyFooter,
     this.controller,
     this.minHeight = 0,
-    this.maxHeight = 500,
+    this.maxHeight = 300,
     this.elevation = 0.0,
-    this.smoothness = Smoothness.medium,
+    this.smoothness = GFSmoothness.MEDIUM,
   })  : assert(elevation >= 0.0),
         assert(minHeight >= 0.0),
         super(key: key) {
     if (controller == null) {
       this.controller = SolidController();
     }
-    this.controller.smoothness = smoothness;
+    this.controller.height = this.minHeight;
+    this.controller.Smoothness = smoothness;
   }
 
   @override
   _GFBottomSheetState createState() => _GFBottomSheetState();
 }
 
-class _GFBottomSheetState extends State<GFBottomSheet> {
+class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderStateMixin {
   bool isDragDirectionUp;
   bool showOnAppear = false;
 
@@ -87,10 +88,17 @@ class _GFBottomSheetState extends State<GFBottomSheet> {
   }
 
   Function _controllerListener;
+  AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
+//    _controller = AnimationController(
+//      vsync: this,
+//      lowerBound: 0.0,
+//      upperBound: 1.0,
+//    );
+//    _controller.addStatusListener(_controllerListener);
     widget.controller.value = showOnAppear;
     _controllerListener = () {
       widget.controller.value ? _show() : _hide();
@@ -99,7 +107,8 @@ class _GFBottomSheetState extends State<GFBottomSheet> {
   }
 
   @override
-  Widget build(BuildContext context) => Column(
+  Widget build(BuildContext context) {
+    final Widget bottomSheet = Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         GestureDetector(
@@ -115,36 +124,46 @@ class _GFBottomSheetState extends State<GFBottomSheet> {
               ),
             ])
                 : null,
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
             child: widget.stickyHeader,
           ),
         ),
         StreamBuilder<double>(
           stream: widget.controller.heightStream,
           initialData: widget.controller.height,
-          builder: (_, snapshot) => AnimatedContainer(
-              curve: Curves.easeOut,
-              duration:
-              Duration(milliseconds: widget.controller.smoothness.value),
-              height: snapshot.data,
-              child: GestureDetector(
-                onVerticalDragUpdate: _onVerticalDragUpdate,
-                onVerticalDragEnd:_onVerticalDragEnd,
-                onTap: _onTap,
-                child: widget.contentBody,
+          builder: (_, snapshot) =>
+              AnimatedContainer(
+                curve: Curves.easeOut,
+                duration:
+                Duration(milliseconds: widget.controller.Smoothness),
+                height: snapshot.data,
+                child: GestureDetector(
+                  onVerticalDragUpdate: _onVerticalDragUpdate,
+                  onVerticalDragEnd: _onVerticalDragEnd,
+                  onTap: _onTap,
+                  child: widget.contentBody,
+                ),
               ),
-            ),
         ),
-        widget.controller.height == widget.maxHeight ? widget.stickyFooter : Container()
+        widget.controller.height == widget.maxHeight
+            ? widget.stickyFooter
+            : Container()
       ],
     );
+    return bottomSheet;
+  }
 
   void _hide() {
     widget.controller.height = widget.minHeight;
+    print('hhhhhhhhhhhh ${ widget.controller.height == widget.maxHeight}');
   }
 
   void _show() {
     widget.controller.height = widget.maxHeight;
+    print('sssssssss ${ widget.controller.height == widget.maxHeight}');
   }
 
   @override
@@ -154,33 +173,12 @@ class _GFBottomSheetState extends State<GFBottomSheet> {
   }
 
   void _setUsersSmoothness() {
-    widget.controller.smoothness = widget.smoothness;
+    widget.controller.Smoothness = widget.smoothness;
   }
 
   void _setNativeSmoothness() {
-    widget.controller.smoothness = Smoothness.withValue(5);
+    widget.controller.Smoothness = widget.smoothness;
   }
-}
-
-class Smoothness {
-  final int _value;
-
-  Smoothness._() : _value = 0;
-
-  const Smoothness._low() : _value = 100;
-
-  const Smoothness._medium() : _value = 250;
-
-  const Smoothness._high() : _value = 500;
-
-  const Smoothness._withValue(int value) : _value = value;
-
-  static const Smoothness low = Smoothness._low();
-  static const Smoothness medium = Smoothness._medium();
-  static const Smoothness high = Smoothness._high();
-  static Smoothness withValue(int value) => Smoothness._withValue(value);
-
-  int get value => _value;
 }
 
 class SolidController extends ValueNotifier<bool> {
@@ -190,7 +188,7 @@ class SolidController extends ValueNotifier<bool> {
   double _height;
 
   // This is the current smoothness of the bottomSheet
-  Smoothness smoothness;
+  int  Smoothness;
 
   SolidController() : super(false);
 
