@@ -51,6 +51,8 @@ class GFAnimation extends StatefulWidget {
 
   final double width;
   final double height;
+
+  /// defines the color of items when onTap triggers
   final Color activeColor;
 
   /// defines the color of items
@@ -72,7 +74,11 @@ class GFAnimation extends StatefulWidget {
   final Animation<double> scaleAnimation;
 
   final AnimationController controller;
+
+  ///direction of the [AnimatedDefaultTextStyle] TextDirection for [ltr,rtl]
   final TextDirection textDirection;
+
+  ///  * [ScaleTransition], which animates the scale of a widget.
   final Animation<Offset> slidePosition;
   final TextStyle style;
   final TextAlign textAlign;
