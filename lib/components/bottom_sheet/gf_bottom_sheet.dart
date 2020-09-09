@@ -59,7 +59,7 @@ class GFBottomSheet extends StatefulWidget {
 
 class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderStateMixin {
   bool isDragDirectionUp;
-  bool showOnAppear = false;
+  bool showBottomSheet = false;
 
   void _onVerticalDragUpdate(data) {
     _setNativeSmoothness();
@@ -99,7 +99,7 @@ class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderState
 //      upperBound: 1.0,
 //    );
 //    _controller.addStatusListener(_controllerListener);
-    widget.controller.value = showOnAppear;
+    widget.controller.value = showBottomSheet;
     _controllerListener = () {
       widget.controller.value ? _show() : _hide();
     };

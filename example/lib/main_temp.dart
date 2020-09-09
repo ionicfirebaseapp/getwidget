@@ -139,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         ),
       ),
       contentBody: Container(
-        color: Colors.white,
+        color: Colors.teal,
         child: ListView.builder(
           itemCount: 10,
           itemBuilder: (context, index) =>
