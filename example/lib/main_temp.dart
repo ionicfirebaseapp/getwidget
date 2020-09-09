@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   String searchData;
   final TextEditingController _searchController = TextEditingController();
   int groupValue = 0;
-
+  SolidController _controller = SolidController();
 
   @override
   void initState() {
@@ -86,18 +86,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     );
   }
 
-  List<IconData> icons = [
-    Icons.ac_unit,
-    Icons.account_balance,
-    Icons.adb,
-    Icons.add_photo_alternate,
-    Icons.format_line_spacing
-  ];
-
-  GlobalKey<ExpandableBottomSheetState> key = new GlobalKey();
-//  int _contentAmount = 0;
-//  ExpansionStatus _expansionStatus = ExpansionStatus.contracted;
-
 
   @override
   Widget build(BuildContext context) =>  Scaffold(
@@ -108,129 +96,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         centerTitle: true,
       ),
       body:
-
-//      ExpandableBottomSheet(
-//        key: key,
-//        onIsContractedCallback: () => print('contracted'),
-//        onIsExtendedCallback: () => print('extended'),
-//        animationDurationExtend: Duration(milliseconds: 500),
-//        animationDurationContract: Duration(milliseconds: 250),
-//        animationCurveExpand: Curves.bounceOut,
-//        animationCurveContract: Curves.ease,
-////        persistentContentHeight: 220,
-//        background: Container(
-//          color: Colors.teal,
-//        ),
-//        persistentHeader: Container(
-//          alignment: AlignmentDirectional.center,
-//          color: Colors.orange,
-//          constraints: BoxConstraints.expand(height: 40),
-//          child: Text('dgfh hg  '),
-//        ),
-//
-//        expandableContent: Container(
-//          constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.8),
-//          child: SingleChildScrollView(
-//            child: Column(
-//              mainAxisSize: MainAxisSize.min,
-//              children: const <Widget>[
-//                GFListTile(
-//                  titleText: 'dfg',
-//                  description: Text('df hgdata '),
-//                ),
-//                GFListTile(
-//                  titleText: 'dfg',
-//                  description: Text('df hgdata '),
-//                ),
-//                GFListTile(
-//                  titleText: 'dfg',
-//                  description: Text('df hgdata '),
-//                ),
-//                GFListTile(
-//                  titleText: 'dfg',
-//                  description: Text('df hgdata '),
-//                ),
-//                GFListTile(
-//                  titleText: 'dfg',
-//                  description: Text('df hgdata '),
-//                ),
-//                GFListTile(
-//                  titleText: 'dfg',
-//                  description: Text('df hgdata '),
-//                ),
-//                GFListTile(
-//                  titleText: 'dfg',
-//                  description: Text('df hgdata '),
-//                ),
-//                GFListTile(
-//                  titleText: 'dfg',
-//                  description: Text('df hgdata '),
-//                ),
-//                GFListTile(
-//                  titleText: 'dfg',
-//                  description: Text('df hgdata '),
-//                ),
-//                GFListTile(
-//                  titleText: 'dfg',
-//                  description: Text('df hgdata '),
-//                ),
-//                GFListTile(
-//                  titleText: 'dfg',
-//                  description: Text('df hgdata '),
-//                ),
-//                GFListTile(
-//                  titleText: 'dfg',
-//                  description: Text('df hgdata '),
-//                ),
-//              ],
-//            ),
-//          ),
-//        ),
-//      ),
-
-//        persistentFooter: Container(
-//          color: Colors.green,
-//          height: 100,
-//          child: Row(
-//            mainAxisSize: MainAxisSize.max,
-//            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//            children: <Widget>[
-//              IconButton(
-//                icon: Icon(Icons.add),
-//                onPressed: () => setState(() {
-//                  _contentAmount++;
-//                }),
-//              ),
-//              IconButton(
-//                icon: Icon(Icons.arrow_upward),
-//                onPressed: () => setState(() {
-//                  key.currentState.expand();
-//                }),
-//              ),
-//              IconButton(
-//                icon: Icon(Icons.cloud),
-//                onPressed: () => setState(() {
-//                  _expansionStatus = key.currentState.expansionStatus;
-//                }),
-//              ),
-//              IconButton(
-//                icon: Icon(Icons.arrow_downward),
-//                onPressed: () => setState(() {
-//                  key.currentState.contract();
-//                }),
-//              ),
-//              IconButton(
-//                icon: Icon(Icons.remove),
-//                onPressed: () => setState(() {
-//                  if (_contentAmount > 0) _contentAmount--;
-//                }),
-//              ),
-//            ],
-//          ),
-//        ),
-//      ),
-
-
       SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -239,98 +104,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             Container(
               height: 10,
             ),
-
-        RaisedButton(
-          child: const Text('showModalBottomSheet'), onPressed: () {
-          showModalGFBottomSheet<void>(
-            context: context,
-//              key: key,
-              animationDurationExtend: Duration(milliseconds: 500),
-              animationDurationContract: Duration(milliseconds: 250),
-              animationCurveExpand: Curves.bounceOut,
-              animationCurveContract: Curves.ease,
-        persistentContentHeight: 220.0,
-//              background: Container(
-//                color: Colors.teal,
-//              ),
-              persistentHeader: Container(
-                alignment: AlignmentDirectional.center,
-                color: Colors.orange,
-                constraints: BoxConstraints.expand(height: 40),
-                child: Text('dgfh hg  '),
-              ),
-
-              expandableContent: Container(
-                constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.8),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const <Widget>[
-                      GFListTile(
-                        titleText: 'dfg',
-                        description: Text('df hgdata '),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            builder: (BuildContext context) =>
-                Container(
-                  constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.8),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const <Widget>[
-                        GFListTile(
-                          titleText: 'dfg',
-                          description: Text('df hgdata '),
-                        ),
-                        GFListTile(
-                          titleText: 'dfg',
-                          description: Text('df hgdata '),
-                        ),
-                        GFListTile(
-                          titleText: 'dfg',
-                          description: Text('df hgdata '),
-                        ),
-                        GFListTile(
-                          titleText: 'dfg',
-                          description: Text('df hgdata '),
-                        ),
-                        GFListTile(
-                          titleText: 'dfg',
-                          description: Text('df hgdata '),
-                        ),
-                        GFListTile(
-                          titleText: 'dfg',
-                          description: Text('df hgdata '),
-                        ),
-                        GFListTile(
-                          titleText: 'dfg',
-                          description: Text('df hgdata '),
-                        ),
-                        GFListTile(
-                          titleText: 'dfg',
-                          description: Text('df hgdata '),
-                        ),
-                        GFListTile(
-                          titleText: 'dfg',
-                          description: Text('df hgdata '),
-                        ),
-                        GFListTile(
-                          titleText: 'dfg',
-                          description: Text('df hgdata '),
-                        ),
-                        GFListTile(
-                          titleText: 'dfg',
-                          description: Text('df hgdata '),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-          );
-          },),
 
             Radio(
               value: 0,
@@ -354,11 +127,40 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          _persistentBottomSheet();
-        },
-        child: const Icon(Icons.add),
+    bottomSheet: GFBottomSheet(
+      controller: _controller,
+      stickyHeader: Container(
+        color: Theme.of(context).primaryColor,
+        height: 50,
+        child: const Center(
+          child: Text('Swipe me!'),
+        ),
       ),
+      contentBody: Container(
+        color: Colors.white,
+        child: ListView.builder(
+          itemCount: 10,
+          itemBuilder: (context, index) =>
+              GFListTile(
+                onTap: (){
+                  print('cdcvn');
+                },
+                title: Text('alpha $index'),
+              )
+        )
+      ),
+      stickyFooter: Container(
+        color: Theme.of(context).primaryColor,
+        height: 50,
+        child: const Center(
+          child: Text('I am Footer!'),
+        ),
+      ),
+    ),
+    floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.stars),
+        onPressed: () {
+          _controller.isOpened ? _controller.hide() : _controller.show();
+        }),
     );
 }
