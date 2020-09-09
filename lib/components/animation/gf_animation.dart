@@ -1,14 +1,5 @@
 import 'package:flutter/material.dart';
-
-enum GFAnimationType {
-  align,
-  size,
-  container,
-  rotateTransition,
-  scaleTransition,
-  slideTransition,
-  textStyle
-}
+import 'package:getwidget/types/gf_animation_type.dart';
 
 class GFAnimation extends StatefulWidget {
   const GFAnimation({
@@ -36,22 +27,50 @@ class GFAnimation extends StatefulWidget {
     this.textOverflow,
     this.maxLines,
     this.textWidthBasis,
+    this.fontSize,
+    this.fontWeight,
   }) : super(key: key);
 
+  /// The duration for animations of the [Decoration].
   final Duration duration;
+
+  /// Defines how the animated widget is aligned within the Animation.
   final Alignment alignment;
+
+  /// Defines how the animated widget is aligned(after the onTap) within the Animation.
   final Alignment activeAlignment;
+
+  /// The child of type [Widget] to display animation effect.
   final Widget child;
+
+  /// Determines the animation curve physics. Defaults to [Curves.linear].
   final Curve curve;
+
+  ///type of [GFAnimation] which takes the type ie, align, size, container, rotateTransition, scaleTransition, slideTransition, and textStyle for the [GFAnimation]
   final GFAnimationType type;
+
   final double width;
   final double height;
   final Color activeColor;
+
+  /// defines the color of items
   final Color color;
-  final EdgeInsets padding, margin;
+
+  /// The empty space that surrounds the animation. Defines the animation outer [Container.padding]..
+  final EdgeInsetsGeometry padding;
+
+  /// The empty space that surrounds the animation. Defines the animation outer [Container.margin].
+  final EdgeInsetsGeometry margin;
   final Function onTap;
+
+  /// Here's an illustration of the [RotationTransition] widget, with it's [turnsAnimation]
+  /// animated by a [Tween] set to [animate]:
   final Animation<double> turnsAnimation;
+
+  /// Here's an illustration of the [ScaleTransition] widget, with it's [scaleAnimation]
+  /// animated by a [CurvedAnimation] set to [Curves.linear]:
   final Animation<double> scaleAnimation;
+
   final AnimationController controller;
   final TextDirection textDirection;
   final Animation<Offset> slidePosition;
@@ -60,6 +79,8 @@ class GFAnimation extends StatefulWidget {
   final TextOverflow textOverflow;
   final int maxLines;
   final TextWidthBasis textWidthBasis;
+  final double fontSize;
+  final FontWeight fontWeight;
 
   @override
   _GFAnimationState createState() => _GFAnimationState();
@@ -109,6 +130,12 @@ class _GFAnimationState extends State<GFAnimation>
       ));
     }
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -196,14 +223,14 @@ class _GFAnimationState extends State<GFAnimation>
       );
 
   Widget buildAnimatedDefaultTextStyleWidget() => GestureDetector(
-        onTap: () {
-          if (mounted) {
-            setState(() {});
-          }
-        },
+        onTap: widget.onTap,
         child: AnimatedDefaultTextStyle(
           maxLines: widget.maxLines,
-          style: widget.style ?? const TextStyle(),
+          style: widget.style ??
+              TextStyle(
+                  fontWeight: widget.fontWeight ?? FontWeight.normal,
+                  fontSize: widget.fontSize ?? 16,
+                  color: widget.color ?? Colors.blue),
           textWidthBasis: widget.textWidthBasis ?? TextWidthBasis.parent,
           textAlign: widget.textAlign ?? TextAlign.start,
           curve: widget.curve ?? Curves.linear,
