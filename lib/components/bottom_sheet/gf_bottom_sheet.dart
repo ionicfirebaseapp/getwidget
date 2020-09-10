@@ -16,7 +16,7 @@ class GFBottomSheet extends StatefulWidget {
         super(key: key) {
     controller.height = minContentHeight;
     controller.smoothness = 500;
-    controller == null ? controller = GFBottomSheetController() : Container();
+//    controller == null ? controller = GFBottomSheetController() : Container();
   }
 
   /// [minContentHeight] controls the minimum height of the content body.
@@ -47,21 +47,24 @@ class GFBottomSheet extends StatefulWidget {
   final double elevation;
 
   /// [controller] used to control GFBottomSheet behavior like hide/show
-  GFBottomSheetController controller;
+  final GFBottomSheetController controller;
 
   @override
   _GFBottomSheetState createState() => _GFBottomSheetState();
 }
 
-class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderStateMixin {
+class _GFBottomSheetState extends State<GFBottomSheet>
+    with TickerProviderStateMixin {
   bool isDragDirectionUp;
   bool showBottomSheet = false;
   Function _controllerListener;
 
   void _onVerticalDragUpdate(data) {
     _setNativeSmoothness();
-    if (((widget.controller.height - data.delta.dy) > widget.minContentHeight) &&
-        ((widget.controller.height - data.delta.dy) < widget.maxContentHeight)) {
+    if (((widget.controller.height - data.delta.dy) >
+            widget.minContentHeight) &&
+        ((widget.controller.height - data.delta.dy) <
+            widget.maxContentHeight)) {
       isDragDirectionUp = data.delta.dy <= 0;
       widget.controller.height -= data.delta.dy;
     }
@@ -80,7 +83,8 @@ class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderState
   }
 
   void _onTap() {
-    final bool isBottomSheetOpened = widget.controller.height == widget.maxContentHeight;
+    final bool isBottomSheetOpened =
+        widget.controller.height == widget.maxContentHeight;
     widget.controller.value = !isBottomSheetOpened;
   }
 
@@ -99,42 +103,47 @@ class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderState
     final Widget bottomSheet = Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        widget.stickyHeader == null ? Container() : GestureDetector(
-          onVerticalDragUpdate: _onVerticalDragUpdate,
-          onVerticalDragEnd: _onVerticalDragEnd,
-          onTap: _onTap,
-          child: widget.stickyHeader,
-        ),
+        widget.stickyHeader == null
+            ? Container()
+            : GestureDetector(
+                onVerticalDragUpdate: _onVerticalDragUpdate,
+                onVerticalDragEnd: _onVerticalDragEnd,
+                onTap: _onTap,
+                child: widget.stickyHeader,
+              ),
         AnimatedBuilder(
           animation: widget.controller,
-          builder: (_, Widget child) =>
-              AnimatedContainer(
-                curve: Curves.easeOut,
-                duration: Duration(milliseconds: widget.controller.smoothness),
-                height: widget.controller.height,
-                child: GestureDetector(
-                  onVerticalDragUpdate: _onVerticalDragUpdate,
-                  onVerticalDragEnd: _onVerticalDragEnd,
-                  onTap: _onTap,
-                  child: widget.contentBody,
-                ),
-              ),
+          builder: (_, Widget child) => AnimatedContainer(
+            curve: Curves.easeOut,
+            duration: Duration(milliseconds: widget.controller.smoothness),
+            height: widget.controller.height,
+            child: GestureDetector(
+              onVerticalDragUpdate: _onVerticalDragUpdate,
+              onVerticalDragEnd: _onVerticalDragEnd,
+              onTap: _onTap,
+              child: widget.contentBody,
+            ),
+          ),
         ),
-        widget.stickyFooter != null ? AnimatedBuilder(
-          animation: widget.controller,
-          builder: (_, Widget child) =>
-              AnimatedContainer(
-                curve: Curves.easeOut,
-                duration: Duration(milliseconds: widget.controller.smoothness),
-                height: widget.controller.height != widget.minContentHeight ? widget.stickyFooterHeight : 0.0,
-                child: GestureDetector(
-                  onVerticalDragUpdate: _onVerticalDragUpdate,
-                  onVerticalDragEnd: _onVerticalDragEnd,
-                  onTap: _onTap,
-                  child: widget.stickyFooter,
+        widget.stickyFooter != null
+            ? AnimatedBuilder(
+                animation: widget.controller,
+                builder: (_, Widget child) => AnimatedContainer(
+                  curve: Curves.easeOut,
+                  duration:
+                      Duration(milliseconds: widget.controller.smoothness),
+                  height: widget.controller.height != widget.minContentHeight
+                      ? widget.stickyFooterHeight
+                      : 0.0,
+                  child: GestureDetector(
+                    onVerticalDragUpdate: _onVerticalDragUpdate,
+                    onVerticalDragEnd: _onVerticalDragEnd,
+                    onTap: _onTap,
+                    child: widget.stickyFooter,
+                  ),
                 ),
-              ),
-        ) : Container(),
+              )
+            : Container(),
       ],
     );
     return Material(
@@ -173,17 +182,16 @@ class GFBottomSheetController extends ValueNotifier<bool> {
   double _height;
 
   /// Defines the drag animation smoothness of the GFBottomSheet
-  int  smoothness;
+  int smoothness;
 
+  // ignore: unnecessary_getters_setters
   set height(double value) => _height = value;
 
+  // ignore: unnecessary_getters_setters
   double get height => _height;
 
   bool get isBottomSheetOpened => value;
 
   void hideBottomSheet() => value = false;
   void showBottomSheet() => value = true;
-
 }
-
-
