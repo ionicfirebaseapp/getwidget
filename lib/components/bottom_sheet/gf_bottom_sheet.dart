@@ -167,7 +167,6 @@ class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderState
 }
 
 class GFBottomSheetController extends ValueNotifier<bool> {
-
   GFBottomSheetController() : super(false);
 
   /// Defines the height of the GFBottomSheet's contentBody
