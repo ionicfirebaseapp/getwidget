@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   String searchData;
   final TextEditingController _searchController = TextEditingController();
   int groupValue = 0;
-  GFBottomSheeetController _controller = GFBottomSheeetController();
+  GFBottomSheetController _controller = GFBottomSheetController();
 
   @override
   void initState() {
@@ -83,6 +83,26 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             child: Text('Hey! guys , this is a persistent bottom sheet'),
           ),
         )
+    );
+  }
+
+  void _modalBottomSheetMenu(){
+    showModalBottomSheet(
+        context: context,
+        elevation: 10,
+        builder: (builder) => Container(
+            height: 350,
+            color: Colors.transparent,
+            child: Container(
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10))),
+                child: const Center(
+                  child: Text('This is a modal sheet'),
+                )),
+          )
     );
   }
 
@@ -130,6 +150,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     bottomSheet: GFBottomSheet(
       controller: _controller,
       maxHeight: 200,
+      elevation: 10,
       smoothness: GFSmoothness.HIGH,
       stickyHeader: Container(
         decoration: BoxDecoration(
@@ -154,16 +175,19 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       ),
       stickyFooter: Container(
         color: Theme.of(context).primaryColor,
-        height: 50,
+        height: 100,
         child: const Center(
           child: Text('I am Footer!'),
         ),
       ),
+//      stickyFooterHeight: 50,
     ),
     floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.stars),
         onPressed: () {
-          _controller.isOpened ? _controller.hide() : _controller.show();
+//          _persistentBottomSheet();
+//        _modalBottomSheetMenu();
+          _controller.isBottomSheetOpened ? _controller.hideBottomSheet() : _controller.showBottomSheet();
         }),
     );
 }
