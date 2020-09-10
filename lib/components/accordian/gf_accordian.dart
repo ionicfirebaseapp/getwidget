@@ -6,21 +6,23 @@ class GFAccordion extends StatefulWidget {
       {Key key,
       this.titleChild,
       this.content,
-      this.collapsedTitlebackgroundColor = GFColors.WHITE,
-      this.expandedTitlebackgroundColor = const Color(0xFFE0E0E0),
+      this.collapsedTitleBackgroundColor = GFColors.WHITE,
+      this.expandedTitleBackgroundColor = const Color(0xFFE0E0E0),
       this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
       this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
       this.title,
       this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
       this.titlePadding = const EdgeInsets.all(10),
-      this.contentbackgroundColor,
+      this.contentBackgroundColor,
       this.contentPadding = const EdgeInsets.all(10),
       this.contentChild,
-      this.titleborder = const Border(),
-      this.contentBorder = const Border(),
+      this.titleBorder = const Border(),
+      this.contentborder = const Border(),
       this.margin,
       this.showAccordion = false,
-      this.onToggleCollapsed})
+      this.onToggleCollapsed,
+      this.titleBorderRadius = const BorderRadius.all(Radius.circular(0)),
+      this.contentBorderRadius = const BorderRadius.all(Radius.circular(0))})
       : super(key: key);
 
   final Function(bool) onToggleCollapsed;
@@ -38,10 +40,10 @@ class GFAccordion extends StatefulWidget {
   final Widget contentChild;
 
   /// type of [Color] or [GFColors] which is used to change the background color of the [GFAccordion] title when it is collapsed
-  final Color collapsedTitlebackgroundColor;
+  final Color collapsedTitleBackgroundColor;
 
   /// type of [Color] or [GFColors] which is used to change the background color of the [GFAccordion] title when it is expanded
-  final Color expandedTitlebackgroundColor;
+  final Color expandedTitleBackgroundColor;
 
   ///collapsedIcon of type [Widget] which is used to show when the [GFAccordion] is collapsed
   final Widget collapsedIcon;
@@ -62,16 +64,22 @@ class GFAccordion extends StatefulWidget {
   final EdgeInsets contentPadding;
 
   /// type of [Color] or [GFColors] which is used to change the background color of the [GFAccordion] description
-  final Color contentbackgroundColor;
+  final Color contentBackgroundColor;
 
   ///margin of type [EdgeInsets] which is used to set the margin of the [GFAccordion]
   final EdgeInsets margin;
 
-  ///titleborderColor of type  [Color] or [GFColors] which is used to change the border color of title
-  final Border titleborder;
+  ///titleBorderColor of type  [Color] or [GFColors] which is used to change the border color of title
+  final Border titleBorder;
 
   ///contentBorderColor of type  [Color] or [GFColors] which is used to change the border color of content
-  final Border contentBorder;
+  final Border contentborder;
+
+  ///titleBorderRadius of type  [Radius]  which is used to change the border radius of title
+  final BorderRadius titleBorderRadius;
+
+  ///contentBorderRadius of type  [Radius]  which is used to change the border radius of content
+  final BorderRadius contentBorderRadius;
 
   @override
   _GFAccordionState createState() => _GFAccordionState();
@@ -124,10 +132,11 @@ class _GFAccordionState extends State<GFAccordion>
               onTap: _toggleCollapsed,
               child: Container(
                 decoration: BoxDecoration(
-                  border: widget.titleborder,
+                  borderRadius: widget.titleBorderRadius,
+                  border: widget.titleBorder,
                   color: showAccordion
-                      ? widget.expandedTitlebackgroundColor
-                      : widget.collapsedTitlebackgroundColor,
+                      ? widget.expandedTitleBackgroundColor
+                      : widget.collapsedTitleBackgroundColor,
                 ),
                 padding: widget.titlePadding,
                 child: Row(
@@ -146,8 +155,9 @@ class _GFAccordionState extends State<GFAccordion>
             showAccordion
                 ? Container(
                     decoration: BoxDecoration(
-                      border: widget.contentBorder,
-                      color: widget.contentbackgroundColor ?? Colors.white70,
+                      borderRadius: widget.contentBorderRadius,
+                      border: widget.contentborder,
+                      color: widget.contentBackgroundColor ?? Colors.white70,
                     ),
                     width: MediaQuery.of(context).size.width,
                     padding: widget.contentPadding,
