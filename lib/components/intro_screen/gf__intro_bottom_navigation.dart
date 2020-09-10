@@ -19,7 +19,7 @@ class GFIntroBottomNavigation extends StatelessWidget {
     this.onSkipTap,
     this.skipWidget,
     this.rightWidget,
-    this.dotShape,
+    this.dotShape = BoxShape.rectangle,
     this.defaultColor,
     this.activeColor,
     this.dotHeight,
@@ -121,14 +121,16 @@ class GFIntroBottomNavigation extends StatelessWidget {
                             top: 8, bottom: 8, left: 32, right: 24),
                         child: rightWidget ??
                             Text(
-                                pageNumber == pagesCount ? doneText : rightText,
+                                pageNumber == pagesCount - 1
+                                    ? doneText
+                                    : rightText,
                                 style: rightStyle ??
                                     const TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
                                     )),
                       ),
-                      onTap: pageNumber == pagesCount ? onDoneTap : onNext,
+                      onTap: pageNumber == pagesCount - 1 ? onDoneTap : onNext,
                     ),
                   ],
                 ),
@@ -140,13 +142,13 @@ class GFIntroBottomNavigation extends StatelessWidget {
 
   List<Widget> getDotsList() {
     final List<Widget> list = [];
-    for (int i = 1; i <= pagesCount; i++) {
+    for (int i = 0; i < pagesCount; i++) {
       list.add(Container(
         width: dotWidth ?? 12,
         height: dotHeight ?? 12,
         margin: dotMargin ?? const EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
-          shape: dotShape ?? BoxShape.rectangle,
+          shape: dotShape,
           color: pageNumber == i
               ? activeColor ?? Colors.blue
               : defaultColor ?? Colors.grey.withOpacity(0.5),
