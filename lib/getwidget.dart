@@ -47,7 +47,6 @@ export 'shape/gf_badge_shape.dart';
 export 'shape/gf_button_shape.dart';
 export 'shape/gf_icon_button_shape.dart';
 export 'size/gf_size.dart';
-export 'smoothness/gf_smoothness.dart';
 export 'types/gf_alert_type.dart';
 export 'types/gf_button_type.dart';
 export 'types/gf_checkbox_type.dart';

@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   String searchData;
   final TextEditingController _searchController = TextEditingController();
   int groupValue = 0;
-  GFBottomSheetController _controller = GFBottomSheetController();
+  final GFBottomSheetController _controller = GFBottomSheetController();
 
   @override
   void initState() {
@@ -149,19 +149,19 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       ),
     bottomSheet: GFBottomSheet(
       controller: _controller,
-      maxHeight: 200,
+//      minContentHeight: 100,
+      maxContentHeight: 200,
       elevation: 10,
-      smoothness: GFSmoothness.HIGH,
-      stickyHeader: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.tealAccent
-        ),
-        height: 50,
-        child: const Center(
-          child: Text('Swipe me!'),
-        ),
-      ),
+//      stickyHeader: Container(
+//        decoration: BoxDecoration(
+//          borderRadius: BorderRadius.circular(10),
+//          color: Colors.tealAccent
+//        ),
+//        height: 50,
+//        child: const Center(
+//          child: Text('Swipe me!'),
+//        ),
+//      ),
       contentBody: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -173,13 +173,13 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           ],
         ),
       ),
-      stickyFooter: Container(
-        color: Theme.of(context).primaryColor,
-        height: 100,
-        child: const Center(
-          child: Text('I am Footer!'),
-        ),
-      ),
+//      stickyFooter: Container(
+//        color: Theme.of(context).primaryColor,
+//        height: 100,
+//        child: const Center(
+//          child: Text('I am Footer!'),
+//        ),
+//      ),
 //      stickyFooterHeight: 50,
     ),
     floatingActionButton: FloatingActionButton(

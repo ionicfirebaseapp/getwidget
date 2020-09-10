@@ -1,64 +1,53 @@
-import 'dart:async';
-import 'dart:js';
 import 'package:flutter/material.dart';
-import 'package:getwidget/smoothness/gf_smoothness.dart';
-
 
 class GFBottomSheet extends StatefulWidget {
-
   GFBottomSheet({
     Key key,
     @required this.stickyHeader,
     @required this.contentBody,
     this.stickyFooter,
     this.controller,
-    this.minHeight = 0,
-    this.maxHeight = 300,
+    this.minContentHeight = 0,
+    this.maxContentHeight = 300,
     this.elevation = 0.0,
-    this.smoothness = GFSmoothness.MEDIUM,
     this.stickyFooterHeight,
   })  : assert(elevation >= 0.0),
-        assert(minHeight >= 0.0),
+        assert(minContentHeight >= 0.0),
         super(key: key) {
-    controller.height = minHeight;
-    controller.smoothness = smoothness;
+    controller.height = minContentHeight;
+    controller.smoothness = 500;
     controller == null ? controller = GFBottomSheetController() : Container();
   }
 
-  // This controls the minimum height of the body. Must be greater or equal of
-  // 0. By default is 0
-  final double minHeight;
+  /// [minContentHeight] controls the minimum height of the content body.
+  /// It Must be greater or equal to 0. Default value is 0.
+  final double minContentHeight;
 
-  // This controls the minimum height of the body. By default is 500
-  final double maxHeight;
+  /// [maxContentHeight] controls the maximum height of the content body.
+  /// It Must be greater or equal to 0. Default value is 300.
+  final double maxContentHeight;
 
-  // This is the header of your bottomSheet. This widget is the swipeable area
-  // where user will interact. This parameter is required
+  /// [stickyHeader] is the header of GFBottomSheet.
+  /// User can interact by swiping or tapping the [stickyHeader]
   final Widget stickyHeader;
 
-  // This is the content that will be hided of your bottomSheet. You can fit any
-  // widget. This parameter is required
+  /// [contentBody] is the body of GFBottomSheet.
+  /// User can interact by tapping the [contentBody]
   final Widget contentBody;
 
+  /// [stickyFooter] is the footer of GFBottomSheet.
+  /// User can interact by swiping or tapping the [stickyFooter]
   final Widget stickyFooter;
 
-  // This property is the elevation of the bottomSheet. Must be greater or equal
-  // to 0. By default is 0.
-  final double elevation;
-
-  // This object used to control behavior internally
-  // from the app and don't depend of user's interaction.
-  // can hide and show  methods plus have isOpened variable
-  // to check widget visibility on a screen
-  GFBottomSheetController controller;
-
-  /// default medium
-  final int smoothness;
-
-  // default false
+  /// [stickyFooterHeight] defines the height of GFBottokSheet footer.
   final double stickyFooterHeight;
 
+  /// [elevation] controls shadow below the GFBottomSheet material.
+  /// Must be greater or equalto 0. Default value is 0.
+  final double elevation;
 
+  /// [controller] used to control GFBottomSheet behavior like hide/show
+  GFBottomSheetController controller;
 
   @override
   _GFBottomSheetState createState() => _GFBottomSheetState();
@@ -67,11 +56,12 @@ class GFBottomSheet extends StatefulWidget {
 class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderStateMixin {
   bool isDragDirectionUp;
   bool showBottomSheet = false;
+  Function _controllerListener;
 
   void _onVerticalDragUpdate(data) {
     _setNativeSmoothness();
-    if (((widget.controller.height - data.delta.dy) > widget.minHeight) &&
-        ((widget.controller.height - data.delta.dy) < widget.maxHeight)) {
+    if (((widget.controller.height - data.delta.dy) > widget.minContentHeight) &&
+        ((widget.controller.height - data.delta.dy) < widget.maxContentHeight)) {
       isDragDirectionUp = data.delta.dy <= 0;
       widget.controller.height -= data.delta.dy;
     }
@@ -90,11 +80,9 @@ class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderState
   }
 
   void _onTap() {
-    final bool isBottomSheetOpened = widget.controller.height == widget.maxHeight;
+    final bool isBottomSheetOpened = widget.controller.height == widget.maxContentHeight;
     widget.controller.value = !isBottomSheetOpened;
   }
-
-  Function _controllerListener;
 
   @override
   void initState() {
@@ -111,7 +99,7 @@ class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderState
     final Widget bottomSheet = Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        GestureDetector(
+        widget.stickyHeader == null ? Container() : GestureDetector(
           onVerticalDragUpdate: _onVerticalDragUpdate,
           onVerticalDragEnd: _onVerticalDragEnd,
           onTap: _onTap,
@@ -138,7 +126,7 @@ class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderState
               AnimatedContainer(
                 curve: Curves.easeOut,
                 duration: Duration(milliseconds: widget.controller.smoothness),
-                height: widget.controller.height != widget.minHeight ? widget.stickyFooterHeight : 0.0,
+                height: widget.controller.height != widget.minContentHeight ? widget.stickyFooterHeight : 0.0,
                 child: GestureDetector(
                   onVerticalDragUpdate: _onVerticalDragUpdate,
                   onVerticalDragEnd: _onVerticalDragEnd,
@@ -156,11 +144,11 @@ class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderState
   }
 
   void _hideBottomSheet() {
-    widget.controller.height = widget.minHeight;
+    widget.controller.height = widget.minContentHeight;
   }
 
   void _showBottomSheet() {
-    widget.controller.height = widget.maxHeight;
+    widget.controller.height = widget.maxContentHeight;
   }
 
   @override
@@ -170,11 +158,11 @@ class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderState
   }
 
   void _setUsersSmoothness() {
-    widget.controller.smoothness = widget.smoothness;
+    widget.controller.smoothness = 500;
   }
 
   void _setNativeSmoothness() {
-    widget.controller.smoothness = widget.smoothness;
+    widget.controller.smoothness = 500;
   }
 }
 
@@ -182,28 +170,21 @@ class GFBottomSheetController extends ValueNotifier<bool> {
 
   GFBottomSheetController() : super(false);
 
-  // This is the current height of the GFBottomSheet's contentBody
+  /// Defines the height of the GFBottomSheet's contentBody
   double _height;
 
-  // This is the current smoothness of the bottomSheet
+  /// Defines the drag animation smoothness of the GFBottomSheet
   int  smoothness;
 
-  // This method sets the value of the height
-  set height(double value) {
-    _height = value;
-  }
+  set height(double value) => _height = value;
 
-  // Returns the value of the height
   double get height => _height;
 
-  //  Returns if the solid bottom sheet is opened or not
   bool get isBottomSheetOpened => value;
 
-  // Updates the visibility value to false
   void hideBottomSheet() => value = false;
-
-  // Updates the visibility value to true
   void showBottomSheet() => value = true;
 
 }
+
 
