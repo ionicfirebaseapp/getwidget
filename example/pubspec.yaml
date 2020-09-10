@@ -12,7 +12,7 @@ dependencies:
   getwidget:
     path: ../
   cupertino_icons: ^0.1.2
-  flutter_svg: ^0.17.1
+  flutter_svg: ^0.18.0
   url_launcher: ^5.4.1
 
 dev_dependencies:
