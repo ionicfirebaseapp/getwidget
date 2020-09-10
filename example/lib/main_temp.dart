@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   String searchData;
   final TextEditingController _searchController = TextEditingController();
   int groupValue = 0;
-  SolidController _controller = SolidController();
+  GFBottomSheeetController _controller = GFBottomSheeetController();
 
   @override
   void initState() {
@@ -129,27 +129,28 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       ),
     bottomSheet: GFBottomSheet(
       controller: _controller,
-      maxHeight: 600,
+      maxHeight: 200,
       smoothness: GFSmoothness.HIGH,
       stickyHeader: Container(
-        color: Theme.of(context).primaryColor,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.tealAccent
+        ),
         height: 50,
         child: const Center(
           child: Text('Swipe me!'),
         ),
       ),
       contentBody: Container(
-        color: Colors.teal,
-        child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) =>
-              GFListTile(
-                onTap: (){
-                  print('cdcvn');
-                },
-                title: Text('alpha $index'),
-              )
-        )
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.teal
+          ),
+        child: ListView(
+          children: const [
+            Text('fhj'),Text('fhj'),Text('fhj'),Text('fhj'),Text('fhj'),Text('fhj'),
+          ],
+        ),
       ),
       stickyFooter: Container(
         color: Theme.of(context).primaryColor,

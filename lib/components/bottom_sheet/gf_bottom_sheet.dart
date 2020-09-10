@@ -29,7 +29,7 @@ class GFBottomSheet extends StatefulWidget {
   // from the app and don't depend of user's interaction.
   // can hide and show  methods plus have isOpened variable
   // to check widget visibility on a screen
-  SolidController controller;
+  GFBottomSheeetController controller;
 
   final int smoothness;
 
@@ -47,7 +47,7 @@ class GFBottomSheet extends StatefulWidget {
         assert(minHeight >= 0.0),
         super(key: key) {
     if (controller == null) {
-      this.controller = SolidController();
+      this.controller = GFBottomSheeetController();
     }
     this.controller.height = this.minHeight;
     this.controller.Smoothness = smoothness;
@@ -88,17 +88,10 @@ class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderState
   }
 
   Function _controllerListener;
-  AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-//    _controller = AnimationController(
-//      vsync: this,
-//      lowerBound: 0.0,
-//      upperBound: 1.0,
-//    );
-//    _controller.addStatusListener(_controllerListener);
     widget.controller.value = showBottomSheet;
     _controllerListener = () {
       widget.controller.value ? _show() : _hide();
@@ -131,24 +124,22 @@ class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderState
             child: widget.stickyHeader,
           ),
         ),
-        StreamBuilder<double>(
-          stream: widget.controller.heightStream,
-          initialData: widget.controller.height,
-          builder: (_, snapshot) =>
-              AnimatedContainer(
-                curve: Curves.easeOut,
-                duration:
-                Duration(milliseconds: widget.controller.Smoothness),
-                height: snapshot.data,
-                child: GestureDetector(
-                  onVerticalDragUpdate: _onVerticalDragUpdate,
-                  onVerticalDragEnd: _onVerticalDragEnd,
-                  onTap: _onTap,
-                  child: widget.contentBody,
-                ),
+        AnimatedBuilder(
+        animation: widget.controller,
+        builder: (_, Widget child) =>
+            AnimatedContainer(
+              curve: Curves.easeOut,
+              duration: Duration(milliseconds: widget.controller.Smoothness),
+              height: widget.controller.height,
+              child: GestureDetector(
+                onVerticalDragUpdate: _onVerticalDragUpdate,
+                onVerticalDragEnd: _onVerticalDragEnd,
+                onTap: _onTap,
+                child: widget.contentBody,
               ),
+            ),
         ),
-        widget.controller.height == widget.maxHeight
+        widget.controller.height == 0
             ? widget.stickyFooter
             : Container()
       ],
@@ -158,12 +149,10 @@ class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderState
 
   void _hide() {
     widget.controller.height = widget.minHeight;
-    print('hhhhhhhhhhhh ${ widget.controller.height == widget.maxHeight}');
   }
 
   void _show() {
     widget.controller.height = widget.maxHeight;
-    print('sssssssss ${ widget.controller.height == widget.maxHeight}');
   }
 
   @override
@@ -181,8 +170,8 @@ class _GFBottomSheetState extends State<GFBottomSheet>  with TickerProviderState
   }
 }
 
-class SolidController extends ValueNotifier<bool> {
-  SolidBloc _bloc = SolidBloc();
+class GFBottomSheeetController extends ValueNotifier<bool> {
+//  SolidBloc _bloc = SolidBloc();
 
   // This is the current height of the bottomSheet's body
   double _height;
@@ -190,18 +179,18 @@ class SolidController extends ValueNotifier<bool> {
   // This is the current smoothness of the bottomSheet
   int  Smoothness;
 
-  SolidController() : super(false);
+  GFBottomSheeetController() : super(false);
 
-  // Returns the value of the height as stream
-  Stream<double> get heightStream => _bloc.height;
-
-  // Returns the value of the visibility as stream
-  Stream<bool> get isOpenStream => _bloc.isOpen;
+//  // Returns the value of the height as stream
+//  Stream<double> get heightStream => _bloc.height;
+//
+//  // Returns the value of the visibility as stream
+//  Stream<bool> get isOpenStream => _bloc.isOpen;
 
   // This method sets the value of the height using streams
   set height(double value) {
     _height = value;
-    _bloc.dispatch(value);
+//    _bloc.dispatch(value);
   }
 
   // Returns the value of the height
@@ -218,31 +207,31 @@ class SolidController extends ValueNotifier<bool> {
 
   @override
   void dispose() {
-    _bloc.dispose();
+//    _bloc.dispose();
     super.dispose();
   }
 }
 
-class SolidBloc {
-  StreamController<double> _heightController =
-  StreamController<double>.broadcast();
-  Stream<double> get height => _heightController.stream;
-  Sink<double> get _heightSink => _heightController.sink;
-
-  StreamController<bool> _visibilityController =
-  StreamController<bool>.broadcast();
-  Stream<bool> get isOpen => _visibilityController.stream;
-  Sink<bool> get _visibilitySink => _visibilityController.sink;
-
-  // Adds new values to streams
-  void dispatch(double value) {
-    _heightSink.add(value);
-    _visibilitySink.add(value > 0);
-  }
-
-  // Closes streams
-  void dispose() {
-    _heightController.close();
-    _visibilityController.close();
-  }
-}
+//class SolidBloc {
+//  StreamController<double> _heightController =
+//  StreamController<double>.broadcast();
+//  Stream<double> get height => _heightController.stream;
+//  Sink<double> get _heightSink => _heightController.sink;
+//
+//  StreamController<bool> _visibilityController =
+//  StreamController<bool>.broadcast();
+//  Stream<bool> get isOpen => _visibilityController.stream;
+//  Sink<bool> get _visibilitySink => _visibilityController.sink;
+//
+//  // Adds new values to streams
+//  void dispatch(double value) {
+//    _heightSink.add(value);
+//    _visibilitySink.add(value > 0);
+//  }
+//
+//  // Closes streams
+//  void dispose() {
+//    _heightController.close();
+//    _visibilityController.close();
+//  }
+//}
