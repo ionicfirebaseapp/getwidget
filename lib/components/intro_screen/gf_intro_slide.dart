@@ -12,7 +12,8 @@ class GFIntroSlide extends StatelessWidget {
       this.subTitle,
       this.titleStyle = const TextStyle(fontSize: 20, color: GFColors.DARK),
       this.subTitleStyle = const TextStyle(fontSize: 16, color: GFColors.DARK),
-      this.backgroundColor = GFColors.PRIMARY})
+      this.backgroundColor = GFColors.PRIMARY,
+      this.imageShape = BoxShape.circle})
       : super(key: key);
   final double imageHeight;
   final double imageWidth;
@@ -22,6 +23,7 @@ class GFIntroSlide extends StatelessWidget {
   final String subTitle;
   final TextStyle subTitleStyle;
   final Color backgroundColor;
+  final BoxShape imageShape;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -31,7 +33,10 @@ class GFIntroSlide extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             GFImageOverlay(
-                height: imageHeight, width: imageWidth, image: image),
+                shape: imageShape,
+                height: imageHeight,
+                width: imageWidth,
+                image: image),
             const SizedBox(
               height: 20,
             ),

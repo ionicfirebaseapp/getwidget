@@ -38,7 +38,7 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
                   setState(() {
                     page = _pageController.page.round() + 1;
                     _pageController.nextPage(
-                        duration: const Duration(milliseconds: 200),
+                        duration: const Duration(milliseconds: 500),
                         curve: Curves.linear);
                   });
                 }
@@ -53,39 +53,39 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
   List<Widget> slides() {
     final List<Widget> list = [];
     list.add(const GFIntroSlide(
+      backgroundColor: Colors.white,
       title: 'First',
       imageHeight: 200,
       imageWidth: 200,
-      image: NetworkImage(
-          'https://rukminim1.flixcart.com/image/832/832/kcc9q4w0/television/g/g/g/samsung-ua32t4010arxxl-ua32t4010arxxl-original-imafthw74azys6rp.jpeg?q=70'),
+      image: NetworkImage('https://www.gstatic.com/webp/gallery/3.jpg'),
     ));
     list.add(const GFIntroSlide(
+      backgroundColor: Colors.yellow,
       title: 'Second',
       imageHeight: 200,
       imageWidth: 200,
-      image: NetworkImage(
-          'https://rukminim1.flixcart.com/image/832/832/kcc9q4w0/television/g/g/g/samsung-ua32t4010arxxl-ua32t4010arxxl-original-imafthw74azys6rp.jpeg?q=70'),
+      image: NetworkImage('https://www.gstatic.com/webp/gallery/1.jpg'),
     ));
     list.add(const GFIntroSlide(
+      backgroundColor: Colors.brown,
       title: 'Third',
       imageHeight: 200,
       imageWidth: 200,
-      image: NetworkImage(
-          'https://rukminim1.flixcart.com/image/832/832/kcc9q4w0/television/g/g/g/samsung-ua32t4010arxxl-ua32t4010arxxl-original-imafthw74azys6rp.jpeg?q=70'),
+      image: NetworkImage('https://www.gstatic.com/webp/gallery/2.jpg'),
     ));
     list.add(const GFIntroSlide(
+      backgroundColor: Colors.purple,
       title: 'Fourth',
       imageHeight: 200,
       imageWidth: 200,
-      image: NetworkImage(
-          'https://rukminim1.flixcart.com/image/832/832/kcc9q4w0/television/g/g/g/samsung-ua32t4010arxxl-ua32t4010arxxl-original-imafthw74azys6rp.jpeg?q=70'),
+      image: NetworkImage('https://www.gstatic.com/webp/gallery/3.jpg'),
     ));
     list.add(const GFIntroSlide(
+      backgroundColor: Colors.orange,
       title: 'Fifth',
       imageHeight: 200,
       imageWidth: 200,
-      image: NetworkImage(
-          'https://rukminim1.flixcart.com/image/832/832/kcc9q4w0/television/g/g/g/samsung-ua32t4010arxxl-ua32t4010arxxl-original-imafthw74azys6rp.jpeg?q=70'),
+      image: NetworkImage('https://www.gstatic.com/webp/gallery/4.jpg'),
     ));
     return list;
   }
