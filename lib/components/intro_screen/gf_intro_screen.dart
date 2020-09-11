@@ -3,16 +3,27 @@ import 'package:getwidget/components/intro_screen/gf__intro_bottom_navigation.da
 import 'package:getwidget/components/intro_screen/gf_intro_slide.dart';
 
 class GFIntroScreen extends StatefulWidget {
+  const GFIntroScreen(
+      {Key key, this.slides, this.pageController, this.gfIntroBottomNavigation})
+      : super(key: key);
+
+  final List<Widget> slides;
+  final PageController pageController;
+  final GFIntroBottomNavigation gfIntroBottomNavigation;
+
   @override
   _GFIntroScreenState createState() => _GFIntroScreenState();
 }
 
 class _GFIntroScreenState extends State<GFIntroScreen> {
-  final PageController _pageController = PageController(initialPage: 0);
+  PageController _pageController = PageController(initialPage: 0);
   int page = 0;
 
   @override
   void initState() {
+    if (widget.pageController != null) {
+      _pageController = widget.pageController;
+    }
     _pageController.addListener(() {
       if (mounted) {
         setState(() {
@@ -30,22 +41,18 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
             Expanded(
                 child: PageView(
               controller: _pageController,
-              children: slides(),
+              children: widget.slides ?? slides(),
             )),
-            GFIntroBottomNavigation(
-              onNext: () {
-                if (mounted) {
-                  setState(() {
-                    page = _pageController.page.round() + 1;
+            widget.gfIntroBottomNavigation ??
+                GFIntroBottomNavigation(
+                  onNext: () {
                     _pageController.nextPage(
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.linear);
-                  });
-                }
-              },
-              pagesCount: slides().length,
-              pageNumber: page,
-            )
+                  },
+                  pagesCount: widget.slides ?? slides().length,
+                  pageNumber: page,
+                )
           ],
         ),
       );

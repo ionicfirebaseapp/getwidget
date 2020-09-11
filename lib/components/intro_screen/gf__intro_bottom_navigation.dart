@@ -14,7 +14,7 @@ class GFIntroBottomNavigation extends StatelessWidget {
     this.child,
     this.padding = const EdgeInsets.all(8),
     this.margin = const EdgeInsets.all(8),
-    this.pagesCount = 3,
+    this.pagesCount = 0,
     this.skipText = 'SKIP',
     this.onSkipTap,
     this.skipWidget,
