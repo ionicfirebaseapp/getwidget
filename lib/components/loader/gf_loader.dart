@@ -71,7 +71,9 @@ class _GFLoaderState extends State<GFLoader>
   void initState() {
     super.initState();
 
-    controller = AnimationController(duration: widget.duration, vsync: this);
+    controller = AnimationController(
+      duration: widget.duration,
+    );
 
     loaderanimation1 = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
