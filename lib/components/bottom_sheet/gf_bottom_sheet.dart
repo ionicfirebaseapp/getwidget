@@ -128,6 +128,22 @@ class _GFBottomSheetState extends State<GFBottomSheet>
             ),
           ),
         ),
+        StreamBuilder(
+          stream: controller.stream,
+          builder:(context,snapshot) => GestureDetector(
+              onVerticalDragUpdate: (DragUpdateDetails details){
+                position = MediaQuery.of(context).size.height- details.globalPosition.dy;
+                position.isNegative ? Navigator.pop(context) :controller.add(position);
+              },
+              behavior: HitTestBehavior.translucent,
+              child:
+              Container(
+                color: Colors.red,
+                height: snapshot.hasData ? snapshot.data : 100.0,
+                width: double.infinity,
+                child: Text('Child'),
+              )),
+        ),
         widget.stickyFooter != null
             ? AnimatedBuilder(
                 animation: widget.controller,
