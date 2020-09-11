@@ -40,8 +40,6 @@ export 'package:getwidget/components/toast/gf_toast.dart';
 export 'package:getwidget/components/toggle/gf_toggle.dart';
 export 'package:getwidget/components/typography/gf_typography.dart';
 
-
-
 export 'colors/gf_color.dart';
 export 'direction/gf_shimmer_direction.dart';
 export 'position/gf_position.dart';
