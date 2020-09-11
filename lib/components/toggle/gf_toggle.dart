@@ -89,7 +89,7 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
     setState(() {
       isOn = widget.value ?? false;
     });
-    controller = AnimationController(vsync: this, duration: widget.duration);
+    controller = AnimationController(duration: widget.duration);
     offset = (isOn
             ? Tween<Offset>(
                 begin: const Offset(1, 0),

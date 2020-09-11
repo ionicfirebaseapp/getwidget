@@ -71,7 +71,6 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
   void initState() {
     animationController = AnimationController(
       duration: widget.duration,
-      vsync: this,
     );
     animation = CurvedAnimation(
       parent: animationController,
@@ -81,7 +80,6 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
     if (mounted) {
       animationController.forward();
       fadeanimationController = AnimationController(
-        vsync: this,
         duration: widget.animationDuration,
       )..addListener(() => setState(() {}));
       fadeanimation = Tween<double>(
