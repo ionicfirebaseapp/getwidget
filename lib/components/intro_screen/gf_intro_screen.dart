@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/components/intro_screen/gf__intro_bottom_navigation.dart';
 import 'package:getwidget/components/intro_screen/gf_intro_slide.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:getwidget/types/gf_intro_type.dart';
 
 class GFIntroScreen extends StatefulWidget {
