@@ -8,6 +8,7 @@ export 'package:getwidget/components/avatar/gf_avatar.dart';
 export 'package:getwidget/components/badge/gf_badge.dart';
 export 'package:getwidget/components/badge/gf_button_badge.dart';
 export 'package:getwidget/components/badge/gf_icon_badge.dart';
+export 'package:getwidget/components/border/gf_border.dart';
 export 'package:getwidget/components/bottom_sheet/gf_bottom_sheet.dart';
 export 'package:getwidget/components/button/gf_button.dart';
 export 'package:getwidget/components/button/gf_button_bar.dart';
@@ -39,6 +40,8 @@ export 'package:getwidget/components/toast/gf_toast.dart';
 export 'package:getwidget/components/toggle/gf_toggle.dart';
 export 'package:getwidget/components/typography/gf_typography.dart';
 
+
+
 export 'colors/gf_color.dart';
 export 'direction/gf_shimmer_direction.dart';
 export 'position/gf_position.dart';
@@ -48,6 +51,7 @@ export 'shape/gf_button_shape.dart';
 export 'shape/gf_icon_button_shape.dart';
 export 'size/gf_size.dart';
 export 'types/gf_alert_type.dart';
+export 'types/gf_border_type.dart';
 export 'types/gf_button_type.dart';
 export 'types/gf_checkbox_type.dart';
 export 'types/gf_loader_type.dart';
