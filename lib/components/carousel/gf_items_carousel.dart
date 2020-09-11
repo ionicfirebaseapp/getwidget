@@ -83,7 +83,6 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
     offset = 0;
     animationController = AnimationController(
       duration: const Duration(milliseconds: dragAnimationDuration),
-      vsync: this,
     );
     Future.delayed(Duration.zero, () {
       setState(() {
@@ -133,7 +132,6 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
 
     animationController = AnimationController(
       duration: const Duration(milliseconds: dragAnimationDuration),
-      vsync: this,
     );
 
     final Tween tween =
@@ -165,7 +163,6 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
     final double endAnimation = size * (offset / size).round().toDouble();
     animationController = AnimationController(
       duration: const Duration(milliseconds: shiftAnimationDuration),
-      vsync: this,
     );
     final Tween tween = Tween<double>(begin: beginAnimation, end: endAnimation);
     final Animation animation = tween.animate(animationController);
