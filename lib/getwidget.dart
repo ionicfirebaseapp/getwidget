@@ -36,6 +36,7 @@ export 'package:getwidget/components/progress_bar/gf_progress_bar.dart';
 export 'package:getwidget/components/checkbox/gf_checkbox.dart';
 export 'package:getwidget/components/checkboxListTile/gf_checkbox_list_tile.dart';
 export 'package:getwidget/components/radiobutton/gf_radio_button.dart';
+export 'package:getwidget/components/border/gf_border.dart';
 
 // exports shape, color, position, size, types, direction
 export 'colors/gf_color.dart';
@@ -47,6 +48,7 @@ export 'shape/gf_button_shape.dart';
 export 'shape/gf_icon_button_shape.dart';
 export 'size/gf_size.dart';
 export 'types/gf_alert_type.dart';
+export 'types/gf_border_type.dart';
 export 'types/gf_button_type.dart';
 export 'types/gf_checkbox_type.dart';
 export 'types/gf_loader_type.dart';
