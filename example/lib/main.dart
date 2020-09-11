@@ -10,37 +10,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         title: 'GetWidget',
         debugShowCheckedModeBanner: false,
-        home: GF(),
+        home: MyHomePage(),
       );
-}
-
-class GF extends StatefulWidget {
-  @override
-  _GFState createState() => _GFState();
-}
-
-class _GFState extends State<GF> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Row(children: [
-      Container(
-        child: GFBorder(
-          child: Text('gvhjnk'),
-          type: GFBorderType.Oval,
-          dashedLine: [2, 2],
-        ),
-      ),
-      Container(
-        child: GFBorder(
-          child: Text('gvhjnk'),
-          type: GFBorderType.Rect,
-          radius: Radius.circular(30),
-          dashedLine: [2, 0],
-        ),
-      )
-    ]));
-  }
 }
 
 class MyHomePage extends StatefulWidget {

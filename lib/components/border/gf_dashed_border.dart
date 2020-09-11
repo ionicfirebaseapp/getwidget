@@ -73,7 +73,7 @@ class DashedType extends CustomPainter {
     return dashPath(path, dashedarray: CircularIntervalList(dashedLine));
   }
 
-  ///  gives a circular path og borderType
+  ///  gives a circular path of borderType
   Path _getCirclePath(Size size) {
     final double width = size.width;
     final double height = size.height;
