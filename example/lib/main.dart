@@ -10,8 +10,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         title: 'GetWidget',
         debugShowCheckedModeBanner: false,
-        home: MyHomePage(),
+        home: Textf(),
       );
+}
+
+class Textf extends StatefulWidget {
+  @override
+  _TextfState createState() => _TextfState();
+}
+
+class _TextfState extends State<Textf> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GFTextField(
+        decoration:
+            InputDecoration(border: InputBorder.none, hintText: 'bujnm'),
+      ),
+    );
+  }
 }
 
 class MyHomePage extends StatefulWidget {
