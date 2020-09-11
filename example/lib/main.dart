@@ -23,13 +23,23 @@ class _GFState extends State<GF> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      child: GFBorder(
-        child: Text('gvhjnk'),
-        type: GFBorderType.Oval,
-        dashedLine: [2, 2],
+        body: Row(children: [
+      Container(
+        child: GFBorder(
+          child: Text('gvhjnk'),
+          type: GFBorderType.Oval,
+          dashedLine: [2, 2],
+        ),
       ),
-    ));
+      Container(
+        child: GFBorder(
+          child: Text('gvhjnk'),
+          type: GFBorderType.Rect,
+          radius: Radius.circular(30),
+          dashedLine: [2, 0],
+        ),
+      )
+    ]));
   }
 }
 

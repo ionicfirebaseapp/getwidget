@@ -152,19 +152,13 @@ class CircularIntervalList<T> {
   }
 }
 
-Path dashPath(
-  Path source, {
-  @required CircularIntervalList<double> dashedarray,
-  DashOffset dashOffset,
-}) {
+Path dashPath(Path source,
+    {@required CircularIntervalList<double> dashedarray,
+    DashOffset dashOffset = const DashOffset.absolute(0)}) {
   assert(dashedarray != null);
   if (source == null) {
     return null;
   }
-  if (dashOffset == null) {
-    dashOffset = const DashOffset.absolute(0);
-  }
-  // dashOffset = dashOffset ?? const DashOffset.absolute(0);
 
   final Path dest = Path();
   for (final PathMetric metric in source.computeMetrics()) {
