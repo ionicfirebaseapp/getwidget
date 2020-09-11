@@ -118,7 +118,8 @@ class _GFAnimationState extends State<GFAnimation>
     if (widget.type == GFAnimationType.rotateTransition) {
       controller = widget.controller ??
           AnimationController(
-              duration: widget.duration ?? const Duration(seconds: 2), vsync: this);
+              duration: widget.duration ?? const Duration(seconds: 2),
+              vsync: this);
       animation = widget.turnsAnimation ??
           Tween<double>(begin: 0, end: 20).animate(controller);
       if (widget.turnsAnimation == null) {
@@ -127,15 +128,16 @@ class _GFAnimationState extends State<GFAnimation>
     } else if (widget.type == GFAnimationType.scaleTransition) {
       controller = widget.controller ??
           AnimationController(
-              duration: widget.duration ?? const Duration(seconds: 2), vsync: this);
+              duration: widget.duration ?? const Duration(seconds: 2),
+              vsync: this);
       animation = widget.scaleAnimation ??
           CurvedAnimation(
               parent: controller, curve: widget.curve ?? Curves.ease);
       controller.forward();
     } else if (widget.type == GFAnimationType.slideTransition) {
       controller = AnimationController(
-        duration: widget.duration ?? const Duration(seconds: 2), vsync: this
-      )..repeat(reverse: true);
+          duration: widget.duration ?? const Duration(seconds: 2), vsync: this)
+        ..repeat(reverse: true);
       offsetAnimation = Tween<Offset>(
         begin: Offset.zero,
         end: const Offset(1.5, 0),
@@ -252,7 +254,7 @@ class _GFAnimationState extends State<GFAnimation>
                   fontWeight: widget.fontWeight ?? FontWeight.normal,
                   fontSize: widget.fontSize ?? 16,
                   color: widget.color ?? Colors.blue),
-//          textWidthBasis: widget.textWidthBasis ?? TextWidthBasis.parent,
+          textWidthBasis: widget.textWidthBasis ?? TextWidthBasis.parent,
           textAlign: widget.textAlign ?? TextAlign.start,
           curve: widget.curve ?? Curves.linear,
           duration: widget.duration ?? const Duration(seconds: 2),

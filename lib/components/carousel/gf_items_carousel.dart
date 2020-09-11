@@ -82,9 +82,8 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
   void initState() {
     offset = 0;
     animationController = AnimationController(
-      duration: const Duration(milliseconds: dragAnimationDuration),
-        vsync: this
-    );
+        duration: const Duration(milliseconds: dragAnimationDuration),
+        vsync: this);
     Future.delayed(Duration.zero, () {
       setState(() {
         final double localWidth = MediaQuery.of(context).size.width;
@@ -132,9 +131,8 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
     }
 
     animationController = AnimationController(
-      duration: const Duration(milliseconds: dragAnimationDuration),
-        vsync: this
-    );
+        duration: const Duration(milliseconds: dragAnimationDuration),
+        vsync: this);
 
     final Tween tween =
         Tween<double>(begin: offset, end: calculateOffset(0.5 * dx));
@@ -164,9 +162,8 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
     final double beginAnimation = offset;
     final double endAnimation = size * (offset / size).round().toDouble();
     animationController = AnimationController(
-      duration: const Duration(milliseconds: shiftAnimationDuration),
-        vsync: this
-    );
+        duration: const Duration(milliseconds: shiftAnimationDuration),
+        vsync: this);
     final Tween tween = Tween<double>(begin: beginAnimation, end: endAnimation);
     final Animation animation = tween.animate(animationController);
     animation.addListener(() {
