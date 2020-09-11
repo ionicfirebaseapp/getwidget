@@ -2,25 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFCheckbox extends StatefulWidget {
-  const GFCheckbox({
-    Key key,
-    this.size = GFSize.MEDIUM,
-    this.type = GFCheckboxType.basic,
-    this.checkColor = GFColors.WHITE,
-    this.activebgColor = GFColors.PRIMARY,
-    this.inactivebgColor = GFColors.WHITE,
-    this.activeBorderColor = GFColors.WHITE,
-    this.inactiveBorderColor = GFColors.DARK,
-    this.onChanged,
-    this.value,
-    this.activeIcon = const Icon(
-      Icons.check,
-      size: 20,
-      color: GFColors.WHITE,
-    ),
-    this.inactiveIcon = const Icon(Icons.close),
-    this.custombgColor = GFColors.SUCCESS,
-  }) : super(key: key);
+  const GFCheckbox(
+      {Key key,
+      this.size = GFSize.MEDIUM,
+      this.type = GFCheckboxType.basic,
+      this.checkColor = GFColors.WHITE,
+      this.activebgColor = GFColors.PRIMARY,
+      this.inactivebgColor = GFColors.WHITE,
+      this.activeBorderColor = GFColors.WHITE,
+      this.inactiveBorderColor = GFColors.DARK,
+      this.onChanged,
+      this.value,
+      this.activeIcon = const Icon(
+        Icons.check,
+        size: 20,
+        color: GFColors.WHITE,
+      ),
+      this.inactiveIcon = const Icon(Icons.close),
+      this.custombgColor = GFColors.SUCCESS,
+      this.autofocus = false,
+      this.focusNode})
+      : assert(autofocus != null),
+        super(key: key);
 
   /// type of [GFCheckboxType] which is of four type is basic, sqaure, circular and custom
   final GFCheckboxType type;
@@ -28,7 +31,7 @@ class GFCheckbox extends StatefulWidget {
   /// type of [double] which is GFSize ie, small, medium and large and can use any double value
   final double size;
 
-  // type pf [Color] used to change the checkcolor when the checkbox is active
+  /// type pf [Color] used to change the checkcolor when the checkbox is active
   final Color checkColor;
 
   /// type of [Color] used to change the backgroundColor of the active checkbox
@@ -58,40 +61,42 @@ class GFCheckbox extends StatefulWidget {
   /// type of [Color] used to change the background color of the custom active  checkbox only
   final Color custombgColor;
 
+  /// {@macro flutter.widgets.Focus.autofocus}
+  final bool autofocus;
+
+  /// {@macro flutter.widgets.Focus.focusNode}
+  final FocusNode focusNode;
+
   @override
   _GFCheckboxState createState() => _GFCheckboxState();
 }
 
 class _GFCheckboxState extends State<GFCheckbox> {
   bool get enabled => widget.onChanged != null;
-  bool isSelected = false;
 
   @override
   void initState() {
     super.initState();
-    isSelected = widget.value ?? false;
-  }
-
-  void onStatusChange() {
-    setState(() {
-      isSelected = !isSelected;
-    });
-    if (widget.onChanged != null) {
-      widget.onChanged(isSelected);
-    }
   }
 
   @override
   Widget build(BuildContext context) => FocusableActionDetector(
+        focusNode: widget.focusNode,
+        autofocus: widget.autofocus,
         enabled: enabled,
         child: InkWell(
-          onTap: onStatusChange,
+          canRequestFocus: enabled,
+          onTap: widget.onChanged != null
+              ? () {
+                  widget.onChanged(!widget.value);
+                }
+              : null,
           child: Container(
             height: widget.size,
             width: widget.size,
             decoration: BoxDecoration(
                 color: enabled
-                    ? isSelected
+                    ? widget.value
                         ? widget.type == GFCheckboxType.custom
                             ? Colors.white
                             : widget.activebgColor
@@ -103,12 +108,12 @@ class _GFCheckboxState extends State<GFCheckbox> {
                         ? BorderRadius.circular(50)
                         : BorderRadius.zero,
                 border: Border.all(
-                    color: isSelected
+                    color: widget.value
                         ? widget.type == GFCheckboxType.custom
                             ? Colors.black87
                             : widget.activeBorderColor
                         : widget.inactiveBorderColor)),
-            child: isSelected
+            child: widget.value
                 ? widget.type == GFCheckboxType.custom
                     ? Stack(
                         children: <Widget>[
