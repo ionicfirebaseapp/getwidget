@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class GFBottomSheet extends StatefulWidget {
   GFBottomSheet({
@@ -71,7 +72,6 @@ class _GFBottomSheetState extends State<GFBottomSheet>
 
   void _onVerticalDragEnd(data) {
     _setSmoothness();
-
     if (isDragDirectionUp && widget.controller.value) {
       _showBottomSheet();
     } else if (!isDragDirectionUp && !widget.controller.value) {
@@ -90,6 +90,7 @@ class _GFBottomSheetState extends State<GFBottomSheet>
   @override
   void initState() {
     super.initState();
+    position = widget.minContentHeight;
     widget.controller.value = showBottomSheet;
     _controllerListener = () {
       widget.controller.value ? _showBottomSheet() : _hideBottomSheet();
@@ -97,74 +98,98 @@ class _GFBottomSheetState extends State<GFBottomSheet>
     widget.controller.addListener(_controllerListener);
   }
 
+  StreamController<double> controller = StreamController.broadcast();
+  double position;
+
+
   @override
   Widget build(BuildContext context) {
-
-    final BottomSheetThemeData bottomSheetTheme = Theme.of(context).bottomSheetTheme;
-    final double elevation = widget.elevation ?? bottomSheetTheme.elevation ?? 0;
+    final BottomSheetThemeData bottomSheetTheme =
+        Theme.of(context).bottomSheetTheme;
+    final double elevation =
+        widget.elevation ?? bottomSheetTheme.elevation ?? 0;
 
     final Widget bottomSheet = Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        widget.stickyHeader == null
-            ? Container()
-            : GestureDetector(
-                onVerticalDragUpdate: _onVerticalDragUpdate,
-                onVerticalDragEnd: _onVerticalDragEnd,
-                onTap: _onTap,
-                child: widget.stickyHeader,
-              ),
-        AnimatedBuilder(
-          animation: widget.controller,
-          builder: (_, Widget child) => AnimatedContainer(
-            curve: Curves.easeOut,
-            duration: Duration(milliseconds: widget.controller.smoothness),
-            height: widget.controller.height,
-            child: GestureDetector(
-              onVerticalDragUpdate: _onVerticalDragUpdate,
-              onVerticalDragEnd: _onVerticalDragEnd,
-              onTap: _onTap,
-              child: widget.contentBody,
-            ),
-          ),
-        ),
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                widget.stickyHeader == null
+                    ? Container()
+                    : GestureDetector(
+                        onVerticalDragUpdate: _onVerticalDragUpdate,
+                        onVerticalDragEnd: _onVerticalDragEnd,
+                        onTap: _onTap,
+                        child: widget.stickyHeader,
+                      ),
+
+
         StreamBuilder(
-          stream: controller.stream,
-          builder:(context,snapshot) => GestureDetector(
-              onVerticalDragUpdate: (DragUpdateDetails details){
-                position = MediaQuery.of(context).size.height- details.globalPosition.dy;
-                position.isNegative ? Navigator.pop(context) :controller.add(position);
-              },
-              behavior: HitTestBehavior.translucent,
-              child:
-              Container(
-                color: Colors.red,
-                height: snapshot.hasData ? snapshot.data : 100.0,
-                width: double.infinity,
-                child: Text('Child'),
-              )),
+        stream: controller.stream,
+        builder: (context, snapshot) => GestureDetector(
+            onVerticalDragUpdate: (DragUpdateDetails details){
+              position = MediaQuery.of(context).size.height - details.globalPosition.dy;
+              print('fff');
+
+              if(position >= widget.maxContentHeight){
+                print('max');
+                  position = widget.maxContentHeight;
+              }else if(position <= widget.minContentHeight){
+                print('min');
+                position = widget.minContentHeight;
+                _hideBottomSheet();
+              }
+              controller.add(position);
+
+            },
+            onVerticalDragEnd: _onVerticalDragEnd,
+            onTap: _onTap,
+            behavior: HitTestBehavior.translucent,
+            child: Container(
+              color: Colors.red,
+              height: snapshot.hasData ? snapshot.data : widget.maxContentHeight*0.3,
+              width: double.infinity,
+              child: Text('jk'),
+            )
         ),
-        widget.stickyFooter != null
-            ? AnimatedBuilder(
-                animation: widget.controller,
-                builder: (_, Widget child) => AnimatedContainer(
-                  curve: Curves.easeOut,
-                  duration:
-                      Duration(milliseconds: widget.controller.smoothness),
-                  height: widget.controller.height != widget.minContentHeight
-                      ? widget.stickyFooterHeight
-                      : 0.0,
-                  child: GestureDetector(
-                    onVerticalDragUpdate: _onVerticalDragUpdate,
-                    onVerticalDragEnd: _onVerticalDragEnd,
-                    onTap: _onTap,
-                    child: widget.stickyFooter,
-                  ),
-                ),
-              )
-            : Container(),
-      ],
-    );
+        ),
+
+//                AnimatedBuilder(
+//                    animation: widget.controller,
+//                    builder: (_, Widget child) =>
+//                        AnimatedContainer(
+//                          curve: Curves.easeOut,
+//                          duration: Duration(milliseconds: widget.controller.smoothness),
+//                          height: widget.controller.height,
+//                          child: GestureDetector(
+//                              onVerticalDragUpdate: _onVerticalDragUpdate,
+//                              onVerticalDragEnd: _onVerticalDragEnd,
+//                              onTap: _onTap,
+//                              child: widget.contentBody
+//                          ),
+//                        ),
+//                ),
+
+                widget.stickyFooter != null
+                    ? AnimatedBuilder(
+                        animation: widget.controller,
+                        builder: (_, Widget child) => AnimatedContainer(
+                          curve: Curves.easeOut,
+                          duration: Duration(
+                              milliseconds: widget.controller.smoothness),
+                          height: widget.controller.height !=
+                                  widget.minContentHeight
+                              ? widget.stickyFooterHeight
+                              : 0.0,
+                          child: GestureDetector(
+                            onVerticalDragUpdate: _onVerticalDragUpdate,
+                            onVerticalDragEnd: _onVerticalDragEnd,
+                            onTap: _onTap,
+                            child: widget.stickyFooter,
+                          ),
+                        ),
+                      )
+                    : Container(),
+              ],
+            );
     return Material(
       elevation: elevation,
       child: bottomSheet,
@@ -188,7 +213,6 @@ class _GFBottomSheetState extends State<GFBottomSheet>
   void _setSmoothness() {
     widget.controller.smoothness = 500;
   }
-
 }
 
 class GFBottomSheetController extends ValueNotifier<bool> {
