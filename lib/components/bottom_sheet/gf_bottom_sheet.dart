@@ -35,21 +35,21 @@ class GFBottomSheet extends StatefulWidget {
   final Widget stickyHeader;
 
   /// [contentBody] is the body of GFBottomSheet.
-  /// User can interact by tapping the [contentBody]
+  /// User can interact by swiping or tapping the [contentBody]
   final Widget contentBody;
 
   /// [stickyFooter] is the footer of GFBottomSheet.
   /// User can interact by swiping or tapping the [stickyFooter]
   final Widget stickyFooter;
 
-  /// [stickyFooterHeight] defines the height of GFBottomSheet footer.
+  /// [stickyFooterHeight] defines the height of GFBottomSheet's [stickyFooter].
   final double stickyFooterHeight;
 
-  /// [stickyHeaderHeight] defines the height of GFBottomSheet footer.
+  /// [stickyHeaderHeight] defines the height of GFBottomSheet's [stickyHeader].
   final double stickyHeaderHeight;
 
   /// [elevation] controls shadow below the GFBottomSheet material.
-  /// Must be greater or equalto 0. Default value is 0.
+  /// Must be greater or equal to 0. Default value is 0.
   final double elevation;
 
   ///[enableExpandableContent] allows [contentBody] to expand.
@@ -69,10 +69,10 @@ class GFBottomSheet extends StatefulWidget {
 
 class _GFBottomSheetState extends State<GFBottomSheet>
     with TickerProviderStateMixin {
+  final StreamController<double> controller = StreamController.broadcast();
   bool isDragDirectionUp;
   bool showBottomSheet = false;
   Function _controllerListener;
-  final StreamController<double> controller = StreamController.broadcast();
   double position;
   bool showContent = false;
 
