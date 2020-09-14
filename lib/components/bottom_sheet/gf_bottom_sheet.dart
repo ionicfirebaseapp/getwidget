@@ -16,7 +16,6 @@ class GFBottomSheet extends StatefulWidget {
         super(key: key) {
     controller.height = minContentHeight;
     controller.smoothness = 500;
-//    controller == null ? controller = GFBottomSheetController() : Container();
   }
 
   /// [minContentHeight] controls the minimum height of the content body.
@@ -60,7 +59,7 @@ class _GFBottomSheetState extends State<GFBottomSheet>
   Function _controllerListener;
 
   void _onVerticalDragUpdate(data) {
-    _setNativeSmoothness();
+    _setSmoothness();
     if (((widget.controller.height - data.delta.dy) >
             widget.minContentHeight) &&
         ((widget.controller.height - data.delta.dy) <
@@ -71,8 +70,7 @@ class _GFBottomSheetState extends State<GFBottomSheet>
   }
 
   void _onVerticalDragEnd(data) {
-    _setUsersSmoothness();
-
+    _setSmoothness();
     if (isDragDirectionUp && widget.controller.value) {
       _showBottomSheet();
     } else if (!isDragDirectionUp && !widget.controller.value) {
@@ -91,6 +89,7 @@ class _GFBottomSheetState extends State<GFBottomSheet>
   @override
   void initState() {
     super.initState();
+
     widget.controller.value = showBottomSheet;
     _controllerListener = () {
       widget.controller.value ? _showBottomSheet() : _hideBottomSheet();
@@ -100,6 +99,11 @@ class _GFBottomSheetState extends State<GFBottomSheet>
 
   @override
   Widget build(BuildContext context) {
+    final BottomSheetThemeData bottomSheetTheme =
+        Theme.of(context).bottomSheetTheme;
+    final double elevation =
+        widget.elevation ?? bottomSheetTheme.elevation ?? 0;
+
     final Widget bottomSheet = Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -118,11 +122,10 @@ class _GFBottomSheetState extends State<GFBottomSheet>
             duration: Duration(milliseconds: widget.controller.smoothness),
             height: widget.controller.height,
             child: GestureDetector(
-              onVerticalDragUpdate: _onVerticalDragUpdate,
-              onVerticalDragEnd: _onVerticalDragEnd,
-              onTap: _onTap,
-              child: widget.contentBody,
-            ),
+                onVerticalDragUpdate: _onVerticalDragUpdate,
+                onVerticalDragEnd: _onVerticalDragEnd,
+                onTap: _onTap,
+                child: widget.contentBody),
           ),
         ),
         widget.stickyFooter != null
@@ -147,7 +150,7 @@ class _GFBottomSheetState extends State<GFBottomSheet>
       ],
     );
     return Material(
-      elevation: widget.elevation,
+      elevation: elevation,
       child: bottomSheet,
     );
   }
@@ -166,11 +169,7 @@ class _GFBottomSheetState extends State<GFBottomSheet>
     super.dispose();
   }
 
-  void _setUsersSmoothness() {
-    widget.controller.smoothness = 500;
-  }
-
-  void _setNativeSmoothness() {
+  void _setSmoothness() {
     widget.controller.smoothness = 500;
   }
 }
