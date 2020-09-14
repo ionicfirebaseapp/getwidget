@@ -130,7 +130,8 @@ class _GFProgressBarState extends State<GFProgressBar>
     super.initState();
     if (widget.animation) {
       _animationController = AnimationController(
-          duration: Duration(milliseconds: widget.animationDuration));
+          duration: Duration(milliseconds: widget.animationDuration),
+          vsync: this);
       _animation =
           Tween(begin: 0, end: widget.percentage).animate(_animationController)
             ..addListener(() {
@@ -145,7 +146,8 @@ class _GFProgressBarState extends State<GFProgressBar>
 
     if (widget.animation) {
       circularAnimationController = AnimationController(
-          duration: Duration(milliseconds: widget.animationDuration));
+          duration: Duration(milliseconds: widget.animationDuration),
+          vsync: this);
       circularAnimation = Tween(begin: 0, end: widget.percentage)
           .animate(circularAnimationController)
             ..addListener(() {

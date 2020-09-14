@@ -65,7 +65,7 @@ class _GFShimmerState extends State<GFShimmer>
   void initState() {
     super.initState();
     _count = 0;
-    _controller = AnimationController(duration: widget.duration)
+    _controller = AnimationController(duration: widget.duration, vsync: this)
       ..addStatusListener((AnimationStatus status) {
         if (status != AnimationStatus.completed) {
           return;
