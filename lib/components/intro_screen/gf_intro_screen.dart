@@ -141,14 +141,14 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
   }
 
   Widget buildBubbleType() => Container(
-    height: MediaQuery.of(context).size.height,
-    width: MediaQuery.of(context).size.width,
-    child: PageView(
-      physics: const ScrollPhysics(),
-      children: bubbleSlides(),
-      controller: _pageController,
-    ),
-  );
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: PageView(
+          physics: const ScrollPhysics(),
+          children: bubbleSlides(),
+          controller: _pageController,
+        ),
+      );
 
   List<Widget> bubbleSlides() {
     final List<Widget> list = [];
