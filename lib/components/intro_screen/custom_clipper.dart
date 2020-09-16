@@ -12,15 +12,16 @@ class MyCustomClipper extends CustomClipper<Rect> {
         : alignment == Alignment.topCenter
             ? Rect.fromLTRB(0, -size.height, size.width, size.height)
             : alignment == Alignment.topRight
-                ? Rect.fromLTRB(-size.height, 1, size.width, size.height)
+                ? Rect.fromLTRB(0, -size.height, size.height, size.height)
                 : alignment == Alignment.bottomLeft
                     ? Rect.fromLTRB(
                         -size.width, -size.height, size.width, size.height)
                     : alignment == Alignment.bottomCenter
-                        ? Rect.fromLTRB(0, 0, size.width, size.height)
+                        ? Rect.fromLTRB(
+                            0, -size.height, size.width, size.height)
                         : alignment == Alignment.bottomRight
                             ? Rect.fromLTRB(
-                                0, -size.height, size.width, size.height)
+                                0, -size.width, size.height, size.height)
                             : Rect.fromLTRB(
                                 0, -size.height, size.width, size.height);
     return rect;

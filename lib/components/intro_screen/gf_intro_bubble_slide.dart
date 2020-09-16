@@ -27,8 +27,8 @@ class GFIntroBubbleSlide extends StatelessWidget {
               clipper: MyCustomClipper(alignment: alignment),
               child: Container(
                 width: MediaQuery.of(context).size.width / 2,
-                height: MediaQuery.of(context).size.height / 3,
-                padding: const EdgeInsets.only(right: 24, top: 24, bottom: 64),
+                height: MediaQuery.of(context).size.height / 2,
+                padding: const EdgeInsets.only(left:16,right: 16, top: 24, bottom: 24),
                 color: color.withOpacity(0.5),
                 child: child ??
                     RawMaterialButton(
