@@ -254,7 +254,7 @@ class _GFAnimationState extends State<GFAnimation>
                   fontWeight: widget.fontWeight ?? FontWeight.normal,
                   fontSize: widget.fontSize ?? 16,
                   color: widget.color ?? Colors.blue),
-//          textWidthBasis: widget.textWidthBasis ?? TextWidthBasis.parent,
+          textWidthBasis: widget.textWidthBasis ?? TextWidthBasis.parent,
           textAlign: widget.textAlign ?? TextAlign.start,
           curve: widget.curve ?? Curves.linear,
           duration: widget.duration ?? const Duration(seconds: 2),
