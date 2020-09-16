@@ -14,10 +14,20 @@ class GFIntroScreen extends StatefulWidget {
       this.color = Colors.white})
       : super(key: key);
 
+  /// if the type as [GFIntroType.fullWidth],[GFIntroType.half],[GFIntroType.rounded] use [GFIntroSlide]'s or customWidgets
+  /// if the type as [GFIntroType.bubble] use [GFIntroBubbleSlide]'s or customWidgets
   final List<Widget> slides;
+
+  /// type of [GFIntroType] which takes the type ie, fullWidth, half,rounded and bubble for the [GFIntroScreen]
   final GFIntroType type;
+
+  /// default controller for the [GFIntroScreen] component
   final PageController pageController;
+
+  /// [GFIntroScreen] bottom navigation will be used as [GFIntroBottomNavigation] component
   final GFIntroBottomNavigation gfIntroBottomNavigation;
+
+  /// background color of the [GFIntroScreen] component
   final Color color;
 
   @override
