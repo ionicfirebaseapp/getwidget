@@ -140,27 +140,41 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
     return list;
   }
 
-  Widget buildBubbleType() => SafeArea(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: PageView(
-            physics: const ScrollPhysics(),
-            children: bubbleSlides(),
-            controller: _pageController,
-          ),
-        ),
-      );
+  Widget buildBubbleType() => Container(
+    height: MediaQuery.of(context).size.height,
+    width: MediaQuery.of(context).size.width,
+    child: PageView(
+      physics: const ScrollPhysics(),
+      children: bubbleSlides(),
+      controller: _pageController,
+    ),
+  );
 
   List<Widget> bubbleSlides() {
     final List<Widget> list = [];
     list.add(GFIntroBubbleSlide(
-      onNext: () => nextSlider,
+      onNext: nextSlider,
       alignment: Alignment.topLeft,
     ));
     list.add(GFIntroBubbleSlide(
-      onNext: () => nextSlider,
+      onNext: nextSlider,
+      alignment: Alignment.topCenter,
+    ));
+    list.add(GFIntroBubbleSlide(
+      onNext: nextSlider,
       alignment: Alignment.topRight,
+    ));
+    list.add(GFIntroBubbleSlide(
+      onNext: nextSlider,
+      alignment: Alignment.bottomLeft,
+    ));
+    list.add(GFIntroBubbleSlide(
+      onNext: nextSlider,
+      alignment: Alignment.bottomCenter,
+    ));
+    list.add(GFIntroBubbleSlide(
+      onNext: nextSlider,
+      alignment: Alignment.bottomRight,
     ));
     return list;
   }

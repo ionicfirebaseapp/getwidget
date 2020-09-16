@@ -9,20 +9,25 @@ class MyCustomClipper extends CustomClipper<Rect> {
   Rect getClip(Size size) {
     final Rect rect = alignment == Alignment.topLeft
         ? Rect.fromLTRB(-size.width, -size.height, size.width, size.height)
-        : alignment == Alignment.topRight
-            ? Rect.fromLTRB(-size.height, -size.width, size.width, size.height)
-            : alignment == Alignment.topCenter
-                ? Rect.fromLTRB(-size.width, -size.height, -size.width, 0)
+        : alignment == Alignment.topCenter
+            ? Rect.fromLTRB(0, -size.height, size.width, size.height)
+            : alignment == Alignment.topRight
+                ? Rect.fromLTRB(
+                    -size.height, 1, size.width, size.height)
                 : alignment == Alignment.bottomLeft
-                    ? Rect.fromLTRB(0, -size.height, size.width, size.height)
+                    ? Rect.fromLTRB(
+                        -size.width, -size.height, size.width, size.height)
                     : alignment == Alignment.bottomCenter
                         ? Rect.fromLTRB(
-                            0, -size.height, size.width, size.height)
-                        : Rect.fromLTRB(
-                            0, -size.height, size.width, size.height);
+                            0, 0, size.width, size.height)
+                        : alignment == Alignment.bottomRight
+                            ? Rect.fromLTRB(
+                                0, -size.height, size.width, size.height)
+                            : Rect.fromLTRB(
+                                0, -size.height, size.width, size.height);
     return rect;
   }
 
   @override
-  bool shouldReclip(CustomClipper oldClipper) => false;
+  bool shouldReclip(CustomClipper oldClipper) => true;
 }
