@@ -20,14 +20,70 @@ class Textf extends StatefulWidget {
 }
 
 class _TextfState extends State<Textf> {
+  int _value = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GFTextField(
-        decoration:
-            InputDecoration(border: InputBorder.none, hintText: 'bujnm'),
+        body: Row(children: [
+      Expanded(
+        child: Container(
+          margin: EdgeInsets.only(top: 70, left: 30, right: 30),
+          child: GFDropdown(
+              items: [],
+              dropdownColor: Colors.red,
+              value: _value,
+              isExpanded: true,
+              borderColor: Colors.blueGrey,
+              padding: EdgeInsets.all(0),
+              icon: Icon(Icons.home),
+              isDense: true,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20)),
+              onChanged: (value) {
+                setState(() {
+                  _value = value;
+                });
+              }),
+        ),
       ),
-    );
+      Expanded(
+        child: Container(
+          margin: EdgeInsets.only(top: 70, left: 30, right: 30),
+          child: DropdownButton(
+              dropdownColor: Colors.red,
+              value: _value,
+              style: TextStyle(color: Colors.blue),
+              iconEnabledColor: Colors.amber,
+              iconDisabledColor: Colors.blueGrey,
+              hint: Text('kijijm'),
+              disabledHint: Text('cfgvhjn'),
+              elevation: 4,
+              autofocus: true,
+              focusColor: Colors.orange,
+              isExpanded: false,
+              underline: Text('bjnmk'),
+              isDense: true,
+              iconSize: 50,
+              icon: Icon(Icons.home),
+              items: [
+                DropdownMenuItem(
+                  child: Text("First s"),
+                  value: 1,
+                ),
+                DropdownMenuItem(
+                  child: Text("Second"),
+                  value: 2,
+                ),
+              ],
+              onChanged: (value) {
+                setState(() {
+                  _value = value;
+                });
+              }),
+        ),
+      )
+    ]));
   }
 }
 

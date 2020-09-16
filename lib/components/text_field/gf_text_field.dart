@@ -1,16 +1,9 @@
-// Copyright 2014 The Flutter Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
 
-// @dart = 2.8
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
-// import 'input_decorator.dart';
-// import 'text_field.dart';
-// import 'theme.dart';
 
 export 'package:flutter/services.dart' show SmartQuotesType, SmartDashesType;
 
@@ -57,6 +50,8 @@ class GFTextField extends FormField<String> {
     double cursorHeight,
     Radius cursorRadius,
     Color cursorColor,
+    Color color,
+    Radius borderradius,
     Brightness keyboardAppearance,
     EdgeInsets scrollPadding = const EdgeInsets.all(20.0),
     bool enableInteractiveSelection = true,
@@ -116,64 +111,65 @@ class GFTextField extends FormField<String> {
               field.didChange(value);
             }
 
-            return TextField(
-              controller: state._effectiveController,
-              focusNode: focusNode,
-              decoration:
-                  effectiveDecoration.copyWith(errorText: field.errorText),
-              keyboardType: keyboardType,
-              textInputAction: textInputAction,
-              style: style,
-              strutStyle: strutStyle,
-              textAlign: textAlign,
-              textAlignVertical: textAlignVertical,
-              textDirection: textDirection,
-              textCapitalization: textCapitalization,
-              autofocus: autofocus,
-              toolbarOptions: toolbarOptions,
-              readOnly: readOnly,
-              showCursor: showCursor,
-              obscuringCharacter: obscuringCharacter,
-              obscureText: obscureText,
-              autocorrect: autocorrect,
-              smartDashesType: smartDashesType ??
-                  (obscureText
-                      ? SmartDashesType.disabled
-                      : SmartDashesType.enabled),
-              smartQuotesType: smartQuotesType ??
-                  (obscureText
-                      ? SmartQuotesType.disabled
-                      : SmartQuotesType.enabled),
-              enableSuggestions: enableSuggestions,
-              maxLengthEnforced: maxLengthEnforced,
-              maxLines: maxLines,
-              minLines: minLines,
-              expands: expands,
-              maxLength: maxLength,
-              onChanged: onChangedHandler,
-              onTap: onTap,
-              onEditingComplete: onEditingComplete,
-              onSubmitted: onFieldSubmitted,
-              inputFormatters: inputFormatters,
-              enabled: enabled ?? decoration?.enabled ?? true,
-              cursorWidth: cursorWidth,
-              cursorHeight: cursorHeight,
-              cursorRadius: cursorRadius,
-              cursorColor: cursorColor,
-              scrollPadding: scrollPadding,
-              scrollPhysics: scrollPhysics,
-              keyboardAppearance: keyboardAppearance,
-              enableInteractiveSelection: enableInteractiveSelection,
-              buildCounter: buildCounter,
-              autofillHints: autofillHints,
+            return Container(
+              decoration: BoxDecoration(border: Border.all(color: color)),
+              child: TextField(
+                controller: state._effectiveController,
+                focusNode: focusNode,
+                decoration:
+                    effectiveDecoration.copyWith(errorText: field.errorText) !=
+                            null
+                        ? decoration
+                        : color,
+                keyboardType: keyboardType,
+                textInputAction: textInputAction,
+                style: style,
+                strutStyle: strutStyle,
+                textAlign: textAlign,
+                textAlignVertical: textAlignVertical,
+                textDirection: textDirection,
+                textCapitalization: textCapitalization,
+                autofocus: autofocus,
+                toolbarOptions: toolbarOptions,
+                readOnly: readOnly,
+                showCursor: showCursor,
+                obscuringCharacter: obscuringCharacter,
+                obscureText: obscureText,
+                autocorrect: autocorrect,
+                smartDashesType: smartDashesType ??
+                    (obscureText
+                        ? SmartDashesType.disabled
+                        : SmartDashesType.enabled),
+                smartQuotesType: smartQuotesType ??
+                    (obscureText
+                        ? SmartQuotesType.disabled
+                        : SmartQuotesType.enabled),
+                enableSuggestions: enableSuggestions,
+                maxLengthEnforced: maxLengthEnforced,
+                maxLines: maxLines,
+                minLines: minLines,
+                expands: expands,
+                maxLength: maxLength,
+                onChanged: onChangedHandler,
+                onTap: onTap,
+                onEditingComplete: onEditingComplete,
+                onSubmitted: onFieldSubmitted,
+                inputFormatters: inputFormatters,
+                enabled: enabled ?? decoration?.enabled ?? true,
+                cursorWidth: cursorWidth,
+                cursorHeight: cursorHeight,
+                cursorRadius: cursorRadius,
+                cursorColor: cursorColor,
+                scrollPadding: scrollPadding,
+                scrollPhysics: scrollPhysics,
+                keyboardAppearance: keyboardAppearance,
+                enableInteractiveSelection: enableInteractiveSelection,
+                buildCounter: buildCounter,
+                autofillHints: autofillHints,
+              ),
             );
           },
         );
-
-  /// Controls the text being edited.
-  ///
-  /// If null, this widget will create its own [TextEditingController] and
-  /// initialize its [TextEditingController.text] with [initialValue].
   final TextEditingController controller;
 
   @override
