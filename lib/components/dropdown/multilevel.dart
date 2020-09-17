@@ -1,64 +1,345 @@
+import 'dart:async';
+import 'dart:ui' as ui show Image, ImageFilter;
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
+enum DropdownMenuShowHideSwitchStyle {
+  /// the showing menu will direct hide without animation
+  directHideAnimationShow,
 
-typedef Widget MenuItemBuilder<T>(BuildContext context, T data, bool selected);
-typedef void MenuItemOnTap<T>(T data, int index);
-typedef List<E> GetSubData<T, E>(T data);
+  /// the showing menu will direct hide without animation, and another menu shows without animation
+  directHideDirectShow,
 
-const double kDropdownMenuItemHeight = 45.0;
+  /// the showing menu will hide with animation,and the same time another menu shows with animation
+  animationHideAnimationShow,
 
-class DropdownListMenu<T> extends DropdownWidget {
-  final List<T> data;
-  final int selectedIndex;
-  final MenuItemBuilder itemBuilder;
-  final double itemExtent;
+  /// the showing menu will hide with animation,until the animation complete, another menu shows with animation
+  animationShowUntilAnimationHideComplete,
+}
 
-  DropdownListMenu(
-      {this.data,
-      this.selectedIndex,
-      this.itemBuilder,
-      this.itemExtent: kDropdownMenuItemHeight});
+class DropdownMenu extends DropdownWidget {
+  /// menus whant to show
+  final List<DropdownMenuBuilder> menus;
+
+  final Duration hideDuration;
+  final Duration showDuration;
+  final Curve showCurve;
+  final Curve hideCurve;
+
+  /// if set , background is rendered with ImageFilter.blur
+  final double blur;
+
+  final VoidCallback onHide;
+
+  /// The style when one menu hide and another menu show ,
+  /// see [DropdownMenuShowHideSwitchStyle]
+  final DropdownMenuShowHideSwitchStyle switchStyle;
+
+  final double maxMenuHeight;
+
+  DropdownMenu(
+      {@required this.menus,
+      DropdownMenuController controller,
+      Duration hideDuration,
+      Duration showDuration,
+      this.onHide,
+      this.blur,
+      Key key,
+      this.maxMenuHeight,
+      Curve hideCurve,
+      this.switchStyle: DropdownMenuShowHideSwitchStyle
+          .animationShowUntilAnimationHideComplete,
+      Curve showCurve})
+      : hideDuration = hideDuration ?? new Duration(milliseconds: 150),
+        showDuration = showDuration ?? new Duration(milliseconds: 300),
+        showCurve = showCurve ?? Curves.fastOutSlowIn,
+        hideCurve = hideCurve ?? Curves.fastOutSlowIn,
+        super(key: key, controller: controller) {
+    assert(menus != null);
+  }
 
   @override
-  DropdownState<DropdownWidget> createState() {
-    return new _MenuListState<T>();
+  DropdownState<DropdownMenu> createState() {
+    return new _DropdownMenuState();
   }
 }
 
-class _MenuListState<T> extends DropdownState<DropdownListMenu<T>> {
-  int _selectedIndex;
+class _DropdownAnimation {
+  Animation<Rect> rect;
+  AnimationController animationController;
+  RectTween position;
+
+  _DropdownAnimation(TickerProvider provider) {
+    animationController = new AnimationController(vsync: provider);
+  }
+
+  set height(double value) {
+    position = new RectTween(
+      begin: new Rect.fromLTRB(0.0, -value, 0.0, 0.0),
+      end: new Rect.fromLTRB(0.0, 0.0, 0.0, 0.0),
+    );
+
+    rect = position.animate(animationController);
+  }
+
+  set value(double value) {
+    animationController.value = value;
+  }
+
+  void dispose() {
+    animationController.dispose();
+  }
+
+  TickerFuture animateTo(double value, {Duration duration, Curve curve}) {
+    return animationController.animateTo(value,
+        duration: duration, curve: curve);
+  }
+}
+
+class SizeClipper extends CustomClipper<Rect> {
+  @override
+  Rect getClip(Size size) {
+    return new Rect.fromLTWH(0.0, 0.0, size.width, size.height);
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Rect> oldClipper) {
+    return false;
+  }
+}
+
+class _DropdownMenuState extends DropdownState<DropdownMenu>
+    with TickerProviderStateMixin {
+  List<_DropdownAnimation> _dropdownAnimations;
+  bool _show;
+  List<int> _showing;
+
+  AnimationController _fadeController;
+  Animation<double> _fadeAnimation;
 
   @override
   void initState() {
-    _selectedIndex = widget.selectedIndex;
+    _showing = [];
+    _dropdownAnimations = [];
+    for (int i = 0, c = widget.menus.length; i < c; ++i) {
+      _dropdownAnimations.add(new _DropdownAnimation(this));
+    }
+
+    _updateHeights();
+
+    _show = false;
+
+    _fadeController = new AnimationController(vsync: this);
+    _fadeAnimation = new Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_fadeController);
+
     super.initState();
   }
 
-  Widget buildItem(BuildContext context, int index) {
-    final List<T> list = widget.data;
+  @override
+  void dispose() {
+    for (int i = 0, c = _dropdownAnimations.length; i < c; ++i) {
+      _dropdownAnimations[i].dispose();
+    }
 
-    final T data = list[index];
-    return new GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      child: widget.itemBuilder(context, data, index == _selectedIndex),
-      onTap: () {
-        setState(() {
-          _selectedIndex = index;
-        });
-        assert(controller != null);
-        controller.select(data, index: index);
-      },
+    super.dispose();
+  }
+
+  void _updateHeights() {
+    for (int i = 0, c = widget.menus.length; i < c; ++i) {
+      _dropdownAnimations[i].height =
+          _ensureHeight(_getHeight(widget.menus[i]));
+    }
+  }
+
+  @override
+  void didUpdateWidget(DropdownMenu oldWidget) {
+    //update state
+    _updateHeights();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  Widget createMenu(BuildContext context, DropdownMenuBuilder menu, int i) {
+    DropdownMenuBuilder builder = menu;
+
+    return new ClipRect(
+      clipper: new SizeClipper(),
+      child: new SizedBox(
+          height: _ensureHeight(builder.height),
+          child: _showing.contains(i) ? builder.builder(context) : null),
     );
+  }
+
+  Widget _buildBackground(BuildContext context) {
+    Widget container = new Container(
+      color: Colors.black26,
+    );
+
+    container = new BackdropFilter(
+        filter: new ui.ImageFilter.blur(
+          sigmaY: widget.blur,
+          sigmaX: widget.blur,
+        ),
+        child: container);
+
+    return container;
   }
 
   @override
   Widget build(BuildContext context) {
-    return new ListView.builder(
-      itemExtent: widget.itemExtent,
-      itemBuilder: buildItem,
-      itemCount: widget.data.length,
+    List<Widget> list = [];
+
+    print("build ${new DateTime.now()}");
+
+    if (_show) {
+      list.add(
+        new FadeTransition(
+          opacity: _fadeAnimation,
+          child: new GestureDetector(
+              onTap: onHide, child: _buildBackground(context)),
+        ),
+      );
+    }
+
+    for (int i = 0, c = widget.menus.length; i < c; ++i) {
+      list.add(new RelativePositionedTransition(
+          rect: _dropdownAnimations[i].rect,
+          size: new Size(0.0, 0.0),
+          child: new Align(
+              alignment: Alignment.topCenter,
+              child: new Container(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                child: createMenu(context, widget.menus[i], i),
+              ))));
+    }
+
+    //WidgetsBinding;
+    //context.findRenderObject();
+    return new Stack(
+      fit: StackFit.expand,
+      children: list,
     );
+  }
+
+  TickerFuture onHide({bool dispatch: true}) {
+    if (_activeIndex != null) {
+      int index = _activeIndex;
+      _activeIndex = null;
+      TickerFuture future = _hide(index);
+      if (dispatch) {
+        if (controller != null) {
+          controller.hide();
+        }
+
+        //if (widget.onHide != null) widget.onHide();
+      }
+
+      _fadeController.animateTo(0.0,
+          duration: widget.hideDuration, curve: widget.hideCurve);
+
+      future.whenComplete(() {
+        setState(() {
+          _show = false;
+        });
+      });
+      return future;
+    }
+
+    return new TickerFuture.complete();
+  }
+
+  TickerFuture _hide(int index) {
+    TickerFuture future = _dropdownAnimations[index]
+        .animateTo(0.0, duration: widget.hideDuration, curve: widget.hideCurve);
+    return future;
+  }
+
+  int _activeIndex;
+
+  Future<void> onShow(int index) {
+    //哪一个是要展示的
+
+    assert(index >= 0 && index < _dropdownAnimations.length);
+    if (!_showing.contains(index)) {
+      _showing.add(index);
+    }
+
+    if (_activeIndex != null) {
+      if (_activeIndex == index) {
+        return onHide();
+      }
+
+      switch (widget.switchStyle) {
+        case DropdownMenuShowHideSwitchStyle.directHideAnimationShow:
+          {
+            _dropdownAnimations[_activeIndex].value = 0.0;
+            _dropdownAnimations[index].value = 1.0;
+            _activeIndex = index;
+
+            setState(() {
+              _show = true;
+            });
+
+            return new Future.value(null);
+          }
+
+          break;
+        case DropdownMenuShowHideSwitchStyle.animationHideAnimationShow:
+          {
+            _hide(_activeIndex);
+          }
+          break;
+        case DropdownMenuShowHideSwitchStyle.directHideDirectShow:
+          {
+            _dropdownAnimations[_activeIndex].value = 0.0;
+          }
+          break;
+        case DropdownMenuShowHideSwitchStyle
+            .animationShowUntilAnimationHideComplete:
+          {
+            return _hide(_activeIndex).whenComplete(() {
+              return _handleShow(index, true);
+            });
+          }
+          break;
+      }
+    }
+
+    return _handleShow(index, true);
+  }
+
+  TickerFuture _handleShow(int index, bool animation) {
+    _activeIndex = index;
+
+    setState(() {
+      _show = true;
+    });
+
+    _fadeController.animateTo(1.0,
+        duration: widget.showDuration, curve: widget.showCurve);
+
+    return _dropdownAnimations[index]
+        .animateTo(1.0, duration: widget.showDuration, curve: widget.showCurve);
+  }
+
+  double _getHeight(dynamic menu) {
+    DropdownMenuBuilder builder = menu as DropdownMenuBuilder;
+
+    return builder.height;
+  }
+
+  double _ensureHeight(double height) {
+    final double maxMenuHeight = widget.maxMenuHeight;
+    assert(height != null || maxMenuHeight != null,
+        "DropdownMenu.maxMenuHeight and DropdownMenuBuilder.height must not both null");
+    if (maxMenuHeight != null) {
+      if (height == null) return maxMenuHeight;
+      return height > maxMenuHeight ? maxMenuHeight : height;
+    }
+    return height;
   }
 
   @override
@@ -66,196 +347,21 @@ class _MenuListState<T> extends DropdownState<DropdownListMenu<T>> {
     switch (event) {
       case DropdownEvent.SELECT:
       case DropdownEvent.HIDE:
-        {}
+        {
+          onHide(dispatch: false);
+        }
         break;
       case DropdownEvent.ACTIVE:
-        {}
+        {
+          onShow(controller.menuIndex);
+        }
         break;
     }
   }
 }
 
-/// This widget is just like this:
-/// ----------------|---------------------
-/// MainItem1       |SubItem1
-/// MainItem2       |SubItem2
-/// MainItem3       |SubItem3
-/// ----------------|---------------------
-/// When you tap "MainItem1", the sub list of this widget will
-/// 1. call `getSubData(widget.data[0])`, this will return a list of data for sub list
-/// 2. Refresh the sub list of the widget by using the list above.
-///
-///
-class DropdownTreeMenu<T, E> extends DropdownWidget {
-  /// data from this widget
-  final List<T> data;
 
-  /// selected index of main list
-  final int selectedIndex;
 
-  /// item builder for main list
-  final MenuItemBuilder<T> itemBuilder;
-
-  //selected index of sub list
-  final int subSelectedIndex;
-
-  /// A function to build right item of the tree
-  final MenuItemBuilder<E> subItemBuilder;
-
-  /// A callback to get sub list from left list data, eg.
-  /// When you set List<MyData> to left,
-  /// a callback (MyData data)=>data.children; must be provided
-  final GetSubData<T, E> getSubData;
-
-  /// `itemExtent` of main list
-  final double itemExtent;
-
-  /// `itemExtent` of sub list
-  final double subItemExtent;
-
-  /// background for main list
-  final Color background;
-
-  /// background for sub list
-  final Color subBackground;
-
-  /// flex for main list
-  final int flex;
-
-  /// flex for sub list,
-  /// if `subFlex`==2 and `flex`==1,then sub list will be 2 times larger than main list
-  final int subFlex;
-
-  DropdownTreeMenu({
-    this.data,
-    double itemExtent,
-    this.selectedIndex,
-    this.itemBuilder,
-    this.subItemExtent,
-    this.subItemBuilder,
-    this.getSubData,
-    this.background: const Color(0xfffafafa),
-    this.subBackground,
-    this.flex: 1,
-    this.subFlex: 2,
-    this.subSelectedIndex,
-  })  : assert(getSubData != null),
-        itemExtent = itemExtent ?? kDropdownMenuItemHeight;
-
-  @override
-  DropdownState<DropdownWidget> createState() {
-    return new _TreeMenuList();
-  }
-}
-
-class _TreeMenuList<T, E> extends DropdownState<DropdownTreeMenu> {
-  int _subSelectedIndex;
-  int _selectedIndex;
-
-  //
-  int _activeIndex;
-
-  List<E> _subData;
-
-  List<T> _data;
-
-  @override
-  void initState() {
-    _selectedIndex = widget.selectedIndex;
-    _subSelectedIndex = widget.subSelectedIndex;
-    _activeIndex = _selectedIndex;
-
-    _data = widget.data;
-
-    if (_activeIndex != null) {
-      _subData = widget.getSubData(_data[_activeIndex]);
-    }
-
-    super.initState();
-  }
-
-  @override
-  void didUpdateWidget(DropdownTreeMenu oldWidget) {
-    // _selectedIndex = widget.selectedIndex;
-    // _subSelectedIndex = widget.subSelectedIndex;
-    // _activeIndex = _selectedIndex;
-
-    super.didUpdateWidget(oldWidget);
-  }
-
-  Widget buildSubItem(BuildContext context, int index) {
-    return new GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      child: widget.subItemBuilder(context, _subData[index],
-          _activeIndex == _selectedIndex && index == _subSelectedIndex),
-      onTap: () {
-        assert(controller != null);
-        controller.select(_subData[index],
-            index: _activeIndex, subIndex: index);
-        setState(() {
-          _selectedIndex = _activeIndex;
-          _subSelectedIndex = index;
-        });
-      },
-    );
-  }
-
-  Widget buildItem(BuildContext context, int index) {
-    final List<T> list = widget.data;
-    final T data = list[index];
-    return new GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      child: widget.itemBuilder(context, data, index == _activeIndex),
-      onTap: () {
-        //切换
-        //拿到数据
-        setState(() {
-          _subData = widget.getSubData(data);
-          _activeIndex = index;
-        });
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        new Expanded(
-            flex: widget.flex,
-            child: new Container(
-              child: new ListView.builder(
-                itemExtent: widget.itemExtent,
-                itemBuilder: buildItem,
-                itemCount: this._data == null ? 0 : this._data.length,
-              ),
-              color: widget.background,
-            )),
-        new Expanded(
-            flex: widget.subFlex,
-            child: new Container(
-              color: widget.subBackground,
-              child: new CustomScrollView(
-                slivers: <Widget>[
-                  new SliverList(
-                      delegate: new SliverChildBuilderDelegate(
-                    buildSubItem,
-                    childCount:
-                        this._subData == null ? 0 : this._subData.length,
-                  ))
-                ],
-              ),
-            ))
-      ],
-    );
-  }
-
-  @override
-  void onEvent(DropdownEvent event) {
-    // TODO: implement onEvent
-  }
-}
 
 
 
