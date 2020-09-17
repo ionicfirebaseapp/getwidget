@@ -3,18 +3,17 @@ import 'package:getwidget/colors/gf_color.dart';
 import 'package:getwidget/components/image/gf_image_overlay.dart';
 
 class GFIntroSlide extends StatelessWidget {
-  const GFIntroSlide(
-      {Key key,
-      @required this.image,
-      this.imageHeight = 100,
-      this.imageWidth = 100,
-      this.title,
-      this.subTitle,
-      this.titleStyle = const TextStyle(fontSize: 20, color: GFColors.DARK),
-      this.subTitleStyle = const TextStyle(fontSize: 16, color: GFColors.DARK),
-      this.backgroundColor = GFColors.PRIMARY,
-      this.imageShape = BoxShape.circle})
-      : super(key: key);
+  const GFIntroSlide({
+    Key key,
+    @required this.image,
+    this.imageHeight = 100,
+    this.imageWidth = 100,
+    this.title,
+    this.subTitle,
+    this.titleStyle = const TextStyle(fontSize: 20, color: GFColors.DARK),
+    this.subTitleStyle = const TextStyle(fontSize: 16, color: GFColors.DARK),
+    this.backgroundColor = GFColors.PRIMARY,
+  }) : super(key: key);
   final double imageHeight;
   final double imageWidth;
   final ImageProvider image;
@@ -23,7 +22,6 @@ class GFIntroSlide extends StatelessWidget {
   final String subTitle;
   final TextStyle subTitleStyle;
   final Color backgroundColor;
-  final BoxShape imageShape;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -33,8 +31,8 @@ class GFIntroSlide extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             GFImageOverlay(
-                shape: imageShape,
                 height: imageHeight,
+                colorFilter: const ColorFilter.mode(null, null),
                 width: imageWidth,
                 image: image),
             const SizedBox(

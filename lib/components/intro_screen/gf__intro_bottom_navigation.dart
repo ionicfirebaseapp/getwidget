@@ -19,7 +19,7 @@ class GFIntroBottomNavigation extends StatelessWidget {
     this.onSkipTap,
     this.skipWidget,
     this.rightWidget,
-    this.dotShape = BoxShape.rectangle,
+    this.dotShape = BoxShape.circle,
     this.defaultColor,
     this.activeColor,
     this.dotHeight,

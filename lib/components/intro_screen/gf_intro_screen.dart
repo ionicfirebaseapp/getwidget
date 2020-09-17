@@ -102,7 +102,7 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
                             duration: const Duration(milliseconds: 500),
                             curve: Curves.linear);
                       },
-                      pagesCount: widget.slides ?? slides().length,
+                      pagesCount: widget.slides.length ?? slides().length,
                       pageNumber: page,
                     )
               ],
@@ -115,8 +115,8 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
     list.add(const GFIntroSlide(
       backgroundColor: Colors.white,
       title: 'First',
-      imageHeight: 100,
-      imageWidth: 100,
+      imageHeight: 200,
+      imageWidth: 200,
       image: NetworkImage('https://www.gstatic.com/webp/gallery/3.jpg'),
     ));
     list.add(const GFIntroSlide(
