@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/components/intro_screen/gf__intro_bottom_navigation.dart';
-import 'package:getwidget/components/intro_screen/gf_intro_bubble_slide.dart';
 import 'package:getwidget/components/intro_screen/gf_intro_slide.dart';
 import 'package:getwidget/types/gf_intro_type.dart';
 
@@ -15,7 +14,6 @@ class GFIntroScreen extends StatefulWidget {
       : super(key: key);
 
   /// if the type as [GFIntroType.fullWidth],[GFIntroType.half],[GFIntroType.rounded] use [GFIntroSlide]'s or customWidgets
-  /// if the type as [GFIntroType.bubble] use [GFIntroBubbleSlide]'s or customWidgets
   final List<Widget> slides;
 
   /// type of [GFIntroType] which takes the type ie, fullWidth, half,rounded and bubble for the [GFIntroScreen]
@@ -55,143 +53,56 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
   }
 
   @override
-  Widget build(BuildContext context) => widget.type == GFIntroType.bubble
-      ? buildBubbleType()
-      : Center(
-          child: Container(
-            width: widget.type == GFIntroType.fullWidth
-                ? MediaQuery.of(context).size.width
-                : MediaQuery.of(context).size.width * 0.885,
-            height: widget.type != GFIntroType.fullWidth
-                ? MediaQuery.of(context).size.height / 2
-                : MediaQuery.of(context).size.height,
-            margin: widget.type != GFIntroType.fullWidth
-                ? const EdgeInsets.only(left: 20, right: 20)
-                : const EdgeInsets.only(left: 0, right: 0),
-            padding: widget.type == GFIntroType.fullWidth
-                ? const EdgeInsets.all(0)
-                : const EdgeInsets.all(0),
-            decoration: BoxDecoration(
-              color: widget.color,
-              borderRadius: widget.type == GFIntroType.fullWidth
-                  ? BorderRadius.circular(0)
-                  : widget.type == GFIntroType.rounded
-                      ? BorderRadius.circular(24)
-                      : BorderRadius.zero,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Expanded(
-                    child: ClipRRect(
-                  borderRadius: widget.type == GFIntroType.rounded
-                      ? const BorderRadius.only(
-                          topLeft: Radius.circular(24),
-                          topRight: Radius.circular(24))
-                      : BorderRadius.zero,
-                  child: PageView(
-                    controller: _pageController,
-                    children: widget.slides ?? slides(),
-                  ),
-                )),
-                widget.gfIntroBottomNavigation ??
-                    GFIntroBottomNavigation(
-                      onNext: () {
-                        _pageController.nextPage(
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.linear);
-                      },
-                      pagesCount: widget.slides.length ?? slides().length,
-                      pageNumber: page,
-                    )
-              ],
-            ),
+  Widget build(BuildContext context) => Center(
+        child: Container(
+          width: widget.type == GFIntroType.fullWidth
+              ? MediaQuery.of(context).size.width
+              : MediaQuery.of(context).size.width * 0.885,
+          height: widget.type != GFIntroType.fullWidth
+              ? MediaQuery.of(context).size.height / 2
+              : MediaQuery.of(context).size.height,
+          margin: widget.type != GFIntroType.fullWidth
+              ? const EdgeInsets.only(left: 20, right: 20)
+              : const EdgeInsets.only(left: 0, right: 0),
+          padding: widget.type == GFIntroType.fullWidth
+              ? const EdgeInsets.all(0)
+              : const EdgeInsets.all(0),
+          decoration: BoxDecoration(
+            color: widget.color,
+            borderRadius: widget.type == GFIntroType.fullWidth
+                ? BorderRadius.circular(0)
+                : widget.type == GFIntroType.rounded
+                    ? BorderRadius.circular(24)
+                    : BorderRadius.zero,
           ),
-        );
-
-  List<Widget> slides() {
-    final List<Widget> list = [];
-    list.add(const GFIntroSlide(
-      backgroundColor: Colors.white,
-      title: 'First',
-      imageHeight: 200,
-      imageWidth: 200,
-      image: NetworkImage('https://www.gstatic.com/webp/gallery/3.jpg'),
-    ));
-    list.add(const GFIntroSlide(
-      backgroundColor: Colors.yellow,
-      title: 'Second',
-      imageHeight: 200,
-      imageWidth: 200,
-      image: NetworkImage('https://www.gstatic.com/webp/gallery/1.jpg'),
-    ));
-    list.add(const GFIntroSlide(
-      backgroundColor: Colors.brown,
-      title: 'Third',
-      imageHeight: 200,
-      imageWidth: 200,
-      image: NetworkImage('https://www.gstatic.com/webp/gallery/2.jpg'),
-    ));
-    list.add(const GFIntroSlide(
-      backgroundColor: Colors.purple,
-      title: 'Fourth',
-      imageHeight: 200,
-      imageWidth: 200,
-      image: NetworkImage('https://www.gstatic.com/webp/gallery/3.jpg'),
-    ));
-    list.add(const GFIntroSlide(
-      backgroundColor: Colors.orange,
-      title: 'Fifth',
-      imageHeight: 200,
-      imageWidth: 200,
-      image: NetworkImage('https://www.gstatic.com/webp/gallery/4.jpg'),
-    ));
-    return list;
-  }
-
-  Widget buildBubbleType() => Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: PageView(
-          physics: const ScrollPhysics(),
-          children: bubbleSlides(),
-          controller: _pageController,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                  child: ClipRRect(
+                borderRadius: widget.type == GFIntroType.rounded
+                    ? const BorderRadius.only(
+                        topLeft: Radius.circular(24),
+                        topRight: Radius.circular(24))
+                    : BorderRadius.zero,
+                child: PageView(
+                  controller: _pageController,
+                  children: widget.slides,
+                ),
+              )),
+              widget.gfIntroBottomNavigation ??
+                  GFIntroBottomNavigation(
+                    onNext: () {
+                      _pageController.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.linear);
+                    },
+                    pagesCount: widget.slides.length,
+                    pageNumber: page,
+                  )
+            ],
+          ),
         ),
       );
-
-  List<Widget> bubbleSlides() {
-    final List<Widget> list = [];
-    list.add(GFIntroBubbleSlide(
-      onNext: nextSlider,
-      alignment: Alignment.topLeft,
-    ));
-    list.add(GFIntroBubbleSlide(
-      onNext: nextSlider,
-      alignment: Alignment.topCenter,
-    ));
-    list.add(GFIntroBubbleSlide(
-      onNext: nextSlider,
-      alignment: Alignment.topRight,
-    ));
-    list.add(GFIntroBubbleSlide(
-      onNext: nextSlider,
-      alignment: Alignment.bottomLeft,
-    ));
-    list.add(GFIntroBubbleSlide(
-      onNext: nextSlider,
-      alignment: Alignment.bottomCenter,
-    ));
-    list.add(GFIntroBubbleSlide(
-      onNext: nextSlider,
-      alignment: Alignment.bottomRight,
-    ));
-    return list;
-  }
-
-  // ignore: type_annotate_public_apis, always_declare_return_types
-  nextSlider() {
-    _pageController.nextPage(
-        duration: const Duration(milliseconds: 300), curve: Curves.linear);
-  }
 }

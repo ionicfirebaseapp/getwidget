@@ -1,1 +1,1 @@
-enum GFIntroType { fullWidth, half, rounded, bubble }
+enum GFIntroType { fullWidth, half, rounded }
