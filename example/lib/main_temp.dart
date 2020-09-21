@@ -135,8 +135,8 @@ class _MyHomePageState extends State<MyHomePage>
           return GFStickyHeader(
             direction: Axis.horizontal,
             header:  Container(
-              height: 50.0,
-              width: 50,
+              // height: 50.0,
+              width: 200,
               color: Colors.blueGrey[700],
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               alignment: Alignment.centerLeft,
@@ -146,12 +146,13 @@ class _MyHomePageState extends State<MyHomePage>
               ),
             ),
             content: Container(
-              height: 100,
-              width: 100,
+              // height: 100,
+              width: 200,
               child: Image.network(imageList[index],
                   fit: BoxFit.cover,
-                  width: 100,
-                  height: 200.0),
+                  // width: 100,
+                  // height: 200.0
+              ),
             ),
           );
         }
