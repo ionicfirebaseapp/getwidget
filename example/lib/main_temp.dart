@@ -133,10 +133,13 @@ class _MyHomePageState extends State<MyHomePage>
         itemBuilder: (context, index) {
           var stuckAmount = 1.0 - index.clamp(0.0, 1.0);
           return GFStickyHeader(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
+            // enableHeaderOverlap: true,
             direction: Axis.horizontal,
             header:  Container(
-              // height: 50.0,
-              width: 200,
+              height: 50.0,
+              width: 50,
               color: Colors.blueGrey[700],
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               alignment: Alignment.centerLeft,
@@ -146,8 +149,8 @@ class _MyHomePageState extends State<MyHomePage>
               ),
             ),
             content: Container(
-              // height: 100,
-              width: 200,
+              height: 100,
+              width: 100,
               child: Image.network(imageList[index],
                   fit: BoxFit.cover,
                   // width: 100,

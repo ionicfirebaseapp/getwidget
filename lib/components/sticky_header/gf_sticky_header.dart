@@ -399,50 +399,8 @@ class RenderGFStickyHeader extends RenderBox with ContainerRenderObjectMixin<Ren
     }
   }
 
-  // bool get _debugHasNecessaryDirections {
-  //   assert(direction != null);
-  //   assert(crossAxisAlignment != null);
-  //   if (firstChild != null && lastChild != firstChild) {
-  //     // i.e. there's more than one child
-  //     switch (direction) {
-  //       case Axis.horizontal:
-  //         assert(textDirection != null, 'Horizontal $runtimeType with multiple children has a null textDirection, so the layout order is undefined.');
-  //         break;
-  //       case Axis.vertical:
-  //         assert(verticalDirection != null, 'Vertical $runtimeType with multiple children has a null verticalDirection, so the layout order is undefined.');
-  //         break;
-  //     }
-  //   }
-  //   if (mainAxisAlignment == MainAxisAlignment.start ||
-  //       mainAxisAlignment == MainAxisAlignment.end) {
-  //     switch (direction) {
-  //       case Axis.horizontal:
-  //         assert(textDirection != null, 'Horizontal $runtimeType with $mainAxisAlignment has a null textDirection, so the alignment cannot be resolved.');
-  //         break;
-  //       case Axis.vertical:
-  //         assert(verticalDirection != null, 'Vertical $runtimeType with $mainAxisAlignment has a null verticalDirection, so the alignment cannot be resolved.');
-  //         break;
-  //     }
-  //   }
-  //   if (crossAxisAlignment == CrossAxisAlignment.start ||
-  //       crossAxisAlignment == CrossAxisAlignment.end) {
-  //     switch (direction) {
-  //       case Axis.horizontal:
-  //         assert(verticalDirection != null, 'Horizontal $runtimeType with $crossAxisAlignment has a null verticalDirection, so the alignment cannot be resolved.');
-  //         break;
-  //       case Axis.vertical:
-  //         assert(textDirection != null, 'Vertical $runtimeType with $crossAxisAlignment has a null textDirection, so the alignment cannot be resolved.');
-  //         break;
-  //     }
-  //   }
-  //   return true;
-  // }
-
   // Set during layout if overflow occurred on the main axis.
   double _overflow;
-  // Check whether any meaningful overflow is present. Values below an epsilon
-  // are treated as not overflowing.
-  // bool get _hasOverflow => _overflow > precisionErrorTolerance;
 
   /// {@macro flutter.widgets.Clip}
   ///
@@ -466,122 +424,6 @@ class RenderGFStickyHeader extends RenderBox with ContainerRenderObjectMixin<Ren
     // super.setupParentData(child);
     // child.parentData = MultiChildLayoutParentData();
   }
-
-  // double _getIntrinsicSize({
-  //   Axis sizingDirection,
-  //   double extent, // the extent in the direction that isn't the sizing direction
-  //   _ChildSizingFunction childSize, // a method to find the size in the sizing direction
-  // }) {
-  //   if (_direction == sizingDirection) {
-  //     // INTRINSIC MAIN SIZE
-  //     // Intrinsic main size is the smallest size the flex container can take
-  //     // while maintaining the min/max-content contributions of its flex items.
-  //     double totalFlex = 0.0;
-  //     double inflexibleSpace = 0.0;
-  //     double maxFlexFractionSoFar = 0.0;
-  //     RenderBox child = firstChild;
-  //     while (child != null) {
-  //       final int flex = _getFlex(child);
-  //       totalFlex += flex;
-  //       if (flex > 0) {
-  //         final double flexFraction = childSize(child, extent) / _getFlex(child);
-  //         maxFlexFractionSoFar = math.max(maxFlexFractionSoFar, flexFraction);
-  //       } else {
-  //         inflexibleSpace += childSize(child, extent);
-  //       }
-  //       final FlexParentData childParentData = child.parentData as FlexParentData;
-  //       child = childParentData.nextSibling;
-  //     }
-  //     return maxFlexFractionSoFar * totalFlex + inflexibleSpace;
-  //   } else {
-  //     // INTRINSIC CROSS SIZE
-  //     // Intrinsic cross size is the max of the intrinsic cross sizes of the
-  //     // children, after the flexible children are fit into the available space,
-  //     // with the children sized using their max intrinsic dimensions.
-  //
-  //     // Get inflexible space using the max intrinsic dimensions of fixed children in the main direction.
-  //     final double availableMainSpace = extent;
-  //     int totalFlex = 0;
-  //     double inflexibleSpace = 0.0;
-  //     double maxCrossSize = 0.0;
-  //     RenderBox child = firstChild;
-  //     while (child != null) {
-  //       final int flex = _getFlex(child);
-  //       totalFlex += flex;
-  //       double mainSize;
-  //       double crossSize;
-  //       if (flex == 0) {
-  //         switch (_direction) {
-  //           case Axis.horizontal:
-  //             mainSize = child.getMaxIntrinsicWidth(double.infinity);
-  //             crossSize = childSize(child, mainSize);
-  //             break;
-  //           case Axis.vertical:
-  //             mainSize = child.getMaxIntrinsicHeight(double.infinity);
-  //             crossSize = childSize(child, mainSize);
-  //             break;
-  //         }
-  //         inflexibleSpace += mainSize;
-  //         maxCrossSize = math.max(maxCrossSize, crossSize);
-  //       }
-  //       final FlexParentData childParentData = child.parentData as FlexParentData;
-  //       child = childParentData.nextSibling;
-  //     }
-  //
-  //     // Determine the spacePerFlex by allocating the remaining available space.
-  //     // When you're overconstrained spacePerFlex can be negative.
-  //     final double spacePerFlex = math.max(0.0,
-  //         (availableMainSpace - inflexibleSpace) / totalFlex);
-  //
-  //     // Size remaining (flexible) items, find the maximum cross size.
-  //     child = firstChild;
-  //     while (child != null) {
-  //       final int flex = _getFlex(child);
-  //       if (flex > 0)
-  //         maxCrossSize = math.max(maxCrossSize, childSize(child, spacePerFlex * flex));
-  //       final FlexParentData childParentData = child.parentData as FlexParentData;
-  //       child = childParentData.nextSibling;
-  //     }
-  //
-  //     return maxCrossSize;
-  //   }
-  // }
-
-  // @override
-  // double computeMinIntrinsicWidth(double height) {
-  //   return _getIntrinsicSize(
-  //     sizingDirection: Axis.horizontal,
-  //     extent: height,
-  //     childSize: (RenderBox child, double extent) => child.getMinIntrinsicWidth(extent),
-  //   );
-  // }
-  //
-  // @override
-  // double computeMaxIntrinsicWidth(double height) {
-  //   return _getIntrinsicSize(
-  //     sizingDirection: Axis.horizontal,
-  //     extent: height,
-  //     childSize: (RenderBox child, double extent) => child.getMaxIntrinsicWidth(extent),
-  //   );
-  // }
-  //
-  // @override
-  // double computeMinIntrinsicHeight(double width) {
-  //   return _getIntrinsicSize(
-  //     sizingDirection: Axis.vertical,
-  //     extent: width,
-  //     childSize: (RenderBox child, double extent) => child.getMinIntrinsicHeight(extent),
-  //   );
-  // }
-  //
-  // @override
-  // double computeMaxIntrinsicHeight(double width) {
-  //   return _getIntrinsicSize(
-  //     sizingDirection: Axis.vertical,
-  //     extent: width,
-  //     childSize: (RenderBox child, double extent) => child.getMaxIntrinsicHeight(extent),
-  //   );
-  // }
 
   @override
   double computeDistanceToActualBaseline(TextBaseline baseline) {
@@ -668,22 +510,22 @@ class RenderGFStickyHeader extends RenderBox with ContainerRenderObjectMixin<Ren
             ? contentBodyHeight
             : headerTileHeight + contentBodyHeight);
     final width = max(constraints.minWidth, contentBodyHeight);
-
-    size = Size(
-        constraints.constrainWidth(width), constraints.constrainHeight(height));
-
+    //
+    // size = Size(
+    //     constraints.constrainWidth(width), constraints.constrainHeight(height));
+    //
     final double headerTileOffset = getHeaderTileStuckOffset();
-
-    final FlexParentData contentBodyParentData =
-        _contentBody.parentData;
-    contentBodyParentData.offset =
-        Offset(0, _enableHeaderOverlap ? 0.0 : headerTileHeight);
-
-
-    final FlexParentData headerTileParentData =
-        _headerTile.parentData;
-    headerTileParentData.offset =
-        Offset(0, max(0, min(-headerTileOffset, height - headerTileHeight)));
+    //
+    // final FlexParentData contentBodyParentData =
+    //     _contentBody.parentData;
+    // contentBodyParentData.offset =
+    //     Offset(0, _enableHeaderOverlap ? 0.0 : headerTileHeight);
+    //
+    //
+    // final FlexParentData headerTileParentData =
+    //     _headerTile.parentData;
+    // headerTileParentData.offset =
+    //     Offset(0, max(0, min(-headerTileOffset, height - headerTileHeight)));
 
     // Determine used flex factor, size inflexible items, calculate free space.
     int totalFlex = 0;
@@ -939,7 +781,7 @@ class RenderGFStickyHeader extends RenderBox with ContainerRenderObjectMixin<Ren
 
     // Position elements
     double childMainPosition = flipMainAxis ? actualSize - leadingSpace : leadingSpace;
-    child = firstChild;
+    child = _contentBody;
     while (child != null) {
       final FlexParentData childParentData = child.parentData as FlexParentData;
       double childCrossPosition;
@@ -972,6 +814,10 @@ class RenderGFStickyHeader extends RenderBox with ContainerRenderObjectMixin<Ren
         childMainPosition -= _getMainSize(child);
       switch (_direction) {
         case Axis.horizontal:
+          final FlexParentData contentBodyParentData =
+              _contentBody.parentData;
+          contentBodyParentData.offset =
+              Offset(0, _enableHeaderOverlap ? 0.0 : headerTileHeight);
           final FlexParentData headerTileParentData =
               _headerTile.parentData;
           // headerTileParentData.offset = Offset(childMainPosition, childCrossPosition);
@@ -979,6 +825,10 @@ class RenderGFStickyHeader extends RenderBox with ContainerRenderObjectMixin<Ren
               Offset(childMainPosition, max(min(-headerTileOffset, height - headerTileHeight), 0));
           break;
         case Axis.vertical:
+          final FlexParentData contentBodyParentData =
+              _contentBody.parentData;
+          contentBodyParentData.offset =
+              Offset(0, _enableHeaderOverlap ? 0.0 : headerTileHeight);
           final FlexParentData headerTileParentData =
               _headerTile.parentData;
           headerTileParentData.offset =
@@ -1003,76 +853,8 @@ class RenderGFStickyHeader extends RenderBox with ContainerRenderObjectMixin<Ren
   @override
   void paint(PaintingContext context, Offset offset) {
       defaultPaint(context, offset);
-
-    // if (!_hasOverflow) {
-    //   defaultPaint(context, offset);
-    //   return;
-    // }
-
-    // There's no point in drawing the children if we're empty.
-    // if (size.isEmpty)
-    //   return;
-    //
-    // if (clipBehavior == Clip.none) {
-    //   defaultPaint(context, offset);
-    // } else {
-    //   // We have overflow and the clipBehavior isn't none. Clip it.
-    //   context.pushClipRect(needsCompositing, offset, Offset.zero & size, defaultPaint, clipBehavior: clipBehavior);
-    // }
-    //
-    // assert(() {
-    //   // Only set this if it's null to save work. It gets reset to null if the
-    //   // _direction changes.
-    //   final List<DiagnosticsNode> debugOverflowHints = <DiagnosticsNode>[
-    //     ErrorDescription(
-    //         'The overflowing $runtimeType has an orientation of $_direction.'
-    //     ),
-    //     ErrorDescription(
-    //         'The edge of the $runtimeType that is overflowing has been marked '
-    //             'in the rendering with a yellow and black striped pattern. This is '
-    //             'usually caused by the contents being too big for the $runtimeType.'
-    //     ),
-    //     ErrorHint(
-    //         'Consider applying a flex factor (e.g. using an Expanded widget) to '
-    //             'force the children of the $runtimeType to fit within the available '
-    //             'space instead of being sized to their natural size.'
-    //     ),
-    //     ErrorHint(
-    //         'This is considered an error condition because it indicates that there '
-    //             'is content that cannot be seen. If the content is legitimately bigger '
-    //             'than the available space, consider clipping it with a ClipRect widget '
-    //             'before putting it in the flex, or using a scrollable container rather '
-    //             'than a Flex, like a ListView.'
-    //     ),
-    //   ];
-    //
-    //   // Simulate a child rect that overflows by the right amount. This child
-    //   // rect is never used for drawing, just for determining the overflow
-    //   // location and amount.
-    //   Rect overflowChildRect;
-    //   switch (_direction) {
-    //     case Axis.horizontal:
-    //       overflowChildRect = Rect.fromLTWH(0.0, 0.0, size.width + _overflow, 0.0);
-    //       break;
-    //     case Axis.vertical:
-    //       overflowChildRect = Rect.fromLTWH(0.0, 0.0, 0.0, size.height + _overflow);
-    //       break;
-    //   }
-    //   paintOverflowIndicator(context, offset, Offset.zero & size, overflowChildRect, overflowHints: debugOverflowHints);
-    //   return true;
-    // }());
   }
 
-  // @override
-  // Rect describeApproximatePaintClip(RenderObject child) => _hasOverflow ? Offset.zero & size : null;
-  //
-  // @override
-  // String toStringShort() {
-  //   String header = super.toStringShort();
-  //   if (_overflow is double && _hasOverflow)
-  //     header += ' OVERFLOWING';
-  //   return header;
-  // }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
