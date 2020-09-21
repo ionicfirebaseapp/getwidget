@@ -817,7 +817,7 @@ class RenderGFStickyHeader extends RenderBox with ContainerRenderObjectMixin<Ren
           final FlexParentData contentBodyParentData =
               _contentBody.parentData;
           contentBodyParentData.offset =
-              Offset(0, _enableHeaderOverlap ? 0.0 : headerTileHeight);
+              Offset(0,0);
           final FlexParentData headerTileParentData =
               _headerTile.parentData;
           // headerTileParentData.offset = Offset(childMainPosition, childCrossPosition);
