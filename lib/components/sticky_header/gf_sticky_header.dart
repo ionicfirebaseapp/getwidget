@@ -185,6 +185,7 @@ class GFStickyHeader extends MultiChildRenderObjectWidget {
       textBaseline: textBaseline,
       clipBehavior: clipBehavior,
       scrollable: scrollable,
+      enableHeaderOverlap: enableHeaderOverlap
     );
   }
 }

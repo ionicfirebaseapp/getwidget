@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage>
           return GFStickyHeader(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.center,
-            // enableHeaderOverlap: true,
+            enableHeaderOverlap: true,
             direction: Axis.horizontal,
             header:  Container(
               height: 50.0,
