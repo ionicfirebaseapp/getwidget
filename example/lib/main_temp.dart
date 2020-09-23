@@ -8,7 +8,13 @@ final List<String> imageList = [
   'https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg',
   'https://cdn.pixabay.com/photo/2019/12/19/10/55/christmas-market-4705877_960_720.jpg',
   'https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg',
-  'https://cdn.pixabay.com/photo/2019/12/22/04/18/x-mas-4711785__340.jpg',
+  'https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg',
+  'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg',
+  'https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg',
+  'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg',
+  'https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg',
+  'https://cdn.pixabay.com/photo/2019/12/19/10/55/christmas-market-4705877_960_720.jpg',
+  'https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg',
   'https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg',
   'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg',
   'https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg',
@@ -19,13 +25,13 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
-    title: 'GetWidget Example',
-    theme: ThemeData(
-      primarySwatch: Colors.blue,
-    ),
-    debugShowCheckedModeBanner: false,
-    home: const MyHomePage(title: 'GetWidget Example'),
-  );
+        title: 'GetWidget Example',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const MyHomePage(title: 'GetWidget Example'),
+      );
 }
 
 class MyHomePage extends StatefulWidget {
@@ -75,31 +81,14 @@ class _MyHomePageState extends State<MyHomePage>
     'Xamarin2',
   ];
 
-  final List<String> imageList = [
-    'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2019/12/19/10/55/christmas-market-4705877_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg',
-    'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2019/12/19/10/55/christmas-market-4705877_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg',
-    'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg',
-  ];
-
   void _persistentBottomSheet() {
     _scaffoldKey.currentState.showBottomSheet((context) => Container(
-      color: Colors.redAccent,
-      height: 250,
-      child: const Center(
-        child: Text('Hey! guys , this is a persistent bottom sheet'),
-      ),
-    ));
+          color: Colors.redAccent,
+          height: 250,
+          child: const Center(
+            child: Text('Hey! guys , this is a persistent bottom sheet'),
+          ),
+        ));
   }
 
   void _modalBottomSheetMenu() {
@@ -107,67 +96,106 @@ class _MyHomePageState extends State<MyHomePage>
         context: context,
         elevation: 10,
         builder: (builder) => Container(
-          height: 350,
-          color: Colors.transparent,
-          child: Container(
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10))),
-              child: const Center(
-                child: Text('This is a modal sheet'),
-              )),
-        ));
+              height: 350,
+              color: Colors.transparent,
+              child: Container(
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10))),
+                  child: const Center(
+                    child: Text('This is a modal sheet'),
+                  )),
+            ));
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: GFAppBar(
-      title: const Text('UI KIt'),
-    ),
-    body:
+      appBar: GFAppBar(
+        title: const Text('UI KIt'),
+      ),
+      body:
 
-    ListView.builder(
-        itemCount: imageList.length,
-        itemBuilder: (context, index) {
-          var stuckAmount = 1.0 - index.clamp(0.0, 1.0);
-          return GFStickyHeader(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.center,
-            enableHeaderOverlap: true,
-            direction: Axis.horizontal,
-            header:  Container(
-              height: 50.0,
-              width: 50,
-              color: Colors.blueGrey[700],
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'H $index',
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-            content: Container(
-              height: 100,
-              width: 100,
-              child: Image.network(imageList[index],
-                  fit: BoxFit.cover,
-                  // width: 100,
-                  // height: 200.0
-              ),
-            ),
-          );
-        }
-        ),
+      ListView.builder(
+
+          itemBuilder: (context, index) => GFStickyHeaderBuilder(
+                direction: Axis.horizontal,
+                // enableHeaderOverlap: true,
+            stickyContentPosition: GFPosition.start,
+                stickyContentBuilder: (BuildContext context, double stuckAmount) {
+                  stuckAmount = 1.0 - stuckAmount.clamp(0.0, 1.0);
+                  return Container(
+                    height: 50.0,
+                    width: 200,
+                    color:
+                        Colors.grey[900].withOpacity(0.6 + stuckAmount * 0.4),
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Header #$index',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  );
+                },
+                content: Container(
+                  // margin: EdgeInsets.all(8),
+                  height: 200,
+                  width: 200,
+                  color: Colors.teal,
+                  child: Image.network(imageList[index],
+                    fit: BoxFit.cover,
+                    width: 100,
+                    height: 200.0
+                  ),
+                ),
+              )
+      )
   );
+
+  //   Container(
+  //     height: 600,
+  //     color: Colors.teal,
+  //     child: ListView.builder(
+  //         itemCount: imageList.length,
+  //         itemBuilder: (context, index) => GFStickyHeader(
+  //           // enableHeaderOverlap: true,
+  //           direction: Axis.vertical,
+  //           stickyContentPosition: GFPosition.end,
+  //           stickyContent:  Container(
+  //             // alignment: AlignmentDirectional.centerEnd,
+  //             child: Container(
+  //               alignment: AlignmentDirectional.center,
+  //               height: 50,
+  //               width: 100,
+  //               color: Colors.blueGrey[700],
+  //               padding: EdgeInsets.symmetric(horizontal: 16.0),
+  //               child: Text(
+  //                 'H $index',
+  //                 style: const TextStyle(color: Colors.white),
+  //               ),
+  //             ),
+  //           ),
+  //           content: Container(
+  //             height: 100,
+  //             width: 200,
+  //             child: Image.network(imageList[index],
+  //               fit: BoxFit.cover,
+  //               // width: 100,
+  //               // height: 200.0
+  //             ),
+  //           ),
+  //         )
+  //     ),
+  //   )
+  // );
 
 //     ListView(
 //       children: [
 //         Image.network(imageList[3], height: 200, fit: BoxFit.cover,),
 //         Image.network(imageList[4], height: 200, fit: BoxFit.cover,),
 //         GFStickyHeader(
-//           header: Container(
+//           stickyContent: Container(
 //             height: 100,
 //             color: Colors.teal,
 //             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -279,9 +307,6 @@ class _MyHomePageState extends State<MyHomePage>
 //        }),
 //  );
 }
-
-
-
 
 // void main() => runApp(MyApp());
 //
@@ -461,4 +486,3 @@ class _MyHomePageState extends State<MyHomePage>
 //               ],
 //             ),
 //           )));
-
