@@ -33,7 +33,7 @@ class RenderGFStickyHeader extends RenderBox with ContainerRenderObjectMixin<Ren
   final ScrollableState _scrollable;
   final bool _enableHeaderOverlap;
   final GFPosition _stickyContentPosition;
-  double _overflow;
+  // double _overflow;
 
   Axis get direction => _direction;
   Axis _direction;
@@ -197,7 +197,7 @@ class RenderGFStickyHeader extends RenderBox with ContainerRenderObjectMixin<Ren
         break;
     }
     actualSizeDelta = actualSize - allocatedSize;
-    _overflow = math.max(0, -actualSizeDelta);
+    // _overflow = math.max(0, -actualSizeDelta);
     final double remainingSpace = math.max(0, actualSizeDelta);
     const double leadingSpace = 0;
     const double betweenSpace = 0;

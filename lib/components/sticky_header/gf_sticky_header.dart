@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 import 'package:getwidget/getwidget.dart';
 
+/// Place this widget inside a [ListView], [GridView], [CustomScrollView], [SingleChildScrollView] or similar.
+
 class GFStickyHeader extends MultiChildRenderObjectWidget {
   GFStickyHeader({
     Key key,
@@ -33,8 +35,7 @@ class GFStickyHeader extends MultiChildRenderObjectWidget {
   /// Defaults to [GFPosition.start]
   final GFPosition stickyContentPosition;
 
-  /// Optional callback with stickyness value. If you think you need this, then you might want to
-  /// consider using [StickyHeaderBuilder] instead.
+  /// Allows to add custom stickyHeader stuck offset value
   final RenderGFStickyHeaderCallback callback;
 
   ///  [direction] allows children to align in vertical / horizontal way

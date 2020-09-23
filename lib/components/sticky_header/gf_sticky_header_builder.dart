@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
-typedef Widget StickyHeaderWidgetBuilder(
+typedef StickyHeaderWidgetBuilder = Widget Function(
     BuildContext context, double stuckAmount);
 
-/// Sticky Header Builder Widget.
-///
-/// The same as [StickyHeader] but instead of supplying a Header view, you supply a [builder] that
-/// constructs the header with the appropriate stickyness.
-///
+
 /// Place this widget inside a [ListView], [GridView], [CustomScrollView], [SingleChildScrollView] or similar.
-///
+
 class GFStickyHeaderBuilder extends StatefulWidget {
   /// Constructs a new [GFStickyHeaderBuilder] widget.
   const GFStickyHeaderBuilder({
@@ -31,7 +27,7 @@ class GFStickyHeaderBuilder extends StatefulWidget {
   /// widget can be used to define [content].
   final Widget content;
 
-  /// On state true, the [stickyContent] will overlap the [content].
+  /// On state true, the [stickyContentBuilder] will overlap the [content].
   /// Default value is false.
   final bool enableHeaderOverlap;
 
@@ -39,8 +35,7 @@ class GFStickyHeaderBuilder extends StatefulWidget {
   /// Defaults to [GFPosition.start]
   final GFPosition stickyContentPosition;
 
-  /// Optional callback with stickyness value. If you think you need this, then you might want to
-  /// consider using [StickyHeaderBuilder] instead.
+  /// Allows to add custom stickyHeader stuck offset value
   final RenderGFStickyHeaderCallback callback;
 
   ///  [direction] allows children to align in vertical / horizontal way

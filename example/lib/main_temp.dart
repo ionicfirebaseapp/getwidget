@@ -122,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage>
           itemBuilder: (context, index) => GFStickyHeaderBuilder(
                 direction: Axis.horizontal,
                 // enableHeaderOverlap: true,
-            stickyContentPosition: GFPosition.start,
+            stickyContentPosition: GFPosition.end,
                 stickyContentBuilder: (BuildContext context, double stuckAmount) {
                   stuckAmount = 1.0 - stuckAmount.clamp(0.0, 1.0);
                   return Container(
