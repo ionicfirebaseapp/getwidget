@@ -8,18 +8,21 @@ import 'package:getwidget/getwidget.dart';
 /// Place this widget inside a [ListView], [GridView], [CustomScrollView], [SingleChildScrollView] or similar.
 
 class GFStickyHeader extends MultiChildRenderObjectWidget {
-  GFStickyHeader({
-    Key key,
-    @required this.stickyContent,
-    @required this.content,
-    this.direction = Axis.vertical,
-    this.enableHeaderOverlap = false,
-    this.callback,
-    this.stickyContentPosition = GFPosition.start
-  }) : assert(direction != null),
-        super(key: key, children: stickyContentPosition == GFPosition.start ? [stickyContent, content] : [content, stickyContent]
-      );
-
+  GFStickyHeader(
+      {Key key,
+      @required this.stickyContent,
+      @required this.content,
+      this.direction = Axis.vertical,
+      this.enableHeaderOverlap = false,
+      this.callback,
+      this.stickyContentPosition = GFPosition.start})
+      : assert(direction != null),
+        super(
+            key: key,
+            children: stickyContentPosition == GFPosition.start && direction == Axis.horizontal
+                ? [stickyContent, content]
+                : stickyContentPosition == GFPosition.start && direction == Axis.vertical ? [content, stickyContent]
+       : [content, stickyContent]);
 
   /// widget can be used to define [stickyContent].
   final Widget stickyContent;
@@ -42,7 +45,6 @@ class GFStickyHeader extends MultiChildRenderObjectWidget {
   ///  Defaults to [Axis.vertical]
   final Axis direction;
 
-
   @override
   RenderGFStickyHeader createRenderObject(BuildContext context) {
     final scrollable = Scrollable.of(context);
@@ -52,11 +54,7 @@ class GFStickyHeader extends MultiChildRenderObjectWidget {
       scrollable: scrollable,
       enableHeaderOverlap: enableHeaderOverlap,
       callback: callback,
-        stickyContentPosition: stickyContentPosition,
+      stickyContentPosition: stickyContentPosition,
     );
   }
 }
-
-
-
-

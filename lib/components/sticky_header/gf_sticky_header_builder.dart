@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 typedef StickyHeaderWidgetBuilder = Widget Function(
-    BuildContext context, double stuckAmount);
-
+    BuildContext context, double stuckValue);
 
 /// Place this widget inside a [ListView], [GridView], [CustomScrollView], [SingleChildScrollView] or similar.
 
@@ -23,7 +22,6 @@ class GFStickyHeaderBuilder extends StatefulWidget {
   /// widget can be used to define [stickyContentBuilder].
   final StickyHeaderWidgetBuilder stickyContentBuilder;
 
-
   /// widget can be used to define [content].
   final Widget content;
 
@@ -42,13 +40,12 @@ class GFStickyHeaderBuilder extends StatefulWidget {
   ///  Defaults to [Axis.vertical]
   final Axis direction;
 
-
   @override
   _GFStickyHeaderBuilderState createState() => _GFStickyHeaderBuilderState();
 }
 
 class _GFStickyHeaderBuilderState extends State<GFStickyHeaderBuilder> {
-  double _stuckAmount;
+  double _stuckValue;
 
   @override
   Widget build(BuildContext context) => GFStickyHeader(
@@ -56,12 +53,13 @@ class _GFStickyHeaderBuilderState extends State<GFStickyHeaderBuilder> {
         direction: widget.direction,
         stickyContentPosition: widget.stickyContentPosition,
         stickyContent: LayoutBuilder(
-          builder: (context, _) => widget.stickyContentBuilder(context, _stuckAmount ?? 0.0),
+          builder: (context, _) =>
+              widget.stickyContentBuilder(context, _stuckValue ?? 0.0),
         ),
         content: widget.content,
-        callback: (double stuckAmount) {
-          if (_stuckAmount != stuckAmount) {
-            _stuckAmount = stuckAmount;
+        callback: (double stuckValue) {
+          if (_stuckValue != stuckValue) {
+            _stuckValue = stuckValue;
             WidgetsBinding.instance.endOfFrame.then((_) {
               if (mounted) {
                 setState(() {});

@@ -81,35 +81,6 @@ class _MyHomePageState extends State<MyHomePage>
     'Xamarin2',
   ];
 
-  void _persistentBottomSheet() {
-    _scaffoldKey.currentState.showBottomSheet((context) => Container(
-          color: Colors.redAccent,
-          height: 250,
-          child: const Center(
-            child: Text('Hey! guys , this is a persistent bottom sheet'),
-          ),
-        ));
-  }
-
-  void _modalBottomSheetMenu() {
-    showModalBottomSheet(
-        context: context,
-        elevation: 10,
-        builder: (builder) => Container(
-              height: 350,
-              color: Colors.transparent,
-              child: Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10))),
-                  child: const Center(
-                    child: Text('This is a modal sheet'),
-                  )),
-            ));
-  }
-
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: GFAppBar(
@@ -117,84 +88,133 @@ class _MyHomePageState extends State<MyHomePage>
       ),
       body:
 
-      ListView.builder(
-
-          itemBuilder: (context, index) => GFStickyHeaderBuilder(
-                direction: Axis.horizontal,
-                // enableHeaderOverlap: true,
-            stickyContentPosition: GFPosition.end,
-                stickyContentBuilder: (BuildContext context, double stuckAmount) {
-                  stuckAmount = 1.0 - stuckAmount.clamp(0.0, 1.0);
-                  return Container(
-                    height: 50.0,
-                    width: 200,
-                    color:
-                        Colors.grey[900].withOpacity(0.6 + stuckAmount * 0.4),
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Header #$index',
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  );
-                },
-                content: Container(
-                  // margin: EdgeInsets.all(8),
-                  height: 200,
-                  width: 200,
-                  color: Colors.teal,
-                  child: Image.network(imageList[index],
-                    fit: BoxFit.cover,
-                    width: 100,
-                    height: 200.0
-                  ),
-                ),
-              )
-      )
-  );
-
-  //   Container(
-  //     height: 600,
-  //     color: Colors.teal,
-  //     child: ListView.builder(
-  //         itemCount: imageList.length,
-  //         itemBuilder: (context, index) => GFStickyHeader(
-  //           // enableHeaderOverlap: true,
-  //           direction: Axis.vertical,
-  //           stickyContentPosition: GFPosition.end,
-  //           stickyContent:  Container(
-  //             // alignment: AlignmentDirectional.centerEnd,
-  //             child: Container(
-  //               alignment: AlignmentDirectional.center,
-  //               height: 50,
-  //               width: 100,
-  //               color: Colors.blueGrey[700],
-  //               padding: EdgeInsets.symmetric(horizontal: 16.0),
-  //               child: Text(
-  //                 'H $index',
-  //                 style: const TextStyle(color: Colors.white),
+  //     ListView.builder(
+  //             itemCount: imageList.length,
+  //             itemBuilder: (context, index) => GFStickyHeaderBuilder(
+  //               direction: Axis.horizontal,
+  //               // enableHeaderOverlap: true,
+  //               // stickyContentPosition: GFPosition.end,
+  //               stickyContentBuilder:
+  //                   (BuildContext context, double stuckValue) {
+  //                 stuckValue = 1.0 - stuckValue.clamp(0.0, 1.0);
+  //                 return Container(
+  //                   height: 50,
+  //                   width: MediaQuery.of(context).size.width * 0.5,
+  //                   color: Color.lerp(Colors.teal[100], Colors.teal[600], stuckValue),
+  //                   padding: const EdgeInsets.symmetric(horizontal: 16),
+  //                   alignment: Alignment.centerLeft,
+  //                   child: Row(
+  //                     children: <Widget>[
+  //                       Expanded(
+  //                         child: Text(
+  //                           'Image #$index',
+  //                           style: const TextStyle(color: Colors.white),
+  //                         ),
+  //                       ),
+  //                       Offstage(
+  //                         offstage: stuckValue <= 0.0,
+  //                         child: Opacity(
+  //                           opacity: stuckValue,
+  //                           child: IconButton(
+  //                             icon: const Icon(Icons.image, color: Colors.white),
+  //                             onPressed: () =>
+  //                                 Scaffold.of(context).showSnackBar(SnackBar(content: Text('Favorite #$index'))),
+  //                           ),
+  //                         ),
+  //                       ),
+  //                     ],
+  //                   ),
+  //                 );
+  //               },
+  //               content: Container(
+  //                 // margin: EdgeInsets.all(8),
+  //                 height: 200,
+  //                 width: MediaQuery.of(context).size.width * 0.5,
+  //                 color: Colors.teal,
+  //                 child: Image.network(imageList[index],
+  //                     fit: BoxFit.cover, width: 100, height: 200),
   //               ),
-  //             ),
-  //           ),
-  //           content: Container(
-  //             height: 100,
-  //             width: 200,
-  //             child: Image.network(imageList[index],
-  //               fit: BoxFit.cover,
-  //               // width: 100,
-  //               // height: 200.0
-  //             ),
-  //           ),
-  //         )
-  //     ),
-  //   )
+  //             ))
   // );
+
+      // Center(
+      //   // alignment: AlignmentDirectional.center,
+      //     child: ListView.builder(
+      //       itemCount: imageList.length,
+      //         itemBuilder: (context, index) => GFStickyHeaderBuilder(
+      //           direction: Axis.vertical,
+      //           // enableHeaderOverlap: true,
+      //           // stickyContentPosition: GFPosition.end,
+      //           stickyContentBuilder:
+      //               (BuildContext context, double stuckValue) {
+      //             stuckValue = 1.0 - stuckValue.clamp(0.0, 1.0);
+      //             return Center(
+      //               child: Container(
+      //                 height: 50.0,
+      //                 width: 100,
+      //                 color:
+      //                 Colors.grey[900].withOpacity(0.6 + stuckValue * 0.4),
+      //                 padding: EdgeInsets.symmetric(horizontal: 16.0),
+      //                 alignment: Alignment.centerLeft,
+      //                 child: Text(
+      //                   'Header #$index',
+      //                   style: const TextStyle(color: Colors.white),
+      //                 ),
+      //               ),
+      //             );
+      //           },
+      //           content: Container(
+      //             // margin: EdgeInsets.all(8),
+      //             height: 200,
+      //             width: 200,
+      //             color: Colors.teal,
+      //             child: Image.network(imageList[index],
+      //                 fit: BoxFit.cover, width: 100, height: 200.0),
+      //           ),
+      //         ))),
+      //     );
+
+    Container(
+      height: 600,
+      color: Colors.teal,
+      child: ListView.builder(
+          itemCount: imageList.length,
+          itemBuilder: (context, index) => GFStickyHeader(
+            // enableHeaderOverlap: true,
+            direction: Axis.vertical,
+            // stickyContentPosition: GFPosition.end,
+            stickyContent:  Container(
+              // alignment: AlignmentDirectional.centerEnd,
+              child: Container(
+                alignment: AlignmentDirectional.center,
+                height: 50,
+                width: 100,
+                color: Colors.blueGrey[700],
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  'Image $index',
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            content: Container(
+              height: 100,
+              width: 200,
+              child: Image.network(imageList[index],
+                fit: BoxFit.cover,
+              ),
+            ),
+          )
+      ),
+    )
+  );
 
 //     ListView(
 //       children: [
 //         Image.network(imageList[3], height: 200, fit: BoxFit.cover,),
 //         Image.network(imageList[4], height: 200, fit: BoxFit.cover,),
 //         GFStickyHeader(
+//           enableHeaderOverlap: true,
 //           stickyContent: Container(
 //             height: 100,
 //             color: Colors.teal,
