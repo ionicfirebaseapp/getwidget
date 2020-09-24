@@ -34,7 +34,6 @@ class RenderGFStickyHeader extends RenderBox
   final ScrollableState _scrollable;
   final bool _enableHeaderOverlap;
   final GFPosition _stickyContentPosition;
-  // double _overflow;
 
   Axis get direction => _direction;
   Axis _direction;

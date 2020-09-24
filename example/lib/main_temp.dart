@@ -182,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage>
           itemBuilder: (context, index) => GFStickyHeader(
             enableHeaderOverlap: true,
             direction: Axis.vertical,
-            // stickyContentPosition: GFPosition.end,
+            stickyContentPosition: GFPosition.end,
             stickyContent:  Container(
               // alignment: AlignmentDirectional.centerEnd,
               child: Container(
@@ -201,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage>
               // height: 100,
               width: 200,
               child: Image.network(imageList[index],
-                fit: BoxFit.cover, height: 200,
+                fit: BoxFit.cover, height: 100,
               ),
             ),
           )
