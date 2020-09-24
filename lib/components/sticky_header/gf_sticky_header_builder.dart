@@ -26,7 +26,7 @@ class GFStickyHeaderBuilder extends StatefulWidget {
   final Widget content;
 
   /// On state true, the [stickyContentBuilder] will overlap the [content].
-  /// Default value is false.
+  /// Only works when direction is [Axis.vertical]. Default set to false.
   final bool enableHeaderOverlap;
 
   /// [GFPosition] allows to [stickyContentPosition] to stick at top in [Axis.vertical] and stick at start in [Axis.horizontal]

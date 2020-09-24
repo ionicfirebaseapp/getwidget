@@ -46,11 +46,11 @@ class RenderGFStickyHeader extends RenderBox
   }
 
   // ignore: avoid_setters_without_getters
-  set callback(RenderGFStickyHeaderCallback newValue) {
-    if (_callback == newValue) {
+  set callback(RenderGFStickyHeaderCallback value) {
+    if (_callback == value) {
       return;
     }
-    _callback = newValue;
+    _callback = value;
     markNeedsLayout();
   }
 
@@ -59,14 +59,6 @@ class RenderGFStickyHeader extends RenderBox
     if (child.parentData is! FlexParentData) {
       child.parentData = FlexParentData();
     }
-  }
-
-  @override
-  double computeDistanceToActualBaseline(TextBaseline baseline) {
-    if (_direction == Axis.horizontal) {
-      return defaultComputeDistanceToHighestActualBaseline(baseline);
-    }
-    return defaultComputeDistanceToFirstActualBaseline(baseline);
   }
 
   int _getFlex(RenderBox child) {
@@ -108,12 +100,19 @@ class RenderGFStickyHeader extends RenderBox
     super.detach();
   }
 
-  RenderBox get _stickyContentBody =>
-      _stickyContentPosition == GFPosition.start &&  _direction == Axis.horizontal ? firstChild
-          : _stickyContentPosition == GFPosition.end &&  _direction == Axis.vertical ? firstChild: lastChild;
-  RenderBox get _contentBody =>
-      _stickyContentPosition == GFPosition.start &&  _direction == Axis.horizontal ? lastChild
-          : _stickyContentPosition == GFPosition.end &&  _direction == Axis.vertical ? lastChild: firstChild;
+  RenderBox get _stickyContentBody => _stickyContentPosition ==
+              GFPosition.start &&
+          _direction == Axis.horizontal
+      ? firstChild
+      : _stickyContentPosition == GFPosition.end && _direction == Axis.vertical
+          ? firstChild
+          : lastChild;
+  RenderBox get _contentBody => _stickyContentPosition == GFPosition.start &&
+          _direction == Axis.horizontal
+      ? lastChild
+      : _stickyContentPosition == GFPosition.end && _direction == Axis.vertical
+          ? lastChild
+          : firstChild;
 
   double getHeaderTileStuckOffset() {
     final scrollableContent = _scrollable.context.findRenderObject();
@@ -149,11 +148,10 @@ class RenderGFStickyHeader extends RenderBox
 
     final double stickyContentBodyOffset = getHeaderTileStuckOffset();
 
-
     assert(constraints != null);
 
     double crossSize = 0;
-    double allocatedSize = 0;
+    double allotedSize = 0;
     RenderBox child = firstChild;
     // ignore: unused_local_variable
     int totalChildren = 0;
@@ -174,14 +172,14 @@ class RenderGFStickyHeader extends RenderBox
             break;
         }
         child.layout(innerConstraints, parentUsesSize: true);
-        allocatedSize += _getMainSize(child);
+        allotedSize += _getMainSize(child);
         crossSize = math.max(crossSize, _getCrossSize(child));
       }
       assert(child.parentData == childParentData);
       child = childParentData.nextSibling;
     }
 
-    final double idealSize = allocatedSize;
+    final double idealSize = allotedSize;
     double actualSize;
     switch (_direction) {
       case Axis.horizontal:
@@ -213,11 +211,17 @@ class RenderGFStickyHeader extends RenderBox
         case Axis.horizontal:
           final FlexParentData contentBodyParentData = _contentBody.parentData;
           contentBodyParentData.offset =
-          _stickyContentPosition == GFPosition.start ? Offset(_stickyContentBody.size.width, 0) : const Offset(0, 0);
+              _stickyContentPosition == GFPosition.start
+                  ? Offset(_stickyContentBody.size.width, 0)
+                  : const Offset(0, 0);
           final FlexParentData stickyContentBodyParentData =
               _stickyContentBody.parentData;
-          stickyContentBodyParentData.offset =
-              Offset(childMainPosition, max(min(-stickyContentBodyOffset, height - stickyContentBodyHeight), 0));
+          stickyContentBodyParentData.offset = Offset(
+              childMainPosition,
+              max(
+                  min(-stickyContentBodyOffset,
+                      height - stickyContentBodyHeight),
+                  0));
           break;
         case Axis.vertical:
           final FlexParentData contentBodyParentData = _contentBody.parentData;

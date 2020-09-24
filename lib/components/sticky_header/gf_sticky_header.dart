@@ -19,10 +19,13 @@ class GFStickyHeader extends MultiChildRenderObjectWidget {
       : assert(direction != null),
         super(
             key: key,
-            children: stickyContentPosition == GFPosition.start && direction == Axis.horizontal
+            children: stickyContentPosition == GFPosition.start &&
+                    direction == Axis.horizontal
                 ? [stickyContent, content]
-                : stickyContentPosition == GFPosition.start && direction == Axis.vertical ? [content, stickyContent]
-       : [content, stickyContent]);
+                : stickyContentPosition == GFPosition.start &&
+                        direction == Axis.vertical
+                    ? [content, stickyContent]
+                    : [content, stickyContent]);
 
   /// widget can be used to define [stickyContent].
   final Widget stickyContent;
@@ -31,7 +34,7 @@ class GFStickyHeader extends MultiChildRenderObjectWidget {
   final Widget content;
 
   /// On state true, the [stickyContent] will overlap the [content].
-  /// Default value is false.
+  /// Only works when direction is [Axis.vertical]. Default set to false.
   final bool enableHeaderOverlap;
 
   /// [GFPosition] allows to [stickyContentPosition] to stick at top in [Axis.vertical] and stick at start in [Axis.horizontal]
