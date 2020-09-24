@@ -151,7 +151,7 @@ class RenderGFStickyHeader extends RenderBox
     assert(constraints != null);
 
     double crossSize = 0;
-    double allotedSize = 0;
+    double allottedSize = 0;
     RenderBox child = firstChild;
     // ignore: unused_local_variable
     int totalChildren = 0;
@@ -172,14 +172,14 @@ class RenderGFStickyHeader extends RenderBox
             break;
         }
         child.layout(innerConstraints, parentUsesSize: true);
-        allotedSize += _getMainSize(child);
+        allottedSize += _getMainSize(child);
         crossSize = math.max(crossSize, _getCrossSize(child));
       }
       assert(child.parentData == childParentData);
       child = childParentData.nextSibling;
     }
 
-    final double idealSize = allotedSize;
+    final double idealSize = allottedSize;
     double actualSize;
     switch (_direction) {
       case Axis.horizontal:
@@ -193,11 +193,11 @@ class RenderGFStickyHeader extends RenderBox
         crossSize = size.width;
         break;
     }
-    const double leadingSpace = 0;
+    const double startingSpace = 0;
     const double betweenSpace = 0;
     const bool flipMainAxis = !true;
     double childMainPosition =
-        flipMainAxis ? actualSize - leadingSpace : leadingSpace;
+        flipMainAxis ? actualSize - startingSpace : startingSpace;
     child = _contentBody;
     // ignore: invariant_booleans
     while (child != null) {
