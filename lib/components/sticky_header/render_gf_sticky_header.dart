@@ -150,26 +150,20 @@ class RenderGFStickyHeader extends RenderBox
 
     final double stickyContentBodyOffset = getHeaderTileStuckOffset();
 
-    int totalFlex = 0;
-    int totalChildren = 0;
+
     assert(constraints != null);
-    final double maxMainSize = _direction == Axis.horizontal
-        ? constraints.maxWidth
-        : constraints.maxHeight;
-    final bool canFlex = maxMainSize < double.infinity;
 
     double crossSize = 0;
     double allocatedSize = 0;
     RenderBox child = firstChild;
-    RenderBox lastFlexChild;
+    // ignore: unused_local_variable
+    int totalChildren = 0;
     while (child != null) {
       // ignore: avoid_as
       final FlexParentData childParentData = child.parentData as FlexParentData;
       totalChildren++;
       final int flex = _getFlex(child);
       if (flex > 0) {
-        totalFlex += childParentData.flex;
-        lastFlexChild = child;
       } else {
         BoxConstraints innerConstraints;
         switch (_direction) {
@@ -190,7 +184,6 @@ class RenderGFStickyHeader extends RenderBox
 
     final double idealSize = allocatedSize;
     double actualSize;
-    double actualSizeDelta;
     switch (_direction) {
       case Axis.horizontal:
         size = constraints.constrain(Size(idealSize, crossSize));
@@ -203,9 +196,6 @@ class RenderGFStickyHeader extends RenderBox
         crossSize = size.width;
         break;
     }
-    actualSizeDelta = actualSize - allocatedSize;
-    // _overflow = math.max(0, -actualSizeDelta);
-    final double remainingSpace = math.max(0, actualSizeDelta);
     const double leadingSpace = 0;
     const double betweenSpace = 0;
     const bool flipMainAxis = !true;

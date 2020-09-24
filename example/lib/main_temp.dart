@@ -180,7 +180,7 @@ class _MyHomePageState extends State<MyHomePage>
       child: ListView.builder(
           itemCount: imageList.length,
           itemBuilder: (context, index) => GFStickyHeader(
-            // enableHeaderOverlap: true,
+            enableHeaderOverlap: true,
             direction: Axis.vertical,
             // stickyContentPosition: GFPosition.end,
             stickyContent:  Container(
@@ -198,10 +198,10 @@ class _MyHomePageState extends State<MyHomePage>
               ),
             ),
             content: Container(
-              height: 100,
+              // height: 100,
               width: 200,
               child: Image.network(imageList[index],
-                fit: BoxFit.cover,
+                fit: BoxFit.cover, height: 200,
               ),
             ),
           )
