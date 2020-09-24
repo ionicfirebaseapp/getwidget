@@ -31,10 +31,14 @@ class GFAnimation extends StatefulWidget {
     this.fontWeight,
     this.changedWidth,
     this.changedHeight,
+    this.reverseDuration,
   }) : super(key: key);
 
   /// The duration for animations of the [Decoration].
   final Duration duration;
+
+  /// The duration for animations of the type[Size].
+  final Duration reverseDuration;
 
   /// Defines how the animated widget is aligned within the Animation.
   final Alignment alignment;
@@ -203,8 +207,8 @@ class _GFAnimationState extends State<GFAnimation>
           child: AnimatedAlign(
             curve: widget.curve ?? Curves.linear,
             alignment: selected
-                ? widget.alignment ?? Alignment.center
-                : Alignment.topCenter,
+                ? widget.activeAlignment ?? Alignment.center
+                : widget.alignment ?? Alignment.topCenter,
             duration: widget.duration ?? const Duration(seconds: 2),
             child: widget.child,
           ),
@@ -212,18 +216,31 @@ class _GFAnimationState extends State<GFAnimation>
       );
 
   Widget buildAnimatedSizeWidget() => GestureDetector(
-        onTap: widget.onTap,
-        child: Container(
-          margin: widget.margin ?? const EdgeInsets.all(0),
-          padding: widget.padding ?? const EdgeInsets.all(0),
-          color: widget.color ?? Colors.white,
-          child: AnimatedSize(
-            alignment: widget.alignment ?? Alignment.center,
-            curve: widget.curve ?? Curves.linear,
-            vsync: this,
-            duration: widget.duration ?? const Duration(milliseconds: 2000),
-            child: widget.child,
-          ),
+        onTap: () {
+          if (widget.onTap == null) {
+            if (mounted) {
+              setState(() {
+                selected = !selected;
+              });
+            }
+          } else {
+            widget.onTap();
+          }
+        },
+        child: AnimatedSize(
+          alignment: widget.alignment ?? Alignment.center,
+          curve: widget.curve ?? Curves.linear,
+          vsync: this,
+          reverseDuration:
+              widget.reverseDuration ?? const Duration(milliseconds: 2000),
+          duration: widget.duration ?? const Duration(milliseconds: 2000),
+          child: Container(
+              margin: widget.margin ?? const EdgeInsets.all(0),
+              padding: widget.padding ?? const EdgeInsets.all(0),
+              color: widget.color ?? Colors.white,
+              height: selected ? widget.height ?? 200 : widget.height ?? 100,
+              width: selected ? widget.width ?? 200 : widget.width ?? 100,
+              child: widget.child),
         ),
       );
 
