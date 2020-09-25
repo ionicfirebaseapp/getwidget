@@ -35,7 +35,6 @@ class RenderGFStickyHeader extends RenderBox
   final bool _enableHeaderOverlap;
   final GFPosition _stickyContentPosition;
 
-
   Axis get direction => _direction;
   Axis _direction;
   set direction(Axis value) {
