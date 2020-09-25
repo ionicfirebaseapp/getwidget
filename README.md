@@ -1,11 +1,4 @@
-}=- m 
-0[
-
 [![pub package](https://img.shields.io/pub/v/getwidget.svg)](https://pub.dartlang.org/packages/getwidget) [![Build Status](https://travis-ci.org/ionicfirebaseapp/getwidget.svg?branch=master)](https://travis-ci.com/ionicfirebaseapp/getwidget) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT) [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/ionicfirebaseapp/getwidget/blob/master/LICENSE) [![Twitter Follow](https://img.shields.io/twitter/follow/getwidgetdev.svg?style=social)](https://twitter.com/getwidgetdev)
-
-
-":????????????//// ;/p[[[[`"
-
 
 <p align="center">
   <a href="https://docs.getwidget.dev/" target="_blank">
