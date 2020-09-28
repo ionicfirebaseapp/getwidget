@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getwidget/colors/gf_color.dart';
-import 'package:getwidget/components/image/gf_image_overlay.dart';
+import 'package:getwidget/getwidget.dart';
 
 class GFIntroSlide extends StatelessWidget {
   const GFIntroSlide({
@@ -9,17 +8,38 @@ class GFIntroSlide extends StatelessWidget {
     this.image,
     this.title,
     this.subTitle,
+    this.subTitleText,
+    this.titleText,
     this.titleStyle = const TextStyle(fontSize: 20, color: GFColors.DARK),
     this.subTitleStyle = const TextStyle(fontSize: 16, color: GFColors.DARK),
     this.backgroundColor = GFColors.PRIMARY,
   }) : super(key: key);
 
+  /// defines [GFIntroSlide] [child], it takes nay widget
   final Widget child;
+
+  /// defines [GFIntroSlide] [image]
   final Image image;
-  final String title;
+
+  /// defines [title]'s text string
+  final String titleText;
+
+  /// defines [subTitle]'s text string
+  final String subTitleText;
+
+  /// defines [title]'s text string
+  final Text title;
+
+  /// defines [title]'s textStyle
   final TextStyle titleStyle;
-  final String subTitle;
+
+  /// defines [subTitle]'s text
+  final Text subTitle;
+
+  /// defines [subTitle]'s textStyle
   final TextStyle subTitleStyle;
+
+  /// defines [GFIntroSlide] backgroundColor
   final Color backgroundColor;
 
   @override
@@ -35,16 +55,16 @@ class GFIntroSlide extends StatelessWidget {
               height: 20,
             ),
             title != null ? Text(
-              title,
+              titleText,
               style: titleStyle,
-            ) : Container(),
+            ) : title,
             const SizedBox(
               height: 40,
             ),
             subTitle != null ? Text(
-              subTitle,
+              subTitleText,
               style: subTitleStyle,
-            ) : Container()
+            ) : subTitle
           ],
         ),
       );

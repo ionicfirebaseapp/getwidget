@@ -16,7 +16,7 @@ class GFBorder extends StatelessWidget {
   })  : assert(child != null),
         assert(_isValidDashedLine(dashedLine), 'Invalid dash pattern');
 
-  /// child of  type [Widget] which can be any component or text , etc
+  /// child of  type [Widget] which can be any component or text, etc
   final Widget child;
 
   /// padding of time [EdgeInsets] where in padding is given to the border types
