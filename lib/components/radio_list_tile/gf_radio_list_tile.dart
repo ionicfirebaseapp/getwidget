@@ -109,12 +109,11 @@ class GFRadioListTile<T> extends StatelessWidget {
   /// The color for the tile's [Material] when a pointer is hovering over it.
   final Color hoverColor;
 
-  /// on true state this widget will be selected as the initial focus
-  /// when no other node in its scope is currently focused
-  final bool autofocus;
-
-  /// an optional focus node to use as the focus node for this widget.
+  /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode focusNode;
+
+  /// {@macro flutter.widgets.Focus.autofocus}
+  final bool autofocus;
 
   /// type of [GFRadioType] which is of four type is basic, sqaure, circular and custom
   final GFRadioType type;

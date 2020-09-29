@@ -14,9 +14,9 @@ class GFBorder extends StatelessWidget {
     this.radius = const Radius.circular(0),
     this.customPath,
   })  : assert(child != null),
-        assert(_isValidDashedLine(dashedLine), 'Invalid dash pattern');
+        assert(_isValiddashedLine(dashedLine), 'Invalid dash pattern');
 
-  /// child of  type [Widget] which can be any component or text, etc
+  /// child of  type [Widget] which can be any component or text , etc
   final Widget child;
 
   /// padding of time [EdgeInsets] where in padding is given to the border types
@@ -61,7 +61,7 @@ class GFBorder extends StatelessWidget {
 }
 
 /// the value of dashedLine cannot be 0 or null, it should have some definite and proper value
-bool _isValidDashedLine(List<double> dash) {
+bool _isValiddashedLine(List<double> dash) {
   final Set<double> _dashSet = dash.toSet();
   if (_dashSet == null) {
     return false;

@@ -36,7 +36,7 @@ class GFProgressBar extends StatefulWidget {
 
     assert(circleStartAngle >= 0.0);
     if (percentage < 0.0 || percentage > 1.0) {
-      throw Exception('Percentage value must be be tween 0.0 and 1.0');
+      throw Exception('Percentage value must be between 0.0 and 1.0');
     }
   }
 

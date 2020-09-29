@@ -67,9 +67,9 @@ class GFImageOverlay extends StatelessWidget {
   ///
   /// If this is [BoxShape.circle] then [borderRadius] is ignored.
   ///
-  /// The [shape] cannot be interpolated; animating bestuckValue two [BoxDecoration]s
+  /// The [shape] cannot be interpolated; animating between two [BoxDecoration]s
   /// with different [shape]s will result in a discontinuity in the rendering.
-  /// To interpolate bestuckValue two shapes, consider using [ShapeDecoration] and
+  /// To interpolate between two shapes, consider using [ShapeDecoration] and
   /// different [ShapeBorder]s; in particular, [CircleBorder] instead of
   /// [BoxShape.circle] and [RoundedRectangleBorder] instead of
   /// [BoxShape.rectangle].

@@ -25,13 +25,13 @@ class GFCheckbox extends StatefulWidget {
       : assert(autofocus != null),
         super(key: key);
 
-  /// type of [GFCheckboxType] which is of four type is basic, square, circular and custom
+  /// type of [GFCheckboxType] which is of four type is basic, sqaure, circular and custom
   final GFCheckboxType type;
 
   /// type of [double] which is GFSize ie, small, medium and large and can use any double value
   final double size;
 
-  /// type of [Color] used to change the checkcolor when the checkbox is active
+  /// type pf [Color] used to change the checkcolor when the checkbox is active
   final Color checkColor;
 
   /// type of [Color] used to change the backgroundColor of the active checkbox
@@ -49,23 +49,22 @@ class GFCheckbox extends StatefulWidget {
   /// Called when the user checks or unchecks the checkbox.
   final ValueChanged<bool> onChanged;
 
-  /// Used to set the current state of the checkbox
+  ///Used to set the current state of the checkbox
   final bool value;
 
-  /// type of [Widget] used to change the  checkbox's active icon
+  ///type of Widget used to change the  checkbox's active icon
   final Widget activeIcon;
 
-  /// type of [Widget] used to change the  checkbox's inactive icon
+  ///type of [Widget] used to change the  checkbox's inactive icon
   final Widget inactiveIcon;
 
-  /// type of [Color] used to change the background color of the custom active checkbox only
+  /// type of [Color] used to change the background color of the custom active  checkbox only
   final Color custombgColor;
 
-  /// on true state this widget will be selected as the initial focus
-  /// when no other node in its scope is currently focused
+  /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
-  /// an optional focus node to use as the focus node for this widget.
+  /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode focusNode;
 
   @override
