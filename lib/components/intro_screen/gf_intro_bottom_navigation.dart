@@ -77,14 +77,17 @@ class GFIntroBottomNavigation extends StatelessWidget {
   final VoidCallback onBackButtonTap;
   final VoidCallback onDoneTap;
   final VoidCallback onSkipTap;
+
   final Widget backButton;
   final Widget forwardButton;
   final Widget doneButton;
   final Widget skipButton;
+
   final String backButtonText;
   final String forwardButtonText;
   final String doneButtonText;
   final String skipButtonText;
+
   final TextStyle skipButtonTextStyle;
   final TextStyle doneButtonTextStyle;
   final TextStyle backButtonTextStyle;

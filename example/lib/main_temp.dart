@@ -117,39 +117,114 @@ class IntroScreen extends StatefulWidget {
   _IntroScreenState createState() => _IntroScreenState();
 }
 class _IntroScreenState extends State<IntroScreen> {
+
+  PageController _pageController;
+  List<Widget> slideList;
+  int initialPage;
+
+  @override
+  void initState() {
+    _pageController = PageController(initialPage: 1, keepPage: false, viewportFraction: 2);
+    initialPage = _pageController.initialPage;
+    super.initState();
+  }
+
+
   @override
   // ignore: prefer_expression_function_bodies
   Widget build(BuildContext context) {
     return SafeArea(
       child: GFIntroScreen(
-        // height: 500,
-        // width: 300,
-        color: Colors.blueGrey,
+        height: 500,
+        width: 300,
+        // color: Colors.blueGrey,
         slides: slides(),
-        // type: GFIntroType.rounded,
-        // pageController: PageController(
-        //   initialPage: 1, keepPage: false, viewportFraction: 2
-        // ),
+        pageController: _pageController,
+        gfIntroBottomNavigation:  GFIntroBottomNavigation(
+          pageController: _pageController,
+          pageCount: slideList.length,
+          currentIndex: initialPage,
+          // child: Text('dfghj'),
 
+          // onForwardButtonTap: () {
+          //   print('fffffff');
+          //   // _pageController.nextPage(
+          //   //     duration: const Duration(milliseconds: 500),
+          //   //     curve: Curves.linear);
+          // },
+          // onBackButtonTap: () {
+          //   print('kkkkkkkkk');
+          //   // _pageController.previousPage(
+          //   //     duration: const Duration(milliseconds: 500),
+          //   //     curve: Curves.linear);
+          // },
+          // onDoneTap: (){
+          //   print('done');
+          // },
+          // onSkipTap: (){
+          //   print('skip');
+          // },
+          // backButtonTextStyle: TextStyle(
+          //   fontSize: 12
+          // ),
+
+          // backButton: GFButton(onPressed: null, child: Text('back'),),
+          // forwardButton: GFButton(onPressed: null, child: Text('next'),),
+          // skipButton: GFButton(onPressed: null, child: Text('skip'),),
+          // doneButton: GFButton(onPressed: null, child: Text('done'),),
+
+          // backButtonText: 'bbbb',
+          // forwardButtonText: 'ffffff',
+          // skipButtonText: 'ssssss',
+          // doneButtonText: 'ddddddd',
+
+          // navigationBarHeight: 100,
+          // navigationBarWidth: 300,
+          // navigationBarMargin: EdgeInsets.all(20),
+          // navigationBarPadding: EdgeInsets.all(20),
+          // navigationBarShape: RoundedRectangleBorder(
+          //   side: const BorderSide(color: Colors.blue, width: 4),
+          //   borderRadius: BorderRadius.circular(50),
+          // ),
+          // navigationBarColor: GFColors.SECONDARY,
+          //
+          // showDivider: true,
+          // dividerHeight: 2,
+          // dividerThickness: 13,
+          // dividerColor: GFColors.ALT,
+          //
+          // dotHeight: 10,
+          // dotWidth: 16,
+          // dotShape: RoundedRectangleBorder(
+          //   side: BorderSide(color: Colors.red, width: 2),
+          //     borderRadius: BorderRadius.circular(5)
+          // ),
+          // inActiveColor: GFColors.DARK,
+          // activeColor: GFColors.DANGER,
+          // dotMargin: EdgeInsets.symmetric(horizontal: 6),
+          //
+          // showButton: false,
+          // showPagination: true,
+        ),
       ),
     );
   }
   List<Widget> slides() {
-    final List<Widget> list = [
-    //   Container(
-    //     color: Colors.tealAccent,
-    //   ),
-    //   Container(
-    //     color: Colors.teal,
-    //   ),
-    //   Container(
-    //     color: Colors.grey,
-    //   ),
-    //   Container(
-    //     color: Colors.red,
-    //   ),
+    slideList = [
+      Container(
+        color: Colors.tealAccent,
+      ),
+      Container(
+        color: Colors.teal,
+      ),
+      Container(
+        color: Colors.grey,
+      ),
+      Container(
+        color: Colors.red,
+      ),
     ];
-    list.add(GFIntroSlide(
+    slideList.add(GFIntroSlide(
       // backgroundColor: Colors.yellow,
       // child: Container(
       //   height: 100, color: Colors.blueGrey.withOpacity(.5),
@@ -160,35 +235,35 @@ class _IntroScreenState extends State<IntroScreen> {
       // imageWidth: 200,
       // image: AssetImage('assets/images/5.png'),
     ));
-    list.add(const GFIntroSlide(
+    slideList.add(const GFIntroSlide(
       backgroundColor: Colors.blue,
       title: Text('Second'),
       // imageHeight: 200,
       // imageWidth: 200,
       // image: AssetImage('assets/images/2.png'),
     ));
-    list.add(const GFIntroSlide(
+    slideList.add(const GFIntroSlide(
       backgroundColor: Colors.green,
       title: Text('Third'),
       // imageHeight: 200,
       // imageWidth: 200,
       // image: AssetImage('assets/images/3.png'),
     ));
-    list.add(const GFIntroSlide(
+    slideList.add(const GFIntroSlide(
       backgroundColor: Colors.red,
       title: Text('Fourth'),
       // imageHeight: 200,
       // imageWidth: 200,
       // image: AssetImage('assets/images/4.png'),
     ));
-    list.add(const GFIntroSlide(
+    slideList.add(const GFIntroSlide(
       backgroundColor: Colors.deepPurple,
       title: Text('Fifth'),
       // imageHeight: 200,
       // imageWidth: 200,
       // image: AssetImage('assets/images/5.png'),
     ));
-    return list;
+    return slideList;
   }
 }
 

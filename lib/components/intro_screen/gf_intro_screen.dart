@@ -107,6 +107,25 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
                     //   //     duration: const Duration(milliseconds: 500),
                     //   //     curve: Curves.linear);
                     // },
+                    // onDoneTap: (){
+                    //   print('done');
+                    // },
+                    // onSkipTap: (){
+                    //   print('skip');
+                    // },
+                    // backButtonTextStyle: TextStyle(
+                    //   fontSize: 12
+                    // ),
+                    
+                    // backButton: GFButton(onPressed: null, child: Text('back'),),
+                    // forwardButton: GFButton(onPressed: null, child: Text('next'),),
+                    // skipButton: GFButton(onPressed: null, child: Text('skip'),),
+                    // doneButton: GFButton(onPressed: null, child: Text('done'),),
+
+                    // backButtonText: 'bbbb',
+                    // forwardButtonText: 'ffffff',
+                    // skipButtonText: 'ssssss',
+                    // doneButtonText: 'ddddddd',
                     
                     // navigationBarHeight: 100,
                     // navigationBarWidth: 300,
