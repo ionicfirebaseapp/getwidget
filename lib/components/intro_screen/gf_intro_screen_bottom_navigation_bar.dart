@@ -60,66 +60,125 @@ class GFIntroScreenBottomNavigationBar extends StatelessWidget {
   /// default controller for the [GFIntroScreen] component
   final PageController pageController;
 
+  /// defines the currentIndex of [GFIntroScreen] slides, default value is 0
   final int currentIndex;
+
+  /// defines the length of [GFIntroScreen] slides, default value is 0
   final int pageCount;
+
+  /// defines [GFIntroScreenBottomNavigationBar], it takes any widget
   final Widget child;
 
+  /// defines [GFIntroScreenBottomNavigationBar] height
   final double navigationBarHeight;
+
+  /// defines [GFIntroScreenBottomNavigationBar] width
   final double navigationBarWidth;
+
+  /// defines [GFIntroScreenBottomNavigationBar] padding
   final EdgeInsets navigationBarPadding;
+
+  /// defines [GFIntroScreenBottomNavigationBar] margin
   final EdgeInsets navigationBarMargin;
+
+  /// defines [GFIntroScreenBottomNavigationBar] color
   final dynamic navigationBarColor;
 
   /// defines the shape of [GFIntroScreenBottomNavigationBar]
   final ShapeBorder navigationBarShape;
 
+  /// Called when the forward button is tapped
   final VoidCallback onForwardButtonTap;
+
+  /// Called when the back button is tapped
   final VoidCallback onBackButtonTap;
+
+  /// Called when the done button is tapped
   final VoidCallback onDoneTap;
+
+  /// Called when the skip button is tapped
   final VoidCallback onSkipTap;
 
+  /// defines the backButton widget
   final Widget backButton;
+
+  /// defines the forwardButton widget
   final Widget forwardButton;
+
+  /// defines the doneButton widget
   final Widget doneButton;
+
+  /// defines the skipButton widget
   final Widget skipButton;
 
+  /// defines the backButton text
   final String backButtonText;
+
+  /// defines the forwardButton text
   final String forwardButtonText;
+
+  /// defines the doneButton text
   final String doneButtonText;
+
+  /// defines the skipButton text
   final String skipButtonText;
 
+  /// defines the skipButton textStyle
   final TextStyle skipButtonTextStyle;
+
+  /// defines the doneButton textStyle
   final TextStyle doneButtonTextStyle;
+
+  /// defines the backButton textStyle
   final TextStyle backButtonTextStyle;
+
+  /// defines the forwardButton textStyle
   final TextStyle forwardButtonTextStyle;
 
+  /// on true state, displays [Divider], defaults to true
   final bool showDivider;
+
+  /// on true state, displays buttons, defaults to true
   final bool showButton;
+
+  /// on true state, displays pagination, defaults to true
   final bool showPagination;
 
+  /// defines divider height
   final double dividerHeight;
+
+  /// defines divider thickness
   final double dividerThickness;
+
+  /// defines divider color
   final dynamic dividerColor;
 
+  /// defines pagination shape
   final ShapeBorder dotShape;
+
+  /// defines pagination inactive color
   final Color inActiveColor;
+
+  /// defines pagination active color
   final Color activeColor;
+
+  /// defines pagination height
   final double dotHeight;
+
+  /// defines pagination width
   final double dotWidth;
+
+  /// defines pagination in between space
   final EdgeInsets dotMargin;
 
   void onForwardButton() {
     pageController.nextPage(
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.linear
-    );
+        duration: const Duration(milliseconds: 500), curve: Curves.linear);
   }
 
   void onBackButton() {
     pageController.previousPage(
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.linear
-    );
+        duration: const Duration(milliseconds: 500), curve: Curves.linear);
   }
 
   @override
@@ -143,39 +202,49 @@ class GFIntroScreenBottomNavigationBar extends StatelessWidget {
                 child: Container(
                   padding: navigationBarPadding,
                   margin: navigationBarMargin,
-                  child: child != null ? Row(
-                    children: [
-                      child
-                    ],
-                  ) : Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      showButton ? InkWell(
-                        child: currentIndex == 0
-                            ? skipButton ??
-                                Text(skipButtonText, style: skipButtonTextStyle)
-                            : backButton ??
-                                Text(backButtonText,
-                                    style: backButtonTextStyle),
-                        onTap: currentIndex == 0 ? onSkipTap : onBackButtonTap ?? onBackButton,
-                      ) : Container(),
-                      showPagination ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: getDotsList(),
-                      ) : Container(),
-                      showButton ? InkWell(
-                        child: currentIndex == pageCount - 1
-                            ? doneButton ??
-                                Text(doneButtonText, style: doneButtonTextStyle)
-                            : forwardButton ??
-                                Text(forwardButtonText,
-                                    style: forwardButtonTextStyle),
-                        onTap: currentIndex == pageCount - 1
-                            ? onDoneTap
-                            : onForwardButtonTap ?? onForwardButton,
-                      ) : Container(),
-                    ],
-                  ),
+                  child: child != null
+                      ? Row(
+                          children: [child],
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            showButton
+                                ? InkWell(
+                                    child: currentIndex == 0
+                                        ? skipButton ??
+                                            Text(skipButtonText,
+                                                style: skipButtonTextStyle)
+                                        : backButton ??
+                                            Text(backButtonText,
+                                                style: backButtonTextStyle),
+                                    onTap: currentIndex == 0
+                                        ? onSkipTap
+                                        : onBackButtonTap ?? onBackButton,
+                                  )
+                                : Container(),
+                            showPagination
+                                ? Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: getDotsList(),
+                                  )
+                                : Container(),
+                            showButton
+                                ? InkWell(
+                                    child: currentIndex == pageCount - 1
+                                        ? doneButton ??
+                                            Text(doneButtonText,
+                                                style: doneButtonTextStyle)
+                                        : forwardButton ??
+                                            Text(forwardButtonText,
+                                                style: forwardButtonTextStyle),
+                                    onTap: currentIndex == pageCount - 1
+                                        ? onDoneTap
+                                        : onForwardButtonTap ?? onForwardButton,
+                                  )
+                                : Container(),
+                          ],
+                        ),
                 ),
               ),
             ),
@@ -189,7 +258,8 @@ class GFIntroScreenBottomNavigationBar extends StatelessWidget {
       list.add(Container(
         margin: dotMargin,
         child: Material(
-          shape: dotShape ?? RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+          shape: dotShape ??
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           color: currentIndex == i ? activeColor : inActiveColor,
           child: Container(
             width: dotWidth,

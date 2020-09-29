@@ -4,7 +4,6 @@ import 'package:getwidget/getwidget.dart';
 
 void main() => runApp(MyApp());
 
-
 final List<String> imageList = [
   'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg',
   'https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg',
@@ -98,7 +97,6 @@ final List<String> imageList = [
 //   );
 // }
 
-
 class MyApp extends StatelessWidget {
   static const String _title = 'Flutter Code Sample';
   @override
@@ -111,20 +109,22 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class IntroScreen extends StatefulWidget {
   IntroScreen({Key key}) : super(key: key);
   @override
   _IntroScreenState createState() => _IntroScreenState();
 }
-class _IntroScreenState extends State<IntroScreen> {
 
+class _IntroScreenState extends State<IntroScreen> {
   PageController _pageController;
   List<Widget> slideList;
   int initialPage;
 
   @override
   void initState() {
-    _pageController = PageController(initialPage: 2, keepPage: false, viewportFraction: 2);
+    _pageController =
+        PageController(initialPage: 2, keepPage: false, viewportFraction: 2);
     initialPage = _pageController.initialPage;
     super.initState();
   }
@@ -149,77 +149,76 @@ class _IntroScreenState extends State<IntroScreen> {
         //   currentIndex: initialPage,
         //   child: Text('dfghj'),
 
-          // onForwardButtonTap: () {
-          //   print('fffffff');
-          //   // _pageController.nextPage(
-          //   //     duration: const Duration(milliseconds: 500),
-          //   //     curve: Curves.linear);
-          // },
-          // onBackButtonTap: () {
-          //   print('kkkkkkkkk');
-          //   // _pageController.previousPage(
-          //   //     duration: const Duration(milliseconds: 500),
-          //   //     curve: Curves.linear);
-          // },
-          // onDoneTap: (){
-          //   print('done');
-          // },
-          // onSkipTap: (){
-          //   print('skip');
-          // },
-          // backButtonTextStyle: TextStyle(
-          //   fontSize: 12
-          // ),
+        // onForwardButtonTap: () {
+        //   print('fffffff');
+        //   // _pageController.nextPage(
+        //   //     duration: const Duration(milliseconds: 500),
+        //   //     curve: Curves.linear);
+        // },
+        // onBackButtonTap: () {
+        //   print('kkkkkkkkk');
+        //   // _pageController.previousPage(
+        //   //     duration: const Duration(milliseconds: 500),
+        //   //     curve: Curves.linear);
+        // },
+        // onDoneTap: (){
+        //   print('done');
+        // },
+        // onSkipTap: (){
+        //   print('skip');
+        // },
+        // backButtonTextStyle: TextStyle(
+        //   fontSize: 12
+        // ),
 
-          // backButton: GFButton(onPressed: null, child: Text('back'),),
-          // forwardButton: GFButton(onPressed: null, child: Text('next'),),
-          // skipButton: GFButton(onPressed: null, child: Text('skip'),),
-          // doneButton: GFButton(onPressed: null, child: Text('done'),),
+        // backButton: GFButton(onPressed: null, child: Text('back'),),
+        // forwardButton: GFButton(onPressed: null, child: Text('next'),),
+        // skipButton: GFButton(onPressed: null, child: Text('skip'),),
+        // doneButton: GFButton(onPressed: null, child: Text('done'),),
 
-          // backButtonText: 'bbbb',
-          // forwardButtonText: 'ffffff',
-          // skipButtonText: 'ssssss',
-          // doneButtonText: 'ddddddd',
+        // backButtonText: 'bbbb',
+        // forwardButtonText: 'ffffff',
+        // skipButtonText: 'ssssss',
+        // doneButtonText: 'ddddddd',
 
-          // navigationBarHeight: 100,
-          // navigationBarWidth: 300,
-          // navigationBarMargin: EdgeInsets.all(20),
-          // navigationBarPadding: EdgeInsets.all(20),
-          // navigationBarShape: RoundedRectangleBorder(
-          //   side: const BorderSide(color: Colors.blue, width: 4),
-          //   borderRadius: BorderRadius.circular(50),
-          // ),
-          // navigationBarColor: GFColors.SECONDARY,
-          //
-          // showDivider: true,
-          // dividerHeight: 2,
-          // dividerThickness: 13,
-          // dividerColor: GFColors.ALT,
-          //
-          // dotHeight: 10,
-          // dotWidth: 16,
-          // dotShape: RoundedRectangleBorder(
-          //   side: BorderSide(color: Colors.red, width: 2),
-          //     borderRadius: BorderRadius.circular(5)
-          // ),
-          // inActiveColor: GFColors.DARK,
-          // activeColor: GFColors.DANGER,
-          // dotMargin: EdgeInsets.symmetric(horizontal: 6),
-          //
-          // showButton: false,
-          // showPagination: true,
+        // navigationBarHeight: 100,
+        // navigationBarWidth: 300,
+        // navigationBarMargin: EdgeInsets.all(20),
+        // navigationBarPadding: EdgeInsets.all(20),
+        // navigationBarShape: RoundedRectangleBorder(
+        //   side: const BorderSide(color: Colors.blue, width: 4),
+        //   borderRadius: BorderRadius.circular(50),
+        // ),
+        // navigationBarColor: GFColors.SECONDARY,
+        //
+        // showDivider: true,
+        // dividerHeight: 2,
+        // dividerThickness: 13,
+        // dividerColor: GFColors.ALT,
+        //
+        // dotHeight: 10,
+        // dotWidth: 16,
+        // dotShape: RoundedRectangleBorder(
+        //   side: BorderSide(color: Colors.red, width: 2),
+        //     borderRadius: BorderRadius.circular(5)
+        // ),
+        // inActiveColor: GFColors.DARK,
+        // activeColor: GFColors.DANGER,
+        // dotMargin: EdgeInsets.symmetric(horizontal: 6),
+        //
+        // showButton: false,
+        // showPagination: true,
         // ),
       ),
     );
   }
+
   List<Widget> slides() {
     slideList = [
       Container(
         decoration: BoxDecoration(
             // color: Colors.tealAccent,
-          borderRadius: BorderRadius.circular(20)
-        ),
-
+            borderRadius: BorderRadius.circular(20)),
       ),
       Container(
         color: Colors.teal,
@@ -303,8 +302,8 @@ class _IntroScreenState extends State<IntroScreen> {
           image: const NetworkImage(
               'https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg'),
           boxFit: BoxFit.fitHeight,
-          colorFilter: ColorFilter.mode(
-              Colors.black.withOpacity(0.6), BlendMode.darken),
+          colorFilter:
+              ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
           borderRadius: BorderRadius.circular(5),
 //              border: Border.all(color: Colors.pink, width: 2.0),
         ),
@@ -491,7 +490,6 @@ class _IntroScreenState extends State<IntroScreen> {
 //   );
 // }
 
-
 //
 // class MyApp extends StatelessWidget {
 //   @override
@@ -641,7 +639,6 @@ class _IntroScreenState extends State<IntroScreen> {
 //        }),
 //  );
 // }
-
 
 // SingleChildScrollView(
 // child: Container(
@@ -1540,8 +1537,6 @@ class _IntroScreenState extends State<IntroScreen> {
 //
 // ])),
 // ));
-
-
 
 // void main() => runApp(MyApp());
 //

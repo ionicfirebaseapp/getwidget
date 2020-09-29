@@ -34,7 +34,7 @@ class GFAnimation extends StatefulWidget {
     this.reverseDuration,
   }) : super(key: key);
 
-    /// `The duration for animation to perform`
+  /// `The duration for animation to perform`
   final Duration duration;
 
   /// The duration for animation to perform
@@ -83,7 +83,7 @@ class GFAnimation extends StatefulWidget {
   final Function onTap;
 
   /// Here's an illustration of the [RotationTransition] widget, with it's [turnsAnimation]
-  /// animated by a [stuckValue] set to [animate]
+  /// animated by a stuckValue set to animate
   final Animation<double> turnsAnimation;
 
   /// Here's an illustration of the [ScaleTransition] widget, with it's [scaleAnimation]
