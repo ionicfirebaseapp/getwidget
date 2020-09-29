@@ -77,6 +77,7 @@ class GFIntroScreen extends StatefulWidget {
   /// defines [GFIntroScreen] height
   final double height;
 
+
   /// defines [GFIntroScreen] width
   final double width;
 
