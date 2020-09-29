@@ -12,8 +12,8 @@ class GFIntroScreen extends StatefulWidget {
     this.height,
     this.borderRadius,
     this.border,
-    this.gfIntroBottomNavigation,
-    this.showIntroBottomNavigation = true,
+    this.introScreenBottomNavigationBar,
+    this.showIntroSCreenBottomNavigationBar = true,
     this.currentIndex = 0,
     this.pageCount = 0,
     this.child,
@@ -82,10 +82,10 @@ class GFIntroScreen extends StatefulWidget {
 
   final Border border;
 
-  /// [GFIntroScreen] bottom navigation will be used as [GFIntroBottomNavigation] component
-  final GFIntroBottomNavigation gfIntroBottomNavigation;
+  /// [GFIntroScreen] bottom navigation will be used as [GFIntroScreenBottomNavigationBar] component
+  final GFIntroScreenBottomNavigationBar introScreenBottomNavigationBar;
 
-  final bool showIntroBottomNavigation;
+  final bool showIntroSCreenBottomNavigationBar;
 
 
 
@@ -100,7 +100,7 @@ class GFIntroScreen extends StatefulWidget {
   final EdgeInsets navigationBarMargin;
   final dynamic navigationBarColor;
 
-  /// defines the shape of [GFIntroBottomNavigation]
+  /// defines the shape of [GFIntroScreenBottomNavigationBar]
   final ShapeBorder navigationBarShape;
 
   final VoidCallback onForwardButtonTap;
@@ -186,58 +186,46 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
               children: widget.slides,
             ),
           ),
-          widget.showIntroBottomNavigation ? widget.gfIntroBottomNavigation ??
-              GFIntroBottomNavigation(
+          widget.showIntroSCreenBottomNavigationBar ? widget.introScreenBottomNavigationBar ??
+              GFIntroScreenBottomNavigationBar(
                 pageController: _pageController,
                 pageCount: widget.slides.length,
                 currentIndex: currentIndex,
                 child: widget.child,
                 navigationBarColor: widget.navigationBarColor,
                 navigationBarHeight: widget.navigationBarHeight,
-                navigationBarShape: widget.navigationBarWidth,
-                navigationBarWidth,
-                navigationBarPadding = const EdgeInsets.all(8),
-                navigationBarMargin = const EdgeInsets.all(8),
-                showDivider = true,
-                dividerColor = Colors.white,
-                dividerHeight = 1,
-                dividerThickness = 2,
-                dotShape,
-                inActiveColor = GFColors.LIGHT,
-                activeColor = GFColors.PRIMARY,
-                dotHeight = 12,
-                dotWidth = 12,
-                dotMargin = const EdgeInsets.symmetric(horizontal: 2),
-                backButton,
-                forwardButton,
-                doneButton,
-                skipButton,
-                onDoneTap,
-                onForwardButtonTap,
-                onBackButtonTap,
-                onSkipTap,
-                forwardButtonText = 'NEXT',
-                backButtonText = 'BACK',
-                doneButtonText = 'GO',
-                skipButtonText = 'SKIP',
-                skipButtonTextStyle = const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                ),
-                doneButtonTextStyle = const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                ),
-                backButtonTextStyle = const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                ),
-                forwardButtonTextStyle = const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                ),
-                showButton = true,
-                showPagination = true,
+                navigationBarShape: widget.navigationBarShape,
+                navigationBarWidth: widget.navigationBarWidth,
+                navigationBarPadding: widget.navigationBarPadding,
+                navigationBarMargin: widget.navigationBarMargin,
+                showDivider: widget.showDivider,
+                dividerColor: widget.dividerColor,
+                dividerHeight: widget.dividerHeight,
+                dividerThickness: widget.dividerThickness,
+                dotShape: widget.dotShape,
+                inActiveColor: widget.inActiveColor,
+                activeColor: widget.activeColor,
+                dotHeight: widget.dotHeight,
+                dotWidth: widget.dotWidth,
+                dotMargin: widget.dotMargin,
+                backButton: widget.backButton,
+                forwardButton: widget.forwardButton,
+                doneButton: widget.doneButton,
+                skipButton: widget.skipButton,
+                onDoneTap: widget.onDoneTap,
+                onForwardButtonTap: widget.onForwardButtonTap,
+                onBackButtonTap: widget.onBackButtonTap,
+                onSkipTap: widget.onSkipTap,
+                forwardButtonText: widget.forwardButtonText,
+                backButtonText: widget.backButtonText,
+                doneButtonText: widget.doneButtonText,
+                skipButtonText: widget.skipButtonText,
+                skipButtonTextStyle: widget.skipButtonTextStyle,
+                doneButtonTextStyle: widget.doneButtonTextStyle,
+                backButtonTextStyle: widget.backButtonTextStyle,
+                forwardButtonTextStyle: widget.forwardButtonTextStyle,
+                showButton: widget.showButton,
+                showPagination: widget.showPagination,
               ) : Container(),
         ],
       ),

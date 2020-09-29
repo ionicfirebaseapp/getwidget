@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
-class GFIntroBottomNavigation extends StatelessWidget {
-  const GFIntroBottomNavigation({
+class GFIntroScreenBottomNavigationBar extends StatelessWidget {
+  const GFIntroScreenBottomNavigationBar({
     Key key,
     this.pageController,
     this.currentIndex = 0,
@@ -70,7 +70,7 @@ class GFIntroBottomNavigation extends StatelessWidget {
   final EdgeInsets navigationBarMargin;
   final dynamic navigationBarColor;
 
-  /// defines the shape of [GFIntroBottomNavigation]
+  /// defines the shape of [GFIntroScreenBottomNavigationBar]
   final ShapeBorder navigationBarShape;
 
   final VoidCallback onForwardButtonTap;

@@ -124,11 +124,10 @@ class _IntroScreenState extends State<IntroScreen> {
 
   @override
   void initState() {
-    _pageController = PageController(initialPage: 1, keepPage: false, viewportFraction: 2);
+    _pageController = PageController(initialPage: 2, keepPage: false, viewportFraction: 2);
     initialPage = _pageController.initialPage;
     super.initState();
   }
-
 
   @override
   // ignore: prefer_expression_function_bodies
@@ -143,11 +142,12 @@ class _IntroScreenState extends State<IntroScreen> {
         slides: slides(),
         pageController: _pageController,
         // showIntroBottomNavigation: false,
-        gfIntroBottomNavigation:  GFIntroBottomNavigation(
-          pageController: _pageController,
-          pageCount: slideList.length,
-          currentIndex: initialPage,
-          // child: Text('dfghj'),
+
+        // introScreenBottomNavigationBar:  GFIntroScreenBottomNavigationBar(
+        //   pageController: _pageController,
+        //   pageCount: slideList.length,
+        //   currentIndex: initialPage,
+        //   child: Text('dfghj'),
 
           // onForwardButtonTap: () {
           //   print('fffffff');
@@ -208,7 +208,7 @@ class _IntroScreenState extends State<IntroScreen> {
           //
           // showButton: false,
           // showPagination: true,
-        ),
+        // ),
       ),
     );
   }
@@ -223,6 +223,91 @@ class _IntroScreenState extends State<IntroScreen> {
       ),
       Container(
         color: Colors.teal,
+        child: GFImageOverlay(
+          width: MediaQuery.of(context).size.width,
+          // margin: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: <Widget>[
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Hello world',
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+          color: Colors.orange,
+          image: const NetworkImage(
+              'https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg'),
+          boxFit: BoxFit.fitHeight,
+          colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.6), BlendMode.darken),
+          borderRadius: BorderRadius.circular(5),
+//              border: Border.all(color: Colors.pink, width: 2.0),
+        ),
       ),
       Container(
         color: Colors.grey,
@@ -231,45 +316,6 @@ class _IntroScreenState extends State<IntroScreen> {
         color: Colors.red,
       ),
     ];
-    slideList.add(GFIntroSlide(
-      // backgroundColor: Colors.yellow,
-      // child: Container(
-      //   height: 100, color: Colors.blueGrey.withOpacity(.5),
-      // ),
-      image: Image.network('https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg', height: 100, width: 100,),
-      title: Text('First'),
-      // imageHeight: 200,
-      // imageWidth: 200,
-      // image: AssetImage('assets/images/5.png'),
-    ));
-    slideList.add(const GFIntroSlide(
-      backgroundColor: Colors.blue,
-      title: Text('Second'),
-      // imageHeight: 200,
-      // imageWidth: 200,
-      // image: AssetImage('assets/images/2.png'),
-    ));
-    slideList.add(const GFIntroSlide(
-      backgroundColor: Colors.green,
-      title: Text('Third'),
-      // imageHeight: 200,
-      // imageWidth: 200,
-      // image: AssetImage('assets/images/3.png'),
-    ));
-    slideList.add(const GFIntroSlide(
-      backgroundColor: Colors.red,
-      title: Text('Fourth'),
-      // imageHeight: 200,
-      // imageWidth: 200,
-      // image: AssetImage('assets/images/4.png'),
-    ));
-    slideList.add(const GFIntroSlide(
-      backgroundColor: Colors.deepPurple,
-      title: Text('Fifth'),
-      // imageHeight: 200,
-      // imageWidth: 200,
-      // image: AssetImage('assets/images/5.png'),
-    ));
     return slideList;
   }
 }
