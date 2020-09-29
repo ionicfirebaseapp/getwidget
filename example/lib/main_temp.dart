@@ -122,8 +122,8 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: GFIntroScreen(
-        height: 500,
-        width: 300,
+        // height: 500,
+        // width: 300,
         color: Colors.blueGrey,
         slides: slides(),
         // type: GFIntroType.rounded,

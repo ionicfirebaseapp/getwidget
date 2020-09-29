@@ -90,23 +90,51 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
               )),
               widget.gfIntroBottomNavigation ??
                   GFIntroBottomNavigation(
-                    onForwardButtonTap: () {
-                      _pageController.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.linear);
-                    },
-                    onBackButtonTap: () {
-                      _pageController.previousPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.linear);
-                    },
-                    pagesCount: widget.slides.length,
-                    pageNumber: page,
-                    navigationBarShape: RoundedRectangleBorder(
-                      side: const BorderSide(color: Colors.blue, width: 4),
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    navigationBarColor: GFColors.SECONDARY,
+                    pageController: _pageController,
+                    pageCount: widget.slides.length,
+                    currentIndex: page,
+                    // child: Text('dfghj'),
+
+                    // onForwardButtonTap: () {
+                    //   print('fffffff');
+                    //   // _pageController.nextPage(
+                    //   //     duration: const Duration(milliseconds: 500),
+                    //   //     curve: Curves.linear);
+                    // },
+                    // onBackButtonTap: () {
+                    //   print('kkkkkkkkk');
+                    //   // _pageController.previousPage(
+                    //   //     duration: const Duration(milliseconds: 500),
+                    //   //     curve: Curves.linear);
+                    // },
+                    
+                    // navigationBarHeight: 100,
+                    // navigationBarWidth: 300,
+                    // navigationBarMargin: EdgeInsets.all(20),
+                    // navigationBarPadding: EdgeInsets.all(20),
+                    // navigationBarShape: RoundedRectangleBorder(
+                    //   side: const BorderSide(color: Colors.blue, width: 4),
+                    //   borderRadius: BorderRadius.circular(50),
+                    // ),
+                    // navigationBarColor: GFColors.SECONDARY,
+                    //
+                    // showDivider: true,
+                    // dividerHeight: 2,
+                    // dividerThickness: 13,
+                    // dividerColor: GFColors.ALT,
+                    //
+                    // dotHeight: 10,
+                    // dotWidth: 16,
+                    // dotShape: RoundedRectangleBorder(
+                    //   side: BorderSide(color: Colors.red, width: 2),
+                    //     borderRadius: BorderRadius.circular(5)
+                    // ),
+                    // inActiveColor: GFColors.DARK,
+                    // activeColor: GFColors.DANGER,
+                    // dotMargin: EdgeInsets.symmetric(horizontal: 6),
+                    //
+                    // showButton: false,
+                    // showPagination: true,
                   ),
             ],
           ),

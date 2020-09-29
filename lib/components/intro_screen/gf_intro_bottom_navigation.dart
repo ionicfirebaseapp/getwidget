@@ -5,29 +5,26 @@ import 'package:getwidget/getwidget.dart';
 class GFIntroBottomNavigation extends StatelessWidget {
   const GFIntroBottomNavigation({
     Key key,
-    this.pageNumber = 0,
-    this.pagesCount = 0,
+    this.pageController,
+    this.currentIndex = 0,
+    this.pageCount = 0,
     this.child,
-
     this.navigationBarColor = GFColors.SUCCESS,
     this.navigationBarHeight = 50,
     this.navigationBarShape,
     this.navigationBarWidth,
     this.navigationBarPadding = const EdgeInsets.all(8),
     this.navigationBarMargin = const EdgeInsets.all(8),
-
     this.showDivider = true,
     this.dividerColor = Colors.white,
     this.dividerHeight = 1,
     this.dividerThickness = 2,
-
-    this.dotShape = BoxShape.circle,
-    this.inActiveColor,
-    this.activeColor,
-    this.dotHeight,
-    this.dotWidth,
-    this.dotMargin,
-
+    this.dotShape,
+    this.inActiveColor = GFColors.LIGHT,
+    this.activeColor = GFColors.PRIMARY,
+    this.dotHeight = 12,
+    this.dotWidth = 12,
+    this.dotMargin = const EdgeInsets.symmetric(horizontal: 2),
     this.backButton,
     this.forwardButton,
     this.doneButton,
@@ -40,15 +37,31 @@ class GFIntroBottomNavigation extends StatelessWidget {
     this.backButtonText = 'BACK',
     this.doneButtonText = 'GO',
     this.skipButtonText = 'SKIP',
-    this.skipButtonTextStyle = const TextStyle(color: Colors.black, fontSize: 16,),
-    this.doneButtonTextStyle = const TextStyle(color: Colors.black, fontSize: 16,),
-    this.backButtonTextStyle = const TextStyle(color: Colors.black, fontSize: 16,),
-    this.forwardButtonTextStyle = const TextStyle(color: Colors.black, fontSize: 16,),
+    this.skipButtonTextStyle = const TextStyle(
+      color: Colors.black,
+      fontSize: 16,
+    ),
+    this.doneButtonTextStyle = const TextStyle(
+      color: Colors.black,
+      fontSize: 16,
+    ),
+    this.backButtonTextStyle = const TextStyle(
+      color: Colors.black,
+      fontSize: 16,
+    ),
+    this.forwardButtonTextStyle = const TextStyle(
+      color: Colors.black,
+      fontSize: 16,
+    ),
+    this.showButton = true,
+    this.showPagination = true,
   }) : super(key: key);
 
+  /// default controller for the [GFIntroScreen] component
+  final PageController pageController;
 
-  final int pageNumber;
-  final int pagesCount;
+  final int currentIndex;
+  final int pageCount;
   final Widget child;
 
   final double navigationBarHeight;
@@ -56,6 +69,7 @@ class GFIntroBottomNavigation extends StatelessWidget {
   final EdgeInsets navigationBarPadding;
   final EdgeInsets navigationBarMargin;
   final dynamic navigationBarColor;
+
   /// defines the shape of [GFIntroBottomNavigation]
   final ShapeBorder navigationBarShape;
 
@@ -75,11 +89,16 @@ class GFIntroBottomNavigation extends StatelessWidget {
   final TextStyle doneButtonTextStyle;
   final TextStyle backButtonTextStyle;
   final TextStyle forwardButtonTextStyle;
+
   final bool showDivider;
+  final bool showButton;
+  final bool showPagination;
+
   final double dividerHeight;
   final double dividerThickness;
-  final Color dividerColor;
-  final BoxShape dotShape;
+  final dynamic dividerColor;
+
+  final ShapeBorder dotShape;
   final Color inActiveColor;
   final Color activeColor;
   final double dotHeight;
@@ -87,65 +106,94 @@ class GFIntroBottomNavigation extends StatelessWidget {
   final EdgeInsets dotMargin;
 
 
+
+  void onForwardButton() {
+    pageController.nextPage(
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.linear
+    );
+  }
+
+  void onBackButton() {
+    pageController.previousPage(
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.linear
+    );
+  }
+
   @override
   Widget build(BuildContext context) => Column(
-    mainAxisAlignment: MainAxisAlignment.end,
-    children: <Widget>[
-      showDivider
-          ? Divider(
-              height: dividerHeight,
-              thickness: dividerThickness,
-              color: dividerColor,
-            )
-          : Container(),
-      Material(
-        child: Container(
-          height: navigationBarHeight,
-          width: navigationBarWidth,
-          child: Material(
-            shape: navigationBarShape,
-            color: navigationBarColor,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          showDivider
+              ? Divider(
+                  height: dividerHeight,
+                  thickness: dividerThickness,
+                  color: dividerColor,
+                )
+              : Container(),
+          Material(
             child: Container(
-              padding: navigationBarPadding,
-              margin: navigationBarMargin,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  InkWell(
-                    child: pageNumber == 0 ? skipButton ?? Text(skipButtonText, style: skipButtonTextStyle) :
-                      backButton ?? Text(backButtonText, style: backButtonTextStyle),
-                    onTap: onBackButtonTap,
+              height: navigationBarHeight,
+              width: navigationBarWidth,
+              child: Material(
+                shape: navigationBarShape,
+                color: navigationBarColor,
+                child: Container(
+                  padding: navigationBarPadding,
+                  margin: navigationBarMargin,
+                  child: child != null ? Row(
+                    children: [
+                      child
+                    ],
+                  ) : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      showButton ? InkWell(
+                        child: currentIndex == 0
+                            ? skipButton ??
+                                Text(skipButtonText, style: skipButtonTextStyle)
+                            : backButton ??
+                                Text(backButtonText,
+                                    style: backButtonTextStyle),
+                        onTap: currentIndex == 0 ? onSkipTap : onBackButtonTap ?? onBackButton,
+                      ) : Container(),
+                      showPagination ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: getDotsList(),
+                      ) : Container(),
+                      showButton ? InkWell(
+                        child: currentIndex == pageCount - 1
+                            ? doneButton ??
+                                Text(doneButtonText, style: doneButtonTextStyle)
+                            : forwardButton ??
+                                Text(forwardButtonText,
+                                    style: forwardButtonTextStyle),
+                        onTap: currentIndex == pageCount - 1
+                            ? onDoneTap
+                            : onForwardButtonTap ?? onForwardButton,
+                      ) : Container(),
+                    ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: getDotsList(),
-                  ),
-                  InkWell(
-                    child: pageNumber == pagesCount - 1 ? doneButton ?? Text(doneButtonText, style: doneButtonTextStyle) :
-                      forwardButton ?? Text(forwardButtonText, style: forwardButtonTextStyle),
-                    onTap: pageNumber == pagesCount - 1 ? onDoneTap : onForwardButtonTap,
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
-        ),
-      )
-    ],
-  );
+          )
+        ],
+      );
 
   List<Widget> getDotsList() {
     final List<Widget> list = [];
-    for (int i = 0; i < pagesCount; i++) {
+    for (int i = 0; i < pageCount; i++) {
       list.add(Container(
-        width: dotWidth ?? 12,
-        height: dotHeight ?? 12,
-        margin: dotMargin ?? const EdgeInsets.symmetric(horizontal: 4),
-        decoration: BoxDecoration(
-          shape: dotShape,
-          color: pageNumber == i
-              ? activeColor ?? GFColors.PRIMARY
-              : inActiveColor ?? GFColors.LIGHT,
+        margin: dotMargin,
+        child: Material(
+          shape: dotShape ?? RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+          color: currentIndex == i ? activeColor : inActiveColor,
+          child: Container(
+            width: dotWidth,
+            height: dotHeight,
+          ),
         ),
       ));
     }
