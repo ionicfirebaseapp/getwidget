@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
@@ -101,6 +102,11 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
                     },
                     pagesCount: widget.slides.length,
                     pageNumber: page,
+                    navigationBarShape: RoundedRectangleBorder(
+                      side: const BorderSide(color: Colors.blue, width: 4),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    navigationBarColor: GFColors.SECONDARY,
                   ),
             ],
           ),

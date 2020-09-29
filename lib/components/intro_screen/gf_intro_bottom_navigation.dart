@@ -1,14 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:getwidget/getwidget.dart';
 
 class GFIntroBottomNavigation extends StatelessWidget {
   const GFIntroBottomNavigation({
     Key key,
     this.pageNumber = 0,
     this.pagesCount = 0,
-    this.padding = const EdgeInsets.all(8),
-    this.margin = const EdgeInsets.all(8),
     this.child,
+
+    this.navigationBarColor = GFColors.SUCCESS,
+    this.navigationBarHeight = 50,
+    this.navigationBarShape,
+    this.navigationBarWidth,
+    this.navigationBarPadding = const EdgeInsets.all(8),
+    this.navigationBarMargin = const EdgeInsets.all(8),
 
     this.showDivider = true,
     this.dividerColor = Colors.white,
@@ -42,10 +48,17 @@ class GFIntroBottomNavigation extends StatelessWidget {
 
 
   final int pageNumber;
-  final Widget child;
   final int pagesCount;
-  final EdgeInsets padding;
-  final EdgeInsets margin;
+  final Widget child;
+
+  final double navigationBarHeight;
+  final double navigationBarWidth;
+  final EdgeInsets navigationBarPadding;
+  final EdgeInsets navigationBarMargin;
+  final dynamic navigationBarColor;
+  /// defines the shape of [GFIntroBottomNavigation]
+  final ShapeBorder navigationBarShape;
+
   final VoidCallback onForwardButtonTap;
   final VoidCallback onBackButtonTap;
   final VoidCallback onDoneTap;
@@ -85,27 +98,37 @@ class GFIntroBottomNavigation extends StatelessWidget {
               color: dividerColor,
             )
           : Container(),
-      Container(
-        padding: padding,
-        margin: margin,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            InkWell(
-              child: pageNumber == 0 ? skipButton ?? Text(skipButtonText, style: skipButtonTextStyle) :
-                backButton ?? Text(backButtonText, style: backButtonTextStyle),
-              onTap: onBackButtonTap,
+      Material(
+        child: Container(
+          height: navigationBarHeight,
+          width: navigationBarWidth,
+          child: Material(
+            shape: navigationBarShape,
+            color: navigationBarColor,
+            child: Container(
+              padding: navigationBarPadding,
+              margin: navigationBarMargin,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  InkWell(
+                    child: pageNumber == 0 ? skipButton ?? Text(skipButtonText, style: skipButtonTextStyle) :
+                      backButton ?? Text(backButtonText, style: backButtonTextStyle),
+                    onTap: onBackButtonTap,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: getDotsList(),
+                  ),
+                  InkWell(
+                    child: pageNumber == pagesCount - 1 ? doneButton ?? Text(doneButtonText, style: doneButtonTextStyle) :
+                      forwardButton ?? Text(forwardButtonText, style: forwardButtonTextStyle),
+                    onTap: pageNumber == pagesCount - 1 ? onDoneTap : onForwardButtonTap,
+                  ),
+                ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: getDotsList(),
-            ),
-            InkWell(
-              child: pageNumber == pagesCount - 1 ? doneButton ?? Text(doneButtonText, style: doneButtonTextStyle) :
-                forwardButton ?? Text(forwardButtonText, style: forwardButtonTextStyle),
-              onTap: pageNumber == pagesCount - 1 ? onDoneTap : onForwardButtonTap,
-            ),
-          ],
+          ),
         ),
       )
     ],
@@ -121,8 +144,8 @@ class GFIntroBottomNavigation extends StatelessWidget {
         decoration: BoxDecoration(
           shape: dotShape,
           color: pageNumber == i
-              ? activeColor ?? Colors.blue
-              : inActiveColor ?? Colors.grey.withOpacity(0.5),
+              ? activeColor ?? GFColors.PRIMARY
+              : inActiveColor ?? GFColors.LIGHT,
         ),
       ));
     }
