@@ -34,10 +34,10 @@ class GFAnimation extends StatefulWidget {
     this.reverseDuration,
   }) : super(key: key);
 
-  /// `The duration for animation to perform`
+  /// The duration for animations of the [Decoration].
   final Duration duration;
 
-  /// The duration for animation to perform
+  /// The duration for animations of the type[Size].
   final Duration reverseDuration;
 
   /// Defines how the animated widget is aligned within the Animation.
@@ -49,7 +49,7 @@ class GFAnimation extends StatefulWidget {
   /// The child of type [Widget] to display animation effect.
   final Widget child;
 
-  /// Determines the animation curve. Defaults to [Curves.linear].
+  /// Determines the animation curve physics. Defaults to [Curves.linear].
   final Curve curve;
 
   ///type of [GFAnimation] which takes the type ie, align, size, container, rotateTransition, scaleTransition, slideTransition, and textStyle for the [GFAnimation]
@@ -58,66 +58,51 @@ class GFAnimation extends StatefulWidget {
   /// [AnimatedContainer] initial width
   final double width;
 
-  /// defines the width of [AnimatedContainer] upto which it can extend during animation
+  /// [AnimatedContainer] changed width
   final double changedWidth;
 
   /// [AnimatedContainer] initial height
   final double height;
 
-  /// defines the height of [AnimatedContainer] upto which it can extend during animation
+  /// [AnimatedContainer] changed height
   final double changedHeight;
 
-  /// defines the color of [AnimatedContainer] when onTap triggers
+  /// defines the color of items when onTap triggers
   final Color activeColor;
 
-  /// defines the color of [AnimatedContainer]
+  /// defines the color of items
   final Color color;
 
-  /// defines [child]'s or [AnimatedContainer] padding
+  /// The empty space that surrounds the animation. Defines the animation outer [Container.padding]..
   final EdgeInsetsGeometry padding;
 
-  /// defines [child]'s or [AnimatedContainer] margin
+  /// The empty space that surrounds the animation. Defines the animation outer [Container.margin].
   final EdgeInsetsGeometry margin;
-
-  /// Called when the user taps the [child]
   final Function onTap;
 
   /// Here's an illustration of the [RotationTransition] widget, with it's [turnsAnimation]
-  /// animated by a stuckValue set to animate
+  /// animated by a [Tween] set to [animate]:
   final Animation<double> turnsAnimation;
 
   /// Here's an illustration of the [ScaleTransition] widget, with it's [scaleAnimation]
-  /// animated by a [CurvedAnimation] set to [Curves.linear]
+  /// animated by a [CurvedAnimation] set to [Curves.linear]:
   final Animation<double> scaleAnimation;
 
-  /// controls animation
   final AnimationController controller;
 
   ///direction of the [AnimatedDefaultTextStyle] TextDirection for [ltr,rtl]
   final TextDirection textDirection;
 
-  /// [ScaleTransition], which animates the scale of a widget.
+  ///  * [ScaleTransition], which animates the scale of a widget.
   final Animation<Offset> slidePosition;
-
-  /// defines the [TextStyle] of [AnimatedDefaultTextStyle]
   final TextStyle style;
-
-  /// defines the [TextAlign] of [AnimatedDefaultTextStyle]
   final TextAlign textAlign;
-
-  /// defines the [TextOverflow] of [AnimatedDefaultTextStyle]
   final TextOverflow textOverflow;
 
-  /// defines the [maxLines] of [AnimatedDefaultTextStyle]
+  /// [AnimatedDefaultTextStyle] maxlines
   final int maxLines;
-
-  /// defines the [TextWidthBasis] of [AnimatedDefaultTextStyle]
   final TextWidthBasis textWidthBasis;
-
-  /// defines the [fontSize] of [AnimatedDefaultTextStyle]
   final double fontSize;
-
-  /// defines the [fontWeight] of [AnimatedDefaultTextStyle]
   final FontWeight fontWeight;
 
   @override
