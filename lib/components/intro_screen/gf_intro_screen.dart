@@ -89,8 +89,13 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
               )),
               widget.gfIntroBottomNavigation ??
                   GFIntroBottomNavigation(
-                    onNext: () {
+                    onForwardButtonTap: () {
                       _pageController.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.linear);
+                    },
+                    onBackButtonTap: () {
+                      _pageController.previousPage(
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.linear);
                     },
