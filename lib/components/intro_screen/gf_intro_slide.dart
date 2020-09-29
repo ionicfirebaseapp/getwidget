@@ -12,7 +12,7 @@ class GFIntroSlide extends StatelessWidget {
     this.titleText,
     this.titleStyle = const TextStyle(fontSize: 20, color: GFColors.DARK),
     this.subTitleStyle = const TextStyle(fontSize: 16, color: GFColors.DARK),
-    this.backgroundColor = GFColors.PRIMARY,
+    this.backgroundColor,
   }) : super(key: key);
 
   /// defines [GFIntroSlide] [child], it takes nay widget

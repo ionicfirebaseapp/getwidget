@@ -108,8 +108,6 @@ class GFIntroBottomNavigation extends StatelessWidget {
   final double dotWidth;
   final EdgeInsets dotMargin;
 
-
-
   void onForwardButton() {
     pageController.nextPage(
       duration: const Duration(milliseconds: 500),

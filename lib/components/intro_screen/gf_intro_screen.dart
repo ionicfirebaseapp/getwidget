@@ -3,31 +3,73 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFIntroScreen extends StatefulWidget {
-  const GFIntroScreen(
-      {Key key,
-      @required this.slides,
-      // this.type = GFIntroType.fullWidth,
-      this.color = Colors.white,
-        this.width,
-        this.height,
-        this.border,
-        this.borderRadius,
-        this.pageController,
-        this.gfIntroBottomNavigation,
-      })
-      : super(key: key);
+  const GFIntroScreen({
+    Key key,
+    @required this.pageController,
+    @required this.slides,
+    this.color,
+    this.width,
+    this.height,
+    this.borderRadius,
+    this.border,
+    this.gfIntroBottomNavigation,
+    this.showIntroBottomNavigation = true,
+    this.currentIndex = 0,
+    this.pageCount = 0,
+    this.child,
+    this.navigationBarColor = GFColors.SUCCESS,
+    this.navigationBarHeight = 50,
+    this.navigationBarShape,
+    this.navigationBarWidth,
+    this.navigationBarPadding = const EdgeInsets.all(8),
+    this.navigationBarMargin = const EdgeInsets.all(8),
+    this.showDivider = true,
+    this.dividerColor = Colors.white,
+    this.dividerHeight = 1,
+    this.dividerThickness = 2,
+    this.dotShape,
+    this.inActiveColor = GFColors.LIGHT,
+    this.activeColor = GFColors.PRIMARY,
+    this.dotHeight = 12,
+    this.dotWidth = 12,
+    this.dotMargin = const EdgeInsets.symmetric(horizontal: 2),
+    this.backButton,
+    this.forwardButton,
+    this.doneButton,
+    this.skipButton,
+    this.onDoneTap,
+    this.onForwardButtonTap,
+    this.onBackButtonTap,
+    this.onSkipTap,
+    this.forwardButtonText = 'NEXT',
+    this.backButtonText = 'BACK',
+    this.doneButtonText = 'GO',
+    this.skipButtonText = 'SKIP',
+    this.skipButtonTextStyle = const TextStyle(
+      color: Colors.black,
+      fontSize: 16,
+    ),
+    this.doneButtonTextStyle = const TextStyle(
+      color: Colors.black,
+      fontSize: 16,
+    ),
+    this.backButtonTextStyle = const TextStyle(
+      color: Colors.black,
+      fontSize: 16,
+    ),
+    this.forwardButtonTextStyle = const TextStyle(
+      color: Colors.black,
+      fontSize: 16,
+    ),
+    this.showButton = true,
+    this.showPagination = true,
+  }) : super(key: key);
 
-  /// if the type as [GFIntroType.fullWidth],[GFIntroType.half],[GFIntroType.rounded] use [GFIntroSlide]'s or customWidgets
+  ///
   final List<Widget> slides;
-
-  // /// type of [GFIntroType] which takes the type ie, fullWidth, half,rounded and bubble for the [GFIntroScreen]
-  // final GFIntroType type;
 
   /// default controller for the [GFIntroScreen] component
   final PageController pageController;
-
-  /// [GFIntroScreen] bottom navigation will be used as [GFIntroBottomNavigation] component
-  final GFIntroBottomNavigation gfIntroBottomNavigation;
 
   /// background color of the [GFIntroScreen] component
   final Color color;
@@ -40,26 +82,84 @@ class GFIntroScreen extends StatefulWidget {
 
   final Border border;
 
+  /// [GFIntroScreen] bottom navigation will be used as [GFIntroBottomNavigation] component
+  final GFIntroBottomNavigation gfIntroBottomNavigation;
+
+  final bool showIntroBottomNavigation;
+
+
+
+
+  final int currentIndex;
+  final int pageCount;
+  final Widget child;
+
+  final double navigationBarHeight;
+  final double navigationBarWidth;
+  final EdgeInsets navigationBarPadding;
+  final EdgeInsets navigationBarMargin;
+  final dynamic navigationBarColor;
+
+  /// defines the shape of [GFIntroBottomNavigation]
+  final ShapeBorder navigationBarShape;
+
+  final VoidCallback onForwardButtonTap;
+  final VoidCallback onBackButtonTap;
+  final VoidCallback onDoneTap;
+  final VoidCallback onSkipTap;
+
+  final Widget backButton;
+  final Widget forwardButton;
+  final Widget doneButton;
+  final Widget skipButton;
+
+  final String backButtonText;
+  final String forwardButtonText;
+  final String doneButtonText;
+  final String skipButtonText;
+
+  final TextStyle skipButtonTextStyle;
+  final TextStyle doneButtonTextStyle;
+  final TextStyle backButtonTextStyle;
+  final TextStyle forwardButtonTextStyle;
+
+  final bool showDivider;
+  final bool showButton;
+  final bool showPagination;
+
+  final double dividerHeight;
+  final double dividerThickness;
+  final dynamic dividerColor;
+
+  final ShapeBorder dotShape;
+  final Color inActiveColor;
+  final Color activeColor;
+  final double dotHeight;
+  final double dotWidth;
+  final EdgeInsets dotMargin;
+
   @override
   _GFIntroScreenState createState() => _GFIntroScreenState();
 }
 
 class _GFIntroScreenState extends State<GFIntroScreen> {
   PageController _pageController;
-  int page;
+  int currentIndex;
   List<Widget> pages;
 
   @override
   void initState() {
-    _pageController = widget.pageController != null ? widget.pageController : PageController(initialPage: 0);
-    page = _pageController.initialPage;
+    _pageController = widget.pageController != null
+        ? widget.pageController
+        : PageController(initialPage: 0);
+    currentIndex = _pageController.initialPage;
     if (widget.pageController != null) {
       _pageController = widget.pageController;
     }
     _pageController.addListener(() {
       if (mounted) {
         setState(() {
-          page = _pageController.page.round();
+          currentIndex = _pageController.page.round();
         });
       }
     });
@@ -68,95 +168,79 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
 
   @override
   Widget build(BuildContext context) => Center(
-        child: Container(
-          width: widget.width,
-          height: widget.height,
-          decoration: BoxDecoration(
-            color: widget.color,
-            borderRadius: widget.borderRadius,
-            border: widget.border
+    child: Container(
+      width: widget.width,
+      height: widget.height,
+      decoration: BoxDecoration(
+        borderRadius: widget.borderRadius ?? BorderRadius.circular(0),
+        border: widget.border ?? Border.all(width: 0),
+        color: widget.color,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            child: PageView(
+              controller: _pageController,
+              children: widget.slides,
+            ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                  child: ClipRRect(
-                borderRadius: widget.borderRadius == null ? BorderRadius.circular(0) : widget.borderRadius,
-                child: PageView(
-                  controller: _pageController,
-                  children: widget.slides,
+          widget.showIntroBottomNavigation ? widget.gfIntroBottomNavigation ??
+              GFIntroBottomNavigation(
+                pageController: _pageController,
+                pageCount: widget.slides.length,
+                currentIndex: currentIndex,
+                child: widget.child,
+                navigationBarColor: widget.navigationBarColor,
+                navigationBarHeight: widget.navigationBarHeight,
+                navigationBarShape: widget.navigationBarWidth,
+                navigationBarWidth,
+                navigationBarPadding = const EdgeInsets.all(8),
+                navigationBarMargin = const EdgeInsets.all(8),
+                showDivider = true,
+                dividerColor = Colors.white,
+                dividerHeight = 1,
+                dividerThickness = 2,
+                dotShape,
+                inActiveColor = GFColors.LIGHT,
+                activeColor = GFColors.PRIMARY,
+                dotHeight = 12,
+                dotWidth = 12,
+                dotMargin = const EdgeInsets.symmetric(horizontal: 2),
+                backButton,
+                forwardButton,
+                doneButton,
+                skipButton,
+                onDoneTap,
+                onForwardButtonTap,
+                onBackButtonTap,
+                onSkipTap,
+                forwardButtonText = 'NEXT',
+                backButtonText = 'BACK',
+                doneButtonText = 'GO',
+                skipButtonText = 'SKIP',
+                skipButtonTextStyle = const TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
                 ),
-              )),
-              widget.gfIntroBottomNavigation ??
-                  GFIntroBottomNavigation(
-                    pageController: _pageController,
-                    pageCount: widget.slides.length,
-                    currentIndex: page,
-                    // child: Text('dfghj'),
-
-                    // onForwardButtonTap: () {
-                    //   print('fffffff');
-                    //   // _pageController.nextPage(
-                    //   //     duration: const Duration(milliseconds: 500),
-                    //   //     curve: Curves.linear);
-                    // },
-                    // onBackButtonTap: () {
-                    //   print('kkkkkkkkk');
-                    //   // _pageController.previousPage(
-                    //   //     duration: const Duration(milliseconds: 500),
-                    //   //     curve: Curves.linear);
-                    // },
-                    // onDoneTap: (){
-                    //   print('done');
-                    // },
-                    // onSkipTap: (){
-                    //   print('skip');
-                    // },
-                    // backButtonTextStyle: TextStyle(
-                    //   fontSize: 12
-                    // ),
-                    
-                    // backButton: GFButton(onPressed: null, child: Text('back'),),
-                    // forwardButton: GFButton(onPressed: null, child: Text('next'),),
-                    // skipButton: GFButton(onPressed: null, child: Text('skip'),),
-                    // doneButton: GFButton(onPressed: null, child: Text('done'),),
-
-                    // backButtonText: 'bbbb',
-                    // forwardButtonText: 'ffffff',
-                    // skipButtonText: 'ssssss',
-                    // doneButtonText: 'ddddddd',
-                    
-                    // navigationBarHeight: 100,
-                    // navigationBarWidth: 300,
-                    // navigationBarMargin: EdgeInsets.all(20),
-                    // navigationBarPadding: EdgeInsets.all(20),
-                    // navigationBarShape: RoundedRectangleBorder(
-                    //   side: const BorderSide(color: Colors.blue, width: 4),
-                    //   borderRadius: BorderRadius.circular(50),
-                    // ),
-                    // navigationBarColor: GFColors.SECONDARY,
-                    //
-                    // showDivider: true,
-                    // dividerHeight: 2,
-                    // dividerThickness: 13,
-                    // dividerColor: GFColors.ALT,
-                    //
-                    // dotHeight: 10,
-                    // dotWidth: 16,
-                    // dotShape: RoundedRectangleBorder(
-                    //   side: BorderSide(color: Colors.red, width: 2),
-                    //     borderRadius: BorderRadius.circular(5)
-                    // ),
-                    // inActiveColor: GFColors.DARK,
-                    // activeColor: GFColors.DANGER,
-                    // dotMargin: EdgeInsets.symmetric(horizontal: 6),
-                    //
-                    // showButton: false,
-                    // showPagination: true,
-                  ),
-            ],
-          ),
-        ),
-      );
+                doneButtonTextStyle = const TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                ),
+                backButtonTextStyle = const TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                ),
+                forwardButtonTextStyle = const TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                ),
+                showButton = true,
+                showPagination = true,
+              ) : Container(),
+        ],
+      ),
+    ),
+  );
 }

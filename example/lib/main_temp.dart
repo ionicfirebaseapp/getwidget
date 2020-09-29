@@ -137,9 +137,12 @@ class _IntroScreenState extends State<IntroScreen> {
       child: GFIntroScreen(
         height: 500,
         width: 300,
-        // color: Colors.blueGrey,
+        color: Colors.blueGrey,
+        // borderRadius: BorderRadius.circular(50),
+        // border: Border.all(color: Colors.red, width: 5),
         slides: slides(),
         pageController: _pageController,
+        // showIntroBottomNavigation: false,
         gfIntroBottomNavigation:  GFIntroBottomNavigation(
           pageController: _pageController,
           pageCount: slideList.length,
@@ -212,7 +215,11 @@ class _IntroScreenState extends State<IntroScreen> {
   List<Widget> slides() {
     slideList = [
       Container(
-        color: Colors.tealAccent,
+        decoration: BoxDecoration(
+            // color: Colors.tealAccent,
+          borderRadius: BorderRadius.circular(20)
+        ),
+
       ),
       Container(
         color: Colors.teal,
