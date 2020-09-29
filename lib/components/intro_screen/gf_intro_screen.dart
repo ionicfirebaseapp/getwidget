@@ -4,19 +4,23 @@ import 'package:getwidget/getwidget.dart';
 class GFIntroScreen extends StatefulWidget {
   const GFIntroScreen(
       {Key key,
-      this.slides,
-      this.pageController,
-      this.gfIntroBottomNavigation,
-      this.type = GFIntroType.fullWidth,
-      this.color = Colors.white
+      @required this.slides,
+      // this.type = GFIntroType.fullWidth,
+      this.color = Colors.white,
+        this.width,
+        this.height,
+        this.border,
+        this.borderRadius,
+        this.pageController,
+        this.gfIntroBottomNavigation,
       })
       : super(key: key);
 
   /// if the type as [GFIntroType.fullWidth],[GFIntroType.half],[GFIntroType.rounded] use [GFIntroSlide]'s or customWidgets
   final List<Widget> slides;
 
-  /// type of [GFIntroType] which takes the type ie, fullWidth, half,rounded and bubble for the [GFIntroScreen]
-  final GFIntroType type;
+  // /// type of [GFIntroType] which takes the type ie, fullWidth, half,rounded and bubble for the [GFIntroScreen]
+  // final GFIntroType type;
 
   /// default controller for the [GFIntroScreen] component
   final PageController pageController;
@@ -27,17 +31,27 @@ class GFIntroScreen extends StatefulWidget {
   /// background color of the [GFIntroScreen] component
   final Color color;
 
+  final double height;
+
+  final double width;
+
+  final BorderRadius borderRadius;
+
+  final Border border;
+
   @override
   _GFIntroScreenState createState() => _GFIntroScreenState();
 }
 
 class _GFIntroScreenState extends State<GFIntroScreen> {
-  PageController _pageController = PageController(initialPage: 0);
-  int page = 0;
+  PageController _pageController;
+  int page;
   List<Widget> pages;
 
   @override
   void initState() {
+    _pageController = widget.pageController != null ? widget.pageController : PageController(initialPage: 0);
+    page = _pageController.initialPage;
     if (widget.pageController != null) {
       _pageController = widget.pageController;
     }
@@ -54,25 +68,12 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
   @override
   Widget build(BuildContext context) => Center(
         child: Container(
-          width: widget.type == GFIntroType.fullWidth
-              ? MediaQuery.of(context).size.width
-              : MediaQuery.of(context).size.width * 0.885,
-          height: widget.type != GFIntroType.fullWidth
-              ? MediaQuery.of(context).size.height / 2
-              : MediaQuery.of(context).size.height,
-          margin: widget.type != GFIntroType.fullWidth
-              ? const EdgeInsets.only(left: 20, right: 20)
-              : const EdgeInsets.only(left: 0, right: 0),
-          padding: widget.type == GFIntroType.fullWidth
-              ? const EdgeInsets.all(0)
-              : const EdgeInsets.all(0),
+          width: widget.width,
+          height: widget.height,
           decoration: BoxDecoration(
             color: widget.color,
-            borderRadius: widget.type == GFIntroType.fullWidth
-                ? BorderRadius.circular(0)
-                : widget.type == GFIntroType.rounded
-                    ? BorderRadius.circular(24)
-                    : BorderRadius.zero,
+            borderRadius: widget.borderRadius,
+            border: widget.border
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -80,11 +81,7 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
             children: <Widget>[
               Expanded(
                   child: ClipRRect(
-                borderRadius: widget.type == GFIntroType.rounded
-                    ? const BorderRadius.only(
-                        topLeft: Radius.circular(24),
-                        topRight: Radius.circular(24))
-                    : BorderRadius.zero,
+                borderRadius: widget.borderRadius == null ? BorderRadius.circular(0) : widget.borderRadius,
                 child: PageView(
                   controller: _pageController,
                   children: widget.slides,
@@ -99,7 +96,7 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
                     },
                     pagesCount: widget.slides.length,
                     pageNumber: page,
-                  )
+                  ),
             ],
           ),
         ),

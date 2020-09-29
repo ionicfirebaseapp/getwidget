@@ -54,17 +54,17 @@ class GFIntroSlide extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            title != null ? Text(
+            titleText != null ? Text(
               titleText,
               style: titleStyle,
-            ) : title,
+            ) : title != null ? title : Container(),
             const SizedBox(
               height: 40,
             ),
-            subTitle != null ? Text(
+            subTitleText != null ? Text(
               subTitleText,
               style: subTitleStyle,
-            ) : subTitle
+            ) : subTitle != null ? subTitle : Container()
           ],
         ),
       );
