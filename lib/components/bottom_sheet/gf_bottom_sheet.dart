@@ -23,6 +23,7 @@ class GFBottomSheet extends StatefulWidget {
   }
 
   /// [minContentHeight] controls the minimum height of the content body.
+  /// content body with [minContentHeight] displays only when [enableExpandableContent] is false.
   /// It Must be greater or equal to 0. Default value is 0.
   final double minContentHeight;
 
@@ -52,7 +53,7 @@ class GFBottomSheet extends StatefulWidget {
   /// Must be greater or equal to 0. Default value is 0.
   final double elevation;
 
-  ///[enableExpandableContent] allows [contentBody] to expand.
+  /// [enableExpandableContent] allows [contentBody] to expand.
   /// Default value is false.
   final bool enableExpandableContent;
 

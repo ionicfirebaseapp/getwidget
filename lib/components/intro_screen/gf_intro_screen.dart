@@ -13,7 +13,7 @@ class GFIntroScreen extends StatefulWidget {
     this.borderRadius,
     this.border,
     this.introScreenBottomNavigationBar,
-    this.showIntroSCreenBottomNavigationBar = true,
+    this.showIntroScreenBottomNavigationBar = true,
     this.currentIndex = 0,
     this.pageCount = 0,
     this.child,
@@ -91,7 +91,7 @@ class GFIntroScreen extends StatefulWidget {
   final GFIntroScreenBottomNavigationBar introScreenBottomNavigationBar;
 
   /// on true state, displays [GFIntroScreenBottomNavigationBar], defaults to true
-  final bool showIntroSCreenBottomNavigationBar;
+  final bool showIntroScreenBottomNavigationBar;
 
   /// defines the currentIndex of [GFIntroScreen] slides, default value is 0
   final int currentIndex;
@@ -252,7 +252,7 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
                   children: widget.slides,
                 ),
               ),
-              widget.showIntroSCreenBottomNavigationBar
+              widget.showIntroScreenBottomNavigationBar
                   ? widget.introScreenBottomNavigationBar ??
                       GFIntroScreenBottomNavigationBar(
                         pageController: _pageController,

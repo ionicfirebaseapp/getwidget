@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/components/border/gf_dashed_border.dart';
 import 'package:getwidget/types/gf_border_type.dart';
@@ -16,17 +17,17 @@ class GFBorder extends StatelessWidget {
   })  : assert(child != null),
         assert(_isValidDashedLine(dashedLine), 'Invalid dash pattern');
 
-  /// child of  type [Widget] which can be any component or text, etc
+  /// child of type [Widget] which can be any component or text, etc
   final Widget child;
 
-  /// padding of time [EdgeInsets] where in padding is given to the border types
+  /// padding for [child] where in padding is given to the border types
   final EdgeInsets padding;
 
   /// storkeWidth of type [double] which is used to define the thickness of the border
   final double strokeWidth;
 
   /// color of type [Color] or GFColor which is used to change the color of the border type
-  final Color color;
+  final dynamic color;
 
   /// dashedLine of type [List<double>] which is used for the linear and simple dashed line of border
   final List<double> dashedLine;
@@ -34,7 +35,8 @@ class GFBorder extends StatelessWidget {
   /// type of [GFBorderType] which is used to define the different types of borders ie, circle, Rect, RRect and oval
   final GFBorderType type;
 
-  /// radius of type [Radius] used to give a curved border only when the border type is RRect, in other cases radius will not work
+  /// radius of type [Radius] used to give a curved border only when the border type is RRect,
+  /// in other cases radius will not work
   final Radius radius;
 
   /// customPath of type [PathBuilder] used for drawing the paths
@@ -42,6 +44,7 @@ class GFBorder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Stack(
+    alignment: AlignmentDirectional.center,
         children: <Widget>[
           Positioned.fill(
             child: CustomPaint(

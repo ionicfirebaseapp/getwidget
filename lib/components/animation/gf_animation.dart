@@ -34,7 +34,7 @@ class GFAnimation extends StatefulWidget {
     this.reverseDuration,
   }) : super(key: key);
 
-  /// `The duration for animation to perform`
+  /// The duration for animation to perform
   final Duration duration;
 
   /// The duration for animation to perform
@@ -55,13 +55,13 @@ class GFAnimation extends StatefulWidget {
   ///type of [GFAnimation] which takes the type ie, align, size, container, rotateTransition, scaleTransition, slideTransition, and textStyle for the [GFAnimation]
   final GFAnimationType type;
 
-  /// [AnimatedContainer] initial width
+  /// defines [AnimatedContainer] initial width
   final double width;
 
   /// defines the width of [AnimatedContainer] upto which it can extend during animation
   final double changedWidth;
 
-  /// [AnimatedContainer] initial height
+  /// defines [AnimatedContainer] initial height
   final double height;
 
   /// defines the height of [AnimatedContainer] upto which it can extend during animation
