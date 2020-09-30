@@ -75,7 +75,7 @@ class GFCarousel extends StatefulWidget {
   /// Sets Duration to determent the frequency of slides when [autoPlay] is set to true. Defaults to 4 seconds.
   final Duration autoPlayInterval;
 
-  /// The animation duration between two transitioning pages while in auto playback. Defaults to 800 ms.
+  /// The animation duration bestuckValue two transitioning pages while in auto playback. Defaults to 800 ms.
   final Duration autoPlayAnimationDuration;
 
   /// Determines the animation curve physics. Defaults to [Curves.fastOutSlowIn].
@@ -344,7 +344,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
 /// For example; We have a Carousel of 10000(simulating infinity) but only 6 images.
 /// We need to repeat the images to give the illusion of a never ending stream.
 /// By calling _getRealIndex with position and base we get an offset.
-/// This offset modulo our length, 6, will return a number between 0 and 5, which represent the image
+/// This offset modulo our length, 6, will return a number bestuckValue 0 and 5, which represent the image
 /// to be placed in the given position.
 int _getRealIndex(int position, int base, int length) {
   final int offset = position - base;
