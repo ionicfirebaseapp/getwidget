@@ -41,38 +41,39 @@ class GFRadio<T> extends StatefulWidget {
   /// type of [double] which is GFSize ie, small, medium and large and can use any double value
   final double size;
 
-  /// type pf [Color] used to change the checkcolor when the checkbox is active
+  /// type pf [Color] used to change the checkcolor when the radio button is active
   final Color radioColor;
 
-  /// type of [Color] used to change the backgroundColor of the active checkbox
+  /// type of [Color] used to change the backgroundColor of the active radio button
   final Color activebgColor;
 
-  /// type of [Color] used to change the backgroundColor of the inactive checkbox
+  /// type of [Color] used to change the backgroundColor of the inactive radio button
   final Color inactivebgColor;
 
-  /// type of [Color] used to change the border color of the active checkbox
+  /// type of [Color] used to change the border color of the active radio button
   final Color activeBorderColor;
 
-  /// type of [Color] used to change the border color of the inactive checkbox
+  /// type of [Color] used to change the border color of the inactive radio button
   final Color inactiveBorderColor;
 
-  /// Called when the user checks or unchecks the checkbox.
+  /// Called when the user checks or unchecks the radio button
   final ValueChanged<T> onChanged;
 
-  ///type of Widget used to change the  checkbox's active icon
+  ///type of Widget used to change the  radio button's active icon
   final Widget activeIcon;
 
-  ///type of [Widget] used to change the  checkbox's inactive icon
+  ///type of [Widget] used to change the  radio button's inactive icon
   final Widget inactiveIcon;
 
-  /// type of [Color] used to change the background color of the custom active  checkbox only
+  /// type of [Color] used to change the background color of the custom active  radio button only
   final Color custombgColor;
 
-  /// {@macro flutter.widgets.Focus.focusNode}
-  final FocusNode focusNode;
-
-  /// {@macro flutter.widgets.Focus.autofocus}
+  /// on true state this widget will be selected as the initial focus
+  /// when no other node in its scope is currently focused
   final bool autofocus;
+
+  /// an optional focus node to use as the focus node for this widget.
+  final FocusNode focusNode;
 
   /// The value represented by this radio button.
   final T value;
