@@ -13,7 +13,7 @@ class GFBorder extends StatelessWidget {
     this.dashedLine = const <double>[3, 1],
     this.padding = const EdgeInsets.all(10),
     this.radius = const Radius.circular(0),
-    this.customPath,
+    // this.customPath,
   })  : assert(child != null),
         assert(_isValidDashedLine(dashedLine), 'Invalid dash pattern');
 
@@ -39,8 +39,8 @@ class GFBorder extends StatelessWidget {
   /// in other cases radius will not work
   final Radius radius;
 
-  /// customPath of type [PathBuilder] used for drawing the paths
-  final PathBuilder customPath;
+  // /// customPath of type [PathBuilder] used for drawing the paths
+  // final PathBuilder customPath;
 
   @override
   Widget build(BuildContext context) => Stack(
@@ -54,7 +54,7 @@ class GFBorder extends StatelessWidget {
                 color: color,
                 type: type,
                 dashedLine: dashedLine,
-                customPath: customPath,
+                // customPath: customPath,
               ),
             ),
           ),

@@ -26,126 +26,140 @@ class _BottomSheetPageState extends State<BottomSheetPage> {
   bool isSelected = false;
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: 100,
-              ),
-              GFBorder(
-                  type: GFBorderType.Rect,
-                  dashedLine: [4, 6],
-                  child: Text('Dashed Border')),
-              SizedBox(height: 20),
-              GFBorder(
-                  type: GFBorderType.Rect,
-                  dashedLine: [2, 0],
-                  child: Text('Basic Border')),
-              SizedBox(height: 20),
-              GFBorder(
-                  type: GFBorderType.Rect,
-                  dashedLine: [2, 1],
-                  radius: Radius.circular(5),
-                  child: Text('Dotted Border')),
-              SizedBox(height: 20),
-              GFBorder(
-                  type: GFBorderType.RRect,
-                  dashedLine: [2, 1],
-                  radius: Radius.circular(20),
-                  child: Text('Dotted Border with radius')),
-              SizedBox(height: 20),
-              GFBorder(
-                  type: GFBorderType.RRect,
-                  dashedLine: [2, 0],
-                  radius: Radius.circular(20),
-                  child: Container(
-                      height: 50,
-                      width: 222,
-                      child: Center(
-                        child: Text('solid Border with radius'),
-                      ))),
-              SizedBox(height: 20),
-              GFBorder(
-                  type: GFBorderType.RRect,
-                  dashedLine: [4, 6],
-                  radius: Radius.circular(5),
-                  padding: EdgeInsets.zero,
-                  child: GFButton(
-                    onPressed: null,
-                    child: Text('button'),
-                  )),
-              SizedBox(height: 20),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-                GFBorder(
-                  type: GFBorderType.Oval,
-                  dashedLine: [6, 0],
-                  strokeWidth: 2,
-                  child: Container(
-                      alignment: AlignmentDirectional.center,
-                      width: 123,
-                      height: 55,
-                      child: Text('Oval')),
-                ),
-                GFBorder(
-                  type: GFBorderType.Circle,
-                  dashedLine: [4, 6],
-                  strokeWidth: 2,
-                  padding: EdgeInsets.all(20),
-                  child: Container(
-                      alignment: AlignmentDirectional.center,
-                      width: 222,
-                      height: 222,
+        body: SingleChildScrollView(
+          child: Container(
+            child: Column(
+                children: [
+                  GFBorder(
+                      type: GFBorderType.Rect,
+                      dashedLine: [4, 6],
+                      child: Text('Dashed Border')),
+                  SizedBox(height: 20),
+                  GFBorder(
+                      type: GFBorderType.Rect,
+                      dashedLine: [2, 0],
+                      child: Text('Basic Border')),
+                  SizedBox(height: 20),
+                  GFBorder(
+                      type: GFBorderType.Rect,
+                      dashedLine: [2, 1],
+                      radius: Radius.circular(5),
+                      child: Text('Dotted Border')),
+                  SizedBox(height: 20),
+                  GFBorder(
+                      type: GFBorderType.RRect,
+                      dashedLine: [2, 1],
+                      radius: Radius.circular(20),
+                      child: Text('Dotted Border with radius')),
+                  SizedBox(height: 20),
+                  GFBorder(
+                      type: GFBorderType.RRect,
+                      dashedLine: [2, 0],
+                      radius: Radius.circular(20),
+                      child: Container(
+                          height: 50,
+                          width: 222,
+                          child: Center(
+                            child: Text('solid Border with radius'),
+                          ))),
+                  SizedBox(height: 20),
+                  GFBorder(
+                      type: GFBorderType.RRect,
+                      dashedLine: [4, 6],
+                      radius: Radius.circular(5),
+                      padding: EdgeInsets.all(12),
                       child: GFButton(
-                        onPressed: null,
+                        onPressed: (){
+
+                        },
+                        borderShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        ),
                         child: Text('button'),
                       )),
-                ),
-              ]),
-            ]),
+                  SizedBox(height: 20),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                    GFBorder(
+                      type: GFBorderType.Oval,
+                      dashedLine: [6, 0],
+                      strokeWidth: 2,
+                      child: Container(
+                          alignment: AlignmentDirectional.center,
+                          width: 123,
+                          height: 185,
+                          child: Text('hnbhj')
+                      ),
+                    ),
+                    GFBorder(
+                      type: GFBorderType.Circle,
+                      dashedLine: [4, 6],
+                      strokeWidth: 2,
+                      padding: EdgeInsets.all(20),
+                      child: Container(
+                          // alignment: AlignmentDirectional.center,
+                          width: 111,
+                          height: 111,
+                          child: GFCard(
+                            margin: EdgeInsets.all(8),
+                            // height: 200,
+                            content: Text('cd'),
+                          )
+                      ),
+                    ),
+                    Container(
+                      height: 200,
+                    ),
+                  ]),
+                ]),
+          ),
+        ),
         bottomSheet: GFBottomSheet(
           controller: _controller,
           maxContentHeight: 300,
           // minContentHeight: 200,
-          // enableExpandableContent: true,
-          stickyHeaderHeight: 100,
+          enableExpandableContent: true,
+          stickyHeaderHeight: 70,
           stickyHeader: Container(
             decoration: BoxDecoration(
                 color: Colors.white,
                 boxShadow: [BoxShadow(color: Colors.black45, blurRadius: 0)]),
-            child: const GFListTile(
-              avatar: GFAvatar(
-                  // backgroundImage: AssetImage('assets image here'),
-                  ),
-              titleText: 'GetWidget',
-              subtitleText: 'Open source UI library',
-            ),
-          ),
-          contentBody: Container(
-            height: 200,
-            margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: ListView(
-              shrinkWrap: true,
-              physics: const ScrollPhysics(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TextFormField(
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.person),
-                    hintText: 'What do people call you?',
-                    labelText: 'Name *',
-                  ),
-                  onSaved: (String value) {},
-                  validator: (String value) {
-                    return 'Do not use the @ char.';
-                  },
-                ),
-                Center(
-                    child: Text(
-                  'Getwidget reduces your overall app development time to minimum 30% because of its pre-build clean UI widget that you can use in flutter app development. We have spent more than 1000+ hours to build this library to make flutter developer’s life easy.',
-                  style: TextStyle(
-                      fontSize: 15, wordSpacing: 0.3, letterSpacing: 0.2),
-                ))
+                GFAvatar(),
+                Text('header')
               ],
+            )
+          ),
+          contentBody: SingleChildScrollView(
+            child: Container(
+              height: 200,
+              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: ListView(
+                shrinkWrap: true,
+                physics: const ScrollPhysics(),
+                children: [
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.person),
+                      hintText: 'What do people call you?',
+                      labelText: 'Name *',
+                    ),
+                    onSaved: (String value) {},
+                    validator: (String value) {
+                      return 'Do not use the @ char.';
+                    },
+                  ),
+                  Center(
+                      child: Text(
+                        'Getwidget reduces your overall app development time to minimum 30% because of its pre-build clean UI widget that you can use in flutter app development. We have spent more than 1000+ hours to build this library to make flutter developer’s life easy.',
+                        style: TextStyle(
+                            fontSize: 15, wordSpacing: 0.3, letterSpacing: 0.2),
+                      ))
+                ],
+              ),
             ),
           ),
           stickyFooter: Container(
