@@ -19,7 +19,7 @@ class GFStickyHeaderBuilder extends StatefulWidget {
   })  : assert(direction != null),
         super(key: key);
 
-  /// widget can be used to define [stickyContentBuilder].
+  /// builder widget can be used to define [stickyContentBuilder].
   final StickyHeaderWidgetBuilder stickyContentBuilder;
 
   /// widget can be used to define [content].
