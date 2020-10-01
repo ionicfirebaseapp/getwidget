@@ -1308,16 +1308,13 @@ class _GFButtonState extends State<GFButton> {
       constraints: icon == null
           ? const BoxConstraints(minWidth: 80)
           : const BoxConstraints(minWidth: 90),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50)
-      ),
-      // decoration: widget.type == GFButtonType.solid ? getBoxShadow() : null,
+      decoration: widget.type == GFButtonType.solid ? getBoxShadow() : null,
       child: Material(
         elevation: _effectiveElevation,
         textStyle: widget.textStyle == null ? getTextStyle() : widget.textStyle,
-        // shape: widget.type == GFButtonType.transparent
-        //     ? null
-        //     : widget.borderShape ?? shapeBorderType,
+        shape: widget.type == GFButtonType.transparent
+            ? null
+            : widget.borderShape ?? shapeBorderType,
         color: widget.enabled ? getColor() : getDisabledFillColor(),
         type: color == null ? MaterialType.transparency : MaterialType.button,
         animationDuration: widget.animationDuration,

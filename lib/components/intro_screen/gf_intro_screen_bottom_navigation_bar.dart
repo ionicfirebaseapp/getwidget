@@ -87,16 +87,16 @@ class GFIntroScreenBottomNavigationBar extends StatefulWidget {
   /// defines the shape of [GFIntroScreenBottomNavigationBar]
   final ShapeBorder navigationBarShape;
 
-  /// Called when the forward button is tapped
+  /// Called when the [forwardButtonText]  is tapped
   final VoidCallback onForwardButtonTap;
 
-  /// Called when the back button is tapped
+  /// Called when the [backButtonText] is tapped
   final VoidCallback onBackButtonTap;
 
-  /// Called when the done button is tapped
+  /// Called when the [doneButtonText] is tapped
   final VoidCallback onDoneTap;
 
-  /// Called when the skip button is tapped
+  /// Called when the [skipButtonText] is tapped
   final VoidCallback onSkipTap;
 
   /// defines the backButton widget
@@ -172,11 +172,12 @@ class GFIntroScreenBottomNavigationBar extends StatefulWidget {
   final EdgeInsets dotMargin;
 
   @override
-  _GFIntroScreenBottomNavigationBarState createState() => _GFIntroScreenBottomNavigationBarState();
+  _GFIntroScreenBottomNavigationBarState createState() =>
+      _GFIntroScreenBottomNavigationBarState();
 }
 
-class _GFIntroScreenBottomNavigationBarState extends State<GFIntroScreenBottomNavigationBar> {
-
+class _GFIntroScreenBottomNavigationBarState
+    extends State<GFIntroScreenBottomNavigationBar> {
   PageController _pageController;
   int currentIndex;
   List<Widget> pages;
@@ -243,7 +244,8 @@ class _GFIntroScreenBottomNavigationBarState extends State<GFIntroScreenBottomNa
                                               style: widget.skipButtonTextStyle)
                                       : widget.backButton ??
                                           Text(widget.backButtonText,
-                                              style: widget.backButtonTextStyle),
+                                              style:
+                                                  widget.backButtonTextStyle),
                                   onTap: currentIndex == 0
                                       ? widget.onSkipTap
                                       : widget.onBackButtonTap ?? onBackButton,
@@ -263,10 +265,12 @@ class _GFIntroScreenBottomNavigationBarState extends State<GFIntroScreenBottomNa
                                               style: widget.doneButtonTextStyle)
                                       : widget.forwardButton ??
                                           Text(widget.forwardButtonText,
-                                              style: widget.forwardButtonTextStyle),
+                                              style: widget
+                                                  .forwardButtonTextStyle),
                                   onTap: currentIndex == widget.pageCount - 1
                                       ? widget.onDoneTap
-                                      : widget.onForwardButtonTap ?? onForwardButton,
+                                      : widget.onForwardButtonTap ??
+                                          onForwardButton,
                                 )
                               : Container(),
                         ],

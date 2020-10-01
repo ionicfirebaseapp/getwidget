@@ -25,7 +25,6 @@ class GFAccordion extends StatefulWidget {
       this.contentBorderRadius = const BorderRadius.all(Radius.circular(0))})
       : super(key: key);
 
-
   /// controls if the accordion should be collapsed or not making it possible to be controlled from outside
   final bool showAccordion;
 

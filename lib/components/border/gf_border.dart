@@ -44,7 +44,7 @@ class GFBorder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Stack(
-    alignment: AlignmentDirectional.center,
+        alignment: AlignmentDirectional.center,
         children: <Widget>[
           Positioned.fill(
             child: CustomPaint(

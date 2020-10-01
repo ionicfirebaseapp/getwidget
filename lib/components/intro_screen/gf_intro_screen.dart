@@ -208,7 +208,6 @@ class GFIntroScreen extends StatefulWidget {
 }
 
 class _GFIntroScreenState extends State<GFIntroScreen> {
-
   @override
   Widget build(BuildContext context) => Center(
         child: Container(
