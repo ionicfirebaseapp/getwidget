@@ -127,7 +127,6 @@ class GFAnimation extends StatefulWidget {
 class _GFAnimationState extends State<GFAnimation>
     with SingleTickerProviderStateMixin {
   bool selected = false;
-
   AnimationController controller;
   Animation<double> animation;
   Animation<Offset> offsetAnimation;
