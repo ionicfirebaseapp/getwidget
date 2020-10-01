@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
-class GFIntroScreenBottomNavigationBar extends StatelessWidget {
+class GFIntroScreenBottomNavigationBar extends StatefulWidget {
   const GFIntroScreenBottomNavigationBar({
     Key key,
-    this.pageController,
-    this.currentIndex = 0,
-    this.pageCount = 0,
+    @required this.pageController,
+    @required this.currentIndex,
+    @required this.pageCount,
     this.child,
     this.navigationBarColor = GFColors.SUCCESS,
     this.navigationBarHeight = 50,
@@ -20,7 +20,7 @@ class GFIntroScreenBottomNavigationBar extends StatelessWidget {
     this.dividerHeight = 1,
     this.dividerThickness = 2,
     this.dotShape,
-    this.inActiveColor = GFColors.LIGHT,
+    this.inActiveColor = GFColors.DANGER,
     this.activeColor = GFColors.PRIMARY,
     this.dotHeight = 12,
     this.dotWidth = 12,
@@ -171,13 +171,40 @@ class GFIntroScreenBottomNavigationBar extends StatelessWidget {
   /// defines pagination in between space
   final EdgeInsets dotMargin;
 
+  @override
+  _GFIntroScreenBottomNavigationBarState createState() => _GFIntroScreenBottomNavigationBarState();
+}
+
+class _GFIntroScreenBottomNavigationBarState extends State<GFIntroScreenBottomNavigationBar> {
+
+  PageController _pageController;
+  int currentIndex;
+  List<Widget> pages;
+
+  @override
+  void initState() {
+    _pageController = widget.pageController;
+    currentIndex = _pageController.initialPage;
+    if (widget.pageController != null) {
+      _pageController = widget.pageController;
+    }
+    _pageController.addListener(() {
+      if (mounted) {
+        setState(() {
+          currentIndex = _pageController.page.round();
+        });
+      }
+    });
+    super.initState();
+  }
+
   void onForwardButton() {
-    pageController.nextPage(
+    widget.pageController.nextPage(
         duration: const Duration(milliseconds: 500), curve: Curves.linear);
   }
 
   void onBackButton() {
-    pageController.previousPage(
+    widget.pageController.previousPage(
         duration: const Duration(milliseconds: 500), curve: Curves.linear);
   }
 
@@ -185,67 +212,65 @@ class GFIntroScreenBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          showDivider
+          widget.showDivider
               ? Divider(
-                  height: dividerHeight,
-                  thickness: dividerThickness,
-                  color: dividerColor,
+                  height: widget.dividerHeight,
+                  thickness: widget.dividerThickness,
+                  color: widget.dividerColor,
                 )
               : Container(),
-          Material(
-            child: Container(
-              height: navigationBarHeight,
-              width: navigationBarWidth,
-              child: Material(
-                shape: navigationBarShape,
-                color: navigationBarColor,
-                child: Container(
-                  padding: navigationBarPadding,
-                  margin: navigationBarMargin,
-                  child: child != null
-                      ? Row(
-                          children: [child],
-                        )
-                      : Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            showButton
-                                ? InkWell(
-                                    child: currentIndex == 0
-                                        ? skipButton ??
-                                            Text(skipButtonText,
-                                                style: skipButtonTextStyle)
-                                        : backButton ??
-                                            Text(backButtonText,
-                                                style: backButtonTextStyle),
-                                    onTap: currentIndex == 0
-                                        ? onSkipTap
-                                        : onBackButtonTap ?? onBackButton,
-                                  )
-                                : Container(),
-                            showPagination
-                                ? Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: getDotsList(),
-                                  )
-                                : Container(),
-                            showButton
-                                ? InkWell(
-                                    child: currentIndex == pageCount - 1
-                                        ? doneButton ??
-                                            Text(doneButtonText,
-                                                style: doneButtonTextStyle)
-                                        : forwardButton ??
-                                            Text(forwardButtonText,
-                                                style: forwardButtonTextStyle),
-                                    onTap: currentIndex == pageCount - 1
-                                        ? onDoneTap
-                                        : onForwardButtonTap ?? onForwardButton,
-                                  )
-                                : Container(),
-                          ],
-                        ),
-                ),
+          Container(
+            height: widget.navigationBarHeight,
+            width: widget.navigationBarWidth,
+            child: Material(
+              shape: widget.navigationBarShape,
+              color: widget.navigationBarColor,
+              child: Container(
+                padding: widget.navigationBarPadding,
+                margin: widget.navigationBarMargin,
+                child: widget.child != null
+                    ? Row(
+                        children: [widget.child],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          widget.showButton
+                              ? InkWell(
+                                  child: currentIndex == 0
+                                      ? widget.skipButton ??
+                                          Text(widget.skipButtonText,
+                                              style: widget.skipButtonTextStyle)
+                                      : widget.backButton ??
+                                          Text(widget.backButtonText,
+                                              style: widget.backButtonTextStyle),
+                                  onTap: currentIndex == 0
+                                      ? widget.onSkipTap
+                                      : widget.onBackButtonTap ?? onBackButton,
+                                )
+                              : Container(),
+                          widget.showPagination
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: getDotsList(),
+                                )
+                              : Container(),
+                          widget.showButton
+                              ? InkWell(
+                                  child: currentIndex == widget.pageCount - 1
+                                      ? widget.doneButton ??
+                                          Text(widget.doneButtonText,
+                                              style: widget.doneButtonTextStyle)
+                                      : widget.forwardButton ??
+                                          Text(widget.forwardButtonText,
+                                              style: widget.forwardButtonTextStyle),
+                                  onTap: currentIndex == widget.pageCount - 1
+                                      ? widget.onDoneTap
+                                      : widget.onForwardButtonTap ?? onForwardButton,
+                                )
+                              : Container(),
+                        ],
+                      ),
               ),
             ),
           )
@@ -254,16 +279,16 @@ class GFIntroScreenBottomNavigationBar extends StatelessWidget {
 
   List<Widget> getDotsList() {
     final List<Widget> list = [];
-    for (int i = 0; i < pageCount; i++) {
+    for (int i = 0; i < widget.pageCount; i++) {
       list.add(Container(
-        margin: dotMargin,
+        margin: widget.dotMargin,
         child: Material(
-          shape: dotShape ??
+          shape: widget.dotShape ??
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-          color: currentIndex == i ? activeColor : inActiveColor,
+          color: currentIndex == i ? widget.activeColor : widget.inActiveColor,
           child: Container(
-            width: dotWidth,
-            height: dotHeight,
+            width: widget.dotWidth,
+            height: widget.dotHeight,
           ),
         ),
       ));

@@ -6,6 +6,8 @@ class GFIntroScreen extends StatefulWidget {
   const GFIntroScreen({
     Key key,
     @required this.pageController,
+    @required this.currentIndex,
+    @required this.pageCount,
     @required this.slides,
     this.color,
     this.width,
@@ -14,8 +16,6 @@ class GFIntroScreen extends StatefulWidget {
     this.border,
     this.introScreenBottomNavigationBar,
     this.showIntroScreenBottomNavigationBar = true,
-    this.currentIndex = 0,
-    this.pageCount = 0,
     this.child,
     this.navigationBarColor = GFColors.SUCCESS,
     this.navigationBarHeight = 50,
@@ -68,23 +68,22 @@ class GFIntroScreen extends StatefulWidget {
   /// defines the list of slides
   final List<Widget> slides;
 
-  /// default controller for the [GFIntroScreen] component
+  /// allows one to control [GFIntroScreen] slides
   final PageController pageController;
 
-  /// background color of the [GFIntroScreen] component
+  /// defines background color of the [GFIntroScreen] slides
   final Color color;
 
-  /// defines [GFIntroScreen] height
+  /// defines [GFIntroScreen] slides height
   final double height;
 
-
-  /// defines [GFIntroScreen] width
+  /// defines [GFIntroScreen] slides width
   final double width;
 
-  /// defines [GFIntroScreen] border radius to defines slide shape
+  /// defines [GFIntroScreen] border radius to defines slides shape
   final BorderRadius borderRadius;
 
-  /// defines [GFIntroScreen] border
+  /// defines [GFIntroScreen] slides border
   final Border border;
 
   /// defines [GFIntroScreen]'s bottom navigation bar
@@ -99,7 +98,7 @@ class GFIntroScreen extends StatefulWidget {
   /// defines the length of [GFIntroScreen] slides, default value is 0
   final int pageCount;
 
-  /// defines [GFIntroScreenBottomNavigationBar], it takes any widget
+  /// defines [GFIntroScreenBottomNavigationBar]'s child, it takes any widget
   final Widget child;
 
   /// defines [GFIntroScreenBottomNavigationBar] height
@@ -132,28 +131,28 @@ class GFIntroScreen extends StatefulWidget {
   /// Called when the skip button is tapped
   final VoidCallback onSkipTap;
 
-  /// defines the backButton widget
+  /// takes any Widget to define the backButton widget,
   final Widget backButton;
 
-  /// defines the forwardButton widget
+  /// takes any Widget to define the forwardButton widget
   final Widget forwardButton;
 
-  /// defines the doneButton widget
+  /// takes any Widget to define the doneButton widget
   final Widget doneButton;
 
-  /// defines the skipButton widget
+  /// takes any Widget to define the skipButton widget
   final Widget skipButton;
 
-  /// defines the backButton text
+  /// takes String to define backButton text
   final String backButtonText;
 
-  /// defines the forwardButton text
+  /// takes String to define forwardButton text
   final String forwardButtonText;
 
-  /// defines the doneButton text
+  /// takes String to define doneButton text
   final String doneButtonText;
 
-  /// defines the skipButton text
+  /// takes String to define skipButton text
   final String skipButtonText;
 
   /// defines the skipButton textStyle
@@ -209,28 +208,6 @@ class GFIntroScreen extends StatefulWidget {
 }
 
 class _GFIntroScreenState extends State<GFIntroScreen> {
-  PageController _pageController;
-  int currentIndex;
-  List<Widget> pages;
-
-  @override
-  void initState() {
-    _pageController = widget.pageController != null
-        ? widget.pageController
-        : PageController(initialPage: 0);
-    currentIndex = _pageController.initialPage;
-    if (widget.pageController != null) {
-      _pageController = widget.pageController;
-    }
-    _pageController.addListener(() {
-      if (mounted) {
-        setState(() {
-          currentIndex = _pageController.page.round();
-        });
-      }
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) => Center(
@@ -248,16 +225,16 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
             children: <Widget>[
               Expanded(
                 child: PageView(
-                  controller: _pageController,
+                  controller: widget.pageController,
                   children: widget.slides,
                 ),
               ),
               widget.showIntroScreenBottomNavigationBar
                   ? widget.introScreenBottomNavigationBar ??
                       GFIntroScreenBottomNavigationBar(
-                        pageController: _pageController,
+                        pageController: widget.pageController,
                         pageCount: widget.slides.length,
-                        currentIndex: currentIndex,
+                        currentIndex: widget.currentIndex,
                         child: widget.child,
                         navigationBarColor: widget.navigationBarColor,
                         navigationBarHeight: widget.navigationBarHeight,
