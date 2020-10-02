@@ -1,1 +1,6 @@
-enum GFBorderType { circle, rRect, rect, oval }
+enum GFBorderType {
+  circle,
+  rRect,
+  rect,
+  oval,
+}
