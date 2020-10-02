@@ -1,566 +1,236 @@
-import 'dart:async';
-import 'dart:ui' as ui show Image, ImageFilter;
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
-
-enum DropdownMenuShowHideSwitchStyle {
-  /// the showing menu will direct hide without animation
-  directHideAnimationShow,
-
-  /// the showing menu will direct hide without animation, and another menu shows without animation
-  directHideDirectShow,
-
-  /// the showing menu will hide with animation,and the same time another menu shows with animation
-  animationHideAnimationShow,
-
-  /// the showing menu will hide with animation,until the animation complete, another menu shows with animation
-  animationShowUntilAnimationHideComplete,
-}
-
-class DropdownMenu extends DropdownWidget {
-  /// menus whant to show
-  final List<DropdownMenuBuilder> menus;
-
-  final Duration hideDuration;
-  final Duration showDuration;
-  final Curve showCurve;
-  final Curve hideCurve;
-
-  /// if set , background is rendered with ImageFilter.blur
-  final double blur;
-
-  final VoidCallback onHide;
-
-  /// The style when one menu hide and another menu show ,
-  /// see [DropdownMenuShowHideSwitchStyle]
-  final DropdownMenuShowHideSwitchStyle switchStyle;
-
-  final double maxMenuHeight;
-
-  DropdownMenu(
-      {@required this.menus,
-      DropdownMenuController controller,
-      Duration hideDuration,
-      Duration showDuration,
-      this.onHide,
-      this.blur,
-      Key key,
-      this.maxMenuHeight,
-      Curve hideCurve,
-      this.switchStyle: DropdownMenuShowHideSwitchStyle
-          .animationShowUntilAnimationHideComplete,
-      Curve showCurve})
-      : hideDuration = hideDuration ?? new Duration(milliseconds: 150),
-        showDuration = showDuration ?? new Duration(milliseconds: 300),
-        showCurve = showCurve ?? Curves.fastOutSlowIn,
-        hideCurve = hideCurve ?? Curves.fastOutSlowIn,
-        super(key: key, controller: controller) {
-    assert(menus != null);
-  }
-
-  @override
-  DropdownState<DropdownMenu> createState() {
-    return new _DropdownMenuState();
-  }
-}
-
-class _DropdownAnimation {
-  Animation<Rect> rect;
-  AnimationController animationController;
-  RectTween position;
-
-  _DropdownAnimation(TickerProvider provider) {
-    animationController = new AnimationController(vsync: provider);
-  }
-
-  set height(double value) {
-    position = new RectTween(
-      begin: new Rect.fromLTRB(0.0, -value, 0.0, 0.0),
-      end: new Rect.fromLTRB(0.0, 0.0, 0.0, 0.0),
-    );
-
-    rect = position.animate(animationController);
-  }
-
-  set value(double value) {
-    animationController.value = value;
-  }
-
-  void dispose() {
-    animationController.dispose();
-  }
-
-  TickerFuture animateTo(double value, {Duration duration, Curve curve}) {
-    return animationController.animateTo(value,
-        duration: duration, curve: curve);
-  }
-}
-
-class SizeClipper extends CustomClipper<Rect> {
-  @override
-  Rect getClip(Size size) {
-    return new Rect.fromLTWH(0.0, 0.0, size.width, size.height);
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Rect> oldClipper) {
-    return false;
-  }
-}
-
-class _DropdownMenuState extends DropdownState<DropdownMenu>
-    with TickerProviderStateMixin {
-  List<_DropdownAnimation> _dropdownAnimations;
-  bool _show;
-  List<int> _showing;
-
-  AnimationController _fadeController;
-  Animation<double> _fadeAnimation;
-
-  @override
-  void initState() {
-    _showing = [];
-    _dropdownAnimations = [];
-    for (int i = 0, c = widget.menus.length; i < c; ++i) {
-      _dropdownAnimations.add(new _DropdownAnimation(this));
-    }
-
-    _updateHeights();
-
-    _show = false;
-
-    _fadeController = new AnimationController(vsync: this);
-    _fadeAnimation = new Tween(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(_fadeController);
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    for (int i = 0, c = _dropdownAnimations.length; i < c; ++i) {
-      _dropdownAnimations[i].dispose();
-    }
-
-    super.dispose();
-  }
-
-  void _updateHeights() {
-    for (int i = 0, c = widget.menus.length; i < c; ++i) {
-      _dropdownAnimations[i].height =
-          _ensureHeight(_getHeight(widget.menus[i]));
-    }
-  }
-
-  @override
-  void didUpdateWidget(DropdownMenu oldWidget) {
-    //update state
-    _updateHeights();
-    super.didUpdateWidget(oldWidget);
-  }
-
-  Widget createMenu(BuildContext context, DropdownMenuBuilder menu, int i) {
-    DropdownMenuBuilder builder = menu;
-
-    return new ClipRect(
-      clipper: new SizeClipper(),
-      child: new SizedBox(
-          height: _ensureHeight(builder.height),
-          child: _showing.contains(i) ? builder.builder(context) : null),
-    );
-  }
-
-  Widget _buildBackground(BuildContext context) {
-    Widget container = new Container(
-      color: Colors.black26,
-    );
-
-    container = new BackdropFilter(
-        filter: new ui.ImageFilter.blur(
-          sigmaY: widget.blur,
-          sigmaX: widget.blur,
-        ),
-        child: container);
-
-    return container;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    List<Widget> list = [];
-
-    print("build ${new DateTime.now()}");
-
-    if (_show) {
-      list.add(
-        new FadeTransition(
-          opacity: _fadeAnimation,
-          child: new GestureDetector(
-              onTap: onHide, child: _buildBackground(context)),
-        ),
-      );
-    }
-
-    for (int i = 0, c = widget.menus.length; i < c; ++i) {
-      list.add(new RelativePositionedTransition(
-          rect: _dropdownAnimations[i].rect,
-          size: new Size(0.0, 0.0),
-          child: new Align(
-              alignment: Alignment.topCenter,
-              child: new Container(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                child: createMenu(context, widget.menus[i], i),
-              ))));
-    }
-
-    //WidgetsBinding;
-    //context.findRenderObject();
-    return new Stack(
-      fit: StackFit.expand,
-      children: list,
-    );
-  }
-
-  TickerFuture onHide({bool dispatch: true}) {
-    if (_activeIndex != null) {
-      int index = _activeIndex;
-      _activeIndex = null;
-      TickerFuture future = _hide(index);
-      if (dispatch) {
-        if (controller != null) {
-          controller.hide();
-        }
-
-        //if (widget.onHide != null) widget.onHide();
-      }
-
-      _fadeController.animateTo(0.0,
-          duration: widget.hideDuration, curve: widget.hideCurve);
-
-      future.whenComplete(() {
-        setState(() {
-          _show = false;
-        });
-      });
-      return future;
-    }
-
-    return new TickerFuture.complete();
-  }
-
-  TickerFuture _hide(int index) {
-    TickerFuture future = _dropdownAnimations[index]
-        .animateTo(0.0, duration: widget.hideDuration, curve: widget.hideCurve);
-    return future;
-  }
-
-  int _activeIndex;
-
-  Future<void> onShow(int index) {
-    //哪一个是要展示的
-
-    assert(index >= 0 && index < _dropdownAnimations.length);
-    if (!_showing.contains(index)) {
-      _showing.add(index);
-    }
-
-    if (_activeIndex != null) {
-      if (_activeIndex == index) {
-        return onHide();
-      }
-
-      switch (widget.switchStyle) {
-        case DropdownMenuShowHideSwitchStyle.directHideAnimationShow:
-          {
-            _dropdownAnimations[_activeIndex].value = 0.0;
-            _dropdownAnimations[index].value = 1.0;
-            _activeIndex = index;
-
-            setState(() {
-              _show = true;
-            });
-
-            return new Future.value(null);
-          }
-
-          break;
-        case DropdownMenuShowHideSwitchStyle.animationHideAnimationShow:
-          {
-            _hide(_activeIndex);
-          }
-          break;
-        case DropdownMenuShowHideSwitchStyle.directHideDirectShow:
-          {
-            _dropdownAnimations[_activeIndex].value = 0.0;
-          }
-          break;
-        case DropdownMenuShowHideSwitchStyle
-            .animationShowUntilAnimationHideComplete:
-          {
-            return _hide(_activeIndex).whenComplete(() {
-              return _handleShow(index, true);
-            });
-          }
-          break;
-      }
-    }
-
-    return _handleShow(index, true);
-  }
-
-  TickerFuture _handleShow(int index, bool animation) {
-    _activeIndex = index;
-
-    setState(() {
-      _show = true;
-    });
-
-    _fadeController.animateTo(1.0,
-        duration: widget.showDuration, curve: widget.showCurve);
-
-    return _dropdownAnimations[index]
-        .animateTo(1.0, duration: widget.showDuration, curve: widget.showCurve);
-  }
-
-  double _getHeight(dynamic menu) {
-    DropdownMenuBuilder builder = menu as DropdownMenuBuilder;
-
-    return builder.height;
-  }
-
-  double _ensureHeight(double height) {
-    final double maxMenuHeight = widget.maxMenuHeight;
-    assert(height != null || maxMenuHeight != null,
-        "DropdownMenu.maxMenuHeight and DropdownMenuBuilder.height must not both null");
-    if (maxMenuHeight != null) {
-      if (height == null) return maxMenuHeight;
-      return height > maxMenuHeight ? maxMenuHeight : height;
-    }
-    return height;
-  }
-
-  @override
-  void onEvent(DropdownEvent event) {
-    switch (event) {
-      case DropdownEvent.SELECT:
-      case DropdownEvent.HIDE:
-        {
-          onHide(dispatch: false);
-        }
-        break;
-      case DropdownEvent.ACTIVE:
-        {
-          onShow(controller.menuIndex);
-        }
-        break;
-    }
-  }
-}
-
-
-
-
-
-
-enum DropdownEvent {
-  // the menu will hide
-  HIDE,
-
-  // the menu will active
-  ACTIVE,
-
-  // user has click menu item
-  SELECT
-}
-
-class DropdownMenuController extends ChangeNotifier {
-  //user interaction event name
-  DropdownEvent event;
-
-  // whitch menu index
-  int menuIndex;
-
-  /// selected data
-  dynamic data;
-
-  /// item index in list [TreeMenuList] or [MenuList] or your custom menu
-  int index;
-
-  /// item index in sublist of [TreeMenuList]
-  int subIndex;
-
-  void hide() {
-    event = DropdownEvent.HIDE;
-    notifyListeners();
-  }
-
-  void show(int index) {
-    event = DropdownEvent.ACTIVE;
-    menuIndex = index;
-    notifyListeners();
-  }
-
-  void select(dynamic data, {int index, int subIndex}) {
-    event = DropdownEvent.SELECT;
-    this.data = data;
-    this.index = index;
-    this.subIndex = subIndex;
-    notifyListeners();
-  }
-}
-
-typedef DropdownMenuOnSelected(
-    {int menuIndex, int index, int subIndex, dynamic data});
-
-class DefaultDropdownMenuController extends StatefulWidget {
-  const DefaultDropdownMenuController({
+import 'package:getwidget/getwidget.dart';
+
+class GFMultilevelDropdown extends StatefulWidget {
+  const GFMultilevelDropdown({
+    this.titleText,
+    this.selectedTextStyle =
+        const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+    this.color,
+    this.avatar,
+    this.padding = const EdgeInsets.all(0),
+    this.margin = const EdgeInsets.all(5),
+    this.size = GFSize.MEDIUM,
+    this.type = GFCheckboxType.basic,
+    this.checkColor = GFColors.WHITE,
+    this.activebgColor = GFColors.WHITE,
+    this.inactivebgColor = GFColors.WHITE,
+    this.activeBorderColor = GFColors.WHITE,
+    this.inactiveBorderColor = GFColors.WHITE,
+    this.items,
+    this.submitbutton,
+    this.expandedicon = Icons.keyboard_arrow_down,
+    this.collapsedicon = Icons.keyboard_arrow_up,
+    this.dropdownbgColor = Colors.white,
+    this.activeIcon = const Icon(
+      Icons.check,
+      size: 20,
+      color: GFColors.DARK,
+    ),
+    this.inactiveIcon,
+    this.custombgColor = GFColors.SUCCESS,
+    this.selected = false,
     Key key,
-    @required this.child,
-    this.onSelected,
-  }) : super(key: key);
+  })  : assert(selected != null),
+        super(key: key);
 
-  final Widget child;
+  ///type of [String] used to pass text, alternative to title property and gets higher priority than title
+  final String titleText;
 
-  final DropdownMenuOnSelected onSelected;
+  /// The GFListTile's background color. Can be given [Color] or [GFColors]
+  final Color color;
 
-  static DropdownMenuController of(BuildContext context) {
-    final _DropdownMenuControllerScope scope =
-        context.inheritFromWidgetOfExactType(_DropdownMenuControllerScope);
-    return scope?.controller;
-  }
+  /// type of [Widget] or [GFAvatar] used to create rounded user profile
+  final Widget avatar;
+
+  /// defines the margin of GFListTile
+  final EdgeInsets margin;
+
+  /// defines the padding of GFListTile
+  final EdgeInsets padding;
+
+  /// type of [GFCheckboxType] which is of four type is basic, sqaure, circular and custom
+  final GFCheckboxType type;
+
+  /// type of [double] which is GFSize ie, small, medium and large and can use any double value
+  final double size;
+
+  /// type pf [Color] used to change the checkcolor when the checkbox is active
+  final Color checkColor;
+
+  /// type of [Color] used to change the backgroundColor of the active checkbox
+  final Color activebgColor;
+
+  /// type of [Color] used to change the backgroundColor of the inactive checkbox
+  final Color inactivebgColor;
+
+  /// type of [Color] used to change the border color of the active checkbox
+  final Color activeBorderColor;
+
+  /// type of [Color] used to change the border color of the inactive checkbox
+  final Color inactiveBorderColor;
+
+  /// Called when the user checks or unchecks the checkbox.
+  // final ValueChanged<bool> onChanged;
+
+  ///Used to set the current state of the checkbox
+  // final bool value;
+
+  ///type of Widget used to change the  checkbox's active icon
+  final Widget activeIcon;
+
+  ///type of [Widget] used to change the  checkbox's inactive icon
+  final Widget inactiveIcon;
+
+  /// type of [Color] used to change the background color of the custom active  checkbox only
+  final Color custombgColor;
+
+  /// To have the list tile appear selected when the checkbox is checked, pass the same value to both.
+  /// Normally, this property is left to its default value, false.
+  final bool selected;
+
+  final List items;
+
+  final Widget submitbutton;
+
+  final Color dropdownbgColor;
+
+  final TextStyle selectedTextStyle;
+
+  final IconData expandedicon;
+
+  final IconData collapsedicon;
 
   @override
-  _DefaultDropdownMenuControllerState createState() =>
-      new _DefaultDropdownMenuControllerState();
+  _GFMultilevelDropdownState createState() => _GFMultilevelDropdownState();
 }
 
-class _DefaultDropdownMenuControllerState
-    extends State<DefaultDropdownMenuController>
-    with SingleTickerProviderStateMixin {
-  DropdownMenuController _controller;
+class _GFMultilevelDropdownState extends State<GFMultilevelDropdown> {
+  bool check = true;
+  bool isdrop = false;
+  bool check1 = false;
 
-  @override
+  final _controller = TextEditingController();
+
+  List _selecteCategorys = List();
+
   void initState() {
     super.initState();
-    _controller = new DropdownMenuController();
-    _controller.addListener(_onController);
+    setState(() {});
+    // if (widget.items != null) {
+    //   _selecteCategorys.addAll(widget.items);
+    // }
   }
 
-  void _onController() {
-    switch (_controller.event) {
-      case DropdownEvent.SELECT:
-        {
-          //通知widget
-          if (widget.onSelected == null) return;
-          widget.onSelected(
-              data: _controller.data,
-              menuIndex: _controller.menuIndex,
-              index: _controller.index,
-              subIndex: _controller.subIndex);
-        }
-        break;
-      case DropdownEvent.ACTIVE:
-        break;
-      case DropdownEvent.HIDE:
-        break;
+  void _onCategorySelected(bool selected, category_id) {
+    if (selected == true) {
+      setState(() {
+        _selecteCategorys.add(category_id);
+      });
+    } else {
+      setState(() {
+        _selecteCategorys.remove(category_id);
+      });
     }
   }
 
   @override
   void dispose() {
-    _controller.removeListener(_onController);
     _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return new _DropdownMenuControllerScope(
-      controller: _controller,
-      enabled: TickerMode.of(context),
-      child: widget.child,
+    return Column(
+      children: [
+        InkWell(
+            onTap: () {
+              setState(() {
+                isdrop = !isdrop;
+              });
+            },
+            child: Container(
+
+                // height: 40,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    border: Border(bottom: BorderSide(color: Colors.black12))),
+                child: Container(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Expanded(
+                          child: Container(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text(_selecteCategorys.join('  ,  ').toString(),
+                            style: widget.selectedTextStyle),
+                      )),
+                      Icon(
+                        !isdrop ? widget.expandedicon : widget.collapsedicon,
+                        color: Colors.black87,
+                        size: 30.0,
+                      ),
+                    ],
+                  ),
+                ))),
+        isdrop
+            ? Container(
+                decoration: BoxDecoration(
+                  color: widget.dropdownbgColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 3.0,
+                    )
+                  ],
+                ),
+                height: 300,
+             
+                child: SingleChildScrollView(
+                    child: Column(children: [
+                  Column(
+                      children: List.generate(widget.items.length, (index) {
+                    return GFCheckboxListTile(
+                      value: _selecteCategorys.contains(widget.items[index]),
+                      onChanged: (bool selected) {
+                        _controller.text;
+                        print(selected);
+                        _onCategorySelected(selected, widget.items[index]);
+                      },
+                      selected: widget.selected,
+                      avatar: widget.avatar,
+                      titleText: widget.items[index],
+                      color: widget.color,
+                      padding: widget.padding,
+                      margin: widget.margin,
+                      size: widget.size,
+                      activebgColor: widget.activebgColor,
+                      inactiveIcon: widget.inactiveIcon,
+                      activeBorderColor: widget.activeBorderColor,
+                      inactivebgColor: widget.inactivebgColor,
+                      activeIcon: widget.activeIcon,
+                      inactiveBorderColor: widget.inactiveBorderColor,
+                      custombgColor: widget.custombgColor,
+                      checkColor: widget.checkColor,
+                      type: widget.type,
+                    );
+                  })),
+                  GFButton(
+                    padding: EdgeInsets.all(0),
+                    onPressed: () {
+                      setState(() {
+                        isdrop = !isdrop;
+                      });
+
+                      print(_selecteCategorys);
+                    },
+                    child: widget.submitbutton,
+                  )
+                ])))
+            : Container(),
+      ],
     );
   }
-}
-
-class _DropdownMenuControllerScope extends InheritedWidget {
-  const _DropdownMenuControllerScope(
-      {Key key, this.controller, this.enabled, Widget child})
-      : super(key: key, child: child);
-
-  final DropdownMenuController controller;
-  final bool enabled;
-
-  @override
-  bool updateShouldNotify(_DropdownMenuControllerScope old) {
-    return enabled != old.enabled || controller != old.controller;
-  }
-}
-
-abstract class DropdownWidget extends StatefulWidget {
-  final DropdownMenuController controller;
-
-  DropdownWidget({Key key, this.controller}) : super(key: key);
-
-  @override
-  DropdownState<DropdownWidget> createState();
-}
-
-abstract class DropdownState<T extends DropdownWidget> extends State<T> {
-  DropdownMenuController controller;
-
-  @override
-  void dispose() {
-    if (controller != null) {
-      controller.removeListener(_onController);
-    }
-    super.dispose();
-  }
-
-  @override
-  void didChangeDependencies() {
-    if (controller == null) {
-      if (widget.controller == null) {
-        controller = DefaultDropdownMenuController.of(context);
-      } else {
-        controller = widget.controller;
-      }
-
-      if (controller != null) {
-        controller.addListener(_onController);
-      }
-    }
-    super.didChangeDependencies();
-  }
-
-  @override
-  void didUpdateWidget(T oldWidget) {
-    if (widget.controller != null) {
-      if (controller != null) {
-        controller.removeListener(_onController);
-      }
-      controller = widget.controller;
-      controller.addListener(_onController);
-    }
-
-    super.didUpdateWidget(oldWidget);
-  }
-
-  void _onController() {
-    onEvent(controller.event);
-  }
-
-  void onEvent(DropdownEvent event);
-}
-
-class DropdownMenuBuilder {
-  final WidgetBuilder builder;
-  final double height;
-
-  //if height == null , use [DropdownMenu.maxMenuHeight]
-  DropdownMenuBuilder({@required this.builder, this.height})
-      : assert(builder != null);
 }
