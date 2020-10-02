@@ -31,10 +31,14 @@ class GFAnimation extends StatefulWidget {
     this.fontWeight,
     this.changedWidth,
     this.changedHeight,
+    this.reverseDuration,
   }) : super(key: key);
 
-  /// The duration for animations of the [Decoration].
+  /// `The duration for animation to perform`
   final Duration duration;
+
+  /// The duration for animation to perform
+  final Duration reverseDuration;
 
   /// Defines how the animated widget is aligned within the Animation.
   final Alignment alignment;
@@ -45,7 +49,7 @@ class GFAnimation extends StatefulWidget {
   /// The child of type [Widget] to display animation effect.
   final Widget child;
 
-  /// Determines the animation curve physics. Defaults to [Curves.linear].
+  /// Determines the animation curve. Defaults to [Curves.linear].
   final Curve curve;
 
   ///type of [GFAnimation] which takes the type ie, align, size, container, rotateTransition, scaleTransition, slideTransition, and textStyle for the [GFAnimation]
@@ -54,51 +58,66 @@ class GFAnimation extends StatefulWidget {
   /// [AnimatedContainer] initial width
   final double width;
 
-  /// [AnimatedContainer] changed width
+  /// defines the width of [AnimatedContainer] upto which it can extend during animation
   final double changedWidth;
 
   /// [AnimatedContainer] initial height
   final double height;
 
-  /// [AnimatedContainer] changed height
+  /// defines the height of [AnimatedContainer] upto which it can extend during animation
   final double changedHeight;
 
-  /// defines the color of items when onTap triggers
+  /// defines the color of [AnimatedContainer] when onTap triggers
   final Color activeColor;
 
-  /// defines the color of items
+  /// defines the color of [AnimatedContainer]
   final Color color;
 
-  /// The empty space that surrounds the animation. Defines the animation outer [Container.padding]..
+  /// defines [child]'s or [AnimatedContainer] padding
   final EdgeInsetsGeometry padding;
 
-  /// The empty space that surrounds the animation. Defines the animation outer [Container.margin].
+  /// defines [child]'s or [AnimatedContainer] margin
   final EdgeInsetsGeometry margin;
+
+  /// Called when the user taps the [child]
   final Function onTap;
 
   /// Here's an illustration of the [RotationTransition] widget, with it's [turnsAnimation]
-  /// animated by a [Tween] set to [animate]:
+  /// animated by a stuckValue set to animate
   final Animation<double> turnsAnimation;
 
   /// Here's an illustration of the [ScaleTransition] widget, with it's [scaleAnimation]
-  /// animated by a [CurvedAnimation] set to [Curves.linear]:
+  /// animated by a [CurvedAnimation] set to [Curves.linear]
   final Animation<double> scaleAnimation;
 
+  /// controls animation
   final AnimationController controller;
 
   ///direction of the [AnimatedDefaultTextStyle] TextDirection for [ltr,rtl]
   final TextDirection textDirection;
 
-  ///  * [ScaleTransition], which animates the scale of a widget.
+  /// [ScaleTransition], which animates the scale of a widget.
   final Animation<Offset> slidePosition;
+
+  /// defines the [TextStyle] of [AnimatedDefaultTextStyle]
   final TextStyle style;
+
+  /// defines the [TextAlign] of [AnimatedDefaultTextStyle]
   final TextAlign textAlign;
+
+  /// defines the [TextOverflow] of [AnimatedDefaultTextStyle]
   final TextOverflow textOverflow;
 
-  /// [AnimatedDefaultTextStyle] maxlines
+  /// defines the [maxLines] of [AnimatedDefaultTextStyle]
   final int maxLines;
+
+  /// defines the [TextWidthBasis] of [AnimatedDefaultTextStyle]
   final TextWidthBasis textWidthBasis;
+
+  /// defines the [fontSize] of [AnimatedDefaultTextStyle]
   final double fontSize;
+
+  /// defines the [fontWeight] of [AnimatedDefaultTextStyle]
   final FontWeight fontWeight;
 
   @override
@@ -118,7 +137,8 @@ class _GFAnimationState extends State<GFAnimation>
     if (widget.type == GFAnimationType.rotateTransition) {
       controller = widget.controller ??
           AnimationController(
-              duration: widget.duration ?? const Duration(seconds: 2));
+              duration: widget.duration ?? const Duration(seconds: 2),
+              vsync: this);
       animation = widget.turnsAnimation ??
           Tween<double>(begin: 0, end: 20).animate(controller);
       if (widget.turnsAnimation == null) {
@@ -127,15 +147,16 @@ class _GFAnimationState extends State<GFAnimation>
     } else if (widget.type == GFAnimationType.scaleTransition) {
       controller = widget.controller ??
           AnimationController(
-              duration: widget.duration ?? const Duration(seconds: 2));
+              duration: widget.duration ?? const Duration(seconds: 2),
+              vsync: this);
       animation = widget.scaleAnimation ??
           CurvedAnimation(
               parent: controller, curve: widget.curve ?? Curves.ease);
       controller.forward();
     } else if (widget.type == GFAnimationType.slideTransition) {
       controller = AnimationController(
-        duration: widget.duration ?? const Duration(seconds: 2),
-      )..repeat(reverse: true);
+          duration: widget.duration ?? const Duration(seconds: 2), vsync: this)
+        ..repeat(reverse: true);
       offsetAnimation = Tween<Offset>(
         begin: Offset.zero,
         end: const Offset(1.5, 0),
@@ -201,8 +222,8 @@ class _GFAnimationState extends State<GFAnimation>
           child: AnimatedAlign(
             curve: widget.curve ?? Curves.linear,
             alignment: selected
-                ? widget.alignment ?? Alignment.center
-                : Alignment.topCenter,
+                ? widget.activeAlignment ?? Alignment.center
+                : widget.alignment ?? Alignment.topCenter,
             duration: widget.duration ?? const Duration(seconds: 2),
             child: widget.child,
           ),
@@ -210,18 +231,31 @@ class _GFAnimationState extends State<GFAnimation>
       );
 
   Widget buildAnimatedSizeWidget() => GestureDetector(
-        onTap: widget.onTap,
-        child: Container(
-          margin: widget.margin ?? const EdgeInsets.all(0),
-          padding: widget.padding ?? const EdgeInsets.all(0),
-          color: widget.color ?? Colors.white,
-          child: AnimatedSize(
-            alignment: widget.alignment ?? Alignment.center,
-            curve: widget.curve ?? Curves.linear,
-            vsync: this,
-            duration: widget.duration ?? const Duration(milliseconds: 2000),
-            child: widget.child,
-          ),
+        onTap: () {
+          if (widget.onTap == null) {
+            if (mounted) {
+              setState(() {
+                selected = !selected;
+              });
+            }
+          } else {
+            widget.onTap();
+          }
+        },
+        child: AnimatedSize(
+          alignment: widget.alignment ?? Alignment.center,
+          curve: widget.curve ?? Curves.linear,
+          vsync: this,
+          reverseDuration:
+              widget.reverseDuration ?? const Duration(milliseconds: 2000),
+          duration: widget.duration ?? const Duration(milliseconds: 2000),
+          child: Container(
+              margin: widget.margin ?? const EdgeInsets.all(0),
+              padding: widget.padding ?? const EdgeInsets.all(0),
+              color: widget.color ?? Colors.white,
+              height: selected ? widget.height ?? 200 : widget.height ?? 100,
+              width: selected ? widget.width ?? 200 : widget.width ?? 100,
+              child: widget.child),
         ),
       );
 

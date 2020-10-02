@@ -95,12 +95,10 @@ class _GFAccordionState extends State<GFAccordion>
   @override
   void initState() {
     showAccordion = widget.showAccordion;
-    animationController = AnimationController(
-      duration: const Duration(seconds: 2),
-    );
+    animationController =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
     controller = AnimationController(
-      duration: const Duration(milliseconds: 300),
-    );
+        duration: const Duration(milliseconds: 300), vsync: this);
     offset = Tween(
       begin: const Offset(0, -0.06),
       end: Offset.zero,
