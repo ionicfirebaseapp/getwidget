@@ -17,15 +17,13 @@ class GFAccordion extends StatefulWidget {
       this.contentPadding = const EdgeInsets.all(10),
       this.contentChild,
       this.titleBorder = const Border(),
-      this.contentborder = const Border(),
+      this.contentBorder = const Border(),
       this.margin,
       this.showAccordion = false,
       this.onToggleCollapsed,
       this.titleBorderRadius = const BorderRadius.all(Radius.circular(0)),
       this.contentBorderRadius = const BorderRadius.all(Radius.circular(0))})
       : super(key: key);
-
-  final Function(bool) onToggleCollapsed;
 
   /// controls if the accordion should be collapsed or not making it possible to be controlled from outside
   final bool showAccordion;
@@ -45,10 +43,10 @@ class GFAccordion extends StatefulWidget {
   /// type of [Color] or [GFColors] which is used to change the background color of the [GFAccordion] title when it is expanded
   final Color expandedTitleBackgroundColor;
 
-  ///collapsedIcon of type [Widget] which is used to show when the [GFAccordion] is collapsed
+  /// collapsedIcon of type [Widget] which is used to show when the [GFAccordion] is collapsed
   final Widget collapsedIcon;
 
-  ///expandedIcon of type[Widget] which is used when the [GFAccordion] is expanded
+  /// expandedIcon of type[Widget] which is used when the [GFAccordion] is expanded
   final Widget expandedIcon;
 
   /// text of type [String] is alternative to child. text will get priority over titleChild
@@ -57,29 +55,32 @@ class GFAccordion extends StatefulWidget {
   /// textStyle of type [textStyle] will be applicable to text only and not for the child
   final TextStyle textStyle;
 
-  ///titlePadding of type [EdgeInsets] which is used to set the padding of the [GFAccordion] title
+  /// titlePadding of type [EdgeInsets] which is used to set the padding of the [GFAccordion] title
   final EdgeInsets titlePadding;
 
-  ///descriptionPadding of type [EdgeInsets] which is used to set the padding of the [GFAccordion] description
+  /// descriptionPadding of type [EdgeInsets] which is used to set the padding of the [GFAccordion] description
   final EdgeInsets contentPadding;
 
   /// type of [Color] or [GFColors] which is used to change the background color of the [GFAccordion] description
   final Color contentBackgroundColor;
 
-  ///margin of type [EdgeInsets] which is used to set the margin of the [GFAccordion]
+  /// margin of type [EdgeInsets] which is used to set the margin of the [GFAccordion]
   final EdgeInsets margin;
 
-  ///titleBorderColor of type  [Color] or [GFColors] which is used to change the border color of title
+  /// titleBorderColor of type  [Color] or [GFColors] which is used to change the border color of title
   final Border titleBorder;
 
-  ///contentBorderColor of type  [Color] or [GFColors] which is used to change the border color of content
-  final Border contentborder;
+  /// contentBorderColor of type  [Color] or [GFColors] which is used to change the border color of content
+  final Border contentBorder;
 
-  ///titleBorderRadius of type  [Radius]  which is used to change the border radius of title
+  /// titleBorderRadius of type  [Radius]  which is used to change the border radius of title
   final BorderRadius titleBorderRadius;
 
-  ///contentBorderRadius of type  [Radius]  which is used to change the border radius of content
+  /// contentBorderRadius of type  [Radius]  which is used to change the border radius of content
   final BorderRadius contentBorderRadius;
+
+  /// function called when the content body collapsed
+  final Function(bool) onToggleCollapsed;
 
   @override
   _GFAccordionState createState() => _GFAccordionState();
@@ -95,14 +96,10 @@ class _GFAccordionState extends State<GFAccordion>
   @override
   void initState() {
     showAccordion = widget.showAccordion;
-    animationController = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    );
+    animationController =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
     controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
-    );
+        duration: const Duration(milliseconds: 300), vsync: this);
     offset = Tween(
       begin: const Offset(0, -0.06),
       end: Offset.zero,
@@ -156,7 +153,7 @@ class _GFAccordionState extends State<GFAccordion>
                 ? Container(
                     decoration: BoxDecoration(
                       borderRadius: widget.contentBorderRadius,
-                      border: widget.contentborder,
+                      border: widget.contentBorder,
                       color: widget.contentBackgroundColor ?? Colors.white70,
                     ),
                     width: MediaQuery.of(context).size.width,

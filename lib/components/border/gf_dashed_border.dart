@@ -21,7 +21,7 @@ class DashedType extends CustomPainter {
   final List<double> dashedLine;
 
   /// color of type [Color] or GFColor which is used to change the color of the border type
-  final Color color;
+  final dynamic color;
 
   /// type of [GFBorderType] which is used to define the different types of borders ie, circle, Rect, RRect and oval
   final GFBorderType type;
