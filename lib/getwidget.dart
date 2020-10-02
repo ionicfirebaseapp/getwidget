@@ -59,7 +59,6 @@ export 'types/gf_animation_type.dart';
 export 'types/gf_border_type.dart';
 export 'types/gf_button_type.dart';
 export 'types/gf_checkbox_type.dart';
-export 'types/gf_intro_type.dart';
 export 'types/gf_loader_type.dart';
 export 'types/gf_progress_type.dart';
 export 'types/gf_radio_type.dart';
