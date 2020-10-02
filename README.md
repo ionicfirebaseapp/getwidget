@@ -1,6 +1,5 @@
 [![pub package](https://img.shields.io/pub/v/getwidget.svg)](https://pub.dartlang.org/packages/getwidget) [![Build Status](https://travis-ci.org/ionicfirebaseapp/getwidget.svg?branch=master)](https://travis-ci.com/ionicfirebaseapp/getwidget) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT) [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/ionicfirebaseapp/getwidget/blob/master/LICENSE) [![Twitter Follow](https://img.shields.io/twitter/follow/getwidgetdev.svg?style=social)](https://twitter.com/getwidgetdev)
 
-
 <p align="center">
   <a href="https://docs.getwidget.dev/" target="_blank">
     <img src="https://ik.imagekit.io/ionicfirebaseapp/logo.black_iOBoLWdj2I.png" alt="GetWidget">
@@ -26,6 +25,7 @@
     <img src="https://ik.imagekit.io/ionicfirebaseapp/GitHub_1_O8ZlrxSIo.png" alt="GetWidget Screens">
   </a>
 </p>
+
 
 
 ## Quick start
@@ -62,7 +62,7 @@ we have launched the library with the following components :
   * Write and improve some **documentation**. Documentation is very critical to us. We would appreciate help in adding multiple languages to our docs.
   * If you are a developer, feel free to check out the source and submit pull requests.
   * Dig into [**CONTRIBUTING.MD**](CONTRIBUTING.md), which covers submitting bugs, requesting new features, preparing your code for a pull request, etc.
-  * Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](http://forum.getwidget.dev) to keep up to date with the latest GetWidget development. 
+  * Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](https://forum.getwidget.dev) to keep up to date with the latest GetWidget development. 
  
  
  

@@ -293,6 +293,7 @@ class _GFAppBarState extends State<GFAppBar> {
   static const double _defaultElevation = 4;
   Widget searchBar;
   bool showSearchBar = false;
+  final TextEditingController _searchController = TextEditingController();
 
   void _handleDrawerButton() {
     Scaffold.of(context).openDrawer();
@@ -321,9 +322,9 @@ class _GFAppBarState extends State<GFAppBar> {
     IconThemeData actionsIconTheme = widget.actionsIconTheme ??
         appBarTheme.actionsIconTheme ??
         overallIconTheme;
-    TextStyle centerStyle = widget.textTheme?.headline1 ??
-        appBarTheme.textTheme?.headline1 ??
-        theme.primaryTextTheme.headline1;
+    TextStyle centerStyle = widget.textTheme?.headline5 ??
+        appBarTheme.textTheme?.headline5 ??
+        theme.primaryTextTheme.headline5;
     TextStyle sideStyle = widget.textTheme?.bodyText1 ??
         appBarTheme.textTheme?.bodyText1 ??
         theme.primaryTextTheme.bodyText1;
@@ -455,7 +456,7 @@ class _GFAppBarState extends State<GFAppBar> {
         ),
         onTap: widget.onTap,
         onChanged: widget.onChanged,
-        controller: widget.searchController,
+        controller: _searchController ?? widget.searchController,
         onSubmitted: widget.onSubmitted,
       );
     }
@@ -524,7 +525,7 @@ class _GFAppBarState extends State<GFAppBar> {
       );
     }
 
-    // The padding applies to the toolbar and tabbar, not the flexible space.
+    // The padding applies to the toolbar and tabBar, not the flexible space.
     if (widget.primary) {
       appBar = SafeArea(
         top: true,

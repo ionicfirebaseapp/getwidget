@@ -67,9 +67,7 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
   @override
   void initState() {
     animationController = AnimationController(
-      duration: const Duration(milliseconds: 300),
-      vsync: this,
-    );
+        duration: const Duration(milliseconds: 300), vsync: this);
     animation = CurvedAnimation(
       parent: animationController,
       curve: Curves.fastOutSlowIn,
@@ -109,7 +107,7 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                       : GFColors.WHITE,
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.black.withOpacity(0.40), blurRadius: 3)
+                        color: Colors.black.withOpacity(0.10), blurRadius: 2)
                   ]),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

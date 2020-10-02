@@ -1014,13 +1014,15 @@ class _GFButtonState extends State<GFButton> {
   bool get _disabled => _states.contains(MaterialState.disabled);
 
   double buttonWidth() {
+    double buttonWidth = 0;
     if (widget.blockButton == true) {
-      return MediaQuery.of(context).size.width * 0.88;
+      buttonWidth = MediaQuery.of(context).size.width * 0.88;
     } else if (widget.fullWidthButton == true) {
-      return MediaQuery.of(context).size.width;
+      buttonWidth = MediaQuery.of(context).size.width;
     } else {
-      return null;
+      buttonWidth = null;
     }
+    return buttonWidth;
   }
 
   void _updateState(MaterialState state, bool value) {

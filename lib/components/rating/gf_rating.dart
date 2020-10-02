@@ -48,7 +48,7 @@ class GFRating extends StatefulWidget {
   /// defines the default items, when having filledIcon && halfFilledIcon
   final Widget defaultIcon;
 
-  /// defines the space between items
+  /// defines the space bestuckValue items
   final double spacing;
 
   /// defines the rating value
