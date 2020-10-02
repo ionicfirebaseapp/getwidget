@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFRadioListTile<T> extends StatelessWidget {
+  /// [GFRadioListTile] is a list title of with [GFRadio] in it.
   const GFRadioListTile({
     Key key,
     @required this.value,
@@ -20,11 +21,7 @@ class GFRadioListTile<T> extends StatelessWidget {
       size: 20,
       color: GFColors.DARK,
     ),
-    this.inactiveIcon = const Icon(
-      Icons.close,
-      size: 20,
-      color: GFColors.DARK,
-    ),
+    this.inactiveIcon,
     this.custombgColor = GFColors.SUCCESS,
     this.autofocus = false,
     this.focusNode,
@@ -156,8 +153,7 @@ class GFRadioListTile<T> extends StatelessWidget {
   /// The value represented by this radio button.
   final T value;
 
-  /// The currently selected value for a group of radio buttons. Radio button is considered selected if its [value] matches the
-  /// [groupValue].
+  /// The currently selected value for a group of radio buttons. Radio button is considered selected if its [value] matches the [groupValue].
   final T groupValue;
 
   /// sets the radio value
@@ -168,12 +164,13 @@ class GFRadioListTile<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GFRadio radio = GFRadio(
-      autofocus: autofocus,
+    final GFRadio radio = GFRadio(
       onChanged: onChanged,
       value: value,
       groupValue: groupValue,
       size: size,
+      type: type,
+      radioColor: radioColor,
       activebgColor: activebgColor,
       inactiveIcon: inactiveIcon,
       activeBorderColor: activeBorderColor,
@@ -181,11 +178,13 @@ class GFRadioListTile<T> extends StatelessWidget {
       activeIcon: activeIcon,
       inactiveBorderColor: inactiveBorderColor,
       custombgColor: custombgColor,
+      toggleable: toggleable,
     );
     return MergeSemantics(
       child: GFListTile(
         autofocus: autofocus,
         enabled: onChanged != null,
+        focusNode: focusNode,
         onTap: onChanged != null
             ? () {
                 if (toggleable && checked) {

@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFShimmer extends StatefulWidget {
+  /// [GFShimmer] shows shimmer effect.
   const GFShimmer({
     Key key,
     @required this.child,
@@ -125,7 +126,9 @@ class _GFShimmerState extends State<GFShimmer>
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (_controller != null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 }

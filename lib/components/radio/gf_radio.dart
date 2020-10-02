@@ -23,11 +23,7 @@ class GFRadio<T> extends StatefulWidget {
         size: 20,
         color: GFColors.DARK,
       ),
-      this.inactiveIcon = const Icon(
-        Icons.close,
-        size: 20,
-        color: GFColors.DARK,
-      ),
+      this.inactiveIcon,
       this.custombgColor = GFColors.SUCCESS,
       this.autofocus = false,
       this.focusNode,

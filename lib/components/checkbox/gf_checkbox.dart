@@ -19,7 +19,7 @@ class GFCheckbox extends StatefulWidget {
         size: 20,
         color: GFColors.WHITE,
       ),
-      this.inactiveIcon = const Icon(Icons.close),
+      this.inactiveIcon,
       this.custombgColor = GFColors.SUCCESS,
       this.autofocus = false,
       this.focusNode})

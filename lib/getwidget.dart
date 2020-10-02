@@ -46,7 +46,7 @@ export 'package:getwidget/components/toast/gf_toast.dart';
 export 'package:getwidget/components/toggle/gf_toggle.dart';
 export 'package:getwidget/components/typography/gf_typography.dart';
 export 'package:getwidget/components/dropdown/gf_dropdown.dart';
-export 'package:getwidget/components/dropdown/multilevel.dart';
+export 'package:getwidget/components/dropdown/gf_multiselect.dart';
 
 export 'colors/gf_color.dart';
 export 'direction/gf_shimmer_direction.dart';
