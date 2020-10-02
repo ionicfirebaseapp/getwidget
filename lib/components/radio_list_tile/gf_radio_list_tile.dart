@@ -14,6 +14,7 @@ class GFRadioListTile<T> extends StatelessWidget {
     this.inactivebgColor = GFColors.WHITE,
     this.activeBorderColor = GFColors.DARK,
     this.inactiveBorderColor = GFColors.DARK,
+    this.position = GFPosition.end,
     this.activeIcon = const Icon(
       Icons.check,
       size: 20,
@@ -59,7 +60,7 @@ class GFRadioListTile<T> extends StatelessWidget {
   /// The GFListTile's background color. Can be given [Color] or [GFColors]
   final Color color;
 
-  /// type of [Widget] or [GFAvatar] used to create rounded user profile
+  /// If position is start Checkbox will come instead of avatar, type of [Widget] or [GFAvatar] used to create rounded user profile
   final Widget avatar;
 
   /// The title to display inside the [GFListTile]. see [Text]
@@ -71,7 +72,7 @@ class GFRadioListTile<T> extends StatelessWidget {
   /// The description to display inside the [GFListTile]. see [Text]
   final Widget description;
 
-  /// The icon to display inside the [GFListTile]. see [Icon]
+  /// If position is end Checkbox will come instead of icon, The icon to display inside the [GFListTile]. see [Icon]
   final Widget icon;
 
   /// defines the margin of GFListTile
@@ -91,6 +92,9 @@ class GFRadioListTile<T> extends StatelessWidget {
   ///
   /// Inoperative if [enabled] is false.
   final GestureTapCallback onTap;
+
+  /// Position allows user to set position of [GFCheckbox] based on given [GFPosition]
+  final GFPosition position;
 
   /// Called when the user long-presses on this list tile.
   ///
@@ -163,45 +167,48 @@ class GFRadioListTile<T> extends StatelessWidget {
   bool get checked => value == groupValue;
 
   @override
-  Widget build(BuildContext context) => MergeSemantics(
-        child: GFListTile(
-          autofocus: autofocus,
-          enabled: onChanged != null,
-          onTap: onChanged != null
-              ? () {
-                  if (toggleable && checked) {
-                    onChanged(null);
-                    return;
-                  }
-                  if (!checked) {
-                    onChanged(value);
-                  }
+  Widget build(BuildContext context) {
+    GFRadio radio = GFRadio(
+      autofocus: autofocus,
+      onChanged: onChanged,
+      value: value,
+      groupValue: groupValue,
+      size: size,
+      activebgColor: activebgColor,
+      inactiveIcon: inactiveIcon,
+      activeBorderColor: activeBorderColor,
+      inactivebgColor: inactivebgColor,
+      activeIcon: activeIcon,
+      inactiveBorderColor: inactiveBorderColor,
+      custombgColor: custombgColor,
+    );
+    return MergeSemantics(
+      child: GFListTile(
+        autofocus: autofocus,
+        enabled: onChanged != null,
+        onTap: onChanged != null
+            ? () {
+                if (toggleable && checked) {
+                  onChanged(null);
+                  return;
                 }
-              : null,
-          selected: selected,
-          avatar: avatar,
-          titleText: titleText,
-          subTitle: subTitle,
-          subtitleText: subtitleText,
-          description: description,
-          color: color,
-          padding: padding,
-          margin: margin,
-          title: title,
-          icon: GFRadio(
-            autofocus: autofocus,
-            onChanged: onChanged,
-            value: value,
-            groupValue: groupValue,
-            size: size,
-            activebgColor: activebgColor,
-            inactiveIcon: inactiveIcon,
-            activeBorderColor: activeBorderColor,
-            inactivebgColor: inactivebgColor,
-            activeIcon: activeIcon,
-            inactiveBorderColor: inactiveBorderColor,
-            custombgColor: custombgColor,
-          ),
-        ),
-      );
+                if (!checked) {
+                  onChanged(value);
+                }
+              }
+            : null,
+        selected: selected,
+        avatar: position == GFPosition.start ? radio : avatar,
+        titleText: titleText,
+        subTitle: subTitle,
+        subtitleText: subtitleText,
+        description: description,
+        color: color,
+        padding: padding,
+        margin: margin,
+        title: title,
+        icon: position == GFPosition.end ? radio : icon,
+      ),
+    );
+  }
 }

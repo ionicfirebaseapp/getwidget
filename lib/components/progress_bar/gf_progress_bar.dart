@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFProgressBar extends StatefulWidget {
+  /// Shows progress as a completed and remaining percentage in bar of given state
   GFProgressBar({
     Key key,
     this.percentage = 0.2,
@@ -33,7 +34,6 @@ class GFProgressBar extends StatefulWidget {
       throw ArgumentError(
           ' linearGradient and progressBarColor cannot be given');
     }
-
     assert(circleStartAngle >= 0.0);
     if (percentage < 0.0 || percentage > 1.0) {
       throw Exception('Percentage value must be be tween 0.0 and 1.0');
@@ -276,7 +276,6 @@ class _GFProgressBarState extends State<GFProgressBar>
     if (widget.trailing != null) {
       item.add(widget.trailing);
     }
-
     return widget.type == GFProgressType.linear
         ? Material(
             color: Colors.transparent,
@@ -334,7 +333,6 @@ class LinearPainter extends CustomPainter {
       _paintBackground.strokeCap = StrokeCap.round;
     }
   }
-
   final Paint _paintBackground = Paint();
   final Paint _paintLine = Paint();
   final double circleWidth;
@@ -353,11 +351,9 @@ class LinearPainter extends CustomPainter {
     final start = Offset(0, size.height / 2);
     final end = Offset(size.width, size.height / 2);
     canvas.drawLine(start, end, _paintBackground);
-
     if (mask != null) {
       _paintLine.maskFilter = mask;
     }
-
     if (fromRightToLeft) {
       final xProgress = size.width - size.width * progress;
       if (linearGradient != null) {
@@ -416,7 +412,6 @@ class CirclePainter extends CustomPainter {
     _paintBackground.color = backgroundColor;
     _paintBackground.style = PaintingStyle.stroke;
     _paintBackground.strokeWidth = circleWidth;
-
     _paintLine.color = progressBarColor;
     _paintLine.style = PaintingStyle.stroke;
     _paintLine.strokeWidth = circleWidth;
@@ -444,7 +439,6 @@ class CirclePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final child = Offset(size.width / 2, size.height / 2);
     canvas.drawCircle(child, radius, _paintBackground);
-
     if (mask != null) {
       _paintLine.maskFilter = mask;
     }
@@ -456,11 +450,8 @@ class CirclePainter extends CustomPainter {
         ),
       );
     }
-
     final double fixedStartAngle = circleStartAngle;
-
     const double circleStartAngleFixedMargin = 1;
-
     if (reverse) {
       final start =
           radians(360 * circleStartAngleFixedMargin - 90.0 + fixedStartAngle);
