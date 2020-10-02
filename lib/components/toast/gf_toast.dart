@@ -110,7 +110,6 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
   void dispose() {
     animationController.dispose();
     fadeanimationController.dispose();
-
     super.dispose();
   }
 
@@ -171,5 +170,6 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
                 ),
               ),
             ],
-          ));
+          ),
+        );
 }

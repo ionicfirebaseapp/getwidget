@@ -1,1 +1,5 @@
-enum GFAlertType { basic, rounded, fullWidth }
+enum GFAlertType {
+  basic,
+  rounded,
+  fullWidth,
+}

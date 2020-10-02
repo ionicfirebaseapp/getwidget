@@ -5,5 +5,5 @@ enum GFAnimationType {
   rotateTransition,
   scaleTransition,
   slideTransition,
-  textStyle
+  textStyle,
 }

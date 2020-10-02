@@ -10,5 +10,5 @@ enum GFToggleType {
   ios,
 
   /// [GFToggleType.square] is used for square shape of GFToggle
-  square
+  square,
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFIntroScreen extends StatefulWidget {
+  /// Presents informative screens to users with various posibilities in customization.
   const GFIntroScreen({
     Key key,
     @required this.pageController,
@@ -114,7 +115,7 @@ class GFIntroScreen extends StatefulWidget {
   final EdgeInsets navigationBarMargin;
 
   /// defines [GFIntroScreenBottomNavigationBar] color
-  final dynamic navigationBarColor;
+  final Color navigationBarColor;
 
   /// defines the shape of [GFIntroScreenBottomNavigationBar]
   final ShapeBorder navigationBarShape;
@@ -183,7 +184,7 @@ class GFIntroScreen extends StatefulWidget {
   final double dividerThickness;
 
   /// defines divider color
-  final dynamic dividerColor;
+  final Color dividerColor;
 
   /// defines pagination shape
   final ShapeBorder dotShape;
