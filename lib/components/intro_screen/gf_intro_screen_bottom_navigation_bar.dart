@@ -199,6 +199,14 @@ class _GFIntroScreenBottomNavigationBarState
     super.initState();
   }
 
+  @override
+  void dispose() {
+    if (_pageController != null) {
+      _pageController.dispose();
+    }
+    super.dispose();
+  }
+
   void onForwardButton() {
     widget.pageController.nextPage(
         duration: const Duration(milliseconds: 500), curve: Curves.linear);

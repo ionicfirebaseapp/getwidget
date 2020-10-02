@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFIntroScreen extends StatefulWidget {
+  /// Presents informative screens to users with various posibilities in customization.
   const GFIntroScreen({
     Key key,
     @required this.pageController,
