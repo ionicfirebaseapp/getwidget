@@ -45,21 +45,8 @@ export 'package:getwidget/components/tabs/gf_tabs.dart';
 export 'package:getwidget/components/toast/gf_toast.dart';
 export 'package:getwidget/components/toggle/gf_toggle.dart';
 export 'package:getwidget/components/typography/gf_typography.dart';
-<<<<<<< HEAD
-export 'package:getwidget/components/rating/gf_rating.dart';
-export 'package:getwidget/components/slidable/gf_slidable.dart';
-export 'package:getwidget/components/shimmer/gf_shimmer.dart';
-export 'package:getwidget/components/loader/gf_loader.dart';
-export 'package:getwidget/components/progress_bar/gf_progress_bar.dart';
-export 'package:getwidget/components/checkbox/gf_checkbox.dart';
-export 'package:getwidget/components/border/gf_border.dart';
-export 'package:getwidget/components/checkbox_list_tile/gf_checkbox_list_tile.dart';
-export 'package:getwidget/components/radio/gf_radio.dart';
-export 'package:getwidget/components/radio_list_tile/gf_radio_list_tile.dart';
-export 'package:getwidget/components/text_field/gf_text_field.dart';
 export 'package:getwidget/components/dropdown/gf_dropdown.dart';
-=======
->>>>>>> f7045501c4ab0ed96a4b4853cc9a489ea1391239
+export 'package:getwidget/components/dropdown/multilevel.dart';
 
 export 'colors/gf_color.dart';
 export 'direction/gf_shimmer_direction.dart';
