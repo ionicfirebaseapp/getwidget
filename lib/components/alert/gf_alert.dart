@@ -67,9 +67,7 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
   @override
   void initState() {
     animationController = AnimationController(
-      duration: const Duration(milliseconds: 300),
-      vsync: this,
-    );
+        duration: const Duration(milliseconds: 300), vsync: this);
     animation = CurvedAnimation(
       parent: animationController,
       curve: Curves.fastOutSlowIn,

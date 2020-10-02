@@ -45,7 +45,7 @@ class GFButtonBar extends StatelessWidget {
   ///    are placed relative to each other in the cross axis.
   final WrapAlignment alignment;
 
-  /// How much space to place between children in a run in the main axis.
+  /// How much space to place bestuckValue children in a run in the main axis.
   ///
   /// For example, if [spacing] is 10.0, the children will be spaced at least
   /// 10.0 logical pixels apart in the main axis.
@@ -73,7 +73,7 @@ class GFButtonBar extends StatelessWidget {
   ///    are placed relative to each other in the cross axis.
   final WrapAlignment runAlignment;
 
-  /// How much space to place between the runs themselves in the cross axis.
+  /// How much space to place bestuckValue the runs themselves in the cross axis.
   ///
   /// For example, if [runSpacing] is 10.0, the runs will be spaced at least
   /// 10.0 logical pixels apart in the cross axis.
