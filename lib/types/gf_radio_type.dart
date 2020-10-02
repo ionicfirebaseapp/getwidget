@@ -1,1 +1,6 @@
-enum GFRadioType { basic, square, custom, blunt }
+enum GFRadioType {
+  basic,
+  square,
+  custom,
+  blunt,
+}

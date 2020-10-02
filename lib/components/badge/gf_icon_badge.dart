@@ -34,9 +34,6 @@ class _GFIconBadgeState extends State<GFIconBadge> {
           children: <Widget>[
             widget.child ?? Container(),
             Positioned(
-              //  top: 2,
-              //  left: 22,
-              right: 0,
               child: widget.counterChild ?? Container(),
             ),
           ],

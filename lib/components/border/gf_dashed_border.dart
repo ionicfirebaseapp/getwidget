@@ -9,7 +9,7 @@ class DashedType extends CustomPainter {
     this.strokeWidth = 2,
     this.dashedLine = const <double>[3, 1],
     this.color = Colors.black,
-    this.type = GFBorderType.Rect,
+    this.type = GFBorderType.rect,
     this.radius = const Radius.circular(0),
     this.customPath,
   }) : assert(dashedLine.isNotEmpty, 'dash line cannot be empty');
@@ -21,7 +21,7 @@ class DashedType extends CustomPainter {
   final List<double> dashedLine;
 
   /// color of type [Color] or GFColor which is used to change the color of the border type
-  final dynamic color;
+  final Color color;
 
   /// type of [GFBorderType] which is used to define the different types of borders ie, circle, Rect, RRect and oval
   final GFBorderType type;
@@ -56,20 +56,19 @@ class DashedType extends CustomPainter {
   Path _getPath(Size size) {
     Path path;
     switch (type) {
-      case GFBorderType.Circle:
+      case GFBorderType.circle:
         path = _getCirclePath(size);
         break;
-      case GFBorderType.RRect:
+      case GFBorderType.rRect:
         path = _getRRectPath(size, radius);
         break;
-      case GFBorderType.Rect:
+      case GFBorderType.rect:
         path = _getRectPath(size);
         break;
-      case GFBorderType.Oval:
+      case GFBorderType.oval:
         path = _getOvalPath(size);
         break;
     }
-
     return dashPath(path, dashedarray: CircularIntervalList(dashedLine));
   }
 
@@ -94,7 +93,6 @@ class DashedType extends CustomPainter {
   }
 
   ///  gives a Rounded Rectangular Path with [radius] of [size] for borderType
-
   Path _getRRectPath(Size size, Radius radius) => Path()
     ..addRRect(
       RRect.fromRectAndRadius(
@@ -140,10 +138,8 @@ class DashedType extends CustomPainter {
 
 class CircularIntervalList<T> {
   CircularIntervalList(this.values);
-
   final List<T> values;
   int index = 0;
-
   T get next {
     if (index >= values.length) {
       index = 0;
@@ -159,7 +155,6 @@ Path dashPath(Path source,
   if (source == null) {
     return null;
   }
-
   final Path dest = Path();
   for (final PathMetric metric in source.computeMetrics()) {
     double distance = dashOffset._calculate(metric.length);
@@ -173,27 +168,26 @@ Path dashPath(Path source,
       draw = !draw;
     }
   }
-
   return dest;
 }
 
 /// Specifies the starting position of a dashed array or line  on a path, either as a percentage or absolute
-enum _DashOffsetType { Absolute, Percentage }
+enum _DashOffsetType { absolute, percentage }
 
 class DashOffset {
   ///gives offset of the dashed path that will be measured as a percentage which ranges from 0.0 to 1.0
   DashOffset.percentage(double percentage)
       : _value = percentage.clamp(0.0, 1.0) ?? 0.0,
-        _dashOffsetType = _DashOffsetType.Percentage;
+        _dashOffsetType = _DashOffsetType.percentage;
 
   ///gives offset of the dashed path that will be measured as a absolute value
   const DashOffset.absolute(double start)
       : _value = start ?? 0.0,
-        _dashOffsetType = _DashOffsetType.Absolute;
+        _dashOffsetType = _DashOffsetType.absolute;
 
   final double _value;
   final _DashOffsetType _dashOffsetType;
 
   double _calculate(double length) =>
-      _dashOffsetType == _DashOffsetType.Absolute ? _value : length * _value;
+      _dashOffsetType == _DashOffsetType.absolute ? _value : length * _value;
 }

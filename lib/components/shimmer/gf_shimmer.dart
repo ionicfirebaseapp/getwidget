@@ -45,12 +45,12 @@ class GFShimmer extends StatefulWidget {
   /// Defines the main color of the [child]'s shimmer effect.
   /// Child [Widget] takes main color, only if [showGradient] is false.
   /// Default [showGradient] will be false.
-  final dynamic mainColor;
+  final Color mainColor;
 
   /// defines the secondary color of the [child]'s shimmer effect.
   /// Child [Widget] takes secondary color, only if [showGradient] is false.
   /// Default [showGradient] will be false.
-  final dynamic secondaryColor;
+  final Color secondaryColor;
 
   @override
   _GFShimmerState createState() => _GFShimmerState();

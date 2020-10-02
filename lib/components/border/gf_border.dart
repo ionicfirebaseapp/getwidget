@@ -5,11 +5,12 @@ import 'package:getwidget/components/border/gf_dashed_border.dart';
 import 'package:getwidget/types/gf_border_type.dart';
 
 class GFBorder extends StatelessWidget {
+  /// Create different types of borders around given child widget
   GFBorder({
     @required this.child,
     this.color = Colors.black,
     this.strokeWidth = 1,
-    this.type = GFBorderType.Rect,
+    this.type = GFBorderType.rect,
     this.dashedLine = const <double>[3, 1],
     this.padding = const EdgeInsets.all(10),
     this.radius = const Radius.circular(0),
@@ -27,7 +28,7 @@ class GFBorder extends StatelessWidget {
   final double strokeWidth;
 
   /// color of type [Color] or GFColor which is used to change the color of the border type
-  final dynamic color;
+  final Color color;
 
   /// dashedLine of type [List<double>] which is used for the linear and simple dashed line of border
   final List<double> dashedLine;

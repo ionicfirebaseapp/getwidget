@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFCheckboxListTile extends StatelessWidget {
+  /// [GFCheckboxListTile] is a tile with small box at right (as in a checklist) in which to place a check mark to make a selection with various customization options.
   const GFCheckboxListTile({
     Key key,
     @required this.value,
@@ -12,6 +13,7 @@ class GFCheckboxListTile extends StatelessWidget {
     this.avatar,
     this.title,
     this.subTitle,
+    this.icon,
     this.description,
     this.padding = const EdgeInsets.all(8),
     this.margin = const EdgeInsets.all(16),
@@ -29,6 +31,7 @@ class GFCheckboxListTile extends StatelessWidget {
     ),
     this.inactiveIcon = const Icon(Icons.close),
     this.custombgColor = GFColors.SUCCESS,
+    this.position = GFPosition.end,
     this.selected = false,
     this.autofocus = false,
   })  : assert(value != null),
@@ -45,7 +48,7 @@ class GFCheckboxListTile extends StatelessWidget {
   /// The GFListTile's background color. Can be given [Color] or [GFColors]
   final Color color;
 
-  /// type of [Widget] or [GFAvatar] used to create rounded user profile
+  /// If position is start Checkbox will come instead of avatar, type of [Widget] or [GFAvatar] used to create rounded user profile
   final Widget avatar;
 
   /// The title to display inside the [GFListTile]. see [Text]
@@ -87,13 +90,16 @@ class GFCheckboxListTile extends StatelessWidget {
   /// Called when the user checks or unchecks the checkbox.
   final ValueChanged<bool> onChanged;
 
-  ///Used to set the current state of the checkbox
+  /// Used to set the current state of the checkbox
   final bool value;
 
-  ///type of Widget used to change the  checkbox's active icon
+  /// Position allows user to set position of [GFCheckbox] based on given [GFPosition]
+  final GFPosition position;
+
+  /// type of Widget used to change the  checkbox's active icon
   final Widget activeIcon;
 
-  ///type of [Widget] used to change the  checkbox's inactive icon
+  /// type of [Widget] used to change the  checkbox's inactive icon
   final Widget inactiveIcon;
 
   /// type of [Color] used to change the background color of the custom active  checkbox only
@@ -106,41 +112,46 @@ class GFCheckboxListTile extends StatelessWidget {
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
+  /// If position is end Checkbox will come instead of icon, The icon to display inside the [GFListTile]. see [Icon]
+  final Widget icon;
+
   @override
-  Widget build(BuildContext context) => MergeSemantics(
-        child: GFListTile(
-          autofocus: autofocus,
-          enabled: onChanged != null,
-          onTap: onChanged != null
-              ? () {
-                  onChanged(!value);
-                }
-              : null,
-          selected: selected,
-          avatar: avatar,
-          titleText: titleText,
-          subTitle: subTitle,
-          subtitleText: subtitleText,
-          description: description,
-          color: color,
-          padding: padding,
-          margin: margin,
-          title: title,
-          icon: GFCheckbox(
-            autofocus: autofocus,
-            onChanged: onChanged,
-            value: value,
-            size: size,
-            activebgColor: activebgColor,
-            inactiveIcon: inactiveIcon,
-            activeBorderColor: activeBorderColor,
-            inactivebgColor: inactivebgColor,
-            activeIcon: activeIcon,
-            inactiveBorderColor: inactiveBorderColor,
-            custombgColor: custombgColor,
-            checkColor: checkColor,
-            type: type,
-          ),
-        ),
-      );
+  Widget build(BuildContext context) {
+    final GFCheckbox checkbox = GFCheckbox(
+        autofocus: autofocus,
+        onChanged: onChanged,
+        value: value,
+        size: size,
+        activebgColor: activebgColor,
+        inactiveIcon: inactiveIcon,
+        activeBorderColor: activeBorderColor,
+        inactivebgColor: inactivebgColor,
+        activeIcon: activeIcon,
+        inactiveBorderColor: inactiveBorderColor,
+        custombgColor: custombgColor,
+        checkColor: checkColor,
+        type: type);
+    return MergeSemantics(
+      child: GFListTile(
+        autofocus: autofocus,
+        enabled: onChanged != null,
+        onTap: onChanged != null
+            ? () {
+                onChanged(!value);
+              }
+            : null,
+        selected: selected,
+        avatar: position == GFPosition.start ? checkbox : avatar,
+        titleText: titleText,
+        subTitle: subTitle,
+        subtitleText: subtitleText,
+        description: description,
+        color: color,
+        padding: padding,
+        margin: margin,
+        title: title,
+        icon: position == GFPosition.end ? checkbox : icon,
+      ),
+    );
+  }
 }

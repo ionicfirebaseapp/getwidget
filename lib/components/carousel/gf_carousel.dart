@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class GFCarousel extends StatefulWidget {
   /// Creates slide show of Images and [Widget] with animation for sliding.
   GFCarousel({

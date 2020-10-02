@@ -114,7 +114,7 @@ class GFIntroScreen extends StatefulWidget {
   final EdgeInsets navigationBarMargin;
 
   /// defines [GFIntroScreenBottomNavigationBar] color
-  final dynamic navigationBarColor;
+  final Color navigationBarColor;
 
   /// defines the shape of [GFIntroScreenBottomNavigationBar]
   final ShapeBorder navigationBarShape;
@@ -183,7 +183,7 @@ class GFIntroScreen extends StatefulWidget {
   final double dividerThickness;
 
   /// defines divider color
-  final dynamic dividerColor;
+  final Color dividerColor;
 
   /// defines pagination shape
   final ShapeBorder dotShape;
