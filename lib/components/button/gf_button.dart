@@ -420,7 +420,9 @@ class _GFButtonState extends State<GFButton> {
           widget.type == GFButtonType.transparent) {
         return widget.enabled
             ? textColor == null
-                ? color == GFColors.TRANSPARENT ? GFColors.DARK : color
+                ? color == GFColors.TRANSPARENT
+                    ? GFColors.DARK
+                    : color
                 : textColor
             : getDisabledTextColor();
       }
@@ -446,7 +448,9 @@ class _GFButtonState extends State<GFButton> {
               ? getBorderColor()
               : widget.borderSide.color,
       width: widget.borderSide?.width == null
-          ? widget.type == GFButtonType.outline2x ? 2.0 : 1.0
+          ? widget.type == GFButtonType.outline2x
+              ? 2.0
+              : 1.0
           : widget.borderSide?.width,
     );
 

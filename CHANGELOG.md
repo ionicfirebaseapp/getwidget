@@ -1,7 +1,7 @@
 # Changelog
 
 
-## 1.2.1 - 2020-10-02
+## 1.2.2 - 2020-10-02
 
 ### Fixed
 * [GFButton] width related issue.
