@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class GFDropdown<T> extends StatefulWidget {
-  GFDropdown(
+  ///
+  const GFDropdown(
       {Key key,
       @required this.items,
       this.icon,
@@ -26,13 +27,13 @@ class GFDropdown<T> extends StatefulWidget {
       this.dropdownColor,
       this.padding = const EdgeInsets.all(5),
       this.borderRadius = const BorderRadius.all(Radius.circular(4)),
-      this.borderColor});
+      this.borderColor})
+      : super(key: key);
 
-  DropdownButtonBuilder selectedItemBuilder;
+  final DropdownButtonBuilder selectedItemBuilder;
   final List<DropdownMenuItem<T>> items;
 
   /// The widget to use for the drop-down button's icon.
-  ///
   /// Defaults to an [Icon] with the [Icons.arrow_drop_down] glyph.
   final Widget icon;
 
@@ -55,7 +56,6 @@ class GFDropdown<T> extends StatefulWidget {
   final Widget disabledHint;
 
   /// Called when the user selects an item.
-  ///
   /// If the [onChanged] callback is null or the list of [DropdownButton.items]
   /// is null then the dropdown button will be disabled,
   final ValueChanged<T> onChanged;
@@ -114,38 +114,34 @@ class GFDropdown<T> extends StatefulWidget {
 
 class _GFDropdownState extends State<GFDropdown> {
   @override
-  Widget build(BuildContext context) {
-    return Card(
+  Widget build(BuildContext context) => Card(
         child: Container(
-            padding: widget.padding,
-            decoration: BoxDecoration(
-                borderRadius: widget.borderRadius,
-                border: Border.all(
-                    color: widget.borderColor != null
-                        ? widget.borderColor
-                        : Colors.white)),
-            child: DropdownButton(
-            
-              items: widget.items,
-              selectedItemBuilder: widget.selectedItemBuilder,
-              value: widget.value,
-              hint: widget.hint,
-              disabledHint: widget.disabledHint,
-              onChanged: widget.onChanged == null ? null : widget.onChanged,
-              onTap: widget.onTap,
-              elevation: widget.elevation,
-              style: widget.style,
-              icon: widget.icon,
-              iconDisabledColor: widget.iconDisabledColor,
-              iconEnabledColor: widget.iconEnabledColor,
-              iconSize: widget.iconSize,
-              isDense: widget.isDense,
-              isExpanded: widget.isExpanded,
-              itemHeight: widget.itemHeight,
-              focusColor: widget.focusColor,
-              focusNode: widget.focusNode,
-              autofocus: widget.autofocus,
-              dropdownColor: widget.dropdownColor,
-            )));
-  }
+          padding: widget.padding,
+          decoration: BoxDecoration(
+              borderRadius: widget.borderRadius,
+              border: Border.all(color: widget.borderColor ?? Colors.white)),
+          child: DropdownButton(
+            items: widget.items,
+            selectedItemBuilder: widget.selectedItemBuilder,
+            value: widget.value,
+            hint: widget.hint,
+            disabledHint: widget.disabledHint,
+            onChanged: widget.onChanged,
+            onTap: widget.onTap,
+            elevation: widget.elevation,
+            style: widget.style,
+            icon: widget.icon,
+            iconDisabledColor: widget.iconDisabledColor,
+            iconEnabledColor: widget.iconEnabledColor,
+            iconSize: widget.iconSize,
+            isDense: widget.isDense,
+            isExpanded: widget.isExpanded,
+            itemHeight: widget.itemHeight,
+            focusColor: widget.focusColor,
+            focusNode: widget.focusNode,
+            autofocus: widget.autofocus,
+            dropdownColor: widget.dropdownColor,
+          ),
+        ),
+      );
 }
