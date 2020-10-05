@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/types/gf_animation_type.dart';
 
 class GFAnimation extends StatefulWidget {
+  /// Wrap any widget with [GFAnimation] to animate your widget. see [GFAnimationType] for types of animations.
   const GFAnimation({
     Key key,
     this.duration,

@@ -22,6 +22,8 @@ export 'package:getwidget/components/checkbox/gf_checkbox.dart';
 export 'package:getwidget/components/checkbox_list_tile/gf_checkbox_list_tile.dart';
 export 'package:getwidget/components/drawer/gf_drawer.dart';
 export 'package:getwidget/components/drawer/gf_drawer_header.dart';
+// export 'package:getwidget/components/dropdown/gf_dropdown.dart';
+// export 'package:getwidget/components/dropdown/gf_multiselect.dart';
 export 'package:getwidget/components/floating_widget/gf_floating_widget.dart';
 export 'package:getwidget/components/image/gf_image_overlay.dart';
 export 'package:getwidget/components/intro_screen/gf_intro_screen_bottom_navigation_bar.dart';

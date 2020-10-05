@@ -107,7 +107,7 @@ class GFListTile extends StatelessWidget {
           selected: selected,
           enabled: enabled,
           child: Container(
-//        constraints: const BoxConstraints(minHeight: 50),
+            // constraints: const BoxConstraints(minHeight: 50),
             padding: padding,
             margin: margin,
             decoration: BoxDecoration(

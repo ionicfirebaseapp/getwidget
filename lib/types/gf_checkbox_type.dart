@@ -1,1 +1,6 @@
-enum GFCheckboxType { basic, circle, square, custom }
+enum GFCheckboxType {
+  basic,
+  circle,
+  square,
+  custom,
+}

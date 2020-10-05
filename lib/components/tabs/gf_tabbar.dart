@@ -9,15 +9,13 @@ import 'package:flutter/foundation.dart';
 ///
 /// Typically created as the [AppBar.bottom] part of an [AppBar] and in
 /// conjunction with a [TabBarView].
-
 class GFTabBar extends StatefulWidget {
   /// Creates a material design tab bar.
-  ///
   /// The [tabs] argument must not be null and its length must match the [controller]'s
   /// [TabController.length].
   const GFTabBar({
     Key key,
-//    this.initialIndex = 0,
+    // this.initialIndex = 0,
     @required this.length,
     this.isScrollable = false,
     this.tabBarHeight,
@@ -37,13 +35,13 @@ class GFTabBar extends StatefulWidget {
     this.shape,
   })  : assert(length != null && length >= 0),
         assert(isScrollable != null),
-//        assert(initialIndex != null &&
-//            initialIndex >= 0 &&
-//            (length == 0 || initialIndex < length)),
+        // assert(initialIndex != null &&
+        //     initialIndex >= 0 &&
+        //     (length == 0 || initialIndex < length)),
         super(key: key);
 
-//  /// The initial index of the selected tab. Defaults to zero.
-//  final int initialIndex;
+  // /// The initial index of the selected tab. Defaults to zero.
+  // final int initialIndex;
 
   /// The total number of tabs. Typically greater than one. Must match [TabBar.tabs]'s and
   /// [TabBarView.children]'s length.

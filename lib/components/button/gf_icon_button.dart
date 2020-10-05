@@ -162,7 +162,9 @@ class _GFIconButtonState extends State<GFIconButton> {
         widget.type == GFButtonType.outline ||
         widget.type == GFButtonType.outline2x) {
       return widget.onPressed != null
-          ? color == GFColors.TRANSPARENT ? GFColors.DARK : color
+          ? color == GFColors.TRANSPARENT
+              ? GFColors.DARK
+              : color
           : color.withOpacity(0.48);
     } else if (color == GFColors.TRANSPARENT) {
       return widget.onPressed != null ? GFColors.DARK : GFColors.WHITE;
@@ -182,7 +184,9 @@ class _GFIconButtonState extends State<GFIconButton> {
           ? getBorderColor()
           : widget.borderSide.color,
       width: widget.borderSide?.width == null
-          ? widget.type == GFButtonType.outline2x ? 2.0 : 1.0
+          ? widget.type == GFButtonType.outline2x
+              ? 2.0
+              : 1.0
           : widget.borderSide?.width,
     );
 
@@ -241,7 +245,9 @@ class _GFIconButtonState extends State<GFIconButton> {
       height: widget.shape == GFIconButtonShape.circle ? height + 6.0 : height,
       width: widget.shape == GFIconButtonShape.pills
           ? width + 10
-          : widget.shape == GFIconButtonShape.circle ? height + 6 : width,
+          : widget.shape == GFIconButtonShape.circle
+              ? height + 6
+              : width,
       padding: widget.padding,
       child: IconTheme.merge(
         data: IconThemeData(
@@ -309,7 +315,9 @@ class _GFIconButtonState extends State<GFIconButton> {
                 widget.shape == GFIconButtonShape.circle ? height + 6 : height,
             width: widget.shape == GFIconButtonShape.pills
                 ? width + 10
-                : widget.shape == GFIconButtonShape.circle ? height + 6 : width,
+                : widget.shape == GFIconButtonShape.circle
+                    ? height + 6
+                    : width,
             decoration:
                 widget.type == GFButtonType.solid ? getBoxShadow() : null,
             child: Material(

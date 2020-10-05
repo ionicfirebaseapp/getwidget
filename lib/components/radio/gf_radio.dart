@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class GFRadio<T> extends StatefulWidget {
+  /// [GFRadio] is one type of selection indicator in a list of options.
   const GFRadio(
       {Key key,
       @required this.value,
@@ -22,11 +23,7 @@ class GFRadio<T> extends StatefulWidget {
         size: 20,
         color: GFColors.DARK,
       ),
-      this.inactiveIcon = const Icon(
-        Icons.close,
-        size: 20,
-        color: GFColors.DARK,
-      ),
+      this.inactiveIcon,
       this.custombgColor = GFColors.SUCCESS,
       this.autofocus = false,
       this.focusNode,
@@ -95,7 +92,6 @@ class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
   T groupValue;
 
   void onStatusChange() {
-    print('wer ${widget.value == widget.groupValue}');
     groupValue = widget.value;
     _handleChanged(widget.value == groupValue);
   }
@@ -112,10 +108,7 @@ class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-//    print('gr ${widget.value} ${widget.groupValue}');
     selected = widget.value == widget.groupValue;
-//    print('sel $selected');
-
     return InkWell(
         enableFeedback: enabled,
         onTap: onStatusChange,

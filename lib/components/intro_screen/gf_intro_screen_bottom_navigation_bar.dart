@@ -82,7 +82,7 @@ class GFIntroScreenBottomNavigationBar extends StatefulWidget {
   final EdgeInsets navigationBarMargin;
 
   /// defines [GFIntroScreenBottomNavigationBar] color
-  final dynamic navigationBarColor;
+  final Color navigationBarColor;
 
   /// defines the shape of [GFIntroScreenBottomNavigationBar]
   final ShapeBorder navigationBarShape;
@@ -151,7 +151,7 @@ class GFIntroScreenBottomNavigationBar extends StatefulWidget {
   final double dividerThickness;
 
   /// defines divider color
-  final dynamic dividerColor;
+  final Color dividerColor;
 
   /// defines pagination shape
   final ShapeBorder dotShape;
@@ -197,6 +197,14 @@ class _GFIntroScreenBottomNavigationBarState
       }
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    if (_pageController != null) {
+      _pageController.dispose();
+    }
+    super.dispose();
   }
 
   void onForwardButton() {
