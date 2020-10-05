@@ -5,14 +5,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart' show DragStartBehavior;
 import 'package:getwidget/getwidget.dart';
 
-/// A page view that displays the widget which corresponds to the currently
-/// selected tab.
-///
+/// A page view that displays the widget which corresponds to the currently selected tab.
 /// This widget is typically used in conjunction with a [GFTabBar] or [GFSegmentTabs].
-///
 class GFTabBarView extends StatefulWidget {
   /// Creates a page view with one child per tab.
-  ///
   /// The length of [children] must be the same as the [controller]'s length.
   const GFTabBarView({
     Key key,
@@ -29,19 +25,15 @@ class GFTabBarView extends StatefulWidget {
   final TabController controller;
 
   /// One widget per tab.
-  ///
   /// Its length must match the length of the [GFTabBar.tabs]
   /// list, as well as the [controller]'s [TabController.length].
   final List<Widget> children;
 
   /// How the page view should respond to user input.
-  ///
   /// For example, determines how the page view continues to animate after the
   /// user stops dragging the page view.
-  ///
   /// The physics are modified to snap to page boundaries using
   /// [PageScrollPhysics] prior to being used.
-  ///
   /// Defaults to matching platform conventions.
   final ScrollPhysics physics;
 
@@ -84,7 +76,6 @@ class _GFTabBarViewState extends State<GFTabBarView> {
       }
       return true;
     }());
-
     if (newController == _controller) {
       return;
     }
@@ -141,7 +132,6 @@ class _GFTabBarViewState extends State<GFTabBarView> {
     if (_warpUnderwayCount > 0 || !_controller.indexIsChanging) {
       return;
     } // This widget is driving the controller's animation.
-
     if (_controller.index != _currentIndex) {
       _currentIndex = _controller.index;
       _warpToCurrentIndex();

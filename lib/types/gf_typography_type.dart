@@ -16,5 +16,5 @@ enum GFTypographyType {
   typo5,
 
   /// [GFTypographyType.typo6] type used for title widget with fontSize = 13.0
-  typo6
+  typo6,
 }

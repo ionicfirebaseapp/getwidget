@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class GFBottomSheet extends StatefulWidget {
+  /// Opens sheet from bottom as a popup on current sheets it has different customization options.
   GFBottomSheet({
     Key key,
     @required this.contentBody,
@@ -23,6 +24,7 @@ class GFBottomSheet extends StatefulWidget {
   }
 
   /// [minContentHeight] controls the minimum height of the content body.
+  /// content body with [minContentHeight] displays only when [enableExpandableContent] is false.
   /// It Must be greater or equal to 0. Default value is 0.
   final double minContentHeight;
 
@@ -52,7 +54,7 @@ class GFBottomSheet extends StatefulWidget {
   /// Must be greater or equal to 0. Default value is 0.
   final double elevation;
 
-  ///[enableExpandableContent] allows [contentBody] to expand.
+  /// [enableExpandableContent] allows [contentBody] to expand.
   /// Default value is false.
   final bool enableExpandableContent;
 
@@ -121,7 +123,6 @@ class _GFBottomSheetState extends State<GFBottomSheet>
         Theme.of(context).bottomSheetTheme;
     final double elevation =
         widget.elevation ?? bottomSheetTheme.elevation ?? 0;
-
     final Widget bottomSheet = Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -245,9 +246,7 @@ class GFBottomSheetController extends ValueNotifier<bool> {
 
   // ignore: unnecessary_getters_setters
   double get height => _height;
-
   bool get isBottomSheetOpened => value;
-
   void hideBottomSheet() => value = false;
   void showBottomSheet() => value = true;
 }

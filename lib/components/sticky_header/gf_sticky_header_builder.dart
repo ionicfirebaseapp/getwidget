@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 typedef StickyHeaderWidgetBuilder = Widget Function(
-    BuildContext context, double stuckValue);
-
-/// Place this widget inside a [ListView], [GridView], [CustomScrollView], [SingleChildScrollView] or similar.
+  BuildContext context,
+  double stuckValue,
+);
 
 class GFStickyHeaderBuilder extends StatefulWidget {
+  /// Place this widget inside a [ListView], [GridView], [CustomScrollView], [SingleChildScrollView] or similar.
   /// Constructs a new [GFStickyHeaderBuilder] widget.
   const GFStickyHeaderBuilder({
     Key key,
@@ -19,7 +20,7 @@ class GFStickyHeaderBuilder extends StatefulWidget {
   })  : assert(direction != null),
         super(key: key);
 
-  /// widget can be used to define [stickyContentBuilder].
+  /// builder widget can be used to define [stickyContentBuilder].
   final StickyHeaderWidgetBuilder stickyContentBuilder;
 
   /// widget can be used to define [content].

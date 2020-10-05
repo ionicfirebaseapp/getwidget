@@ -10,5 +10,5 @@ enum GFButtonType {
   outline2x,
 
   /// Type [GFButtonType.transparent], used for widget with fill color with Colors.transparent
-  transparent
+  transparent,
 }

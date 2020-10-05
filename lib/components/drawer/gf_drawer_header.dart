@@ -75,9 +75,7 @@ class GFDrawerHeaderPictures extends StatelessWidget {
 }
 
 /// A material design [Drawer] header that identifies the app's user.
-///
 /// Requires one of its ancestors to be a [Material] widget.
-///
 class GFDrawerHeader extends StatefulWidget {
   /// Creates a material design drawer header.
   ///

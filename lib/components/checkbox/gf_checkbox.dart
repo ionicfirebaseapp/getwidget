@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFCheckbox extends StatefulWidget {
+  /// [GFCheckbox] is a small box (as in a checklist) in which to place a check mark to make a selection with various customization options.
   const GFCheckbox(
       {Key key,
       this.size = GFSize.MEDIUM,
@@ -18,7 +19,7 @@ class GFCheckbox extends StatefulWidget {
         size: 20,
         color: GFColors.WHITE,
       ),
-      this.inactiveIcon = const Icon(Icons.close),
+      this.inactiveIcon,
       this.custombgColor = GFColors.SUCCESS,
       this.autofocus = false,
       this.focusNode})
