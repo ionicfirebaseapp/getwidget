@@ -14,7 +14,7 @@ class GFBottomSheet extends StatefulWidget {
     this.elevation = 0.0,
     this.stickyFooterHeight = 0.0,
     this.stickyHeaderHeight = 0.0,
-    this.animationDuration = 300,
+    this.animationDuration = 1200,
     this.enableExpandableContent = false,
   })  : assert(elevation >= 0.0),
         assert(minContentHeight >= 0.0),
@@ -71,7 +71,8 @@ class GFBottomSheet extends StatefulWidget {
 
 class _GFBottomSheetState extends State<GFBottomSheet>
     with TickerProviderStateMixin {
-  final StreamController<double> controller = StreamController.broadcast();
+  final StreamController<double> _streamController =
+      StreamController.broadcast();
   bool isDragDirectionUp;
   bool showBottomSheet = false;
   Function _controllerListener;
@@ -152,34 +153,38 @@ class _GFBottomSheetState extends State<GFBottomSheet>
                       child: widget.contentBody),
                 ),
               )
-            : showContent
-                ? StreamBuilder(
-                    stream: controller.stream,
-                    initialData: widget.controller.height,
-                    builder: (context, snapshot) => GestureDetector(
-                        onVerticalDragUpdate: (DragUpdateDetails details) {
-                          if (((widget.controller.height - details.delta.dy) >
-                                  widget.minContentHeight) &&
-                              ((widget.controller.height - details.delta.dy) <
-                                  (MediaQuery.of(context).size.height * 0.8 -
-                                      widget.stickyFooterHeight -
-                                      widget.stickyHeaderHeight))) {
-                            isDragDirectionUp = details.delta.dy <= 0;
-                            widget.controller.height -= details.delta.dy;
-                          }
-                          controller.add(widget.controller.height);
-                        },
-                        onVerticalDragEnd: _onVerticalDragEnd,
-                        onTap: _onTap,
-                        behavior: HitTestBehavior.translucent,
-                        child: Container(
-                          height: snapshot.hasData == null
-                              ? widget.minContentHeight
-                              : snapshot.data,
-                          child: widget.contentBody,
-                        )),
-                  )
-                : Container(),
+            : widget.controller.height == widget.minContentHeight ? Container()
+            : StreamBuilder(
+                stream: _streamController.stream,
+                initialData: widget.controller.height,
+                builder: (BuildContext context, AsyncSnapshot snapshot) =>
+                    AnimatedContainer(
+                  curve: Curves.easeOut,
+                  duration: Duration(
+                      milliseconds: widget.controller.animationDuration),
+                  height: snapshot.hasData == null
+                      ? widget.minContentHeight
+                      : snapshot.data,
+                  child: GestureDetector(
+                    onVerticalDragUpdate: (DragUpdateDetails details) {
+                      if (((widget.controller.height - details.delta.dy) >
+                              widget.minContentHeight) &&
+                          ((widget.controller.height - details.delta.dy) <
+                              (MediaQuery.of(context).size.height * 0.8 -
+                                  widget.stickyFooterHeight -
+                                  widget.stickyHeaderHeight))) {
+                        isDragDirectionUp = details.delta.dy <= 0;
+                        widget.controller.height -= details.delta.dy;
+                      }
+                      _streamController.add(widget.controller.height);
+                    },
+                    onVerticalDragEnd: _onVerticalDragEnd,
+                    onTap: _onTap,
+                    behavior: HitTestBehavior.translucent,
+                    child: widget.contentBody,
+                  ),
+                ),
+              ),
         widget.stickyFooter == null
             ? Container()
             : AnimatedBuilder(

@@ -16,7 +16,7 @@ class GFCheckboxListTile extends StatelessWidget {
     this.icon,
     this.description,
     this.padding = const EdgeInsets.all(8),
-    this.margin = const EdgeInsets.all(16),
+    this.margin = const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
     this.size = GFSize.MEDIUM,
     this.type = GFCheckboxType.basic,
     this.checkColor = GFColors.WHITE,

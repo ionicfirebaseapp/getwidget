@@ -79,8 +79,8 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
     if (mounted) {
       animationController.forward();
       fadeanimationController =
-          AnimationController(duration: widget.animationDuration, vsync: this)
-            ..addListener(() => setState(() {}));
+      AnimationController(duration: widget.animationDuration, vsync: this)
+        ..addListener(() => setState(() {}));
       fadeanimation = Tween<double>(
         begin: 0,
         end: 1,
@@ -117,59 +117,59 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
   Widget build(BuildContext context) => hideToast
       ? Container()
       : FadeTransition(
-          opacity: widget.autoDismiss ? fadeanimation : animation,
-          child: Column(
+    opacity: widget.autoDismiss ? fadeanimation : animation,
+    child: Column(
+      children: <Widget>[
+        Container(
+          width: widget.type == GFToastType.fullWidth
+              ? MediaQuery.of(context).size.width
+              : widget.width ?? MediaQuery.of(context).size.width * 0.885,
+          constraints: const BoxConstraints(minHeight: 50),
+          margin: widget.type == GFToastType.fullWidth
+              ? const EdgeInsets.only(left: 0, right: 0)
+              : const EdgeInsets.only(left: 10, right: 10),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              borderRadius: widget.type == GFToastType.basic
+                  ? BorderRadius.circular(0)
+                  : widget.type == GFToastType.rounded
+                  ? BorderRadius.circular(10)
+                  : BorderRadius.zero,
+              color: widget.backgroundColor ?? const Color(0xff323232),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.40),
+                  blurRadius: 6,
+                )
+              ]),
+          child: Row(
             children: <Widget>[
-              Container(
-                width: widget.type == GFToastType.fullWidth
-                    ? MediaQuery.of(context).size.width
-                    : widget.width ?? MediaQuery.of(context).size.width * 0.885,
-                constraints: const BoxConstraints(minHeight: 50),
-                margin: widget.type == GFToastType.fullWidth
-                    ? const EdgeInsets.only(left: 0, right: 0)
-                    : const EdgeInsets.only(left: 10, right: 10),
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    borderRadius: widget.type == GFToastType.basic
-                        ? BorderRadius.circular(0)
-                        : widget.type == GFToastType.rounded
-                            ? BorderRadius.circular(10)
-                            : BorderRadius.zero,
-                    color: widget.backgroundColor ?? const Color(0xff323232),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.40),
-                        blurRadius: 6,
-                      )
-                    ]),
-                child: Row(
-                  children: <Widget>[
-                    Flexible(
-                      flex: 7,
-                      fit: FlexFit.tight,
-                      child: Align(
-                        alignment: widget.alignment ?? Alignment.topLeft,
-                        child: widget.text != null
-                            ? Text(widget.text, style: widget.textStyle)
-                            : (widget.child ?? Container()),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    widget.button != null
-                        ? Flexible(
-                            flex: 4,
-                            fit: FlexFit.tight,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: widget.button,
-                            ))
-                        : Container()
-                  ],
+              Flexible(
+                flex: 7,
+                fit: FlexFit.tight,
+                child: Align(
+                  alignment: widget.alignment ?? Alignment.topLeft,
+                  child: widget.text != null
+                      ? Text(widget.text, style: widget.textStyle)
+                      : (widget.child ?? Container()),
                 ),
               ),
+              const SizedBox(
+                width: 10,
+              ),
+              widget.button != null
+                  ? Flexible(
+                  flex: 4,
+                  fit: FlexFit.tight,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: widget.button,
+                  ))
+                  : Container()
             ],
           ),
-        );
+        ),
+      ],
+    ),
+  );
 }

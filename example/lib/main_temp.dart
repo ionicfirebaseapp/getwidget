@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'dart:async';
 
 final List<String> imageList = [
   'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg',
@@ -37,72 +38,276 @@ class BottomSheetPage extends StatefulWidget {
 class _BottomSheetPageState extends State<BottomSheetPage> {
   final GFBottomSheetController _controller = GFBottomSheetController();
   bool isSelected = false;
+
+  bool showFloatingToast = false;
+  Timer autoTimer;
+  bool showBlurness = true;
+  Duration autoTimerDuration = Duration(milliseconds: 400);
+
+  bool check = true;
+  int groupValue = 0;
+
+  List list = [
+    'Flutter',
+    'React',
+    'Ionic',
+    'Xamarin',
+    'Flutter2',
+    'React2',
+    'Ionic2',
+    'Xamarin2',
+  ];
+
   @override
   Widget build(BuildContext context) => Scaffold(
-        body:GFTabs(
-          initialIndex: 4,
-          isScrollable: true,
-          length: 8,
-          tabs: <Widget>[
-            Tab(
-              icon: Icon(Icons.directions_bike),
-              child: Text(
-                "Tab1",
-              ),
+        appBar: GFAppBar(
+          title: Text('GF Toasting'),
+        ),
+        body: GFFloatingWidget(
+          verticalPosition: MediaQuery.of(context).size.width * 0.5,
+          horizontalPosition: MediaQuery.of(context).size.height * 0.02,
+          showBlurness: showFloatingToast,
+          blurnessColor: Colors.black87,
+          child: showFloatingToast
+              ? GFToast(
+            backgroundColor: Colors.white,
+            text:
+            'You have succesfully viewed how the floating toast works!!',
+            textStyle: const TextStyle(color: Colors.black87),
+            button: GFButton(
+              onPressed: () {
+                setState(() {
+                  showFloatingToast = false;
+                });
+              },
+              text: 'OK',
+              type: GFButtonType.transparent,
+              color: GFColors.SUCCESS,
             ),
-            Tab(
-              icon: Icon(Icons.directions_bus),
-              child: Text(
-                "Tab2",
-              ),
-            ),
-            Tab(
-              icon: Icon(Icons.directions_railway),
-              child: Text(
-                "Tab3",
-              ),
-            ),
-            Tab(
-              icon: Icon(Icons.directions_bike),
-              child: Text(
-                "Tab4",
-              ),
-            ),
-            Tab(
-              icon: Icon(Icons.directions_bus),
-              child: Text(
-                "Tab5",
-              ),
-            ),
-            Tab(
-              icon: Icon(Icons.directions_railway),
-              child: Text(
-                "Tab6",
-              ),
-            ),
-            Tab(
-              icon: Icon(Icons.directions_bike),
-              child: Text(
-                "Tab66",
-              ),
-            ),
-            Tab(
-              icon: Icon(Icons.directions_bike),
-              child: Text(
-                "Tab666",
-              ),
-            ),
-          ],
-          tabBarView: GFTabBarView(
+            autoDismiss: false,
+          )
+              : Container(),
+          body: ListView(
+            physics: const ScrollPhysics(),
             children: <Widget>[
-              Container(child: Icon(Icons.directions_bike), color: Colors.red,),
-              Container(child: Icon(Icons.directions_bus), color: Colors.blue,),
-              Container(child: Icon(Icons.directions_railway), color: Colors.orange,),
-              Container(child: Icon(Icons.directions_bike), color: Colors.red,),
-              Container(child: Icon(Icons.directions_bus), color: Colors.blue,),
-              Container(child: Icon(Icons.directions_railway), color: Colors.orange,),
-              Container(child: Icon(Icons.directions_bus), color: Colors.blue,),
-              Container(child: Icon(Icons.directions_railway), color: Colors.orange,),
+              GFSearchBar(
+                  searchList: list,
+                  searchQueryBuilder: (query, list) => list
+                      .where((item) =>
+                      item.toLowerCase().contains(query.toLowerCase()))
+                      .toList(),
+                  overlaySearchListItemBuilder: (item) => Container(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      item,
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                  ),
+                  onItemSelected: (item) {
+                    setState(() {
+                      print('$item');
+                    });
+                  }),
+              const Padding(
+                padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
+                child: GFTypography(
+                  text: 'Customised SearchBar',
+                  type: GFTypographyType.typo5,
+                  dividerWidth: 25,
+                  dividerColor: Color(0xFF19CA4B),
+                ),
+              ),
+              GFSearchBar(
+                  searchBoxInputDecoration: InputDecoration(
+                    labelText: 'Type Here',
+                    labelStyle: const TextStyle(color: Colors.black26),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.greenAccent),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Colors.black26,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black12),
+                        borderRadius: BorderRadius.circular(50)),
+                  ),
+                  searchList: list,
+                  searchQueryBuilder: (query, list) => list
+                      .where((item) =>
+                      item.toLowerCase().contains(query.toLowerCase()))
+                      .toList(),
+                  overlaySearchListItemBuilder: (item) => Container(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      item,
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                  ),
+                  onItemSelected: (item) {
+                    setState(() {
+                      print('$item');
+                    });
+                  }),
+              const Padding(
+                padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
+                child: GFTypography(
+                  text: 'Animated Toasts (Auto Dismissable)',
+                  type: GFTypographyType.typo5,
+                  dividerWidth: 25,
+                  dividerColor: Color(0xFF19CA4B),
+                ),
+              ),
+              GFToast(
+                text: 'Auto Dismissable after the given duration !',
+                button: GFButton(
+                  onPressed: () {},
+                  text: 'OK',
+                  type: GFButtonType.transparent,
+                  color: GFColors.SUCCESS,
+                ),
+                autoDismiss: true,
+                duration: const Duration(seconds: 5),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const GFToast(
+                text: 'Pass true to autoDismiss property to use this effect!',
+                autoDismiss: true,
+                duration: Duration(seconds: 2),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
+                child: GFTypography(
+                  text: 'Basic Toasts',
+                  type: GFTypographyType.typo5,
+                  dividerWidth: 25,
+                  dividerColor: Color(0xFF19CA4B),
+                ),
+              ),
+              GFToast(
+                text: 'Paired Succesfully !',
+                button: GFButton(
+                  onPressed: () {},
+                  text: 'OK',
+                  type: GFButtonType.transparent,
+                  color: GFColors.SUCCESS,
+                ),
+                autoDismiss: false,
+                duration: const Duration(milliseconds: 300),
+                alignment: Alignment.topLeft,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              GFToast(
+                text:
+                'This item already has the label “travel”. You can add  new label. !',
+                button: GFButton(
+                  onPressed: () {},
+                  text: 'OK',
+                  type: GFButtonType.transparent,
+                  color: GFColors.SUCCESS,
+                ),
+                autoDismiss: false,
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
+                child: GFTypography(
+                  text: 'Rounded Toasts',
+                  type: GFTypographyType.typo5,
+                  dividerWidth: 25,
+                  dividerColor: Color(0xFF19CA4B),
+                ),
+              ),
+              GFToast(
+                text: 'Paired Succesfully !',
+                button: GFButton(
+                  onPressed: () {},
+                  text: 'OK',
+                  type: GFButtonType.transparent,
+                  color: GFColors.SUCCESS,
+                ),
+                type: GFToastType.rounded,
+                autoDismiss: false,
+                alignment: Alignment.topLeft,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              GFToast(
+                text:
+                'This item already has the label “travel”. You can add a new label. !',
+                button: GFButton(
+                  onPressed: () {},
+                  text: 'OK',
+                  type: GFButtonType.transparent,
+                  color: GFColors.SUCCESS,
+                ),
+                autoDismiss: false,
+                type: GFToastType.rounded,
+                alignment: Alignment.topLeft,
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
+                child: GFTypography(
+                  text: 'Full Width Toasts',
+                  type: GFTypographyType.typo5,
+                  dividerWidth: 25,
+                  dividerColor: Color(0xFF19CA4B),
+                ),
+              ),
+              GFToast(
+                text: 'Paired Succesfully !',
+                button: GFButton(
+                  onPressed: () {},
+                  text: 'OK',
+                  type: GFButtonType.transparent,
+                  color: GFColors.SUCCESS,
+                ),
+                type: GFToastType.fullWidth,
+                autoDismiss: false,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              GFToast(
+                text:
+                'This item already has the label “travel”. You can add a new label.!',
+                button: GFButton(
+                  onPressed: () {},
+                  text: 'OK',
+                  type: GFButtonType.transparent,
+                  color: GFColors.SUCCESS,
+                ),
+                autoDismiss: false,
+                type: GFToastType.fullWidth,
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
+                child: GFTypography(
+                  text: 'Floating Toast',
+                  type: GFTypographyType.typo5,
+                  dividerWidth: 25,
+                  dividerColor: Color(0xFF19CA4B),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 40, right: 40),
+                child: GFButton(
+                  onPressed: () {
+                    setState(() {
+                      showFloatingToast = !showFloatingToast;
+                    });
+                  },
+                  text: 'View Floating Toast',
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),
