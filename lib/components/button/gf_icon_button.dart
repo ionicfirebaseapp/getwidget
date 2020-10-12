@@ -111,7 +111,7 @@ class _GFIconButtonState extends State<GFIconButton> {
   BoxShadow boxShadow;
   double height;
   double width;
-  double iconPixel = 18.0;
+  double iconPixel = 18;
 
   @override
   void initState() {
@@ -230,7 +230,7 @@ class _GFIconButtonState extends State<GFIconButton> {
     } else if (widget.size == GFSize.MEDIUM) {
       height = 35.0;
       width = 35.0;
-      iconPixel =  28.0;
+      iconPixel = 28.0;
     } else if (widget.size == GFSize.LARGE) {
       height = 40.0;
       width = 40.0;
@@ -246,7 +246,7 @@ class _GFIconButtonState extends State<GFIconButton> {
       //         : width,
       padding: widget.padding,
       child: SizedBox(
-        height: widget.iconSize != 0 ?  widget.iconSize : iconPixel,
+        height: widget.iconSize != 0 ? widget.iconSize : iconPixel,
         width: widget.iconSize != 0 ? widget.iconSize : iconPixel,
         child: Align(
           alignment: Alignment.center,
@@ -319,15 +319,13 @@ class _GFIconButtonState extends State<GFIconButton> {
           //     : widget.shape == GFIconButtonShape.circle
           //         ? height + 6
           //         : width,
-          decoration:
-              widget.type == GFButtonType.solid ? getBoxShadow() : null,
+          decoration: widget.type == GFButtonType.solid ? getBoxShadow() : null,
           child: Material(
             shape: widget.type == GFButtonType.transparent
                 ? null
                 : widget.borderShape ?? shapeBorderType,
-            color: widget.onPressed != null
-                ? getColor()
-                : getDisabledFillColor(),
+            color:
+                widget.onPressed != null ? getColor() : getDisabledFillColor(),
             type: widget.type == GFButtonType.transparent
                 ? MaterialType.transparency
                 : MaterialType.button,
@@ -338,15 +336,16 @@ class _GFIconButtonState extends State<GFIconButton> {
               hoverColor: widget.hoverColor ?? Theme.of(context).hoverColor,
               highlightColor:
                   widget.highlightColor ?? Theme.of(context).highlightColor,
-              splashColor:
-                  widget.splashColor ?? Theme.of(context).splashColor,
+              splashColor: widget.splashColor ?? Theme.of(context).splashColor,
               radius: math.max(
                   Material.defaultSplashRadius,
-                  (widget.iconSize > 0.0 ? widget.iconSize : iconPixel +
-                          math.min(
-                            widget.padding.horizontal,
-                            widget.padding.vertical,
-                          )) *
+                  (widget.iconSize > 0.0
+                          ? widget.iconSize
+                          : iconPixel +
+                              math.min(
+                                widget.padding.horizontal,
+                                widget.padding.vertical,
+                              )) *
                       0.7),
             ),
           ),

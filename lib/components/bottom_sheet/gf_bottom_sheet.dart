@@ -153,38 +153,39 @@ class _GFBottomSheetState extends State<GFBottomSheet>
                       child: widget.contentBody),
                 ),
               )
-            : widget.controller.height == widget.minContentHeight ? Container()
-            : StreamBuilder(
-                stream: _streamController.stream,
-                initialData: widget.controller.height,
-                builder: (BuildContext context, AsyncSnapshot snapshot) =>
-                    AnimatedContainer(
-                  curve: Curves.easeOut,
-                  duration: Duration(
-                      milliseconds: widget.controller.animationDuration),
-                  height: snapshot.hasData == null
-                      ? widget.minContentHeight
-                      : snapshot.data,
-                  child: GestureDetector(
-                    onVerticalDragUpdate: (DragUpdateDetails details) {
-                      if (((widget.controller.height - details.delta.dy) >
-                              widget.minContentHeight) &&
-                          ((widget.controller.height - details.delta.dy) <
-                              (MediaQuery.of(context).size.height * 0.8 -
-                                  widget.stickyFooterHeight -
-                                  widget.stickyHeaderHeight))) {
-                        isDragDirectionUp = details.delta.dy <= 0;
-                        widget.controller.height -= details.delta.dy;
-                      }
-                      _streamController.add(widget.controller.height);
-                    },
-                    onVerticalDragEnd: _onVerticalDragEnd,
-                    onTap: _onTap,
-                    behavior: HitTestBehavior.translucent,
-                    child: widget.contentBody,
+            : widget.controller.height == widget.minContentHeight
+                ? Container()
+                : StreamBuilder(
+                    stream: _streamController.stream,
+                    initialData: widget.controller.height,
+                    builder: (BuildContext context, AsyncSnapshot snapshot) =>
+                        AnimatedContainer(
+                      curve: Curves.easeOut,
+                      duration: Duration(
+                          milliseconds: widget.controller.animationDuration),
+                      height: snapshot.hasData == null
+                          ? widget.minContentHeight
+                          : snapshot.data,
+                      child: GestureDetector(
+                        onVerticalDragUpdate: (DragUpdateDetails details) {
+                          if (((widget.controller.height - details.delta.dy) >
+                                  widget.minContentHeight) &&
+                              ((widget.controller.height - details.delta.dy) <
+                                  (MediaQuery.of(context).size.height * 0.8 -
+                                      widget.stickyFooterHeight -
+                                      widget.stickyHeaderHeight))) {
+                            isDragDirectionUp = details.delta.dy <= 0;
+                            widget.controller.height -= details.delta.dy;
+                          }
+                          _streamController.add(widget.controller.height);
+                        },
+                        onVerticalDragEnd: _onVerticalDragEnd,
+                        onTap: _onTap,
+                        behavior: HitTestBehavior.translucent,
+                        child: widget.contentBody,
+                      ),
+                    ),
                   ),
-                ),
-              ),
         widget.stickyFooter == null
             ? Container()
             : AnimatedBuilder(
