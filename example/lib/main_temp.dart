@@ -58,6 +58,8 @@ class _BottomSheetPageState extends State<BottomSheetPage> {
     'Xamarin2',
   ];
 
+  String selected;
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: GFAppBar(
@@ -87,229 +89,472 @@ class _BottomSheetPageState extends State<BottomSheetPage> {
             autoDismiss: false,
           )
               : Container(),
-          body: ListView(
-            physics: const ScrollPhysics(),
-            children: <Widget>[
-              GFSearchBar(
-                  searchList: list,
-                  searchQueryBuilder: (query, list) => list
-                      .where((item) =>
-                      item.toLowerCase().contains(query.toLowerCase()))
-                      .toList(),
-                  overlaySearchListItemBuilder: (item) => Container(
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      item,
-                      style: const TextStyle(fontSize: 18),
-                    ),
+          body: Column(
+            children: [
+
+
+
+              GFTypography(
+                child: Text(
+                  selected ?? 'nothing selected yet',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
                   ),
-                  onItemSelected: (item) {
-                    setState(() {
-                      print('$item');
-                    });
-                  }),
-              const Padding(
-                padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
-                child: GFTypography(
-                  text: 'Customised SearchBar',
-                  type: GFTypographyType.typo5,
-                  dividerWidth: 25,
-                  dividerColor: Color(0xFF19CA4B),
                 ),
+                type: GFTypographyType.typo5,
+                dividerWidth: 45,
+                dividerColor: Color(0xFF19CA4B),
               ),
-              GFSearchBar(
-                  searchBoxInputDecoration: InputDecoration(
-                    labelText: 'Type Here',
-                    labelStyle: const TextStyle(color: Colors.black26),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.greenAccent),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Colors.black26,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black12),
-                        borderRadius: BorderRadius.circular(50)),
+
+
+              GFIconButton(
+                onPressed: () {
+                  print('ffffffffff');
+                },
+                icon: Icon(Icons.ac_unit),
+                // iconSize: 42.0,
+                type: GFButtonType.solid,
+                // shape: GFIconButtonShape.circle,
+                size: GFSize.SMALL,
+                // buttonBoxShadow: true,
+                color: GFColors.WARNING,
+                // boxShadow: BoxShadow(
+                //   color: Colors.pink,
+                //   blurRadius: 2.0,
+                //   spreadRadius: 1.0,
+                //   offset: Offset.zero,
+                // ),
+                // borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+                // borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
+              ),
+
+              SizedBox(
+                height: 22,
+              ),
+
+              GFIconButton(
+                onPressed: () {
+                  print('ffffffffff');
+                },
+                icon: Icon(Icons.ac_unit),
+                // iconSize: 62.0,
+                type: GFButtonType.solid,
+                // shape: GFIconButtonShape.circle,
+                size: GFSize.MEDIUM,
+                // buttonBoxShadow: true,
+                color: GFColors.WARNING,
+                // boxShadow: BoxShadow(
+                //   color: Colors.pink,
+                //   blurRadius: 2.0,
+                //   spreadRadius: 1.0,
+                //   offset: Offset.zero,
+                // ),
+                // borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+                // borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
+              ),
+
+              SizedBox(
+                height: 22,
+              ),
+
+              GFIconButton(
+                onPressed: () {
+                  print('ffffffffff');
+                },
+                icon: Icon(Icons.ac_unit),
+                // iconSize: 62.0,
+                type: GFButtonType.transparent,
+                // shape: GFIconButtonShape.pills,
+                size: GFSize.LARGE,
+                // buttonBoxShadow: true,
+                color: GFColors.WARNING,
+                // boxShadow: BoxShadow(
+                //   color: Colors.pink,
+                //   blurRadius: 2.0,
+                //   spreadRadius: 1.0,
+                //   offset: Offset.zero,
+                // ),
+                // borderSide: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+                // borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.circular(22)),
+              ),
+
+
+              GFTypography(
+                child: Text(
+                  selected ?? 'nothing selected yet',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
                   ),
-                  searchList: list,
-                  searchQueryBuilder: (query, list) => list
-                      .where((item) =>
-                      item.toLowerCase().contains(query.toLowerCase()))
-                      .toList(),
-                  overlaySearchListItemBuilder: (item) => Container(
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      item,
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                  ),
-                  onItemSelected: (item) {
-                    setState(() {
-                      print('$item');
-                    });
-                  }),
-              const Padding(
-                padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
-                child: GFTypography(
-                  text: 'Animated Toasts (Auto Dismissable)',
-                  type: GFTypographyType.typo5,
-                  dividerWidth: 25,
-                  dividerColor: Color(0xFF19CA4B),
                 ),
+                type: GFTypographyType.typo5,
+                dividerWidth: 45,
+                dividerColor: Color(0xFF19CA4B),
               ),
-              GFToast(
-                text: 'Auto Dismissable after the given duration !',
-                button: GFButton(
-                  onPressed: () {},
-                  text: 'OK',
-                  type: GFButtonType.transparent,
-                  color: GFColors.SUCCESS,
-                ),
-                autoDismiss: true,
-                duration: const Duration(seconds: 5),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              const GFToast(
-                text: 'Pass true to autoDismiss property to use this effect!',
-                autoDismiss: true,
-                duration: Duration(seconds: 2),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
-                child: GFTypography(
-                  text: 'Basic Toasts',
-                  type: GFTypographyType.typo5,
-                  dividerWidth: 25,
-                  dividerColor: Color(0xFF19CA4B),
-                ),
-              ),
-              GFToast(
-                text: 'Paired Succesfully !',
-                button: GFButton(
-                  onPressed: () {},
-                  text: 'OK',
-                  type: GFButtonType.transparent,
-                  color: GFColors.SUCCESS,
-                ),
-                autoDismiss: false,
-                duration: const Duration(milliseconds: 300),
-                alignment: Alignment.topLeft,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              GFToast(
-                text:
-                'This item already has the label “travel”. You can add  new label. !',
-                button: GFButton(
-                  onPressed: () {},
-                  text: 'OK',
-                  type: GFButtonType.transparent,
-                  color: GFColors.SUCCESS,
-                ),
-                autoDismiss: false,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
-                child: GFTypography(
-                  text: 'Rounded Toasts',
-                  type: GFTypographyType.typo5,
-                  dividerWidth: 25,
-                  dividerColor: Color(0xFF19CA4B),
-                ),
-              ),
-              GFToast(
-                text: 'Paired Succesfully !',
-                button: GFButton(
-                  onPressed: () {},
-                  text: 'OK',
-                  type: GFButtonType.transparent,
-                  color: GFColors.SUCCESS,
-                ),
-                type: GFToastType.rounded,
-                autoDismiss: false,
-                alignment: Alignment.topLeft,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              GFToast(
-                text:
-                'This item already has the label “travel”. You can add a new label. !',
-                button: GFButton(
-                  onPressed: () {},
-                  text: 'OK',
-                  type: GFButtonType.transparent,
-                  color: GFColors.SUCCESS,
-                ),
-                autoDismiss: false,
-                type: GFToastType.rounded,
-                alignment: Alignment.topLeft,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
-                child: GFTypography(
-                  text: 'Full Width Toasts',
-                  type: GFTypographyType.typo5,
-                  dividerWidth: 25,
-                  dividerColor: Color(0xFF19CA4B),
-                ),
-              ),
-              GFToast(
-                text: 'Paired Succesfully !',
-                button: GFButton(
-                  onPressed: () {},
-                  text: 'OK',
-                  type: GFButtonType.transparent,
-                  color: GFColors.SUCCESS,
-                ),
-                type: GFToastType.fullWidth,
-                autoDismiss: false,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              GFToast(
-                text:
-                'This item already has the label “travel”. You can add a new label.!',
-                button: GFButton(
-                  onPressed: () {},
-                  text: 'OK',
-                  type: GFButtonType.transparent,
-                  color: GFColors.SUCCESS,
-                ),
-                autoDismiss: false,
-                type: GFToastType.fullWidth,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
-                child: GFTypography(
-                  text: 'Floating Toast',
-                  type: GFTypographyType.typo5,
-                  dividerWidth: 25,
-                  dividerColor: Color(0xFF19CA4B),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 40, right: 40),
-                child: GFButton(
-                  onPressed: () {
-                    setState(() {
-                      showFloatingToast = !showFloatingToast;
-                    });
-                  },
-                  text: 'View Floating Toast',
-                ),
-              ),
-              const SizedBox(
-                height: 20,
+
+              IconButton(
+                onPressed: () {
+                  print('kkkkkkkkkk');
+                },
+                icon: Icon(Icons.ac_unit),
+                iconSize: 42.0,
               ),
             ],
           ),
+
+//           ListView(
+//             physics: const ScrollPhysics(),
+//             children: <Widget>[
+//               GFSearchBar(
+//                 // searchBoxInputDecoration: InputDecoration(
+//                 //   enabledBorder: OutlineInputBorder(
+//                 //       borderSide: BorderSide(
+//                 //         color: Colors.teal,
+//                 //       ),
+//                 //       borderRadius: BorderRadius.circular(50)),
+//                 // ),
+//                   searchList: list,
+// //              hideSearchBoxWhenItemSelected: false,
+// //              overlaySearchListHeight: 100.0,
+//                   searchQueryBuilder: (query, list) =>
+//                       list.where((item) => item.toLowerCase().contains(query.toLowerCase())).toList(),
+//                   overlaySearchListItemBuilder: (item) => Container(
+//                     padding: const EdgeInsets.all(8),
+//                     child: Text(
+//                       item,
+//                       style: const TextStyle(fontSize: 18),
+//                     ),
+//                   ),
+// //              noItemsFoundWidget: Container(
+// //                color: Colors.green,
+// //                child: Text("no items found..."),
+// //              ),
+//                   onItemSelected: (item) {
+//                     setState(() {
+//                       selected = item;
+//                       print('$item');
+//                     });
+//                   }),
+//               SizedBox(
+//                 height: 10,
+//               ),
+//               GFSearchBar(
+//                   searchBoxInputDecoration: InputDecoration(
+//                     labelText: 'Type Here',
+//                     labelStyle: TextStyle(color: Colors.black26),
+//                     focusedBorder: OutlineInputBorder(
+//                       borderSide: const BorderSide(color: Colors.greenAccent),
+//                       borderRadius: BorderRadius.circular(25),
+//                     ),
+//                     prefixIcon: Icon(
+//                       Icons.search,
+//                       color: Colors.black26,
+//                     ),
+//                     enabledBorder: OutlineInputBorder(
+//                         borderSide: BorderSide(color: Colors.black12), borderRadius: BorderRadius.circular(50)),
+//                   ),
+//                   searchList: list,
+// //              hideSearchBoxWhenItemSelected: false,
+// //              overlaySearchListHeight: 100.0,
+//                   searchQueryBuilder: (query, list) =>
+//                       list.where((item) => item.toLowerCase().contains(query.toLowerCase())).toList(),
+//                   overlaySearchListItemBuilder: (item) => Container(
+//                     padding: const EdgeInsets.all(8),
+//                     child: Text(
+//                       item,
+//                       style: const TextStyle(fontSize: 18),
+//                     ),
+//                   ),
+// //              noItemsFoundWidget: Container(
+// //                color: Colors.green,
+// //                child: Text("no items found..."),
+// //              ),
+//                   onItemSelected: (item) {
+//                     setState(() {
+//                       selected = item;
+//                       print('$item');
+//                     });
+//                   }),
+//               SizedBox(
+//                 height: 10,
+//               ),
+//               GFTypography(
+//                 child: Text(
+//                   selected ?? 'nothing selected yet',
+//                   style: TextStyle(
+//                     fontSize: 20.0,
+//                     color: Colors.black,
+//                     fontWeight: FontWeight.w600,
+//                   ),
+//                 ),
+//                 type: GFTypographyType.typo5,
+//                 dividerWidth: 45,
+//                 dividerColor: Color(0xFF19CA4B),
+//               ),
+//
+//               GFSearchBar(
+//                   searchBoxInputDecoration: InputDecoration(
+//                     labelText: 'Type Here',
+//                     labelStyle: TextStyle(color: Colors.black26),
+//                     focusedBorder: OutlineInputBorder(
+//                       borderSide: const BorderSide(color: Colors.greenAccent),
+//                       borderRadius: BorderRadius.circular(25),
+//                     ),
+//                     prefixIcon: Icon(
+//                       Icons.search,
+//                       color: Colors.black26,
+//                     ),
+//                     enabledBorder: OutlineInputBorder(
+//                         borderSide: BorderSide(color: Colors.black12), borderRadius: BorderRadius.circular(50)),
+//                   ),
+//                   searchList: list,
+// //              hideSearchBoxWhenItemSelected: false,
+// //              overlaySearchListHeight: 100.0,
+//                   searchQueryBuilder: (query, list) =>
+//                       list.where((item) => item.toLowerCase().contains(query.toLowerCase())).toList(),
+//                   overlaySearchListItemBuilder: (item) => Container(
+//                     padding: const EdgeInsets.all(8),
+//                     child: Text(
+//                       item,
+//                       style: const TextStyle(fontSize: 18),
+//                     ),
+//                   ),
+// //              noItemsFoundWidget: Container(
+// //                color: Colors.green,
+// //                child: Text("no items found..."),
+// //              ),
+//                   onItemSelected: (item) {
+//                     setState(() {
+//                       selected = item;
+//                       print('$item');
+//                     });
+//                   }),
+//               SizedBox(
+//                 height: 10,
+//               ),
+//               GFSearchBar(
+//                   searchList: list,
+//                   searchQueryBuilder: (query, list) => list
+//                       .where((item) =>
+//                       item.toLowerCase().contains(query.toLowerCase()))
+//                       .toList(),
+//                   overlaySearchListItemBuilder: (item) => Container(
+//                     padding: const EdgeInsets.all(8),
+//                     child: Text(
+//                       item,
+//                       style: const TextStyle(fontSize: 18),
+//                     ),
+//                   ),
+//                   onItemSelected: (item) {
+//                     setState(() {
+//                       print('$item');
+//                     });
+//                   }),
+//               const Padding(
+//                 padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
+//                 child: GFTypography(
+//                   text: 'Customised SearchBar',
+//                   type: GFTypographyType.typo5,
+//                   dividerWidth: 25,
+//                   dividerColor: Color(0xFF19CA4B),
+//                 ),
+//               ),
+//               GFSearchBar(
+//                   searchBoxInputDecoration: InputDecoration(
+//                     labelText: 'Type Here',
+//                     labelStyle: const TextStyle(color: Colors.black26),
+//                     focusedBorder: OutlineInputBorder(
+//                       borderSide: const BorderSide(color: Colors.greenAccent),
+//                       borderRadius: BorderRadius.circular(25),
+//                     ),
+//                     prefixIcon: Icon(
+//                       Icons.search,
+//                       color: Colors.black26,
+//                     ),
+//                     enabledBorder: OutlineInputBorder(
+//                         borderSide: BorderSide(color: Colors.black12),
+//                         borderRadius: BorderRadius.circular(50)),
+//                   ),
+//                   searchList: list,
+//                   searchQueryBuilder: (query, list) => list
+//                       .where((item) =>
+//                       item.toLowerCase().contains(query.toLowerCase()))
+//                       .toList(),
+//                   overlaySearchListItemBuilder: (item) => Container(
+//                     padding: const EdgeInsets.all(8),
+//                     child: Text(
+//                       item,
+//                       style: const TextStyle(fontSize: 18),
+//                     ),
+//                   ),
+//                   onItemSelected: (item) {
+//                     setState(() {
+//                       print('$item');
+//                     });
+//                   }),
+//               const Padding(
+//                 padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
+//                 child: GFTypography(
+//                   text: 'Animated Toasts (Auto Dismissable)',
+//                   type: GFTypographyType.typo5,
+//                   dividerWidth: 25,
+//                   dividerColor: Color(0xFF19CA4B),
+//                 ),
+//               ),
+//               GFToast(
+//                 text: 'Auto Dismissable after the given duration !',
+//                 button: GFButton(
+//                   onPressed: () {},
+//                   text: 'OK',
+//                   type: GFButtonType.transparent,
+//                   color: GFColors.SUCCESS,
+//                 ),
+//                 autoDismiss: true,
+//                 duration: const Duration(seconds: 5),
+//               ),
+//               const SizedBox(
+//                 height: 15,
+//               ),
+//               const GFToast(
+//                 text: 'Pass true to autoDismiss property to use this effect!',
+//                 autoDismiss: true,
+//                 duration: Duration(seconds: 2),
+//               ),
+//               const Padding(
+//                 padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
+//                 child: GFTypography(
+//                   text: 'Basic Toasts',
+//                   type: GFTypographyType.typo5,
+//                   dividerWidth: 25,
+//                   dividerColor: Color(0xFF19CA4B),
+//                 ),
+//               ),
+//               GFToast(
+//                 text: 'Paired Succesfully !',
+//                 button: GFButton(
+//                   onPressed: () {},
+//                   text: 'OK',
+//                   type: GFButtonType.transparent,
+//                   color: GFColors.SUCCESS,
+//                 ),
+//                 autoDismiss: false,
+//                 duration: const Duration(milliseconds: 300),
+//                 alignment: Alignment.topLeft,
+//               ),
+//               const SizedBox(
+//                 height: 15,
+//               ),
+//               GFToast(
+//                 text:
+//                 'This item already has the label “travel”. You can add  new label. !',
+//                 button: GFButton(
+//                   onPressed: () {},
+//                   text: 'OK',
+//                   type: GFButtonType.transparent,
+//                   color: GFColors.SUCCESS,
+//                 ),
+//                 autoDismiss: false,
+//               ),
+//               const Padding(
+//                 padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
+//                 child: GFTypography(
+//                   text: 'Rounded Toasts',
+//                   type: GFTypographyType.typo5,
+//                   dividerWidth: 25,
+//                   dividerColor: Color(0xFF19CA4B),
+//                 ),
+//               ),
+//               GFToast(
+//                 text: 'Paired Succesfully !',
+//                 button: GFButton(
+//                   onPressed: () {},
+//                   text: 'OK',
+//                   type: GFButtonType.transparent,
+//                   color: GFColors.SUCCESS,
+//                 ),
+//                 type: GFToastType.rounded,
+//                 autoDismiss: false,
+//                 alignment: Alignment.topLeft,
+//               ),
+//               const SizedBox(
+//                 height: 15,
+//               ),
+//               GFToast(
+//                 text:
+//                 'This item already has the label “travel”. You can add a new label. !',
+//                 button: GFButton(
+//                   onPressed: () {},
+//                   text: 'OK',
+//                   type: GFButtonType.transparent,
+//                   color: GFColors.SUCCESS,
+//                 ),
+//                 autoDismiss: false,
+//                 type: GFToastType.rounded,
+//                 alignment: Alignment.topLeft,
+//               ),
+//               const Padding(
+//                 padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
+//                 child: GFTypography(
+//                   text: 'Full Width Toasts',
+//                   type: GFTypographyType.typo5,
+//                   dividerWidth: 25,
+//                   dividerColor: Color(0xFF19CA4B),
+//                 ),
+//               ),
+//               GFToast(
+//                 text: 'Paired Succesfully !',
+//                 button: GFButton(
+//                   onPressed: () {},
+//                   text: 'OK',
+//                   type: GFButtonType.transparent,
+//                   color: GFColors.SUCCESS,
+//                 ),
+//                 type: GFToastType.fullWidth,
+//                 autoDismiss: false,
+//               ),
+//               const SizedBox(
+//                 height: 15,
+//               ),
+//               GFToast(
+//                 text:
+//                 'This item already has the label “travel”. You can add a new label.!',
+//                 button: GFButton(
+//                   onPressed: () {},
+//                   text: 'OK',
+//                   type: GFButtonType.transparent,
+//                   color: GFColors.SUCCESS,
+//                 ),
+//                 autoDismiss: false,
+//                 type: GFToastType.fullWidth,
+//               ),
+//               const Padding(
+//                 padding: EdgeInsets.only(left: 15, top: 30, bottom: 10),
+//                 child: GFTypography(
+//                   text: 'Floating Toast',
+//                   type: GFTypographyType.typo5,
+//                   dividerWidth: 25,
+//                   dividerColor: Color(0xFF19CA4B),
+//                 ),
+//               ),
+//               Container(
+//                 margin: const EdgeInsets.only(left: 40, right: 40),
+//                 child: GFButton(
+//                   onPressed: () {
+//                     setState(() {
+//                       showFloatingToast = !showFloatingToast;
+//                     });
+//                   },
+//                   text: 'View Floating Toast',
+//                 ),
+//               ),
+//               const SizedBox(
+//                 height: 20,
+//               ),
+//             ],
+//           ),
         ),
         bottomSheet: GFBottomSheet(
           controller: _controller,
