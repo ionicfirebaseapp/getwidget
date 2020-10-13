@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
-class GFMultiSelect extends StatefulWidget {
+class GFMultiSelect<T> extends StatefulWidget {
   ///
   const GFMultiSelect({
-    this.titleText,
-    this.selectedTextStyle =
-        const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+    @required this.items,
+    @required this.titleText,
+    this.selectedTextStyle = const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
     this.color,
     this.avatar,
-    this.padding = const EdgeInsets.all(0),
+    this.padding = const EdgeInsets.all(5),
     this.margin = const EdgeInsets.all(5),
-    this.size = GFSize.MEDIUM,
+    this.size = GFSize.SMALL,
     this.type = GFCheckboxType.basic,
     this.checkColor = GFColors.WHITE,
     this.activebgColor = GFColors.WHITE,
     this.inactivebgColor = GFColors.WHITE,
     this.activeBorderColor = GFColors.WHITE,
     this.inactiveBorderColor = GFColors.WHITE,
-    this.items,
     this.submitbutton,
-    this.expandedicon = Icons.keyboard_arrow_down,
-    this.collapsedicon = Icons.keyboard_arrow_up,
+    this.expandedicon = const Icon(
+      Icons.keyboard_arrow_down,
+      color: Colors.black87,
+      size: 30,
+    ),
+    this.collapsedicon = const Icon(
+      Icons.keyboard_arrow_up,
+      color: Colors.black87,
+      size: 30,
+    ),
     this.dropdownbgColor = Colors.white,
     this.activeIcon = const Icon(
       Icons.check,
@@ -31,6 +38,14 @@ class GFMultiSelect extends StatefulWidget {
     this.inactiveIcon,
     this.custombgColor = GFColors.SUCCESS,
     this.selected = false,
+    this.dropdownTitleTileBorder,
+    this.dropdownTitleTileBorderRadius = const BorderRadius.all(Radius.circular(4)),
+    this.dropdownTitleTileColor = GFColors.WHITE,
+    this.hideDropdownUnderline = false,
+    this.dropdownUnderlineColor = Colors.black12,
+    this.dropdownTitleTileMargin = const EdgeInsets.all(16),
+    this.dropdownTitleTilePadding = const EdgeInsets.all(12),
+    this.onSelect,
     Key key,
   })  : assert(selected != null),
         super(key: key);
@@ -98,15 +113,34 @@ class GFMultiSelect extends StatefulWidget {
 
   final TextStyle selectedTextStyle;
 
-  final IconData expandedicon;
+  final Widget expandedicon;
 
-  final IconData collapsedicon;
+  final Widget collapsedicon;
+
+  /// The border radius  of the dropdown.
+  final BorderRadius dropdownTitleTileBorderRadius;
+
+  /// The border radius  of the dropdown.
+  final Border dropdownTitleTileBorder;
+
+  /// The border radius  of the dropdown.
+  final dynamic dropdownTitleTileColor;
+
+  final bool hideDropdownUnderline;
+
+  final dynamic dropdownUnderlineColor;
+
+  final EdgeInsets dropdownTitleTileMargin;
+
+  final EdgeInsets dropdownTitleTilePadding;
+
+  final ValueChanged<T> onSelect;
 
   @override
   _GFMultiSelectState createState() => _GFMultiSelectState();
 }
 
-class _GFMultiSelectState extends State<GFMultiSelect> {
+class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
   bool check = true;
   bool isdrop = false;
   bool check1 = false;
@@ -145,33 +179,32 @@ class _GFMultiSelectState extends State<GFMultiSelect> {
                 });
               },
               child: Container(
-
-                  // height: 40,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
-                      border:
-                          Border(bottom: BorderSide(color: Colors.black12))),
+                  margin: widget.dropdownTitleTileMargin,
+                  padding: widget.dropdownTitleTilePadding,
+                  decoration: BoxDecoration(
+                      color: widget.dropdownTitleTileColor,
+                    border: widget.dropdownTitleTileBorder,
+                    borderRadius: widget.dropdownTitleTileBorderRadius
+                  ),
                   child: Container(
+                    decoration: BoxDecoration(
+                        border: widget.hideDropdownUnderline ? const Border(bottom: BorderSide(color: Colors.white))
+                      : Border(bottom: BorderSide(color: widget.dropdownUnderlineColor)),
+                    ),
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Expanded(
-                            child: Container(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: Text(_selectedTitles.join('  ,  ').toString(),
-                              style: widget.selectedTextStyle),
-                        )),
-                        Icon(
-                          !isdrop ? widget.expandedicon : widget.collapsedicon,
-                          color: Colors.black87,
-                          size: 30,
-                        ),
+                        _selectedTitles.isEmpty ?
+                        Expanded(child: Text(widget.titleText, style: widget.selectedTextStyle)) :
+                        Expanded(child: Text(_selectedTitles.join(',  ').toString(), style: widget.selectedTextStyle)),
+                        !isdrop ? widget.expandedicon : widget.collapsedicon,
                       ],
                     ),
                   ))),
           isdrop
               ? Container(
+            padding: const EdgeInsets.symmetric(vertical: 6),
                   decoration: BoxDecoration(
                     color: widget.dropdownbgColor,
                     boxShadow: const [
@@ -181,7 +214,6 @@ class _GFMultiSelectState extends State<GFMultiSelect> {
                       )
                     ],
                   ),
-                  height: 300,
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
@@ -191,9 +223,9 @@ class _GFMultiSelectState extends State<GFMultiSelect> {
                                 (index) => GFCheckboxListTile(
                                       value: _selectedTitles
                                           .contains(widget.items[index]),
-                                      onChanged: (bool selected) {
+                                      onChanged: widget.onSelect != null ? widget.onSelect : (bool selected) {
                                         _controller.text;
-                                        print(selected);
+                                        print('index $index');
                                         _onItemSelect(
                                             selected, widget.items[index]);
                                       },
@@ -222,7 +254,7 @@ class _GFMultiSelectState extends State<GFMultiSelect> {
                               isdrop = !isdrop;
                             });
                           },
-                          child: widget.submitbutton,
+                          child: widget.submitbutton ?? const Text('OK'),
                         )
                       ],
                     ),
