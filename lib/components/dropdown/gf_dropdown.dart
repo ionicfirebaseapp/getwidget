@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getwidget/getwidget.dart';
 
 class GFDropdown<T> extends StatefulWidget {
   ///
@@ -18,7 +19,7 @@ class GFDropdown<T> extends StatefulWidget {
       this.iconDisabledColor,
       this.iconEnabledColor,
       this.iconSize = 24.0,
-      this.isDense = false,
+      this.isDense = true,
       this.isExpanded = false,
       this.itemHeight = kMinInteractiveDimension,
       this.focusColor,
@@ -27,7 +28,9 @@ class GFDropdown<T> extends StatefulWidget {
       this.dropdownColor,
       this.padding = const EdgeInsets.all(5),
       this.borderRadius = const BorderRadius.all(Radius.circular(4)),
-      this.border})
+      this.border = const BorderSide(color: Colors.white, width: 1, style: BorderStyle.solid),
+        this.dropdownButtonColor = GFColors.WHITE
+      })
       : super(key: key);
 
   final DropdownButtonBuilder selectedItemBuilder;
@@ -108,6 +111,9 @@ class GFDropdown<T> extends StatefulWidget {
   /// The border radius  of the dropdown.
   final BorderRadius borderRadius;
 
+  /// The background color of the dropdownButton.
+  final dynamic dropdownButtonColor;
+
   @override
   _GFDropdownState createState() => _GFDropdownState();
 }
@@ -115,10 +121,9 @@ class GFDropdown<T> extends StatefulWidget {
 class _GFDropdownState extends State<GFDropdown> {
   @override
   Widget build(BuildContext context) => Material(
+        color: widget.dropdownButtonColor,
         shape: RoundedRectangleBorder(
-          side: widget.border ??
-              const BorderSide(
-                  color: Colors.white, width: 1, style: BorderStyle.solid),
+          side: widget.border,
           borderRadius: widget.borderRadius,
         ),
         child: Padding(
