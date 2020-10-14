@@ -22,22 +22,24 @@ class Example extends StatefulWidget {
 }
 
 class _ExampleState extends State<Example> {
-  String dropdownValue = 'One';
+  String dropdownValue;
+  List<dynamic> dropList = ['Running', 'Walking', 'Eating', 'Sleeping', 'Playing', 'Drinking', 'Jogging'];
+  String selected;
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: GFAppBar(
-          title: const Text('drop down'),
+          title: const Text('drop down '),
         ),
         backgroundColor: Colors.teal,
         body: Column(
           children: [
-            const GFMultiSelect(
-              items: ['Running', 'Walking', 'Eating', 'Sleeping', 'Playing', 'Drinking', 'Jogging'],
-              titleText: 'Select options : ',
-              // onSelect: (){
-              //
-              // },
+            GFMultiSelect(
+              items: dropList,
+              dropDownTitleTileText: 'Select options : ',
+              onSelect: (value){
+                print('sel $value ');
+              },
               // dropdownTitleTileMargin: EdgeInsets.all(2),
               // dropdownTitleTilePadding: EdgeInsets.all(4),
               // hideDropdownUnderline: true,
@@ -72,12 +74,13 @@ class _ExampleState extends State<Example> {
               //   color: GFColors.DARK,
               // ),
               // custombgColor : GFColors.SUCCESS,
-              // selected : false,
+              selected : false,
             ),
             const SizedBox(height: 22,),
             GFDropdown(
               // isExpanded: true,
               isDense: true,
+              hint: Text('sele $selected'),
               // padding: const EdgeInsets.all(12),
               // borderRadius: BorderRadius.circular(12),
               // border: const BorderSide(color: Colors.pink, width: 2, style: BorderStyle.solid),
@@ -86,14 +89,14 @@ class _ExampleState extends State<Example> {
               onChanged: (newValue) {
                 print('val $newValue');
                 setState(() {
-                  dropdownValue = newValue;
+                  selected = newValue.value;
                 });
               },
-              items: ['One', 'Two', 'Free', 'Four']
+              items: ['One', 'Two', 'Free', 'Four'].asMap().entries
                   .map((value) =>
                   DropdownMenuItem(
                     value: value,
-                    child: Text(value),
+                    child: Text('${value.value}'),
                   )
               ).toList(),
             ),

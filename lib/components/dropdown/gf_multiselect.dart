@@ -5,7 +5,8 @@ class GFMultiSelect<T> extends StatefulWidget {
   ///
   const GFMultiSelect({
     @required this.items,
-    @required this.titleText,
+    @required this.onSelect,
+    this.dropDownTitleTileText = 'Select : ',
     this.selectedTextStyle = const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
     this.color,
     this.avatar,
@@ -45,13 +46,12 @@ class GFMultiSelect<T> extends StatefulWidget {
     this.dropdownUnderlineColor = Colors.black12,
     this.dropdownTitleTileMargin = const EdgeInsets.all(16),
     this.dropdownTitleTilePadding = const EdgeInsets.all(12),
-    this.onSelect,
     Key key,
   })  : assert(selected != null),
         super(key: key);
 
   ///type of [String] used to pass text, alternative to title property and gets higher priority than title
-  final String titleText;
+  final String dropDownTitleTileText;
 
   /// The GFListTile's background color. Can be given [Color] or [GFColors]
   final Color color;
@@ -105,7 +105,7 @@ class GFMultiSelect<T> extends StatefulWidget {
   /// Normally, this property is left to its default value, false.
   final bool selected;
 
-  final List items;
+  final List<dynamic> items;
 
   final Widget submitbutton;
 
@@ -134,7 +134,7 @@ class GFMultiSelect<T> extends StatefulWidget {
 
   final EdgeInsets dropdownTitleTilePadding;
 
-  final ValueChanged<T> onSelect;
+  final ValueChanged<List<dynamic>> onSelect;
 
   @override
   _GFMultiSelectState createState() => _GFMultiSelectState();
@@ -144,19 +144,23 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
   bool check = true;
   bool isdrop = false;
   bool check1 = false;
+  bool isItemSelected = false;
 
   final _controller = TextEditingController();
 
   final List _selectedTitles = [];
+  final List _selectedTitlesIndex = [];
 
-  void _onItemSelect(bool selected, String title) {
+  void _onItemSelect(bool selected, int index) {
     if (selected == true) {
       setState(() {
-        _selectedTitles.add(title);
+        _selectedTitles.add(widget.items[index]);
+        _selectedTitlesIndex.add(index);
       });
     } else {
       setState(() {
-        _selectedTitles.remove(title);
+        _selectedTitles.remove(widget.items[index]);
+        _selectedTitlesIndex.remove(index);
       });
     }
   }
@@ -196,7 +200,7 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         _selectedTitles.isEmpty ?
-                        Expanded(child: Text(widget.titleText, style: widget.selectedTextStyle)) :
+                        Expanded(child: Text(widget.dropDownTitleTileText, style: widget.selectedTextStyle)) :
                         Expanded(child: Text(_selectedTitles.join(',  ').toString(), style: widget.selectedTextStyle)),
                         !isdrop ? widget.expandedicon : widget.collapsedicon,
                       ],
@@ -223,11 +227,15 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
                                 (index) => GFCheckboxListTile(
                                       value: _selectedTitles
                                           .contains(widget.items[index]),
-                                      onChanged: widget.onSelect != null ? widget.onSelect : (bool selected) {
+                                      onChanged: (bool selected) {
                                         _controller.text;
-                                        print('index $index');
                                         _onItemSelect(
-                                            selected, widget.items[index]);
+                                            selected, index);
+                                        if (selected == null) {
+                                          widget.onSelect(null);
+                                          return;
+                                        }
+                                        widget.onSelect(_selectedTitlesIndex);
                                       },
                                       selected: widget.selected,
                                       avatar: widget.avatar,
