@@ -28,9 +28,9 @@ class GFDropdown<T> extends StatefulWidget {
       this.dropdownColor,
       this.padding = const EdgeInsets.all(5),
       this.borderRadius = const BorderRadius.all(Radius.circular(4)),
-      this.border = const BorderSide(color: Colors.white, width: 1, style: BorderStyle.solid),
-        this.dropdownButtonColor = GFColors.WHITE
-      })
+      this.border = const BorderSide(
+          color: Colors.white, width: 1, style: BorderStyle.solid),
+      this.dropdownButtonColor = GFColors.WHITE})
       : super(key: key);
 
   final DropdownButtonBuilder selectedItemBuilder;

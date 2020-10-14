@@ -164,7 +164,6 @@ class GFMultiSelect<T> extends StatefulWidget {
   /// defines the background color of the dropdown. Can be given [Color] or [GFColors]
   final Color dropdownbgColor;
 
-
   @override
   _GFMultiSelectState createState() => _GFMultiSelectState();
 }
