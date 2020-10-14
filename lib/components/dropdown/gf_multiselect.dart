@@ -63,7 +63,7 @@ class GFMultiSelect<T> extends StatefulWidget {
   /// in callback we get list of selected items index
   final ValueChanged<List<dynamic>> onSelect;
 
-  /// type of [String] to define the dropdownTitleTile title
+  /// type of [String] to define the dropdownTitleTile  title
   final String dropDownTitleTileText;
 
   /// type of [TextStyle] to define the textStyle of [dropDownTitleTileText]
