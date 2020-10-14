@@ -15,7 +15,7 @@ class GFListTile extends StatelessWidget {
     this.description,
     this.icon,
     this.padding = const EdgeInsets.all(8),
-    this.margin = const EdgeInsets.all(16),
+    this.margin = const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
     this.enabled = true,
     this.onTap,
     this.onLongPress,

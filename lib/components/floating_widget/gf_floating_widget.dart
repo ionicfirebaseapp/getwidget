@@ -10,7 +10,7 @@ class GFFloatingWidget extends StatefulWidget {
       this.horizontalPosition,
       this.verticalPosition,
       this.blurnessColor,
-      this.showblurness = false,
+      this.showBlurness = false,
       this.body})
       : super(key: key);
 
@@ -30,7 +30,7 @@ class GFFloatingWidget extends StatefulWidget {
   final Color blurnessColor;
 
   ///type of bool which allows to show or hide the blurness of the backgroundColor whenever the [child]  is used in [GFFloatingWidget]
-  final bool showblurness;
+  final bool showBlurness;
 
   @override
   _GFFloatingWidgetState createState() => _GFFloatingWidgetState();
@@ -64,7 +64,7 @@ class _GFFloatingWidgetState extends State<GFFloatingWidget> {
             child: Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              color: widget.showblurness
+              color: widget.showBlurness
                   ? widget.blurnessColor ?? Colors.black54
                   : null,
               child: Stack(

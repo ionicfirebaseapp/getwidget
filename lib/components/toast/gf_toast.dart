@@ -63,8 +63,8 @@ class GFToast extends StatefulWidget {
 }
 
 class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
-  AnimationController animationController, fadeanimationController;
-  Animation<double> animation, fadeanimation;
+  AnimationController animationController, fadeAnimationController;
+  Animation<double> animation, fadeAnimation;
   bool hideToast = false;
 
   @override
@@ -78,24 +78,24 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
 
     if (mounted) {
       animationController.forward();
-      fadeanimationController =
+      fadeAnimationController =
           AnimationController(duration: widget.animationDuration, vsync: this)
             ..addListener(() => setState(() {}));
-      fadeanimation = Tween<double>(
+      fadeAnimation = Tween<double>(
         begin: 0,
         end: 1,
-      ).animate(fadeanimationController);
+      ).animate(fadeAnimationController);
       Timer(widget.duration, () {
         if (mounted) {
-          fadeanimationController.forward();
+          fadeAnimationController.forward();
         }
       });
-      fadeanimation = Tween<double>(
+      fadeAnimation = Tween<double>(
         begin: 1,
         end: 0,
-      ).animate(fadeanimationController);
-      fadeanimation.addStatusListener((AnimationStatus state) {
-        if (fadeanimation.isCompleted && widget.autoDismiss) {
+      ).animate(fadeAnimationController);
+      fadeAnimation.addStatusListener((AnimationStatus state) {
+        if (fadeAnimation.isCompleted && widget.autoDismiss) {
           setState(() {
             hideToast = true;
           });
@@ -109,7 +109,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
   @override
   void dispose() {
     animationController.dispose();
-    fadeanimationController.dispose();
+    fadeAnimationController.dispose();
     super.dispose();
   }
 
@@ -117,7 +117,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
   Widget build(BuildContext context) => hideToast
       ? Container()
       : FadeTransition(
-          opacity: widget.autoDismiss ? fadeanimation : animation,
+          opacity: widget.autoDismiss ? fadeAnimation : animation,
           child: Column(
             children: <Widget>[
               Container(
