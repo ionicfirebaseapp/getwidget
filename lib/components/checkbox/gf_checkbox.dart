@@ -8,8 +8,8 @@ class GFCheckbox extends StatefulWidget {
       this.size = GFSize.MEDIUM,
       this.type = GFCheckboxType.basic,
       this.checkColor = GFColors.WHITE,
-      this.activebgColor = GFColors.PRIMARY,
-      this.inactivebgColor = GFColors.WHITE,
+      this.activeBgColor = GFColors.PRIMARY,
+      this.inactiveBgColor = GFColors.WHITE,
       this.activeBorderColor = GFColors.WHITE,
       this.inactiveBorderColor = GFColors.DARK,
       this.onChanged,
@@ -20,7 +20,7 @@ class GFCheckbox extends StatefulWidget {
         color: GFColors.WHITE,
       ),
       this.inactiveIcon,
-      this.custombgColor = GFColors.SUCCESS,
+      this.customBgColor = GFColors.SUCCESS,
       this.autofocus = false,
       this.focusNode})
       : assert(autofocus != null),
@@ -32,14 +32,14 @@ class GFCheckbox extends StatefulWidget {
   /// type of [double] which is GFSize ie, small, medium and large and can use any double value
   final double size;
 
-  /// type of [Color] used to change the checkcolor when the checkbox is active
+  /// type of [Color] used to change the checkColor when the checkbox is active
   final Color checkColor;
 
   /// type of [Color] used to change the backgroundColor of the active checkbox
-  final Color activebgColor;
+  final Color activeBgColor;
 
   /// type of [Color] used to change the backgroundColor of the inactive checkbox
-  final Color inactivebgColor;
+  final Color inactiveBgColor;
 
   /// type of [Color] used to change the border color of the active checkbox
   final Color activeBorderColor;
@@ -60,7 +60,7 @@ class GFCheckbox extends StatefulWidget {
   final Widget inactiveIcon;
 
   /// type of [Color] used to change the background color of the custom active checkbox only
-  final Color custombgColor;
+  final Color customBgColor;
 
   /// on true state this widget will be selected as the initial focus
   /// when no other node in its scope is currently focused
@@ -101,8 +101,8 @@ class _GFCheckboxState extends State<GFCheckbox> {
                     ? widget.value
                         ? widget.type == GFCheckboxType.custom
                             ? Colors.white
-                            : widget.activebgColor
-                        : widget.inactivebgColor
+                            : widget.activeBgColor
+                        : widget.inactiveBgColor
                     : Colors.grey,
                 borderRadius: widget.type == GFCheckboxType.basic
                     ? BorderRadius.circular(3)
@@ -129,7 +129,7 @@ class _GFCheckboxState extends State<GFCheckbox> {
                             height: widget.size * 0.8,
                             decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
-                                color: widget.custombgColor),
+                                color: widget.customBgColor),
                           )
                         ],
                       )

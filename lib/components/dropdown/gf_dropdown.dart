@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFDropdown<T> extends StatefulWidget {
-  ///
+  /// GF Dropdown let user to select from the number of items and display selected
+  /// item in the button. It displays list of items in the overlay dropdown fashion.
   const GFDropdown(
       {Key key,
       @required this.items,

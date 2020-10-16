@@ -11,8 +11,8 @@ class GFRadioListTile<T> extends StatelessWidget {
     this.size = GFSize.SMALL,
     this.type = GFRadioType.basic,
     this.radioColor = GFColors.SUCCESS,
-    this.activebgColor = GFColors.WHITE,
-    this.inactivebgColor = GFColors.WHITE,
+    this.activeBgColor = GFColors.WHITE,
+    this.inactiveBgColor = GFColors.WHITE,
     this.activeBorderColor = GFColors.DARK,
     this.inactiveBorderColor = GFColors.DARK,
     this.position = GFPosition.end,
@@ -22,7 +22,7 @@ class GFRadioListTile<T> extends StatelessWidget {
       color: GFColors.DARK,
     ),
     this.inactiveIcon,
-    this.custombgColor = GFColors.SUCCESS,
+    this.customBgColor = GFColors.SUCCESS,
     this.autofocus = false,
     this.focusNode,
     this.toggleable = false,
@@ -31,7 +31,7 @@ class GFRadioListTile<T> extends StatelessWidget {
     this.color,
     this.avatar,
     this.title,
-    this.subTitle,
+    this.subtitle,
     this.description,
     this.icon,
     this.padding = const EdgeInsets.all(8),
@@ -63,8 +63,8 @@ class GFRadioListTile<T> extends StatelessWidget {
   /// The title to display inside the [GFListTile]. see [Text]
   final Widget title;
 
-  /// The subTitle to display inside the [GFListTile]. see [Text]
-  final Widget subTitle;
+  /// The subtitle to display inside the [GFListTile]. see [Text]
+  final Widget subtitle;
 
   /// The description to display inside the [GFListTile]. see [Text]
   final Widget description;
@@ -127,10 +127,10 @@ class GFRadioListTile<T> extends StatelessWidget {
   final Color radioColor;
 
   /// type of [Color] used to change the backgroundColor of the active checkbox
-  final Color activebgColor;
+  final Color activeBgColor;
 
   /// type of [Color] used to change the backgroundColor of the inactive checkbox
-  final Color inactivebgColor;
+  final Color inactiveBgColor;
 
   /// type of [Color] used to change the border color of the active checkbox
   final Color activeBorderColor;
@@ -148,7 +148,7 @@ class GFRadioListTile<T> extends StatelessWidget {
   final Widget inactiveIcon;
 
   /// type of [Color] used to change the background color of the custom active  checkbox only
-  final Color custombgColor;
+  final Color customBgColor;
 
   /// The value represented by this radio button.
   final T value;
@@ -171,13 +171,13 @@ class GFRadioListTile<T> extends StatelessWidget {
       size: size,
       type: type,
       radioColor: radioColor,
-      activebgColor: activebgColor,
+      activeBgColor: activeBgColor,
       inactiveIcon: inactiveIcon,
       activeBorderColor: activeBorderColor,
-      inactivebgColor: inactivebgColor,
+      inactiveBgColor: inactiveBgColor,
       activeIcon: activeIcon,
       inactiveBorderColor: inactiveBorderColor,
-      custombgColor: custombgColor,
+      customBgColor: customBgColor,
       toggleable: toggleable,
     );
     return MergeSemantics(
@@ -199,7 +199,7 @@ class GFRadioListTile<T> extends StatelessWidget {
         selected: selected,
         avatar: position == GFPosition.start ? radio : avatar,
         titleText: titleText,
-        subTitle: subTitle,
+        subtitle: subtitle,
         subtitleText: subtitleText,
         description: description,
         color: color,
