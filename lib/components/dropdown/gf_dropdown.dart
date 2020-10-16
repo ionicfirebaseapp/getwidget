@@ -46,10 +46,10 @@ class GFDropdown<T> extends StatefulWidget {
   /// The value of the currently selected [DropdownMenuItem].
   final T value;
 
-  /// the color of the border of the dropdown button
+  /// Defines the border of dropdown button
   final BorderSide border;
 
-  ///The padding given inside the dropdown
+  /// Defines the padding given inside the dropdown
   final EdgeInsets padding;
 
   /// A placeholder widget that is displayed by the dropdown button.
@@ -90,28 +90,26 @@ class GFDropdown<T> extends StatefulWidget {
   /// Set the dropdown's inner contents to horizontally fill its parent.
   final bool isExpanded;
 
-  /// The default value is [kMinInteractiveDimension], which is also the minimum
-  /// height for menu items.
-  ///
-  /// If this value is null and there isn't enough vertical room for the menu,
+  /// Defines the height of the menu items
   final double itemHeight;
 
   /// The color for the button's [Material] when it has the input focus.
   final Color focusColor;
 
-  /// {@macro flutter.widgets.Focus.focusNode}
+  /// Defines the keyboard focus for this widget.
   final FocusNode focusNode;
 
-  /// {@macro flutter.widgets.Focus.autofocus}
+  /// On true state it should focus itself if nothing else is already focused.
+  /// Defaults to false
   final bool autofocus;
 
-  /// The background color of the dropdown.
+  /// Defines the background color of the dropdown.
   final Color dropdownColor;
 
-  /// The border radius  of the dropdown.
+  /// Defines the border radius  of the dropdown.
   final BorderRadius borderRadius;
 
-  /// The background color of the dropdownButton.
+  /// Defines the background color of the dropdownButton.
   final dynamic dropdownButtonColor;
 
   @override
