@@ -69,7 +69,6 @@ class GFCheckbox extends StatefulWidget {
   /// an optional focus node to use as the focus node for this widget.
   final FocusNode focusNode;
 
-
   @override
   _GFCheckboxState createState() => _GFCheckboxState();
 }
