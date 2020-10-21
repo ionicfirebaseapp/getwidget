@@ -263,8 +263,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                 builder: (BuildContext context, child) {
                   // on the first render, the pageController.page is null,
                   // this is a dirty hack
-                  if (widget.pageController.position.minScrollExtent == null ||
-                      widget.pageController.position.maxScrollExtent == null) {
+                  if (!widget.pageController.position.hasContentDimensions) {
                     Future.delayed(const Duration(microseconds: 1), () {
                       setState(() {});
                     });

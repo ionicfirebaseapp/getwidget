@@ -1,6 +1,11 @@
 # Changelog
 
 
+## 1.2.3 - 2020-10-21
+
+### Fixed
+* [GFCarousel] fix null value issue.
+
 ## 1.2.2 - 2020-10-02
 
 ### Fixed
