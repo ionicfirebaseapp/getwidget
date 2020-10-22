@@ -20,7 +20,6 @@ class GFCheckboxListTile extends StatelessWidget {
     this.margin = const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
     this.size = GFSize.MEDIUM,
     this.type = GFCheckboxType.basic,
-    this.checkColor = GFColors.WHITE,
     this.activeBgColor = GFColors.PRIMARY,
     this.inactiveBgColor = GFColors.WHITE,
     this.activeBorderColor = GFColors.WHITE,
@@ -73,9 +72,6 @@ class GFCheckboxListTile extends StatelessWidget {
 
   /// type of [double] which is GFSize ie, small, medium and large and can use any double value
   final double size;
-
-  /// type pf [Color] used to change the checkcolor when the checkbox is active
-  final Color checkColor;
 
   /// type of [Color] used to change the backgroundColor of the active checkbox
   final Color activeBgColor;
@@ -132,7 +128,7 @@ class GFCheckboxListTile extends StatelessWidget {
         activeIcon: activeIcon,
         inactiveBorderColor: inactiveBorderColor,
         customBgColor: customBgColor,
-        checkColor: checkColor,
+        // checkColor: checkColor,
         type: type);
     return MergeSemantics(
       child: GFListTile(

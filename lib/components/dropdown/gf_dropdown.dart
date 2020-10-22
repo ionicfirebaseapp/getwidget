@@ -22,7 +22,7 @@ class GFDropdown<T> extends StatefulWidget {
       this.iconSize = 24.0,
       this.isDense = true,
       this.isExpanded = false,
-      this.itemHeight = kMinInteractiveDimension,
+      this.itemHeight = 40,
       this.focusColor,
       this.focusNode,
       this.autofocus = false,
@@ -30,7 +30,7 @@ class GFDropdown<T> extends StatefulWidget {
       this.padding = const EdgeInsets.all(5),
       this.borderRadius = const BorderRadius.all(Radius.circular(4)),
       this.border = const BorderSide(
-          color: Colors.white, width: 1, style: BorderStyle.solid),
+          color: Colors.transparent, width: 1, style: BorderStyle.solid),
       this.dropdownButtonColor = GFColors.WHITE})
       : super(key: key);
 
@@ -125,7 +125,8 @@ class _GFDropdownState extends State<GFDropdown> {
           side: widget.border,
           borderRadius: widget.borderRadius,
         ),
-        child: Padding(
+        child: Container(
+          height: widget.itemHeight,
           padding: widget.padding,
           child: DropdownButton(
             items: widget.items,
@@ -143,7 +144,7 @@ class _GFDropdownState extends State<GFDropdown> {
             iconSize: widget.iconSize,
             isDense: widget.isDense,
             isExpanded: widget.isExpanded,
-            itemHeight: widget.itemHeight,
+            // itemHeight: widget.itemHeight,
             focusColor: widget.focusColor,
             focusNode: widget.focusNode,
             autofocus: widget.autofocus,
