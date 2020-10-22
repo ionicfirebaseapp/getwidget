@@ -17,12 +17,12 @@ class GFMultiSelect<T> extends StatefulWidget {
     this.margin = const EdgeInsets.all(5),
     this.size = GFSize.SMALL,
     this.type = GFCheckboxType.basic,
-    this.checkColor = GFColors.WHITE,
     this.activeBgColor = GFColors.WHITE,
     this.inactiveBgColor = GFColors.WHITE,
     this.activeBorderColor = GFColors.WHITE,
     this.inactiveBorderColor = GFColors.WHITE,
     this.submitButton,
+    this.cancelButton,
     this.expandedIcon = const Icon(
       Icons.keyboard_arrow_down,
       color: Colors.black87,
@@ -48,12 +48,13 @@ class GFMultiSelect<T> extends StatefulWidget {
     this.dropdownTitleTileColor = GFColors.WHITE,
     this.hideDropdownUnderline = false,
     this.dropdownUnderlineBorder =
-        const BorderSide(color: Colors.black12, width: 1),
+        const BorderSide(color: Colors.black45, width: 1),
     this.dropdownTitleTileMargin = const EdgeInsets.all(16),
     this.dropdownTitleTilePadding = const EdgeInsets.all(12),
     this.dropdownTitleTileHintText,
     this.dropdownTitleTileHintTextStyle =
         const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+    this.dropdownButton,
     Key key,
   })  : assert(selected != null),
         super(key: key);
@@ -105,8 +106,11 @@ class GFMultiSelect<T> extends StatefulWidget {
   /// defines the dropdownTitleTile's trailing icon when dropdown is not visible
   final Widget collapsedIcon;
 
-  /// defines the button in the dropdown
+  /// defines the submit button in the dropdown
   final Widget submitButton;
+
+  /// defines the cancel button in the dropdown
+  final Widget cancelButton;
 
   /// defines dropdown checkbox ListTile's background color. Can be given [Color] or [GFColors]
   final dynamic color;
@@ -127,10 +131,6 @@ class GFMultiSelect<T> extends StatefulWidget {
   /// defines dropdown ListTile's checkbox size
   /// type of [double] which is GFSize ie, small, medium and large and can use any double value
   final double size;
-
-  /// defines dropdown ListTile's checkbox color when its active
-  /// type of [Color] used to change the checkcolor when the checkbox is active
-  final Color checkColor;
 
   /// defines dropdown ListTile's checkbox background color when its active
   /// type of [Color] used to change the backgroundColor of the active checkbox
@@ -165,6 +165,8 @@ class GFMultiSelect<T> extends StatefulWidget {
 
   /// defines the background color of the dropdown. Can be given [Color] or [GFColors]
   final Color dropdownBgColor;
+
+  final Widget dropdownButton;
 
   @override
   _GFMultiSelectState createState() => _GFMultiSelectState();
@@ -233,7 +235,8 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
                 child: Container(
                   decoration: BoxDecoration(
                     border: widget.hideDropdownUnderline
-                        ? const Border(bottom: BorderSide(color: Colors.white))
+                        ? const Border(
+                            bottom: BorderSide(color: Colors.transparent))
                         : Border(bottom: widget.dropdownUnderlineBorder),
                   ),
                   child: widget.dropdownTitleTileHintText == null
@@ -297,17 +300,34 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
                                     inactiveBorderColor:
                                         widget.inactiveBorderColor,
                                     customBgColor: widget.customBgColor,
-                                    checkColor: widget.checkColor,
+                                    // checkColor: widget.checkColor,
                                     type: widget.type,
                                   ))),
-                      GFButton(
-                        onPressed: () {
-                          setState(() {
-                            showDropdown = !showDropdown;
-                          });
-                        },
-                        child: widget.submitButton ?? const Text('OK'),
-                      )
+                      widget.dropdownButton ??
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              GFButton(
+                                onPressed: () {
+                                  setState(() {
+                                    showDropdown = !showDropdown;
+                                    _selectedTitles.clear();
+                                    _selectedTitlesIndex.clear();
+                                  });
+                                },
+                                child:
+                                    widget.cancelButton ?? const Text('CANCEL'),
+                              ),
+                              GFButton(
+                                onPressed: () {
+                                  setState(() {
+                                    showDropdown = !showDropdown;
+                                  });
+                                },
+                                child: widget.submitButton ?? const Text('OK'),
+                              )
+                            ],
+                          )
                     ],
                   ),
                 ),

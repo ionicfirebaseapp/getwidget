@@ -7,7 +7,6 @@ class GFCheckbox extends StatefulWidget {
       {Key key,
       this.size = GFSize.MEDIUM,
       this.type = GFCheckboxType.basic,
-      this.checkColor = GFColors.WHITE,
       this.activeBgColor = GFColors.PRIMARY,
       this.inactiveBgColor = GFColors.WHITE,
       this.activeBorderColor = GFColors.WHITE,
@@ -31,9 +30,6 @@ class GFCheckbox extends StatefulWidget {
 
   /// type of [double] which is GFSize ie, small, medium and large and can use any double value
   final double size;
-
-  /// type of [Color] used to change the checkColor when the checkbox is active
-  final Color checkColor;
 
   /// type of [Color] used to change the backgroundColor of the active checkbox
   final Color activeBgColor;
