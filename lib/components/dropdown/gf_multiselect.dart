@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFMultiSelect<T> extends StatefulWidget {
-  ///
+  /// GF Multiselect let user to select multiple items from the number of
+  /// Checkbox ListTile items and display selected items in the TitleTile box.
+  /// It displays list of items in the overlay dropdown fashion.
   const GFMultiSelect({
     @required this.items,
     @required this.onSelect,
-    this.dropDownTitleTileText = 'Select : ',
-    this.dropDownTitleTileTextStyle =
+    this.dropdownTitleTileText = 'Select : ',
+    this.dropdownTitleTileTextStyle =
         const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
     this.color,
     this.avatar,
@@ -15,12 +17,12 @@ class GFMultiSelect<T> extends StatefulWidget {
     this.margin = const EdgeInsets.all(5),
     this.size = GFSize.SMALL,
     this.type = GFCheckboxType.basic,
-    this.checkColor = GFColors.WHITE,
-    this.activebgColor = GFColors.WHITE,
-    this.inactivebgColor = GFColors.WHITE,
+    this.activeBgColor = GFColors.WHITE,
+    this.inactiveBgColor = GFColors.WHITE,
     this.activeBorderColor = GFColors.WHITE,
     this.inactiveBorderColor = GFColors.WHITE,
     this.submitButton,
+    this.cancelButton,
     this.expandedIcon = const Icon(
       Icons.keyboard_arrow_down,
       color: Colors.black87,
@@ -31,14 +33,14 @@ class GFMultiSelect<T> extends StatefulWidget {
       color: Colors.black87,
       size: 30,
     ),
-    this.dropdownbgColor = Colors.white,
+    this.dropdownBgColor = Colors.white,
     this.activeIcon = const Icon(
       Icons.check,
       size: 20,
       color: GFColors.DARK,
     ),
     this.inactiveIcon,
-    this.custombgColor = GFColors.SUCCESS,
+    this.customBgColor = GFColors.SUCCESS,
     this.selected = false,
     this.dropdownTitleTileBorder,
     this.dropdownTitleTileBorderRadius =
@@ -46,12 +48,13 @@ class GFMultiSelect<T> extends StatefulWidget {
     this.dropdownTitleTileColor = GFColors.WHITE,
     this.hideDropdownUnderline = false,
     this.dropdownUnderlineBorder =
-        const BorderSide(color: Colors.black12, width: 1),
+        const BorderSide(color: Colors.black45, width: 1),
     this.dropdownTitleTileMargin = const EdgeInsets.all(16),
     this.dropdownTitleTilePadding = const EdgeInsets.all(12),
-    this.dropDownTitleTileHintText,
-    this.dropDownTitleTileHintTextStyle =
+    this.dropdownTitleTileHintText,
+    this.dropdownTitleTileHintTextStyle =
         const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+    this.dropdownButton,
     Key key,
   })  : assert(selected != null),
         super(key: key);
@@ -64,16 +67,16 @@ class GFMultiSelect<T> extends StatefulWidget {
   final ValueChanged<List<dynamic>> onSelect;
 
   /// type of [String] to define the dropdownTitleTile  title
-  final String dropDownTitleTileText;
+  final String dropdownTitleTileText;
 
-  /// type of [TextStyle] to define the textStyle of [dropDownTitleTileText]
-  final TextStyle dropDownTitleTileTextStyle;
+  /// type of [TextStyle] to define the textStyle of [dropdownTitleTileText]
+  final TextStyle dropdownTitleTileTextStyle;
 
   /// type of [String] to define the dropdownTitleTile hint text
-  final String dropDownTitleTileHintText;
+  final String dropdownTitleTileHintText;
 
-  /// type of [TextStyle] to define the textStyle of [dropDownTitleTileHintTextStyle]
-  final TextStyle dropDownTitleTileHintTextStyle;
+  /// type of [TextStyle] to define the textStyle of [dropdownTitleTileHintTextStyle]
+  final TextStyle dropdownTitleTileHintTextStyle;
 
   /// defines the border radius  of the dropdownTitleTile
   final BorderRadius dropdownTitleTileBorderRadius;
@@ -103,8 +106,11 @@ class GFMultiSelect<T> extends StatefulWidget {
   /// defines the dropdownTitleTile's trailing icon when dropdown is not visible
   final Widget collapsedIcon;
 
-  /// defines the button in the dropdown
+  /// defines the submit button in the dropdown
   final Widget submitButton;
+
+  /// defines the cancel button in the dropdown
+  final Widget cancelButton;
 
   /// defines dropdown checkbox ListTile's background color. Can be given [Color] or [GFColors]
   final dynamic color;
@@ -126,17 +132,13 @@ class GFMultiSelect<T> extends StatefulWidget {
   /// type of [double] which is GFSize ie, small, medium and large and can use any double value
   final double size;
 
-  /// defines dropdown ListTile's checkbox color when its active
-  /// type of [Color] used to change the checkcolor when the checkbox is active
-  final Color checkColor;
-
   /// defines dropdown ListTile's checkbox background color when its active
   /// type of [Color] used to change the backgroundColor of the active checkbox
-  final Color activebgColor;
+  final Color activeBgColor;
 
   /// defines dropdown ListTile's checkbox background color when its inactive
   /// type of [Color] used to change the backgroundColor of the inactive checkbox
-  final Color inactivebgColor;
+  final Color inactiveBgColor;
 
   /// defines dropdown ListTile's checkbox border color when its active
   /// type of [Color] used to change the border color of the active checkbox
@@ -155,15 +157,16 @@ class GFMultiSelect<T> extends StatefulWidget {
   final Widget inactiveIcon;
 
   /// type of [Color] used to change the background color of the custom active  checkbox only
-  final Color custombgColor;
+  final Color customBgColor;
 
   /// To have the list tile appear selected when the checkbox is checked, pass the same value to both.
   /// Normally, this property is left to its default value, false.
   final bool selected;
 
   /// defines the background color of the dropdown. Can be given [Color] or [GFColors]
-  final Color dropdownbgColor;
+  final Color dropdownBgColor;
 
+  final Widget dropdownButton;
 
   @override
   _GFMultiSelectState createState() => _GFMultiSelectState();
@@ -205,11 +208,11 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
           children: <Widget>[
             _selectedTitles.isEmpty
                 ? Expanded(
-                    child: Text(widget.dropDownTitleTileText,
-                        style: widget.dropDownTitleTileTextStyle))
+                    child: Text(widget.dropdownTitleTileText,
+                        style: widget.dropdownTitleTileTextStyle))
                 : Expanded(
                     child: Text(_selectedTitles.join(',  ').toString(),
-                        style: widget.dropDownTitleTileTextStyle)),
+                        style: widget.dropdownTitleTileTextStyle)),
             !showDropdown ? widget.expandedIcon : widget.collapsedIcon,
           ],
         );
@@ -232,17 +235,18 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
                 child: Container(
                   decoration: BoxDecoration(
                     border: widget.hideDropdownUnderline
-                        ? const Border(bottom: BorderSide(color: Colors.white))
+                        ? const Border(
+                            bottom: BorderSide(color: Colors.transparent))
                         : Border(bottom: widget.dropdownUnderlineBorder),
                   ),
-                  child: widget.dropDownTitleTileHintText == null
+                  child: widget.dropdownTitleTileHintText == null
                       ? dropdownTile()
                       : Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${widget.dropDownTitleTileHintText}',
-                              style: widget.dropDownTitleTileHintTextStyle,
+                              '${widget.dropdownTitleTileHintText}',
+                              style: widget.dropdownTitleTileHintTextStyle,
                             ),
                             dropdownTile(),
                             const SizedBox(
@@ -255,7 +259,7 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
             ? Container(
                 padding: const EdgeInsets.symmetric(vertical: 6),
                 decoration: BoxDecoration(
-                  color: widget.dropdownbgColor,
+                  color: widget.dropdownBgColor,
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.black12,
@@ -288,25 +292,42 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
                                     padding: widget.padding,
                                     margin: widget.margin,
                                     size: widget.size,
-                                    activebgColor: widget.activebgColor,
+                                    activeBgColor: widget.activeBgColor,
                                     inactiveIcon: widget.inactiveIcon,
                                     activeBorderColor: widget.activeBorderColor,
-                                    inactivebgColor: widget.inactivebgColor,
+                                    inactiveBgColor: widget.inactiveBgColor,
                                     activeIcon: widget.activeIcon,
                                     inactiveBorderColor:
                                         widget.inactiveBorderColor,
-                                    custombgColor: widget.custombgColor,
-                                    checkColor: widget.checkColor,
+                                    customBgColor: widget.customBgColor,
+                                    // checkColor: widget.checkColor,
                                     type: widget.type,
                                   ))),
-                      GFButton(
-                        onPressed: () {
-                          setState(() {
-                            showDropdown = !showDropdown;
-                          });
-                        },
-                        child: widget.submitButton ?? const Text('OK'),
-                      )
+                      widget.dropdownButton ??
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              GFButton(
+                                onPressed: () {
+                                  setState(() {
+                                    showDropdown = !showDropdown;
+                                    _selectedTitles.clear();
+                                    _selectedTitlesIndex.clear();
+                                  });
+                                },
+                                child:
+                                    widget.cancelButton ?? const Text('CANCEL'),
+                              ),
+                              GFButton(
+                                onPressed: () {
+                                  setState(() {
+                                    showDropdown = !showDropdown;
+                                  });
+                                },
+                                child: widget.submitButton ?? const Text('OK'),
+                              )
+                            ],
+                          )
                     ],
                   ),
                 ),
