@@ -14,8 +14,8 @@ class GFRadio<T> extends StatefulWidget {
       this.size = GFSize.SMALL,
       this.type = GFRadioType.basic,
       this.radioColor = GFColors.SUCCESS,
-      this.activebgColor = GFColors.WHITE,
-      this.inactivebgColor = GFColors.WHITE,
+      this.activeBgColor = GFColors.WHITE,
+      this.inactiveBgColor = GFColors.WHITE,
       this.activeBorderColor = GFColors.DARK,
       this.inactiveBorderColor = GFColors.DARK,
       this.activeIcon = const Icon(
@@ -24,7 +24,7 @@ class GFRadio<T> extends StatefulWidget {
         color: GFColors.DARK,
       ),
       this.inactiveIcon,
-      this.custombgColor = GFColors.SUCCESS,
+      this.customBgColor = GFColors.SUCCESS,
       this.autofocus = false,
       this.focusNode,
       this.toggleable = false})
@@ -42,10 +42,10 @@ class GFRadio<T> extends StatefulWidget {
   final Color radioColor;
 
   /// type of [Color] used to change the backgroundColor of the active radio button
-  final Color activebgColor;
+  final Color activeBgColor;
 
   /// type of [Color] used to change the backgroundColor of the inactive radio button
-  final Color inactivebgColor;
+  final Color inactiveBgColor;
 
   /// type of [Color] used to change the border color of the active radio button
   final Color activeBorderColor;
@@ -63,7 +63,7 @@ class GFRadio<T> extends StatefulWidget {
   final Widget inactiveIcon;
 
   /// type of [Color] used to change the background color of the custom active  radio button only
-  final Color custombgColor;
+  final Color customBgColor;
 
   /// on true state this widget will be selected as the initial focus
   /// when no other node in its scope is currently focused
@@ -116,7 +116,7 @@ class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
             height: widget.size,
             width: widget.size,
             decoration: BoxDecoration(
-                color: selected ? widget.activebgColor : widget.inactivebgColor,
+                color: selected ? widget.activeBgColor : widget.inactiveBgColor,
                 borderRadius: widget.type == GFRadioType.basic
                     ? BorderRadius.circular(50)
                     : widget.type == GFRadioType.square
@@ -159,7 +159,7 @@ class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
                                 decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(50)),
-                                    color: widget.custombgColor),
+                                    color: widget.customBgColor),
                               )
                             ],
                           )
