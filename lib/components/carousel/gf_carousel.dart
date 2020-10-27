@@ -85,8 +85,6 @@ class GFCarousel extends StatefulWidget {
   /// Called whenever the page in the center of the viewport changes.
   final Function(int index) onPageChanged;
 
-//  int onPageIndex;
-
   /// How the carousel should respond to user input.
   ///
   /// For example, determines how the items continues to animate after the
@@ -97,45 +95,6 @@ class GFCarousel extends StatefulWidget {
   ///
   /// Defaults to matching platform conventions.
   final ScrollPhysics scrollPhysics;
-
-  /// Animates the controlled [GFCarousel] to the next page.
-  ///
-  /// The animation lasts for the given duration and follows the given curve.
-  /// The returned [Future] resolves when the animation completes.
-  // Future<void> nextPage({Duration duration, Curve curve}) =>
-  //     pageController.nextPage(duration: duration, curve: curve);
-  //
-  // /// Animates the controlled [GFCarousel] to the previous page.
-  // ///
-  // /// The animation lasts for the given duration and follows the given curve.
-  // /// The returned [Future] resolves when the animation completes.
-  // Future<void> previousPage({Duration duration, Curve curve}) =>
-  //     pageController.previousPage(duration: duration, curve: curve);
-  //
-  // /// Changes which page is displayed in the controlled [GFCarousel].
-  // ///
-  // /// Jumps the page position from its current value to the given value,
-  // /// without animation, and without checking if the new value is in range.
-  // void jumpToPage(int page) {
-  //   final index =
-  //       _getRealIndex(pageController.page.toInt(), realPage, items.length);
-  //   return pageController
-  //       .jumpToPage(pageController.page.toInt() + page - index);
-  // }
-  //
-  // /// Animates the controlled [GFCarousel] from the current page to the given page.
-  // ///
-  // /// The animation lasts for the given duration and follows the given curve.
-  // /// The returned [Future] resolves when the animation completes.
-  // Future<void> animateToPage(int page, {Duration duration, Curve curve}) {
-  //   final index =
-  //       _getRealIndex(pageController.page.toInt(), realPage, items.length);
-  //   return pageController.animateToPage(
-  //     pageController.page.toInt() + page - index,
-  //     duration: duration,
-  //     curve: curve,
-  //   );
-  // }
 
   List<T> map<T>(List list, Function handler) {
     List<T> result;
@@ -152,7 +111,6 @@ class GFCarousel extends StatefulWidget {
 
 class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
   Timer timer;
-//  int _current = 0;
 
   /// Size of cell
   double size = 0;
@@ -249,9 +207,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
               }
               if (widget.pagination == true && widget.onPageChanged == null) {
                 onPageSlide(currentPage);
-//                _current = currentPage;
               }
-//              _current = currentPage;
             },
             itemBuilder: (BuildContext context, int i) {
               final int index = _getRealIndex(
@@ -265,21 +221,11 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                 animation: pageController,
                 child: widget.items[index],
                 builder: (BuildContext context, child) {
-                  // on the first render, the pageController.page is null,
-                  // this is a dirty hack
-
-                  // if (pageController.position.minScrollExtent == null ||
-                  //     pageController.position.maxScrollExtent == null) {
-                  //   Future.delayed(const Duration(microseconds: 1), () {});
-                  //   return Container();
-                  // }
-
                   double value;
                   try {
                     value = pageController.page - i;
                     // ignore: avoid_catches_without_on_clauses
                   } catch (e) {
-                    // value = 1;
                     final BuildContext storageContext =
                         pageController.position.context.storageContext;
                     final double previousSavedPosition =
