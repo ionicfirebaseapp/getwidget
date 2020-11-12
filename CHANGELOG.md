@@ -1,6 +1,18 @@
 # Changelog
 
 
+## 1.2.3 - 2020-11-12
+
+### Fixed
+* [GFProgressBar] issue.
+* [GFBottomSheet] minor issue.
+* [GFIconButton] wrong touch issue. #195
+* [GFDropdown] minor issue.
+* [GFCarousel] issue. #185
+* Many more minor improvements.
+
+
+
 ## 1.2.2 - 2020-10-02
 
 ### Fixed
