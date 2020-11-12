@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFRadioListTile<T> extends StatelessWidget {
+  /// [GFRadioListTile] is a list title of with [GFRadio] in it.
   const GFRadioListTile({
     Key key,
     @required this.value,
@@ -10,21 +11,18 @@ class GFRadioListTile<T> extends StatelessWidget {
     this.size = GFSize.SMALL,
     this.type = GFRadioType.basic,
     this.radioColor = GFColors.SUCCESS,
-    this.activebgColor = GFColors.WHITE,
-    this.inactivebgColor = GFColors.WHITE,
+    this.activeBgColor = GFColors.WHITE,
+    this.inactiveBgColor = GFColors.WHITE,
     this.activeBorderColor = GFColors.DARK,
     this.inactiveBorderColor = GFColors.DARK,
+    this.position = GFPosition.end,
     this.activeIcon = const Icon(
       Icons.check,
       size: 20,
       color: GFColors.DARK,
     ),
-    this.inactiveIcon = const Icon(
-      Icons.close,
-      size: 20,
-      color: GFColors.DARK,
-    ),
-    this.custombgColor = GFColors.SUCCESS,
+    this.inactiveIcon,
+    this.customBgColor = GFColors.SUCCESS,
     this.autofocus = false,
     this.focusNode,
     this.toggleable = false,
@@ -33,11 +31,11 @@ class GFRadioListTile<T> extends StatelessWidget {
     this.color,
     this.avatar,
     this.title,
-    this.subTitle,
+    this.subtitle,
     this.description,
     this.icon,
     this.padding = const EdgeInsets.all(8),
-    this.margin = const EdgeInsets.all(16),
+    this.margin = const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
     this.enabled = true,
     this.onTap,
     this.onLongPress,
@@ -59,19 +57,19 @@ class GFRadioListTile<T> extends StatelessWidget {
   /// The GFListTile's background color. Can be given [Color] or [GFColors]
   final Color color;
 
-  /// type of [Widget] or [GFAvatar] used to create rounded user profile
+  /// If position is start Checkbox will come instead of avatar, type of [Widget] or [GFAvatar] used to create rounded user profile
   final Widget avatar;
 
   /// The title to display inside the [GFListTile]. see [Text]
   final Widget title;
 
-  /// The subTitle to display inside the [GFListTile]. see [Text]
-  final Widget subTitle;
+  /// The subtitle to display inside the [GFListTile]. see [Text]
+  final Widget subtitle;
 
   /// The description to display inside the [GFListTile]. see [Text]
   final Widget description;
 
-  /// The icon to display inside the [GFListTile]. see [Icon]
+  /// If position is end Checkbox will come instead of icon, The icon to display inside the [GFListTile]. see [Icon]
   final Widget icon;
 
   /// defines the margin of GFListTile
@@ -91,6 +89,9 @@ class GFRadioListTile<T> extends StatelessWidget {
   ///
   /// Inoperative if [enabled] is false.
   final GestureTapCallback onTap;
+
+  /// Position allows user to set position of [GFCheckbox] based on given [GFPosition]
+  final GFPosition position;
 
   /// Called when the user long-presses on this list tile.
   ///
@@ -126,10 +127,10 @@ class GFRadioListTile<T> extends StatelessWidget {
   final Color radioColor;
 
   /// type of [Color] used to change the backgroundColor of the active checkbox
-  final Color activebgColor;
+  final Color activeBgColor;
 
   /// type of [Color] used to change the backgroundColor of the inactive checkbox
-  final Color inactivebgColor;
+  final Color inactiveBgColor;
 
   /// type of [Color] used to change the border color of the active checkbox
   final Color activeBorderColor;
@@ -147,13 +148,12 @@ class GFRadioListTile<T> extends StatelessWidget {
   final Widget inactiveIcon;
 
   /// type of [Color] used to change the background color of the custom active  checkbox only
-  final Color custombgColor;
+  final Color customBgColor;
 
   /// The value represented by this radio button.
   final T value;
 
-  /// The currently selected value for a group of radio buttons. Radio button is considered selected if its [value] matches the
-  /// [groupValue].
+  /// The currently selected value for a group of radio buttons. Radio button is considered selected if its [value] matches the [groupValue].
   final T groupValue;
 
   /// sets the radio value
@@ -163,45 +163,51 @@ class GFRadioListTile<T> extends StatelessWidget {
   bool get checked => value == groupValue;
 
   @override
-  Widget build(BuildContext context) => MergeSemantics(
-        child: GFListTile(
-          autofocus: autofocus,
-          enabled: onChanged != null,
-          onTap: onChanged != null
-              ? () {
-                  if (toggleable && checked) {
-                    onChanged(null);
-                    return;
-                  }
-                  if (!checked) {
-                    onChanged(value);
-                  }
+  Widget build(BuildContext context) {
+    final GFRadio radio = GFRadio(
+      onChanged: onChanged,
+      value: value,
+      groupValue: groupValue,
+      size: size,
+      type: type,
+      radioColor: radioColor,
+      activeBgColor: activeBgColor,
+      inactiveIcon: inactiveIcon,
+      activeBorderColor: activeBorderColor,
+      inactiveBgColor: inactiveBgColor,
+      activeIcon: activeIcon,
+      inactiveBorderColor: inactiveBorderColor,
+      customBgColor: customBgColor,
+      toggleable: toggleable,
+    );
+    return MergeSemantics(
+      child: GFListTile(
+        autofocus: autofocus,
+        enabled: onChanged != null,
+        focusNode: focusNode,
+        onTap: onChanged != null
+            ? () {
+                if (toggleable && checked) {
+                  onChanged(null);
+                  return;
                 }
-              : null,
-          selected: selected,
-          avatar: avatar,
-          titleText: titleText,
-          subTitle: subTitle,
-          subtitleText: subtitleText,
-          description: description,
-          color: color,
-          padding: padding,
-          margin: margin,
-          title: title,
-          icon: GFRadio(
-            autofocus: autofocus,
-            onChanged: onChanged,
-            value: value,
-            groupValue: groupValue,
-            size: size,
-            activebgColor: activebgColor,
-            inactiveIcon: inactiveIcon,
-            activeBorderColor: activeBorderColor,
-            inactivebgColor: inactivebgColor,
-            activeIcon: activeIcon,
-            inactiveBorderColor: inactiveBorderColor,
-            custombgColor: custombgColor,
-          ),
-        ),
-      );
+                if (!checked) {
+                  onChanged(value);
+                }
+              }
+            : null,
+        selected: selected,
+        avatar: position == GFPosition.start ? radio : avatar,
+        titleText: titleText,
+        subtitle: subtitle,
+        subtitleText: subtitleText,
+        description: description,
+        color: color,
+        padding: padding,
+        margin: margin,
+        title: title,
+        icon: position == GFPosition.end ? radio : icon,
+      ),
+    );
+  }
 }

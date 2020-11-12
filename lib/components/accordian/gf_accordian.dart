@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFAccordion extends StatefulWidget {
+  /// An accordion is used to show (and hide) content. Use [showAccordion] to hide & show the accordion content.
   const GFAccordion(
       {Key key,
       this.titleChild,

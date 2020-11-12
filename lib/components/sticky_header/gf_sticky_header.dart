@@ -2,12 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:meta/meta.dart';
 import 'package:getwidget/getwidget.dart';
 
-/// Place this widget inside a [ListView], [GridView], [CustomScrollView], [SingleChildScrollView] or similar.
-
 class GFStickyHeader extends MultiChildRenderObjectWidget {
+  /// GF Sticky Header will the stick header at top when content is being scrolled.
+  /// Place this widget inside a [ListView], [GridView], [CustomScrollView], [SingleChildScrollView] or similar.
   GFStickyHeader(
       {Key key,
       @required this.stickyContent,

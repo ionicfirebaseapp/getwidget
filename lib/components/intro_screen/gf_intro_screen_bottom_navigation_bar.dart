@@ -20,7 +20,7 @@ class GFIntroScreenBottomNavigationBar extends StatefulWidget {
     this.dividerHeight = 1,
     this.dividerThickness = 2,
     this.dotShape,
-    this.inActiveColor = GFColors.DANGER,
+    this.inactiveColor = GFColors.DANGER,
     this.activeColor = GFColors.PRIMARY,
     this.dotHeight = 12,
     this.dotWidth = 12,
@@ -82,7 +82,7 @@ class GFIntroScreenBottomNavigationBar extends StatefulWidget {
   final EdgeInsets navigationBarMargin;
 
   /// defines [GFIntroScreenBottomNavigationBar] color
-  final dynamic navigationBarColor;
+  final Color navigationBarColor;
 
   /// defines the shape of [GFIntroScreenBottomNavigationBar]
   final ShapeBorder navigationBarShape;
@@ -151,13 +151,13 @@ class GFIntroScreenBottomNavigationBar extends StatefulWidget {
   final double dividerThickness;
 
   /// defines divider color
-  final dynamic dividerColor;
+  final Color dividerColor;
 
   /// defines pagination shape
   final ShapeBorder dotShape;
 
   /// defines pagination inactive color
-  final Color inActiveColor;
+  final Color inactiveColor;
 
   /// defines pagination active color
   final Color activeColor;
@@ -197,6 +197,14 @@ class _GFIntroScreenBottomNavigationBarState
       }
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    if (_pageController != null) {
+      _pageController.dispose();
+    }
+    super.dispose();
   }
 
   void onForwardButton() {
@@ -289,7 +297,7 @@ class _GFIntroScreenBottomNavigationBarState
         child: Material(
           shape: widget.dotShape ??
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-          color: currentIndex == i ? widget.activeColor : widget.inActiveColor,
+          color: currentIndex == i ? widget.activeColor : widget.inactiveColor,
           child: Container(
             width: widget.dotWidth,
             height: widget.dotHeight,

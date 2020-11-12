@@ -4,6 +4,7 @@ import 'package:getwidget/getwidget.dart';
 typedef RatingChangeCallback = void Function(double rating);
 
 class GFRating extends StatefulWidget {
+  /// [GFRating] to show ratings with many custimazation options.
   const GFRating({
     this.itemCount = 5,
     this.spacing = 0.0,

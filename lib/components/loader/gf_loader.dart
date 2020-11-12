@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFLoader extends StatefulWidget {
+  /// [GFLoader] shows differnt type of loaders with different customization options.
   const GFLoader(
       {Key key,
       this.loaderColorOne = Colors.redAccent,
@@ -66,51 +67,25 @@ class _GFLoaderState extends State<GFLoader>
   Animation<double> loaderanimation2;
   Animation<double> loaderanimation3;
   AnimationController controller;
+  Interval interval = const Interval(0.1, 0.81, curve: Curves.linear);
 
   @override
   void initState() {
-    super.initState();
-
     controller = AnimationController(duration: widget.duration, vsync: this);
-
     loaderanimation1 = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: controller,
-        curve: const Interval(
-          0,
-          0.71,
-          curve: Curves.linear,
-        ),
-      ),
+      CurvedAnimation(parent: controller, curve: interval),
     );
-
     loaderanimation2 = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: controller,
-        curve: const Interval(
-          0.1,
-          0.81,
-          curve: Curves.linear,
-        ),
-      ),
+      CurvedAnimation(parent: controller, curve: interval),
     );
-
     loaderanimation3 = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: controller,
-        curve: const Interval(
-          0.2,
-          0.91,
-          curve: Curves.linear,
-        ),
-      ),
+      CurvedAnimation(parent: controller, curve: interval),
     );
-
     controller.addListener(() {
       setState(() {});
     });
-
     controller.repeat();
+    super.initState();
   }
 
   @override
@@ -129,7 +104,7 @@ class _GFLoaderState extends State<GFLoader>
                     child: CircularProgressIndicator(
                       valueColor: widget.androidLoaderColor,
                       strokeWidth: widget.loaderstrokeWidth,
-//              value: 20,
+                      // value: 20,
                     ),
                   ))
                 : widget.type == GFLoaderType.ios
@@ -172,7 +147,6 @@ class _GFLoaderState extends State<GFLoader>
                                 color: widget.loaderColorTwo,
                                 type: widget.type,
                                 icon: widget.loaderIconTwo,
-//
                               ),
                             ),
                           ),
@@ -190,7 +164,6 @@ class _GFLoaderState extends State<GFLoader>
                                 color: widget.loaderColorThree,
                                 type: widget.type,
                                 icon: widget.loaderIconThree,
-//
                               ),
                             ),
                           ),
@@ -200,7 +173,9 @@ class _GFLoaderState extends State<GFLoader>
 
   @override
   void dispose() {
-    controller.dispose();
+    if (controller != null) {
+      controller.dispose();
+    }
     super.dispose();
   }
 }
@@ -215,7 +190,6 @@ class Loader extends StatelessWidget {
       this.size,
       this.child})
       : super(key: key);
-
   final double radius;
   final Color color;
   final GFLoaderType type;
@@ -225,15 +199,16 @@ class Loader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-      child: type == GFLoaderType.custom
-          ? Container(child: child != null ? child : icon ?? Container())
-          : Container(
-              width: radius,
-              height: radius,
-              decoration: BoxDecoration(
-                  color: color,
-                  shape: type == GFLoaderType.circle
-                      ? BoxShape.circle
-                      : BoxShape.rectangle),
-            ));
+        child: type == GFLoaderType.custom
+            ? Container(child: child != null ? child : icon ?? Container())
+            : Container(
+                width: radius,
+                height: radius,
+                decoration: BoxDecoration(
+                    color: color,
+                    shape: type == GFLoaderType.circle
+                        ? BoxShape.circle
+                        : BoxShape.rectangle),
+              ),
+      );
 }

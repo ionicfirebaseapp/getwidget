@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class GFCarousel extends StatefulWidget {
   /// Creates slide show of Images and [Widget] with animation for sliding.
-  GFCarousel({
+  const GFCarousel({
     @required this.items,
     this.pagerSize,
     this.passiveIndicator,
@@ -14,7 +13,6 @@ class GFCarousel extends StatefulWidget {
     this.aspectRatio = 16 / 9,
     this.viewportFraction = 0.8,
     this.initialPage = 0,
-    int realPage = 10000,
     this.enableInfiniteScroll = true,
     this.reverse = false,
     this.autoPlay = false,
@@ -26,12 +24,7 @@ class GFCarousel extends StatefulWidget {
     this.onPageChanged,
     this.scrollPhysics,
     this.scrollDirection = Axis.horizontal,
-  })  : realPage = enableInfiniteScroll ? realPage + initialPage : initialPage,
-        pageController = PageController(
-          viewportFraction: viewportFraction,
-          initialPage:
-              enableInfiniteScroll ? realPage + initialPage : initialPage,
-        );
+  });
 
   /// The pagination dots size can be defined using [double].
   final double pagerSize;
@@ -59,9 +52,6 @@ class GFCarousel extends StatefulWidget {
 
   /// The initial page to show when first creating the [GFCarousel]. Defaults to 0.
   final num initialPage;
-
-  /// The actual index of the [PageView].
-  final num realPage;
 
   /// Determines if slides should loop infinitely or be limited to item length. Defaults to true, i.e. infinite loop.
   final bool enableInfiniteScroll;
@@ -95,8 +85,6 @@ class GFCarousel extends StatefulWidget {
   /// Called whenever the page in the center of the viewport changes.
   final Function(int index) onPageChanged;
 
-//  int onPageIndex;
-
   /// How the carousel should respond to user input.
   ///
   /// For example, determines how the items continues to animate after the
@@ -107,49 +95,6 @@ class GFCarousel extends StatefulWidget {
   ///
   /// Defaults to matching platform conventions.
   final ScrollPhysics scrollPhysics;
-
-  /// [pageController] is created using the properties passed to the constructor
-  /// and can be used to control the [PageView] it is passed to.
-  final PageController pageController;
-
-  /// Animates the controlled [GFCarousel] to the next page.
-  ///
-  /// The animation lasts for the given duration and follows the given curve.
-  /// The returned [Future] resolves when the animation completes.
-  Future<void> nextPage({Duration duration, Curve curve}) =>
-      pageController.nextPage(duration: duration, curve: curve);
-
-  /// Animates the controlled [GFCarousel] to the previous page.
-  ///
-  /// The animation lasts for the given duration and follows the given curve.
-  /// The returned [Future] resolves when the animation completes.
-  Future<void> previousPage({Duration duration, Curve curve}) =>
-      pageController.previousPage(duration: duration, curve: curve);
-
-  /// Changes which page is displayed in the controlled [GFCarousel].
-  ///
-  /// Jumps the page position from its current value to the given value,
-  /// without animation, and without checking if the new value is in range.
-  void jumpToPage(int page) {
-    final index =
-        _getRealIndex(pageController.page.toInt(), realPage, items.length);
-    return pageController
-        .jumpToPage(pageController.page.toInt() + page - index);
-  }
-
-  /// Animates the controlled [GFCarousel] from the current page to the given page.
-  ///
-  /// The animation lasts for the given duration and follows the given curve.
-  /// The returned [Future] resolves when the animation completes.
-  Future<void> animateToPage(int page, {Duration duration, Curve curve}) {
-    final index =
-        _getRealIndex(pageController.page.toInt(), realPage, items.length);
-    return pageController.animateToPage(
-      pageController.page.toInt() + page - index,
-      duration: duration,
-      curve: curve,
-    );
-  }
 
   List<T> map<T>(List list, Function handler) {
     List<T> result;
@@ -166,7 +111,6 @@ class GFCarousel extends StatefulWidget {
 
 class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
   Timer timer;
-//  int _current = 0;
 
   /// Size of cell
   double size = 0;
@@ -174,15 +118,31 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
   /// Width of cells container
   double width = 0;
 
+  /// [pageController] is created using the properties passed to the constructor
+  /// and can be used to control the [PageView] it is passed to.
+  PageController pageController;
+
+  /// The actual index of the [PageView].
+  int realPage = 10000;
+
   @override
   void initState() {
     super.initState();
+    realPage = widget.enableInfiniteScroll
+        ? realPage + widget.initialPage
+        : widget.initialPage;
+    pageController = PageController(
+      viewportFraction: widget.viewportFraction,
+      initialPage: widget.enableInfiniteScroll
+          ? realPage + widget.initialPage
+          : widget.initialPage,
+    );
     timer = getPlayTimer();
   }
 
   Timer getPlayTimer() => Timer.periodic(widget.autoPlayInterval, (_) {
         if (widget.autoPlay && widget.items.length > 1) {
-          widget.pageController.nextPage(
+          pageController.nextPage(
               duration: widget.autoPlayAnimationDuration,
               curve: widget.autoPlayCurve);
         }
@@ -231,50 +191,58 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
           getPageWrapper(PageView.builder(
             physics: widget.scrollPhysics,
             scrollDirection: widget.scrollDirection,
-            controller: widget.pageController,
+            controller: pageController,
             reverse: widget.reverse,
             itemCount: widget.items.length == 1
                 ? widget.items.length
-                : widget.enableInfiniteScroll ? null : widget.items.length,
+                : widget.enableInfiniteScroll
+                    ? null
+                    : widget.items.length,
             onPageChanged: (int index) {
               int currentPage;
-              currentPage = _getRealIndex(index + widget.initialPage,
-                  widget.realPage, widget.items.length);
+              currentPage = _getRealIndex(
+                  index + widget.initialPage, realPage, widget.items.length);
               if (widget.onPageChanged != null) {
                 widget.onPageChanged(currentPage);
               }
               if (widget.pagination == true && widget.onPageChanged == null) {
                 onPageSlide(currentPage);
-//                _current = currentPage;
               }
-//              _current = currentPage;
             },
             itemBuilder: (BuildContext context, int i) {
               final int index = _getRealIndex(
                 i + widget.initialPage,
-                widget.realPage,
+                realPage,
                 widget.items.length,
               );
+
               currentSlide = index;
               return AnimatedBuilder(
-                animation: widget.pageController,
+                animation: pageController,
                 child: widget.items[index],
                 builder: (BuildContext context, child) {
-                  // on the first render, the pageController.page is null,
-                  // this is a dirty hack
-                  if (widget.pageController.position.minScrollExtent == null ||
-                      widget.pageController.position.maxScrollExtent == null) {
-                    Future.delayed(const Duration(microseconds: 1), () {
-                      setState(() {});
-                    });
-                    return Container();
+                  double value;
+                  try {
+                    value = pageController.page - i;
+                    // ignore: avoid_catches_without_on_clauses
+                  } catch (e) {
+                    final BuildContext storageContext =
+                        pageController.position.context.storageContext;
+                    final double previousSavedPosition =
+                        PageStorage.of(storageContext)
+                            ?.readState(storageContext);
+                    if (previousSavedPosition != null) {
+                      value = previousSavedPosition - i.toDouble();
+                    } else {
+                      value = realPage.toDouble() - i.toDouble();
+                    }
                   }
-                  double value = widget.pageController.page - i;
                   value = (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
 
                   final double height = widget.height ??
                       MediaQuery.of(context).size.width *
                           (1 / widget.aspectRatio);
+
                   final double distortionValue = widget.enlargeMainPage
                       ? Curves.easeOut.transform(value)
                       : 1.0;
