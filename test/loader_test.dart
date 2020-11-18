@@ -4,23 +4,22 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:getwidget/getwidget.dart';
 
 void main() {
-
-  final childWidget = Container(
+  final Widget childWidget = Container(
     width: 111,
     height: 222,
   );
 
-  final iconOne = Icon(Icons.directions_bike_sharp);
-  final iconTwo = Icon(Icons.directions_car);
-  final iconThree = Icon(Icons.directions_bus);
+  const iconOne = Icon(Icons.directions_bike_sharp);
+  const iconTwo = Icon(Icons.directions_car);
+  const iconThree = Icon(Icons.directions_bus);
 
-  final duration = Duration(milliseconds: 1000);
+  const duration = Duration(milliseconds: 1000);
 
-  final firstColor = Colors.teal;
-  final secondColor = Colors.tealAccent;
-  final thirdColor = Colors.tealAccent.shade400;
+  const firstColor = Colors.teal;
+  const secondColor = Colors.tealAccent;
+  const thirdColor = Colors.tealAccent;
 
-  final stroke = 4.0;
+  const stroke = 4.0;
 
   debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
 
@@ -41,17 +40,16 @@ void main() {
   // });
 
   testWidgets('GF Loader can be constructed', (tester) async {
-
     final GFLoader loader = GFLoader(
-        loaderColorOne: firstColor,
-        loaderColorTwo: secondColor,
-        duration: duration,
-        type: GFLoaderType.ios,
-        loaderIconOne : iconOne,
-        // androidLoaderColor : Colors.amber,
-        loaderstrokeWidth: stroke,
-        size: GFSize.MEDIUM,
-        child : childWidget
+      loaderColorOne: firstColor,
+      loaderColorTwo: secondColor,
+      duration: duration,
+      type: GFLoaderType.ios,
+      loaderIconOne: iconOne,
+      // androidLoaderColor : Colors.amber,
+      loaderstrokeWidth: stroke,
+      size: GFSize.MEDIUM,
+      child: childWidget,
     );
 
     final TestApp app = TestApp(loader);
@@ -69,35 +67,29 @@ void main() {
     expect(app.loader.size, GFSize.MEDIUM);
 
     debugDefaultTargetPlatformOverride = null;
-
   });
 
   testWidgets('Basic GF Loader can be constructed', (tester) async {
+    const GFLoader loader = GFLoader();
 
-    final GFLoader loader = GFLoader(
-
-    );
-
-    final TestApp app = TestApp(loader);
+    const TestApp app = TestApp(loader);
 
     await tester.pumpWidget(app);
-
   });
 
   testWidgets('GF Loader with icons can be constructed', (tester) async {
+    const customType = GFLoaderType.custom;
 
-    final customType = GFLoaderType.custom;
-
-    final GFLoader loader = GFLoader(
+    const GFLoader loader = GFLoader(
       type: customType,
       duration: duration,
-      loaderIconOne : iconOne,
+      loaderIconOne: iconOne,
       loaderIconTwo: iconTwo,
       loaderIconThree: iconThree,
       loaderstrokeWidth: stroke,
     );
 
-    final TestApp app = TestApp(loader);
+    const TestApp app = TestApp(loader);
 
     await tester.pumpWidget(app);
 
@@ -108,9 +100,7 @@ void main() {
     expect(app.loader.loaderIconTwo, iconTwo);
     expect(app.loader.loaderIconThree, iconThree);
     expect(app.loader.loaderstrokeWidth, stroke);
-
   });
-
 
   // testWidgets('Asserts.', (tester) async {
   //   // when type is null
@@ -126,10 +116,9 @@ void main() {
   // });
 
   testWidgets('GF Loader with square type can be constructed', (tester) async {
+    const customType = GFLoaderType.square;
 
-    final customType = GFLoaderType.square;
-
-    final GFLoader loader = GFLoader(
+    const GFLoader loader = GFLoader(
       type: customType,
       duration: duration,
       loaderColorOne: firstColor,
@@ -138,7 +127,7 @@ void main() {
       loaderstrokeWidth: stroke,
     );
 
-    final TestApp app = TestApp(loader);
+    const TestApp app = TestApp(loader);
 
     await tester.pumpWidget(app);
 
@@ -149,14 +138,12 @@ void main() {
     expect(app.loader.loaderColorTwo, secondColor);
     expect(app.loader.loaderColorThree, thirdColor);
     expect(app.loader.loaderstrokeWidth, stroke);
-
   });
 
   testWidgets('GF Loader with round type can be constructed', (tester) async {
+    const customType = GFLoaderType.circle;
 
-    final customType = GFLoaderType.circle;
-
-    final GFLoader loader = GFLoader(
+    const GFLoader loader = GFLoader(
       type: customType,
       duration: duration,
       loaderColorOne: firstColor,
@@ -165,7 +152,7 @@ void main() {
       loaderstrokeWidth: stroke,
     );
 
-    final TestApp app = TestApp(loader);
+    const TestApp app = TestApp(loader);
 
     await tester.pumpWidget(app);
 
@@ -176,28 +163,23 @@ void main() {
     expect(app.loader.loaderColorTwo, secondColor);
     expect(app.loader.loaderColorThree, thirdColor);
     expect(app.loader.loaderstrokeWidth, stroke);
-
   });
 
-  testWidgets('GF Loader with android type loader can be constructed', (tester) async {
+  testWidgets('GF Loader with android type loader can be constructed',
+      (tester) async {
+    const customType = GFLoaderType.android;
+    const color = AlwaysStoppedAnimation<Color>(Colors.green);
 
-    final customType = GFLoaderType.android;
-    final color = AlwaysStoppedAnimation<Color>(Colors.green);
+    const GFLoader loader =
+        GFLoader(type: customType, androidLoaderColor: color);
 
-    final GFLoader loader = GFLoader(
-        type: customType,
-        androidLoaderColor : color
-    );
-
-    final TestApp app = TestApp(loader);
+    const TestApp app = TestApp(loader);
 
     await tester.pumpWidget(app);
 
     expect(app.loader.type, customType);
     expect(app.loader.androidLoaderColor, color);
-
   });
-
 
   // testWidgets('Asserts.', (tester) async {
   //   // when type is null
@@ -212,14 +194,14 @@ void main() {
   //   //
   //   // );
   //
-  //   final GFLoader loader = GFLoader(
+  //   const GFLoader loader = GFLoader(
   //       type: null,
   //     loaderIconOne : iconOne,
   //     loaderIconTwo: iconTwo,
   //     loaderIconThree: iconThree,
   //   );
   //
-  //   final TestApp app = TestApp(loader);
+  //   const TestApp app = TestApp(loader);
   //
   //   await tester.pumpWidget(app);
   //
@@ -233,14 +215,11 @@ void main() {
   //   );
   // });
 
-  testWidgets('GF Loader with custom loader can be constructed using child', (tester) async {
+  testWidgets('GF Loader with custom loader can be constructed using child',
+      (tester) async {
+    const customType = GFLoaderType.custom;
 
-    final customType = GFLoaderType.custom;
-
-    final GFLoader loader = GFLoader(
-        type: customType,
-        child : childWidget
-    );
+    final GFLoader loader = GFLoader(type: customType, child: childWidget);
 
     final TestApp app = TestApp(loader);
 
@@ -252,15 +231,13 @@ void main() {
 
     expect(app.loader.child, childWidget);
     expect(app.loader.type, customType);
-
   });
-
 }
 
 class TestApp extends StatefulWidget {
-  final GFLoader loader;
+  const TestApp(this.loader);
 
-  TestApp(this.loader);
+  final GFLoader loader;
 
   @override
   _TestAppState createState() => _TestAppState();
@@ -268,15 +245,13 @@ class TestApp extends StatefulWidget {
 
 class _TestAppState extends State<TestApp> {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Column(
-          children: [
-            widget.loader,
-          ],
+  Widget build(BuildContext context) => MaterialApp(
+        home: Scaffold(
+          body: Column(
+            children: [
+              widget.loader,
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 }
