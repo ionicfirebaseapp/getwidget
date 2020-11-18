@@ -18,7 +18,8 @@ class GFLoader extends StatefulWidget {
       this.loaderstrokeWidth = 4.0,
       this.size = GFSize.MEDIUM,
       this.child})
-      : super(key: key);
+      : assert(type != null),
+        super(key: key);
 
   /// Type of [Widget] used only in custom type and it is prominent over the loaderIconOne, loaderIconTwo, loaderIconThree in custom type
   final Widget child;
