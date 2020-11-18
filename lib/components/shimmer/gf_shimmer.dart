@@ -15,7 +15,8 @@ class GFShimmer extends StatefulWidget {
     this.showGradient = false,
     this.mainColor = Colors.grey,
     this.secondaryColor = GFColors.LIGHT,
-  }) : super(key: key);
+  })  : assert(child != null),
+        super(key: key);
 
   /// The child of type [Widget] to display shimmer effect.
   final Widget child;
