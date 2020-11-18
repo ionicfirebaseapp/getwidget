@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:getwidget/getwidget.dart';
@@ -15,8 +14,8 @@ Future<void> main() async {
   const borderonForeground = false;
   const padding = EdgeInsets.symmetric(horizontal: 12, vertical: 8);
   const margin = EdgeInsets.all(1);
-  const clip = Clip.none;
-  const semanticcontainer = false;
+  // const clip = Clip.none;
+  // const semanticcontainer = false;
   const title = GFListTile(
     titleText: 'Card Title',
     icon: Icon(Icons.favorite_border),
@@ -36,10 +35,10 @@ Future<void> main() async {
   //                             )
   //                           ],
   //                         );
-  const titleposition = GFPosition.end;
-  final borderradius = BorderRadius.circular(10.0);
-  final border = Border(top: BorderSide(color: Colors.black));
-  const boxfit = BoxFit.cover;
+  // const titleposition = GFPosition.end;
+  final borderradius = BorderRadius.circular(10);
+  const border = Border(top: BorderSide(color: Colors.black));
+  // const boxfit = BoxFit.cover;
   // const gradient = LinearGradient(
   //     begin: Alignment.bottomCenter,
   //     end: Alignment.topCenter,
@@ -76,21 +75,21 @@ Future<void> main() async {
     // expect(app.card.image, bgImage);
   });
 
-    testWidgets('GF Card with background image.', (tester) async {
-     final bgImage = Image.network(
+  testWidgets('GF Card with background image.', (tester) async {
+    final bgImage = Image.network(
       'https://images.unsplash.com/photo-1547721064-da6cfb341d50',
     );
     final GFCard card = GFCard(
-        image: bgImage,
-        );
+      image: bgImage,
+    );
 
     final TestApp app = TestApp(card);
 
     expect(app.card.image, bgImage);
   });
 
-    testWidgets('GF Card with border & border radius.', (tester) async {
-     final bgImage = Image.network(
+  testWidgets('GF Card with border & border radius.', (tester) async {
+    final bgImage = Image.network(
       'https://images.unsplash.com/photo-1547721064-da6cfb341d50',
     );
     final GFCard card = GFCard(
@@ -123,7 +122,7 @@ Future<void> main() async {
   });
 
   testWidgets('GF Card with custom buttonbar.', (tester) async {
-     final bgImage = Image.network(
+    final bgImage = Image.network(
       'https://images.unsplash.com/photo-1547721064-da6cfb341d50',
     );
     const custombuttonbar = GFButtonBar(
@@ -185,8 +184,7 @@ Future<void> main() async {
     // expect(app.card.image, bgImage);
   });
 
-  testWidgets(
-      'GF Card with GFAvatar & Subtitle in title section.',
+  testWidgets('GF Card with GFAvatar & Subtitle in title section.',
       (tester) async {
     const customtitle = GFListTile(
       avatar: GFAvatar(),
@@ -216,13 +214,12 @@ Future<void> main() async {
     // expect(app.card.image, bgImage);
   });
 
-    testWidgets(
-      'GF Card with full background image & buttonbar.',
+  testWidgets('GF Card with full background image & buttonbar.',
       (tester) async {
-          const imageoverlay = NetworkImage(
-      'https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg');
-        final colorfilter =
-      ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken);
+    // const imageoverlay = NetworkImage(
+    //     'https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg');
+    final colorfilter =
+        ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken);
     const customtitle = GFListTile(
       titleText: 'Card Title',
       subtitleText: 'Sub title',
@@ -251,14 +248,14 @@ Future<void> main() async {
     expect(app.card.colorFilter, colorfilter);
   });
 
-    testWidgets(
+  testWidgets(
       'GF Card with full background image , customized title & buttonbar.',
       (tester) async {
-          const imageoverlay = NetworkImage(
-      'https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg');
-        final colorfilter =
-      ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken);
-  const customtitle = GFListTile(
+    // const imageoverlay = NetworkImage(
+    //     'https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg');
+    final colorfilter =
+        ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken);
+    const customtitle = GFListTile(
       avatar: GFAvatar(),
       titleText: 'Card Title',
       subtitleText: 'Sub title',
@@ -299,7 +296,6 @@ Future<void> main() async {
     expect(app.card.colorFilter, colorfilter);
     expect(app.card.buttonBar, custombuttonbar);
   });
-
 }
 
 class TestApp extends StatefulWidget {
