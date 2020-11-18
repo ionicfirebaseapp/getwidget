@@ -60,6 +60,12 @@ Future<void> main() async {
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
+    expect(app.avatar.backgroundColor, bgcolor);
+    expect(app.avatar.foregroundColor, fgcolor);
+    expect(app.avatar.minRadius, minradius);
+    expect(app.avatar.maxRadius, maxradius);
+    expect(app.avatar.size, GFSize.MEDIUM);
+    expect(app.avatar.shape, GFAvatarShape.circle);
 
     // final url = await provideMockedNetworkImages(() async {
     //   await tester.pumpWidget(
