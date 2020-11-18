@@ -22,7 +22,7 @@
  ## Screenshot
  <p align="center">
   <a target="_blank" href="https://docs.getwidget.dev/">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/GitHub_1_O8ZlrxSIo.png" alt="GetWidget Screens">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/GitHub_Image_updated_u9eSV6fDY-.png" alt="GetWidget Screens">
   </a>
 </p>
 
