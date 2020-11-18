@@ -53,9 +53,7 @@ const double _kWidth = 304;
 ///
 class GFDrawer extends StatelessWidget {
   /// Creates a material design drawer.
-  ///
   /// Typically used in the [Scaffold.drawer] property.
-  ///
   /// The [elevation] must be non-negative.
   const GFDrawer({
     Key key,

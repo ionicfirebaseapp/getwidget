@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:getwidget/getwidget.dart';
 
 /// A material design card. A card has slightly rounded corners and a shadow.
@@ -175,7 +176,9 @@ class GFCard extends StatelessWidget {
                   _defaultClipBehavior,
               child: imageOverlay == null ? cardChild : overlayImage,
             )
-          : imageOverlay == null ? cardChild : overlayImage,
+          : imageOverlay == null
+              ? cardChild
+              : overlayImage,
     );
   }
 }

@@ -111,7 +111,7 @@ class _GFIconButtonState extends State<GFIconButton> {
   BoxShadow boxShadow;
   double height;
   double width;
-  double iconPixel;
+  double iconPixel = 18;
 
   @override
   void initState() {
@@ -162,7 +162,9 @@ class _GFIconButtonState extends State<GFIconButton> {
         widget.type == GFButtonType.outline ||
         widget.type == GFButtonType.outline2x) {
       return widget.onPressed != null
-          ? color == GFColors.TRANSPARENT ? GFColors.DARK : color
+          ? color == GFColors.TRANSPARENT
+              ? GFColors.DARK
+              : color
           : color.withOpacity(0.48);
     } else if (color == GFColors.TRANSPARENT) {
       return widget.onPressed != null ? GFColors.DARK : GFColors.WHITE;
@@ -182,7 +184,9 @@ class _GFIconButtonState extends State<GFIconButton> {
           ? getBorderColor()
           : widget.borderSide.color,
       width: widget.borderSide?.width == null
-          ? widget.type == GFButtonType.outline2x ? 2.0 : 1.0
+          ? widget.type == GFButtonType.outline2x
+              ? 2.0
+              : 1.0
           : widget.borderSide?.width,
     );
 
@@ -226,29 +230,34 @@ class _GFIconButtonState extends State<GFIconButton> {
     } else if (widget.size == GFSize.MEDIUM) {
       height = 35.0;
       width = 35.0;
-      iconPixel = 18.0;
+      iconPixel = 28.0;
     } else if (widget.size == GFSize.LARGE) {
       height = 40.0;
       width = 40.0;
-      iconPixel = 18.0;
-    } else {
-      height = 35.0;
-      width = 35.0;
-      iconPixel = 18.0;
+      iconPixel = 38.0;
     }
 
     Widget result = Container(
-      height: widget.shape == GFIconButtonShape.circle ? height + 6.0 : height,
-      width: widget.shape == GFIconButtonShape.pills
-          ? width + 10
-          : widget.shape == GFIconButtonShape.circle ? height + 6 : width,
+      // height: widget.shape == GFIconButtonShape.circle ? height + 6.0 : height,
+      // width: widget.shape == GFIconButtonShape.pills
+      //     ? width + 10
+      //     : widget.shape == GFIconButtonShape.circle
+      //         ? height + 6
+      //         : width,
       padding: widget.padding,
-      child: IconTheme.merge(
-        data: IconThemeData(
-          size: widget.iconSize > 0.0 ? widget.iconSize : iconPixel,
-          color: getIconColor(),
+      child: SizedBox(
+        height: widget.iconSize != 0 ? widget.iconSize : iconPixel,
+        width: widget.iconSize != 0 ? widget.iconSize : iconPixel,
+        child: Align(
+          alignment: Alignment.center,
+          child: IconTheme.merge(
+            data: IconThemeData(
+              size: widget.iconSize > 0.0 ? widget.iconSize : iconPixel,
+              color: getIconColor(),
+            ),
+            child: widget.icon,
+          ),
         ),
-        child: widget.icon,
       ),
     );
 
@@ -302,44 +311,42 @@ class _GFIconButtonState extends State<GFIconButton> {
       child: Focus(
         focusNode: widget.focusNode,
         autofocus: widget.autofocus,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 60, maxHeight: 60),
-          child: Container(
-            height:
-                widget.shape == GFIconButtonShape.circle ? height + 6 : height,
-            width: widget.shape == GFIconButtonShape.pills
-                ? width + 10
-                : widget.shape == GFIconButtonShape.circle ? height + 6 : width,
-            decoration:
-                widget.type == GFButtonType.solid ? getBoxShadow() : null,
-            child: Material(
-              shape: widget.type == GFButtonType.transparent
-                  ? null
-                  : widget.borderShape ?? shapeBorderType,
-              color: widget.onPressed != null
-                  ? getColor()
-                  : getDisabledFillColor(),
-              type: widget.type == GFButtonType.transparent
-                  ? MaterialType.transparency
-                  : MaterialType.button,
-              child: InkResponse(
-                onTap: widget.onPressed,
-                child: result,
-                focusColor: widget.focusColor ?? Theme.of(context).focusColor,
-                hoverColor: widget.hoverColor ?? Theme.of(context).hoverColor,
-                highlightColor:
-                    widget.highlightColor ?? Theme.of(context).highlightColor,
-                splashColor:
-                    widget.splashColor ?? Theme.of(context).splashColor,
-                radius: math.max(
-                    Material.defaultSplashRadius,
-                    (widget.iconSize +
-                            math.min(
-                              widget.padding.horizontal,
-                              widget.padding.vertical,
-                            )) *
-                        0.7),
-              ),
+        child: Container(
+          // height:
+          //     widget.shape == GFIconButtonShape.circle ? height + 6 : height,
+          // width: widget.shape == GFIconButtonShape.pills
+          //     ? width + 10
+          //     : widget.shape == GFIconButtonShape.circle
+          //         ? height + 6
+          //         : width,
+          decoration: widget.type == GFButtonType.solid ? getBoxShadow() : null,
+          child: Material(
+            shape: widget.type == GFButtonType.transparent
+                ? null
+                : widget.borderShape ?? shapeBorderType,
+            color:
+                widget.onPressed != null ? getColor() : getDisabledFillColor(),
+            type: widget.type == GFButtonType.transparent
+                ? MaterialType.transparency
+                : MaterialType.button,
+            child: InkResponse(
+              onTap: widget.onPressed,
+              child: result,
+              focusColor: widget.focusColor ?? Theme.of(context).focusColor,
+              hoverColor: widget.hoverColor ?? Theme.of(context).hoverColor,
+              highlightColor:
+                  widget.highlightColor ?? Theme.of(context).highlightColor,
+              splashColor: widget.splashColor ?? Theme.of(context).splashColor,
+              radius: math.max(
+                  Material.defaultSplashRadius,
+                  (widget.iconSize > 0.0
+                          ? widget.iconSize
+                          : iconPixel +
+                              math.min(
+                                widget.padding.horizontal,
+                                widget.padding.vertical,
+                              )) *
+                      0.7),
             ),
           ),
         ),

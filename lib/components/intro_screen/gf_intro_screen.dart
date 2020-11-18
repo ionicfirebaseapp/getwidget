@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFIntroScreen extends StatefulWidget {
+  /// GF Intro Screen is virtual unique interactive Slider that helps users get started with an app.
+  /// It has many features that helps to build custom-made introduction screen sliders.
+  /// Presents informative screens to users with various possibilities in customization.
   const GFIntroScreen({
     Key key,
     @required this.pageController,
@@ -28,7 +31,7 @@ class GFIntroScreen extends StatefulWidget {
     this.dividerHeight = 1,
     this.dividerThickness = 2,
     this.dotShape,
-    this.inActiveColor = GFColors.LIGHT,
+    this.inactiveColor = GFColors.LIGHT,
     this.activeColor = GFColors.PRIMARY,
     this.dotHeight = 12,
     this.dotWidth = 12,
@@ -114,7 +117,7 @@ class GFIntroScreen extends StatefulWidget {
   final EdgeInsets navigationBarMargin;
 
   /// defines [GFIntroScreenBottomNavigationBar] color
-  final dynamic navigationBarColor;
+  final Color navigationBarColor;
 
   /// defines the shape of [GFIntroScreenBottomNavigationBar]
   final ShapeBorder navigationBarShape;
@@ -183,13 +186,13 @@ class GFIntroScreen extends StatefulWidget {
   final double dividerThickness;
 
   /// defines divider color
-  final dynamic dividerColor;
+  final Color dividerColor;
 
   /// defines pagination shape
   final ShapeBorder dotShape;
 
   /// defines pagination inactive color
-  final Color inActiveColor;
+  final Color inactiveColor;
 
   /// defines pagination active color
   final Color activeColor;
@@ -246,7 +249,7 @@ class _GFIntroScreenState extends State<GFIntroScreen> {
                         dividerHeight: widget.dividerHeight,
                         dividerThickness: widget.dividerThickness,
                         dotShape: widget.dotShape,
-                        inActiveColor: widget.inActiveColor,
+                        inactiveColor: widget.inactiveColor,
                         activeColor: widget.activeColor,
                         dotHeight: widget.dotHeight,
                         dotWidth: widget.dotWidth,

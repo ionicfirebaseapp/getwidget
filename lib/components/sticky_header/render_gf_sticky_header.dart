@@ -132,10 +132,8 @@ class RenderGFStickyHeader extends RenderBox
     assert(childCount == 2);
     _stickyContentBody.layout(constraints.loosen(), parentUsesSize: true);
     _contentBody.layout(constraints.loosen(), parentUsesSize: true);
-
     final stickyContentBodyHeight = _stickyContentBody.size.height;
     final contentBodyHeight = _contentBody.size.height;
-
     final height = max(
         constraints.minHeight,
         _enableHeaderOverlap
@@ -145,20 +143,15 @@ class RenderGFStickyHeader extends RenderBox
 
     size = Size(
         constraints.constrainWidth(width), constraints.constrainHeight(height));
-
     final double stickyContentBodyOffset = getHeaderTileStuckOffset();
-
     assert(constraints != null);
 
     double crossSize = 0;
     double allottedSize = 0;
     RenderBox child = firstChild;
-    // ignore: unused_local_variable
-    int totalChildren = 0;
     while (child != null) {
       // ignore: avoid_as
       final FlexParentData childParentData = child.parentData as FlexParentData;
-      totalChildren++;
       final int flex = _getFlex(child);
       if (flex > 0) {
       } else {

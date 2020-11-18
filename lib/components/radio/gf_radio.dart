@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class GFRadio<T> extends StatefulWidget {
+  /// [GFRadio] is one type of selection indicator in a list of options.
   const GFRadio(
       {Key key,
       @required this.value,
@@ -13,8 +14,8 @@ class GFRadio<T> extends StatefulWidget {
       this.size = GFSize.SMALL,
       this.type = GFRadioType.basic,
       this.radioColor = GFColors.SUCCESS,
-      this.activebgColor = GFColors.WHITE,
-      this.inactivebgColor = GFColors.WHITE,
+      this.activeBgColor = GFColors.WHITE,
+      this.inactiveBgColor = GFColors.WHITE,
       this.activeBorderColor = GFColors.DARK,
       this.inactiveBorderColor = GFColors.DARK,
       this.activeIcon = const Icon(
@@ -22,12 +23,8 @@ class GFRadio<T> extends StatefulWidget {
         size: 20,
         color: GFColors.DARK,
       ),
-      this.inactiveIcon = const Icon(
-        Icons.close,
-        size: 20,
-        color: GFColors.DARK,
-      ),
-      this.custombgColor = GFColors.SUCCESS,
+      this.inactiveIcon,
+      this.customBgColor = GFColors.SUCCESS,
       this.autofocus = false,
       this.focusNode,
       this.toggleable = false})
@@ -45,10 +42,10 @@ class GFRadio<T> extends StatefulWidget {
   final Color radioColor;
 
   /// type of [Color] used to change the backgroundColor of the active radio button
-  final Color activebgColor;
+  final Color activeBgColor;
 
   /// type of [Color] used to change the backgroundColor of the inactive radio button
-  final Color inactivebgColor;
+  final Color inactiveBgColor;
 
   /// type of [Color] used to change the border color of the active radio button
   final Color activeBorderColor;
@@ -66,7 +63,7 @@ class GFRadio<T> extends StatefulWidget {
   final Widget inactiveIcon;
 
   /// type of [Color] used to change the background color of the custom active  radio button only
-  final Color custombgColor;
+  final Color customBgColor;
 
   /// on true state this widget will be selected as the initial focus
   /// when no other node in its scope is currently focused
@@ -95,7 +92,6 @@ class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
   T groupValue;
 
   void onStatusChange() {
-    print('wer ${widget.value == widget.groupValue}');
     groupValue = widget.value;
     _handleChanged(widget.value == groupValue);
   }
@@ -112,10 +108,7 @@ class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-//    print('gr ${widget.value} ${widget.groupValue}');
     selected = widget.value == widget.groupValue;
-//    print('sel $selected');
-
     return InkWell(
         enableFeedback: enabled,
         onTap: onStatusChange,
@@ -123,7 +116,7 @@ class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
             height: widget.size,
             width: widget.size,
             decoration: BoxDecoration(
-                color: selected ? widget.activebgColor : widget.inactivebgColor,
+                color: selected ? widget.activeBgColor : widget.inactiveBgColor,
                 borderRadius: widget.type == GFRadioType.basic
                     ? BorderRadius.circular(50)
                     : widget.type == GFRadioType.square
@@ -166,7 +159,7 @@ class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
                                 decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(50)),
-                                    color: widget.custombgColor),
+                                    color: widget.customBgColor),
                               )
                             ],
                           )

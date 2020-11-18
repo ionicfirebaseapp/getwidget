@@ -11,11 +11,11 @@ class GFListTile extends StatelessWidget {
     this.color,
     this.avatar,
     this.title,
-    this.subTitle,
+    this.subtitle,
     this.description,
     this.icon,
     this.padding = const EdgeInsets.all(8),
-    this.margin = const EdgeInsets.all(16),
+    this.margin = const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
     this.enabled = true,
     this.onTap,
     this.onLongPress,
@@ -29,10 +29,10 @@ class GFListTile extends StatelessWidget {
         assert(autofocus != null),
         super(key: key);
 
-  ///type of [String] used to pass text, alternative to title property and gets higher priority than title
+  /// type of [String] used to pass text, alternative to title property and gets higher priority than title
   final String titleText;
 
-  ///type of [String] used to pass text, alternative to subtitle property and gets higher priority than subtitle
+  /// type of [String] used to pass text, alternative to subtitle property and gets higher priority than subtitle
   final String subtitleText;
 
   /// The GFListTile's background color. Can be given [Color] or [GFColors]
@@ -44,8 +44,8 @@ class GFListTile extends StatelessWidget {
   /// The title to display inside the [GFListTile]. see [Text]
   final Widget title;
 
-  /// The subTitle to display inside the [GFListTile]. see [Text]
-  final Widget subTitle;
+  /// The subtitle to display inside the [GFListTile]. see [Text]
+  final Widget subtitle;
 
   /// The description to display inside the [GFListTile]. see [Text]
   final Widget description;
@@ -88,10 +88,11 @@ class GFListTile extends StatelessWidget {
   /// The color for the tile's [Material] when a pointer is hovering over it.
   final Color hoverColor;
 
-  /// {@macro flutter.widgets.Focus.focusNode}
+  /// Defines the keyboard focus for this widget.
   final FocusNode focusNode;
 
-  /// {@macro flutter.widgets.Focus.autofocus}
+  /// On true state it should focus itself if nothing else is already focused.
+  /// Defaults to false
   final bool autofocus;
 
   @override
@@ -107,7 +108,7 @@ class GFListTile extends StatelessWidget {
           selected: selected,
           enabled: enabled,
           child: Container(
-//        constraints: const BoxConstraints(minHeight: 50),
+            // constraints: const BoxConstraints(minHeight: 50),
             padding: padding,
             margin: margin,
             decoration: BoxDecoration(
@@ -141,7 +142,7 @@ class GFListTile extends StatelessWidget {
                                   color: Colors.black54,
                                 ),
                               )
-                            : subTitle ?? Container(),
+                            : subtitle ?? Container(),
                         description ?? Container()
                       ],
                     ),

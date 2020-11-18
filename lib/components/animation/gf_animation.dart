@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/types/gf_animation_type.dart';
 
 class GFAnimation extends StatefulWidget {
+  /// Wrap any widget with [GFAnimation] to animate your widget. see [GFAnimationType] for types of animations.
   const GFAnimation({
     Key key,
     this.duration,
@@ -37,13 +38,13 @@ class GFAnimation extends StatefulWidget {
   /// The duration for animation to perform
   final Duration duration;
 
-  /// The duration for animation to perform
+  /// The duration for reverse animation to perform
   final Duration reverseDuration;
 
-  /// Defines how the animated widget is aligned within the Animation.
+  /// Defines how the animated widget is aligned during Animation.
   final Alignment alignment;
 
-  /// Defines how the animated widget is aligned(after the onTap) within the Animation.
+  /// Defines how the animated widget is aligned(after the onTap) during Animation.
   final Alignment activeAlignment;
 
   /// The child of type [Widget] to display animation effect.
@@ -52,19 +53,20 @@ class GFAnimation extends StatefulWidget {
   /// Determines the animation curve. Defaults to [Curves.linear].
   final Curve curve;
 
-  ///type of [GFAnimation] which takes the type ie, align, size, container, rotateTransition, scaleTransition, slideTransition, and textStyle for the [GFAnimation]
+  ///type of [GFAnimation] which takes the type ie, align, size, container,
+  /// rotateTransition, scaleTransition, slideTransition, and textStyle for the [GFAnimation]
   final GFAnimationType type;
 
   /// defines [AnimatedContainer] initial width
   final double width;
 
-  /// defines the width of [AnimatedContainer] upto which it can extend during animation
+  /// defines the width of [AnimatedContainer] upto which it can expand during animation
   final double changedWidth;
 
   /// defines [AnimatedContainer] initial height
   final double height;
 
-  /// defines the height of [AnimatedContainer] upto which it can extend during animation
+  /// defines the height of [AnimatedContainer] upto which it can expand during animation
   final double changedHeight;
 
   /// defines the color of [AnimatedContainer] when onTap triggers
@@ -82,42 +84,40 @@ class GFAnimation extends StatefulWidget {
   /// Called when the user taps the [child]
   final Function onTap;
 
-  /// Here's an illustration of the [RotationTransition] widget, with it's [turnsAnimation]
-  /// animated by a stuckValue set to animate
+  /// For GFAnimationType.rotateTransition, customized turns animation can be added to [RotationTransition] widget
   final Animation<double> turnsAnimation;
 
-  /// Here's an illustration of the [ScaleTransition] widget, with it's [scaleAnimation]
-  /// animated by a [CurvedAnimation] set to [Curves.linear]
+  /// For GFAnimationType.scaleTransition, customized scale animation can be added to [ScaleTransition] widget
   final Animation<double> scaleAnimation;
 
-  /// controls animation
+  /// Type of [AnimationController], its a controller of an animation.
   final AnimationController controller;
 
-  ///direction of the [AnimatedDefaultTextStyle] TextDirection for [ltr,rtl]
+  /// Defines direction of the [AnimatedDefaultTextStyle] TextDirection i.e [ltr,rtl]
   final TextDirection textDirection;
 
-  /// [ScaleTransition], which animates the scale of a widget.
+  /// For GFAnimationType.slideTransition, which animates the position of a widget.
   final Animation<Offset> slidePosition;
 
-  /// defines the [TextStyle] of [AnimatedDefaultTextStyle]
+  /// Defines the [TextStyle] of [AnimatedDefaultTextStyle]
   final TextStyle style;
 
-  /// defines the [TextAlign] of [AnimatedDefaultTextStyle]
+  /// Defines the [TextAlign] of [AnimatedDefaultTextStyle]
   final TextAlign textAlign;
 
-  /// defines the [TextOverflow] of [AnimatedDefaultTextStyle]
+  /// Defines the [TextOverflow] of [AnimatedDefaultTextStyle]
   final TextOverflow textOverflow;
 
-  /// defines the [maxLines] of [AnimatedDefaultTextStyle]
+  /// Defines the [maxLines] of [AnimatedDefaultTextStyle]
   final int maxLines;
 
-  /// defines the [TextWidthBasis] of [AnimatedDefaultTextStyle]
+  /// Defines the [TextWidthBasis] of [AnimatedDefaultTextStyle]
   final TextWidthBasis textWidthBasis;
 
-  /// defines the [fontSize] of [AnimatedDefaultTextStyle]
+  /// Defines the [fontSize] of [AnimatedDefaultTextStyle]
   final double fontSize;
 
-  /// defines the [fontWeight] of [AnimatedDefaultTextStyle]
+  /// Defines the [fontWeight] of [AnimatedDefaultTextStyle]
   final FontWeight fontWeight;
 
   @override

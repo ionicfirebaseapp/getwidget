@@ -1,5 +1,38 @@
 # Changelog
 
+
+## 1.2.3 - 2020-11-12
+
+### Fixed
+* [GFProgressBar] issue.
+* [GFBottomSheet] minor issue.
+* [GFIconButton] wrong touch issue. #195
+* [GFDropdown] minor issue.
+* [GFCarousel] issue. #185
+* Many more minor improvements.
+
+
+
+## 1.2.2 - 2020-10-02
+
+### Fixed
+* [GFButton] width related issue.
+* [GFRadio] minor issue.
+* [GFRadioListTile] selection issue
+* [GFCheckbox] minor issue.
+* [GFCheckboxListTile] selection issue
+* Many more minor improvements.
+
+### Added
+* few new compoenents added
+    - GFBottomSheet
+    - GFIntroScreen
+    - GFAnimation
+    - GFBorder
+    - GFStickyHeader
+
+
+
 ## 1.1.3 - 2020-07-30
 
 ### Fixed
@@ -9,7 +42,7 @@
 * [GFCarousel] active page indicator is not being updated without "onPageChanged" #139
 * [GFTabBar] Docs say about isScrollable which is not supported #132
 
-### Update
+### Added
 * couple of compoenents (WIP)
     - GFCheckboxTile
     - GFRadioTile
