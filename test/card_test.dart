@@ -30,7 +30,7 @@ Future<void> main() async {
         padding: padding,
         margin: margin,
         title: title,
-        content: content);
+        content: childWidget);
 
     final TestApp app = TestApp(card);
 
@@ -44,7 +44,7 @@ Future<void> main() async {
     expect(app.card.padding, padding);
     expect(app.card.margin, margin);
     expect(app.card.title, title);
-    expect(app.card.content, content);
+    expect(app.card.content, childWidget);
   });
 
   testWidgets('GF Card with color gradient.', (tester) async {
@@ -53,13 +53,13 @@ Future<void> main() async {
         end: Alignment.bottomRight,
         colors: [Colors.red, Colors.pink]);
     const GFCard card = GFCard(
-        gradient: gradient,
-        elevation: elevation,
-        borderOnForeground: borderonForeground,
-        padding: padding,
-        margin: margin,
-        title: title,
-        content: content);
+      gradient: gradient,
+      elevation: elevation,
+      borderOnForeground: borderonForeground,
+      padding: padding,
+      margin: margin,
+      title: title,
+    );
 
     const TestApp app = TestApp(card);
 
@@ -73,7 +73,6 @@ Future<void> main() async {
     expect(app.card.padding, padding);
     expect(app.card.margin, margin);
     expect(app.card.title, title);
-    expect(app.card.content, content);
   });
 
   testWidgets('GF Card with clip behaviour.', (tester) async {
@@ -141,13 +140,11 @@ Future<void> main() async {
     const scontainer = false;
 
     const GFCard card = GFCard(
-        semanticContainer: scontainer,
-        elevation: elevation,
-        borderOnForeground: borderonForeground,
-        padding: padding,
-        margin: margin,
-        title: title,
-        content: content);
+      semanticContainer: scontainer,
+      elevation: elevation,
+      borderOnForeground: borderonForeground,
+      title: title,
+    );
 
     const TestApp app = TestApp(card);
 
@@ -158,10 +155,7 @@ Future<void> main() async {
     expect(app.card.semanticContainer, scontainer);
     expect(app.card.elevation, elevation);
     expect(app.card.borderOnForeground, borderonForeground);
-    expect(app.card.padding, padding);
-    expect(app.card.margin, margin);
     expect(app.card.title, title);
-    expect(app.card.content, content);
   });
 
   testWidgets('GF Card with title position.', (tester) async {
@@ -188,9 +182,6 @@ Future<void> main() async {
       'https://images.unsplash.com/photo-1547721064-da6cfb341d50',
     );
     final GFCard card = GFCard(
-        color: color,
-        padding: padding,
-        margin: margin,
         title: title,
         border: border,
         borderRadius: borderradius,
@@ -201,14 +192,10 @@ Future<void> main() async {
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
-    expect(app.card.color, color);
-    expect(app.card.padding, padding);
-    expect(app.card.margin, margin);
     expect(app.card.title, title);
     expect(app.card.border, border);
     expect(app.card.borderRadius, borderradius);
     expect(app.card.content, content);
-
     expect(app.card.image, bgImage);
   });
 
@@ -227,13 +214,12 @@ Future<void> main() async {
       ],
     );
     final GFCard card = GFCard(
-        color: color,
-        elevation: elevation,
-        padding: padding,
-        buttonBar: custombuttonbar,
-        title: title,
-        image: bgImage,
-        content: content);
+      color: color,
+      elevation: elevation,
+      buttonBar: custombuttonbar,
+      title: title,
+      image: bgImage,
+    );
 
     final TestApp app = TestApp(card);
 
@@ -242,8 +228,6 @@ Future<void> main() async {
     expect(app.card.color, color);
     expect(app.card.elevation, elevation);
     expect(app.card.buttonBar, custombuttonbar);
-    expect(app.card.padding, padding);
-    expect(app.card.content, content);
     expect(app.card.image, bgImage);
   });
 
@@ -253,11 +237,9 @@ Future<void> main() async {
       icon: Icon(Icons.favorite_border),
     );
     final GFCard card = GFCard(
-        color: color,
-        elevation: elevation,
-        padding: padding,
-        title: customtitle,
-        content: content);
+      color: color,
+      title: customtitle,
+    );
 
     final TestApp app = TestApp(card);
 
@@ -266,10 +248,7 @@ Future<void> main() async {
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.card.color, color);
-    expect(app.card.elevation, elevation);
-    expect(app.card.padding, padding);
     expect(app.card.title, customtitle);
-    expect(app.card.content, content);
   });
 
   testWidgets('GF Card with GFAvatar & Subtitle in title section.',
@@ -281,11 +260,9 @@ Future<void> main() async {
       icon: Icon(Icons.favorite_border),
     );
     final GFCard card = GFCard(
-        color: color,
-        elevation: elevation,
-        padding: padding,
-        title: customtitle,
-        content: content);
+      color: color,
+      title: customtitle,
+    );
 
     final TestApp app = TestApp(card);
 
@@ -294,10 +271,7 @@ Future<void> main() async {
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.card.color, color);
-    expect(app.card.elevation, elevation);
-    expect(app.card.padding, padding);
     expect(app.card.title, customtitle);
-    expect(app.card.content, content);
   });
 
   testWidgets('GF Card with full background image & buttonbar.',
@@ -311,23 +285,18 @@ Future<void> main() async {
       subtitleText: 'Sub title',
     );
     final GFCard card = GFCard(
-        color: color,
-        elevation: elevation,
-        padding: padding,
-        title: customtitle,
-        imageOverlay: imageoverlay,
-        colorFilter: colorfilter,
-        content: content);
+      color: color,
+      title: customtitle,
+      imageOverlay: imageoverlay,
+      colorFilter: colorfilter,
+    );
 
     final TestApp app = TestApp(card);
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.card.color, color);
-    expect(app.card.elevation, elevation);
-    expect(app.card.padding, padding);
     expect(app.card.title, customtitle);
-    expect(app.card.content, content);
     expect(app.card.imageOverlay, imageoverlay);
     expect(app.card.colorFilter, colorfilter);
   });
@@ -356,24 +325,19 @@ Future<void> main() async {
       ],
     );
     final GFCard card = GFCard(
-        color: color,
-        elevation: elevation,
-        padding: padding,
-        title: customtitle,
-        imageOverlay: imageoverlay,
-        colorFilter: colorfilter,
-        buttonBar: custombuttonbar,
-        content: content);
+      color: color,
+      title: customtitle,
+      imageOverlay: imageoverlay,
+      colorFilter: colorfilter,
+      buttonBar: custombuttonbar,
+    );
 
     final TestApp app = TestApp(card);
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.card.color, color);
-    expect(app.card.elevation, elevation);
-    expect(app.card.padding, padding);
     expect(app.card.title, customtitle);
-    expect(app.card.content, content);
     expect(app.card.imageOverlay, imageoverlay);
     expect(app.card.colorFilter, colorfilter);
     expect(app.card.buttonBar, custombuttonbar);
