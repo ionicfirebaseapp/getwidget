@@ -14,7 +14,7 @@ void main() {
   testWidgets('GF Button without padding, shape', (tester) async {
     // `GFBUtton.shape` null or `GFBUtton.padding` null.
     expect(
-      () => GFButton(
+      () => GFSocialButton(
         shape: null,
         padding: null,
         onPressed: () {},
@@ -26,7 +26,7 @@ void main() {
   testWidgets('Disabled GF Button can be constructed', (tester) async {
     const buttonKey = Key('header');
 
-    final GFButton button = GFButton(
+    final GFSocialButton button = GFSocialButton(
       key: buttonKey,
       onPressed: null,
       text: text,
@@ -58,7 +58,7 @@ void main() {
   testWidgets('GF Button can be constructed', (tester) async {
     const buttonKey = Key('header');
 
-    final GFButton button = GFButton(
+    final GFSocialButton button = GFSocialButton(
       key: buttonKey,
       onPressed: () {},
       text: text,
@@ -88,7 +88,7 @@ void main() {
       (tester) async {
     const buttonKey = Key('header');
 
-    final GFButton button = GFButton(
+    final GFSocialButton button = GFSocialButton(
       key: buttonKey,
       onPressed: () {},
       text: text,
@@ -119,7 +119,7 @@ void main() {
       (tester) async {
     const buttonKey = Key('header');
 
-    final GFButton button = GFButton(
+    final GFSocialButton button = GFSocialButton(
       key: buttonKey,
       onPressed: () {},
       text: text,
@@ -154,7 +154,7 @@ void main() {
       'and with Block Button', (tester) async {
     const buttonKey = Key('header');
 
-    final GFButton button = GFButton(
+    final GFSocialButton button = GFSocialButton(
       key: buttonKey,
       onPressed: () {},
       text: text,
@@ -185,7 +185,7 @@ void main() {
       'and Full Width Button', (tester) async {
     const buttonKey = Key('header');
 
-    final GFButton button = GFButton(
+    final GFSocialButton button = GFSocialButton(
       key: buttonKey,
       onPressed: () {},
       text: text,
@@ -218,7 +218,7 @@ void main() {
   testWidgets('GF Button with type outline and square shape ', (tester) async {
     const buttonKey = Key('header');
 
-    final GFButton button = GFButton(
+    final GFSocialButton button = GFSocialButton(
       key: buttonKey,
       onPressed: () {},
       text: text,
@@ -256,7 +256,7 @@ void main() {
             BorderSide(color: Colors.pink, width: 2, style: BorderStyle.solid),
         borderRadius: BorderRadius.zero);
 
-    final GFButton button = GFButton(
+    final GFSocialButton button = GFSocialButton(
       key: buttonKey,
       onPressed: () {},
       text: text,
@@ -287,7 +287,7 @@ void main() {
       offset: Offset.zero,
     );
 
-    final GFButton button = GFButton(
+    final GFSocialButton button = GFSocialButton(
       key: buttonKey,
       onPressed: () {},
       text: text,
@@ -313,7 +313,7 @@ void main() {
       (tester) async {
     const buttonKey = Key('header');
 
-    final GFButton button = GFButton(
+    final GFSocialButton button = GFSocialButton(
       key: buttonKey,
       onPressed: () {},
       text: text,
@@ -343,7 +343,7 @@ void main() {
       (tester) async {
     const buttonKey = Key('header');
 
-    final GFButton button = GFButton(
+    final GFSocialButton button = GFSocialButton(
       key: buttonKey,
       onPressed: () {},
       text: text,
@@ -372,7 +372,7 @@ void main() {
 class TestApp extends StatefulWidget {
   const TestApp(this.button);
 
-  final GFButton button;
+  final GFSocialButton button;
 
   @override
   _TestAppState createState() => _TestAppState();
