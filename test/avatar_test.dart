@@ -10,10 +10,26 @@ void main() {
   );
   final bgcolor = Colors.teal;
   final fgcolor = Colors.transparent;
-  const minradius = 10.0;
-  const maxradius = 20.0;
 
   testWidgets('GF Avatar can be created', (tester) async {
+    final GFAvatar avatar = GFAvatar(
+        backgroundColor: bgcolor,
+        foregroundColor: fgcolor,
+        size: GFSize.MEDIUM,
+        child: childWidget);
+    final TestApp app = TestApp(avatar);
+    await tester.pumpWidget(app);
+    await tester.pumpWidget(Container(child: childWidget));
+    expect(find.byWidget(childWidget), findsOneWidget);
+    expect(app.avatar.backgroundColor, bgcolor);
+    expect(app.avatar.foregroundColor, fgcolor);
+    expect(app.avatar.size, GFSize.MEDIUM);
+    expect(app.avatar.child, childWidget);
+  });
+
+  testWidgets('GF Avatar with minradius & maxradius', (tester) async {
+    const minradius = 10.0;
+    const maxradius = 20.0;
     final GFAvatar avatar = GFAvatar(
         backgroundColor: bgcolor,
         foregroundColor: fgcolor,
