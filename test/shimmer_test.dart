@@ -7,7 +7,7 @@ void main() {
     width: 111,
     height: 222,
   );
-  final firstColor = Colors.teal;
+  const firstColor = Colors.teal;
   final secondColor = Colors.tealAccent;
 
   const count = 5;
