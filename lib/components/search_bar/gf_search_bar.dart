@@ -9,7 +9,7 @@ typedef QueryBuilder<T> = List<T> Function(
 );
 
 class GFSearchBar<T> extends StatefulWidget {
-  /// search bar with variuos customization option
+  /// search bar with various customization option
   const GFSearchBar({
     @required this.searchList,
     @required this.overlaySearchListItemBuilder,
@@ -21,7 +21,10 @@ class GFSearchBar<T> extends StatefulWidget {
     this.overlaySearchListHeight,
     this.noItemsFoundWidget,
     this.searchBoxInputDecoration,
-  }) : super(key: key);
+  })  : assert(searchList != null),
+        assert(overlaySearchListItemBuilder != null),
+        assert(searchQueryBuilder != null),
+        super(key: key);
 
   /// List of text or [Widget] reference for users
   final List<T> searchList;

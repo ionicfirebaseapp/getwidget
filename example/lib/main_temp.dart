@@ -447,38 +447,38 @@ class _MyHomePageState extends State<MyHomePage>
 //              ),
 //            ),
 
-//            GFSearchBar(
-// //              searchBoxInputDecoration: InputDecoration(
-// //                enabledBorder: OutlineInputBorder(
-// //                  borderSide: BorderSide(
-// //                    color: Colors.teal,
-// //                  ),
-// //                  borderRadius: BorderRadius.circular(50)
-// //                ),
-// //              ),
-//                searchList: list,
-// //              hideSearchBoxWhenItemSelected: false,
-// //              overlaySearchListHeight: 100.0,
-//                searchQueryBuilder: (query, list) => list
-//                    .where((item) =>
-//                        item.toLowerCase().contains(query.toLowerCase()))
-//                    .toList(),
-//                overlaySearchListItemBuilder: (item) => Container(
-//                      padding: const EdgeInsets.all(8),
-//                      child: Text(
-//                        item,
-//                        style: const TextStyle(fontSize: 18),
-//                      ),
-//                    ),
-// //              noItemsFoundWidget: Container(
-// //                color: Colors.green,
-// //                child: Text("no items found..."),
-// //              ),
-//                onItemSelected: (item) {
-//                  setState(() {
-//                    print('selected item $item');
-//                  });
-//                }),
+              GFSearchBar(
+                  // searchBoxInputDecoration: InputDecoration(
+                  //   enabledBorder: OutlineInputBorder(
+                  //     borderSide: BorderSide(
+                  //       color: Colors.teal,
+                  //     ),
+                  //     borderRadius: BorderRadius.circular(50)
+                  //   ),
+                  // ),
+                  searchList: list,
+//              hideSearchBoxWhenItemSelected: false,
+//              overlaySearchListHeight: 100.0,
+                  searchQueryBuilder: (query, list) => list
+                      .where((item) =>
+                          item.toLowerCase().contains(query.toLowerCase()))
+                      .toList(),
+                  overlaySearchListItemBuilder: (item) => Container(
+                        padding: const EdgeInsets.all(8),
+                        child: Text(
+                          item,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                      ),
+                  // noItemsFoundWidget: Container(
+                  //   color: Colors.green,
+                  //   child: Text("no items found..."),
+                  // ),
+                  onItemSelected: (item) {
+                    setState(() {
+                      print('selected item $item');
+                    });
+                  }),
 
 //            GFCard(
 //              content: Column(
@@ -1742,15 +1742,16 @@ class _MyHomePageState extends State<MyHomePage>
 // //              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
 //           ),
 
-//            GFBadge(
-//              text: '12',
-////              color: GFColors.DARK,
+              // ignore: prefer_const_constructors
+              GFBadge(
+                  // text: '12',
+//              color: GFColors.DARK,
 //              shape: GFBadgeShape.circle,
-////              size: GFSize.small,
-////              border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
-////              textColor: GFColors.WHITE,
-////              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
-//            ),
+//              size: GFSize.MEDIUM,
+//              border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+//              textColor: GFColors.WHITE,
+//              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
+                  ),
 
               RaisedButton(
                 onPressed: () {},
