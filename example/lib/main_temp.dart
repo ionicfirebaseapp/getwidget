@@ -447,38 +447,38 @@ class _MyHomePageState extends State<MyHomePage>
 //              ),
 //            ),
 
-//            GFSearchBar(
-// //              searchBoxInputDecoration: InputDecoration(
-// //                enabledBorder: OutlineInputBorder(
-// //                  borderSide: BorderSide(
-// //                    color: Colors.teal,
-// //                  ),
-// //                  borderRadius: BorderRadius.circular(50)
-// //                ),
-// //              ),
-//                searchList: list,
-// //              hideSearchBoxWhenItemSelected: false,
-// //              overlaySearchListHeight: 100.0,
-//                searchQueryBuilder: (query, list) => list
-//                    .where((item) =>
-//                        item.toLowerCase().contains(query.toLowerCase()))
-//                    .toList(),
-//                overlaySearchListItemBuilder: (item) => Container(
-//                      padding: const EdgeInsets.all(8),
-//                      child: Text(
-//                        item,
-//                        style: const TextStyle(fontSize: 18),
-//                      ),
-//                    ),
-// //              noItemsFoundWidget: Container(
-// //                color: Colors.green,
-// //                child: Text("no items found..."),
-// //              ),
-//                onItemSelected: (item) {
-//                  setState(() {
-//                    print('selected item $item');
-//                  });
-//                }),
+              GFSearchBar(
+                  // searchBoxInputDecoration: InputDecoration(
+                  //   enabledBorder: OutlineInputBorder(
+                  //     borderSide: BorderSide(
+                  //       color: Colors.teal,
+                  //     ),
+                  //     borderRadius: BorderRadius.circular(50)
+                  //   ),
+                  // ),
+                  searchList: list,
+//              hideSearchBoxWhenItemSelected: false,
+//              overlaySearchListHeight: 100.0,
+                  searchQueryBuilder: (query, list) => list
+                      .where((item) =>
+                          item.toLowerCase().contains(query.toLowerCase()))
+                      .toList(),
+                  overlaySearchListItemBuilder: (item) => Container(
+                        padding: const EdgeInsets.all(8),
+                        child: Text(
+                          item,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                      ),
+                  // noItemsFoundWidget: Container(
+                  //   color: Colors.green,
+                  //   child: Text("no items found..."),
+                  // ),
+                  onItemSelected: (item) {
+                    setState(() {
+                      print('selected item $item');
+                    });
+                  }),
 
 //            GFCard(
 //              content: Column(
