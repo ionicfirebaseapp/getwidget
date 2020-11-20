@@ -9,7 +9,7 @@ void main() {
   const size = GFSize.SMALL;
 
   testWidgets('GF IconButton without padding, icon, iconSize', (tester) async {
-    // `GFButton.icon` null or `GFButton.iconSize` null or `GFButton.padding` null.
+    // `GFIconButton.icon` null or `GFIconButton.iconSize` null or `GFIconButton.padding` null.
     expect(
       () => GFIconButton(
         iconSize: null,

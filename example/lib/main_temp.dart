@@ -1742,15 +1742,16 @@ class _MyHomePageState extends State<MyHomePage>
 // //              borderShape: RoundedRectangleBorder(side: BorderSide(color: Colors.pink, width: 2.0, style: BorderStyle.solid), borderRadius: BorderRadius.zero),
 //           ),
 
-//            GFBadge(
-//              text: '12',
-////              color: GFColors.DARK,
+              // ignore: prefer_const_constructors
+              GFBadge(
+                  // text: '12',
+//              color: GFColors.DARK,
 //              shape: GFBadgeShape.circle,
-////              size: GFSize.small,
-////              border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
-////              textColor: GFColors.WHITE,
-////              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
-//            ),
+//              size: GFSize.MEDIUM,
+//              border: BorderSide(color: Colors.pink, width: 1.0, style: BorderStyle.solid),
+//              textColor: GFColors.WHITE,
+//              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 8.0),
+                  ),
 
               RaisedButton(
                 onPressed: () {},
