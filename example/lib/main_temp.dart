@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage>
       // );
 
       Scaffold(
-        drawer: GFDrawer(
+        // drawer: GFDrawer(
 //        colorFilter: new ColorFilter.mode(
 //            Colors.teal.withOpacity(0.6), BlendMode.DARKen),
 //        backgroundImage: NetworkImage(
@@ -129,61 +129,92 @@ class _MyHomePageState extends State<MyHomePage>
 //           Colors.teal[200],
 //         ],
 //       ),
-          color: Colors.greenAccent,
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              GFDrawerHeader(
-                currentAccountPicture: const GFAvatar(
-                  radius: 80,
-                  backgroundImage: NetworkImage(
-                      'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.teal,
-                ),
-                otherAccountsPictures: const <Widget>[
-                  Image(
-                    image: NetworkImage(
-                        'https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg'),
-                    fit: BoxFit.cover,
-                  ),
-                  GFAvatar(
-                    child: Text('dcf'),
-                  )
-                ],
-//              closeButton: Text("Close"),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const <Widget>[
-                    Text('user name'),
-                    Text('user@userid.com'),
-                  ],
-                ),
-              ),
-              const ListTile(
-                title: Text('Item 1'),
-                onTap: null,
-              ),
-              const ListTile(
-                title: Text('Item 2'),
-                onTap: null,
-              ),
-            ],
-          ),
-        ),
+//           color: Colors.greenAccent,
+//           child: ListView(
+//             padding: EdgeInsets.zero,
+//             children: <Widget>[
+//               GFDrawerHeader(
+//                 currentAccountPicture: const GFAvatar(
+//                   radius: 80,
+//                   backgroundImage: NetworkImage(
+//                       'https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg'),
+//                 ),
+//                 decoration: BoxDecoration(
+//                   color: Colors.teal,
+//                 ),
+//                 otherAccountsPictures: const <Widget>[
+//                   Image(
+//                     image: NetworkImage(
+//                         'https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg'),
+//                     fit: BoxFit.cover,
+//                   ),
+//                   GFAvatar(
+//                     child: Text('dcf'),
+//                   )
+//                 ],
+// //              closeButton: Text("Close"),
+//                 child: Column(
+//                   mainAxisAlignment: MainAxisAlignment.start,
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: const <Widget>[
+//                     Text('user name'),
+//                     Text('user@userid.com'),
+//                   ],
+//                 ),
+//               ),
+//               const ListTile(
+//                 title: Text('Item 1'),
+//                 onTap: null,
+//               ),
+//               const ListTile(
+//                 title: Text('Item 2'),
+//                 onTap: null,
+//               ),
+//             ],
+//           ),s
+//         ),
 
         appBar: GFAppBar(
-          backgroundColor: Colors.teal,
-//        centerTitle: true,
-//        leading: GFIconButton(icon: Icon(Icons.directions_bus), onPressed: (){}),
-          title: const Text('UI Kit'),
-//              GFSegmentTabs(
+          // toolbarOpacity: 0.5,
+          // bottomOpacity: 0.6,
+          // elevation: 1,
+          // textTheme: const TextTheme(
+          //   headline5: TextStyle(color: Colors.tealAccent)
+          // ),
+          iconTheme: const IconThemeData(
+              color: Colors.red
+          ),
+          actionsIconTheme: const IconThemeData(
+              color: Colors.amber
+          ),
+          // brightness: Brightness.light,
+          // primary: false,
+          // titleSpacing: 5,
+          // automaticallyImplyLeading: false,
+       //    backgroundColor: Colors.teal,
+       // shape: RoundedRectangleBorder(
+       //     side: const BorderSide(color: Colors.tealAccent, width: 1, style: BorderStyle.solid),
+       //     borderRadius: BorderRadius.circular(25)),
+       // centerTitle: true,
+          leading: const Icon(
+            Icons.wb_sunny,
+            // color: GFColors.WHITE,
+          ),
+//         flexibleSpace: Container(child: Text('vgfd'), color: Colors.red,),
+          title: const Text('Appbar'),
+//              title: GFSegmentTabs(
 //            tabController: tabController,
-//            initialIndex: 0,
-//            length: 3,
+//            length: 6,
 //            tabs: const <Widget>[
+//              Text(
+//                'Tab1',
+//              ),
+//              Text(
+//                'Tab2',
+//              ),
+//              Text(
+//                'Tab3',
+//              ),
 //              Text(
 //                'Tab1',
 //              ),
@@ -195,17 +226,33 @@ class _MyHomePageState extends State<MyHomePage>
 //              ),
 //            ],
 //          ),
+        bottom: PreferredSize(
+            child: Container(
+              color: Colors.orange,
+              height: 4,
+            ),
+            preferredSize: const Size.fromHeight(4)
+        ),
 //        bottom: TabBar(
 //          controller: tabController,
 //          tabs: const [
-//            Text(
-//              'Tab1',
+//            Tab(
+//              text: 'Tab1',
 //            ),
 //            Text(
-//              'Tab1',
+//              'Tab2',
 //            ),
 //            Text(
-//              'Tab1',
+//              'Tab3',
+//            ),
+//            Text(
+//              'Tab4',
+//            ),
+//            Text(
+//              'Tab5',
+//            ),
+//            Text(
+//              'Tab6',
 //            ),
 //          ],
 //          labelStyle: TextStyle(
@@ -222,27 +269,35 @@ class _MyHomePageState extends State<MyHomePage>
 //          ),
 //        ),
           searchBar: true,
-//searchController: _searchController,
-          onChanged: (val) {
-            print('$val');
-            setState(() {
-              searchData = val;
-            });
+          searchController: _searchController,
+          // onChanged: (value) {
+          //   setState(() {
+          //     searchData = value;
+          //   });
+          // },
+       searchHintText: 'Search',
+       searchHintStyle: const TextStyle(fontSize: 14, color: Colors.white70),
+       searchTextStyle: const TextStyle(fontSize: 16, color: Colors.white),
+       searchBarColorTheme: Colors.white,
+          onChanged: (value) {
+            print('on change $value');
           },
-//        searchHintText: "aaaaaaa",
-//        searchHintStyle: TextStyle(fontSize: 18.0, color: Colors.redAccent),
-//        searchStyle: TextStyle(fontSize: 10.0, color: Colors.green),
-//        searchBarColorTheme: Colors.greenAccent,
-          actions: <Widget>[
-//          GFIconButton(icon: Icon(Icons.access_time), onPressed: () {}),
-            GFIconButton(
-              icon: Icon(
+          onSubmitted: (value) {
+            print('submitted $value');
+          },
+          onTap: () {
+            print('tapped');
+          },
+          actions: const <Widget>[
+            // GFIconButton(
+            //   icon:
+         Icon(
                 Icons.favorite,
-                color: GFColors.WHITE,
+                // color: GFColors.WHITE,
               ),
-              onPressed: () {},
-              type: GFButtonType.transparent,
-            ),
+            //   onPressed: () {},
+            //   type: GFButtonType.transparent,
+            // ),
           ],
         ),
 //      backgroundColor: Colors.blueGrey,
