@@ -7,7 +7,6 @@ void main() {
   const color = Colors.teal;
   const bordercolor = Colors.black;
   const spacing = 1.0;
-  const value = 2.0;
   const itemcount = 5;
   const size = GFSize.MEDIUM;
   const filledicon = Icon(Icons.star);
@@ -23,114 +22,125 @@ void main() {
       labelStyle: TextStyle(fontSize: 14, color: Colors.black));
   final ratingController = TextEditingController();
   final customController = TextEditingController();
+  double rating = 3;
 
-  testWidgets('GF Rating can be created.', (tester) async {
-    const GFRating rating = GFRating(
-      itemCount: itemcount,
-      inputDecorations: inputdecorations,
-      spacing: spacing,
-      value: value,
-      margin: margin,
-      padding: padding,
-      size: size,
-      color: color,
-      borderColor: bordercolor,
+  testWidgets('Basic GF Rating can be created.', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) => Material(
+                    child: GFRating(
+                  itemCount: itemcount,
+                  inputDecorations: inputdecorations,
+                  spacing: spacing,
+                  value: rating,
+                  margin: margin,
+                  padding: padding,
+                  size: size,
+                  color: color,
+                  borderColor: bordercolor,
+                  onChanged: (value) {
+                    setState(() {
+                      rating = value;
+                    });
+                  },
+                ))),
+      ),
     );
-
-    const TestApp app = TestApp(rating);
-
-    await tester.pumpWidget(app);
-    expect(app.rating.itemCount, itemcount);
-    expect(app.rating.inputDecorations, inputdecorations);
-    expect(app.rating.spacing, spacing);
-    expect(app.rating.value, value);
-    expect(app.rating.margin, margin);
-    expect(app.rating.padding, padding);
-    expect(app.rating.size, size);
-    expect(app.rating.color, color);
-    expect(app.rating.borderColor, bordercolor);
   });
 
-  testWidgets('GF Rating with icons.', (tester) async {
-    const GFRating rating = GFRating(
-      itemCount: itemcount,
-      size: size,
-      color: color,
-      filledIcon: filledicon,
+  testWidgets('GF Rating with icons.', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) => Material(
+                    child: GFRating(
+                  itemCount: itemcount,
+                  size: size,
+                  color: color,
+                  filledIcon: filledicon,
+                  value: rating,
+                  onChanged: (value) {
+                    setState(() {
+                      rating = value;
+                    });
+                  },
+                ))),
+      ),
     );
-
-    const TestApp app = TestApp(rating);
-
-    await tester.pumpWidget(app);
-    expect(app.rating.itemCount, itemcount);
-    expect(app.rating.size, size);
-    expect(app.rating.color, color);
-    expect(app.rating.filledIcon, filledicon);
   });
 
-  testWidgets('GF Rating with half rating property.', (tester) async {
-    const GFRating rating = GFRating(
-      itemCount: itemcount,
-      size: size,
-      color: color,
-      filledIcon: filledicon,
-      halfFilledIcon: halffilled,
-      allowHalfRating: allowhalfRating,
+  testWidgets('GF Rating with half rating property.',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) => Material(
+                    child: GFRating(
+                  itemCount: itemcount,
+                  size: size,
+                  color: color,
+                  filledIcon: filledicon,
+                  halfFilledIcon: halffilled,
+                  allowHalfRating: allowhalfRating,
+                  value: rating,
+                  onChanged: (value) {
+                    setState(() {
+                      rating = value;
+                    });
+                  },
+                ))),
+      ),
     );
-
-    const TestApp app = TestApp(rating);
-
-    await tester.pumpWidget(app);
-    expect(app.rating.itemCount, itemcount);
-    expect(app.rating.size, size);
-    expect(app.rating.color, color);
-    expect(app.rating.filledIcon, filledicon);
-    expect(app.rating.halfFilledIcon, halffilled);
-    expect(app.rating.allowHalfRating, allowhalfRating);
   });
 
-  testWidgets('GF Rating using textformfield data input.', (tester) async {
-    final GFRating rating = GFRating(
-      itemCount: itemcount,
-      size: size,
-      color: color,
-      filledIcon: filledicon,
-      controller: ratingController,
-      showTextForm: showtextForm,
+  testWidgets('GF Rating using textformfield data input.',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) => Material(
+                    child: GFRating(
+                  itemCount: itemcount,
+                  size: size,
+                  color: color,
+                  filledIcon: filledicon,
+                  controller: ratingController,
+                  showTextForm: showtextForm,
+                  value: rating,
+                  onChanged: (value) {
+                    setState(() {
+                      rating = value;
+                    });
+                  },
+                ))),
+      ),
     );
-
-    final TestApp app = TestApp(rating);
-
-    await tester.pumpWidget(app);
-    expect(app.rating.itemCount, itemcount);
-    expect(app.rating.size, size);
-    expect(app.rating.color, color);
-    expect(app.rating.filledIcon, filledicon);
-    expect(app.rating.controller, ratingController);
-    expect(app.rating.showTextForm, showtextForm);
   });
 
-  testWidgets('Custom GF Rating using textformfield & icons.', (tester) async {
-    final GFRating rating = GFRating(
-      itemCount: itemcount,
-      size: size,
-      color: color,
-      filledIcon: filledicon,
-      controller: customController,
-      suffixIcon: suffixicon,
-      showTextForm: showtextForm,
+  testWidgets('Custom GF Rating using textformfield & icons.',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) => Material(
+                    child: GFRating(
+                  itemCount: itemcount,
+                  size: size,
+                  color: color,
+                  filledIcon: filledicon,
+                  controller: customController,
+                  suffixIcon: suffixicon,
+                  showTextForm: showtextForm,
+                  value: rating,
+                  onChanged: (value) {
+                    setState(() {
+                      rating = value;
+                    });
+                  },
+                ))),
+      ),
     );
-
-    final TestApp app = TestApp(rating);
-
-    await tester.pumpWidget(app);
-    expect(app.rating.itemCount, itemcount);
-    expect(app.rating.size, size);
-    expect(app.rating.color, color);
-    expect(app.rating.filledIcon, filledicon);
-    expect(app.rating.controller, customController);
-    expect(app.rating.suffixIcon, suffixicon);
-    expect(app.rating.showTextForm, showtextForm);
   });
 }
 
