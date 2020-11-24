@@ -30,7 +30,6 @@ void main() {
       duration: duration,
       type: GFLoaderType.ios,
       loaderIconOne: iconOne,
-      // androidLoaderColor : Colors.amber,
       loaderstrokeWidth: stroke,
       size: GFSize.MEDIUM,
       child: childWidget,
@@ -180,7 +179,6 @@ void main() {
     const TestApp app = TestApp(loader);
 
     await tester.pumpWidget(app);
-    // expect(app.loader.type, GFLoaderType.android);
     expect(app.loader.type, GFLoaderType.custom, reason: 'custom icon');
     expect(app.loader.loaderIconOne, iconOne);
   });
