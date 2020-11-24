@@ -321,16 +321,44 @@ void main() {
     final TestApp app = TestApp(appbar);
     await tester.pumpWidget(app);
 
-    expect(find.text('Appbar'), findsOneWidget);
-    expect(find.byIcon(Icons.favorite), findsOneWidget);
-    expect(app.appbar.searchBar, isTrue);
+    // find appbar by key
     expect(find.byKey(appbarKey), findsOneWidget);
-    await tester.enterText(find.byWidget(appbar), 'flutter');
-    await tester.testTextInput.receiveAction(TextInputAction.done);
+    // find appbar title text
+    expect(find.text('Appbar'), findsOneWidget);
+    // find appbar action button icon
+    expect(find.byIcon(Icons.favorite), findsOneWidget);
+    // set appbar.searchBar = true state to enable search bar
+    expect(app.appbar.searchBar, isTrue);
+    // tap the search icon
+    await tester.tap(find.byIcon(Icons.search));
+    // rebuild the widget
     await tester.pump();
+    // enter 'flutter' to the textField
+    await tester.enterText(find.byWidget(appbar), 'flutter');
+    // find the text 'flutter' to test onChanged
     expect(find.text('flutter'), findsOneWidget);
-
-
+    // to test onSubmitted when TextInputAction.done
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    // rebuild the widget
+    await tester.pump();
+    // find the text 'flutter' in textField
+    expect(find.text('flutter'), findsOneWidget);
+    // tap the close icon to close the searchBar
+    await tester.tap(find.byIcon(Icons.close));
+    // rebuild the widget
+    await tester.pump();
+    // try to find textField
+    expect(find.byType(TextField), findsNothing);
+    // tap the search icon to reopen the searchBar
+    await tester.tap(find.byIcon(Icons.search));
+    // rebuild the widget
+    await tester.pump();
+    // find the text 'flutter' in textField
+    expect(find.text('flutter'), findsOneWidget);
+    // tap the textField to test onTap
+    await tester.tap(find.byType(TextField));
+    // rebuild the widget
+    await tester.pump();
   });
 }
 
