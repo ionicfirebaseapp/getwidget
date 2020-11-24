@@ -259,7 +259,8 @@ void main() {
     expect(app.appbar.iconTheme, iconTheme);
   });
 
-  testWidgets('GF AppBar with bottomOpacity and toolbarOpacity',
+  testWidgets(
+      'GF AppBar with bottomOpacity, toolbarOpacity and test searchBar with default searchBar value',
       (tester) async {
     final GFAppBar appbar = GFAppBar(
       title: title,
@@ -281,19 +282,15 @@ void main() {
     expect(app.appbar.bottom, bottom);
     expect(app.appbar.bottomOpacity, 0.5);
     expect(app.appbar.toolbarOpacity, 0.6);
+    // set appbar.searchBar = false state to disable search bar
+    expect(app.appbar.searchBar, isFalse);
+    // try to find search icon when appbar.searchBar = false
+    expect(find.byIcon(Icons.search), findsNothing);
   });
 
   testWidgets('GF AppBar with searchBar', (tester) async {
     final Key appbarKey = UniqueKey();
     final TextEditingController _searchController = TextEditingController();
-    // bool isSearch = true;
-    //
-    // final appbar = Container(
-    //   key: appbarKey,
-    //   child: isSearch ? TextField(
-    //     controller: _searchController,
-    //   ) : title,
-    // );
 
     final GFAppBar appbar = GFAppBar(
       key: appbarKey,
@@ -302,10 +299,8 @@ void main() {
       searchBar: true,
       searchController: _searchController,
       searchHintText: 'Search',
-      searchHintStyle:
-      const TextStyle(fontSize: 14, color: Colors.white70),
-      searchTextStyle:
-      const TextStyle(fontSize: 16, color: Colors.white),
+      searchHintStyle: const TextStyle(fontSize: 14, color: Colors.white70),
+      searchTextStyle: const TextStyle(fontSize: 16, color: Colors.white),
       searchBarColorTheme: Colors.white,
       onChanged: (value) {
         print('on change $value');
@@ -329,6 +324,8 @@ void main() {
     expect(find.byIcon(Icons.favorite), findsOneWidget);
     // set appbar.searchBar = true state to enable search bar
     expect(app.appbar.searchBar, isTrue);
+    // find appbar search icon
+    expect(find.byIcon(Icons.search), findsOneWidget);
     // tap the search icon
     await tester.tap(find.byIcon(Icons.search));
     // rebuild the widget
