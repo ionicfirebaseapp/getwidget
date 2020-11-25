@@ -3,19 +3,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:getwidget/getwidget.dart';
 
 void main() {
+  final Key searchBarKey = UniqueKey();
   const List searchList = [
     'Flutter',
     'React',
     'Ionic',
     'Xamarin',
     'Flutter2',
-    'React2',
-    'Ionic2',
-    'Xamarin2',
+    'Angular'
   ];
 
+  const notFound = 'oopsy...no items found';
+
   final noItemsFound = Container(
-    child: const Text('no items found...'),
+    child: const Text(notFound),
   );
 
   final decoration = InputDecoration(
@@ -43,6 +44,7 @@ void main() {
 
   testWidgets('GF SearchBar can be constructed', (tester) async {
     final GFSearchBar searchBar = GFSearchBar(
+      key: searchBarKey,
       searchList: searchList,
       overlaySearchListItemBuilder: (item) => Container(
         padding: const EdgeInsets.all(8),
@@ -57,12 +59,31 @@ void main() {
     );
 
     final TestApp app = TestApp(searchBar);
-
     await tester.pumpWidget(app);
+
+    // find searchBar by key
+    expect(find.byKey(searchBarKey), findsOneWidget);
+    // tap the textField to display overlay search list items
+    await tester.tap(find.byType(TextField));
+    // rebuild the widget
+    await tester.pump();
+    // find overlay search list item
+    expect(find.text('${searchList[1]}'), findsOneWidget);
+    // enter 'flutter' to the textField
+    await tester.enterText(find.byWidget(searchBar), 'flutter');
+    // find the text 'flutter' in textField
+    expect(find.text('flutter'), findsOneWidget);
+    // find the text 'flutter' in overlay search list items
+    expect(find.widgetWithText(Container, 'flutter'), findsOneWidget);
+    // tap the close icon to close the overlay search list items
+    await tester.tap(find.byIcon(Icons.close));
+    // find the text 'flutter' in overlay search list items
+    expect(find.widgetWithText(Container, 'flutter'), findsNothing);
   });
 
   testWidgets('Can hide searchBox when item selected', (tester) async {
     final GFSearchBar searchBar = GFSearchBar(
+      key: searchBarKey,
       searchList: searchList,
       overlaySearchListItemBuilder: (item) => Container(
         padding: const EdgeInsets.all(8),
@@ -79,8 +100,24 @@ void main() {
     );
 
     final TestApp app = TestApp(searchBar);
-
     await tester.pumpWidget(app);
+
+    // find searchBar by key
+    expect(find.byKey(searchBarKey), findsOneWidget);
+    // set searchBar.hideSearchBoxWhenItemSelected = true state to hide searchBar when item selected
+    expect(app.searchBar.hideSearchBoxWhenItemSelected, isTrue);
+    // tap the textField to display overlay search list items
+    await tester.tap(find.byType(TextField));
+    // rebuild the widget
+    await tester.pump();
+    // find overlay search list item
+    expect(find.text('${searchList[1]}'), findsOneWidget);
+    // tap to select item from overlay search list items
+    await tester.tap(find.text('${searchList[1]}'));
+    // rebuild the widget
+    await tester.pump();
+    // find searchBar
+    expect(find.byType(TextField), findsNothing);
 
     expect(app.searchBar.hideSearchBoxWhenItemSelected, isTrue);
     expect(app.searchBar.overlaySearchListHeight, 115);
@@ -89,6 +126,7 @@ void main() {
   testWidgets('On item selected and when item not found in GFSearchBar List',
       (tester) async {
     final GFSearchBar searchBar = GFSearchBar(
+      key: searchBarKey,
       searchList: searchList,
       overlaySearchListItemBuilder: (item) => Container(
         padding: const EdgeInsets.all(8),
@@ -97,7 +135,6 @@ void main() {
           style: const TextStyle(fontSize: 18),
         ),
       ),
-      hideSearchBoxWhenItemSelected: true,
       searchQueryBuilder: (query, list) => list
           .where((item) => item.toLowerCase().contains(query.toLowerCase()))
           .toList(),
@@ -108,15 +145,39 @@ void main() {
     );
 
     final TestApp app = TestApp(searchBar);
-
     await tester.pumpWidget(app);
 
-    expect(app.searchBar.hideSearchBoxWhenItemSelected, isTrue);
+    // find searchBar by key
+    expect(find.byKey(searchBarKey), findsOneWidget);
+    // tap the textField to display overlay search list items
+    await tester.tap(find.byType(TextField));
+    // rebuild the widget
+    await tester.pump();
+    // find overlay search list item
+    expect(find.text('${searchList[1]}'), findsOneWidget);
+    // enter 'flutter' to the textField
+    await tester.enterText(find.byWidget(searchBar), 'flu');
+    // find text 'flutter' in overlay search list item
+    expect(find.text('flu'), findsOneWidget);
+    // find text 'flutter' in overlay search list item
+    expect(find.text('${searchList[1]}'), findsOneWidget);
+    // tap to select 'flutter' item from overlay search list items
+    await tester.tap(find.text('${searchList[1]}'));
+    // rebuild the widget
+    await tester.pump();
+    // find overlay search list
+    expect(find.text('${searchList[1]}'), findsNothing);
+    // enter 'dart' to the textField
+    await tester.enterText(find.byWidget(searchBar), 'dart');
+    // find text 'oopsy...no items found' in overlay search list item
+    // expect(find.text(notFound), findsOneWidget);
+
     expect(app.searchBar.noItemsFoundWidget, noItemsFound);
   });
 
   testWidgets('GFSearchBar with search box input decoration', (tester) async {
     final GFSearchBar searchBar = GFSearchBar(
+      key: searchBarKey,
       searchList: searchList,
       overlaySearchListItemBuilder: (item) => Container(
         padding: const EdgeInsets.all(8),
@@ -125,23 +186,18 @@ void main() {
           style: const TextStyle(fontSize: 18),
         ),
       ),
-      hideSearchBoxWhenItemSelected: true,
       searchQueryBuilder: (query, list) => list
           .where((item) => item.toLowerCase().contains(query.toLowerCase()))
           .toList(),
       onItemSelected: (item) {
         print('selected item $item');
       },
-      noItemsFoundWidget: noItemsFound,
       searchBoxInputDecoration: decoration,
     );
 
     final TestApp app = TestApp(searchBar);
-
     await tester.pumpWidget(app);
 
-    expect(app.searchBar.hideSearchBoxWhenItemSelected, isTrue);
-    expect(app.searchBar.noItemsFoundWidget, noItemsFound);
     expect(app.searchBar.searchBoxInputDecoration, decoration);
   });
 }
