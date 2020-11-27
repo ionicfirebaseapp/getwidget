@@ -257,6 +257,29 @@ void main() {
     expect(controller.index, 0);
   });
 
+  // testWidgets('can tap on indicator at very bottom of GFTabBar to switch tabs', (WidgetTester tester) async {
+  //   final TabController controller =
+  //   TabController(length: 2, initialIndex: 0, vsync: tester);
+  //
+  //   final GFTabBar tabBar = GFTabBar(
+  //     key: tabBarKey,
+  //     controller: controller,
+  //     length: 2,
+  //     tabs: const <Widget>[Tab(text: 'TAB1'), Tab(text: 'TAB2')],
+  //     isScrollable: true,
+  //   );
+  //
+  //   final TestApp app = TestApp(tabBar);
+  //   await tester.pumpWidget(app);
+  //
+  //   expect(controller.index, 0);
+  //   final Offset bottomRight = tester.getBottomLeft(find.byKey(tabBarKey)) - const Offset(1,1);
+  //   final TestGesture gesture = await tester.startGesture(bottomRight);
+  //   await gesture.up();
+  //   await tester.pumpAndSettle();
+  //   expect(controller.index, 1);
+  // });
+
   testWidgets('GFTabBar can be constructed with properties', (tester) async {
     final TabController tabController =
         TabController(length: 3, initialIndex: 0, vsync: tester);
@@ -318,7 +341,6 @@ void main() {
           fontWeight: FontWeight.w500,
           fontSize: 12,
         ));
-
   });
 }
 

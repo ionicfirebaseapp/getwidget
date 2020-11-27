@@ -3,11 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:getwidget/getwidget.dart';
 
 class StateMarker extends StatefulWidget {
-  const StateMarker({ Key key, this.child }) : super(key: key);
+  const StateMarker({Key key, this.child}) : super(key: key);
   final Widget child;
   @override
   StateMarkerState createState() => StateMarkerState();
 }
+
 class StateMarkerState extends State<StateMarker> {
   String marker;
   @override
@@ -21,15 +22,27 @@ class StateMarkerState extends State<StateMarker> {
 
 void main() {
   final Key tabBarViewKey = UniqueKey();
-  final List<String> tabs = <String>['AAAAAA', 'BBBBBB', 'CCCCCC', 'DDDDDD', 'EEEEEE'];
-  final List<Widget> tabList = [Text(tabs[0]), Text(tabs[1]), Text(tabs[2]), Text(tabs[3]), Text(tabs[4])];
+  final List<String> tabs = <String>[
+    'AAAAAA',
+    'BBBBBB',
+    'CCCCCC',
+    'DDDDDD',
+    'EEEEEE'
+  ];
+  final List<Widget> tabList = [
+    Text(tabs[0]),
+    Text(tabs[1]),
+    Text(tabs[2]),
+    Text(tabs[3]),
+    Text(tabs[4])
+  ];
 
   testWidgets('GFTabBarView without length, isScrollable', (tester) async {
     // `GFTabBarView.children` null or `GFTabBarView.dragStartBehavior` null
     expect(
-          () => GFTabBarView(
-              dragStartBehavior: null,
-            children: null,
+      () => GFTabBarView(
+        dragStartBehavior: null,
+        children: null,
       ),
       throwsAssertionError,
     );
@@ -37,18 +50,16 @@ void main() {
 
   testWidgets('GFTabBarView can be constructed', (tester) async {
     final TabController tabController =
-    TabController(length: tabList.length, initialIndex: 0, vsync: tester);
+        TabController(length: tabList.length, initialIndex: 0, vsync: tester);
     String value = tabs[0];
 
     final GFTabBarView tabBarView = GFTabBarView(
-      key: tabBarViewKey,
-      controller: tabController,
-      children: tabList.map((text) =>  StateMarker(
-          child: text
-    )).toList()
-    );
+        key: tabBarViewKey,
+        controller: tabController,
+        children: tabList.map((text) => StateMarker(child: text)).toList());
 
-    StateMarkerState findStateMarkerState(String name) => tester.state(find.widgetWithText(StateMarker, name));
+    StateMarkerState findStateMarkerState(String name) =>
+        tester.state(find.widgetWithText(StateMarker, name));
 
     final TestApp app = TestApp(tabBarView);
     await tester.pumpWidget(app);
@@ -58,7 +69,8 @@ void main() {
     // find the 'AAAAAA' text in tabBarView
     expect(find.text('AAAAAA'), findsOneWidget);
 
-    TestGesture gesture = await tester.startGesture(tester.getCenter(find.text('AAAAAA')));
+    TestGesture gesture =
+        await tester.startGesture(tester.getCenter(find.text('AAAAAA')));
     await gesture.moveBy(const Offset(-600, 0));
     await tester.pump();
     expect(value, equals(tabs[0]));
@@ -96,11 +108,12 @@ void main() {
     expect(value, equals(tabs[1]));
     await tester.pumpWidget(app);
     expect(findStateMarkerState(tabs[1]).marker, equals('marked'));
-
   });
 
-  testWidgets('GFTabBarView can be constructed with properties', (tester) async {
-    final TabController tabController = TabController(length: tabList.length, initialIndex: 0, vsync: tester);
+  testWidgets('GFTabBarView can be constructed with properties',
+      (tester) async {
+    final TabController tabController =
+        TabController(length: tabList.length, initialIndex: 0, vsync: tester);
 
     final GFTabBarView tabBarView = GFTabBarView(
       key: tabBarViewKey,
@@ -115,7 +128,6 @@ void main() {
     expect(app.tabBarView.controller, tabController);
     expect(app.tabBarView.children, tabList);
     expect(app.tabBarView.height, 345);
-
   });
 }
 
@@ -131,12 +143,11 @@ class TestApp extends StatefulWidget {
 class _TestAppState extends State<TestApp> {
   @override
   Widget build(BuildContext context) => MaterialApp(
-    home: Scaffold(
-      appBar: AppBar(
-        title: const Text('TabBar'),
-      ),
-      body: const Text('Body'),
-      bottomNavigationBar: widget.tabBarView,
-    ),
-  );
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text('TabBarView'),
+          ),
+          body: widget.tabBarView,
+        ),
+      );
 }

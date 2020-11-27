@@ -15,6 +15,24 @@ final List<String> imageList = [
 
 void main() => runApp(MyApp());
 
+class StateMarker extends StatefulWidget {
+  const StateMarker({Key key, this.child}) : super(key: key);
+  final Widget child;
+  @override
+  StateMarkerState createState() => StateMarkerState();
+}
+
+class StateMarkerState extends State<StateMarker> {
+  String marker;
+  @override
+  Widget build(BuildContext context) {
+    if (widget.child != null) {
+      return widget.child;
+    }
+    return Container();
+  }
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
@@ -72,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage>
   ];
 
   final List<Widget> tabList = [
-    const Text(
+    Text(
       'AAAAAA',
     ),
     const Text(
@@ -315,52 +333,22 @@ class _MyHomePageState extends State<MyHomePage>
         ),
 //      backgroundColor: Colors.blueGrey,
         body:
-        GFTabs(
-             initialIndex: 4,
-             // isScrollable: true,
-             length: 5,
-             tabs: const <Widget>[
-               Tab(
-                 icon: Icon(Icons.directions_bike),
-                 child: Text(
-                   "Tab1",
-                 ),
-               ),
-               Tab(
-                 icon: Icon(Icons.directions_bus),
-                 child: Text(
-                   "Tab2",
-                 ),
-               ),
-               Tab(
-                 icon: Icon(Icons.directions_railway),
-                 child: Text(
-                   "Tab3",
-                 ),
-               ),
-               Tab(
-                 icon: Icon(Icons.directions_bike),
-                 child: Text(
-                   "Tab4",
-                 ),
-               ),
-               Tab(
-                 icon: Icon(Icons.directions_bus),
-                 child: Text(
-                   "Tab5",
-                 ),
-               ),
-             ],
-             tabBarView: GFTabBarView(
-               children: <Widget>[
-                 Container(child: Icon(Icons.directions_bike), color: Colors.red,),
-                 Container(child: Icon(Icons.directions_bus), color: Colors.blue,),
-                 Container(child: Icon(Icons.directions_railway), color: Colors.orange,),
-                 Container(child: Icon(Icons.directions_bike), color: Colors.red,),
-                 Container(child: Icon(Icons.directions_bus), color: Colors.blue,),
-               ],
-             ),
-           ),
+
+            // GFTabBarView(
+            //     controller: tabController,
+            //     children: tabList.map((text) =>  StateMarker(
+            //         child: text
+            //     )).toList()
+            // ),
+            GFTabs(
+          height: 960,
+          // isScrollable: true,
+          length: 5,
+          tabs: tabList,
+          tabBarView: GFTabBarView(
+              children:
+                  tabList.map((text) => StateMarker(child: text)).toList()),
+        ),
 //        GFTabBarView(
 //          height: 200.0,
 //            controller: tabController,
