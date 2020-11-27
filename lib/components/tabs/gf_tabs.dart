@@ -34,6 +34,7 @@ class GFTabs extends StatefulWidget {
     this.tabBarHeight,
     this.shape,
   })  : assert(length != null && length >= 0),
+        assert(isScrollable != null),
         assert(initialIndex != null &&
             initialIndex >= 0 &&
             (length == 0 || initialIndex < length)),
