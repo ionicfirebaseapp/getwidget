@@ -438,36 +438,6 @@ void main() {
     await gesture.up();
     await tester.pump();
     await tester.pump(const Duration(seconds: 1));
-    // value = tabs[tabController.index];
-    // expect(value, equals(tabs[1]));
-    // await tester.pumpWidget(app);
-    // expect(findStateMarkerState(tabs[1]).marker, equals('marked'));
-    //
-    // // slide on to the third tab.
-    // gesture = await tester.startGesture(tester.getCenter(find.text(tabs[1])));
-    // await gesture.moveBy(const Offset(-600, 0));
-    // await gesture.up();
-    // await tester.pump();
-    // expect(findStateMarkerState(tabs[1]).marker, equals('marked'));
-    // await tester.pump(const Duration(seconds: 1));
-    // value = tabs[tabController.index];
-    // expect(value, equals(tabs[2]));
-    // await tester.pumpWidget(app);
-    // expect(find.text(tabs[1]), findsNothing);
-    // // slide back to the second tab.
-    // gesture = await tester.startGesture(tester.getCenter(find.text(tabs[2])));
-    // await gesture.moveBy(const Offset(600, 0));
-    // await tester.pump();
-    // final StateMarkerState markerState = findStateMarkerState(tabs[1]);
-    // expect(markerState.marker, isNull);
-    // markerState.marker = 'marked';
-    // await gesture.up();
-    // await tester.pump();
-    // await tester.pump(const Duration(seconds: 1));
-    // value = tabs[tabController.index];
-    // expect(value, equals(tabs[1]));
-    // await tester.pumpWidget(app);
-    // expect(findStateMarkerState(tabs[1]).marker, equals('marked'));
   });
 
   testWidgets('GFTabs can be constructed with properties', (tester) async {

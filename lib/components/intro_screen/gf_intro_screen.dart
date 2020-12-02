@@ -18,7 +18,7 @@ class GFIntroScreen extends StatefulWidget {
     this.borderRadius,
     this.border,
     this.introScreenBottomNavigationBar,
-    this.showIntroScreenBottomNavigationBar = true,
+    this.showIntroScreenBottomNavigationBar = false,
     this.child,
     this.navigationBarColor = GFColors.SUCCESS,
     this.navigationBarHeight = 50,
@@ -66,7 +66,11 @@ class GFIntroScreen extends StatefulWidget {
     ),
     this.showButton = true,
     this.showPagination = true,
-  }) : super(key: key);
+  })  : assert(pageController != null),
+        assert(currentIndex != null),
+        assert(pageCount != null),
+        assert(slides != null),
+        super(key: key);
 
   /// defines the list of slides
   final List<Widget> slides;
@@ -92,7 +96,7 @@ class GFIntroScreen extends StatefulWidget {
   /// defines [GFIntroScreen]'s bottom navigation bar
   final GFIntroScreenBottomNavigationBar introScreenBottomNavigationBar;
 
-  /// on true state, displays [GFIntroScreenBottomNavigationBar], defaults to true
+  /// on true state, displays [GFIntroScreenBottomNavigationBar], defaults to false
   final bool showIntroScreenBottomNavigationBar;
 
   /// defines the currentIndex of [GFIntroScreen] slides, default value is 0

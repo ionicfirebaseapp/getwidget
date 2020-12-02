@@ -55,7 +55,10 @@ class GFIntroScreenBottomNavigationBar extends StatefulWidget {
     ),
     this.showButton = true,
     this.showPagination = true,
-  }) : super(key: key);
+  })  : assert(pageController != null),
+        assert(currentIndex != null),
+        assert(pageCount != null),
+        super(key: key);
 
   /// default controller for the [GFIntroScreen] component
   final PageController pageController;
