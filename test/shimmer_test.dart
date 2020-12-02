@@ -7,8 +7,8 @@ void main() {
     width: 111,
     height: 222,
   );
-  final firstColor = Colors.teal;
-  final secondColor = Colors.tealAccent;
+  const firstColor = Colors.teal;
+  const secondColor = Colors.tealAccent;
 
   const count = 5;
   const duration = Duration(milliseconds: 3000);
@@ -56,8 +56,8 @@ void main() {
 
   testWidgets('GF Shimmer can be constructed withh icon widget',
       (tester) async {
-    final GFShimmer shimmer = GFShimmer(
-      child: const Icon(
+    const GFShimmer shimmer = GFShimmer(
+      child: Icon(
         Icons.directions_bike_sharp,
         size: 45,
       ),
@@ -66,7 +66,7 @@ void main() {
       shimmerEffectCount: count,
     );
 
-    final TestApp app = TestApp(shimmer);
+    const TestApp app = TestApp(shimmer);
 
     await tester.pumpWidget(app);
 
