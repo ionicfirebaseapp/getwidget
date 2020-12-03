@@ -5,116 +5,116 @@ import 'package:flutter/cupertino.dart';
 
 void main() {
   final GFBottomSheetController _controller = GFBottomSheetController();
-  const contentbody = Text('GetWidget');
+  const contentBody = Text('GetWidget');
   const header = Text('Header');
   const footer = Text('Footer');
-  const minheight = 100.0;
-  const maxheight = 400.0;
+  const minHeight = 100.0;
+  const maxHeight = 400.0;
   const elevation = 0.0;
   const headerHeight = 50.0;
   const footerHeight = 50.0;
-  const animationduration = 1300;
-  const enableexpandablecontent = true;
+  const animationDuration = 1300;
+  const enableExpandableContent = true;
 
-  testWidgets('GF Bottomsheet can be created.', (tester) async {
-    final GFBottomSheet bottomsheet = GFBottomSheet(
+  testWidgets('GFBottomSheet can be created.', (tester) async {
+    final GFBottomSheet bottomSheet = GFBottomSheet(
       controller: _controller,
-      contentBody: contentbody,
+      contentBody: contentBody,
       stickyHeaderHeight: headerHeight,
       stickyHeader: header,
-      minContentHeight: minheight,
-      maxContentHeight: maxheight,
+      minContentHeight: minHeight,
+      maxContentHeight: maxHeight,
     );
 
-    final TestApp app = TestApp(bottomsheet);
+    final TestApp app = TestApp(bottomSheet);
 
     await tester.pumpWidget(app);
-    expect(app.bottomsheet.contentBody, contentbody);
-    expect(app.bottomsheet.stickyHeaderHeight, headerHeight);
-    expect(app.bottomsheet.stickyHeader, header);
-    expect(app.bottomsheet.minContentHeight, minheight);
-    expect(app.bottomsheet.maxContentHeight, maxheight);
+    expect(app.bottomSheet.contentBody, contentBody);
+    expect(app.bottomSheet.stickyHeaderHeight, headerHeight);
+    expect(app.bottomSheet.stickyHeader, header);
+    expect(app.bottomSheet.minContentHeight, minHeight);
+    expect(app.bottomSheet.maxContentHeight, maxHeight);
   });
 
-  testWidgets('GF Bottomsheet with header & footer.', (tester) async {
-    final GFBottomSheet bottomsheet = GFBottomSheet(
+  testWidgets('GFBottomSheet with header & footer.', (tester) async {
+    final GFBottomSheet bottomSheet = GFBottomSheet(
       controller: _controller,
-      contentBody: contentbody,
+      contentBody: contentBody,
       stickyHeaderHeight: headerHeight,
       stickyHeader: header,
       elevation: elevation,
       stickyFooterHeight: footerHeight,
       stickyFooter: footer,
-      minContentHeight: minheight,
-      maxContentHeight: maxheight,
+      minContentHeight: minHeight,
+      maxContentHeight: maxHeight,
     );
 
-    final TestApp app = TestApp(bottomsheet);
+    final TestApp app = TestApp(bottomSheet);
 
     await tester.pumpWidget(app);
-    expect(app.bottomsheet.contentBody, contentbody);
-    expect(app.bottomsheet.stickyHeaderHeight, headerHeight);
-    expect(app.bottomsheet.stickyHeader, header);
-    expect(app.bottomsheet.elevation, elevation);
-    expect(app.bottomsheet.stickyFooterHeight, footerHeight);
-    expect(app.bottomsheet.stickyFooter, footer);
-    expect(app.bottomsheet.minContentHeight, minheight);
-    expect(app.bottomsheet.maxContentHeight, maxheight);
+    expect(app.bottomSheet.contentBody, contentBody);
+    expect(app.bottomSheet.stickyHeaderHeight, headerHeight);
+    expect(app.bottomSheet.stickyHeader, header);
+    expect(app.bottomSheet.elevation, elevation);
+    expect(app.bottomSheet.stickyFooterHeight, footerHeight);
+    expect(app.bottomSheet.stickyFooter, footer);
+    expect(app.bottomSheet.minContentHeight, minHeight);
+    expect(app.bottomSheet.maxContentHeight, maxHeight);
   });
 
-  testWidgets('GF Bottomsheet with expandable content property.',
+  testWidgets('GFBottomSheet with expandable content property.',
       (tester) async {
-    final GFBottomSheet bottomsheet = GFBottomSheet(
+    final GFBottomSheet bottomSheet = GFBottomSheet(
       controller: _controller,
-      contentBody: contentbody,
+      contentBody: contentBody,
       stickyHeaderHeight: headerHeight,
       stickyHeader: header,
       elevation: elevation,
-      minContentHeight: minheight,
-      maxContentHeight: maxheight,
-      enableExpandableContent: enableexpandablecontent,
+      minContentHeight: minHeight,
+      maxContentHeight: maxHeight,
+      enableExpandableContent: enableExpandableContent,
     );
 
-    final TestApp app = TestApp(bottomsheet);
+    final TestApp app = TestApp(bottomSheet);
 
     await tester.pumpWidget(app);
-    expect(app.bottomsheet.contentBody, contentbody);
-    expect(app.bottomsheet.stickyHeaderHeight, headerHeight);
-    expect(app.bottomsheet.stickyHeader, header);
-    expect(app.bottomsheet.elevation, elevation);
-    expect(app.bottomsheet.minContentHeight, minheight);
-    expect(app.bottomsheet.maxContentHeight, maxheight);
-    expect(app.bottomsheet.enableExpandableContent, enableexpandablecontent);
+    expect(app.bottomSheet.contentBody, contentBody);
+    expect(app.bottomSheet.stickyHeaderHeight, headerHeight);
+    expect(app.bottomSheet.stickyHeader, header);
+    expect(app.bottomSheet.elevation, elevation);
+    expect(app.bottomSheet.minContentHeight, minHeight);
+    expect(app.bottomSheet.maxContentHeight, maxHeight);
+    expect(app.bottomSheet.enableExpandableContent, enableExpandableContent);
   });
 
-  testWidgets('GF Bottomsheet with animation duration.', (tester) async {
-    final GFBottomSheet bottomsheet = GFBottomSheet(
+  testWidgets('GFBottomSheet with animation duration.', (tester) async {
+    final GFBottomSheet bottomSheet = GFBottomSheet(
       controller: _controller,
-      contentBody: contentbody,
+      contentBody: contentBody,
       stickyHeaderHeight: headerHeight,
       stickyHeader: header,
       elevation: elevation,
-      minContentHeight: minheight,
-      maxContentHeight: maxheight,
-      animationDuration: animationduration,
+      minContentHeight: minHeight,
+      maxContentHeight: maxHeight,
+      animationDuration: animationDuration,
     );
 
-    final TestApp app = TestApp(bottomsheet);
+    final TestApp app = TestApp(bottomSheet);
 
     await tester.pumpWidget(app);
-    expect(app.bottomsheet.contentBody, contentbody);
-    expect(app.bottomsheet.stickyHeaderHeight, headerHeight);
-    expect(app.bottomsheet.stickyHeader, header);
-    expect(app.bottomsheet.elevation, elevation);
-    expect(app.bottomsheet.minContentHeight, minheight);
-    expect(app.bottomsheet.maxContentHeight, maxheight);
-    expect(app.bottomsheet.animationDuration, animationduration);
+    expect(app.bottomSheet.contentBody, contentBody);
+    expect(app.bottomSheet.stickyHeaderHeight, headerHeight);
+    expect(app.bottomSheet.stickyHeader, header);
+    expect(app.bottomSheet.elevation, elevation);
+    expect(app.bottomSheet.minContentHeight, minHeight);
+    expect(app.bottomSheet.maxContentHeight, maxHeight);
+    expect(app.bottomSheet.animationDuration, animationDuration);
   });
 }
 
 class TestApp extends StatefulWidget {
-  const TestApp(this.bottomsheet);
-  final GFBottomSheet bottomsheet;
+  const TestApp(this.bottomSheet);
+  final GFBottomSheet bottomSheet;
   @override
   _TestAppState createState() => _TestAppState();
 }
@@ -123,7 +123,7 @@ class _TestAppState extends State<TestApp> {
   @override
   Widget build(BuildContext context) => MaterialApp(
         home: Scaffold(
-          bottomSheet: widget.bottomsheet,
+          bottomSheet: widget.bottomSheet,
         ),
       );
 }

@@ -8,19 +8,18 @@ void main() {
     width: 222,
     height: 333,
   );
-  final color = Colors.teal;
+  const color = Colors.teal;
   const padding = EdgeInsets.all(5);
   const type = GFBorderType.rect;
   const text = Text('Hello');
 
-  testWidgets('GF Border can be created around diffrent components.',
+  testWidgets('GFBorder can be created around different components.',
       (tester) async {
     final GFBorder border = GFBorder(
         color: color,
         padding: padding,
         type: type,
-        // ignore: prefer_const_literals_to_create_immutables
-        dashedLine: [2, 0],
+        dashedLine: const [2, 0],
         child: childWidget);
 
     final TestApp app = TestApp(border);
@@ -34,16 +33,12 @@ void main() {
     expect(app.border.child, childWidget);
   });
 
-  testWidgets('Solid GF Border around image.', (tester) async {
+  testWidgets('Solid GFBorder around image.', (tester) async {
     final bgImage = Image.network(
       'https://images.unsplash.com/photo-1547721064-da6cfb341d50',
     );
     final GFBorder border = GFBorder(
-        color: color,
-        type: type,
-        // ignore: prefer_const_literals_to_create_immutables
-        dashedLine: [2, 0],
-        child: bgImage);
+        color: color, type: type, dashedLine: const [2, 0], child: bgImage);
 
     final TestApp app = TestApp(border);
 
@@ -55,15 +50,13 @@ void main() {
     expect(app.border.child, bgImage);
   });
 
-  testWidgets('Solid GF Border with radius.', (tester) async {
+  testWidgets('Solid GFBorder with radius.', (tester) async {
     const radius = Radius.circular(20);
-    const typerRect = GFBorderType.rRect;
 
     final GFBorder border = GFBorder(
         color: color,
-        type: typerRect,
-        // ignore: prefer_const_literals_to_create_immutables
-        dashedLine: [2, 0],
+        type: GFBorderType.rRect,
+        dashedLine: const [2, 0],
         radius: radius,
         child: text);
 
@@ -72,20 +65,18 @@ void main() {
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.border.color, color);
-    expect(app.border.type, typerRect);
+    expect(app.border.type, GFBorderType.rRect);
     expect(app.border.dashedLine, [2, 0]);
     expect(app.border.child, text);
   });
 
-  testWidgets('Oval GF Border.', (tester) async {
-    const typeoval = GFBorderType.oval;
+  testWidgets('Oval GFBorder.', (tester) async {
     const stroke = 2.0;
 
     final GFBorder border = GFBorder(
         color: color,
-        type: typeoval,
-        // ignore: prefer_const_literals_to_create_immutables
-        dashedLine: [6, 0],
+        type: GFBorderType.oval,
+        dashedLine: const [6, 0],
         strokeWidth: stroke,
         child: text);
 
@@ -94,20 +85,18 @@ void main() {
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.border.color, color);
-    expect(app.border.type, typeoval);
+    expect(app.border.type, GFBorderType.oval);
     expect(app.border.dashedLine, [6, 0]);
     expect(app.border.strokeWidth, stroke);
     expect(app.border.child, text);
   });
 
-  testWidgets('Circular GF Border.', (tester) async {
-    const typeCircle = GFBorderType.circle;
+  testWidgets('Circular GFBorder.', (tester) async {
     const stroke = 2.0;
     final GFBorder border = GFBorder(
         color: color,
-        type: typeCircle,
-        // ignore: prefer_const_literals_to_create_immutables
-        dashedLine: [2, 0],
+        type: GFBorderType.circle,
+        dashedLine: const [2, 0],
         strokeWidth: stroke,
         child: text);
 
@@ -116,61 +105,49 @@ void main() {
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.border.color, color);
-    expect(app.border.type, typeCircle);
+    expect(app.border.type, GFBorderType.circle);
     expect(app.border.dashedLine, [2, 0]);
     expect(app.border.strokeWidth, stroke);
     expect(app.border.child, text);
   });
 
-  testWidgets('Dashed GF Border.', (tester) async {
-    const typerRect = GFBorderType.rRect;
-
-    final GFBorder border = GFBorder(
-        color: color,
-        type: typerRect,
-        // ignore: prefer_const_literals_to_create_immutables
-        child: text);
+  testWidgets('Dashed GFBorder.', (tester) async {
+    final GFBorder border =
+        GFBorder(color: color, type: GFBorderType.rRect, child: text);
 
     final TestApp app = TestApp(border);
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.border.color, color);
-    expect(app.border.type, typerRect);
+    expect(app.border.type, GFBorderType.rRect);
     expect(app.border.child, text);
   });
 
-  testWidgets('Dashed GF Border with radius.', (tester) async {
-    const typerRect = GFBorderType.rRect;
+  testWidgets('Dashed GFBorder with radius.', (tester) async {
     const radius = Radius.circular(20);
 
     final GFBorder border = GFBorder(
-        color: color,
-        type: typerRect,
-        radius: radius,
-        // ignore: prefer_const_literals_to_create_immutables
-        child: text);
+        color: color, type: GFBorderType.rRect, radius: radius, child: text);
 
     final TestApp app = TestApp(border);
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.border.color, color);
-    expect(app.border.type, typerRect);
+    expect(app.border.type, GFBorderType.rRect);
     expect(app.border.radius, radius);
     expect(app.border.child, text);
   });
 
-  testWidgets('Oval dashed GF Border.', (tester) async {
-    const typeoval = GFBorderType.oval;
+  testWidgets('Oval dashed GFBorder.', (tester) async {
     const stroke = 2.0;
 
     final GFBorder border = GFBorder(
         color: color,
-        type: typeoval,
+        type: GFBorderType.oval,
         strokeWidth: stroke,
-        // ignore: prefer_const_literals_to_create_immutables
-        dashedLine: [3, 1],
+        dashedLine: const [3, 1],
         child: text);
 
     final TestApp app = TestApp(border);
@@ -178,21 +155,19 @@ void main() {
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.border.color, color);
-    expect(app.border.type, typeoval);
+    expect(app.border.type, GFBorderType.oval);
     expect(app.border.strokeWidth, stroke);
     expect(app.border.dashedLine, [3, 1]);
     expect(app.border.child, text);
   });
 
-  testWidgets('Circular dashed GF Border.', (tester) async {
-    const typecircular = GFBorderType.circle;
+  testWidgets('Circular dashed GFBorder.', (tester) async {
     const stroke = 2.0;
 
     final GFBorder border = GFBorder(
         color: color,
-        type: typecircular,
-        // ignore: prefer_const_literals_to_create_immutables
-        dashedLine: [3, 1],
+        type: GFBorderType.circle,
+        dashedLine: const [3, 1],
         strokeWidth: stroke,
         child: text);
 
@@ -201,20 +176,17 @@ void main() {
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.border.color, color);
-    expect(app.border.type, typecircular);
+    expect(app.border.type, GFBorderType.circle);
     expect(app.border.dashedLine, [3, 1]);
     expect(app.border.strokeWidth, stroke);
     expect(app.border.child, text);
   });
 
-  testWidgets('Dotted GF Border.', (tester) async {
-    const typerect = GFBorderType.rect;
-
+  testWidgets('Dotted GFBorder.', (tester) async {
     final GFBorder border = GFBorder(
         color: color,
-        type: typerect,
-        // ignore: prefer_const_literals_to_create_immutables
-        dashedLine: [2, 1],
+        type: GFBorderType.rect,
+        dashedLine: const [2, 1],
         child: text);
 
     final TestApp app = TestApp(border);
@@ -222,20 +194,18 @@ void main() {
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.border.color, color);
-    expect(app.border.type, typerect);
+    expect(app.border.type, GFBorderType.rect);
     expect(app.border.dashedLine, [2, 1]);
     expect(app.border.child, text);
   });
 
-  testWidgets('Dotted GF Border with radius.', (tester) async {
-    const typerRect = GFBorderType.rRect;
+  testWidgets('Dotted GFBorder with radius.', (tester) async {
     const radius = Radius.circular(20);
 
     final GFBorder border = GFBorder(
         color: color,
-        type: typerRect,
-        // ignore: prefer_const_literals_to_create_immutables
-        dashedLine: [2, 1],
+        type: GFBorderType.rRect,
+        dashedLine: const [2, 1],
         radius: radius,
         child: text);
 
@@ -244,20 +214,17 @@ void main() {
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.border.color, color);
-    expect(app.border.type, typerRect);
+    expect(app.border.type, GFBorderType.rRect);
     expect(app.border.dashedLine, [2, 1]);
     expect(app.border.radius, radius);
     expect(app.border.child, text);
   });
 
-  testWidgets('Oval dotted GF Border.', (tester) async {
-    const typeoval = GFBorderType.oval;
-
+  testWidgets('Oval dotted GFBorder.', (tester) async {
     final GFBorder border = GFBorder(
         color: color,
-        type: typeoval,
-        // ignore: prefer_const_literals_to_create_immutables
-        dashedLine: [2, 1],
+        type: GFBorderType.oval,
+        dashedLine: const [2, 1],
         child: text);
 
     final TestApp app = TestApp(border);
@@ -265,19 +232,16 @@ void main() {
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.border.color, color);
-    expect(app.border.type, typeoval);
+    expect(app.border.type, GFBorderType.oval);
     expect(app.border.dashedLine, [2, 1]);
     expect(app.border.child, text);
   });
 
-  testWidgets('Circular dotted GF Border.', (tester) async {
-    const typecircle = GFBorderType.circle;
-
+  testWidgets('Circular dotted GFBorder.', (tester) async {
     final GFBorder border = GFBorder(
         color: color,
-        type: typecircle,
-        // ignore: prefer_const_literals_to_create_immutables
-        dashedLine: [2, 1],
+        type: GFBorderType.circle,
+        dashedLine: const [2, 1],
         child: text);
 
     final TestApp app = TestApp(border);
@@ -285,7 +249,7 @@ void main() {
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.border.color, color);
-    expect(app.border.type, typecircle);
+    expect(app.border.type, GFBorderType.circle);
     expect(app.border.dashedLine, [2, 1]);
     expect(app.border.child, text);
   });

@@ -6,11 +6,12 @@ typedef RatingChangeCallback = void Function(double rating);
 class GFRating extends StatefulWidget {
   /// [GFRating] to show ratings with many custimazation options.
   const GFRating({
+    Key key,
+    this.onChanged,
     this.itemCount = 5,
     this.spacing = 0.0,
     this.value = 0.0,
     this.defaultIcon,
-    this.onChanged,
     this.color,
     this.borderColor,
     this.size = GFSize.MEDIUM,
@@ -23,7 +24,8 @@ class GFRating extends StatefulWidget {
     this.inputDecorations,
     this.margin = const EdgeInsets.symmetric(vertical: 16),
     this.padding = const EdgeInsets.symmetric(horizontal: 16),
-  }) : assert(value != null);
+  })  : assert(value != null),
+        super(key: key);
 
   /// defines total number of rating items
   final int itemCount;
@@ -37,7 +39,7 @@ class GFRating extends StatefulWidget {
   /// defines the size of items. GFSize can be used for size variations like small. medium. large
   final double size;
 
-  /// if true, allow half rating of items. Default it will be in true state
+  /// if true, allow half rating of items on dragging. Default it will be in true state
   final bool allowHalfRating;
 
   /// defines the items when filled

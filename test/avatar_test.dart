@@ -8,48 +8,48 @@ void main() {
     width: 60,
     height: 60,
   );
-  final bgcolor = Colors.teal;
-  final fgcolor = Colors.transparent;
+  const bgColor = Colors.teal;
+  const fgColor = Colors.transparent;
 
-  testWidgets('GF Avatar can be created', (tester) async {
+  testWidgets('GFAvatar can be created', (tester) async {
     final GFAvatar avatar = GFAvatar(
-        backgroundColor: bgcolor,
-        foregroundColor: fgcolor,
+        backgroundColor: bgColor,
+        foregroundColor: fgColor,
         size: GFSize.MEDIUM,
         child: childWidget);
     final TestApp app = TestApp(avatar);
     await tester.pumpWidget(app);
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
-    expect(app.avatar.backgroundColor, bgcolor);
-    expect(app.avatar.foregroundColor, fgcolor);
+    expect(app.avatar.backgroundColor, bgColor);
+    expect(app.avatar.foregroundColor, fgColor);
     expect(app.avatar.size, GFSize.MEDIUM);
     expect(app.avatar.child, childWidget);
   });
 
-  testWidgets('GF Avatar with minradius & maxradius', (tester) async {
-    const minradius = 10.0;
-    const maxradius = 20.0;
+  testWidgets('GFAvatar with minRadius & maxRadius', (tester) async {
+    const minRadius = 10.0;
+    const maxRadius = 20.0;
     final GFAvatar avatar = GFAvatar(
-        backgroundColor: bgcolor,
-        foregroundColor: fgcolor,
-        minRadius: minradius,
-        maxRadius: maxradius,
+        backgroundColor: bgColor,
+        foregroundColor: fgColor,
+        minRadius: minRadius,
+        maxRadius: maxRadius,
         size: GFSize.MEDIUM,
         child: childWidget);
     final TestApp app = TestApp(avatar);
     await tester.pumpWidget(app);
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
-    expect(app.avatar.backgroundColor, bgcolor);
-    expect(app.avatar.foregroundColor, fgcolor);
-    expect(app.avatar.minRadius, minradius);
-    expect(app.avatar.maxRadius, maxradius);
+    expect(app.avatar.backgroundColor, bgColor);
+    expect(app.avatar.foregroundColor, fgColor);
+    expect(app.avatar.minRadius, minRadius);
+    expect(app.avatar.maxRadius, maxRadius);
     expect(app.avatar.size, GFSize.MEDIUM);
     expect(app.avatar.child, childWidget);
   });
 
-  testWidgets('Circular GF Avatar with bgImage', (tester) async {
+  testWidgets('Circular GFAvatar with bgImage', (tester) async {
     const bgImage = NetworkImage(
       'https://images.unsplash.com/photo-1547721064-da6cfb341d50',
     );
@@ -65,7 +65,7 @@ void main() {
     expect(app.avatar.shape, GFAvatarShape.circle);
   });
 
-  testWidgets('Square GF Avatar with bgImage', (tester) async {
+  testWidgets('Square GFAvatar with bgImage', (tester) async {
     const bgImage = NetworkImage(
       'https://images.unsplash.com/photo-1547721064-da6cfb341d50',
     );
@@ -81,7 +81,7 @@ void main() {
     expect(app.avatar.shape, GFAvatarShape.square);
   });
 
-  testWidgets('Standard shape GF Avatar with bgImage', (tester) async {
+  testWidgets('Standard shape GFAvatar with bgImage', (tester) async {
     const bgImage = NetworkImage(
       'https://images.unsplash.com/photo-1547721064-da6cfb341d50',
     );

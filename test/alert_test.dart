@@ -8,31 +8,31 @@ void main() {
     width: 100,
     height: 100,
   );
-  final bgcolor = Colors.teal;
-  const contentchild = Icon(Icons.umbrella);
+  final bgColor = Colors.teal;
+  const contentChild = Icon(Icons.umbrella);
   const child = Text('Get Widget');
 
-  testWidgets('GF Alert can be created.', (tester) async {
+  testWidgets('GFAlert can be created.', (tester) async {
     final GFAlert alert = GFAlert(
-        backgroundColor: bgcolor,
-        contentChild: contentchild,
+        backgroundColor: bgColor,
+        contentChild: contentChild,
         child: childWidget);
 
     final TestApp app = TestApp(alert);
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
-    expect(app.alert.backgroundColor, bgcolor);
-    expect(app.alert.contentChild, contentchild);
+    expect(app.alert.backgroundColor, bgColor);
+    expect(app.alert.contentChild, contentChild);
     expect(app.alert.child, childWidget);
   });
 
-  testWidgets('Basic GF Alert.', (tester) async {
+  testWidgets('Basic GFAlert.', (tester) async {
     const basicType = GFAlertType.basic;
 
     final GFAlert alert = GFAlert(
-        backgroundColor: bgcolor,
-        contentChild: contentchild,
+        backgroundColor: bgColor,
+        contentChild: contentChild,
         type: basicType,
         child: child);
 
@@ -40,34 +40,34 @@ void main() {
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
-    expect(app.alert.backgroundColor, bgcolor);
-    expect(app.alert.contentChild, contentchild);
+    expect(app.alert.backgroundColor, bgColor);
+    expect(app.alert.contentChild, contentChild);
     expect(app.alert.type, basicType);
     expect(app.alert.child, child);
   });
 
-  testWidgets('Rounded GF Alert.', (tester) async {
+  testWidgets('Rounded GFAlert.', (tester) async {
     const roundedType = GFAlertType.rounded;
 
     const GFAlert alert =
-        GFAlert(contentChild: contentchild, type: roundedType, child: child);
+        GFAlert(contentChild: contentChild, type: roundedType, child: child);
 
     const TestApp app = TestApp(alert);
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
-    expect(app.alert.contentChild, contentchild);
+    expect(app.alert.contentChild, contentChild);
     expect(app.alert.type, roundedType);
     expect(app.alert.child, child);
   });
 
-  testWidgets('Fullwidth GF Alert.', (tester) async {
+  testWidgets('FullWidth GFAlert.', (tester) async {
     const basicType = GFAlertType.basic;
     const fullWidth = 400.0;
 
     const GFAlert alert = GFAlert(
         width: fullWidth,
-        contentChild: contentchild,
+        contentChild: contentChild,
         type: basicType,
         child: child);
 
@@ -76,12 +76,12 @@ void main() {
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
     expect(app.alert.width, fullWidth);
-    expect(app.alert.contentChild, contentchild);
+    expect(app.alert.contentChild, contentChild);
     expect(app.alert.type, basicType);
     expect(app.alert.child, child);
   });
 
-  testWidgets('Customized GF Alert.', (tester) async {
+  testWidgets('Customized GFAlert.', (tester) async {
     const basicType = GFAlertType.basic;
     final customBottombar = Row(
       mainAxisAlignment: MainAxisAlignment.end,
@@ -112,7 +112,7 @@ void main() {
       ],
     );
     final GFAlert alert = GFAlert(
-        contentChild: contentchild,
+        contentChild: contentChild,
         type: basicType,
         bottombar: customBottombar,
         child: child);
@@ -121,22 +121,22 @@ void main() {
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
-    expect(app.alert.contentChild, contentchild);
+    expect(app.alert.contentChild, contentChild);
     expect(app.alert.type, basicType);
     expect(app.alert.child, child);
   });
 
-  testWidgets('GF Alert with alignment.', (tester) async {
+  testWidgets('GFAlert with alignment.', (tester) async {
     const alignment = Alignment.bottomRight;
 
     const GFAlert alert =
-        GFAlert(contentChild: contentchild, alignment: alignment, child: child);
+        GFAlert(contentChild: contentChild, alignment: alignment, child: child);
 
     const TestApp app = TestApp(alert);
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
-    expect(app.alert.contentChild, contentchild);
+    expect(app.alert.contentChild, contentChild);
     expect(app.alert.alignment, alignment);
     expect(app.alert.child, child);
   });
