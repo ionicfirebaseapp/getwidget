@@ -8,10 +8,10 @@ void main() {
     width: 100,
     height: 100,
   );
-  final color = Colors.teal;
+  const color = Colors.teal;
   const padding = EdgeInsets.all(5);
   const margin = EdgeInsets.all(5);
-  const boxfit = BoxFit.cover;
+  const boxFit = BoxFit.cover;
   const bgImage = NetworkImage(
     'https://images.unsplash.com/photo-1547721064-da6cfb341d50',
   );
@@ -21,7 +21,7 @@ void main() {
         image: bgImage,
         color: color,
         padding: padding,
-        boxFit: boxfit,
+        boxFit: boxFit,
         margin: margin,
         child: childWidget);
 
@@ -32,20 +32,20 @@ void main() {
     expect(app.image.image, bgImage);
     expect(app.image.color, color);
     expect(app.image.padding, padding);
-    expect(app.image.boxFit, boxfit);
+    expect(app.image.boxFit, boxFit);
     expect(app.image.margin, margin);
     expect(app.image.child, childWidget);
   });
 
   testWidgets('GF Image with border & border radius.', (tester) async {
-    final borderradius = BorderRadius.circular(10);
+    final borderRadius = BorderRadius.circular(10);
     final border = Border.all(color: Colors.red);
 
     final GFImageOverlay image = GFImageOverlay(
       image: bgImage,
       color: color,
       border: border,
-      borderRadius: borderradius,
+      borderRadius: borderRadius,
       padding: padding,
       margin: margin,
     );
@@ -57,7 +57,7 @@ void main() {
     expect(app.image.image, bgImage);
     expect(app.image.color, color);
     expect(app.image.border, border);
-    expect(app.image.borderRadius, borderradius);
+    expect(app.image.borderRadius, borderRadius);
     expect(app.image.padding, padding);
     expect(app.image.margin, margin);
   });
@@ -65,12 +65,12 @@ void main() {
   testWidgets('GF Image with child icon.', (tester) async {
     const content = Icon(Icons.car_rental);
 
-    final GFImageOverlay image = GFImageOverlay(
+    const GFImageOverlay image = GFImageOverlay(
       image: bgImage,
       color: color,
       child: content,
     );
-    final TestApp app = TestApp(image);
+    const TestApp app = TestApp(image);
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);
@@ -94,17 +94,17 @@ void main() {
   });
 
   testWidgets('GF Image with image overlay', (tester) async {
-    const colorfilter = ColorFilter.mode(Colors.black26, BlendMode.colorBurn);
+    const colorFilter = ColorFilter.mode(Colors.black26, BlendMode.colorBurn);
 
     const GFImageOverlay image = GFImageOverlay(
       image: bgImage,
-      colorFilter: colorfilter,
+      colorFilter: colorFilter,
     );
 
     const TestApp app = TestApp(image);
 
     expect(app.image.image, bgImage);
-    expect(app.image.colorFilter, colorfilter);
+    expect(app.image.colorFilter, colorFilter);
   });
 
   testWidgets('GF Image with alignment of child widget', (tester) async {

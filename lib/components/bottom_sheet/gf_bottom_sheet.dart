@@ -18,6 +18,7 @@ class GFBottomSheet extends StatefulWidget {
     this.enableExpandableContent = false,
   })  : assert(elevation >= 0.0),
         assert(minContentHeight >= 0.0),
+        assert(contentBody != null),
         super(key: key) {
     controller.height = minContentHeight;
     controller.animationDuration = animationDuration;
