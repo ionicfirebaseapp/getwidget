@@ -96,15 +96,13 @@ void main() {
     double _rating = 3;
 
     final rating = GFRating(
-                key: ratingKey,
-                value: _rating,
-                allowHalfRating: true,
-                onChanged: (value) {
-                    _rating = value;
-                },
-
+      key: ratingKey,
+      value: _rating,
+      allowHalfRating: true,
+      onChanged: (value) {
+        _rating = value;
+      },
     );
-
 
     final TestApp app = TestApp(rating);
     await tester.pumpWidget(app);
@@ -119,7 +117,6 @@ void main() {
     await tester.pump(const Duration(seconds: 2));
     // find rating 5 star
     expect(_rating, 5);
-
   });
 
   testWidgets('GF Rating using textFormField data input.',

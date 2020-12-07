@@ -524,7 +524,7 @@ class _MyHomePageState extends State<MyHomePage>
             // ),
           ],
         ),
-     backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.blueGrey,
         body:
 
             // GFTabBarView(
@@ -2089,17 +2089,18 @@ class _MyHomePageState extends State<MyHomePage>
             subtitleText: '11 minutes ago',
           ),
           contentBody: ListView(
-              shrinkWrap: true,
-              physics: const ScrollPhysics(),
-              children: [
-                const Text('Content GetWidget'),
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  child: const Text('Get Widget is one of the largest Flutter open-source '
-                      'UI library for mobile or web apps. It has more than 1000+ pre-built reusable widgets.'),
-                ),
-              ],
-            ),
+            shrinkWrap: true,
+            physics: const ScrollPhysics(),
+            children: [
+              const Text('Content GetWidget'),
+              Container(
+                padding: const EdgeInsets.all(16),
+                child: const Text(
+                    'Get Widget is one of the largest Flutter open-source '
+                    'UI library for mobile or web apps. It has more than 1000+ pre-built reusable widgets.'),
+              ),
+            ],
+          ),
           stickyFooterHeight: 60,
           stickyFooter: Container(
             alignment: AlignmentDirectional.center,

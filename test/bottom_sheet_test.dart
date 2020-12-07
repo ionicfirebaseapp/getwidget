@@ -125,7 +125,8 @@ void main() {
           const Text('Content GetWidget'),
           Container(
             padding: const EdgeInsets.all(16),
-            child: const Text('Get Widget is one of the largest Flutter open-source '
+            child: const Text(
+                'Get Widget is one of the largest Flutter open-source '
                 'UI library for mobile or web apps. It has more than 1000+ pre-built reusable widgets.'),
           ),
         ],
@@ -161,10 +162,10 @@ void main() {
     await tester.pump(const Duration(seconds: 2));
     // try to find content finds nothing
     expect(find.text('Content GetWidget'), findsNothing);
-
   });
 
-  testWidgets('GFBottomSheet can be constructed with expandable content', (tester) async {
+  testWidgets('GFBottomSheet can be constructed with expandable content',
+      (tester) async {
     final GFBottomSheet bottomSheet = GFBottomSheet(
       key: bottomSheetKey,
       controller: _controller,
@@ -185,7 +186,8 @@ void main() {
           const Text('Content GetWidget'),
           Container(
             padding: const EdgeInsets.all(16),
-            child: const Text('Get Widget is one of the largest Flutter open-source '
+            child: const Text(
+                'Get Widget is one of the largest Flutter open-source '
                 'UI library for mobile or web apps. It has more than 1000+ pre-built reusable widgets.'),
           ),
         ],
@@ -244,7 +246,6 @@ void main() {
     await tester.pump(const Duration(seconds: 5));
     // try to find content body, finds nothing
     expect(find.text('Content GetWidget'), findsNothing);
-
   });
 
   testWidgets('GFBottomSheet with properties', (tester) async {
@@ -267,7 +268,8 @@ void main() {
           const Text('Content GetWidget'),
           Container(
             padding: const EdgeInsets.all(16),
-            child: const Text('Get Widget is one of the largest Flutter open-source '
+            child: const Text(
+                'Get Widget is one of the largest Flutter open-source '
                 'UI library for mobile or web apps. It has more than 1000+ pre-built reusable widgets.'),
           ),
         ],
