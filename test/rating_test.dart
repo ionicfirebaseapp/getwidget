@@ -93,39 +93,33 @@ void main() {
 
   testWidgets('GFRating with half rating property on dragging.',
       (WidgetTester tester) async {
-    double _rating = 3.5;
+    double _rating = 3;
 
-    final rating = Directionality(
-      textDirection: TextDirection.ltr,
-      child: StatefulBuilder(
-          builder: (BuildContext context, StateSetter setState) => GFRating(
+    final rating = GFRating(
                 key: ratingKey,
                 value: _rating,
+                allowHalfRating: true,
                 onChanged: (value) {
-                  print('value $value');
-                  setState(() {
                     _rating = value;
-                  });
                 },
-              )),
+
     );
 
-    await tester.pumpWidget(rating);
+
+    final TestApp app = TestApp(rating);
+    await tester.pumpWidget(app);
 
     // find rating by key
     expect(find.byKey(ratingKey), findsOneWidget);
-    // expect(find.byIcon(Icons.star), findsNWidgets(4));
-    // expect(find.byIcon(Icons.star_half), findsNWidgets(1));
-    // expect(find.byIcon(Icons.star_border), findsNWidgets(1));
-    // await tester.tap(find.byIcon(Icons.star_half));
-    // await tester.pump();
-    // expect(find.byIcon(Icons.star), findsNWidgets(4));
-    // expect(find.byIcon(Icons.star_border), findsNWidgets(1));
-    // expect(find.byIcon(Icons.star_half), findsNothing);
-    // await tester.tap(find.byIcon(Icons.star).first);
-    // await tester.pump();
-    // expect(find.byIcon(Icons.star), findsNWidgets(1));
-    // expect(find.byIcon(Icons.star_border), findsNWidgets(4));
+    expect(find.byIcon(Icons.star), findsNWidgets(3));
+    expect(find.byIcon(Icons.star_border), findsNWidgets(2));
+    // Swipe the item to rate 5 star
+    await tester.drag(find.byKey(ratingKey), const Offset(158.1, 45.1));
+    await tester.pump();
+    await tester.pump(const Duration(seconds: 2));
+    // find rating 5 star
+    expect(_rating, 5);
+
   });
 
   testWidgets('GF Rating using textFormField data input.',
@@ -171,10 +165,11 @@ void main() {
     await tester.pump();
     await tester.enterText(find.byWidget(rating), '4.5');
     expect(find.text('4.5'), findsOneWidget);
-    // await tester.tap(find.text('Rate'));
-    // expect(find.byIcon(Icons.star), findsNWidgets(3));
-    // expect(find.byIcon(Icons.star_half), findsNWidgets(1));
-    // expect(find.byIcon(Icons.star_border), findsNWidgets(1));
+    await tester.tap(find.byType(GFButton));
+    await tester.pumpAndSettle(const Duration(seconds: 5));
+    expect(find.byIcon(Icons.star), findsNWidgets(4));
+    expect(find.byIcon(Icons.star_half), findsNWidgets(1));
+    expect(find.byIcon(Icons.star_border), findsNothing);
   });
 
   testWidgets('GFRating with all properties.', (WidgetTester tester) async {

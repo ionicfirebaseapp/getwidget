@@ -253,6 +253,7 @@ class _MyHomePageState extends State<MyHomePage>
   String searchData;
   final TextEditingController _searchController = TextEditingController();
   double _rating = 3.5;
+  final GFBottomSheetController _controller = GFBottomSheetController();
 
   @override
   void initState() {
@@ -523,7 +524,7 @@ class _MyHomePageState extends State<MyHomePage>
             // ),
           ],
         ),
-//      backgroundColor: Colors.blueGrey,
+     backgroundColor: Colors.blueGrey,
         body:
 
             // GFTabBarView(
@@ -615,25 +616,25 @@ class _MyHomePageState extends State<MyHomePage>
               //       child: Text('body or any kind of widget here..'),
               //     )),
 
-              GFShimmer(
-                child: const Text(
-                  'GF Shimmer',
-                  style: TextStyle(fontSize: 48, fontWeight: FontWeight.w700),
-                ),
-                showGradient: true,
-                gradient: LinearGradient(
-                  begin: Alignment.bottomRight,
-                  end: Alignment.centerLeft,
-                  stops: const <double>[0, 0.3, 0.6, 0.9, 1],
-                  colors: [
-                    Colors.teal[100],
-                    Colors.teal[200],
-                    Colors.teal[300],
-                    Colors.teal[400],
-                    Colors.teal[500],
-                  ],
-                ),
-              ),
+              // GFShimmer(
+              //   child: const Text(
+              //     'GF Shimmer',
+              //     style: TextStyle(fontSize: 48, fontWeight: FontWeight.w700),
+              //   ),
+              //   showGradient: true,
+              //   gradient: LinearGradient(
+              //     begin: Alignment.bottomRight,
+              //     end: Alignment.centerLeft,
+              //     stops: const <double>[0, 0.3, 0.6, 0.9, 1],
+              //     colors: [
+              //       Colors.teal[100],
+              //       Colors.teal[200],
+              //       Colors.teal[300],
+              //       Colors.teal[400],
+              //       Colors.teal[500],
+              //     ],
+              //   ),
+              // ),
 
 //            GFShimmer(
 //              child: emptyBlock,
@@ -657,6 +658,7 @@ class _MyHomePageState extends State<MyHomePage>
                   setState(() {
                     _rating = value;
                   });
+                  print('draged $_rating ');
                 },
               ),
 
@@ -690,32 +692,32 @@ class _MyHomePageState extends State<MyHomePage>
               //   },
               // ),
 
-              GFRating(
-                value: _rating,
-                size: GFSize.LARGE,
-                filledIcon: const Icon(
-                  Icons.sentiment_very_satisfied,
-                  color: Colors.green,
-                  size: 50,
-                ),
-                halfFilledIcon: const Icon(
-                  Icons.sentiment_neutral,
-                  color: Colors.amber,
-                  size: 50,
-                ),
-                defaultIcon: const Icon(
-                  Icons.sentiment_very_dissatisfied,
-                  color: Colors.red,
-                  size: 50,
-                ),
-                allowHalfRating: false,
-                onChanged: (value) {
-                  setState(() {
-                    _rating = value;
-                    print('user selected $_rating');
-                  });
-                },
-              ),
+              // GFRating(
+              //   value: _rating,
+              //   size: GFSize.LARGE,
+              //   filledIcon: const Icon(
+              //     Icons.sentiment_very_satisfied,
+              //     color: Colors.green,
+              //     size: 50,
+              //   ),
+              //   halfFilledIcon: const Icon(
+              //     Icons.sentiment_neutral,
+              //     color: Colors.amber,
+              //     size: 50,
+              //   ),
+              //   defaultIcon: const Icon(
+              //     Icons.sentiment_very_dissatisfied,
+              //     color: Colors.red,
+              //     size: 50,
+              //   ),
+              //   allowHalfRating: false,
+              //   onChanged: (value) {
+              //     setState(() {
+              //       _rating = value;
+              //       print('user selected $_rating');
+              //     });
+              //   },
+              // ),
 
               GFRating(
                 value: _rating,
@@ -2075,35 +2077,66 @@ class _MyHomePageState extends State<MyHomePage>
             ],
           ),
         ),
-        bottomNavigationBar: GFTabBar(
-          length: 5,
-          controller: tabController,
-          tabs: tabList,
-          isScrollable: true,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(24), topRight: Radius.circular(24))),
-          indicator: BoxDecoration(
-              color: Colors.teal,
-              border: Border.all(color: Colors.tealAccent, width: 2)),
-          indicatorPadding: const EdgeInsets.all(8),
-          indicatorWeight: 5,
-          indicatorColor: GFColors.WHITE,
-          indicatorSize: TabBarIndicatorSize.label,
-          labelColor: Colors.lightGreen,
-          labelPadding: const EdgeInsets.all(8),
-          tabBarColor: Colors.blueGrey,
-          tabBarHeight: 66,
-          unselectedLabelColor: Colors.black,
-          labelStyle: const TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
+        bottomSheet: GFBottomSheet(
+          controller: _controller,
+          // enableExpandableContent: true,
+          stickyHeaderHeight: 70,
+          stickyHeader: const GFListTile(
+            avatar: GFAvatar(
+              backgroundColor: Colors.amber,
+            ),
+            titleText: 'Header Title',
+            subtitleText: '11 minutes ago',
           ),
-          unselectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 12,
+          contentBody: ListView(
+              shrinkWrap: true,
+              physics: const ScrollPhysics(),
+              children: [
+                const Text('Content GetWidget'),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: const Text('Get Widget is one of the largest Flutter open-source '
+                      'UI library for mobile or web apps. It has more than 1000+ pre-built reusable widgets.'),
+                ),
+              ],
+            ),
+          stickyFooterHeight: 60,
+          stickyFooter: Container(
+            alignment: AlignmentDirectional.center,
+            width: 444,
+            color: Colors.amber,
+            child: const Text('Footer Title'),
           ),
         ),
+        // bottomNavigationBar: GFTabBar(
+        //   length: 5,
+        //   controller: tabController,
+        //   tabs: tabList,
+        //   isScrollable: true,
+        //   shape: const RoundedRectangleBorder(
+        //       borderRadius: BorderRadius.only(
+        //           topLeft: Radius.circular(24), topRight: Radius.circular(24))),
+        //   indicator: BoxDecoration(
+        //       color: Colors.teal,
+        //       border: Border.all(color: Colors.tealAccent, width: 2)),
+        //   indicatorPadding: const EdgeInsets.all(8),
+        //   indicatorWeight: 5,
+        //   indicatorColor: GFColors.WHITE,
+        //   indicatorSize: TabBarIndicatorSize.label,
+        //   labelColor: Colors.lightGreen,
+        //   labelPadding: const EdgeInsets.all(8),
+        //   tabBarColor: Colors.blueGrey,
+        //   tabBarHeight: 66,
+        //   unselectedLabelColor: Colors.black,
+        //   labelStyle: const TextStyle(
+        //     fontWeight: FontWeight.w500,
+        //     fontSize: 16,
+        //   ),
+        //   unselectedLabelStyle: const TextStyle(
+        //     fontWeight: FontWeight.w500,
+        //     fontSize: 12,
+        //   ),
+        // ),
       );
 }
 
