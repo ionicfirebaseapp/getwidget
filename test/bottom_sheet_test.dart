@@ -9,7 +9,7 @@ void main() {
   final GFBottomSheetController _controller = GFBottomSheetController();
 
   testWidgets('GFBottomSheet without value', (tester) async {
-    //   `GFBottomSheet.contentBody` null
+    // `GFBottomSheet.contentBody` null
     expect(
       () => GFBottomSheet(
         contentBody: null,
@@ -28,7 +28,7 @@ void main() {
           backgroundColor: Colors.amber,
         ),
         titleText: 'Header Title',
-        subtitleText: '11 minutes ago',
+        subTitleText: '11 minutes ago',
       ),
       contentBody: ListView(
         shrinkWrap: true,
@@ -45,7 +45,7 @@ void main() {
                 backgroundColor: Colors.tealAccent,
                 size: 20,
               ),
-              subtitleText: 'Content Title',
+              subTitleText: 'Content Title',
               icon: GFButton(
                 onPressed: () {},
                 color: Colors.teal,
@@ -116,7 +116,7 @@ void main() {
           backgroundColor: Colors.amber,
         ),
         titleText: 'Header Title',
-        subtitleText: '11 minutes ago',
+        subTitleText: '11 minutes ago',
       ),
       contentBody: ListView(
         shrinkWrap: true,
@@ -176,7 +176,7 @@ void main() {
           backgroundColor: Colors.amber,
         ),
         titleText: 'Header Title',
-        subtitleText: '11 minutes ago',
+        subTitleText: '11 minutes ago',
       ),
       contentBody: ListView(
         key: contentKey,
@@ -258,7 +258,7 @@ void main() {
           backgroundColor: Colors.amber,
         ),
         titleText: 'Header Title',
-        subtitleText: '11 minutes ago',
+        subTitleText: '11 minutes ago',
       ),
       contentBody: ListView(
         key: contentKey,

@@ -8,7 +8,7 @@ void main() {
     width: 100,
     height: 100,
   );
-  final bgColor = Colors.teal;
+  const bgColor = Colors.teal;
   const contentChild = Icon(Icons.umbrella);
   const child = Text('Get Widget');
 
@@ -30,13 +30,13 @@ void main() {
   testWidgets('Basic GFAlert.', (tester) async {
     const basicType = GFAlertType.basic;
 
-    final GFAlert alert = GFAlert(
+    const GFAlert alert = GFAlert(
         backgroundColor: bgColor,
         contentChild: contentChild,
         type: basicType,
         child: child);
 
-    final TestApp app = TestApp(alert);
+    const TestApp app = TestApp(alert);
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);

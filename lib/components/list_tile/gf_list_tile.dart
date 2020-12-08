@@ -7,11 +7,11 @@ class GFListTile extends StatelessWidget {
   const GFListTile({
     Key key,
     this.titleText,
-    this.subtitleText,
+    this.subTitleText,
     this.color,
     this.avatar,
     this.title,
-    this.subtitle,
+    this.subTitle,
     this.description,
     this.icon,
     this.padding = const EdgeInsets.all(8),
@@ -32,8 +32,8 @@ class GFListTile extends StatelessWidget {
   /// type of [String] used to pass text, alternative to title property and gets higher priority than title
   final String titleText;
 
-  /// type of [String] used to pass text, alternative to subtitle property and gets higher priority than subtitle
-  final String subtitleText;
+  /// type of [String] used to pass text, alternative to subTitle property and gets higher priority than subTitle
+  final String subTitleText;
 
   /// The GFListTile's background color. Can be given [Color] or [GFColors]
   final Color color;
@@ -44,8 +44,8 @@ class GFListTile extends StatelessWidget {
   /// The title to display inside the [GFListTile]. see [Text]
   final Widget title;
 
-  /// The subtitle to display inside the [GFListTile]. see [Text]
-  final Widget subtitle;
+  /// The subTitle to display inside the [GFListTile]. see [Text]
+  final Widget subTitle;
 
   /// The description to display inside the [GFListTile]. see [Text]
   final Widget description;
@@ -134,15 +134,15 @@ class GFListTile extends StatelessWidget {
                                     color: GFColors.DARK),
                               )
                             : title ?? Container(),
-                        subtitleText != null
+                        subTitleText != null
                             ? Text(
-                                subtitleText,
+                                subTitleText,
                                 style: const TextStyle(
                                   fontSize: 14.5,
                                   color: Colors.black54,
                                 ),
                               )
-                            : subtitle ?? Container(),
+                            : subTitle ?? Container(),
                         description ?? Container()
                       ],
                     ),

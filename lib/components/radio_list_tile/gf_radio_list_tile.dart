@@ -27,11 +27,11 @@ class GFRadioListTile<T> extends StatelessWidget {
     this.focusNode,
     this.toggleable = false,
     this.titleText,
-    this.subtitleText,
+    this.subTitleText,
     this.color,
     this.avatar,
     this.title,
-    this.subtitle,
+    this.subTitle,
     this.description,
     this.icon,
     this.padding = const EdgeInsets.all(8),
@@ -51,8 +51,8 @@ class GFRadioListTile<T> extends StatelessWidget {
   ///type of [String] used to pass text, alternative to title property and gets higher priority than title
   final String titleText;
 
-  ///type of [String] used to pass text, alternative to subtitle property and gets higher priority than subtitle
-  final String subtitleText;
+  ///type of [String] used to pass text, alternative to subTitle property and gets higher priority than subTitle
+  final String subTitleText;
 
   /// The GFListTile's background color. Can be given [Color] or [GFColors]
   final Color color;
@@ -63,8 +63,8 @@ class GFRadioListTile<T> extends StatelessWidget {
   /// The title to display inside the [GFListTile]. see [Text]
   final Widget title;
 
-  /// The subtitle to display inside the [GFListTile]. see [Text]
-  final Widget subtitle;
+  /// The subTitle to display inside the [GFListTile]. see [Text]
+  final Widget subTitle;
 
   /// The description to display inside the [GFListTile]. see [Text]
   final Widget description;
@@ -199,8 +199,8 @@ class GFRadioListTile<T> extends StatelessWidget {
         selected: selected,
         avatar: position == GFPosition.start ? radio : avatar,
         titleText: titleText,
-        subtitle: subtitle,
-        subtitleText: subtitleText,
+        subTitle: subTitle,
+        subTitleText: subTitleText,
         description: description,
         color: color,
         padding: padding,
