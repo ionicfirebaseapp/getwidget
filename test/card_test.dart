@@ -9,7 +9,7 @@ Future<void> main() async {
     height: 100,
   );
 
-  final color = Colors.white;
+  const color = Colors.white;
   const elevation = 2.0;
   const borderOnForeground = false;
   const padding = EdgeInsets.symmetric(horizontal: 12, vertical: 8);
@@ -236,12 +236,12 @@ Future<void> main() async {
       titleText: 'Card Title',
       icon: Icon(Icons.favorite_border),
     );
-    final GFCard card = GFCard(
+    const GFCard card = GFCard(
       color: color,
       title: customTitle,
     );
 
-    final TestApp app = TestApp(card);
+    const TestApp app = TestApp(card);
 
     await tester.pumpWidget(app);
 
@@ -251,20 +251,20 @@ Future<void> main() async {
     expect(app.card.title, customTitle);
   });
 
-  testWidgets('GF Card with GFAvatar & Subtitle in title section.',
+  testWidgets('GF Card with GFAvatar & subTitle in title section.',
       (tester) async {
     const customTitle = GFListTile(
       avatar: GFAvatar(),
       titleText: 'Card Title',
-      subtitleText: 'Sub title',
+      subTitleText: 'Sub title',
       icon: Icon(Icons.favorite_border),
     );
-    final GFCard card = GFCard(
+    const GFCard card = GFCard(
       color: color,
       title: customTitle,
     );
 
-    final TestApp app = TestApp(card);
+    const TestApp app = TestApp(card);
 
     await tester.pumpWidget(app);
 
@@ -282,7 +282,7 @@ Future<void> main() async {
         ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken);
     const customTitle = GFListTile(
       titleText: 'Card Title',
-      subtitleText: 'Sub title',
+      subTitleText: 'Sub title',
     );
     final GFCard card = GFCard(
       color: color,
@@ -311,7 +311,7 @@ Future<void> main() async {
     const customTitle = GFListTile(
       avatar: GFAvatar(),
       titleText: 'Card Title',
-      subtitleText: 'Sub title',
+      subTitleText: 'Sub title',
       icon: Icon(Icons.favorite_border),
     );
     const customButtonBar = GFButtonBar(
