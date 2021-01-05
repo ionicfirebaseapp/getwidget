@@ -16,6 +16,8 @@ class GFStickyHeader extends MultiChildRenderObjectWidget {
       this.callback,
       this.stickyContentPosition = GFPosition.start})
       : assert(direction != null),
+        assert(stickyContent != null),
+        assert(content != null),
         super(
             key: key,
             children: stickyContentPosition == GFPosition.start &&

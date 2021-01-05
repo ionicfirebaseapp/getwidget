@@ -27,13 +27,15 @@ class GFItemsCarousel extends StatefulWidget {
   /// Shows multiple items on one slide, items number depends on rowCount.
   const GFItemsCarousel({
     Key key,
-    this.rowCount,
-    this.children,
+    @required this.rowCount,
+    @required this.children,
     this.onSlideStart,
     this.onSlide,
     this.onSlideEnd,
     this.itemHeight = 200,
-  }) : super(key: key);
+  })  : assert(children != null),
+        assert(rowCount != null),
+        super(key: key);
 
   /// Count of visible cells
   final int rowCount;
