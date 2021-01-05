@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class GFCarousel extends StatefulWidget {
   /// Creates slide show of Images and [Widget] with animation for sliding.
   const GFCarousel({
+    Key key,
     @required this.items,
     this.pagerSize,
     this.passiveIndicator,
@@ -24,7 +25,8 @@ class GFCarousel extends StatefulWidget {
     this.onPageChanged,
     this.scrollPhysics,
     this.scrollDirection = Axis.horizontal,
-  });
+  })  : assert(items != null),
+        super(key: key);
 
   /// The pagination dots size can be defined using [double].
   final double pagerSize;
