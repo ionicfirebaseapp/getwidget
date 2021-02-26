@@ -167,11 +167,11 @@ class _GFAnimationState extends State<GFAnimation>
     super.initState();
   }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) => getAnimatedTypeWidget();
