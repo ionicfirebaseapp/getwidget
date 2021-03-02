@@ -1,10 +1,10 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:getwidget/getwidget.dart';
-
-import 'dart:math' as math;
 
 class TestPaintingContext implements PaintingContext {
   final List<Invocation> invocations = <Invocation>[];
@@ -15,8 +15,6 @@ class TestPaintingContext implements PaintingContext {
 }
 
 void main() {
-  // ------------------------- align
-
   testWidgets('AnimatedAlign.debugFillProperties', (WidgetTester tester) async {
     final GFAnimation box = GFAnimation(
       duration: const Duration(seconds: 2),
@@ -70,8 +68,6 @@ void main() {
     expect(tester.getTopRight(find.byKey(alignKey)), const Offset(800, 400));
   });
 
-  // ------------------- container
-
   testWidgets('AnimatedContainer.debugFillProperties',
       (WidgetTester tester) async {
     final GFAnimation container = GFAnimation(
@@ -122,7 +118,7 @@ void main() {
   testWidgets('AnimatedContainer testing over animate ',
       (WidgetTester tester) async {
     await tester.pumpWidget(const GFAnimation(
-      duration: const Duration(milliseconds: 300),
+      duration: Duration(milliseconds: 300),
       type: GFAnimationType.container,
       color: Colors.teal,
     ));
@@ -130,7 +126,7 @@ void main() {
     await tester.pump(const Duration(seconds: 1));
     expect(tester.binding.transientCallbackCount, 0);
     await tester.pumpWidget(const GFAnimation(
-      duration: const Duration(milliseconds: 300),
+      duration: Duration(milliseconds: 300),
       type: GFAnimationType.container,
       color: Colors.teal,
     ));
@@ -138,7 +134,7 @@ void main() {
     await tester.pump(const Duration(seconds: 1));
     expect(tester.binding.transientCallbackCount, 0);
     await tester.pumpWidget(const GFAnimation(
-      duration: const Duration(milliseconds: 300),
+      duration: Duration(milliseconds: 300),
       type: GFAnimationType.container,
       color: Colors.teal,
     ));
@@ -147,7 +143,7 @@ void main() {
     await tester.pump(const Duration(seconds: 1));
     expect(tester.binding.transientCallbackCount, 0);
     await tester.pumpWidget(const GFAnimation(
-      duration: const Duration(milliseconds: 300),
+      duration: Duration(milliseconds: 300),
       type: GFAnimationType.container,
       color: Colors.teal,
     ));
@@ -194,10 +190,10 @@ void main() {
   testWidgets('Animation rerun', (WidgetTester tester) async {
     await tester.pumpWidget(Center(
         child: GFAnimation(
-            duration: Duration(milliseconds: 200),
+            duration: const Duration(milliseconds: 200),
             type: GFAnimationType.container,
             child: Container(
-              child: Text('X', textDirection: TextDirection.ltr),
+              child: const Text('X', textDirection: TextDirection.ltr),
               width: 100,
               height: 100,
             ))));
@@ -212,7 +208,7 @@ void main() {
             duration: const Duration(milliseconds: 200),
             type: GFAnimationType.container,
             child: Container(
-              child: Text('X', textDirection: TextDirection.ltr),
+              child: const Text('X', textDirection: TextDirection.ltr),
               width: 200,
               height: 200,
             ))));
@@ -230,7 +226,7 @@ void main() {
         child: GFAnimation(
             duration: const Duration(milliseconds: 200),
             child: Container(
-              child: Text('X', textDirection: TextDirection.ltr),
+              child: const Text('X', textDirection: TextDirection.ltr),
               width: 200,
               height: 200,
             ))));
@@ -252,8 +248,8 @@ void main() {
       const Center(
         child: GFAnimation(
           type: GFAnimationType.size,
-          duration: const Duration(milliseconds: 200),
-          child: const SizedBox(
+          duration: Duration(milliseconds: 200),
+          child: SizedBox(
             width: 100,
             height: 100,
           ),
@@ -268,9 +264,9 @@ void main() {
         child: GFAnimation(
           width: 200,
           height: 200,
-          duration: const Duration(milliseconds: 200),
+          duration: Duration(milliseconds: 200),
           type: GFAnimationType.size,
-          child: const SizedBox(
+          child: SizedBox(
             width: 200,
             height: 200,
           ),
@@ -291,11 +287,11 @@ void main() {
     await tester.pumpWidget(
       const Center(
         child: GFAnimation(
-          duration: const Duration(milliseconds: 200),
+          duration: Duration(milliseconds: 200),
           type: GFAnimationType.size,
           width: 200,
           height: 200,
-          child: const SizedBox(
+          child: SizedBox(
             width: 100,
             height: 100,
           ),
@@ -323,9 +319,9 @@ void main() {
           width: 100,
           height: 100,
           child: GFAnimation(
-            duration: const Duration(milliseconds: 200),
+            duration: Duration(milliseconds: 200),
             type: GFAnimationType.size,
-            child: const SizedBox(
+            child: SizedBox(
               width: 100,
               height: 100,
             ),
@@ -343,9 +339,9 @@ void main() {
           width: 100,
           height: 100,
           child: GFAnimation(
-            duration: const Duration(milliseconds: 200),
+            duration: Duration(milliseconds: 200),
             type: GFAnimationType.size,
-            child: const SizedBox(
+            child: SizedBox(
               width: 200,
               height: 200,
             ),
@@ -364,9 +360,9 @@ void main() {
     await tester.pumpWidget(
       const Center(
         child: AnimatedSize(
-          duration: const Duration(milliseconds: 200),
-          vsync: const TestVSync(),
-          child: const SizedBox(
+          duration: Duration(milliseconds: 200),
+          vsync: TestVSync(),
+          child: SizedBox(
             width: 100,
             height: 100,
           ),
@@ -374,11 +370,11 @@ void main() {
       ),
     );
     await tester.pumpWidget(
-      Center(
+      const Center(
         child: GFAnimation(
-          duration: const Duration(milliseconds: 200),
+          duration: Duration(milliseconds: 200),
           type: GFAnimationType.size,
-          child: const SizedBox(
+          child: SizedBox(
             width: 200,
             height: 100,
           ),
@@ -392,11 +388,11 @@ void main() {
   testWidgets('does not run animation unnecessarily',
       (WidgetTester tester) async {
     await tester.pumpWidget(
-      Center(
+      const Center(
         child: GFAnimation(
-          duration: const Duration(milliseconds: 200),
+          duration: Duration(milliseconds: 200),
           type: GFAnimationType.size,
-          child: const SizedBox(
+          child: SizedBox(
             width: 100,
             height: 100,
           ),
@@ -414,14 +410,13 @@ void main() {
     }
   });
 
-  // --------------------- rotate
-
-  testWidgets('RotationTransition maintains chosen alignment during animation', (WidgetTester tester) async {
-
+  testWidgets('RotationTransition maintains chosen alignment during animation',
+      (WidgetTester tester) async {
     AnimationController controller;
     Animation<double> animation;
 
-    controller = AnimationController(duration: const Duration(seconds: 5), vsync: const TestVSync());
+    controller = AnimationController(
+        duration: const Duration(seconds: 5), vsync: const TestVSync());
     animation = CurvedAnimation(parent: controller, curve: Curves.linear);
 
     final Widget widget = GFAnimation(
@@ -433,7 +428,8 @@ void main() {
     );
 
     await tester.pumpWidget(widget);
-    RotationTransition actualRotatedBox = tester.widget(find.byType(RotationTransition));
+    RotationTransition actualRotatedBox =
+        tester.widget(find.byType(RotationTransition));
     Alignment actualAlignment = actualRotatedBox.alignment;
     expect(actualAlignment, Alignment.topRight);
 
@@ -445,11 +441,11 @@ void main() {
   });
 
   testWidgets('RotationTransition animates', (WidgetTester tester) async {
-
     AnimationController controller;
     Animation<double> animation;
 
-    controller = AnimationController(duration: const Duration(seconds: 5), vsync: const TestVSync());
+    controller = AnimationController(
+        duration: const Duration(seconds: 5), vsync: const TestVSync());
     animation = CurvedAnimation(parent: controller, curve: Curves.linear);
 
     final Widget widget = GFAnimation(
@@ -459,19 +455,11 @@ void main() {
       alignment: Alignment.topRight,
       child: const Text('Rotation', textDirection: TextDirection.ltr),
     );
-    // RotationTransition(
-    //   alignment: Alignment.topRight,
-    //   turns: controller,
-    //   child: const Text(
-    //     'Rotation',
-    //     textDirection: TextDirection.ltr,
-    //   ),
-    // );
 
     await tester.pumpWidget(widget);
     Transform actualRotatedBox = tester.widget(find.byType(Transform));
     Matrix4 actualTurns = actualRotatedBox.transform;
-    expect(actualTurns, equals(Matrix4.rotationZ(0.0)));
+    expect(actualTurns, equals(Matrix4.rotationZ(0)));
 
     controller.value = 0.5;
     await tester.pump();
@@ -486,9 +474,39 @@ void main() {
     expect(actualTurns, Matrix4.rotationZ(math.pi * 1.5));
   });
 
+  testWidgets('ScaleTransition animates', (WidgetTester tester) async {
+    AnimationController controller;
+    Animation<double> animation;
 
-  // ------------------------- scale
+    controller = AnimationController(
+        duration: const Duration(seconds: 5), vsync: const TestVSync());
+    animation = CurvedAnimation(parent: controller, curve: Curves.linear);
 
+    final Widget widget = GFAnimation(
+      turnsAnimation: animation,
+      controller: controller,
+      type: GFAnimationType.scaleTransition,
+      alignment: Alignment.topRight,
+      child: const Text('Scale', textDirection: TextDirection.rtl),
+    );
+
+    await tester.pumpWidget(widget);
+    Transform actualRotatedBox = tester.widget(find.byType(Transform));
+    Matrix4 actualTurns = actualRotatedBox.transform;
+    expect(actualTurns, equals(Matrix4.rotationZ(0)));
+
+    controller.value = 0.5;
+    await tester.pump();
+    actualRotatedBox = tester.widget(find.byType(Transform));
+    actualTurns = actualRotatedBox.transform;
+    expect(actualTurns, Matrix4.rotationZ(math.pi));
+
+    controller.value = 0.75;
+    await tester.pump();
+    actualRotatedBox = tester.widget(find.byType(Transform));
+    actualTurns = actualRotatedBox.transform;
+    expect(actualTurns, Matrix4.rotationZ(math.pi * 1.5));
+  });
 }
 
 class TestApp extends StatefulWidget {
