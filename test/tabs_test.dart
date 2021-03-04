@@ -361,7 +361,7 @@ void main() {
       length: tabList.length,
       tabs: tabList,
       tabBarView: GFTabBarView(
-        controller: tabController,
+          controller: tabController,
           children:
               tabViewList.map((text) => StateMarker(child: text)).toList()),
     );
@@ -490,7 +490,7 @@ void main() {
       length: tabList.length,
       tabs: tabList,
       tabBarView: GFTabBarView(
-        controller: tabController,
+          controller: tabController,
           children:
               tabViewList.map((text) => StateMarker(child: text)).toList()),
       tabBarColor: Colors.blueGrey,

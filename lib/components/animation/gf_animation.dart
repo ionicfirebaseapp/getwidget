@@ -33,7 +33,7 @@ class GFAnimation extends StatefulWidget {
     this.changedWidth,
     this.changedHeight,
     this.reverseDuration,
-  }) : assert(child != null),
+  })  : assert(child != null),
         super(key: key);
 
   /// The duration for animation to perform

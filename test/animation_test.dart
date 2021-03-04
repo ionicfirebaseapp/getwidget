@@ -121,7 +121,10 @@ void main() {
       duration: Duration(milliseconds: 300),
       type: GFAnimationType.container,
       color: Colors.teal,
-      child: SizedBox(width: 45, height: 45,),
+      child: SizedBox(
+        width: 45,
+        height: 45,
+      ),
     ));
     expect(tester.binding.transientCallbackCount, 0);
     await tester.pump(const Duration(seconds: 1));
@@ -130,7 +133,10 @@ void main() {
       duration: Duration(milliseconds: 300),
       type: GFAnimationType.container,
       color: Colors.teal,
-      child: SizedBox(width: 45, height: 45,),
+      child: SizedBox(
+        width: 45,
+        height: 45,
+      ),
     ));
     expect(tester.binding.transientCallbackCount, 0);
     await tester.pump(const Duration(seconds: 1));
@@ -139,7 +145,10 @@ void main() {
       duration: Duration(milliseconds: 300),
       type: GFAnimationType.container,
       color: Colors.teal,
-      child: SizedBox(width: 45, height: 45,),
+      child: SizedBox(
+        width: 45,
+        height: 45,
+      ),
     ));
     expect(tester.binding.transientCallbackCount,
         0); // this is the only time an animation should have started!
@@ -149,7 +158,10 @@ void main() {
       duration: Duration(milliseconds: 300),
       type: GFAnimationType.container,
       color: Colors.teal,
-      child: SizedBox(width: 45, height: 45,),
+      child: SizedBox(
+        width: 45,
+        height: 45,
+      ),
     ));
     expect(tester.binding.transientCallbackCount, 0);
   });

@@ -5,15 +5,14 @@ class GFAccordion extends StatefulWidget {
   /// An accordion is used to show (and hide) content. Use [showAccordion] to hide & show the accordion content.
   const GFAccordion(
       {Key key,
-        this.title,
-        this.content,
-        this.titleChild,
-        this.contentChild,
+      this.title,
+      this.content,
+      this.titleChild,
+      this.contentChild,
       this.collapsedTitleBackgroundColor = GFColors.WHITE,
       this.expandedTitleBackgroundColor = const Color(0xFFE0E0E0),
       this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
       this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
-
       this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
       this.titlePadding = const EdgeInsets.all(10),
       this.contentBackgroundColor,

@@ -16,8 +16,7 @@ void main() {
     final GFAlert alert = GFAlert(
         backgroundColor: bgColor,
         contentChild: contentChild,
-        child: childWidget
-    );
+        child: childWidget);
 
     final TestApp app = TestApp(alert);
 
