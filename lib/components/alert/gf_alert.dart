@@ -6,8 +6,8 @@ class GFAlert extends StatefulWidget {
   /// Alert has to be wrap inside the body like [GFFloatingWidget]. See [GFFloatingWidget]
   const GFAlert(
       {Key key,
-        this.content,
-        this.title,
+      this.content,
+      this.title,
       this.child,
       this.backgroundColor,
       this.width,

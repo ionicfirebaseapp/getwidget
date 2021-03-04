@@ -17,7 +17,7 @@ class GFButtonBar extends StatelessWidget {
     this.verticalDirection = VerticalDirection.down,
     @required this.children,
     this.padding = const EdgeInsets.all(0),
-  }) : assert(children != null),
+  })  : assert(children != null),
         super(key: key);
 
   /// The empty space that surrounds the buttonBar. Default's to padding.zero
