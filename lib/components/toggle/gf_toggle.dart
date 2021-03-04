@@ -16,7 +16,7 @@ class GFToggle extends StatefulWidget {
   const GFToggle(
       {Key key,
       @required this.onChanged,
-      this.value,
+      @required this.value,
       this.enabledText,
       this.disabledText,
       this.enabledTextStyle,
@@ -29,7 +29,9 @@ class GFToggle extends StatefulWidget {
       this.boxShape,
       this.borderRadius,
       this.duration = const Duration(milliseconds: 400)})
-      : super(key: key);
+      : assert(value != null),
+        assert(onChanged != null),
+        super(key: key);
 
   ///type [String] used to add custom text i.e, ON,ENABLE
   final String enabledText;

@@ -13,7 +13,7 @@ class GFTabBarView extends StatefulWidget {
   const GFTabBarView({
     Key key,
     @required this.children,
-    this.controller,
+    @required this.controller,
     this.physics,
     this.height,
     this.dragStartBehavior = DragStartBehavior.start,

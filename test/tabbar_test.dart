@@ -28,9 +28,11 @@ void main() {
           topLeft: Radius.circular(24), topRight: Radius.circular(24)));
 
   testWidgets('GFTabBar without length, isScrollable', (tester) async {
-    // `GFTabBar.length` null or `GFTabBar.isScrollable` null
+    // `GFTabBar.length` null or `GFTabBar.isScrollable` null, `GFTabBar.tabs` null and `GFTabBar.controller` null
     expect(
       () => GFTabBar(
+        tabs: null,
+        controller: null,
         length: null,
         isScrollable: null,
       ),

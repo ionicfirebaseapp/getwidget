@@ -22,10 +22,12 @@ void main() {
       border: Border.all(color: Colors.tealAccent, width: 2));
 
   testWidgets('GFSegmentTabs without length, isScrollable', (tester) async {
-    // `GFSegmentTabs.length` null
+    // `GFSegmentTabs.length` null, `GFSegmentTabs.tabs` null and `GFSegmentTabs.tabController null
     expect(
       () => GFSegmentTabs(
+        tabs: null,
         length: null,
+        tabController: null,
       ),
       throwsAssertionError,
     );
