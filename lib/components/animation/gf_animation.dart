@@ -5,9 +5,9 @@ class GFAnimation extends StatefulWidget {
   /// Wrap any widget with [GFAnimation] to animate your widget. see [GFAnimationType] for types of animations.
   const GFAnimation({
     Key key,
+    @required this.child,
     this.duration,
     this.alignment,
-    this.child,
     this.curve,
     this.type,
     this.width,
@@ -33,7 +33,8 @@ class GFAnimation extends StatefulWidget {
     this.changedWidth,
     this.changedHeight,
     this.reverseDuration,
-  }) : super(key: key);
+  }) : assert(child != null),
+        super(key: key);
 
   /// The duration for animation to perform
   final Duration duration;

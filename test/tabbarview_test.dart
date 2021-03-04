@@ -38,9 +38,10 @@ void main() {
   ];
 
   testWidgets('GFTabBarView without length, isScrollable', (tester) async {
-    // `GFTabBarView.children` null or `GFTabBarView.dragStartBehavior` null
+    // `GFTabBarView.children` null or `GFTabBarView.dragStartBehavior` null, GFTabBarView.controller` null
     expect(
       () => GFTabBarView(
+        controller: null,
         dragStartBehavior: null,
         children: null,
       ),

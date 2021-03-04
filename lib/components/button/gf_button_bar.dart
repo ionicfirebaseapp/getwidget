@@ -15,9 +15,10 @@ class GFButtonBar extends StatelessWidget {
     this.crossAxisAlignment = WrapCrossAlignment.start,
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
-    this.children = const <Widget>[],
+    @required this.children,
     this.padding = const EdgeInsets.all(0),
-  }) : super(key: key);
+  }) : assert(children != null),
+        super(key: key);
 
   /// The empty space that surrounds the buttonBar. Default's to padding.zero
   final EdgeInsetsGeometry padding;

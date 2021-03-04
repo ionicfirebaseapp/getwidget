@@ -15,8 +15,9 @@ class GFTabBar extends StatefulWidget {
   /// [TabController.length].
   const GFTabBar({
     Key key,
-    // this.initialIndex = 0,
     @required this.length,
+    @required this.tabs,
+    @required this.controller,
     this.isScrollable = false,
     this.tabBarHeight,
     this.tabBarColor,
@@ -30,18 +31,11 @@ class GFTabBar extends StatefulWidget {
     this.labelPadding,
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
-    this.tabs,
-    this.controller,
     this.shape,
   })  : assert(length != null && length >= 0),
         assert(isScrollable != null),
-        // assert(initialIndex != null &&
-        //     initialIndex >= 0 &&
-        //     (length == 0 || initialIndex < length)),
+        assert(tabs != null),
         super(key: key);
-
-  // /// The initial index of the selected tab. Defaults to zero.
-  // final int initialIndex;
 
   /// The total number of tabs. Typically greater than one. Must match [TabBar.tabs]'s and
   /// [TabBarView.children]'s length.

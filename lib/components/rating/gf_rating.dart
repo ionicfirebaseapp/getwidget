@@ -7,10 +7,10 @@ class GFRating extends StatefulWidget {
   /// [GFRating] to show ratings with many custimazation options.
   const GFRating({
     Key key,
-    this.onChanged,
+    @required this.onChanged,
+    @required this.value,
     this.itemCount = 5,
     this.spacing = 0.0,
-    this.value = 0.0,
     this.defaultIcon,
     this.color,
     this.borderColor,
@@ -25,6 +25,7 @@ class GFRating extends StatefulWidget {
     this.margin = const EdgeInsets.symmetric(vertical: 16),
     this.padding = const EdgeInsets.symmetric(horizontal: 16),
   })  : assert(value != null),
+        assert(onChanged != null),
         super(key: key);
 
   /// defines total number of rating items

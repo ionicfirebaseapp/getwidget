@@ -32,11 +32,15 @@ void main() {
           topLeft: Radius.circular(24), topRight: Radius.circular(24)));
 
   testWidgets('GFTabs without length, isScrollable', (tester) async {
-    // `GFTabs.length` null or `GFTabs.isScrollable` null or `GFTabs.initialIndex` null
+    // `GFTabs.length` null or `GFTabs.isScrollable` null or `GFTabs.initialIndex` null, `GFTabs.controller` null,
+    // `GFTabs.tabBarView` null, `GFTabs.tabs` null
     expect(
       () => GFTabs(
+        controller: null,
         length: null,
+        tabs: null,
         initialIndex: null,
+        tabBarView: null,
         isScrollable: null,
       ),
       throwsAssertionError,
@@ -74,6 +78,7 @@ void main() {
       length: tabList.length,
       tabs: tabList,
       tabBarView: GFTabBarView(
+          controller: tabController,
           children:
               tabViewList.map((text) => StateMarker(child: text)).toList()),
     );
@@ -142,6 +147,7 @@ void main() {
       tabs: tabList,
       isScrollable: true,
       tabBarView: GFTabBarView(
+          controller: tabController,
           children:
               tabViewList.map((text) => StateMarker(child: text)).toList()),
     );
@@ -250,6 +256,7 @@ void main() {
       tabs: tabList,
       isScrollable: true,
       tabBarView: GFTabBarView(
+          controller: tabController,
           children:
               tabViewList.map((text) => StateMarker(child: text)).toList()),
     );
@@ -354,6 +361,7 @@ void main() {
       length: tabList.length,
       tabs: tabList,
       tabBarView: GFTabBarView(
+        controller: tabController,
           children:
               tabViewList.map((text) => StateMarker(child: text)).toList()),
     );
@@ -414,6 +422,7 @@ void main() {
       length: tabs.length,
       tabs: tabBarList,
       tabBarView: GFTabBarView(
+          controller: tabController,
           key: tabBarViewKey,
           children: tabList.map((text) => StateMarker(child: text)).toList()),
     );
@@ -481,6 +490,7 @@ void main() {
       length: tabList.length,
       tabs: tabList,
       tabBarView: GFTabBarView(
+        controller: tabController,
           children:
               tabViewList.map((text) => StateMarker(child: text)).toList()),
       tabBarColor: Colors.blueGrey,

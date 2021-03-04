@@ -12,7 +12,8 @@ class GFSegmentTabs extends StatefulWidget {
   const GFSegmentTabs(
       {Key key,
       @required this.length,
-      // this.initialIndex = 0,
+        @required this.tabs,
+        @required this.tabController,
       this.height,
       this.width,
       this.border,
@@ -28,16 +29,10 @@ class GFSegmentTabs extends StatefulWidget {
       this.labelPadding,
       this.unselectedLabelColor,
       this.unselectedLabelStyle,
-      this.tabs,
-      this.tabController})
+      })
       : assert(length != null && length >= 0),
-        // assert(initialIndex != null &&
-        //     initialIndex >= 0 &&
-        //     (length == 0 || initialIndex < length)),
+        assert(tabs != null),
         super(key: key);
-
-  // /// The initial index of the selected tab. Defaults to zero.
-  // final int initialIndex;
 
   /// The total number of tabs. Typically greater than one. Must match [TabBar.tabs]'s and
   /// [TabBarView.children]'s length.

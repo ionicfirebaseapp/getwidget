@@ -28,7 +28,10 @@ class GFRadio<T> extends StatefulWidget {
       this.autofocus = false,
       this.focusNode,
       this.toggleable = false})
-      : assert(autofocus != null),
+      : assert(value != null),
+        assert(groupValue != null),
+        assert(onChanged != null),
+        assert(autofocus != null),
         assert(toggleable != null),
         super(key: key);
 

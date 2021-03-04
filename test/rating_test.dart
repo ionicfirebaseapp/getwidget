@@ -145,6 +145,7 @@ void main() {
                 },
                 child: const Text('Rate'),
               ),
+              onChanged: null,
             ),
           ),
         ),

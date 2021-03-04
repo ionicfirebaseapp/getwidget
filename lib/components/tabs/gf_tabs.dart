@@ -15,6 +15,9 @@ class GFTabs extends StatefulWidget {
     Key key,
     this.initialIndex = 0,
     @required this.length,
+    @required this.tabs,
+    @required this.tabBarView,
+    @required this.controller,
     this.isScrollable = false,
     this.height,
     this.tabBarColor,
@@ -28,9 +31,6 @@ class GFTabs extends StatefulWidget {
     this.labelPadding,
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
-    this.tabBarView,
-    this.tabs,
-    this.controller,
     this.tabBarHeight,
     this.shape,
   })  : assert(length != null && length >= 0),
@@ -38,6 +38,8 @@ class GFTabs extends StatefulWidget {
         assert(initialIndex != null &&
             initialIndex >= 0 &&
             (length == 0 || initialIndex < length)),
+        assert(tabs != null),
+        assert(tabBarView != null),
         super(key: key);
 
   /// The initial index of the selected tab. Defaults to zero.

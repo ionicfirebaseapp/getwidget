@@ -30,6 +30,7 @@ class GFToggle extends StatefulWidget {
       this.borderRadius,
       this.duration = const Duration(milliseconds: 400)})
       : assert(value != null),
+        assert(onChanged != null),
         super(key: key);
 
   ///type [String] used to add custom text i.e, ON,ENABLE

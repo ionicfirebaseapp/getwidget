@@ -6,14 +6,14 @@ class GFAlert extends StatefulWidget {
   /// Alert has to be wrap inside the body like [GFFloatingWidget]. See [GFFloatingWidget]
   const GFAlert(
       {Key key,
+        this.content,
+        this.title,
       this.child,
       this.backgroundColor,
-      this.content,
       this.width,
       this.type = GFAlertType.basic,
       this.alignment,
       this.contentChild,
-      this.title,
       this.bottombar,
       this.contentTextStyle = const TextStyle(color: Colors.black87),
       this.titleTextStyle = const TextStyle(

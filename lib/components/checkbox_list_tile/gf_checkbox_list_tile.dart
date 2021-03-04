@@ -35,6 +35,7 @@ class GFCheckboxListTile extends StatelessWidget {
     this.selected = false,
     this.autofocus = false,
   })  : assert(value != null),
+        assert(onChanged != null),
         assert(selected != null),
         assert(autofocus != null),
         super(key: key);

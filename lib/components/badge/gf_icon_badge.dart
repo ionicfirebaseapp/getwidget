@@ -8,7 +8,9 @@ class GFIconBadge extends StatefulWidget {
     this.padding = const EdgeInsets.symmetric(horizontal: 8),
     @required this.child,
     @required this.counterChild,
-  })  : assert(padding != null),
+  })  : assert(child != null),
+        assert(counterChild != null),
+        assert(padding != null),
         super(key: key);
 
   /// child of type [Widget] is used to show icon.
