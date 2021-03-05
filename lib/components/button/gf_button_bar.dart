@@ -6,7 +6,7 @@ class GFButtonBar extends StatelessWidget {
   /// Create buttons bar for all types of buttons.
   /// check [GFButton] and [GFIconButton]
   const GFButtonBar({
-    Key key,
+    Key? key,
     this.direction = Axis.horizontal,
     this.alignment = WrapAlignment.center,
     this.spacing = 8.0,
@@ -15,10 +15,9 @@ class GFButtonBar extends StatelessWidget {
     this.crossAxisAlignment = WrapCrossAlignment.start,
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
-    @required this.children,
+    required this.children,
     this.padding = const EdgeInsets.all(0),
-  })  : assert(children != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// The empty space that surrounds the buttonBar. Default's to padding.zero
   final EdgeInsetsGeometry padding;
@@ -129,7 +128,7 @@ class GFButtonBar extends StatelessWidget {
   /// [crossAxisAlignment] is either [WrapCrossAlignment.start] or
   /// [WrapCrossAlignment.end], or there's more than one child, then the
   /// [textDirection] (or the ambient [Directionality]) must not be null.
-  final TextDirection textDirection;
+  final TextDirection? textDirection;
 
   /// Determines the order to lay children out vertically and how to interpret
   /// `start` and `end` in the vertical direction.

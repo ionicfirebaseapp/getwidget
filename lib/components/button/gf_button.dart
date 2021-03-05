@@ -9,8 +9,8 @@ import 'package:getwidget/getwidget.dart';
 class GFButton extends StatefulWidget {
   /// Create buttons of all types. check out [GFIconButton] for icon buttons, and [GFBadge] for badges
   const GFButton({
-    Key key,
-    @required this.onPressed,
+    Key? key,
+    required this.onPressed,
     this.onHighlightChanged,
     this.textStyle,
     this.boxShadow,
@@ -31,7 +31,7 @@ class GFButton extends StatefulWidget {
     this.clipBehavior = Clip.none,
     this.focusNode,
     this.autofocus = false,
-    MaterialTapTargetSize materialTapTargetSize,
+    MaterialTapTargetSize? materialTapTargetSize,
     this.child,
     this.type = GFButtonType.solid,
     this.shape = GFButtonShape.standard,
@@ -51,44 +51,39 @@ class GFButton extends StatefulWidget {
     this.disabledTextColor,
   })  : materialTapTargetSize =
             materialTapTargetSize ?? MaterialTapTargetSize.padded,
-        assert(shape != null, 'Button shape can not be null'),
         // assert(elevation != null && elevation >= 0.0),
-        assert(focusElevation != null && focusElevation >= 0.0),
-        assert(hoverElevation != null && hoverElevation >= 0.0),
-        assert(highlightElevation != null && highlightElevation >= 0.0),
-        assert(disabledElevation != null && disabledElevation >= 0.0),
-        assert(padding != null),
-        assert(animationDuration != null),
-        assert(clipBehavior != null),
-        assert(autofocus != null),
+        assert(focusElevation >= 0.0),
+        assert(hoverElevation >= 0.0),
+        assert(highlightElevation >= 0.0),
+        assert(disabledElevation >= 0.0),
         super(key: key);
 
   /// Called when the button is tapped or otherwise activated.
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// Called by the underlying [InkWell] widget's InkWell.onHighlightChanged callback.
-  final ValueChanged<bool> onHighlightChanged;
+  final ValueChanged<bool>? onHighlightChanged;
 
   /// Defines the default text style, with [Material.textStyle], for the button's [child].
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   /// The border side for the button's [Material].
-  final BorderSide borderSide;
+  final BorderSide? borderSide;
 
   /// The box shadow for the button's [Material], if GFButtonType is solid
-  final BoxShadow boxShadow;
+  final BoxShadow? boxShadow;
 
   /// Pass [GFColors] or [Color]. The color for the button's [Material] when it has the input focus.
-  final Color focusColor;
+  final Color? focusColor;
 
   /// Pass [GFColors] or [Color]. The color for the button's [Material] when a pointer is hovering over it.
-  final Color hoverColor;
+  final Color? hoverColor;
 
   /// Pass [GFColors] or [Color]. The highlight color for the button's [InkWell].
-  final Color highlightColor;
+  final Color? highlightColor;
 
   /// Pass [GFColors] or [Color]. The splash color for the button's [InkWell].
-  final Color splashColor;
+  final Color? splashColor;
 
   /// The elevation for the button's [Material] when the button is [enabled] but not pressed.
   final double elevation;
@@ -109,16 +104,16 @@ class GFButton extends StatefulWidget {
   final EdgeInsetsGeometry padding;
 
   /// Defines the button's size.
-  final BoxConstraints constraints;
+  final BoxConstraints? constraints;
 
   /// The shape of the button's [Material].
-  final ShapeBorder borderShape;
+  final ShapeBorder? borderShape;
 
   /// Defines the duration of animated changes for [shape] and [elevation].
   final Duration animationDuration;
 
   /// Typically the button's label.
-  final Widget child;
+  final Widget? child;
 
   /// Whether the button is enabled or disabled.
   bool get enabled => onPressed != null;
@@ -127,7 +122,7 @@ class GFButton extends StatefulWidget {
   final MaterialTapTargetSize materialTapTargetSize;
 
   /// {@macro flutter.widgets.Focus.focusNode}
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
@@ -152,10 +147,10 @@ class GFButton extends StatefulWidget {
   /// See also:
   ///
   ///  * [color] - the fill color of the button when the button is [enabled].
-  final Color disabledColor;
+  final Color? disabledColor;
 
   /// Pass [GFColors] or [Color]
-  final Color textColor;
+  final Color? textColor;
 
   /// The color to use for this button's text when the button is disabled.
   ///
@@ -171,28 +166,28 @@ class GFButton extends StatefulWidget {
   /// See also:
   ///
   ///  * [textColor] - The color to use for this button's text when the button is [enabled].
-  final Color disabledTextColor;
+  final Color? disabledTextColor;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
   final double size;
 
   /// text of type [String] is alternative to child. text will get priority over child
-  final String text;
+  final String? text;
 
   /// icon of type [Widget]
-  final Widget icon;
+  final Widget? icon;
 
   /// icon type of [GFPosition] i.e, start, end
   final GFPosition position;
 
   /// on true state blockButton gives block size button
-  final bool blockButton;
+  final bool? blockButton;
 
   /// on true state full width Button gives full width button
-  final bool fullWidthButton;
+  final bool? fullWidthButton;
 
   /// on true state default box shadow appears around button, if GFButtonType is solid
-  final bool buttonBoxShadow;
+  final bool? buttonBoxShadow;
 
   /// A set of thirteen colors that can be used to derive the button theme's
   /// colors.
@@ -204,7 +199,7 @@ class GFButton extends StatefulWidget {
   /// The colors for new button classes can be defined exclusively in terms
   /// of [colorScheme]. When it's possible, the existing buttons will
   /// (continue to) gradually migrate to it.
-  final ColorScheme colorScheme;
+  final ColorScheme? colorScheme;
 
   /// Whether detected gestures should provide acoustic and/or haptic feedback.
   ///
@@ -214,7 +209,7 @@ class GFButton extends StatefulWidget {
   /// See also:
   ///
   ///  * [Feedback] for providing platform-specific feedback to certain actions.
-  final bool enableFeedback;
+  final bool? enableFeedback;
 
   /// Called when the button is long-pressed.
   ///
@@ -223,25 +218,25 @@ class GFButton extends StatefulWidget {
   /// See also:
   ///
   ///  * [enabled], which is true if the button is enabled.
-  final VoidCallback onLongPress;
+  final VoidCallback? onLongPress;
 
   @override
   _GFButtonState createState() => _GFButtonState();
 }
 
 class _GFButtonState extends State<GFButton> {
-  Color color;
-  Color disabledColor;
-  Color textColor;
-  Color disabledTextColor;
-  Widget child;
-  Widget icon;
-  Function onPressed;
-  GFButtonType type;
-  GFButtonShape shape;
-  double size;
-  GFPosition position;
-  BoxShadow boxShadow;
+  late Color color;
+  Color? textColor;
+  Color? disabledColor;
+  Color? disabledTextColor;
+  Widget? child;
+  Widget? icon;
+  Function? onPressed;
+  late GFButtonType type;
+  late GFButtonShape shape;
+  late double size;
+  late GFPosition position;
+  late BoxShadow boxShadow;
 
   final Set<MaterialState> _states = <MaterialState>{};
 
@@ -249,7 +244,7 @@ class _GFButtonState extends State<GFButton> {
   void initState() {
     color = widget.color;
     textColor = widget.textColor;
-    child = widget.text != null ? Text(widget.text) : widget.child;
+    child = widget.text != null ? Text(widget.text!) : widget.child;
     icon = widget.icon;
     onPressed = widget.onPressed;
     type = widget.type;
@@ -270,8 +265,8 @@ class _GFButtonState extends State<GFButton> {
   bool get _pressed => _states.contains(MaterialState.pressed);
   bool get _disabled => _states.contains(MaterialState.disabled);
 
-  double buttonWidth() {
-    double buttonWidth = 0;
+  double? buttonWidth() {
+    double? buttonWidth = 0;
     if (widget.blockButton == true) {
       buttonWidth = MediaQuery.of(context).size.width * 0.88;
     } else if (widget.fullWidthButton == true) {
@@ -291,7 +286,7 @@ class _GFButtonState extends State<GFButton> {
       setState(() {
         _updateState(MaterialState.pressed, value);
         if (widget.onHighlightChanged != null) {
-          widget.onHighlightChanged(value);
+          widget.onHighlightChanged!(value);
         }
       });
     }
@@ -325,7 +320,7 @@ class _GFButtonState extends State<GFButton> {
     }
     color = widget.color;
     textColor = widget.textColor;
-    child = widget.text != null ? Text(widget.text) : widget.child;
+    child = widget.text != null ? Text(widget.text!) : widget.child;
     icon = widget.icon;
     onPressed = widget.onPressed;
     type = widget.type;
@@ -365,18 +360,15 @@ class _GFButtonState extends State<GFButton> {
 
     Color getBorderColor() {
       if (widget.enabled) {
-        final Color fillColor = color ?? GFColors.PRIMARY;
-        if (fillColor != null) {
-          return fillColor;
-        }
+        final Color fillColor = color;
+        return fillColor;
       } else {
         if (disabledColor != null) {
-          return disabledColor;
+          return disabledColor!;
         } else {
           return color.withOpacity(0.48);
         }
       }
-      return color ?? GFColors.PRIMARY;
     }
 
     Color getDisabledFillColor() {
@@ -386,7 +378,7 @@ class _GFButtonState extends State<GFButton> {
         return Colors.transparent;
       }
       if (disabledColor != null) {
-        return disabledColor;
+        return disabledColor!;
       } else {
         return color.withOpacity(0.48);
       }
@@ -398,13 +390,13 @@ class _GFButtonState extends State<GFButton> {
           widget.type == GFButtonType.outline2x) {
         return Colors.transparent;
       }
-      final Color fillColor = color ?? GFColors.PRIMARY;
+      final Color fillColor = color;
       return fillColor;
     }
 
     Color getDisabledTextColor() {
       if (disabledTextColor != null) {
-        return disabledTextColor;
+        return disabledTextColor!;
       } else if (widget.type == GFButtonType.outline ||
           widget.type == GFButtonType.outline2x ||
           widget.type == GFButtonType.transparent) {
@@ -423,7 +415,7 @@ class _GFButtonState extends State<GFButton> {
                 ? color == GFColors.TRANSPARENT
                     ? GFColors.DARK
                     : color
-                : textColor
+                : textColor!
             : getDisabledTextColor();
       }
       if (textColor == null) {
@@ -433,25 +425,23 @@ class _GFButtonState extends State<GFButton> {
           return GFColors.WHITE;
         }
       } else {
-        return textColor;
+        return textColor!;
       }
     }
 
-    final Color effectiveTextColor = MaterialStateProperty.resolveAs<Color>(
+    final Color? effectiveTextColor = MaterialStateProperty.resolveAs<Color?>(
         widget.textStyle?.color, _states);
     final Color themeColor =
         Theme.of(context).colorScheme.onSurface.withOpacity(0.12);
     final BorderSide outlineBorder = BorderSide(
-      color: color == null
-          ? themeColor
-          : widget.borderSide == null
-              ? getBorderColor()
-              : widget.borderSide.color,
-      width: widget.borderSide?.width == null
+      color: widget.borderSide == null
+          ? getBorderColor()
+          : widget.borderSide!.color,
+      width: (widget.borderSide?.width == null
           ? widget.type == GFButtonType.outline2x
               ? 2.0
               : 1.0
-          : widget.borderSide?.width,
+          : widget.borderSide?.width)!,
     );
 
     Size minSize;
@@ -472,7 +462,7 @@ class _GFButtonState extends State<GFButton> {
         ? outlineBorder
         : widget.borderSide ??
             BorderSide(
-              color: color == null ? themeColor : getBorderColor(),
+              color: getBorderColor(),
               width: 0,
             );
 
@@ -500,7 +490,7 @@ class _GFButtonState extends State<GFButton> {
       );
     }
 
-    BoxDecoration getBoxShadow() {
+    BoxDecoration? getBoxShadow() {
       if (widget.type != GFButtonType.transparent) {
         if (widget.boxShadow == null && widget.buttonBoxShadow != true) {
           return null;
@@ -525,7 +515,7 @@ class _GFButtonState extends State<GFButton> {
                       offset: Offset.zero,
                     )
                   : widget.boxShadow != null
-                      ? widget.boxShadow
+                      ? widget.boxShadow!
                       : BoxShadow(
                           color: Theme.of(context).canvasColor,
                           blurRadius: 0,
@@ -577,7 +567,7 @@ class _GFButtonState extends State<GFButton> {
             ? null
             : widget.borderShape ?? shapeBorderType,
         color: widget.enabled ? getColor() : getDisabledFillColor(),
-        type: color == null ? MaterialType.transparency : MaterialType.button,
+        type: MaterialType.button,
         animationDuration: widget.animationDuration,
         clipBehavior: widget.clipBehavior,
         child: InkWell(
@@ -607,22 +597,25 @@ class _GFButtonState extends State<GFButton> {
                 widthFactor: 1,
                 heightFactor: 1,
                 child: icon != null &&
-                        (position == GFPosition.start || position == null)
+                        child != null &&
+                        (position == GFPosition.start)
                     ? Row(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          icon,
+                          icon!,
                           const SizedBox(width: 8),
-                          child
+                          child!
                         ],
                       )
-                    : icon != null && (position == GFPosition.end)
+                    : icon != null &&
+                            child != null &&
+                            (position == GFPosition.end)
                         ? Row(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              child,
+                              child!,
                               const SizedBox(width: 8),
-                              icon
+                              icon!
                             ],
                           )
                         : child,
@@ -657,15 +650,15 @@ class _GFButtonState extends State<GFButton> {
 /// "tap target", but not its material or its ink splashes.
 class _InputPadding extends SingleChildRenderObjectWidget {
   const _InputPadding({
-    Key key,
-    Widget child,
+    Key? key,
+    Widget? child,
     this.minSize,
   }) : super(
           key: key,
           child: child,
         );
 
-  final Size minSize;
+  final Size? minSize;
 
   @override
   RenderObject createRenderObject(BuildContext context) =>
@@ -679,78 +672,84 @@ class _InputPadding extends SingleChildRenderObjectWidget {
 }
 
 class _RenderInputPadding extends RenderShiftedBox {
-  _RenderInputPadding(this._minSize, [RenderBox child]) : super(child);
+  _RenderInputPadding(this._minSize, [RenderBox? child]) : super(child);
 
-  Size get minSize => _minSize;
-  Size _minSize;
+  Size? get minSize => _minSize;
+  Size? _minSize;
 
-  set minSize(Size value) {
+  set minSize(Size? value) {
     _minSize = value;
     markNeedsLayout();
   }
 
   @override
   double computeMinIntrinsicWidth(double height) {
-    if (child != null) {
-      return math.max(child.getMinIntrinsicWidth(height), minSize.width);
+    if (child != null && minSize != null) {
+      return math.max(child!.getMinIntrinsicWidth(height), minSize!.width);
     }
     return 0;
   }
 
   @override
   double computeMinIntrinsicHeight(double width) {
-    if (child != null) {
-      return math.max(child.getMinIntrinsicHeight(width), minSize.height);
+    if (child != null && minSize != null) {
+      return math.max(child!.getMinIntrinsicHeight(width), minSize!.height);
     }
     return 0;
   }
 
   @override
   double computeMaxIntrinsicWidth(double height) {
-    if (child != null) {
-      return math.max(child.getMaxIntrinsicWidth(height), minSize.width);
+    if (child != null && minSize != null) {
+      return math.max(child!.getMaxIntrinsicWidth(height), minSize!.width);
     }
     return 0;
   }
 
   @override
   double computeMaxIntrinsicHeight(double width) {
-    if (child != null) {
-      return math.max(child.getMaxIntrinsicHeight(width), minSize.height);
+    if (child != null && minSize != null) {
+      return math.max(child!.getMaxIntrinsicHeight(width), minSize!.height);
     }
     return 0;
   }
 
   @override
   void performLayout() {
-    if (child != null) {
-      child.layout(constraints, parentUsesSize: true);
-      final BoxParentData childParentData = child.parentData;
-      final double height = math.max(child.size.width, minSize.width);
-      final double width = math.max(child.size.height, minSize.height);
+    if (child != null && minSize != null) {
+      child!.layout(constraints, parentUsesSize: true);
+      final BoxParentData childParentData = child!.parentData as BoxParentData;
+      final double height = math.max(child!.size.width, minSize!.width);
+      final double width = math.max(child!.size.height, minSize!.height);
       size = constraints.constrain(Size(height, width));
-      childParentData.offset = Alignment.center.alongOffset(size - child.size);
+      childParentData.offset =
+          Alignment.center.alongOffset(size - child!.size as Offset);
     } else {
       size = Size.zero;
     }
   }
 
   @override
-  bool hitTest(BoxHitTestResult result, {Offset position}) {
+  bool hitTest(BoxHitTestResult result, {required Offset position}) {
     if (super.hitTest(result, position: position)) {
       return true;
     }
-    final Offset center = child.size.center(Offset.zero);
-    return result.addWithRawTransform(
-      transform: MatrixUtils.forceToPoint(center),
-      position: center,
-      hitTest: (BoxHitTestResult result, Offset position) {
-        assert(position == center);
-        return child.hitTest(
-          result,
-          position: center,
-        );
-      },
-    );
+
+    if (child != null) {
+      final Offset center = child!.size.center(Offset.zero);
+      return result.addWithRawTransform(
+        transform: MatrixUtils.forceToPoint(center),
+        position: center,
+        hitTest: (BoxHitTestResult result, Offset position) {
+          assert(position == center);
+          return child!.hitTest(
+            result,
+            position: center,
+          );
+        },
+      );
+    }
+
+    throw Exception('child property cannot be null');
   }
 }

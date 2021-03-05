@@ -4,10 +4,10 @@ import 'package:getwidget/getwidget.dart';
 
 class GFIntroScreenBottomNavigationBar extends StatefulWidget {
   const GFIntroScreenBottomNavigationBar({
-    Key key,
-    @required this.pageController,
-    @required this.currentIndex,
-    @required this.pageCount,
+    Key? key,
+    required this.pageController,
+    required this.currentIndex,
+    required this.pageCount,
     this.child,
     this.navigationBarColor = GFColors.SUCCESS,
     this.navigationBarHeight = 50,
@@ -55,10 +55,7 @@ class GFIntroScreenBottomNavigationBar extends StatefulWidget {
     ),
     this.showButton = true,
     this.showPagination = true,
-  })  : assert(pageController != null),
-        assert(currentIndex != null),
-        assert(pageCount != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// default controller for the [GFIntroScreen] component
   final PageController pageController;
@@ -70,13 +67,13 @@ class GFIntroScreenBottomNavigationBar extends StatefulWidget {
   final int pageCount;
 
   /// defines [GFIntroScreenBottomNavigationBar], it takes any widget
-  final Widget child;
+  final Widget? child;
 
   /// defines [GFIntroScreenBottomNavigationBar] height
   final double navigationBarHeight;
 
   /// defines [GFIntroScreenBottomNavigationBar] width
-  final double navigationBarWidth;
+  final double? navigationBarWidth;
 
   /// defines [GFIntroScreenBottomNavigationBar] padding
   final EdgeInsets navigationBarPadding;
@@ -88,31 +85,31 @@ class GFIntroScreenBottomNavigationBar extends StatefulWidget {
   final Color navigationBarColor;
 
   /// defines the shape of [GFIntroScreenBottomNavigationBar]
-  final ShapeBorder navigationBarShape;
+  final ShapeBorder? navigationBarShape;
 
   /// Called when the [forwardButtonText]  is tapped
-  final VoidCallback onForwardButtonTap;
+  final VoidCallback? onForwardButtonTap;
 
   /// Called when the [backButtonText] is tapped
-  final VoidCallback onBackButtonTap;
+  final VoidCallback? onBackButtonTap;
 
   /// Called when the [doneButtonText] is tapped
-  final VoidCallback onDoneTap;
+  final VoidCallback? onDoneTap;
 
   /// Called when the [skipButtonText] is tapped
-  final VoidCallback onSkipTap;
+  final VoidCallback? onSkipTap;
 
   /// defines the backButton widget
-  final Widget backButton;
+  final Widget? backButton;
 
   /// defines the forwardButton widget
-  final Widget forwardButton;
+  final Widget? forwardButton;
 
   /// defines the doneButton widget
-  final Widget doneButton;
+  final Widget? doneButton;
 
   /// defines the skipButton widget
-  final Widget skipButton;
+  final Widget? skipButton;
 
   /// defines the backButton text
   final String backButtonText;
@@ -157,7 +154,7 @@ class GFIntroScreenBottomNavigationBar extends StatefulWidget {
   final Color dividerColor;
 
   /// defines pagination shape
-  final ShapeBorder dotShape;
+  final ShapeBorder? dotShape;
 
   /// defines pagination inactive color
   final Color inactiveColor;
@@ -181,22 +178,23 @@ class GFIntroScreenBottomNavigationBar extends StatefulWidget {
 
 class _GFIntroScreenBottomNavigationBarState
     extends State<GFIntroScreenBottomNavigationBar> {
-  PageController _pageController;
-  int currentIndex;
-  List<Widget> pages;
+  late PageController _pageController;
+  late int currentIndex;
+  List<Widget>? pages;
 
   @override
   void initState() {
     _pageController = widget.pageController;
     currentIndex = _pageController.initialPage;
-    if (widget.pageController != null) {
-      _pageController = widget.pageController;
-    }
+    _pageController = widget.pageController;
     _pageController.addListener(() {
       if (mounted) {
-        setState(() {
-          currentIndex = _pageController.page.round();
-        });
+        final index = _pageController.page?.round();
+        if (index != null) {
+          setState(() {
+            currentIndex = index;
+          });
+        }
       }
     });
     super.initState();
@@ -204,9 +202,7 @@ class _GFIntroScreenBottomNavigationBarState
 
   @override
   void dispose() {
-    if (_pageController != null) {
-      _pageController.dispose();
-    }
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -242,7 +238,7 @@ class _GFIntroScreenBottomNavigationBarState
                 margin: widget.navigationBarMargin,
                 child: widget.child != null
                     ? Row(
-                        children: [widget.child],
+                        children: [widget.child!],
                       )
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

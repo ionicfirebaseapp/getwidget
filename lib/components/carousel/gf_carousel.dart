@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class GFCarousel extends StatefulWidget {
   /// Creates slide show of Images and [Widget] with animation for sliding.
   const GFCarousel({
-    Key key,
-    @required this.items,
+    Key? key,
+    required this.items,
     this.pagerSize,
     this.passiveIndicator,
     this.activeIndicator,
@@ -25,26 +25,25 @@ class GFCarousel extends StatefulWidget {
     this.onPageChanged,
     this.scrollPhysics,
     this.scrollDirection = Axis.horizontal,
-  })  : assert(items != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// The pagination dots size can be defined using [double].
-  final double pagerSize;
+  final double? pagerSize;
 
   /// The slider pagination's active color.
-  final Color activeIndicator;
+  final Color? activeIndicator;
 
   /// The slider pagination's passive color.
-  final Color passiveIndicator;
+  final Color? passiveIndicator;
 
   /// The [GFCarousel] shows pagination on state true.
-  final bool pagination;
+  final bool? pagination;
 
   /// The widgets to be shown as sliders.
   final List<Widget> items;
 
   /// Set slide widget height and overrides any existing [aspectRatio].
-  final double height;
+  final double? height;
 
   /// Aspect ratio is used if no height have been declared. Defaults to 16:9 aspect ratio.
   final double aspectRatio;
@@ -74,7 +73,7 @@ class GFCarousel extends StatefulWidget {
   final Curve autoPlayCurve;
 
   /// Sets a timer on touch detected that pause the auto play with the given [Duration]. Touch Detection is only active if [autoPlay] is true.
-  final Duration pauseAutoPlayOnTouch;
+  final Duration? pauseAutoPlayOnTouch;
 
   /// Determines if current page should be larger then the side images,
   /// creating a feeling of depth in the carousel. Defaults to false.
@@ -85,7 +84,7 @@ class GFCarousel extends StatefulWidget {
   final Axis scrollDirection;
 
   /// Called whenever the page in the center of the viewport changes.
-  final Function(int index) onPageChanged;
+  final Function(int index)? onPageChanged;
 
   /// How the carousel should respond to user input.
   ///
@@ -96,10 +95,10 @@ class GFCarousel extends StatefulWidget {
   /// [PageScrollPhysics] prior to being used.
   ///
   /// Defaults to matching platform conventions.
-  final ScrollPhysics scrollPhysics;
+  final ScrollPhysics? scrollPhysics;
 
-  List<T> map<T>(List list, Function handler) {
-    List<T> result;
+  List<T?> map<T>(List list, Function handler) {
+    List<T?> result;
     result = [];
     for (var i = 0; i < list.length; i++) {
       result.add(handler(i, list[i]));
@@ -112,7 +111,7 @@ class GFCarousel extends StatefulWidget {
 }
 
 class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
-  Timer timer;
+  Timer? timer;
 
   /// Size of cell
   double size = 0;
@@ -122,7 +121,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
 
   /// [pageController] is created using the properties passed to the constructor
   /// and can be used to control the [PageView] it is passed to.
-  PageController pageController;
+  late PageController pageController;
 
   /// The actual index of the [PageView].
   int realPage = 10000;
@@ -131,13 +130,13 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     realPage = widget.enableInfiniteScroll
-        ? realPage + widget.initialPage
-        : widget.initialPage;
+        ? realPage + (widget.initialPage as int)
+        : widget.initialPage as int;
     pageController = PageController(
-      viewportFraction: widget.viewportFraction,
+      viewportFraction: widget.viewportFraction as double,
       initialPage: widget.enableInfiniteScroll
-          ? realPage + widget.initialPage
-          : widget.initialPage,
+          ? realPage + (widget.initialPage as int)
+          : widget.initialPage as int,
     );
     timer = getPlayTimer();
   }
@@ -151,8 +150,8 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
       });
 
   void pauseOnTouch() {
-    timer.cancel();
-    timer = Timer(widget.pauseAutoPlayOnTouch, () {
+    timer?.cancel();
+    timer = Timer(widget.pauseAutoPlayOnTouch!, () {
       timer = getPlayTimer();
     });
   }
@@ -185,7 +184,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
     setState(() => currentSlide = index);
   }
 
-  int currentSlide;
+  int? currentSlide;
 
   @override
   Widget build(BuildContext context) => Stack(
@@ -202,10 +201,10 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                     : widget.items.length,
             onPageChanged: (int index) {
               int currentPage;
-              currentPage = _getRealIndex(
-                  index + widget.initialPage, realPage, widget.items.length);
+              currentPage = _getRealIndex(index + (widget.initialPage as int),
+                  realPage, widget.items.length);
               if (widget.onPageChanged != null) {
-                widget.onPageChanged(currentPage);
+                widget.onPageChanged!(currentPage);
               }
               if (widget.pagination == true && widget.onPageChanged == null) {
                 onPageSlide(currentPage);
@@ -213,7 +212,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
             },
             itemBuilder: (BuildContext context, int i) {
               final int index = _getRealIndex(
-                i + widget.initialPage,
+                i + (widget.initialPage as int),
                 realPage,
                 widget.items.length,
               );
@@ -225,12 +224,12 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                 builder: (BuildContext context, child) {
                   double value;
                   try {
-                    value = pageController.page - i;
+                    value = pageController.page! - i;
                     // ignore: avoid_catches_without_on_clauses
                   } catch (e) {
                     final BuildContext storageContext =
                         pageController.position.context.storageContext;
-                    final double previousSavedPosition =
+                    final double? previousSavedPosition =
                         PageStorage.of(storageContext)
                             ?.readState(storageContext);
                     if (previousSavedPosition != null) {
@@ -290,13 +289,13 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                             color: currentSlide == pagerIndex
                                 ? widget.activeIndicator == null
                                     ? const Color.fromRGBO(0, 0, 0, 0.9)
-                                    : widget.activeIndicator
+                                    : widget.activeIndicator!
                                 : widget.passiveIndicator == null
                                     ? const Color.fromRGBO(0, 0, 0, 0.4)
-                                    : widget.passiveIndicator,
+                                    : widget.passiveIndicator!,
                           ),
                         ),
-                      ),
+                      ) as List<Widget>,
                     ),
                   ),
                 )

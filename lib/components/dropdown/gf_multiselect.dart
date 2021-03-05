@@ -6,8 +6,8 @@ class GFMultiSelect<T> extends StatefulWidget {
   /// Checkbox ListTile items and display selected items in the TitleTile box.
   /// It displays list of items in the overlay dropdown fashion.
   const GFMultiSelect({
-    @required this.items,
-    @required this.onSelect,
+    required this.items,
+    required this.onSelect,
     this.dropdownTitleTileText = 'Select : ',
     this.dropdownTitleTileTextStyle =
         const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
@@ -55,9 +55,8 @@ class GFMultiSelect<T> extends StatefulWidget {
     this.dropdownTitleTileHintTextStyle =
         const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
     this.dropdownButton,
-    Key key,
-  })  : assert(selected != null),
-        super(key: key);
+    Key? key,
+  }) : super(key: key);
 
   /// defines the list of items the user can select
   final List<dynamic> items;
@@ -73,7 +72,7 @@ class GFMultiSelect<T> extends StatefulWidget {
   final TextStyle dropdownTitleTileTextStyle;
 
   /// type of [String] to define the dropdownTitleTile hint text
-  final String dropdownTitleTileHintText;
+  final String? dropdownTitleTileHintText;
 
   /// type of [TextStyle] to define the textStyle of [dropdownTitleTileHintTextStyle]
   final TextStyle dropdownTitleTileHintTextStyle;
@@ -82,7 +81,7 @@ class GFMultiSelect<T> extends StatefulWidget {
   final BorderRadius dropdownTitleTileBorderRadius;
 
   /// defines the border of the dropdownTitleTile.
-  final Border dropdownTitleTileBorder;
+  final Border? dropdownTitleTileBorder;
 
   /// defines the background color of dropdownButton
   final dynamic dropdownTitleTileColor;
@@ -107,16 +106,16 @@ class GFMultiSelect<T> extends StatefulWidget {
   final Widget collapsedIcon;
 
   /// defines the submit button in the dropdown
-  final Widget submitButton;
+  final Widget? submitButton;
 
   /// defines the cancel button in the dropdown
-  final Widget cancelButton;
+  final Widget? cancelButton;
 
   /// defines dropdown checkbox ListTile's background color. Can be given [Color] or [GFColors]
   final dynamic color;
 
   /// type of [Widget] or [GFAvatar] used to defines dropdown checkbox ListTile's leading
-  final Widget avatar;
+  final Widget? avatar;
 
   /// defines the margin of dropdown checkbox ListTile
   final EdgeInsets margin;
@@ -154,7 +153,7 @@ class GFMultiSelect<T> extends StatefulWidget {
 
   /// defines dropdown ListTile's checkbox's inactive icon
   ///type of [Widget] used to change the  checkbox's inactive icon
-  final Widget inactiveIcon;
+  final Widget? inactiveIcon;
 
   /// type of [Color] used to change the background color of the custom active  checkbox only
   final Color customBgColor;
@@ -166,7 +165,7 @@ class GFMultiSelect<T> extends StatefulWidget {
   /// defines the background color of the dropdown. Can be given [Color] or [GFColors]
   final Color dropdownBgColor;
 
-  final Widget dropdownButton;
+  final Widget? dropdownButton;
 
   @override
   _GFMultiSelectState createState() => _GFMultiSelectState();
@@ -194,9 +193,7 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
 
   @override
   void dispose() {
-    if (_controller != null) {
-      _controller.dispose();
-    }
+    _controller.dispose();
     super.dispose();
   }
 
@@ -279,10 +276,7 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
                                     onChanged: (bool selected) {
                                       _controller.text;
                                       _onItemSelect(selected, index);
-                                      if (selected == null) {
-                                        widget.onSelect(null);
-                                        return;
-                                      }
+
                                       widget.onSelect(_selectedTitlesIndex);
                                     },
                                     selected: widget.selected,

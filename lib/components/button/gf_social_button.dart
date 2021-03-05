@@ -7,8 +7,8 @@ import 'package:getwidget/getwidget.dart';
 class GFSocialButton extends GFButton {
   /// Create buttons of all types. check out [GFIconButton] for icon buttons, and [GFBadge] for badges
   const GFSocialButton({
-    Key key,
-    @required this.onPressed,
+    Key? key,
+    required this.onPressed,
     this.onHighlightChanged,
     this.textStyle,
     this.boxShadow,
@@ -29,7 +29,8 @@ class GFSocialButton extends GFButton {
     this.clipBehavior = Clip.none,
     this.focusNode,
     this.autofocus = false,
-    MaterialTapTargetSize materialTapTargetSize,
+    // TODO(krishna): 
+    MaterialTapTargetSize? materialTapTargetSize,
     this.child,
     this.type = GFButtonType.solid,
     this.shape = GFButtonShape.standard,
@@ -49,16 +50,11 @@ class GFSocialButton extends GFButton {
     this.disabledTextColor,
   })  : materialTapTargetSize =
             materialTapTargetSize ?? MaterialTapTargetSize.padded,
-        assert(shape != null, 'Button shape can not be null'),
         // assert(elevation != null && elevation >= 0.0),
-        assert(focusElevation != null && focusElevation >= 0.0),
-        assert(hoverElevation != null && hoverElevation >= 0.0),
-        assert(highlightElevation != null && highlightElevation >= 0.0),
-        assert(disabledElevation != null && disabledElevation >= 0.0),
-        assert(padding != null),
-        assert(animationDuration != null),
-        assert(clipBehavior != null),
-        assert(autofocus != null),
+        assert(focusElevation >= 0.0),
+        assert(hoverElevation >= 0.0),
+        assert(highlightElevation >= 0.0),
+        assert(disabledElevation >= 0.0),
         super(
           key: key,
           onPressed: onPressed,
@@ -66,39 +62,39 @@ class GFSocialButton extends GFButton {
 
   /// Called when the button is tapped or otherwise activated.
   @override
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// Called by the underlying [InkWell] widget's InkWell.onHighlightChanged callback.
   @override
-  final ValueChanged<bool> onHighlightChanged;
+  final ValueChanged<bool>? onHighlightChanged;
 
   /// Defines the default text style, with [Material.textStyle], for the button's [child].
   @override
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   /// The border side for the button's [Material].
   @override
-  final BorderSide borderSide;
+  final BorderSide? borderSide;
 
   /// The box shadow for the button's [Material], if GFButtonType is solid
   @override
-  final BoxShadow boxShadow;
+  final BoxShadow? boxShadow;
 
   /// Pass [GFColors] or [Color]. The color for the button's [Material] when it has the input focus.
   @override
-  final Color focusColor;
+  final Color? focusColor;
 
   /// Pass [GFColors] or [Color]. The color for the button's [Material] when a pointer is hovering over it.
   @override
-  final Color hoverColor;
+  final Color? hoverColor;
 
   /// Pass [GFColors] or [Color]. The highlight color for the button's [InkWell].
   @override
-  final Color highlightColor;
+  final Color? highlightColor;
 
   /// Pass [GFColors] or [Color]. The splash color for the button's [InkWell].
   @override
-  final Color splashColor;
+  final Color? splashColor;
 
   /// The elevation for the button's [Material] when the button is [enabled] but not pressed.
   @override
@@ -126,11 +122,11 @@ class GFSocialButton extends GFButton {
 
   /// Defines the button's size.
   @override
-  final BoxConstraints constraints;
+  final BoxConstraints? constraints;
 
   /// The shape of the button's [Material].
   @override
-  final ShapeBorder borderShape;
+  final ShapeBorder? borderShape;
 
   /// Defines the duration of animated changes for [shape] and [elevation].
   @override
@@ -138,7 +134,7 @@ class GFSocialButton extends GFButton {
 
   /// Typically the button's label.
   @override
-  final Widget child;
+  final Widget? child;
 
   /// Whether the button is enabled or disabled.
   @override
@@ -150,7 +146,7 @@ class GFSocialButton extends GFButton {
 
   /// {@macro flutter.widgets.Focus.focusNode}
   @override
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   /// {@macro flutter.widgets.Focus.autofocus}
   @override
@@ -182,11 +178,11 @@ class GFSocialButton extends GFButton {
   ///  * [color] - the fill color of the button when the button is [enabled].
 
   @override
-  final Color disabledColor;
+  final Color? disabledColor;
 
   /// Pass [GFColors] or [Color]
   @override
-  final Color textColor;
+  final Color? textColor;
 
   /// The color to use for this button's text when the button is disabled.
   ///
@@ -203,7 +199,7 @@ class GFSocialButton extends GFButton {
   ///
   ///  * [textColor] - The color to use for this button's text when the button is [enabled].
   @override
-  final Color disabledTextColor;
+  final Color? disabledTextColor;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
   @override
@@ -211,11 +207,11 @@ class GFSocialButton extends GFButton {
 
   /// text of type [String] is alternative to child. text will get priority over child
   @override
-  final String text;
+  final String? text;
 
   /// icon of type [Widget]
   @override
-  final Widget icon;
+  final Widget? icon;
 
   /// icon type of [GFPosition] i.e, start, end
   @override
@@ -223,15 +219,15 @@ class GFSocialButton extends GFButton {
 
   /// on true state blockButton gives block size button
   @override
-  final bool blockButton;
+  final bool? blockButton;
 
   /// on true state full width Button gives full width button
   @override
-  final bool fullWidthButton;
+  final bool? fullWidthButton;
 
   /// on true state default box shadow appears around button, if GFButtonType is solid
   @override
-  final bool buttonBoxShadow;
+  final bool? buttonBoxShadow;
 
   /// A set of thirteen colors that can be used to derive the button theme's
   /// colors.
@@ -244,7 +240,7 @@ class GFSocialButton extends GFButton {
   /// of [colorScheme]. When it's possible, the existing buttons will
   /// (continue to) gradually migrate to it.
   @override
-  final ColorScheme colorScheme;
+  final ColorScheme? colorScheme;
 
   /// Whether detected gestures should provide acoustic and/or haptic feedback.
   ///
@@ -255,7 +251,7 @@ class GFSocialButton extends GFButton {
   ///
   ///  * [Feedback] for providing platform-specific feedback to certain actions.
   @override
-  final bool enableFeedback;
+  final bool? enableFeedback;
 
   /// Called when the button is long-pressed.
   ///
@@ -265,7 +261,7 @@ class GFSocialButton extends GFButton {
   ///
   ///  * [enabled], which is true if the button is enabled.
   @override
-  final VoidCallback onLongPress;
+  final VoidCallback? onLongPress;
 
   Widget build(BuildContext context) => GFButton(
         onPressed: onPressed,

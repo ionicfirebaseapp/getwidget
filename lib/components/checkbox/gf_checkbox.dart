@@ -4,15 +4,15 @@ import 'package:getwidget/getwidget.dart';
 class GFCheckbox extends StatefulWidget {
   /// [GFCheckbox] is a small box (as in a checklist) in which to place a check mark to make a selection with various customization options.
   const GFCheckbox(
-      {Key key,
+      {Key? key,
       this.size = GFSize.MEDIUM,
       this.type = GFCheckboxType.basic,
       this.activeBgColor = GFColors.PRIMARY,
       this.inactiveBgColor = GFColors.WHITE,
       this.activeBorderColor = GFColors.WHITE,
       this.inactiveBorderColor = GFColors.DARK,
-      @required this.onChanged,
-      @required this.value,
+      required this.onChanged,
+      required this.value,
       this.activeIcon = const Icon(
         Icons.check,
         size: 20,
@@ -22,10 +22,7 @@ class GFCheckbox extends StatefulWidget {
       this.customBgColor = GFColors.SUCCESS,
       this.autofocus = false,
       this.focusNode})
-      : assert(value != null),
-        assert(onChanged != null),
-        assert(autofocus != null),
-        super(key: key);
+      : super(key: key);
 
   /// type of [GFCheckboxType] which is of four type is basic, square, circular and custom
   final GFCheckboxType type;
@@ -55,7 +52,7 @@ class GFCheckbox extends StatefulWidget {
   final Widget activeIcon;
 
   /// type of [Widget] used to change the  checkbox's inactive icon
-  final Widget inactiveIcon;
+  final Widget? inactiveIcon;
 
   /// type of [Color] used to change the background color of the custom active checkbox only
   final Color customBgColor;
@@ -65,7 +62,7 @@ class GFCheckbox extends StatefulWidget {
   final bool autofocus;
 
   /// an optional focus node to use as the focus node for this widget.
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   @override
   _GFCheckboxState createState() => _GFCheckboxState();

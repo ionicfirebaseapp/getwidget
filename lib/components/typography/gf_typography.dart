@@ -5,7 +5,7 @@ class GFTypography extends StatelessWidget {
   /// Creates simple title with underline. Style of title can be changed using [GFTypographyType]
   /// showDivider is default true, can be set false.
   const GFTypography({
-    Key key,
+    Key? key,
     this.type = GFTypographyType.typo4,
     this.child,
     this.text,
@@ -21,45 +21,45 @@ class GFTypography extends StatelessWidget {
   }) : super(key: key);
 
   /// child of  type [Widget] is alternative to text key. text will get priority over child
-  final Widget child;
+  final Widget? child;
 
   /// text of type [String] is alternative to child. text will get priority over child
-  final String text;
+  final String? text;
 
   ///icon of type [Widget] used to pass icon or image
-  final Widget icon;
+  final Widget? icon;
 
   /// Pass [GFColors] or [Color] for dividerColor
-  final Color dividerColor;
+  final Color? dividerColor;
 
   /// Pass [GFColors] or [Color] for textColor
-  final Color textColor;
+  final Color? textColor;
 
   /// dividerBorderRadius of type [BorderRadius] to alter the radius of the divider
-  final BorderRadius dividerBorderRadius;
+  final BorderRadius? dividerBorderRadius;
 
   ///dividerAlignment of type [Alignment] used for aligning the divider to required alignment
-  final Alignment dividerAlignment;
+  final Alignment? dividerAlignment;
 
   ///Pass [bool] value to show or hide the divider
   final bool showDivider;
 
   ///pass [double] type to increase or decrease the width of the divider
-  final double dividerWidth;
+  final double? dividerWidth;
 
   ///backgroundImage of type [ImageProvider] to set the background of [GFTypography]
-  final ImageProvider backgroundImage;
+  final ImageProvider? backgroundImage;
 
   ///backgroundImagecolorFilter of type [ColorFilter] to set the
   ///background color of [GFTypography] only when backgroundImage is available
-  final ColorFilter backgroundImagecolorFilter;
+  final ColorFilter? backgroundImagecolorFilter;
 
   /// header type of [GFTypographyType] i.e, typo1, typo2, typo3, typo4, typo5, typo6
   final GFTypographyType type;
 
   @override
   Widget build(BuildContext context) {
-    double fontSize;
+    double? fontSize;
 
     if (type == GFTypographyType.typo1) {
       fontSize = 25.0;
@@ -80,7 +80,7 @@ class GFTypography extends StatelessWidget {
       decoration: BoxDecoration(
         image: backgroundImage != null
             ? DecorationImage(
-                image: backgroundImage,
+                image: backgroundImage!,
                 fit: BoxFit.cover,
                 colorFilter: backgroundImagecolorFilter ??
                     const ColorFilter.mode(Colors.black54, BlendMode.darken),
@@ -99,7 +99,7 @@ class GFTypography extends StatelessWidget {
               text != null
                   ? Expanded(
                       child: Text(
-                        text,
+                        text!,
                         style: TextStyle(
                             color: textColor ??
                                 (backgroundImage != null
@@ -110,7 +110,7 @@ class GFTypography extends StatelessWidget {
                             fontWeight: FontWeight.w500),
                       ),
                     )
-                  : child
+                  : child!
             ],
           ),
           showDivider
@@ -119,7 +119,7 @@ class GFTypography extends StatelessWidget {
                   alignment: dividerAlignment,
                   child: Container(
                     width: dividerWidth != null ? dividerWidth : 70,
-                    height: fontSize / 5,
+                    height: fontSize! / 5,
                     decoration: BoxDecoration(
                       color: dividerColor ??
                           (backgroundImage != null

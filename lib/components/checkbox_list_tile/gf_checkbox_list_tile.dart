@@ -5,9 +5,9 @@ class GFCheckboxListTile extends StatelessWidget {
   /// [GFCheckboxListTile] is a tile with small box at right (as in a checklist)
   /// in which to place a check mark to make a selection with various customization options.
   const GFCheckboxListTile({
-    Key key,
-    @required this.value,
-    @required this.onChanged,
+    Key? key,
+    required this.value,
+    required this.onChanged,
     this.titleText,
     this.subTitleText,
     this.color,
@@ -34,33 +34,29 @@ class GFCheckboxListTile extends StatelessWidget {
     this.position = GFPosition.end,
     this.selected = false,
     this.autofocus = false,
-  })  : assert(value != null),
-        assert(onChanged != null),
-        assert(selected != null),
-        assert(autofocus != null),
-        super(key: key);
+  }) : super(key: key);
 
   ///type of [String] used to pass text, alternative to title property and gets higher priority than title
-  final String titleText;
+  final String? titleText;
 
   ///type of [String] used to pass text, alternative to subTitle property and gets higher priority than subTitle
-  final String subTitleText;
+  final String? subTitleText;
 
   /// The GFListTile's background color. Can be given [Color] or [GFColors]
-  final Color color;
+  final Color? color;
 
   /// If position is start Checkbox will come instead of avatar,
   /// type of [Widget] or [GFAvatar] used to create rounded user profile
-  final Widget avatar;
+  final Widget? avatar;
 
   /// The title to display inside the [GFListTile]. see [Text]
-  final Widget title;
+  final Widget? title;
 
   /// The subTitle to display inside the [GFListTile]. see [Text]
-  final Widget subTitle;
+  final Widget? subTitle;
 
   /// The description to display inside the [GFListTile]. see [Text]
-  final Widget description;
+  final Widget? description;
 
   /// defines the margin of GFListTile
   final EdgeInsets margin;
@@ -99,7 +95,7 @@ class GFCheckboxListTile extends StatelessWidget {
   final Widget activeIcon;
 
   /// type of [Widget] used to change the  checkbox's inactive icon
-  final Widget inactiveIcon;
+  final Widget? inactiveIcon;
 
   /// type of [Color] used to change the background color of the custom active  checkbox only
   final Color customBgColor;
@@ -113,7 +109,7 @@ class GFCheckboxListTile extends StatelessWidget {
   final bool autofocus;
 
   /// If position is end Checkbox will come instead of icon, The icon to display inside the [GFListTile]. see [Icon]
-  final Widget icon;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
