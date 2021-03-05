@@ -9,10 +9,11 @@ void main() {
   final GFBottomSheetController _controller = GFBottomSheetController();
 
   testWidgets('GFBottomSheet without value', (tester) async {
-    // `GFBottomSheet.contentBody` null
+    // `GFBottomSheet.contentBody` null, GFBottomSheet.controller` null
     expect(
       () => GFBottomSheet(
         contentBody: null,
+        controller: null,
       ),
       throwsAssertionError,
     );

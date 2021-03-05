@@ -34,10 +34,9 @@ class GFCheckboxListTile extends StatelessWidget {
     this.position = GFPosition.end,
     this.selected = false,
     this.autofocus = false,
-  })  : assert(value != null),
-        assert(onChanged != null),
-        assert(selected != null),
+  })  : assert(selected != null),
         assert(autofocus != null),
+        assert(value != null),
         super(key: key);
 
   ///type of [String] used to pass text, alternative to title property and gets higher priority than title

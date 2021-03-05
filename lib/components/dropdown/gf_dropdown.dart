@@ -32,8 +32,7 @@ class GFDropdown<T> extends StatefulWidget {
       this.border = const BorderSide(
           color: Colors.transparent, width: 1, style: BorderStyle.solid),
       this.dropdownButtonColor = GFColors.WHITE})
-      : assert(onChanged != null),
-        super(key: key);
+      : super(key: key);
 
   final DropdownButtonBuilder selectedItemBuilder;
   final List<DropdownMenuItem<T>> items;

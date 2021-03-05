@@ -18,6 +18,8 @@ class GFStickyHeaderBuilder extends StatefulWidget {
     this.callback,
     this.stickyContentPosition = GFPosition.start,
   })  : assert(direction != null),
+        assert(stickyContentBuilder != null),
+        assert(content != null),
         super(key: key);
 
   /// builder widget can be used to define [stickyContentBuilder].

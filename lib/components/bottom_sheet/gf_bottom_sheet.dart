@@ -6,9 +6,9 @@ class GFBottomSheet extends StatefulWidget {
   GFBottomSheet({
     Key key,
     @required this.contentBody,
+    @required this.controller,
     this.stickyHeader,
     this.stickyFooter,
-    this.controller,
     this.minContentHeight = 0,
     this.maxContentHeight = 300,
     this.elevation = 0.0,
@@ -19,6 +19,7 @@ class GFBottomSheet extends StatefulWidget {
   })  : assert(elevation >= 0.0),
         assert(minContentHeight >= 0.0),
         assert(contentBody != null),
+        assert(controller != null),
         super(key: key) {
     controller.height = minContentHeight;
     controller.animationDuration = animationDuration;
