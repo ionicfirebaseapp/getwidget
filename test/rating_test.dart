@@ -11,11 +11,11 @@ void main() {
   const defaultIcon = Icon(Icons.favorite_border);
 
   testWidgets('GFRating without value', (tester) async {
-    // `GFRating.value` null, `GFRating.onChanged` null
+    // `GFRating.value` null,
     expect(
       () => GFRating(
         value: null,
-        onChanged: null,
+        onChanged: (double rating) {},
       ),
       throwsAssertionError,
     );

@@ -22,9 +22,8 @@ class GFCheckbox extends StatefulWidget {
       this.customBgColor = GFColors.SUCCESS,
       this.autofocus = false,
       this.focusNode})
-      : assert(value != null),
-        assert(onChanged != null),
-        assert(autofocus != null),
+      : assert(autofocus != null),
+        assert(value != null),
         super(key: key);
 
   /// type of [GFCheckboxType] which is of four type is basic, square, circular and custom

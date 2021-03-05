@@ -22,7 +22,6 @@ class GFImageOverlay extends StatelessWidget {
     this.border,
     this.shape = BoxShape.rectangle,
   })  : assert(shape != null),
-        assert(image != null),
         super(key: key);
 
   /// define image's [double] height

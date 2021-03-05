@@ -25,7 +25,6 @@ class GFRating extends StatefulWidget {
     this.margin = const EdgeInsets.symmetric(vertical: 16),
     this.padding = const EdgeInsets.symmetric(horizontal: 16),
   })  : assert(value != null),
-        assert(onChanged != null),
         super(key: key);
 
   /// defines total number of rating items

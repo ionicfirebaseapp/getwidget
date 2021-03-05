@@ -8,7 +8,7 @@ class GFTypography extends StatelessWidget {
     Key key,
     this.type = GFTypographyType.typo4,
     this.child,
-    this.text,
+    @required this.text,
     this.icon,
     this.dividerBorderRadius,
     this.textColor,
@@ -18,7 +18,8 @@ class GFTypography extends StatelessWidget {
     this.dividerWidth,
     this.backgroundImage,
     this.backgroundImagecolorFilter,
-  }) : super(key: key);
+  })  : assert(text != null || child != null),
+        super(key: key);
 
   /// child of  type [Widget] is alternative to text key. text will get priority over child
   final Widget child;

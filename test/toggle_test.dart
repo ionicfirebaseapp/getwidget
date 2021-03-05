@@ -11,11 +11,11 @@ void main() {
   const disabledTextStyle = TextStyle(color: Colors.red);
 
   testWidgets('GFToggle without value', (tester) async {
-    // `GFToggle.value` null, `GFToggle.onChanged` null
+    // `GFToggle.value` null,
     expect(
       () => GFToggle(
         value: null,
-        onChanged: null,
+        onChanged: (bool value) {},
       ),
       throwsAssertionError,
     );
