@@ -15,7 +15,7 @@ void main() {
     expect(
       () => GFToggle(
         value: null,
-        onChanged: (bool value) {},
+        onChanged: null,
       ),
       throwsAssertionError,
     );
