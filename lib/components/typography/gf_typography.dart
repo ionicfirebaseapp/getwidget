@@ -8,7 +8,7 @@ class GFTypography extends StatelessWidget {
     Key? key,
     this.type = GFTypographyType.typo4,
     this.child,
-    this.text,
+    required this.text,
     this.icon,
     this.dividerBorderRadius,
     this.textColor,
@@ -18,7 +18,8 @@ class GFTypography extends StatelessWidget {
     this.dividerWidth,
     this.backgroundImage,
     this.backgroundImagecolorFilter,
-  }) : super(key: key);
+  })  : assert(text != null || child != null),
+        super(key: key);
 
   /// child of  type [Widget] is alternative to text key. text will get priority over child
   final Widget? child;
@@ -113,13 +114,13 @@ class GFTypography extends StatelessWidget {
                   : child!
             ],
           ),
-          showDivider
+          showDivider && fontSize != null
               ? Container(
                   margin: const EdgeInsets.only(top: 3, bottom: 3),
                   alignment: dividerAlignment,
                   child: Container(
                     width: dividerWidth != null ? dividerWidth : 70,
-                    height: fontSize! / 5,
+                    height: fontSize / 5,
                     decoration: BoxDecoration(
                       color: dividerColor ??
                           (backgroundImage != null

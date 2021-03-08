@@ -64,7 +64,7 @@ class GFDrawer extends StatelessWidget {
     this.colorFilter,
     this.gradient,
     this.color,
-  })  : assert(elevation != null && elevation >= 0.0),
+  })  : assert(elevation >= 0.0),
         super(key: key);
 
   /// The z-coordinate at which to place this drawer relative to its parent.
@@ -117,7 +117,7 @@ class GFDrawer extends StatelessWidget {
         break;
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
-        label = semanticLabel ?? MaterialLocalizations.of(context)?.drawerLabel;
+        label = semanticLabel ?? MaterialLocalizations.of(context).drawerLabel;
         break;
       default:
         break;

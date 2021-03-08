@@ -83,7 +83,7 @@ class GFCheckboxListTile extends StatelessWidget {
   final Color inactiveBorderColor;
 
   /// Called when the user checks or unchecks the checkbox.
-  final ValueChanged<bool> onChanged;
+  final ValueChanged<bool>? onChanged;
 
   /// Used to set the current state of the checkbox
   final bool value;
@@ -133,7 +133,7 @@ class GFCheckboxListTile extends StatelessWidget {
         enabled: onChanged != null,
         onTap: onChanged != null
             ? () {
-                onChanged(!value);
+                onChanged!(!value);
               }
             : null,
         selected: selected,

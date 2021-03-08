@@ -118,7 +118,7 @@ class _GFBottomSheetState extends State<GFBottomSheet>
     _controllerListener = () {
       widget.controller.value ? _showBottomSheet() : _hideBottomSheet();
     };
-    widget.controller.addListener(_controllerListener as void Function());
+    widget.controller.addListener(_controllerListener);
   }
 
   @override

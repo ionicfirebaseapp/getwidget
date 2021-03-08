@@ -159,7 +159,7 @@ class RenderGFStickyHeader extends RenderBox
         }
         child.layout(innerConstraints, parentUsesSize: true);
         allottedSize += _getMainSize(child);
-        crossSize = math.max(crossSize, _getCrossSize(child)!);
+        crossSize = math.max(crossSize, _getCrossSize(child));
       }
       assert(child.parentData == childParentData);
       child = childParentData?.nextSibling;

@@ -54,7 +54,7 @@ class GFRadio<T> extends StatefulWidget {
   final Color inactiveBorderColor;
 
   /// Called when the user checks or unchecks the radio button
-  final ValueChanged<T> onChanged;
+  final ValueChanged<T>? onChanged;
 
   ///type of Widget used to change the  radio button's active icon
   final Widget activeIcon;
@@ -99,7 +99,7 @@ class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
   void _handleChanged(bool selected) {
     
     if (selected) {
-      widget.onChanged(widget.value);
+      widget.onChanged!(widget.value);
     }
   }
 

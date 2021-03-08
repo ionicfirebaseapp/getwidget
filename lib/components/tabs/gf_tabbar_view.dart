@@ -127,17 +127,19 @@ class _GFTabBarViewState extends State<GFTabBarView> {
   }
 
   void _handleTabControllerAnimationTick() {
-    if (_warpUnderwayCount > 0 || !_controller!.indexIsChanging) {
-      return;
-    } // This widget is driving the controller's animation.
-    if (_controller!.index != _currentIndex) {
-      _currentIndex = _controller!.index;
-      _warpToCurrentIndex();
+    if (_controller != null) {
+      if (_warpUnderwayCount > 0 || !_controller!.indexIsChanging) {
+        return;
+      } // This widget is driving the controller's animation.
+      if (_controller!.index != _currentIndex) {
+        _currentIndex = _controller!.index;
+        _warpToCurrentIndex();
+      }
     }
   }
 
   Future<void> _warpToCurrentIndex() async {
-    if (!mounted) {
+    if (!mounted || _pageController == null || _currentIndex == null) {
       return Future<void>.value();
     }
 
@@ -188,6 +190,12 @@ class _GFTabBarViewState extends State<GFTabBarView> {
     if (notification.depth != 0) {
       return false;
     }
+    if (_controller == null ||
+        _pageController == null ||
+        _pageController?.page != null ||
+        _controller?.index == null) {
+      return false;
+    }
 
     _warpUnderwayCount += 1;
     if (notification is ScrollUpdateNotification &&
@@ -209,9 +217,9 @@ class _GFTabBarViewState extends State<GFTabBarView> {
   @override
   Widget build(BuildContext context) {
     assert(() {
-      if (_controller!.length != widget.children.length) {
+      if (_controller?.length != widget.children.length) {
         throw FlutterError(
-            'Controller\'s length property (${_controller!.length}) does not match the \n'
+            'Controller\'s length property (${_controller?.length}) does not match the \n'
             'number of tabs (${widget.children.length}) present in TabBar\'s tabs property.');
       }
       return true;

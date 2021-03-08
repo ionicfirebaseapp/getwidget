@@ -29,7 +29,7 @@ class GFButtonBadge extends StatefulWidget {
     this.clipBehavior = Clip.none,
     this.focusNode,
     this.autofocus = false,
-    // TODO(krishna)
+    // TODO(krishna): 
     MaterialTapTargetSize? materialTapTargetSize,
     this.type = GFButtonType.solid,
     this.shape = GFButtonShape.standard,

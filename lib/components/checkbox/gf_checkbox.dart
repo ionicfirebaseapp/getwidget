@@ -43,7 +43,7 @@ class GFCheckbox extends StatefulWidget {
   final Color inactiveBorderColor;
 
   /// Called when the user checks or unchecks the checkbox.
-  final ValueChanged<bool> onChanged;
+  final ValueChanged<bool>? onChanged;
 
   /// Used to set the current state of the checkbox
   final bool value;
@@ -85,7 +85,7 @@ class _GFCheckboxState extends State<GFCheckbox> {
           canRequestFocus: enabled,
           onTap: widget.onChanged != null
               ? () {
-                  widget.onChanged(!widget.value);
+                  widget.onChanged!(!widget.value);
                 }
               : null,
           child: Container(

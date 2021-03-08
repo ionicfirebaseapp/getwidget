@@ -489,40 +489,6 @@ void main() {
     actualTurns = actualRotatedBox.transform;
     expect(actualTurns, Matrix4.rotationZ(math.pi * 1.5));
   });
-
-  testWidgets('ScaleTransition animates', (WidgetTester tester) async {
-    AnimationController controller;
-    Animation<double> animation;
-
-    controller = AnimationController(
-        duration: const Duration(seconds: 5), vsync: const TestVSync());
-    animation = CurvedAnimation(parent: controller, curve: Curves.linear);
-
-    final Widget widget = GFAnimation(
-      turnsAnimation: animation,
-      controller: controller,
-      type: GFAnimationType.scaleTransition,
-      alignment: Alignment.topRight,
-      child: const Text('Scale', textDirection: TextDirection.rtl),
-    );
-
-    await tester.pumpWidget(widget);
-    Transform actualRotatedBox = tester.widget(find.byType(Transform));
-    Matrix4 actualTurns = actualRotatedBox.transform;
-    expect(actualTurns, equals(Matrix4.rotationZ(0)));
-
-    controller.value = 0.5;
-    await tester.pump();
-    actualRotatedBox = tester.widget(find.byType(Transform));
-    actualTurns = actualRotatedBox.transform;
-    expect(actualTurns, Matrix4.rotationZ(math.pi));
-
-    controller.value = 0.75;
-    await tester.pump();
-    actualRotatedBox = tester.widget(find.byType(Transform));
-    actualTurns = actualRotatedBox.transform;
-    expect(actualTurns, Matrix4.rotationZ(math.pi * 1.5));
-  });
 }
 
 class TestApp extends StatefulWidget {

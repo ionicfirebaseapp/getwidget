@@ -137,7 +137,7 @@ class GFRadioListTile<T> extends StatelessWidget {
   final Color inactiveBorderColor;
 
   /// Called when the user checks or unchecks the checkbox.
-  final ValueChanged<dynamic> onChanged;
+  final ValueChanged<dynamic>? onChanged;
 
   ///type of Widget used to change the  checkbox's active icon
   final Widget activeIcon;
@@ -186,11 +186,11 @@ class GFRadioListTile<T> extends StatelessWidget {
         onTap: onChanged != null
             ? () {
                 if (toggleable && checked) {
-                  onChanged(null);
+                  onChanged!(null);
                   return;
                 }
                 if (!checked) {
-                  onChanged(value);
+                  onChanged!(value);
                 }
               }
             : null,
