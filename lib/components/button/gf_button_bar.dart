@@ -155,7 +155,7 @@ class GFButtonBar extends StatelessWidget {
   final VerticalDirection verticalDirection;
 
   /// The buttons to arrange horizontally.
-  /// Typically or [GFButton] or [GFIconButton] widgets.
+  /// Typically [GFButton] or [GFIconButton] widgets.
   final List<Widget> children;
 
   @override

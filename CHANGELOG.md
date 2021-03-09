@@ -1,7 +1,7 @@
 # Changelog
 
 
-## 2.0.0-nullsafety - 2021-03-09
+## 2.0.0-nullsafety.2 - 2021-03-09
 
 ### Added
 * Added nullsafety.
