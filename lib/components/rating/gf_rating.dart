@@ -6,11 +6,12 @@ typedef RatingChangeCallback = void Function(double rating);
 class GFRating extends StatefulWidget {
   /// [GFRating] to show ratings with many custimazation options.
   const GFRating({
+    Key? key,
+    required this.onChanged,
+    required this.value,
     this.itemCount = 5,
     this.spacing = 0.0,
-    this.value = 0.0,
     this.defaultIcon,
-    this.onChanged,
     this.color,
     this.borderColor,
     this.size = GFSize.MEDIUM,
@@ -23,31 +24,31 @@ class GFRating extends StatefulWidget {
     this.inputDecorations,
     this.margin = const EdgeInsets.symmetric(vertical: 16),
     this.padding = const EdgeInsets.symmetric(horizontal: 16),
-  }) : assert(value != null);
+  }) : super(key: key);
 
   /// defines total number of rating items
   final int itemCount;
 
   /// defines the color of items
-  final Color color;
+  final Color? color;
 
   /// defines the border color of [halfFilledIcon]
-  final Color borderColor;
+  final Color? borderColor;
 
   /// defines the size of items. GFSize can be used for size variations like small. medium. large
   final double size;
 
-  /// if true, allow half rating of items. Default it will be in true state
+  /// if true, allow half rating of items on dragging. Default it will be in true state
   final bool allowHalfRating;
 
   /// defines the items when filled
-  final Widget filledIcon;
+  final Widget? filledIcon;
 
   /// defines the items when half-filled
-  final Widget halfFilledIcon;
+  final Widget? halfFilledIcon;
 
   /// defines the default items, when having filledIcon && halfFilledIcon
-  final Widget defaultIcon;
+  final Widget? defaultIcon;
 
   /// defines the space bestuckValue items
   final double spacing;
@@ -62,13 +63,13 @@ class GFRating extends StatefulWidget {
   final bool showTextForm;
 
   /// defines the design and funtion of rating [TextFormField]'s suffix icon
-  final Widget suffixIcon;
+  final Widget? suffixIcon;
 
   /// controls the [TextField] Controller of rating [TextFormField]
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   /// defines the [InputDecoration] of rating [TextFormField]
-  final InputDecoration inputDecorations;
+  final InputDecoration? inputDecorations;
 
   /// defines the margin of rating [TextFormField]
   final EdgeInsets margin;
@@ -111,12 +112,11 @@ class _GFRatingState extends State<GFRating> {
 
     return GestureDetector(
       onTap: () {
-        if (widget.onChanged != null) {
-          widget.onChanged(index + 1.0);
-        }
+        widget.onChanged(index + 1.0);
       },
       onHorizontalDragUpdate: (dragDetails) {
-        final RenderBox box = context.findRenderObject();
+        // ignore: avoid_as
+        final RenderBox box = context.findRenderObject() as RenderBox;
         final _pos = box.globalToLocal(dragDetails.globalPosition);
         final i = _pos.dx / widget.size;
         var newRating = widget.allowHalfRating ? i : i.round().toDouble();
@@ -126,9 +126,7 @@ class _GFRatingState extends State<GFRating> {
         if (newRating < 0) {
           newRating = 0.0;
         }
-        if (widget.onChanged != null) {
-          widget.onChanged(newRating);
-        }
+        widget.onChanged(newRating);
       },
       child: icon,
     );

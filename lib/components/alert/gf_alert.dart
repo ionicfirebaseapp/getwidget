@@ -5,15 +5,15 @@ import 'package:getwidget/getwidget.dart';
 class GFAlert extends StatefulWidget {
   /// Alert has to be wrap inside the body like [GFFloatingWidget]. See [GFFloatingWidget]
   const GFAlert(
-      {Key key,
+      {Key? key,
+      this.content,
+      this.title,
       this.child,
       this.backgroundColor,
-      this.content,
       this.width,
       this.type = GFAlertType.basic,
       this.alignment,
       this.contentChild,
-      this.title,
       this.bottombar,
       this.contentTextStyle = const TextStyle(color: Colors.black87),
       this.titleTextStyle = const TextStyle(
@@ -24,45 +24,45 @@ class GFAlert extends StatefulWidget {
       : super(key: key);
 
   /// child of  type [Widget]is alternative to title key. title will get priority over child
-  final Widget child;
+  final Widget? child;
 
   /// title of type [String] used to describe the title of the [GFAlert]
-  final String title;
+  final String? title;
 
   /// child of  type [Widget]is alternative to title key. title will get priority over contentchild
-  final Widget contentChild;
+  final Widget? contentChild;
 
   /// title of type [String] used to describe the content of the [GFAlert]
-  final String content;
+  final String? content;
 
   ///type of [TextStyle] to change the style of the title not for the child
   final TextStyle titleTextStyle;
 
   ///pass color of type [Color] or [GFColors] for background of [GFAlert]
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   ///type of [TextStyle] to change the style of the content not for the contentchild
   final TextStyle contentTextStyle;
 
   /// width of type [double] used to control the width of the [GFAlert]
-  final double width;
+  final double? width;
 
   ///type of [GFAlertType] which takes the type ie, basic, rounded and fullWidth for the [GFAlert]
   final GFAlertType type;
 
   /// type of [Alignment] used to align the text inside the [GFAlert]
-  final Alignment alignment;
+  final Alignment? alignment;
 
   ///type of [Widget] used for the buttons ie, OK, Cancel for the action in [GFAlert]
-  final Widget bottombar;
+  final Widget? bottombar;
 
   @override
   _GFAlertState createState() => _GFAlertState();
 }
 
 class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
-  AnimationController animationController;
-  Animation<double> animation;
+  late AnimationController animationController;
+  late Animation<double> animation;
 
   @override
   void initState() {
@@ -115,7 +115,7 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                   Align(
                     alignment: widget.alignment ?? Alignment.topLeft,
                     child: widget.title != null
-                        ? Text(widget.title, style: widget.titleTextStyle)
+                        ? Text(widget.title!, style: widget.titleTextStyle)
                         : (widget.child ?? Container()),
                   ),
                   const SizedBox(
@@ -124,7 +124,7 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                   Align(
                     alignment: widget.alignment ?? Alignment.topLeft,
                     child: widget.content != null
-                        ? Text(widget.content, style: widget.contentTextStyle)
+                        ? Text(widget.content!, style: widget.contentTextStyle)
                         : (widget.contentChild ?? Container()),
                   ),
                   const SizedBox(

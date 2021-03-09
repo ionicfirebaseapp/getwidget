@@ -4,7 +4,7 @@ import 'package:getwidget/getwidget.dart';
 class GFBadge extends StatefulWidget {
   /// Create badges of all types, check out [GFButtonBadge] for button badges and [GFIconBadge] for icon type badges
   const GFBadge({
-    Key key,
+    Key? key,
     this.textStyle,
     this.borderShape,
     this.shape = GFBadgeShape.standard,
@@ -14,14 +14,13 @@ class GFBadge extends StatefulWidget {
     this.border,
     this.text,
     this.child,
-  })  : assert(shape != null, 'Counter shape can not be null'),
-        super(key: key);
+  }) : super(key: key);
 
   /// The border side for the badge's [Material].
-  final BorderSide border;
+  final BorderSide? border;
 
   /// Typically the counter badge's shape.
-  final ShapeBorder borderShape;
+  final ShapeBorder? borderShape;
 
   /// Counter type of [GFBadgeShape] i.e, standard, pills, square, circle
   final GFBadgeShape shape;
@@ -33,13 +32,13 @@ class GFBadge extends StatefulWidget {
   final double size;
 
   /// child of type [Widget] is alternative to child. text will get priority over child
-  final Widget child;
+  final Widget? child;
 
   /// text of type [String] is alternative to child. text will get priority over child
-  final String text;
+  final String? text;
 
   /// text style of counter text.
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   /// Pass [GFColors] or [Color]
   final Color textColor;
@@ -49,14 +48,14 @@ class GFBadge extends StatefulWidget {
 }
 
 class _GFBadgeState extends State<GFBadge> {
-  Color color;
-  Color textColor;
-  Widget child;
-  GFBadgeShape counterShape;
-  double size;
-  double height;
-  double width;
-  double fontSize;
+  late Color color;
+  late Color textColor;
+  Widget? child;
+  GFBadgeShape? counterShape;
+  late double size;
+  double? height;
+  double? width;
+  double? fontSize;
 
   @override
   void initState() {
@@ -81,7 +80,7 @@ class _GFBadgeState extends State<GFBadge> {
   @override
   Widget build(BuildContext context) {
     final BorderSide shapeBorder = widget.border != null
-        ? widget.border
+        ? widget.border!
         : BorderSide(
             color: color,
             width: 0,
@@ -138,12 +137,10 @@ class _GFBadgeState extends State<GFBadge> {
       height: height,
       width: counterShape == GFBadgeShape.circle ? height : width,
       child: Material(
-        textStyle: textColor != null
-            ? TextStyle(
-                color: textColor,
-                fontSize: fontSize,
-              )
-            : widget.textStyle,
+        textStyle: TextStyle(
+          color: textColor,
+          fontSize: fontSize,
+        ),
         shape: widget.borderShape ?? shape,
         color: color,
         type: MaterialType.button,

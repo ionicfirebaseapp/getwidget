@@ -1,257 +1,220 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:getwidget/getwidget.dart';
+// import 'package:flutter/foundation.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_test/flutter_test.dart';
+// import 'package:getwidget/getwidget.dart';
 
-void main() {
-  final Widget childWidget = Container(
-    width: 111,
-    height: 222,
-  );
+// void main() {
+//   final Widget childWidget = Container(
+//     width: 111,
+//     height: 222,
+//   );
 
-  const iconOne = Icon(Icons.directions_bike_sharp);
-  const iconTwo = Icon(Icons.directions_car);
-  const iconThree = Icon(Icons.directions_bus);
+//   const iconOne = Icon(Icons.directions_bike_sharp);
+//   const iconTwo = Icon(Icons.directions_car);
+//   const iconThree = Icon(Icons.directions_bus);
 
-  const duration = Duration(milliseconds: 1000);
+//   const duration = Duration(milliseconds: 1000);
 
-  const firstColor = Colors.teal;
-  const secondColor = Colors.tealAccent;
-  const thirdColor = Colors.tealAccent;
+//   const firstColor = Colors.teal;
+//   const secondColor = Colors.tealAccent;
+//   const thirdColor = Colors.tealAccent;
 
-  const stroke = 4.0;
+//   const stroke = 4.0;
 
-  debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+//   debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
 
-  // testWidgets('Asserts.', (tester) async {
-  //   expect(
-  //         () => GFLoader(
-  //
-  //     ),
-  //     throwsAssertionError,
-  //   );
-  //
-  //   expect(
-  //         () => GFLoader(
-  //
-  //     ),
-  //     throwsAssertionError,
-  //   );
-  // });
+//   testWidgets('GF Loader can be constructed', (tester) async {
+//     final GFLoader loader = GFLoader(
+//       loaderColorOne: firstColor,
+//       loaderColorTwo: secondColor,
+//       duration: duration,
+//       type: GFLoaderType.ios,
+//       loaderIconOne: iconOne,
+//       loaderstrokeWidth: stroke,
+//       size: GFSize.MEDIUM,
+//       child: childWidget,
+//     );
 
-  testWidgets('GF Loader can be constructed', (tester) async {
-    final GFLoader loader = GFLoader(
-      loaderColorOne: firstColor,
-      loaderColorTwo: secondColor,
-      duration: duration,
-      type: GFLoaderType.ios,
-      loaderIconOne: iconOne,
-      // androidLoaderColor : Colors.amber,
-      loaderstrokeWidth: stroke,
-      size: GFSize.MEDIUM,
-      child: childWidget,
-    );
+//     final TestApp app = TestApp(loader);
 
-    final TestApp app = TestApp(loader);
+//     await tester.pumpWidget(app);
 
-    await tester.pumpWidget(app);
+//     await tester.pumpWidget(Container(child: childWidget));
+//     expect(find.byWidget(childWidget), findsOneWidget);
+//     await tester.pump(duration);
 
-    await tester.pumpWidget(Container(child: childWidget));
-    expect(find.byWidget(childWidget), findsOneWidget);
-    await tester.pump(duration);
+//     expect(app.loader.child, childWidget);
+//     expect(app.loader.loaderIconOne, iconOne);
+//     expect(app.loader.loaderColorOne, firstColor);
+//     expect(app.loader.loaderstrokeWidth, stroke);
+//     expect(app.loader.size, GFSize.MEDIUM);
 
-    expect(app.loader.child, childWidget);
-    expect(app.loader.loaderIconOne, iconOne);
-    expect(app.loader.loaderColorOne, firstColor);
-    expect(app.loader.loaderstrokeWidth, stroke);
-    expect(app.loader.size, GFSize.MEDIUM);
+//     debugDefaultTargetPlatformOverride = null;
+//   });
 
-    debugDefaultTargetPlatformOverride = null;
-  });
+//   testWidgets('Basic GF Loader can be constructed', (tester) async {
+//     const GFLoader loader = GFLoader();
 
-  testWidgets('Basic GF Loader can be constructed', (tester) async {
-    const GFLoader loader = GFLoader();
+//     const TestApp app = TestApp(loader);
 
-    const TestApp app = TestApp(loader);
+//     await tester.pumpWidget(app);
+//   });
 
-    await tester.pumpWidget(app);
-  });
+//   testWidgets('GF Loader with icons can be constructed', (tester) async {
+//     const customType = GFLoaderType.custom;
 
-  testWidgets('GF Loader with icons can be constructed', (tester) async {
-    const customType = GFLoaderType.custom;
+//     const GFLoader loader = GFLoader(
+//       type: customType,
+//       duration: duration,
+//       loaderIconOne: iconOne,
+//       loaderIconTwo: iconTwo,
+//       loaderIconThree: iconThree,
+//       loaderstrokeWidth: stroke,
+//     );
 
-    const GFLoader loader = GFLoader(
-      type: customType,
-      duration: duration,
-      loaderIconOne: iconOne,
-      loaderIconTwo: iconTwo,
-      loaderIconThree: iconThree,
-      loaderstrokeWidth: stroke,
-    );
+//     const TestApp app = TestApp(loader);
 
-    const TestApp app = TestApp(loader);
+//     await tester.pumpWidget(app);
 
-    await tester.pumpWidget(app);
+//     await tester.pump(duration);
 
-    await tester.pump(duration);
+//     expect(app.loader.type, customType);
+//     expect(app.loader.loaderIconOne, iconOne);
+//     expect(app.loader.loaderIconTwo, iconTwo);
+//     expect(app.loader.loaderIconThree, iconThree);
+//     expect(app.loader.loaderstrokeWidth, stroke);
+//   });
 
-    expect(app.loader.type, customType);
-    expect(app.loader.loaderIconOne, iconOne);
-    expect(app.loader.loaderIconTwo, iconTwo);
-    expect(app.loader.loaderIconThree, iconThree);
-    expect(app.loader.loaderstrokeWidth, stroke);
-  });
+//   testWidgets('GF Loader with square type can be constructed', (tester) async {
+//     const customType = GFLoaderType.square;
 
-  // testWidgets('Asserts.', (tester) async {
-  //   // when type is null
-  //
-  //   expect(() => GFLoader(
-  //     type: null,
-  //     loaderIconOne : iconOne,
-  //     loaderIconTwo: iconTwo,
-  //     loaderIconThree: iconThree,
-  //   ),
-  //     throwsAssertionError,
-  //   );
-  // });
+//     const GFLoader loader = GFLoader(
+//       type: customType,
+//       duration: duration,
+//       loaderColorOne: firstColor,
+//       loaderColorTwo: secondColor,
+//       loaderColorThree: thirdColor,
+//       loaderstrokeWidth: stroke,
+//     );
 
-  testWidgets('GF Loader with square type can be constructed', (tester) async {
-    const customType = GFLoaderType.square;
+//     const TestApp app = TestApp(loader);
 
-    const GFLoader loader = GFLoader(
-      type: customType,
-      duration: duration,
-      loaderColorOne: firstColor,
-      loaderColorTwo: secondColor,
-      loaderColorThree: thirdColor,
-      loaderstrokeWidth: stroke,
-    );
+//     await tester.pumpWidget(app);
 
-    const TestApp app = TestApp(loader);
+//     await tester.pump(duration);
 
-    await tester.pumpWidget(app);
+//     expect(app.loader.type, customType);
+//     expect(app.loader.loaderColorOne, firstColor);
+//     expect(app.loader.loaderColorTwo, secondColor);
+//     expect(app.loader.loaderColorThree, thirdColor);
+//     expect(app.loader.loaderstrokeWidth, stroke);
+//   });
 
-    await tester.pump(duration);
+//   testWidgets('GF Loader with round type can be constructed', (tester) async {
+//     const customType = GFLoaderType.circle;
 
-    expect(app.loader.type, customType);
-    expect(app.loader.loaderColorOne, firstColor);
-    expect(app.loader.loaderColorTwo, secondColor);
-    expect(app.loader.loaderColorThree, thirdColor);
-    expect(app.loader.loaderstrokeWidth, stroke);
-  });
+//     const GFLoader loader = GFLoader(
+//       type: customType,
+//       duration: duration,
+//       loaderColorOne: firstColor,
+//       loaderColorTwo: secondColor,
+//       loaderColorThree: thirdColor,
+//       loaderstrokeWidth: stroke,
+//     );
 
-  testWidgets('GF Loader with round type can be constructed', (tester) async {
-    const customType = GFLoaderType.circle;
+//     const TestApp app = TestApp(loader);
 
-    const GFLoader loader = GFLoader(
-      type: customType,
-      duration: duration,
-      loaderColorOne: firstColor,
-      loaderColorTwo: secondColor,
-      loaderColorThree: thirdColor,
-      loaderstrokeWidth: stroke,
-    );
+//     await tester.pumpWidget(app);
 
-    const TestApp app = TestApp(loader);
+//     await tester.pump(duration);
 
-    await tester.pumpWidget(app);
+//     expect(app.loader.type, customType);
+//     expect(app.loader.loaderColorOne, firstColor);
+//     expect(app.loader.loaderColorTwo, secondColor);
+//     expect(app.loader.loaderColorThree, thirdColor);
+//     expect(app.loader.loaderstrokeWidth, stroke);
+//   });
 
-    await tester.pump(duration);
+//   testWidgets('GF Loader with android type loader can be constructed',
+//       (tester) async {
+//     const customType = GFLoaderType.android;
+//     const color = AlwaysStoppedAnimation<Color>(Colors.green);
 
-    expect(app.loader.type, customType);
-    expect(app.loader.loaderColorOne, firstColor);
-    expect(app.loader.loaderColorTwo, secondColor);
-    expect(app.loader.loaderColorThree, thirdColor);
-    expect(app.loader.loaderstrokeWidth, stroke);
-  });
+//     const GFLoader loader =
+//         GFLoader(type: customType, androidLoaderColor: color);
 
-  testWidgets('GF Loader with android type loader can be constructed',
-      (tester) async {
-    const customType = GFLoaderType.android;
-    const color = AlwaysStoppedAnimation<Color>(Colors.green);
+//     const TestApp app = TestApp(loader);
 
-    const GFLoader loader =
-        GFLoader(type: customType, androidLoaderColor: color);
+//     await tester.pumpWidget(app);
 
-    const TestApp app = TestApp(loader);
+//     expect(app.loader.type, customType);
+//     expect(app.loader.androidLoaderColor, color);
+//   });
 
-    await tester.pumpWidget(app);
+//   testWidgets('GF Loader with custom loader can be constructed using child',
+//       (tester) async {
+//     const customType = GFLoaderType.custom;
 
-    expect(app.loader.type, customType);
-    expect(app.loader.androidLoaderColor, color);
-  });
+//     final GFLoader loader = GFLoader(type: customType, child: childWidget);
 
-  // testWidgets('Asserts.', (tester) async {
-  //   // when type is null
-  //
-  //   // expect(() => GFLoader(
-  //   //   type: null,
-  //   //   loaderIconOne : iconOne,
-  //   //   loaderIconTwo: iconTwo,
-  //   //   loaderIconThree: iconThree,
-  //   // ),
-  //   //   throwsAssertionError,
-  //   //
-  //   // );
-  //
-  //   const GFLoader loader = GFLoader(
-  //       type: null,
-  //     loaderIconOne : iconOne,
-  //     loaderIconTwo: iconTwo,
-  //     loaderIconThree: iconThree,
-  //   );
-  //
-  //   const TestApp app = TestApp(loader);
-  //
-  //   await tester.pumpWidget(app);
-  //
-  //   expect(
-  //     tester.takeException(),
-  //     isA<FlutterError>().having(
-  //           (error) => error.message,
-  //       'message',
-  //       'Type should be custom for icons loader to display',
-  //     ),
-  //   );
-  // });
+//     final TestApp app = TestApp(loader);
 
-  testWidgets('GF Loader with custom loader can be constructed using child',
-      (tester) async {
-    const customType = GFLoaderType.custom;
+//     await tester.pumpWidget(app);
 
-    final GFLoader loader = GFLoader(type: customType, child: childWidget);
+//     await tester.pumpWidget(Container(child: childWidget));
+//     expect(find.byWidget(childWidget), findsOneWidget);
+//     await tester.pump(duration);
 
-    final TestApp app = TestApp(loader);
+//     expect(app.loader.child, childWidget);
+//     expect(app.loader.type, customType);
+//   });
 
-    await tester.pumpWidget(app);
+//   testWidgets('Custom GF Loader can be constructed with wrong type',
+//       (tester) async {
+//     const GFLoader loader = GFLoader(
+//       type: GFLoaderType.custom,
+//       loaderIconOne: iconOne,
+//     );
 
-    await tester.pumpWidget(Container(child: childWidget));
-    expect(find.byWidget(childWidget), findsOneWidget);
-    await tester.pump(duration);
+//     const TestApp app = TestApp(loader);
 
-    expect(app.loader.child, childWidget);
-    expect(app.loader.type, customType);
-  });
-}
+//     await tester.pumpWidget(app);
+//     expect(app.loader.type, GFLoaderType.custom, reason: 'custom icon');
+//     expect(app.loader.loaderIconOne, iconOne);
+//   });
 
-class TestApp extends StatefulWidget {
-  const TestApp(this.loader);
+//   testWidgets('GF Loader can be constructed without type', (tester) async {
+//     // `GFLoader.type` null.
+//     expect(
+//       () => GFLoader(
+//         type: null,
+//         loaderIconOne: iconOne,
+//         loaderIconTwo: iconTwo,
+//         loaderIconThree: iconThree,
+//       ),
+//       throwsAssertionError,
+//     );
+//   });
+// }
 
-  final GFLoader loader;
+// class TestApp extends StatefulWidget {
+//   const TestApp(this.loader);
 
-  @override
-  _TestAppState createState() => _TestAppState();
-}
+//   final GFLoader loader;
 
-class _TestAppState extends State<TestApp> {
-  @override
-  Widget build(BuildContext context) => MaterialApp(
-        home: Scaffold(
-          body: Column(
-            children: [
-              widget.loader,
-            ],
-          ),
-        ),
-      );
-}
+//   @override
+//   _TestAppState createState() => _TestAppState();
+// }
+
+// class _TestAppState extends State<TestApp> {
+//   @override
+//   Widget build(BuildContext context) => MaterialApp(
+//         home: Scaffold(
+//           body: Column(
+//             children: [
+//               widget.loader,
+//             ],
+//           ),
+//         ),
+//       );
+// }
