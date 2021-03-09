@@ -26,3 +26,4 @@ before_script:
 script:
   - ./../flutter/bin/flutter analyze .
   - ./../flutter/bin/cache/dart-sdk/bin/dartfmt --dry-run lib
+  - ./../flutter/bin/flutter test
