@@ -92,7 +92,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.2.3"
+    version: "1.2.4"
   js:
     dependency: transitive
     description:

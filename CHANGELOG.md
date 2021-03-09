@@ -1,7 +1,7 @@
 # Changelog
 
 
-## 1.2.3 - 2020-11-12
+## 1.2.4 - 2020-11-12
 
 ### Fixed
 * [GFProgressBar] issue.
@@ -10,6 +10,11 @@
 * [GFDropdown] minor issue.
 * [GFCarousel] issue. #185
 * Many more minor improvements.
+
+### Added
+* Test cases added for couple of components
+    - GFLoader
+    - GFTypography
 
 
 
