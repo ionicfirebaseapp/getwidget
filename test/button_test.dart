@@ -12,12 +12,9 @@ void main() {
   const childWidget = Text('tap me');
 
   testWidgets('GF Button without padding, shape', (tester) async {
-    // `GFBUtton.shape` null or `GFBUtton.padding` null.
     expect(
-      () => GFButton(
-        shape: null,
-        padding: null,
-        onPressed: () {},
+      () => const GFButton(
+        onPressed: null,
       ),
       throwsAssertionError,
     );

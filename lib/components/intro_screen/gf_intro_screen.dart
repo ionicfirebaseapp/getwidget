@@ -7,11 +7,11 @@ class GFIntroScreen extends StatefulWidget {
   /// It has many features that helps to build custom-made introduction screen sliders.
   /// Presents informative screens to users with various possibilities in customization.
   const GFIntroScreen({
-    Key key,
-    @required this.pageController,
-    @required this.currentIndex,
-    @required this.pageCount,
-    @required this.slides,
+    Key? key,
+    required this.pageController,
+    required this.currentIndex,
+    required this.pageCount,
+    required this.slides,
     this.color,
     this.width,
     this.height,
@@ -66,11 +66,7 @@ class GFIntroScreen extends StatefulWidget {
     ),
     this.showButton = true,
     this.showPagination = true,
-  })  : assert(pageController != null),
-        assert(currentIndex != null),
-        assert(pageCount != null),
-        assert(slides != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// defines the list of slides
   final List<Widget> slides;
@@ -79,22 +75,22 @@ class GFIntroScreen extends StatefulWidget {
   final PageController pageController;
 
   /// defines background color of the [GFIntroScreen] slides
-  final Color color;
+  final Color? color;
 
   /// defines [GFIntroScreen] slides height
-  final double height;
+  final double? height;
 
   /// defines [GFIntroScreen] slides width
-  final double width;
+  final double? width;
 
   /// defines [GFIntroScreen] border radius to defines slides shape
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
 
   /// defines [GFIntroScreen] slides border
-  final Border border;
+  final Border? border;
 
   /// defines [GFIntroScreen]'s bottom navigation bar
-  final GFIntroScreenBottomNavigationBar introScreenBottomNavigationBar;
+  final GFIntroScreenBottomNavigationBar? introScreenBottomNavigationBar;
 
   /// on true state, displays [GFIntroScreenBottomNavigationBar], defaults to false
   final bool showIntroScreenBottomNavigationBar;
@@ -106,13 +102,13 @@ class GFIntroScreen extends StatefulWidget {
   final int pageCount;
 
   /// defines [GFIntroScreenBottomNavigationBar]'s child, it takes any widget
-  final Widget child;
+  final Widget? child;
 
   /// defines [GFIntroScreenBottomNavigationBar] height
   final double navigationBarHeight;
 
   /// defines [GFIntroScreenBottomNavigationBar] width
-  final double navigationBarWidth;
+  final double? navigationBarWidth;
 
   /// defines [GFIntroScreenBottomNavigationBar] padding
   final EdgeInsets navigationBarPadding;
@@ -124,31 +120,31 @@ class GFIntroScreen extends StatefulWidget {
   final Color navigationBarColor;
 
   /// defines the shape of [GFIntroScreenBottomNavigationBar]
-  final ShapeBorder navigationBarShape;
+  final ShapeBorder? navigationBarShape;
 
   /// Called when the forward button is tapped
-  final VoidCallback onForwardButtonTap;
+  final VoidCallback? onForwardButtonTap;
 
   /// Called when the back button is tapped
-  final VoidCallback onBackButtonTap;
+  final VoidCallback? onBackButtonTap;
 
   /// Called when the done button is tapped
-  final VoidCallback onDoneTap;
+  final VoidCallback? onDoneTap;
 
   /// Called when the skip button is tapped
-  final VoidCallback onSkipTap;
+  final VoidCallback? onSkipTap;
 
   /// takes any Widget to define the backButton widget,
-  final Widget backButton;
+  final Widget? backButton;
 
   /// takes any Widget to define the forwardButton widget
-  final Widget forwardButton;
+  final Widget? forwardButton;
 
   /// takes any Widget to define the doneButton widget
-  final Widget doneButton;
+  final Widget? doneButton;
 
   /// takes any Widget to define the skipButton widget
-  final Widget skipButton;
+  final Widget? skipButton;
 
   /// takes String to define backButton text
   final String backButtonText;
@@ -193,7 +189,7 @@ class GFIntroScreen extends StatefulWidget {
   final Color dividerColor;
 
   /// defines pagination shape
-  final ShapeBorder dotShape;
+  final ShapeBorder? dotShape;
 
   /// defines pagination inactive color
   final Color inactiveColor;
