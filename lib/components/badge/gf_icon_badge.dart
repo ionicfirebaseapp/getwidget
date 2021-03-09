@@ -4,12 +4,11 @@ import 'package:getwidget/getwidget.dart';
 class GFIconBadge extends StatefulWidget {
   /// Create badges of all types, check out [GFBadge] for button badges and [GFIconBadge] for icon badges.
   const GFIconBadge({
-    Key key,
+    Key? key,
     this.padding = const EdgeInsets.symmetric(horizontal: 8),
-    @required this.child,
-    @required this.counterChild,
-  })  : assert(padding != null),
-        super(key: key);
+    required this.child,
+    required this.counterChild,
+  }) : super(key: key);
 
   /// child of type [Widget] is used to show icon.
   /// Use [GFIconButton] widget for compatibility.
@@ -32,9 +31,9 @@ class _GFIconBadgeState extends State<GFIconBadge> {
         padding: widget.padding,
         child: Stack(
           children: <Widget>[
-            widget.child ?? Container(),
+            widget.child,
             Positioned(
-              child: widget.counterChild ?? Container(),
+              child: widget.counterChild,
             ),
           ],
         ),

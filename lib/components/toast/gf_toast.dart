@@ -7,7 +7,7 @@ class GFToast extends StatefulWidget {
   ///Creates [GFToast] that can be used to display quick warning or error messages.
   /// Toast has to be wrap inside the body like [GFFloatingWidget]. See [GFFloatingWidget]
   const GFToast({
-    Key key,
+    Key? key,
     this.child,
     this.button,
     this.backgroundColor,
@@ -23,22 +23,22 @@ class GFToast extends StatefulWidget {
   }) : super(key: key);
 
   /// child of  type [Widget]is alternative to text key. text will get priority over child
-  final Widget child;
+  final Widget? child;
 
   /// button of type [Widget],or you can use [GFButton] for easy implementation with [GFToast]
-  final Widget button;
+  final Widget? button;
 
   ///pass color of type [Color] or [GFColors] for background of [GFToast]
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// text of type [String] is alternative to child. text will get priority over child
-  final String text;
+  final String? text;
 
   /// textStyle of type [textStyle] will be applicable to text only and not for the child
   final TextStyle textStyle;
 
   /// width of type [double] used to control the width of the [GFToast]
-  final double width;
+  final double? width;
 
   ///type of [GFToastType] which takes the type ie, basic, rounded and fullWidth for the [GFToast]
   final GFToastType type;
@@ -56,15 +56,15 @@ class GFToast extends StatefulWidget {
   final Duration autoDismissDuration;
 
   /// type of [Alignment] used to align the text inside the toast
-  final Alignment alignment;
+  final Alignment? alignment;
 
   @override
   _GFToastState createState() => _GFToastState();
 }
 
 class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
-  AnimationController animationController, fadeAnimationController;
-  Animation<double> animation, fadeAnimation;
+  late AnimationController animationController, fadeAnimationController;
+  late Animation<double> animation, fadeAnimation;
   bool hideToast = false;
 
   @override
@@ -150,7 +150,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
                       child: Align(
                         alignment: widget.alignment ?? Alignment.topLeft,
                         child: widget.text != null
-                            ? Text(widget.text, style: widget.textStyle)
+                            ? Text(widget.text!, style: widget.textStyle)
                             : (widget.child ?? Container()),
                       ),
                     ),

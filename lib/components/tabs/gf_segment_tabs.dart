@@ -9,45 +9,38 @@ import 'package:getwidget/getwidget.dart';
 class GFSegmentTabs extends StatefulWidget {
   /// Creates pills like structured tab bar. See [GFTabBar]
   /// [GFSegmentTabs] are best used as an alternative for [GFTabBar].
-  const GFSegmentTabs(
-      {Key key,
-      @required this.length,
-      // this.initialIndex = 0,
-      this.height,
-      this.width,
-      this.border,
-      this.borderRadius,
-      this.tabBarColor,
-      this.indicatorColor,
-      this.indicatorWeight = 2.0,
-      this.indicatorPadding = EdgeInsets.zero,
-      this.indicator,
-      this.indicatorSize,
-      this.labelColor,
-      this.labelStyle,
-      this.labelPadding,
-      this.unselectedLabelColor,
-      this.unselectedLabelStyle,
-      this.tabs,
-      this.tabController})
-      : assert(length != null && length >= 0),
-        // assert(initialIndex != null &&
-        //     initialIndex >= 0 &&
-        //     (length == 0 || initialIndex < length)),
+  const GFSegmentTabs({
+    Key? key,
+    required this.length,
+    required this.tabs,
+    required this.tabController,
+    this.height,
+    this.width,
+    this.border,
+    this.borderRadius,
+    this.tabBarColor,
+    this.indicatorColor,
+    this.indicatorWeight = 2.0,
+    this.indicatorPadding = EdgeInsets.zero,
+    this.indicator,
+    this.indicatorSize,
+    this.labelColor,
+    this.labelStyle,
+    this.labelPadding,
+    this.unselectedLabelColor,
+    this.unselectedLabelStyle,
+  })  : assert(length != null && length >= 0),
         super(key: key);
-
-  // /// The initial index of the selected tab. Defaults to zero.
-  // final int initialIndex;
 
   /// The total number of tabs. Typically greater than one. Must match [TabBar.tabs]'s and
   /// [TabBarView.children]'s length.
-  final int length;
+  final int? length;
 
   /// Sets [GFSegmentTabs] height
-  final double height;
+  final double? height;
 
   /// Sets [TabBar] color using material color [Color]
-  final Color tabBarColor;
+  final Color? tabBarColor;
 
   /// The color of the line that appears below the selected tab.
   ///
@@ -55,7 +48,7 @@ class GFSegmentTabs extends StatefulWidget {
   /// property is used.
   ///
   /// If [indicator] is specified, this property is ignored.
-  final Color indicatorColor;
+  final Color? indicatorColor;
 
   /// The thickness of the line that appears below the selected tab.
   ///
@@ -92,7 +85,7 @@ class GFSegmentTabs extends StatefulWidget {
   /// occupied by the tab in the tab bar. If [indicatorSize] is
   /// [TabBarIndicatorSize.label], then the tab's bounds are only as wide as
   /// the tab widget itself.
-  final Decoration indicator;
+  final Decoration? indicator;
 
   /// Defines how the selected tab indicator's size is computed.
   ///
@@ -104,7 +97,7 @@ class GFSegmentTabs extends StatefulWidget {
   /// The selected tab's location appearance can be refined further with
   /// the [indicatorColor], [indicatorWeight], [indicatorPadding], and
   /// [indicator] properties.
-  final TabBarIndicatorSize indicatorSize;
+  final TabBarIndicatorSize? indicatorSize;
 
   /// The color of selected tab labels.
   ///
@@ -113,13 +106,13 @@ class GFSegmentTabs extends StatefulWidget {
   ///
   /// If this parameter is null, then the color of the [ThemeData.primaryTextTheme]'s
   /// body2 text color is used.
-  final Color labelColor;
+  final Color? labelColor;
 
   /// The color of unselected tab labels.
   ///
   /// If this property is null, unselected tab labels are rendered with the
   /// [labelColor] with 70% opacity.
-  final Color unselectedLabelColor;
+  final Color? unselectedLabelColor;
 
   /// The text style of the selected tab labels.
   ///
@@ -128,19 +121,19 @@ class GFSegmentTabs extends StatefulWidget {
   ///
   /// If this property is null, then the text style of the
   /// [ThemeData.primaryTextTheme]'s body2 definition is used.
-  final TextStyle labelStyle;
+  final TextStyle? labelStyle;
 
   /// The padding added to each of the tab labels.
   ///
   /// If this property is null, then kTabLabelPadding is used.
-  final EdgeInsetsGeometry labelPadding;
+  final EdgeInsetsGeometry? labelPadding;
 
   /// The text style of the unselected tab labels
   ///
   /// If this property is null, then the [labelStyle] value is used. If [labelStyle]
   /// is null, then the text style of the [ThemeData.primaryTextTheme]'s
   /// body2 definition is used.
-  final TextStyle unselectedLabelStyle;
+  final TextStyle? unselectedLabelStyle;
 
   /// Typically a list of two or more [Tab] widgets.
   ///
@@ -149,19 +142,19 @@ class GFSegmentTabs extends StatefulWidget {
   final List<Widget> tabs;
 
   /// defines outer border of the tabs
-  final Border border;
+  final Border? border;
 
   /// defines outer border, border radius
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
 
   /// This widget's selection and animation state.
   ///
   /// If [TabController] is not provided, then the value of [DefaultTabController.of]
   /// will be used.
-  final TabController tabController;
+  final TabController? tabController;
 
   /// defines width of the tab row
-  final double width;
+  final double? width;
 
   @override
   _GFSegmentTabsState createState() => _GFSegmentTabsState();
@@ -179,7 +172,7 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
         ),
         child: DefaultTabController(
           // initialIndex: widget.initialIndex,
-          length: widget.length,
+          length: widget.length!,
           child: Material(
             borderRadius: widget.borderRadius ?? BorderRadius.circular(2),
             type: MaterialType.button,

@@ -5,14 +5,14 @@ class GFDropdown<T> extends StatefulWidget {
   /// GF Dropdown let user to select from the number of items and display selected
   /// item in the button. It displays list of items in the overlay dropdown fashion.
   const GFDropdown(
-      {Key key,
-      @required this.items,
+      {Key? key,
+      required this.items,
       this.icon,
       this.selectedItemBuilder,
       this.value,
       this.hint,
       this.disabledHint,
-      @required this.onChanged,
+      required this.onChanged,
       this.onTap,
       this.elevation = 8,
       this.style,
@@ -34,18 +34,18 @@ class GFDropdown<T> extends StatefulWidget {
       this.dropdownButtonColor = GFColors.WHITE})
       : super(key: key);
 
-  final DropdownButtonBuilder selectedItemBuilder;
-  final List<DropdownMenuItem<T>> items;
+  final DropdownButtonBuilder? selectedItemBuilder;
+  final List<DropdownMenuItem<T>>? items;
 
   /// The widget to use for the drop-down button's icon.
   /// Defaults to an [Icon] with the [Icons.arrow_drop_down] glyph.
-  final Widget icon;
+  final Widget? icon;
 
   /// The z-coordinate at which to place the menu when open.
   final int elevation;
 
   /// The value of the currently selected [DropdownMenuItem].
-  final T value;
+  final T? value;
 
   /// Defines the border of dropdown button
   final BorderSide border;
@@ -54,33 +54,33 @@ class GFDropdown<T> extends StatefulWidget {
   final EdgeInsets padding;
 
   /// A placeholder widget that is displayed by the dropdown button.
-  final Widget hint;
+  final Widget? hint;
 
   /// A message to show when the dropdown is disabled.
-  final Widget disabledHint;
+  final Widget? disabledHint;
 
   /// Called when the user selects an item.
   /// If the [onChanged] callback is null or the list of [DropdownButton.items]
   /// is null then the dropdown button will be disabled,
-  final ValueChanged<T> onChanged;
+  final ValueChanged<T?>? onChanged;
 
   /// Called when the dropdown button is tapped.
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   /// Defaults to the [TextTheme.subtitle1] value of the current
   /// [ThemeData.textTheme] of the current [Theme].
-  final TextStyle style;
+  final TextStyle? style;
 
   /// The widget to use for drawing the drop-down button's underline.
-  final Widget underline;
+  final Widget? underline;
 
   /// The color of any [Icon] descendant of [icon] if this button is disabled,
   /// i.e. if [onChanged] is null.
-  final Color iconDisabledColor;
+  final Color? iconDisabledColor;
 
   /// The color of any [Icon] descendant of [icon] if this button is enabled,
   /// i.e. if [onChanged] is defined.
-  final Color iconEnabledColor;
+  final Color? iconEnabledColor;
 
   /// The size to use for the drop-down button's down arrow icon button.
   final double iconSize;
@@ -92,20 +92,20 @@ class GFDropdown<T> extends StatefulWidget {
   final bool isExpanded;
 
   /// Defines the height of the menu items
-  final double itemHeight;
+  final double? itemHeight;
 
   /// The color for the button's [Material] when it has the input focus.
-  final Color focusColor;
+  final Color? focusColor;
 
   /// Defines the keyboard focus for this widget.
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   /// On true state it should focus itself if nothing else is already focused.
   /// Defaults to false
   final bool autofocus;
 
   /// Defines the background color of the dropdown.
-  final Color dropdownColor;
+  final Color? dropdownColor;
 
   /// Defines the border radius  of the dropdown.
   final BorderRadius borderRadius;

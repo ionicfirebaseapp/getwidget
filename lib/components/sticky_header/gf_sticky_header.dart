@@ -8,15 +8,14 @@ class GFStickyHeader extends MultiChildRenderObjectWidget {
   /// GF Sticky Header will the stick header at top when content is being scrolled.
   /// Place this widget inside a [ListView], [GridView], [CustomScrollView], [SingleChildScrollView] or similar.
   GFStickyHeader(
-      {Key key,
-      @required this.stickyContent,
-      @required this.content,
+      {Key? key,
+      required this.stickyContent,
+      required this.content,
       this.direction = Axis.vertical,
       this.enableHeaderOverlap = false,
       this.callback,
       this.stickyContentPosition = GFPosition.start})
-      : assert(direction != null),
-        super(
+      : super(
             key: key,
             children: stickyContentPosition == GFPosition.start &&
                     direction == Axis.horizontal
@@ -41,7 +40,7 @@ class GFStickyHeader extends MultiChildRenderObjectWidget {
   final GFPosition stickyContentPosition;
 
   /// Allows to add custom stickyHeader stuck offset value
-  final RenderGFStickyHeaderCallback callback;
+  final RenderGFStickyHeaderCallback? callback;
 
   ///  [direction] allows children to align in vertical / horizontal way
   ///  Defaults to [Axis.vertical]
@@ -49,8 +48,7 @@ class GFStickyHeader extends MultiChildRenderObjectWidget {
 
   @override
   RenderGFStickyHeader createRenderObject(BuildContext context) {
-    final scrollable = Scrollable.of(context);
-    assert(scrollable != null);
+    final scrollable = Scrollable.of(context)!;
     return RenderGFStickyHeader(
       direction: direction,
       scrollable: scrollable,

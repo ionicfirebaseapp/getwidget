@@ -5,7 +5,7 @@ import 'package:getwidget/getwidget.dart';
 class GFAvatar extends StatelessWidget {
   /// Create Avatar of all types i,e, square, circle, standard with different sizes.
   const GFAvatar(
-      {Key key,
+      {Key? key,
       this.child,
       this.backgroundColor,
       this.backgroundImage,
@@ -20,25 +20,25 @@ class GFAvatar extends StatelessWidget {
         super(key: key);
 
   /// Typically a [Text] widget. If the [CircleAvatar] is to have an image, use [backgroundImage] instead.
-  final Widget child;
+  final Widget? child;
 
   /// use [Color] or [GFColors]. The color with which to fill the circle.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// use [Color] or [GFColors]. The default text color for text in the circle.
-  final Color foregroundColor;
+  final Color? foregroundColor;
 
   /// The background image of the circle.
-  final ImageProvider backgroundImage;
+  final ImageProvider? backgroundImage;
 
   /// The size of the avatar, expressed as the radius (half the diameter).
-  final double radius;
+  final double? radius;
 
   /// The minimum size of the avatar, expressed as the radius (half the diameter).
-  final double minRadius;
+  final double? minRadius;
 
   /// The maximum size of the avatar, expressed as the radius (half the diameter).
-  final double maxRadius;
+  final double? maxRadius;
 
   /// size of avatar. use [GFSize] or [double] i.e, 1.2, small, medium, large etc.
   final double size;
@@ -48,7 +48,7 @@ class GFAvatar extends StatelessWidget {
 
   /// border radius to give extra radius for avatar square or standard shape
   /// Not applicable to circleshape
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
 
   // /// The default max if only the min is specified.
   // static const double _defaultMaxRadius = double.infinity;
@@ -83,17 +83,17 @@ class GFAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color backgroundColor = this.backgroundColor;
-    final Color foregroundColor = this.foregroundColor;
+    final Color? backgroundColor = this.backgroundColor;
+    final Color? foregroundColor = this.foregroundColor;
     assert(debugCheckHasMediaQuery(context));
     final ThemeData theme = Theme.of(context);
-    TextStyle textStyle = theme.primaryTextTheme.subtitle1.copyWith(
+    TextStyle? textStyle = theme.primaryTextTheme.subtitle1?.copyWith(
       color: foregroundColor,
     );
-    Color effectiveBackgroundColor = backgroundColor;
+    Color? effectiveBackgroundColor = backgroundColor;
 
-    if (effectiveBackgroundColor == null) {
-      switch (ThemeData.estimateBrightnessForColor(textStyle.color)) {
+    if (effectiveBackgroundColor == null && textStyle?.color != null) {
+      switch (ThemeData.estimateBrightnessForColor(textStyle!.color!)) {
         case Brightness.dark:
           effectiveBackgroundColor = theme.primaryColorLight;
           break;
@@ -101,8 +101,8 @@ class GFAvatar extends StatelessWidget {
           effectiveBackgroundColor = theme.primaryColorDark;
           break;
       }
-    } else if (foregroundColor == null) {
-      switch (ThemeData.estimateBrightnessForColor(backgroundColor)) {
+    } else if (foregroundColor == null && textStyle != null) {
+      switch (ThemeData.estimateBrightnessForColor(backgroundColor!)) {
         case Brightness.dark:
           textStyle = textStyle.copyWith(color: theme.primaryColorLight);
           break;
@@ -125,7 +125,7 @@ class GFAvatar extends StatelessWidget {
         color: effectiveBackgroundColor,
         image: backgroundImage != null
             ? DecorationImage(
-                image: backgroundImage,
+                image: backgroundImage!,
                 fit: BoxFit.cover,
               )
             : null,
@@ -134,16 +134,16 @@ class GFAvatar extends StatelessWidget {
             ? BorderRadius.circular(10)
             : borderRadius,
       ),
-      child: child == null
+      child: child == null && textStyle != null
           ? null
           : Center(
               child: MediaQuery(
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
                 child: IconTheme(
-                  data: theme.iconTheme.copyWith(color: textStyle.color),
+                  data: theme.iconTheme.copyWith(color: textStyle?.color),
                   child: DefaultTextStyle(
-                    style: textStyle,
-                    child: child,
+                    style: textStyle!,
+                    child: child!,
                   ),
                 ),
               ),
