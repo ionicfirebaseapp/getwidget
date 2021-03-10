@@ -4,10 +4,10 @@ import 'package:getwidget/getwidget.dart';
 class GFRadioListTile<T> extends StatelessWidget {
   /// [GFRadioListTile] is a list title of with [GFRadio] in it.
   const GFRadioListTile({
-    Key key,
-    @required this.value,
-    @required this.groupValue,
-    @required this.onChanged,
+    Key? key,
+    required this.value,
+    required this.groupValue,
+    required this.onChanged,
     this.size = GFSize.SMALL,
     this.type = GFRadioType.basic,
     this.radioColor = GFColors.SUCCESS,
@@ -42,35 +42,31 @@ class GFRadioListTile<T> extends StatelessWidget {
     this.selected = false,
     this.focusColor,
     this.hoverColor,
-  })  : assert(autofocus != null),
-        assert(toggleable != null),
-        assert(enabled != null),
-        assert(selected != null),
-        super(key: key);
+  }) : super(key: key);
 
   ///type of [String] used to pass text, alternative to title property and gets higher priority than title
-  final String titleText;
+  final String? titleText;
 
   ///type of [String] used to pass text, alternative to subTitle property and gets higher priority than subTitle
-  final String subTitleText;
+  final String? subTitleText;
 
   /// The GFListTile's background color. Can be given [Color] or [GFColors]
-  final Color color;
+  final Color? color;
 
   /// If position is start Checkbox will come instead of avatar, type of [Widget] or [GFAvatar] used to create rounded user profile
-  final Widget avatar;
+  final Widget? avatar;
 
   /// The title to display inside the [GFListTile]. see [Text]
-  final Widget title;
+  final Widget? title;
 
   /// The subTitle to display inside the [GFListTile]. see [Text]
-  final Widget subTitle;
+  final Widget? subTitle;
 
   /// The description to display inside the [GFListTile]. see [Text]
-  final Widget description;
+  final Widget? description;
 
   /// If position is end Checkbox will come instead of icon, The icon to display inside the [GFListTile]. see [Icon]
-  final Widget icon;
+  final Widget? icon;
 
   /// defines the margin of GFListTile
   final EdgeInsets margin;
@@ -88,7 +84,7 @@ class GFRadioListTile<T> extends StatelessWidget {
   /// Called when the user taps this list tile.
   ///
   /// Inoperative if [enabled] is false.
-  final GestureTapCallback onTap;
+  final GestureTapCallback? onTap;
 
   /// Position allows user to set position of [GFCheckbox] based on given [GFPosition]
   final GFPosition position;
@@ -96,7 +92,7 @@ class GFRadioListTile<T> extends StatelessWidget {
   /// Called when the user long-presses on this list tile.
   ///
   /// Inoperative if [enabled] is false.
-  final GestureLongPressCallback onLongPress;
+  final GestureLongPressCallback? onLongPress;
 
   /// If this tile is also [enabled] then icons and text are rendered with the same color.
   ///
@@ -105,17 +101,17 @@ class GFRadioListTile<T> extends StatelessWidget {
   final bool selected;
 
   /// The color for the tile's [Material] when it has the input focus.
-  final Color focusColor;
+  final Color? focusColor;
 
   /// The color for the tile's [Material] when a pointer is hovering over it.
-  final Color hoverColor;
+  final Color? hoverColor;
 
   /// on true state this widget will be selected as the initial focus
   /// when no other node in its scope is currently focused
   final bool autofocus;
 
   /// an optional focus node to use as the focus node for this widget.
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   /// type of [GFRadioType] which is of four type is basic, sqaure, circular and custom
   final GFRadioType type;
@@ -139,13 +135,13 @@ class GFRadioListTile<T> extends StatelessWidget {
   final Color inactiveBorderColor;
 
   /// Called when the user checks or unchecks the checkbox.
-  final ValueChanged<T> onChanged;
+  final ValueChanged<dynamic>? onChanged;
 
   ///type of Widget used to change the  checkbox's active icon
   final Widget activeIcon;
 
   ///type of [Widget] used to change the  checkbox's inactive icon
-  final Widget inactiveIcon;
+  final Widget? inactiveIcon;
 
   /// type of [Color] used to change the background color of the custom active  checkbox only
   final Color customBgColor;
@@ -188,11 +184,11 @@ class GFRadioListTile<T> extends StatelessWidget {
         onTap: onChanged != null
             ? () {
                 if (toggleable && checked) {
-                  onChanged(null);
+                  onChanged!(null);
                   return;
                 }
                 if (!checked) {
-                  onChanged(value);
+                  onChanged!(value);
                 }
               }
             : null,
