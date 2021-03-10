@@ -85,6 +85,10 @@ class GFButtonBar extends StatelessWidget {
   /// Defaults to 0.0.
   final double runSpacing;
 
+  /// The buttons to arrange horizontally.
+  /// Typically [GFButton] or [GFIconButton] widgets.
+  final List<Widget> children;
+
   /// How the children within a run should be aligned relative to each other in
   /// the cross axis.
   ///
@@ -153,10 +157,6 @@ class GFButtonBar extends StatelessWidget {
   /// [WrapCrossAlignment.end], or there's more than one child, then the
   /// [verticalDirection] must not be null.
   final VerticalDirection verticalDirection;
-
-  /// The buttons to arrange horizontally.
-  /// Typically or [GFButton] or [GFIconButton] widgets.
-  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) => Padding(
