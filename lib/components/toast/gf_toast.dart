@@ -65,6 +65,7 @@ class GFToast extends StatefulWidget {
 class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
   late AnimationController animationController, fadeAnimationController;
   late Animation<double> animation, fadeAnimation;
+  Timer? timer;
   bool hideToast = false;
 
   @override
@@ -85,7 +86,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
         begin: 0,
         end: 1,
       ).animate(fadeAnimationController);
-      Timer(widget.duration, () {
+      timer = Timer(widget.duration, () {
         if (mounted) {
           fadeAnimationController.forward();
         }
@@ -110,6 +111,7 @@ class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
   void dispose() {
     animationController.dispose();
     fadeAnimationController.dispose();
+    timer?.cancel();
     super.dispose();
   }
 
