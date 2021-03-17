@@ -14,9 +14,10 @@ class GFTabBar extends StatefulWidget {
   /// The [tabs] argument must not be null and its length must match the [controller]'s
   /// [TabController.length].
   const GFTabBar({
-    Key key,
-    // this.initialIndex = 0,
-    @required this.length,
+    Key? key,
+    required this.length,
+    required this.tabs,
+    required this.controller,
     this.isScrollable = false,
     this.tabBarHeight,
     this.tabBarColor,
@@ -30,28 +31,19 @@ class GFTabBar extends StatefulWidget {
     this.labelPadding,
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
-    this.tabs,
-    this.controller,
     this.shape,
   })  : assert(length != null && length >= 0),
-        assert(isScrollable != null),
-        // assert(initialIndex != null &&
-        //     initialIndex >= 0 &&
-        //     (length == 0 || initialIndex < length)),
         super(key: key);
-
-  // /// The initial index of the selected tab. Defaults to zero.
-  // final int initialIndex;
 
   /// The total number of tabs. Typically greater than one. Must match [TabBar.tabs]'s and
   /// [TabBarView.children]'s length.
-  final int length;
+  final int? length;
 
   /// Sets [GFTabBar] height
-  final double tabBarHeight;
+  final double? tabBarHeight;
 
   /// Sets [TabBar] color using material color [Color]
-  final Color tabBarColor;
+  final Color? tabBarColor;
 
   /// The color of the line that appears below the selected tab.
   ///
@@ -59,7 +51,7 @@ class GFTabBar extends StatefulWidget {
   /// property is used.
   ///
   /// If [indicator] is specified, this property is ignored.
-  final Color indicatorColor;
+  final Color? indicatorColor;
 
   /// The thickness of the line that appears below the selected tab.
   ///
@@ -96,7 +88,7 @@ class GFTabBar extends StatefulWidget {
   /// occupied by the tab in the tab bar. If [indicatorSize] is
   /// [TabBarIndicatorSize.label], then the tab's bounds are only as wide as
   /// the tab widget itself.
-  final Decoration indicator;
+  final Decoration? indicator;
 
   /// Defines how the selected tab indicator's size is computed.
   ///
@@ -108,7 +100,7 @@ class GFTabBar extends StatefulWidget {
   /// The selected tab's location appearance can be refined further with
   /// the [indicatorColor], [indicatorWeight], [indicatorPadding], and
   /// [indicator] properties.
-  final TabBarIndicatorSize indicatorSize;
+  final TabBarIndicatorSize? indicatorSize;
 
   /// The color of selected tab labels.
   ///
@@ -117,13 +109,13 @@ class GFTabBar extends StatefulWidget {
   ///
   /// If this parameter is null, then the color of the [ThemeData.primaryTextTheme]'s
   /// body2 text color is used.
-  final Color labelColor;
+  final Color? labelColor;
 
   /// The color of unselected tab labels.
   ///
   /// If this property is null, unselected tab labels are rendered with the
   /// [labelColor] with 70% opacity.
-  final Color unselectedLabelColor;
+  final Color? unselectedLabelColor;
 
   /// The text style of the selected tab labels.
   ///
@@ -132,19 +124,19 @@ class GFTabBar extends StatefulWidget {
   ///
   /// If this property is null, then the text style of the
   /// [ThemeData.primaryTextTheme]'s body2 definition is used.
-  final TextStyle labelStyle;
+  final TextStyle? labelStyle;
 
   /// The padding added to each of the tab labels.
   ///
   /// If this property is null, then kTabLabelPadding is used.
-  final EdgeInsetsGeometry labelPadding;
+  final EdgeInsetsGeometry? labelPadding;
 
   /// The text style of the unselected tab labels
   ///
   /// If this property is null, then the [labelStyle] value is used. If [labelStyle]
   /// is null, then the text style of the [ThemeData.primaryTextTheme]'s
   /// body2 definition is used.
-  final TextStyle unselectedLabelStyle;
+  final TextStyle? unselectedLabelStyle;
 
   /// Typically a list of two or more [Tab] widgets.
   ///
@@ -163,17 +155,17 @@ class GFTabBar extends StatefulWidget {
   ///
   /// If [TabController] is not provided, then the value of [DefaultTabController.of]
   /// will be used.
-  final TabController controller;
+  final TabController? controller;
 
   /// defines the shape of tabBar
-  final ShapeBorder shape;
+  final ShapeBorder? shape;
 
   @override
   _GFTabBarState createState() => _GFTabBarState();
 }
 
 class _GFTabBarState extends State<GFTabBar> {
-  ScrollController _scrollController;
+  ScrollController? _scrollController;
   DragStartBehavior dragStartBehavior = DragStartBehavior.start;
 
   @override

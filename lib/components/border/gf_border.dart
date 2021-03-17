@@ -7,7 +7,7 @@ import 'package:getwidget/types/gf_border_type.dart';
 class GFBorder extends StatelessWidget {
   /// Create different types of borders around given child widget
   GFBorder({
-    @required this.child,
+    required this.child,
     this.color = Colors.black,
     this.strokeWidth = 1,
     this.type = GFBorderType.rect,
@@ -15,8 +15,7 @@ class GFBorder extends StatelessWidget {
     this.padding = const EdgeInsets.all(10),
     this.radius = const Radius.circular(0),
     // this.customPath,
-  })  : assert(child != null),
-        assert(_isValidDashedLine(dashedLine), 'Invalid dash pattern');
+  }) : assert(_isValidDashedLine(dashedLine), 'Invalid dash pattern');
 
   /// child of type [Widget] which can be any component or text, etc
   final Widget child;
@@ -67,9 +66,7 @@ class GFBorder extends StatelessWidget {
 /// the value of dashedLine cannot be 0 or null, it should have some definite and proper value
 bool _isValidDashedLine(List<double> dash) {
   final Set<double> _dashSet = dash.toSet();
-  if (_dashSet == null) {
-    return false;
-  }
+
   if (_dashSet.length == 1 && _dashSet.elementAt(0) == 0.0) {
     return false;
   }

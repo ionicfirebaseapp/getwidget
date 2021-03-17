@@ -5,13 +5,13 @@ import 'package:getwidget/getwidget.dart';
 class GFListTile extends StatelessWidget {
   /// Creates ListTile with leading, title, trailing, image widget for almost every type of ListTile design.
   const GFListTile({
-    Key key,
+    Key? key,
     this.titleText,
-    this.subtitleText,
+    this.subTitleText,
     this.color,
     this.avatar,
     this.title,
-    this.subtitle,
+    this.subTitle,
     this.description,
     this.icon,
     this.padding = const EdgeInsets.all(8),
@@ -24,34 +24,31 @@ class GFListTile extends StatelessWidget {
     this.hoverColor,
     this.focusNode,
     this.autofocus = false,
-  })  : assert(enabled != null),
-        assert(selected != null),
-        assert(autofocus != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// type of [String] used to pass text, alternative to title property and gets higher priority than title
-  final String titleText;
+  final String? titleText;
 
-  /// type of [String] used to pass text, alternative to subtitle property and gets higher priority than subtitle
-  final String subtitleText;
+  /// type of [String] used to pass text, alternative to subTitle property and gets higher priority than subTitle
+  final String? subTitleText;
 
   /// The GFListTile's background color. Can be given [Color] or [GFColors]
-  final Color color;
+  final Color? color;
 
   /// type of [Widget] or [GFAvatar] used to create rounded user profile
-  final Widget avatar;
+  final Widget? avatar;
 
   /// The title to display inside the [GFListTile]. see [Text]
-  final Widget title;
+  final Widget? title;
 
-  /// The subtitle to display inside the [GFListTile]. see [Text]
-  final Widget subtitle;
+  /// The subTitle to display inside the [GFListTile]. see [Text]
+  final Widget? subTitle;
 
   /// The description to display inside the [GFListTile]. see [Text]
-  final Widget description;
+  final Widget? description;
 
   /// The icon to display inside the [GFListTile]. see [Icon]
-  final Widget icon;
+  final Widget? icon;
 
   /// defines the margin of GFListTile
   final EdgeInsets margin;
@@ -69,12 +66,12 @@ class GFListTile extends StatelessWidget {
   /// Called when the user taps this list tile.
   ///
   /// Inoperative if [enabled] is false.
-  final GestureTapCallback onTap;
+  final GestureTapCallback? onTap;
 
   /// Called when the user long-presses on this list tile.
   ///
   /// Inoperative if [enabled] is false.
-  final GestureLongPressCallback onLongPress;
+  final GestureLongPressCallback? onLongPress;
 
   /// If this tile is also [enabled] then icons and text are rendered with the same color.
   ///
@@ -83,13 +80,13 @@ class GFListTile extends StatelessWidget {
   final bool selected;
 
   /// The color for the tile's [Material] when it has the input focus.
-  final Color focusColor;
+  final Color? focusColor;
 
   /// The color for the tile's [Material] when a pointer is hovering over it.
-  final Color hoverColor;
+  final Color? hoverColor;
 
   /// Defines the keyboard focus for this widget.
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   /// On true state it should focus itself if nothing else is already focused.
   /// Defaults to false
@@ -127,22 +124,22 @@ class GFListTile extends StatelessWidget {
                       children: <Widget>[
                         titleText != null
                             ? Text(
-                                titleText,
+                                titleText!,
                                 style: const TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w500,
                                     color: GFColors.DARK),
                               )
                             : title ?? Container(),
-                        subtitleText != null
+                        subTitleText != null
                             ? Text(
-                                subtitleText,
+                                subTitleText!,
                                 style: const TextStyle(
                                   fontSize: 14.5,
                                   color: Colors.black54,
                                 ),
                               )
-                            : subtitle ?? Container(),
+                            : subTitle ?? Container(),
                         description ?? Container()
                       ],
                     ),

@@ -7,10 +7,10 @@ import 'package:flutter/widgets.dart';
 class GFRadio<T> extends StatefulWidget {
   /// [GFRadio] is one type of selection indicator in a list of options.
   const GFRadio(
-      {Key key,
-      @required this.value,
-      @required this.groupValue,
-      @required this.onChanged,
+      {Key? key,
+      required this.value,
+      required this.groupValue,
+      required this.onChanged,
       this.size = GFSize.SMALL,
       this.type = GFRadioType.basic,
       this.radioColor = GFColors.SUCCESS,
@@ -28,9 +28,7 @@ class GFRadio<T> extends StatefulWidget {
       this.autofocus = false,
       this.focusNode,
       this.toggleable = false})
-      : assert(autofocus != null),
-        assert(toggleable != null),
-        super(key: key);
+      : super(key: key);
 
   /// type of [GFRadioType] which is of four type is basic, sqaure, circular and custom
   final GFRadioType type;
@@ -54,13 +52,13 @@ class GFRadio<T> extends StatefulWidget {
   final Color inactiveBorderColor;
 
   /// Called when the user checks or unchecks the radio button
-  final ValueChanged<T> onChanged;
+  final ValueChanged<T>? onChanged;
 
   ///type of Widget used to change the  radio button's active icon
   final Widget activeIcon;
 
   ///type of [Widget] used to change the  radio button's inactive icon
-  final Widget inactiveIcon;
+  final Widget? inactiveIcon;
 
   /// type of [Color] used to change the background color of the custom active  radio button only
   final Color customBgColor;
@@ -70,7 +68,7 @@ class GFRadio<T> extends StatefulWidget {
   final bool autofocus;
 
   /// an optional focus node to use as the focus node for this widget.
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   /// The value represented by this radio button.
   final T value;
@@ -89,7 +87,7 @@ class GFRadio<T> extends StatefulWidget {
 class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
   bool get enabled => widget.onChanged != null;
   bool selected = false;
-  T groupValue;
+  T? groupValue;
 
   void onStatusChange() {
     groupValue = widget.value;
@@ -97,12 +95,8 @@ class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
   }
 
   void _handleChanged(bool selected) {
-    if (selected == null) {
-      widget.onChanged(null);
-      return;
-    }
     if (selected) {
-      widget.onChanged(widget.value);
+      widget.onChanged!(widget.value);
     }
   }
 

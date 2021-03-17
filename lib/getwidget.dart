@@ -1,7 +1,7 @@
 library getwidget;
 
 //exports components
-export 'package:getwidget/components/accordian/gf_accordian.dart';
+export 'package:getwidget/components/accordion/gf_accordion.dart';
 export 'package:getwidget/components/alert/gf_alert.dart';
 export 'package:getwidget/components/animation/gf_animation.dart';
 export 'package:getwidget/components/appbar/gf_appbar.dart';
@@ -36,7 +36,6 @@ export 'package:getwidget/components/radio_list_tile/gf_radio_list_tile.dart';
 export 'package:getwidget/components/rating/gf_rating.dart';
 export 'package:getwidget/components/search_bar/gf_search_bar.dart';
 export 'package:getwidget/components/shimmer/gf_shimmer.dart';
-export 'package:getwidget/components/slidable/gf_slidable.dart';
 export 'package:getwidget/components/sticky_header/gf_sticky_header.dart';
 export 'package:getwidget/components/sticky_header/gf_sticky_header_builder.dart';
 export 'package:getwidget/components/sticky_header/render_gf_sticky_header.dart';

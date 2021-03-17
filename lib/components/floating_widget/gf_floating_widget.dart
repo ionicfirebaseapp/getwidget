@@ -5,7 +5,7 @@ class GFFloatingWidget extends StatefulWidget {
   /// Creates a Floating body can be used to display the quick messages, warning and erros.
   /// Inside floating widget [GFToast] can be used as body. See [GFToast]
   const GFFloatingWidget(
-      {Key key,
+      {Key? key,
       this.child,
       this.horizontalPosition,
       this.verticalPosition,
@@ -15,19 +15,19 @@ class GFFloatingWidget extends StatefulWidget {
       : super(key: key);
 
   ///child of  type [Widget] which floats across the body based on horizontal and vertical position
-  final Widget child;
+  final Widget? child;
 
   ///body of type [Widget] which is same as Scaffold's body
-  final Widget body;
+  final Widget? body;
 
   /// horizontalPosition of type [double] which  aligns the child horizontally across the body
-  final double horizontalPosition;
+  final double? horizontalPosition;
 
   /// verticalPosition of type [double] which  aligns the child vertically across the body
-  final double verticalPosition;
+  final double? verticalPosition;
 
   ///blurnessColor of tye [Color] or [GFColors] which is used to blur the backgroundColor when ever the [child] is used in [GFFloatingWidget]
-  final Color blurnessColor;
+  final Color? blurnessColor;
 
   ///type of bool which allows to show or hide the blurness of the backgroundColor whenever the [child]  is used in [GFFloatingWidget]
   final bool showBlurness;
@@ -37,7 +37,7 @@ class GFFloatingWidget extends StatefulWidget {
 }
 
 class _GFFloatingWidgetState extends State<GFFloatingWidget> {
-  Widget child;
+  Widget? child;
 
   @override
   void initState() {

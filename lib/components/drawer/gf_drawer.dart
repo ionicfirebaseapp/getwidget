@@ -56,7 +56,7 @@ class GFDrawer extends StatelessWidget {
   /// Typically used in the [Scaffold.drawer] property.
   /// The [elevation] must be non-negative.
   const GFDrawer({
-    Key key,
+    Key? key,
     this.elevation = 16.0,
     this.child,
     this.semanticLabel,
@@ -64,7 +64,7 @@ class GFDrawer extends StatelessWidget {
     this.colorFilter,
     this.gradient,
     this.color,
-  })  : assert(elevation != null && elevation >= 0.0),
+  })  : assert(elevation >= 0.0),
         super(key: key);
 
   /// The z-coordinate at which to place this drawer relative to its parent.
@@ -80,7 +80,7 @@ class GFDrawer extends StatelessWidget {
   /// Typically a [SliverList].
   ///
   /// {@macro flutter.widgets.child}
-  final Widget child;
+  final Widget? child;
 
   /// The semantic label of the dialog used by accessibility frameworks to
   /// announce screen transitions when the drawer is opened and closed.
@@ -92,32 +92,32 @@ class GFDrawer extends StatelessWidget {
   ///
   ///  * SemanticsConfiguration.namesRoute, for a description of how this
   ///    value is used.
-  final String semanticLabel;
+  final String? semanticLabel;
 
   /// Background image can be added to the [GFDrawer].
-  final ImageProvider backgroundImage;
+  final ImageProvider? backgroundImage;
 
   /// A composited layer that applies a color filter to its children.
-  final ColorFilter colorFilter;
+  final ColorFilter? colorFilter;
 
   ///  Gradient can be used for transforming gradient shaders without
   ///  applying the same transform to the entire canvas.
-  final Gradient gradient;
+  final Gradient? gradient;
 
   /// Defines the background color of the drawer
-  final Color color;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterialLocalizations(context));
-    String label = semanticLabel;
+    String? label = semanticLabel;
     switch (Theme.of(context).platform) {
       case TargetPlatform.iOS:
         label = semanticLabel;
         break;
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
-        label = semanticLabel ?? MaterialLocalizations.of(context)?.drawerLabel;
+        label = semanticLabel ?? MaterialLocalizations.of(context).drawerLabel;
         break;
       default:
         break;
@@ -137,7 +137,7 @@ class GFDrawer extends StatelessWidget {
               gradient: gradient,
               image: backgroundImage != null
                   ? DecorationImage(
-                      image: backgroundImage,
+                      image: backgroundImage!,
                       fit: BoxFit.cover,
                       colorFilter: colorFilter,
                     )

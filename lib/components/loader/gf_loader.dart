@@ -5,7 +5,7 @@ import 'package:getwidget/getwidget.dart';
 class GFLoader extends StatefulWidget {
   /// [GFLoader] shows differnt type of loaders with different customization options.
   const GFLoader(
-      {Key key,
+      {Key? key,
       this.loaderColorOne = Colors.redAccent,
       this.loaderColorTwo = Colors.green,
       this.loaderColorThree = Colors.blueAccent,
@@ -21,7 +21,7 @@ class GFLoader extends StatefulWidget {
       : super(key: key);
 
   /// Type of [Widget] used only in custom type and it is prominent over the loaderIconOne, loaderIconTwo, loaderIconThree in custom type
-  final Widget child;
+  final Widget? child;
 
   /// Type of GFColor or [Color] which defines the color of the first dot in only  circle or square type of loader
   final Color loaderColorOne;
@@ -39,16 +39,16 @@ class GFLoader extends StatefulWidget {
   final GFLoaderType type;
 
   /// Type of [Widget] which takes text, icons or images for first dot only in custom type of loader
-  final Widget loaderIconOne;
+  final Widget? loaderIconOne;
 
   /// Type of [Widget] which takes text, icons or images for second dot only in custom type of loader
-  final Widget loaderIconTwo;
+  final Widget? loaderIconTwo;
 
   /// Type of [Widget] which takes text, icons or images for third dot only in custom type of loader
-  final Widget loaderIconThree;
+  final Widget? loaderIconThree;
 
   /// type of Animation<Color> used to change the color of the android loader only
-  final Animation<Color> androidLoaderColor;
+  final Animation<Color>? androidLoaderColor;
 
   /// type of [double] used to change the stroke width of the android loader only
   final double loaderstrokeWidth;
@@ -63,22 +63,22 @@ class GFLoader extends StatefulWidget {
 
 class _GFLoaderState extends State<GFLoader>
     with SingleTickerProviderStateMixin {
-  Animation<double> loaderanimation1;
-  Animation<double> loaderanimation2;
-  Animation<double> loaderanimation3;
-  AnimationController controller;
+  late Animation<double> loaderAnimation1;
+  late Animation<double> loaderAnimation2;
+  late Animation<double> loaderAnimation3;
+  late AnimationController controller;
   Interval interval = const Interval(0.1, 0.81, curve: Curves.linear);
 
   @override
   void initState() {
     controller = AnimationController(duration: widget.duration, vsync: this);
-    loaderanimation1 = Tween<double>(begin: 0, end: 1).animate(
+    loaderAnimation1 = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(parent: controller, curve: interval),
     );
-    loaderanimation2 = Tween<double>(begin: 0, end: 1).animate(
+    loaderAnimation2 = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(parent: controller, curve: interval),
     );
-    loaderanimation3 = Tween<double>(begin: 0, end: 1).animate(
+    loaderAnimation3 = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(parent: controller, curve: interval),
     );
     controller.addListener(() {
@@ -116,12 +116,12 @@ class _GFLoaderState extends State<GFLoader>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Opacity(
-                            opacity: loaderanimation1.value <= 0.3
-                                ? 2.5 * loaderanimation1.value
-                                : (loaderanimation1.value > 0.30 &&
-                                        loaderanimation1.value <= 0.70)
+                            opacity: loaderAnimation1.value <= 0.3
+                                ? 2.5 * loaderAnimation1.value
+                                : (loaderAnimation1.value > 0.30 &&
+                                        loaderAnimation1.value <= 0.70)
                                     ? 1.0
-                                    : 2.5 - (2.5 * loaderanimation1.value),
+                                    : 2.5 - (2.5 * loaderAnimation1.value),
                             child: Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: Loader(
@@ -134,12 +134,12 @@ class _GFLoaderState extends State<GFLoader>
                             ),
                           ),
                           Opacity(
-                            opacity: loaderanimation2.value <= 0.3
-                                ? 2.5 * loaderanimation2.value
-                                : (loaderanimation2.value > 0.30 &&
-                                        loaderanimation2.value <= 0.70)
+                            opacity: loaderAnimation2.value <= 0.3
+                                ? 2.5 * loaderAnimation2.value
+                                : (loaderAnimation2.value > 0.30 &&
+                                        loaderAnimation2.value <= 0.70)
                                     ? 1.0
-                                    : 2.5 - (2.5 * loaderanimation2.value),
+                                    : 2.5 - (2.5 * loaderAnimation2.value),
                             child: Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: Loader(
@@ -151,12 +151,12 @@ class _GFLoaderState extends State<GFLoader>
                             ),
                           ),
                           Opacity(
-                            opacity: loaderanimation3.value <= 0.3
-                                ? 2.5 * loaderanimation3.value
-                                : (loaderanimation3.value > 0.30 &&
-                                        loaderanimation3.value <= 0.70)
+                            opacity: loaderAnimation3.value <= 0.3
+                                ? 2.5 * loaderAnimation3.value
+                                : (loaderAnimation3.value > 0.30 &&
+                                        loaderAnimation3.value <= 0.70)
                                     ? 1.0
-                                    : 2.5 - (2.5 * loaderanimation3.value),
+                                    : 2.5 - (2.5 * loaderAnimation3.value),
                             child: Padding(
                               padding: const EdgeInsets.only(right: 8),
                               child: Loader(
@@ -173,16 +173,14 @@ class _GFLoaderState extends State<GFLoader>
 
   @override
   void dispose() {
-    if (controller != null) {
-      controller.dispose();
-    }
+    controller.dispose();
     super.dispose();
   }
 }
 
 class Loader extends StatelessWidget {
   const Loader(
-      {Key key,
+      {Key? key,
       this.radius,
       this.color,
       this.type,
@@ -190,12 +188,12 @@ class Loader extends StatelessWidget {
       this.size,
       this.child})
       : super(key: key);
-  final double radius;
-  final Color color;
-  final GFLoaderType type;
-  final Widget icon;
-  final double size;
-  final Widget child;
+  final double? radius;
+  final Color? color;
+  final GFLoaderType? type;
+  final Widget? icon;
+  final double? size;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) => Center(

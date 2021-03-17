@@ -14,15 +14,13 @@ class RenderGFStickyHeader extends RenderBox
         RenderBoxContainerDefaultsMixin<RenderBox, FlexParentData>,
         DebugOverflowIndicatorMixin {
   RenderGFStickyHeader({
-    List<RenderBox> children,
+    List<RenderBox>? children,
     Axis direction = Axis.horizontal,
     bool enableHeaderOverlap = false,
-    @required ScrollableState scrollable,
-    RenderGFStickyHeaderCallback callback,
-    GFPosition stickyContentPosition,
-  })  : assert(direction != null),
-        assert(scrollable != null),
-        _scrollable = scrollable,
+    required ScrollableState scrollable,
+    RenderGFStickyHeaderCallback? callback,
+    GFPosition? stickyContentPosition,
+  })  : _scrollable = scrollable,
         _direction = direction,
         _callback = callback,
         _stickyContentPosition = stickyContentPosition,
@@ -30,15 +28,14 @@ class RenderGFStickyHeader extends RenderBox
     addAll(children);
   }
 
-  RenderGFStickyHeaderCallback _callback;
+  RenderGFStickyHeaderCallback? _callback;
   final ScrollableState _scrollable;
   final bool _enableHeaderOverlap;
-  final GFPosition _stickyContentPosition;
+  final GFPosition? _stickyContentPosition;
 
   Axis get direction => _direction;
   Axis _direction;
   set direction(Axis value) {
-    assert(value != null);
     if (_direction != value) {
       _direction = value;
       markNeedsLayout();
@@ -62,7 +59,8 @@ class RenderGFStickyHeader extends RenderBox
   }
 
   int _getFlex(RenderBox child) {
-    final FlexParentData childParentData = child.parentData;
+    // ignore: avoid_as
+    final FlexParentData childParentData = child.parentData as FlexParentData;
     return childParentData.flex ?? 0;
   }
 
@@ -73,8 +71,6 @@ class RenderGFStickyHeader extends RenderBox
       case Axis.vertical:
         return child.size.width;
     }
-    // ignore: avoid_returning_null
-    return null;
   }
 
   double _getMainSize(RenderBox child) {
@@ -84,8 +80,6 @@ class RenderGFStickyHeader extends RenderBox
       case Axis.vertical:
         return child.size.height;
     }
-    // ignore: avoid_returning_null
-    return null;
   }
 
   @override
@@ -100,14 +94,14 @@ class RenderGFStickyHeader extends RenderBox
     super.detach();
   }
 
-  RenderBox get _stickyContentBody => _stickyContentPosition ==
+  RenderBox? get _stickyContentBody => _stickyContentPosition ==
               GFPosition.start &&
           _direction == Axis.horizontal
       ? firstChild
       : _stickyContentPosition == GFPosition.end && _direction == Axis.vertical
           ? firstChild
           : lastChild;
-  RenderBox get _contentBody => _stickyContentPosition == GFPosition.start &&
+  RenderBox? get _contentBody => _stickyContentPosition == GFPosition.start &&
           _direction == Axis.horizontal
       ? lastChild
       : _stickyContentPosition == GFPosition.end && _direction == Axis.vertical
@@ -115,7 +109,7 @@ class RenderGFStickyHeader extends RenderBox
           : firstChild;
 
   double getHeaderTileStuckOffset() {
-    final scrollableContent = _scrollable.context.findRenderObject();
+    final scrollableContent = _scrollable.context.findRenderObject()!;
     if (scrollableContent.attached) {
       try {
         return localToGlobal(Offset.zero, ancestor: scrollableContent).dy;
@@ -130,10 +124,10 @@ class RenderGFStickyHeader extends RenderBox
   @override
   void performLayout() {
     assert(childCount == 2);
-    _stickyContentBody.layout(constraints.loosen(), parentUsesSize: true);
-    _contentBody.layout(constraints.loosen(), parentUsesSize: true);
-    final stickyContentBodyHeight = _stickyContentBody.size.height;
-    final contentBodyHeight = _contentBody.size.height;
+    _stickyContentBody?.layout(constraints.loosen(), parentUsesSize: true);
+    _contentBody?.layout(constraints.loosen(), parentUsesSize: true);
+    final stickyContentBodyHeight = _stickyContentBody!.size.height;
+    final contentBodyHeight = _contentBody!.size.height;
     final height = max(
         constraints.minHeight,
         _enableHeaderOverlap
@@ -144,18 +138,19 @@ class RenderGFStickyHeader extends RenderBox
     size = Size(
         constraints.constrainWidth(width), constraints.constrainHeight(height));
     final double stickyContentBodyOffset = getHeaderTileStuckOffset();
-    assert(constraints != null);
 
     double crossSize = 0;
     double allottedSize = 0;
-    RenderBox child = firstChild;
+    RenderBox? child = firstChild;
     while (child != null) {
       // ignore: avoid_as
-      final FlexParentData childParentData = child.parentData as FlexParentData;
+      final FlexParentData? childParentData =
+          // ignore: avoid_as
+          child.parentData as FlexParentData?;
       final int flex = _getFlex(child);
       if (flex > 0) {
       } else {
-        BoxConstraints innerConstraints;
+        late BoxConstraints innerConstraints;
         switch (_direction) {
           case Axis.horizontal:
             innerConstraints = BoxConstraints(maxHeight: constraints.maxHeight);
@@ -169,11 +164,11 @@ class RenderGFStickyHeader extends RenderBox
         crossSize = math.max(crossSize, _getCrossSize(child));
       }
       assert(child.parentData == childParentData);
-      child = childParentData.nextSibling;
+      child = childParentData?.nextSibling;
     }
 
     final double idealSize = allottedSize;
-    double actualSize;
+    late double actualSize;
     switch (_direction) {
       case Axis.horizontal:
         size = constraints.constrain(Size(idealSize, crossSize));
@@ -190,25 +185,31 @@ class RenderGFStickyHeader extends RenderBox
     const double betweenSpace = 0;
     const bool flipMainAxis = !true;
     double childMainPosition =
+        // ignore: dead_code
         flipMainAxis ? actualSize - startingSpace : startingSpace;
     child = _contentBody;
     // ignore: invariant_booleans
     while (child != null) {
       // ignore: avoid_as
-      final FlexParentData childParentData = child.parentData as FlexParentData;
+      final FlexParentData? childParentData =
+          // ignore: avoid_as
+          child.parentData as FlexParentData?;
 
-      if (flipMainAxis) {
-        childMainPosition = _getMainSize(child);
-      }
+      // if (flipMainAxis) {
+      //   childMainPosition = _getMainSize(child);
+      // }
       switch (_direction) {
         case Axis.horizontal:
-          final FlexParentData contentBodyParentData = _contentBody.parentData;
+          final FlexParentData contentBodyParentData =
+              // ignore: avoid_as
+              _contentBody!.parentData as FlexParentData;
           contentBodyParentData.offset =
               _stickyContentPosition == GFPosition.start
-                  ? Offset(_stickyContentBody.size.width, 0)
+                  ? Offset(_stickyContentBody!.size.width, 0)
                   : const Offset(0, 0);
           final FlexParentData stickyContentBodyParentData =
-              _stickyContentBody.parentData;
+              // ignore: avoid_as
+              _stickyContentBody!.parentData as FlexParentData;
           stickyContentBodyParentData.offset = Offset(
               childMainPosition,
               max(
@@ -217,11 +218,14 @@ class RenderGFStickyHeader extends RenderBox
                   0));
           break;
         case Axis.vertical:
-          final FlexParentData contentBodyParentData = _contentBody.parentData;
+          final FlexParentData contentBodyParentData =
+              // ignore: avoid_as
+              _contentBody!.parentData as FlexParentData;
           contentBodyParentData.offset =
               Offset(0, _enableHeaderOverlap ? 0.0 : stickyContentBodyHeight);
           final FlexParentData stickyContentBodyParentData =
-              _stickyContentBody.parentData;
+              // ignore: avoid_as
+              _stickyContentBody!.parentData as FlexParentData;
           stickyContentBodyParentData.offset = Offset(
               0,
               max(
@@ -235,19 +239,20 @@ class RenderGFStickyHeader extends RenderBox
                 min(stickyContentBodyHeight, stickyContentBodyOffset),
                 -stickyContentBodyHeight) /
             stickyContentBodyHeight;
-        _callback(stuckValue);
+        _callback!(stuckValue);
       }
-      if (flipMainAxis) {
-        childMainPosition -= betweenSpace;
-      } else {
+      // if (flipMainAxis) {
+      //   childMainPosition -= betweenSpace;
+      // }
+      if (!flipMainAxis) {
         childMainPosition += _getMainSize(child) + betweenSpace;
       }
-      child = childParentData.nextSibling;
+      child = childParentData!.nextSibling;
     }
   }
 
   @override
-  bool hitTestChildren(BoxHitTestResult result, {Offset position}) =>
+  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) =>
       defaultHitTestChildren(result, position: position);
 
   @override

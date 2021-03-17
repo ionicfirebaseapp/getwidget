@@ -10,15 +10,14 @@ class GFStickyHeaderBuilder extends StatefulWidget {
   /// Place this widget inside a [ListView], [GridView], [CustomScrollView], [SingleChildScrollView] or similar.
   /// Constructs a new [GFStickyHeaderBuilder] widget.
   const GFStickyHeaderBuilder({
-    Key key,
-    @required this.stickyContentBuilder,
-    @required this.content,
+    Key? key,
+    required this.stickyContentBuilder,
+    required this.content,
     this.direction = Axis.vertical,
     this.enableHeaderOverlap = false,
     this.callback,
     this.stickyContentPosition = GFPosition.start,
-  })  : assert(direction != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// builder widget can be used to define [stickyContentBuilder].
   final StickyHeaderWidgetBuilder stickyContentBuilder;
@@ -35,7 +34,7 @@ class GFStickyHeaderBuilder extends StatefulWidget {
   final GFPosition stickyContentPosition;
 
   /// Allows to add custom stickyHeader stuck offset value
-  final RenderGFStickyHeaderCallback callback;
+  final RenderGFStickyHeaderCallback? callback;
 
   ///  [direction] allows children to align in vertical / horizontal way
   ///  Defaults to [Axis.vertical]
@@ -46,7 +45,7 @@ class GFStickyHeaderBuilder extends StatefulWidget {
 }
 
 class _GFStickyHeaderBuilderState extends State<GFStickyHeaderBuilder> {
-  double _stuckValue;
+  double? _stuckValue;
 
   @override
   Widget build(BuildContext context) => GFStickyHeader(
@@ -61,7 +60,7 @@ class _GFStickyHeaderBuilderState extends State<GFStickyHeaderBuilder> {
         callback: (double stuckValue) {
           if (_stuckValue != stuckValue) {
             _stuckValue = stuckValue;
-            WidgetsBinding.instance.endOfFrame.then((_) {
+            WidgetsBinding.instance?.endOfFrame.then((_) {
               if (mounted) {
                 setState(() {});
               }

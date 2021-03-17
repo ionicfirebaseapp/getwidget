@@ -30,7 +30,7 @@ class DashedType extends CustomPainter {
   final Radius radius;
 
   /// customPath of type [PathBuilder] used for the drawing the paths
-  final PathBuilder customPath;
+  final PathBuilder? customPath;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -39,21 +39,22 @@ class DashedType extends CustomPainter {
       ..color = color
       ..style = PaintingStyle.stroke;
 
-    Path _path;
+    Path? _path;
     if (customPath != null) {
       _path = dashPath(
-        customPath(size),
+        customPath!(size),
         dashedarray: CircularIntervalList(dashedLine),
       );
     } else {
       _path = _getPath(size);
     }
-
-    canvas.drawPath(_path, paint);
+    if (_path != null) {
+      canvas.drawPath(_path, paint);
+    }
   }
 
   /// Returns a [Path] based on the the borderType parameter
-  Path _getPath(Size size) {
+  Path? _getPath(Size size) {
     Path path;
     switch (type) {
       case GFBorderType.circle:
@@ -148,10 +149,9 @@ class CircularIntervalList<T> {
   }
 }
 
-Path dashPath(Path source,
-    {@required CircularIntervalList<double> dashedarray,
+Path? dashPath(Path? source,
+    {required CircularIntervalList<double> dashedarray,
     DashOffset dashOffset = const DashOffset.absolute(0)}) {
-  assert(dashedarray != null);
   if (source == null) {
     return null;
   }
@@ -177,12 +177,12 @@ enum _DashOffsetType { absolute, percentage }
 class DashOffset {
   ///gives offset of the dashed path that will be measured as a percentage which ranges from 0.0 to 1.0
   DashOffset.percentage(double percentage)
-      : _value = percentage.clamp(0.0, 1.0) ?? 0.0,
+      : _value = percentage.clamp(0.0, 1.0),
         _dashOffsetType = _DashOffsetType.percentage;
 
   ///gives offset of the dashed path that will be measured as a absolute value
   const DashOffset.absolute(double start)
-      : _value = start ?? 0.0,
+      : _value = start,
         _dashOffsetType = _DashOffsetType.absolute;
 
   final double _value;

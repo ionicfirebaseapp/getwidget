@@ -5,7 +5,7 @@ import 'package:getwidget/getwidget.dart';
 
 class GFDrawerHeaderPictures extends StatelessWidget {
   const GFDrawerHeaderPictures({
-    Key key,
+    Key? key,
     this.currentAccountPicture,
     this.otherAccountsPictures,
     this.closeButton,
@@ -13,15 +13,15 @@ class GFDrawerHeaderPictures extends StatelessWidget {
 
   /// A widget placed in the upper-left corner that represents the current
   /// user's account. Normally a [CircleAvatar].
-  final Widget currentAccountPicture;
+  final Widget? currentAccountPicture;
 
   /// A list of widgets that represent the current user's other accounts.
   /// Up to three of these widgets will be arranged in a row in the header's
   /// upper-right corner. Normally a list of [CircleAvatar] widgets.
-  final List<Widget> otherAccountsPictures;
+  final List<Widget>? otherAccountsPictures;
 
   /// widget onTap drawer get closed
-  final Widget closeButton;
+  final Widget? closeButton;
 
   @override
   Widget build(BuildContext context) => Stack(
@@ -37,7 +37,7 @@ class GFDrawerHeaderPictures extends StatelessWidget {
                   },
                   type: GFButtonType.transparent,
                 )
-              : closeButton,
+              : closeButton!,
           PositionedDirectional(
             top: 0,
             end: 0,
@@ -81,7 +81,7 @@ class GFDrawerHeader extends StatefulWidget {
   ///
   /// Requires one of its ancestors to be a [Material] widget.
   const GFDrawerHeader({
-    Key key,
+    Key? key,
     this.decoration,
     this.margin = const EdgeInsets.only(bottom: 8),
     this.currentAccountPicture,
@@ -94,19 +94,19 @@ class GFDrawerHeader extends StatefulWidget {
 
   /// The header's background. If decoration is null then a [BoxDecoration]
   /// with its background color set to the current theme's primaryColor is used.
-  final Decoration decoration;
+  final Decoration? decoration;
 
   /// The margin around the drawer header.
   final EdgeInsetsGeometry margin;
 
   /// A widget placed in the upper-left corner that represents the current
   /// user's account. Normally a [CircleAvatar].
-  final Widget currentAccountPicture;
+  final Widget? currentAccountPicture;
 
   /// A list of widgets that represent the current user's other accounts.
   /// Up to three of these widgets will be arranged in a row in the header's
   /// upper-right corner. Normally a list of [CircleAvatar] widgets.
-  final List<Widget> otherAccountsPictures;
+  final List<Widget>? otherAccountsPictures;
 
   /// A widget to be placed inside the drawer header, inset by the padding.
   ///
@@ -114,7 +114,7 @@ class GFDrawerHeader extends StatefulWidget {
   /// precisely, consider using an [Align] or [Center] widget.
   ///
   /// {@macro flutter.widgets.child}
-  final Widget child;
+  final Widget? child;
 
   /// The duration for animations of the [decoration].
   final Duration duration;
@@ -123,7 +123,7 @@ class GFDrawerHeader extends StatefulWidget {
   final Curve curve;
 
   /// widget onTap drawer get closed
-  final Widget closeButton;
+  final Widget? closeButton;
 
   @override
   _GFDrawerHeaderState createState() => _GFDrawerHeaderState();
