@@ -24,13 +24,18 @@ Future<void> main() async {
 
   testWidgets('GF Card can be created.', (tester) async {
     final GFCard card = GFCard(
-        color: color,
-        elevation: elevation,
-        borderOnForeground: borderOnForeground,
-        padding: padding,
-        margin: margin,
-        title: title,
-        content: childWidget);
+      color: color,
+      elevation: elevation,
+      borderOnForeground: borderOnForeground,
+      padding: padding,
+      margin: margin,
+      title: title,
+      content: childWidget,
+      image: Image.network(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
+      imageOverlay: const NetworkImage(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
+    );
 
     final TestApp app = TestApp(card);
 
@@ -52,16 +57,20 @@ Future<void> main() async {
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [Colors.red, Colors.pink]);
-    const GFCard card = GFCard(
+    final GFCard card = GFCard(
       gradient: gradient,
       elevation: elevation,
       borderOnForeground: borderOnForeground,
       padding: padding,
       margin: margin,
       title: title,
+      image: Image.network(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
+      imageOverlay: const NetworkImage(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
     );
 
-    const TestApp app = TestApp(card);
+    final TestApp app = TestApp(card);
 
     await tester.pumpWidget(app);
 
@@ -85,6 +94,8 @@ Future<void> main() async {
       image: bgImage,
       title: title,
       clipBehavior: clip,
+      imageOverlay: const NetworkImage(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
     );
 
     final TestApp app = TestApp(card);
@@ -104,6 +115,8 @@ Future<void> main() async {
       image: bgImage,
       title: title,
       boxFit: boxFit,
+      imageOverlay: const NetworkImage(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
     );
 
     final TestApp app = TestApp(card);
@@ -139,14 +152,18 @@ Future<void> main() async {
   testWidgets('GF Card with semantic container.', (tester) async {
     const isSemanticContainer = false;
 
-    const GFCard card = GFCard(
+    final GFCard card = GFCard(
       semanticContainer: isSemanticContainer,
       elevation: elevation,
       borderOnForeground: borderOnForeground,
       title: title,
+      image: Image.network(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
+      imageOverlay: const NetworkImage(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
     );
 
-    const TestApp app = TestApp(card);
+    final TestApp app = TestApp(card);
 
     await tester.pumpWidget(app);
 
@@ -168,6 +185,8 @@ Future<void> main() async {
       image: bgImage,
       title: title,
       titlePosition: titlePosition,
+      imageOverlay: const NetworkImage(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
     );
 
     final TestApp app = TestApp(card);
@@ -182,11 +201,14 @@ Future<void> main() async {
       'https://images.unsplash.com/photo-1547721064-da6cfb341d50',
     );
     final GFCard card = GFCard(
-        title: title,
-        border: border,
-        borderRadius: borderRadius,
-        image: bgImage,
-        content: content);
+      title: title,
+      border: border,
+      borderRadius: borderRadius,
+      image: bgImage,
+      content: content,
+      imageOverlay: const NetworkImage(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
+    );
 
     final TestApp app = TestApp(card);
 
@@ -219,6 +241,8 @@ Future<void> main() async {
       buttonBar: customButtonBar,
       title: title,
       image: bgImage,
+      imageOverlay: const NetworkImage(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
     );
 
     final TestApp app = TestApp(card);
@@ -236,12 +260,16 @@ Future<void> main() async {
       titleText: 'Card Title',
       icon: Icon(Icons.favorite_border),
     );
-    const GFCard card = GFCard(
+    final GFCard card = GFCard(
       color: color,
       title: customTitle,
+      image: Image.network(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
+      imageOverlay: const NetworkImage(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
     );
 
-    const TestApp app = TestApp(card);
+    final TestApp app = TestApp(card);
 
     await tester.pumpWidget(app);
 
@@ -259,12 +287,16 @@ Future<void> main() async {
       subTitleText: 'Sub title',
       icon: Icon(Icons.favorite_border),
     );
-    const GFCard card = GFCard(
+    final GFCard card = GFCard(
       color: color,
       title: customTitle,
+      image: Image.network(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
+      imageOverlay: const NetworkImage(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
     );
 
-    const TestApp app = TestApp(card);
+    final TestApp app = TestApp(card);
 
     await tester.pumpWidget(app);
 
@@ -289,6 +321,8 @@ Future<void> main() async {
       title: customTitle,
       imageOverlay: imageOverlay,
       colorFilter: colorFilter,
+      image: Image.network(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
     );
 
     final TestApp app = TestApp(card);
@@ -330,6 +364,8 @@ Future<void> main() async {
       imageOverlay: imageOverlay,
       colorFilter: colorFilter,
       buttonBar: customButtonBar,
+      image: Image.network(
+          'https://cdn.pixabay.com/photo/2021/02/01/16/22/flamingo-5971206__340.jpg'),
     );
 
     final TestApp app = TestApp(card);
