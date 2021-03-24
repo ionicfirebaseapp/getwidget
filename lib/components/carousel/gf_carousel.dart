@@ -97,8 +97,8 @@ class GFCarousel extends StatefulWidget {
   /// Defaults to matching platform conventions.
   final ScrollPhysics? scrollPhysics;
 
-  List<T?> map<T>(List list, Function handler) {
-    List<T?> result;
+  List<T> map<T>(List list, Function handler) {
+    List<T> result;
     result = [];
     for (var i = 0; i < list.length; i++) {
       result.add(handler(i, list[i]));
@@ -303,7 +303,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                           ),
                         ),
                         // ignore: avoid_as
-                      ) as List<Widget>,
+                      ),
                     ),
                   ),
                 )

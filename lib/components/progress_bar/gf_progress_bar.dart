@@ -220,10 +220,12 @@ class _GFProgressBarState extends State<GFProgressBar>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final item = <Widget?>[];
+
+    final item = List<Widget>.empty(growable: true);
     if (widget.leading != null) {
-      item.add(widget.leading);
+      item.add(widget.leading!);
     }
+
     final hasSetWidth = widget.width != null;
     final containerWidget = Container(
         margin: const EdgeInsets.only(left: 10, right: 10),
@@ -271,7 +273,7 @@ class _GFProgressBarState extends State<GFProgressBar>
       ));
     }
     if (widget.trailing != null) {
-      item.add(widget.trailing);
+      item.add(widget.trailing!);
     }
     return widget.type == GFProgressType.linear
         ? Material(
@@ -281,8 +283,7 @@ class _GFProgressBarState extends State<GFProgressBar>
                 child: Row(
                   mainAxisAlignment: widget.alignment,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  // ignore: avoid_as
-                  children: item as List<Widget>,
+                  children: item,
                 )),
           )
         : Material(
@@ -292,8 +293,7 @@ class _GFProgressBarState extends State<GFProgressBar>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  // ignore: avoid_as
-                  children: item as List<Widget>,
+                  children: item,
                 )),
           );
   }
