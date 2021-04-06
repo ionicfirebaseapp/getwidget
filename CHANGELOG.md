@@ -1,6 +1,11 @@
 # Changelog
 
 
+## 2.0.1-nullsafety.4 - 2021-03-17
+
+### Added
+* Added test cases.
+
 ## 2.0.0-nullsafety.3 - 2021-03-09
 
 ### Added
