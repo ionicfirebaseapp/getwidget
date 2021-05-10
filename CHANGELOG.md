@@ -1,6 +1,14 @@
 # Changelog
 
 
+## 2.0.2 - 2021-05-10
+
+### Fixed
+* couple of Null Safety related issues.
+* GFcarousel issues resolved.
+
+
+
 ## 2.0.1-nullsafety.4 - 2021-03-17
 
 ### Added
