@@ -52,7 +52,7 @@ class GFCarousel extends StatefulWidget {
   final num viewportFraction;
 
   /// The initial page to show when first creating the [GFCarousel]. Defaults to 0.
-  final num initialPage;
+  final int initialPage;
 
   /// Determines if slides should loop infinitely or be limited to item length. Defaults to true, i.e. infinite loop.
   final bool enableInfiniteScroll;
@@ -97,8 +97,8 @@ class GFCarousel extends StatefulWidget {
   /// Defaults to matching platform conventions.
   final ScrollPhysics? scrollPhysics;
 
-  List<T?> map<T>(List list, Function handler) {
-    List<T?> result;
+  List<T> map<T>(List list, Function handler) {
+    List<T> result;
     result = [];
     for (var i = 0; i < list.length; i++) {
       result.add(handler(i, list[i]));
@@ -125,23 +125,24 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
 
   /// The actual index of the [PageView].
   int realPage = 10000;
+  int? currentSlide;
 
   @override
   void initState() {
     super.initState();
     realPage = widget.enableInfiniteScroll
         // ignore: avoid_as
-        ? realPage + (widget.initialPage as int)
+        ? realPage + widget.initialPage
         // ignore: avoid_as
-        : widget.initialPage as int;
+        : widget.initialPage;
     pageController = PageController(
       // ignore: avoid_as
       viewportFraction: widget.viewportFraction as double,
       initialPage: widget.enableInfiniteScroll
           // ignore: avoid_as
-          ? realPage + (widget.initialPage as int)
+          ? realPage + widget.initialPage
           // ignore: avoid_as
-          : widget.initialPage as int,
+          : widget.initialPage,
     );
     timer = getPlayTimer();
   }
@@ -189,8 +190,6 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
     setState(() => currentSlide = index);
   }
 
-  int? currentSlide;
-
   @override
   Widget build(BuildContext context) => Stack(
         children: <Widget>[
@@ -206,25 +205,23 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                     : widget.items.length,
             onPageChanged: (int index) {
               int currentPage;
-              // ignore: avoid_as
-              currentPage = _getRealIndex(index + (widget.initialPage as int),
-                  realPage, widget.items.length);
+              currentPage = _getRealIndex(
+                  index + widget.initialPage, realPage, widget.items.length);
               if (widget.onPageChanged != null) {
                 widget.onPageChanged!(currentPage);
               }
-              if (widget.pagination == true && widget.onPageChanged == null) {
+              if (widget.pagination == true) {
                 onPageSlide(currentPage);
               }
             },
             itemBuilder: (BuildContext context, int i) {
-              final int index = _getRealIndex(
-                // ignore: avoid_as
-                i + (widget.initialPage as int),
+              int index;
+              index = _getRealIndex(
+                i + widget.initialPage,
                 realPage,
                 widget.items.length,
               );
-
-              currentSlide = index;
+              currentSlide = widget.initialPage;
               return AnimatedBuilder(
                 animation: pageController,
                 child: widget.items[index],
@@ -283,27 +280,29 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: widget.map<Widget>(
-                        widget.items,
-                        (pagerIndex, url) => Container(
-                          width:
-                              widget.pagerSize == null ? 8.0 : widget.pagerSize,
-                          height:
-                              widget.pagerSize == null ? 8.0 : widget.pagerSize,
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 2),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: currentSlide == pagerIndex
-                                ? widget.activeIndicator == null
-                                    ? const Color.fromRGBO(0, 0, 0, 0.9)
-                                    : widget.activeIndicator!
-                                : widget.passiveIndicator == null
-                                    ? const Color.fromRGBO(0, 0, 0, 0.4)
-                                    : widget.passiveIndicator!,
+                          widget.items,
+                          (pagerIndex, url) => Container(
+                                width: widget.pagerSize == null
+                                    ? 8.0
+                                    : widget.pagerSize,
+                                height: widget.pagerSize == null
+                                    ? 8.0
+                                    : widget.pagerSize,
+                                margin: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 2),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: currentSlide == pagerIndex
+                                      ? widget.activeIndicator == null
+                                          ? const Color.fromRGBO(0, 0, 0, 0.9)
+                                          : widget.activeIndicator!
+                                      : widget.passiveIndicator == null
+                                          ? const Color.fromRGBO(0, 0, 0, 0.4)
+                                          : widget.passiveIndicator!,
+                                ),
+                              )
+                          // ignore: avoid_as
                           ),
-                        ),
-                        // ignore: avoid_as
-                      ) as List<Widget>,
                     ),
                   ),
                 )
