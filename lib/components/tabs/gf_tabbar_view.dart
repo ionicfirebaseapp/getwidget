@@ -45,18 +45,15 @@ class GFTabBarView extends StatefulWidget {
   _GFTabBarViewState createState() => _GFTabBarViewState();
 }
 
-final PageScrollPhysics _kGFTabBarViewPhysics =
-    const PageScrollPhysics().applyTo(const ClampingScrollPhysics());
-
 class _GFTabBarViewState extends State<GFTabBarView> {
   TabController? _controller;
-  PageController? _pageController;
-  List<Widget>? _children;
-  List<Widget>? _childrenWithKey;
+  late PageController _pageController;
+  late List<Widget> _children;
+  late List<Widget> _childrenWithKey;
   int? _currentIndex;
   int _warpUnderwayCount = 0;
 
-  // If the GFTabBarView is rebuilt with a new tab controller, the caller should
+  // If the TabBarView is rebuilt with a new tab controller, the caller should
   // dispose the old one. In that case the old controller's animation will be
   // null and should not be accessed.
   bool get _controllerIsValid => _controller?.animation != null;
@@ -74,15 +71,17 @@ class _GFTabBarViewState extends State<GFTabBarView> {
       }
       return true;
     }());
+
     if (newController == _controller) {
       return;
     }
+
     if (_controllerIsValid) {
-      _controller?.animation?.removeListener(_handleTabControllerAnimationTick);
+      _controller!.animation!.removeListener(_handleTabControllerAnimationTick);
     }
     _controller = newController;
     if (_controller != null) {
-      _controller?.animation?.addListener(_handleTabControllerAnimationTick);
+      _controller!.animation!.addListener(_handleTabControllerAnimationTick);
     }
   }
 
@@ -114,7 +113,7 @@ class _GFTabBarViewState extends State<GFTabBarView> {
   @override
   void dispose() {
     if (_controllerIsValid) {
-      _controller?.animation?.removeListener(_handleTabControllerAnimationTick);
+      _controller!.animation!.removeListener(_handleTabControllerAnimationTick);
     }
     _controller = null;
     // We don't own the _controller Animation, so it's not disposed here.
@@ -127,47 +126,50 @@ class _GFTabBarViewState extends State<GFTabBarView> {
   }
 
   void _handleTabControllerAnimationTick() {
-    if (_controller != null) {
-      if (_warpUnderwayCount > 0 || !_controller!.indexIsChanging) {
-        return;
-      } // This widget is driving the controller's animation.
-      if (_controller!.index != _currentIndex) {
-        _currentIndex = _controller!.index;
-        _warpToCurrentIndex();
-      }
+    if (_warpUnderwayCount > 0 || !_controller!.indexIsChanging) {
+      return;
+    } // This widget is driving the controller's animation.
+
+    if (_controller!.index != _currentIndex) {
+      _currentIndex = _controller!.index;
+      _warpToCurrentIndex();
     }
   }
 
   Future<void> _warpToCurrentIndex() async {
-    if (!mounted || _pageController == null || _currentIndex == null) {
+    if (!mounted) {
       return Future<void>.value();
     }
 
-    if (_pageController!.page == _currentIndex!.toDouble()) {
+    if (_pageController.page == _currentIndex!.toDouble()) {
       return Future<void>.value();
     }
 
     final int previousIndex = _controller!.previousIndex;
     if ((_currentIndex! - previousIndex).abs() == 1) {
-      return _pageController?.animateToPage(_currentIndex!,
+      _warpUnderwayCount += 1;
+      await _pageController.animateToPage(_currentIndex!,
           duration: kTabScrollDuration, curve: Curves.ease);
+      _warpUnderwayCount -= 1;
+      return Future<void>.value();
     }
 
     assert((_currentIndex! - previousIndex).abs() > 1);
     final int initialPage = _currentIndex! > previousIndex
         ? _currentIndex! - 1
         : _currentIndex! + 1;
-    final List<Widget>? originalChildren = _childrenWithKey;
+    final List<Widget> originalChildren = _childrenWithKey;
     setState(() {
       _warpUnderwayCount += 1;
-      _childrenWithKey = List<Widget>.from(_childrenWithKey!, growable: false);
-      final Widget temp = _childrenWithKey![initialPage];
-      _childrenWithKey![initialPage] = _childrenWithKey![previousIndex];
-      _childrenWithKey![previousIndex] = temp;
-    });
-    _pageController?.jumpToPage(initialPage);
 
-    await _pageController?.animateToPage(_currentIndex!,
+      _childrenWithKey = List<Widget>.from(_childrenWithKey, growable: false);
+      final Widget temp = _childrenWithKey[initialPage];
+      _childrenWithKey[initialPage] = _childrenWithKey[previousIndex];
+      _childrenWithKey[previousIndex] = temp;
+    });
+    _pageController.jumpToPage(initialPage);
+
+    await _pageController.animateToPage(_currentIndex!,
         duration: kTabScrollDuration, curve: Curves.ease);
     if (!mounted) {
       return Future<void>.value();
@@ -187,30 +189,30 @@ class _GFTabBarViewState extends State<GFTabBarView> {
     if (_warpUnderwayCount > 0) {
       return false;
     }
+
     if (notification.depth != 0) {
-      return false;
-    }
-    if (_controller == null ||
-        _pageController == null ||
-        _pageController?.page != null ||
-        _controller?.index == null) {
       return false;
     }
 
     _warpUnderwayCount += 1;
     if (notification is ScrollUpdateNotification &&
         !_controller!.indexIsChanging) {
-      if ((_pageController!.page! - _controller!.index).abs() > 1.0) {
-        _controller!.index = _pageController!.page!.floor();
+      if ((_pageController.page! - _controller!.index).abs() > 1.0) {
+        _controller!.index = _pageController.page!.floor();
         _currentIndex = _controller!.index;
       }
       _controller!.offset =
-          (_pageController!.page! - _controller!.index).clamp(-1.0, 1.0);
+          (_pageController.page! - _controller!.index).clamp(-1.0, 1.0);
     } else if (notification is ScrollEndNotification) {
-      _controller!.index = _pageController!.page!.round();
+      _controller!.index = _pageController.page!.round();
       _currentIndex = _controller!.index;
+      if (!_controller!.indexIsChanging) {
+        _controller!.offset =
+            (_pageController.page! - _controller!.index).clamp(-1.0, 1.0);
+      }
     }
     _warpUnderwayCount -= 1;
+
     return false;
   }
 
@@ -231,10 +233,13 @@ class _GFTabBarViewState extends State<GFTabBarView> {
         child: PageView(
           dragStartBehavior: widget.dragStartBehavior,
           controller: _pageController,
+          // physics: widget.physics == null
+          //     ? _kGFTabBarViewPhysics
+          //     : _kGFTabBarViewPhysics.applyTo(widget.physics),
           physics: widget.physics == null
-              ? _kGFTabBarViewPhysics
-              : _kGFTabBarViewPhysics.applyTo(widget.physics),
-          children: _childrenWithKey!,
+              ? const PageScrollPhysics().applyTo(const ClampingScrollPhysics())
+              : const PageScrollPhysics().applyTo(widget.physics),
+          children: _childrenWithKey,
         ),
       ),
     );
