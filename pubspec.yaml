@@ -1,6 +1,6 @@
 name: getwidget
 description: GetWidget is open source library that come with pre-build 1000+ UI components. It makes development faster & more enjoyable. You can customize the component as per your need.
-version: 2.0.2
+version: 2.0.3
 homepage: https://github.com/ionicfirebaseapp/getwidget
 
 environment:
