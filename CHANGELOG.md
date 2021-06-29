@@ -1,6 +1,14 @@
 # Changelog
 
 
+## 2.0.3 - 2021-06-29
+* GFCard issue fixed.
+
+### Fixed
+* couple of Null Safety related issues.
+* GFcarousel issues resolved.
+
+
 ## 2.0.2 - 2021-05-10
 
 ### Fixed
