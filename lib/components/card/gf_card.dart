@@ -151,7 +151,7 @@ class GFCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: cardChild,
       color: color ?? cardTheme.color ?? Theme.of(context).cardColor,
-      image: imageOverlay!,
+      image: imageOverlay,
       boxFit: boxFit,
       colorFilter: colorFilter,
       border: border,
