@@ -5,6 +5,7 @@ class GFProgressBar extends StatefulWidget {
   /// Shows progress as a completed and remaining percentage in bar of given state
   GFProgressBar({
     Key? key,
+    this.margin = const EdgeInsets.only(left: 10, right: 10),
     this.percentage = 0.2,
     this.circleWidth = 5.0,
     this.circleStartAngle = 0.0,
@@ -71,6 +72,9 @@ class GFProgressBar extends StatefulWidget {
 
   /// type of EdgeInsets which gives padding to the GFProgressBar
   final EdgeInsets? padding;
+
+  /// type of EdgeInsets which gives margin to the GFProgressBar
+  final EdgeInsets? margin;
 
   /// set true if you want to animate the progress bar  from the last percentage value you set
   final bool animateFromLastPercentage;
@@ -228,7 +232,7 @@ class _GFProgressBarState extends State<GFProgressBar>
 
     final hasSetWidth = widget.width != null;
     final containerWidget = Container(
-        margin: const EdgeInsets.only(left: 10, right: 10),
+        margin: widget.margin,
         width: hasSetWidth ? widget.width : MediaQuery.of(context).size.width,
         height: widget.lineHeight,
         padding: widget.padding,
