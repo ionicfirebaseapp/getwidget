@@ -130,20 +130,21 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    currentSlide = widget.initialPage;
     realPage = widget.enableInfiniteScroll
         // ignore: avoid_as
         ? realPage + widget.initialPage
         // ignore: avoid_as
         : widget.initialPage;
     pageController = PageController(
-      // ignore: avoid_as
-      viewportFraction: widget.viewportFraction as double,
-      initialPage: widget.enableInfiniteScroll
-          // ignore: avoid_as
-          ? realPage + widget.initialPage
-          // ignore: avoid_as
-          : widget.initialPage,
-    );
+        // ignore: avoid_as
+        viewportFraction: widget.viewportFraction as double,
+        // initialPage: widget.enableInfiniteScroll
+        //     // ignore: avoid_as
+        //     ? realPage + widget.initialPage
+        //     // ignore: avoid_as
+        //     : widget.initialPage,
+        initialPage: realPage);
     timer = getPlayTimer();
   }
 
@@ -198,13 +199,15 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
             scrollDirection: widget.scrollDirection,
             controller: pageController,
             reverse: widget.reverse,
-            itemCount: widget.items.length == 1
-                ? widget.items.length
-                : widget.enableInfiniteScroll
-                    ? null
-                    : widget.items.length,
+            // itemCount: widget.items.length == 1
+            //     ? widget.items.length
+            //     : widget.enableInfiniteScroll
+            //         ? null
+            //         : widget.items.length,
+            itemCount: widget.enableInfiniteScroll ? null : widget.items.length,
             onPageChanged: (int index) {
               int currentPage;
+
               currentPage = _getRealIndex(
                   index + widget.initialPage, realPage, widget.items.length);
               if (widget.onPageChanged != null) {
