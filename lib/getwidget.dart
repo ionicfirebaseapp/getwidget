@@ -26,8 +26,8 @@ export 'package:getwidget/components/dropdown/gf_dropdown.dart';
 export 'package:getwidget/components/dropdown/gf_multiselect.dart';
 export 'package:getwidget/components/floating_widget/gf_floating_widget.dart';
 export 'package:getwidget/components/image/gf_image_overlay.dart';
-export 'package:getwidget/components/intro_screen/gf_intro_screen_bottom_navigation_bar.dart';
 export 'package:getwidget/components/intro_screen/gf_intro_screen.dart';
+export 'package:getwidget/components/intro_screen/gf_intro_screen_bottom_navigation_bar.dart';
 export 'package:getwidget/components/list_tile/gf_list_tile.dart';
 export 'package:getwidget/components/loader/gf_loader.dart';
 export 'package:getwidget/components/progress_bar/gf_progress_bar.dart';
@@ -49,6 +49,7 @@ export 'package:getwidget/components/typography/gf_typography.dart';
 
 export 'colors/gf_color.dart';
 export 'direction/gf_shimmer_direction.dart';
+export 'position/gf_badge_position.dart';
 export 'position/gf_position.dart';
 export 'shape/gf_avatar_shape.dart';
 export 'shape/gf_badge_shape.dart';
