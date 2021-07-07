@@ -11,15 +11,6 @@ void main() {
   const size = GFSize.SMALL;
   const childWidget = Text('tap me');
 
-  testWidgets('GF Button without padding, shape', (tester) async {
-    expect(
-      () => const GFButton(
-        onPressed: null,
-      ),
-      throwsAssertionError,
-    );
-  });
-
   testWidgets('Disabled GF Button can be constructed', (tester) async {
     const buttonKey = Key('header');
 

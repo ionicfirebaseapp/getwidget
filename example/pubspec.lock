@@ -92,7 +92,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "2.0.0-nullsafety.3"
+    version: "2.0.3"
   js:
     dependency: transitive
     description:

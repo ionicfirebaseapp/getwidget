@@ -12,7 +12,7 @@ class GFImageOverlay extends StatelessWidget {
     this.color,
     this.padding,
     this.margin,
-    required this.image,
+    this.image,
     this.child = const Text(''),
     this.alignment,
     this.borderRadius,
@@ -39,7 +39,7 @@ class GFImageOverlay extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
 
   /// The [Image] widget used to display image
-  final ImageProvider image;
+  final ImageProvider? image;
 
   /// The [child] contained by the container, used to display text over image
   final Widget child;
@@ -92,7 +92,7 @@ class GFImageOverlay extends StatelessWidget {
           image: DecorationImage(
             fit: boxFit,
             colorFilter: colorFilter,
-            image: image,
+            image: image!,
           ),
         ),
       );

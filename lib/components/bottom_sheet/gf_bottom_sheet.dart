@@ -258,7 +258,7 @@ class GFBottomSheetController extends ValueNotifier<bool> {
 
   // ignore: unnecessary_getters_setters
   double? get height => _height;
-  bool? get isBottomSheetOpened => value;
+  bool get isBottomSheetOpened => value;
   void hideBottomSheet() => value = false;
   void showBottomSheet() => value = true;
 }

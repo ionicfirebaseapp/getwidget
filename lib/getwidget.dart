@@ -1,7 +1,7 @@
 library getwidget;
 
 //exports components
-export 'package:getwidget/components/accordian/gf_accordian.dart';
+export 'package:getwidget/components/accordion/gf_accordion.dart';
 export 'package:getwidget/components/alert/gf_alert.dart';
 export 'package:getwidget/components/animation/gf_animation.dart';
 export 'package:getwidget/components/appbar/gf_appbar.dart';
