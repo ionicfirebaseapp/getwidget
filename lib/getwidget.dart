@@ -51,6 +51,7 @@ export 'colors/gf_color.dart';
 export 'direction/gf_shimmer_direction.dart';
 export 'position/gf_badge_position.dart';
 export 'position/gf_position.dart';
+export 'position/gf_toast_position.dart';
 export 'shape/gf_avatar_shape.dart';
 export 'shape/gf_badge_shape.dart';
 export 'shape/gf_button_shape.dart';
