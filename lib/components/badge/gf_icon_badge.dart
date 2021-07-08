@@ -29,8 +29,6 @@ class GFIconBadge extends StatefulWidget {
   _GFIconBadgeState createState() => _GFIconBadgeState();
 }
 
-
-
 class _GFIconBadgeState extends State<GFIconBadge> {
   @override
   Widget build(BuildContext context) => Container(
