@@ -1,177 +1,214 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:getwidget/getwidget.dart';
+import 'package:getwidget/position/gf_toast_position.dart';
 
-class GFToast extends StatefulWidget {
-  ///Creates [GFToast] that can be used to display quick warning or error messages.
-  /// Toast has to be wrap inside the body like [GFFloatingWidget]. See [GFFloatingWidget]
-  const GFToast({
-    Key? key,
-    this.child,
-    this.button,
-    this.backgroundColor,
-    this.text,
-    this.width,
-    this.type = GFToastType.basic,
-    this.autoDismiss = true,
-    this.alignment,
-    this.animationDuration = const Duration(milliseconds: 300),
-    this.duration = const Duration(milliseconds: 300),
-    this.textStyle = const TextStyle(color: Colors.white70),
-    this.autoDismissDuration = const Duration(milliseconds: 3000),
-  }) : super(key: key);
+class GFToast {
+  /// text of type [String] display on toast
+  String? text;
 
-  /// child of  type [Widget]is alternative to text key. text will get priority over child
-  final Widget? child;
+  /// defines the duration of time toast display over screen
+  int? toastDuration;
 
-  /// button of type [Widget],or you can use [GFButton] for easy implementation with [GFToast]
-  final Widget? button;
+  /// defines the position of toast over the screen
+  GFToastPosition? toastPosition;
 
-  ///pass color of type [Color] or [GFColors] for background of [GFToast]
-  final Color? backgroundColor;
+  /// defines the background color of the toast
+  Color? backgroundColor;
 
-  /// text of type [String] is alternative to child. text will get priority over child
-  final String? text;
+  /// defines the test style of the toast text
+  TextStyle? textStyle;
 
-  /// textStyle of type [textStyle] will be applicable to text only and not for the child
-  final TextStyle textStyle;
+  /// defines the border radius of the toast
+  double? toastBorderRadius;
 
-  /// width of type [double] used to control the width of the [GFToast]
-  final double? width;
+  /// defines the border of the toast
+  Border? border;
 
-  ///type of [GFToastType] which takes the type ie, basic, rounded and fullWidth for the [GFToast]
-  final GFToastType type;
+  /// defines the trailing widget of the toast
+  late Widget trailing;
 
-  ///type of [bool] which takes bool values ie, true or false to automatically hide the [GFToast] message
-  final bool autoDismiss;
-
-  ///type of [Duration] which takes the duration of the fade in animation
-  final Duration animationDuration;
-
-  ///type of [Duration] which takes the duration of the animation
-  final Duration duration;
-
-  ///type of [Duration] which takes the duration of the autoDismiss
-  final Duration autoDismissDuration;
-
-  /// type of [Alignment] used to align the text inside the toast
-  final Alignment? alignment;
-
-  @override
-  _GFToastState createState() => _GFToastState();
+  // ignore: type_annotate_public_apis, always_declare_return_types
+  static showToast(
+    text,
+    BuildContext context, {
+    toastDuration,
+    toastPosition,
+    backgroundColor = const Color(0xAA000000),
+    textStyle = const TextStyle(fontSize: 15, color: Colors.white),
+    toastBorderRadius = 20.0,
+    border,
+    trailing,
+  }) {
+    assert(text != null);
+    ToastView.dismiss();
+    ToastView.createView(text, context, toastDuration, toastPosition,
+        backgroundColor, textStyle, toastBorderRadius, border, trailing);
+  }
 }
 
-class _GFToastState extends State<GFToast> with TickerProviderStateMixin {
-  late AnimationController animationController, fadeAnimationController;
-  late Animation<double> animation, fadeAnimation;
-  Timer? timer;
-  bool hideToast = false;
+class ToastView {
+  static final ToastView _instance = ToastView._internal();
+  // ignore: sort_constructors_first
+  factory ToastView() => _instance;
+  // ignore: sort_constructors_first
+  ToastView._internal();
+
+  static OverlayState? overlayState;
+  static OverlayEntry? _overlayEntry;
+  static bool _isVisible = false;
+
+  // ignore: avoid_void_async
+  static void createView(
+      String text,
+      BuildContext context,
+      int? toastDuration,
+      GFToastPosition? toastPosition,
+      Color backgroundColor,
+      TextStyle textStyle,
+      double toastBorderRadius,
+      Border? border,
+      // ignore: type_annotate_public_apis
+      trailing) async {
+    overlayState = Overlay.of(context, rootOverlay: false);
+
+    final Widget toastChild = ToastCard(
+        Container(
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(toastBorderRadius),
+            border: border,
+          ),
+          margin: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+          child: trailing == null
+              ? Text(text, softWrap: true, style: textStyle)
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(text, style: textStyle),
+                    ),
+                    const SizedBox(
+                      width: 6,
+                    ),
+                    trailing
+                  ],
+                ),
+        ),
+        Duration(seconds: toastDuration ?? 2),
+        fadeDuration: 500);
+
+    _overlayEntry = OverlayEntry(
+        builder: (BuildContext context) =>
+            _showWidgetBasedOnPosition(toastChild, toastPosition));
+
+    _isVisible = true;
+    overlayState!.insert(_overlayEntry!);
+    await Future.delayed(Duration(seconds: toastDuration ?? 2));
+    await dismiss();
+  }
+
+  static Positioned _showWidgetBasedOnPosition(
+      Widget child, GFToastPosition? toastPosition) {
+    switch (toastPosition) {
+      case GFToastPosition.BOTTOM:
+        return Positioned(bottom: 60, left: 18, right: 18, child: child);
+      case GFToastPosition.BOTTOM_LEFT:
+        return Positioned(bottom: 60, left: 18, child: child);
+      case GFToastPosition.BOTTOM_RIGHT:
+        return Positioned(bottom: 60, right: 18, child: child);
+      case GFToastPosition.CENTER:
+        return Positioned(
+            top: 60, bottom: 60, left: 18, right: 18, child: child);
+      case GFToastPosition.CENTER_LEFT:
+        return Positioned(top: 60, bottom: 60, left: 18, child: child);
+      case GFToastPosition.CENTER_RIGHT:
+        return Positioned(top: 60, bottom: 60, right: 18, child: child);
+      case GFToastPosition.TOP_LEFT:
+        return Positioned(top: 110, left: 18, child: child);
+      case GFToastPosition.TOP_RIGHT:
+        return Positioned(top: 110, right: 18, child: child);
+      default:
+        return Positioned(top: 110, left: 18, right: 18, child: child);
+    }
+  }
+
+  static Future<void> dismiss() async {
+    if (!_isVisible) {
+      return;
+    }
+    _isVisible = false;
+    _overlayEntry?.remove();
+  }
+}
+
+class ToastCard extends StatefulWidget {
+  const ToastCard(this.child, this.duration,
+      {Key? key, this.fadeDuration = 500})
+      : super(key: key);
+
+  final Widget child;
+  final Duration duration;
+  final int fadeDuration;
+
+  @override
+  ToastStateFulState createState() => ToastStateFulState();
+}
+
+class ToastStateFulState extends State<ToastCard>
+    with SingleTickerProviderStateMixin {
+  void showAnimation() {
+    _animationController!.forward();
+  }
+
+  void hideAnimation() {
+    _animationController!.reverse();
+    _timer?.cancel();
+  }
+
+  AnimationController? _animationController;
+  late Animation _fadeAnimation;
+
+  Timer? _timer;
 
   @override
   void initState() {
-    animationController =
-        AnimationController(duration: widget.duration, vsync: this);
-    animation = CurvedAnimation(
-      parent: animationController,
-      curve: Curves.easeIn,
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: widget.fadeDuration),
     );
-
-    if (mounted) {
-      animationController.forward();
-      fadeAnimationController =
-          AnimationController(duration: widget.animationDuration, vsync: this)
-            ..addListener(() => setState(() {}));
-      fadeAnimation = Tween<double>(
-        begin: 0,
-        end: 1,
-      ).animate(fadeAnimationController);
-      timer = Timer(widget.duration, () {
-        if (mounted) {
-          fadeAnimationController.forward();
-        }
-      });
-      fadeAnimation = Tween<double>(
-        begin: 1,
-        end: 0,
-      ).animate(fadeAnimationController);
-      fadeAnimation.addStatusListener((AnimationStatus state) {
-        if (fadeAnimation.isCompleted && widget.autoDismiss) {
-          setState(() {
-            hideToast = true;
-          });
-        }
-      });
-    }
-
+    _fadeAnimation =
+        CurvedAnimation(parent: _animationController!, curve: Curves.easeIn);
     super.initState();
+
+    showAnimation();
+    _timer = Timer(widget.duration, hideAnimation);
+  }
+
+  @override
+  void deactivate() {
+    _timer?.cancel();
+    _animationController!.stop();
+    super.deactivate();
   }
 
   @override
   void dispose() {
-    animationController.dispose();
-    fadeAnimationController.dispose();
-    timer?.cancel();
+    _timer?.cancel();
+    _animationController?.dispose();
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) => hideToast
-      ? Container()
-      : FadeTransition(
-          opacity: widget.autoDismiss ? fadeAnimation : animation,
-          child: Column(
-            children: <Widget>[
-              Container(
-                width: widget.type == GFToastType.fullWidth
-                    ? MediaQuery.of(context).size.width
-                    : widget.width ?? MediaQuery.of(context).size.width * 0.885,
-                constraints: const BoxConstraints(minHeight: 50),
-                margin: widget.type == GFToastType.fullWidth
-                    ? const EdgeInsets.only(left: 0, right: 0)
-                    : const EdgeInsets.only(left: 10, right: 10),
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    borderRadius: widget.type == GFToastType.basic
-                        ? BorderRadius.circular(0)
-                        : widget.type == GFToastType.rounded
-                            ? BorderRadius.circular(10)
-                            : BorderRadius.zero,
-                    color: widget.backgroundColor ?? const Color(0xff323232),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.40),
-                        blurRadius: 6,
-                      )
-                    ]),
-                child: Row(
-                  children: <Widget>[
-                    Flexible(
-                      flex: 7,
-                      fit: FlexFit.tight,
-                      child: Align(
-                        alignment: widget.alignment ?? Alignment.topLeft,
-                        child: widget.text != null
-                            ? Text(widget.text!, style: widget.textStyle)
-                            : (widget.child ?? Container()),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    widget.button != null
-                        ? Flexible(
-                            flex: 4,
-                            fit: FlexFit.tight,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: widget.button,
-                            ))
-                        : Container()
-                  ],
-                ),
-              ),
-            ],
+  Widget build(BuildContext context) => FadeTransition(
+        opacity: _fadeAnimation as Animation<double>,
+        child: Center(
+          child: Material(
+            color: Colors.transparent,
+            child: widget.child,
           ),
-        );
+        ),
+      );
 }
