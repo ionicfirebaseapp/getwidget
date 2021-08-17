@@ -114,6 +114,14 @@ class _GFAccordionState extends State<GFAccordion>
   }
 
   @override
+  void didUpdateWidget(GFAccordion oldWidget) {
+    if (oldWidget.showAccordion != widget.showAccordion) {
+      _toggleCollapsed(false);
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   void dispose() {
     animationController.dispose();
     controller.dispose();
@@ -127,7 +135,9 @@ class _GFAccordionState extends State<GFAccordion>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             InkWell(
-              onTap: _toggleCollapsed,
+              onTap: () {
+                _toggleCollapsed(true);
+              },
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: widget.titleBorderRadius,
@@ -170,7 +180,7 @@ class _GFAccordionState extends State<GFAccordion>
         ),
       );
 
-  void _toggleCollapsed() {
+  void _toggleCollapsed(bool changeShowAccordionState) {
     setState(() {
       switch (controller.status) {
         case AnimationStatus.completed:
@@ -181,7 +191,7 @@ class _GFAccordionState extends State<GFAccordion>
           break;
         default:
       }
-      showAccordion = !showAccordion;
+      showAccordion = changeShowAccordionState ? !widget.showAccordion : widget.showAccordion;
       if (widget.onToggleCollapsed != null) {
         widget.onToggleCollapsed!(showAccordion);
       }
