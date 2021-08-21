@@ -1,8 +1,8 @@
 [![pub package](https://img.shields.io/pub/v/getwidget.svg)](https://pub.dartlang.org/packages/getwidget) [![Build Status](https://travis-ci.org/ionicfirebaseapp/getwidget.svg?branch=master)](https://travis-ci.com/ionicfirebaseapp/getwidget) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT) [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/ionicfirebaseapp/getwidget/blob/master/LICENSE) [![Twitter Follow](https://img.shields.io/twitter/follow/getwidgetdev.svg?style=social)](https://twitter.com/getwidgetdev)
 
 <p align="center">
-  <a href="https://docs.getwidget.dev/" target="_blank">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/logo.black_iOBoLWdj2I.png" alt="GetWidget">
+  <a href="https://www.getwidget.dev/" target="_blank">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/logo.black_iOBoLWdj2I.png" alt="GetWidget UI library">
   </a>
 </p>
 
@@ -47,9 +47,6 @@ we have launched the library with the following components :
           <img src="https://ik.imagekit.io/ionicfirebaseapp/tr:dpr-auto,tr:w-auto/playstore_NQQBiJIQ1.png" alt="GetWidget playstore Demo">
         </a>
       </p>
-  
-  ### IOS Store and Web Demo
-   Coming Soon
  
  ### An Open-Source News App Built With GetWidget & Flutter
  Ionicfirebaseapp.com has been developed an open-source News Mobile App with GetWidget, So can start building app faster to get an overview and do customization. You can Download News App Souce Code here: https://www.ionicfirebaseapp.com/products/flutter-news-app  
