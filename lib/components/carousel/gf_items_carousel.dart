@@ -26,9 +26,9 @@ class GFItemsCarousel extends StatefulWidget {
   /// Creates slide show of Images and [Widget] with animation for sliding.
   /// Shows multiple items on one slide, items number depends on rowCount.
   const GFItemsCarousel({
-    Key key,
-    this.rowCount,
-    this.children,
+    Key? key,
+    required this.rowCount,
+    required this.children,
     this.onSlideStart,
     this.onSlide,
     this.onSlideEnd,
@@ -42,15 +42,15 @@ class GFItemsCarousel extends StatefulWidget {
   final List<Widget> children;
 
   /// When a pointer has contacted the screen and has begun to move.
-  final GFItemsCarouselSlideStartCallback onSlideStart;
+  final GFItemsCarouselSlideStartCallback? onSlideStart;
 
   /// When a pointer that is in contact with the screen and moving
   /// has moved again.
-  final GFItemsCarouselSlideCallback onSlide;
+  final GFItemsCarouselSlideCallback? onSlide;
 
   /// When a pointer that was previously in contact with the screen
   /// and moving is no longer in contact with the screen.
-  final GFItemsCarouselSlideEndCallback onSlideEnd;
+  final GFItemsCarouselSlideEndCallback? onSlideEnd;
 
   /// defines the height of items
   final double itemHeight;
@@ -73,10 +73,10 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
   /// Width of cells container
   double width = 0;
 
-  AnimationController animationController;
+  late AnimationController animationController;
 
   /// Shift of cells container
-  double offset;
+  late double offset;
 
   @override
   void initState() {
@@ -110,7 +110,7 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
   void onSlideStart(DragStartDetails details) {
     animationController.stop();
     if (widget.onSlideStart != null) {
-      widget.onSlideStart(details);
+      widget.onSlideStart!(details);
     }
   }
 
@@ -119,7 +119,7 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
       offset = calculateOffset(3 * details.delta.dx);
     });
     if (widget.onSlide != null) {
-      widget.onSlide(details);
+      widget.onSlide!(details);
     }
   }
 
@@ -154,7 +154,7 @@ class _GFItemsCarouselState extends State<GFItemsCarousel>
 
     animationController.forward();
     if (widget.onSlideEnd != null) {
-      widget.onSlideEnd(details);
+      widget.onSlideEnd!(details);
     }
   }
 

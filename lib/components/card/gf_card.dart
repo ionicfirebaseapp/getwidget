@@ -13,7 +13,7 @@ class GFCard extends StatelessWidget {
   /// The [elevation] must be null or non-negative. The [borderOnForeground]
   /// must not be null.
   const GFCard(
-      {Key key,
+      {Key? key,
       this.color,
       this.elevation,
       this.shape,
@@ -25,6 +25,8 @@ class GFCard extends StatelessWidget {
       this.title,
       this.content,
       this.image,
+      this.showImage = false,
+      this.showOverlayImage = false,
       this.buttonBar,
       this.imageOverlay,
       this.titlePosition,
@@ -35,7 +37,6 @@ class GFCard extends StatelessWidget {
       this.height,
       this.gradient})
       : assert(elevation == null || elevation >= 0.0),
-        assert(borderOnForeground != null),
         assert(
             color == null || gradient == null,
             'Cannot provide both a color and a decoration\n'
@@ -43,69 +44,73 @@ class GFCard extends StatelessWidget {
         super(key: key);
 
   /// defines the card's height
-  final double height;
+  final double? height;
 
   /// [GFPosition] titlePosition helps to set titlebar at top of card
-  final GFPosition titlePosition;
+  final GFPosition? titlePosition;
 
   /// The card's background color.
-  final Color color;
+  final Color? color;
 
   /// The z-coordinate at which to place this card. This controls the size of the shadow below the card.
-  final double elevation;
+  final double? elevation;
 
   /// The shape of the card's [Material].
-  final ShapeBorder shape;
+  final ShapeBorder? shape;
 
   /// Whether to paint the [shape] border in front of the child.
   final bool borderOnForeground;
 
   /// If this property is null then [ThemeData.cardTheme.clipBehavior] is used.
-  final Clip clipBehavior;
+  final Clip? clipBehavior;
 
   /// The empty space that surrounds the card. Defines the card's outer [Container.margin].
-  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry? margin;
 
   /// The empty space that surrounds the card. Defines the card's outer [Container.padding]..
   final EdgeInsetsGeometry padding;
 
   /// Whether this widget represents a single semantic container, or if false
   /// a collection of individual semantic nodes.
-  final bool semanticContainer;
+  final bool? semanticContainer;
 
   /// The title to display inside the GFTitleBar. see GFTitleBar
-  final GFListTile title;
+  final GFListTile? title;
 
   /// widget can be used to define content
-  final Widget content;
+  final Widget? content;
+
+  final bool showImage;
+
+  final bool showOverlayImage;
 
   /// image widget can be used
-  final Image image;
+  final Image? image;
 
   /// overlay image [GFImageOverlay] widget can be used
   /// to display image with shaded overlay
-  final ImageProvider imageOverlay;
+  final ImageProvider? imageOverlay;
 
   /// widget can be used to define buttons bar, see [GFButtonBar]
-  final GFButtonBar buttonBar;
+  final GFButtonBar? buttonBar;
 
   /// How the image should be inscribed into the box.
   /// The default is [BoxFit.scaleDown] if centerSlice is null, and
   /// [BoxFit.fill] if centerSlice is not null.
   /// [boxFit] for only [GFImageOverlay]
-  final BoxFit boxFit;
+  final BoxFit? boxFit;
 
   /// A color filter to apply to the image before painting it.
-  final ColorFilter colorFilter;
+  final ColorFilter? colorFilter;
 
   /// The corners of this [GFCard] are rounded by this [BorderRadius].
-  final BorderRadiusGeometry borderRadius;
+  final BorderRadiusGeometry? borderRadius;
 
   /// A border to draw above the [GFCard].
-  final Border border;
+  final Border? border;
 
   /// defines the gradient background
-  final LinearGradient gradient;
+  final LinearGradient? gradient;
 
   static const double _defaultElevation = 1;
   static const Clip _defaultClipBehavior = Clip.none;
@@ -120,15 +125,18 @@ class GFCard extends StatelessWidget {
         children: <Widget>[
           titlePosition == GFPosition.start
               ? title ?? Container()
-              : image != null
+              : showImage != false
                   ? ClipRRect(
-                      borderRadius: borderRadius ??
+                      // ignore: avoid_as
+                      borderRadius: borderRadius as BorderRadius? ??
                           const BorderRadius.vertical(top: Radius.circular(4)),
                       child: image,
                     )
                   : Container(),
           titlePosition == GFPosition.start
-              ? image ?? Container()
+              ? showImage != false
+                  ? Container(child: image)
+                  : Container()
               : title ?? Container(),
           Padding(
             padding: padding,
@@ -174,9 +182,9 @@ class GFCard extends StatelessWidget {
               clipBehavior: clipBehavior ??
                   cardTheme.clipBehavior ??
                   _defaultClipBehavior,
-              child: imageOverlay == null ? cardChild : overlayImage,
+              child: showOverlayImage == false ? cardChild : overlayImage,
             )
-          : imageOverlay == null
+          : showOverlayImage == false
               ? cardChild
               : overlayImage,
     );

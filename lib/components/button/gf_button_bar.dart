@@ -6,7 +6,7 @@ class GFButtonBar extends StatelessWidget {
   /// Create buttons bar for all types of buttons.
   /// check [GFButton] and [GFIconButton]
   const GFButtonBar({
-    Key key,
+    Key? key,
     this.direction = Axis.horizontal,
     this.alignment = WrapAlignment.center,
     this.spacing = 8.0,
@@ -15,7 +15,7 @@ class GFButtonBar extends StatelessWidget {
     this.crossAxisAlignment = WrapCrossAlignment.start,
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
-    this.children = const <Widget>[],
+    required this.children,
     this.padding = const EdgeInsets.all(0),
   }) : super(key: key);
 
@@ -85,6 +85,10 @@ class GFButtonBar extends StatelessWidget {
   /// Defaults to 0.0.
   final double runSpacing;
 
+  /// The buttons to arrange horizontally.
+  /// Typically [GFButton] or [GFIconButton] widgets.
+  final List<Widget> children;
+
   /// How the children within a run should be aligned relative to each other in
   /// the cross axis.
   ///
@@ -128,7 +132,7 @@ class GFButtonBar extends StatelessWidget {
   /// [crossAxisAlignment] is either [WrapCrossAlignment.start] or
   /// [WrapCrossAlignment.end], or there's more than one child, then the
   /// [textDirection] (or the ambient [Directionality]) must not be null.
-  final TextDirection textDirection;
+  final TextDirection? textDirection;
 
   /// Determines the order to lay children out vertically and how to interpret
   /// `start` and `end` in the vertical direction.
@@ -153,10 +157,6 @@ class GFButtonBar extends StatelessWidget {
   /// [WrapCrossAlignment.end], or there's more than one child, then the
   /// [verticalDirection] must not be null.
   final VerticalDirection verticalDirection;
-
-  /// The buttons to arrange horizontally.
-  /// Typically [RaisedButton] or [GFButton] or [GFIconButton] widgets.
-  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) => Padding(

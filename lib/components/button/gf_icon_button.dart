@@ -7,17 +7,17 @@ import 'package:getwidget/getwidget.dart';
 class GFIconButton extends StatefulWidget {
   /// Create icon buttons of all types. check out [GFButton] for buttons
   const GFIconButton({
-    Key key,
+    Key? key,
     this.iconSize = 0.0,
     this.padding = const EdgeInsets.all(8),
     this.alignment = Alignment.center,
-    @required this.icon,
+    required this.icon,
     this.focusColor,
     this.hoverColor,
     this.highlightColor,
     this.splashColor,
     this.disabledColor,
-    @required this.onPressed,
+    required this.onPressed,
     this.focusNode,
     this.autofocus = false,
     this.tooltip,
@@ -29,12 +29,7 @@ class GFIconButton extends StatefulWidget {
     this.size = GFSize.MEDIUM,
     this.buttonBoxShadow,
     this.borderSide,
-  })  : assert(iconSize != null),
-        assert(padding != null),
-        assert(alignment != null),
-        assert(autofocus != null),
-        assert(icon != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// The size of the icon inside the button.
   final double iconSize;
@@ -49,10 +44,10 @@ class GFIconButton extends StatefulWidget {
   final Widget icon;
 
   /// The color for the button's icon when it has the input focus.
-  final Color focusColor;
+  final Color? focusColor;
 
   /// The color for the button's icon when a pointer is hovering over it.
-  final Color hoverColor;
+  final Color? hoverColor;
 
   /// Button type of [GFButtonType] i.e, solid, outline, outline2x transparent
   final GFButtonType type;
@@ -64,53 +59,53 @@ class GFIconButton extends StatefulWidget {
   final Color color;
 
   /// Pass [GFColors] or [Color]. The primary color of the button when the button is in the down (pressed) state.
-  final Color splashColor;
+  final Color? splashColor;
 
   /// Pass [GFColors] or [Color]. The secondary color of the button when the button is in the down (pressed) state.
-  final Color highlightColor;
+  final Color? highlightColor;
 
   /// Pass [GFColors] or [Color]. The color to use for the icon inside the button, if the icon is disabled.
-  final Color disabledColor;
+  final Color? disabledColor;
 
   /// The callback that is called when the button is tapped or otherwise activated.
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// {@macro flutter.widgets.Focus.focusNode}
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
   /// Text that describes the action that will occur when the button is pressed.
-  final String tooltip;
+  final String? tooltip;
 
   /// The box shadow for the button's [Material], if GFButtonType is solid
-  final BoxShadow boxShadow;
+  final BoxShadow? boxShadow;
 
   /// The shape and border for the button's [Material].
-  final ShapeBorder borderShape;
+  final ShapeBorder? borderShape;
 
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
   final double size;
 
   /// on true state default box shadow appears around button, if GFButtonType is solid
-  final bool buttonBoxShadow;
+  final bool? buttonBoxShadow;
 
   /// The border side for the button's [Material].
-  final BorderSide borderSide;
+  final BorderSide? borderSide;
 
   @override
   _GFIconButtonState createState() => _GFIconButtonState();
 }
 
 class _GFIconButtonState extends State<GFIconButton> {
-  Color color;
-  Function onPressed;
-  GFButtonType type;
-  GFIconButtonShape shape;
-  BoxShadow boxShadow;
-  double height;
-  double width;
+  late Color color;
+  Function? onPressed;
+  late GFButtonType type;
+  late GFIconButtonShape shape;
+  BoxShadow? boxShadow;
+  double? height;
+  double? width;
   double iconPixel = 18;
 
   @override
@@ -127,14 +122,14 @@ class _GFIconButtonState extends State<GFIconButton> {
       return color;
     } else {
       if (widget.disabledColor != null) {
-        return widget.disabledColor;
+        return widget.disabledColor!;
       } else {
         return color.withOpacity(0.48);
       }
     }
   }
 
-  Color getDisabledFillColor() {
+  Color? getDisabledFillColor() {
     if (widget.type == GFButtonType.transparent ||
         widget.type == GFButtonType.outline ||
         widget.type == GFButtonType.outline2x) {
@@ -147,7 +142,7 @@ class _GFIconButtonState extends State<GFIconButton> {
     }
   }
 
-  Color getColor() {
+  Color? getColor() {
     if (widget.type == GFButtonType.transparent ||
         widget.type == GFButtonType.outline ||
         widget.type == GFButtonType.outline2x) {
@@ -157,7 +152,7 @@ class _GFIconButtonState extends State<GFIconButton> {
     }
   }
 
-  Color getIconColor() {
+  Color? getIconColor() {
     if (widget.type == GFButtonType.transparent ||
         widget.type == GFButtonType.outline ||
         widget.type == GFButtonType.outline2x) {
@@ -182,12 +177,12 @@ class _GFIconButtonState extends State<GFIconButton> {
     final BorderSide outlineBorder = BorderSide(
       color: widget.borderSide == null
           ? getBorderColor()
-          : widget.borderSide.color,
-      width: widget.borderSide?.width == null
+          : widget.borderSide!.color,
+      width: (widget.borderSide?.width == null
           ? widget.type == GFButtonType.outline2x
               ? 2.0
               : 1.0
-          : widget.borderSide?.width,
+          : widget.borderSide?.width)!,
     );
 
     final BorderSide shapeBorder = widget.type == GFButtonType.outline ||
@@ -199,7 +194,7 @@ class _GFIconButtonState extends State<GFIconButton> {
               width: 0,
             );
 
-    ShapeBorder shapeBorderType;
+    ShapeBorder? shapeBorderType;
 
     if (shape == GFIconButtonShape.pills) {
       shapeBorderType = RoundedRectangleBorder(
@@ -263,12 +258,12 @@ class _GFIconButtonState extends State<GFIconButton> {
 
     if (widget.tooltip != null) {
       result = Tooltip(
-        message: widget.tooltip,
+        message: widget.tooltip!,
         child: result,
       );
     }
 
-    BoxDecoration getBoxShadow() {
+    BoxDecoration? getBoxShadow() {
       if (widget.type != GFButtonType.transparent) {
         if (widget.boxShadow == null && widget.buttonBoxShadow != true) {
           return null;

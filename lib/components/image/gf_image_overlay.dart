@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class GFImageOverlay extends StatelessWidget {
   /// Creates a image widget with shaded overlay.
   const GFImageOverlay({
-    Key key,
+    Key? key,
     this.height,
     this.width,
     this.color,
@@ -21,46 +21,45 @@ class GFImageOverlay extends StatelessWidget {
     this.boxFit = BoxFit.fill,
     this.border,
     this.shape = BoxShape.rectangle,
-  })  : assert(shape != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// define image's [double] height
-  final double height;
+  final double? height;
 
   /// define image's [double] width
-  final double width;
+  final double? width;
 
   /// The image background color.
-  final Color color;
+  final Color? color;
 
   /// The empty space that surrounds the card. Defines the image's outer [Container.margin].
-  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry? margin;
 
   /// The empty space that surrounds the card. Defines the image's outer [Container.padding]..
-  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? padding;
 
   /// The [Image] widget used to display image
-  final ImageProvider image;
+  final ImageProvider? image;
 
   /// The [child] contained by the container, used to display text over image
   final Widget child;
 
   /// Align the [child] within the container.
-  final AlignmentGeometry alignment;
+  final AlignmentGeometry? alignment;
 
   /// How the image should be inscribed into the box.
   /// The default is [BoxFit.scaleDown] if centerSlice is null, and
   /// [BoxFit.fill] if centerSlice is not null.
-  final BoxFit boxFit;
+  final BoxFit? boxFit;
 
   /// A color filter to apply to the image before painting it.
-  final ColorFilter colorFilter;
+  final ColorFilter? colorFilter;
 
   /// The corners of this [GFImageOverlay] are rounded by this [BorderRadius].
-  final BorderRadiusGeometry borderRadius;
+  final BorderRadiusGeometry? borderRadius;
 
   /// A border to draw above the [GFImageOverlay].
-  final Border border;
+  final Border? border;
 
   /// The shape to fill the background [color], gradient, and [image] into and
   /// to cast as the boxShadow.
@@ -92,8 +91,8 @@ class GFImageOverlay extends StatelessWidget {
           color: color,
           image: DecorationImage(
             fit: boxFit,
-            colorFilter: child != null ? colorFilter : null,
-            image: image,
+            colorFilter: colorFilter,
+            image: image!,
           ),
         ),
       );

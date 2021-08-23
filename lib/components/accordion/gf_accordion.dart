@@ -4,19 +4,19 @@ import 'package:getwidget/getwidget.dart';
 class GFAccordion extends StatefulWidget {
   /// An accordion is used to show (and hide) content. Use [showAccordion] to hide & show the accordion content.
   const GFAccordion(
-      {Key key,
-      this.titleChild,
+      {Key? key,
+      this.title,
       this.content,
+      this.titleChild,
+      this.contentChild,
       this.collapsedTitleBackgroundColor = GFColors.WHITE,
       this.expandedTitleBackgroundColor = const Color(0xFFE0E0E0),
       this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
       this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
-      this.title,
       this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
       this.titlePadding = const EdgeInsets.all(10),
       this.contentBackgroundColor,
       this.contentPadding = const EdgeInsets.all(10),
-      this.contentChild,
       this.titleBorder = const Border(),
       this.contentBorder = const Border(),
       this.margin,
@@ -30,13 +30,13 @@ class GFAccordion extends StatefulWidget {
   final bool showAccordion;
 
   /// child of  type [Widget]is alternative to title key. title will get priority over titleChild
-  final Widget titleChild;
+  final Widget? titleChild;
 
   /// content of type[String] which shows the messages after the [GFAccordion] is expanded
-  final String content;
+  final String? content;
 
   /// contentChild of  type [Widget]is alternative to content key. content will get priority over contentChild
-  final Widget contentChild;
+  final Widget? contentChild;
 
   /// type of [Color] or [GFColors] which is used to change the background color of the [GFAccordion] title when it is collapsed
   final Color collapsedTitleBackgroundColor;
@@ -51,7 +51,7 @@ class GFAccordion extends StatefulWidget {
   final Widget expandedIcon;
 
   /// text of type [String] is alternative to child. text will get priority over titleChild
-  final String title;
+  final String? title;
 
   /// textStyle of type [textStyle] will be applicable to text only and not for the child
   final TextStyle textStyle;
@@ -63,10 +63,10 @@ class GFAccordion extends StatefulWidget {
   final EdgeInsets contentPadding;
 
   /// type of [Color] or [GFColors] which is used to change the background color of the [GFAccordion] description
-  final Color contentBackgroundColor;
+  final Color? contentBackgroundColor;
 
   /// margin of type [EdgeInsets] which is used to set the margin of the [GFAccordion]
-  final EdgeInsets margin;
+  final EdgeInsets? margin;
 
   /// titleBorderColor of type  [Color] or [GFColors] which is used to change the border color of title
   final Border titleBorder;
@@ -81,7 +81,7 @@ class GFAccordion extends StatefulWidget {
   final BorderRadius contentBorderRadius;
 
   /// function called when the content body collapsed
-  final Function(bool) onToggleCollapsed;
+  final Function(bool)? onToggleCollapsed;
 
   @override
   _GFAccordionState createState() => _GFAccordionState();
@@ -89,10 +89,10 @@ class GFAccordion extends StatefulWidget {
 
 class _GFAccordionState extends State<GFAccordion>
     with TickerProviderStateMixin {
-  AnimationController animationController;
-  AnimationController controller;
-  Animation<Offset> offset;
-  bool showAccordion;
+  late AnimationController animationController;
+  late AnimationController controller;
+  late Animation<Offset> offset;
+  late bool showAccordion;
 
   @override
   void initState() {
@@ -142,7 +142,7 @@ class _GFAccordionState extends State<GFAccordion>
                   children: <Widget>[
                     Expanded(
                       child: widget.title != null
-                          ? Text(widget.title, style: widget.textStyle)
+                          ? Text(widget.title!, style: widget.textStyle)
                           : (widget.titleChild ?? Container()),
                     ),
                     showAccordion ? widget.expandedIcon : widget.collapsedIcon
@@ -162,7 +162,7 @@ class _GFAccordionState extends State<GFAccordion>
                     child: SlideTransition(
                       position: offset,
                       child: widget.content != null
-                          ? Text(widget.content)
+                          ? Text(widget.content!)
                           : (widget.contentChild ?? Container()),
                     ))
                 : Container()
@@ -183,7 +183,7 @@ class _GFAccordionState extends State<GFAccordion>
       }
       showAccordion = !showAccordion;
       if (widget.onToggleCollapsed != null) {
-        widget.onToggleCollapsed(showAccordion);
+        widget.onToggleCollapsed!(showAccordion);
       }
     });
   }

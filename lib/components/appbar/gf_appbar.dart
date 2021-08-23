@@ -23,7 +23,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///
   /// Typically used in the [Scaffold.appBar] property.
   GFAppBar({
-    Key key,
+    Key? key,
     this.leading,
     this.automaticallyImplyLeading = true,
     this.title,
@@ -56,19 +56,14 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.onTap,
     this.onChanged,
     this.onSubmitted,
-  })  : assert(automaticallyImplyLeading != null),
-        assert(elevation == null || elevation >= 0.0),
-        assert(primary != null),
-        assert(titleSpacing != null),
-        assert(toolbarOpacity != null),
-        assert(bottomOpacity != null),
+  })  : assert(elevation == null || elevation >= 0.0),
         preferredSize = Size.fromHeight(
-          kToolbarHeight + (bottom?.preferredSize?.height ?? 0),
+          kToolbarHeight + (bottom?.preferredSize.height ?? 0),
         ),
         super(key: key);
 
   /// A widget to display before the [title].
-  final Widget leading;
+  final Widget? leading;
 
   /// Controls whether we should try to imply the leading widget if null.
   ///
@@ -81,14 +76,14 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///
   /// Typically a [Text] widget containing a description of the current contents
   /// of the app.
-  final Widget title;
+  final Widget? title;
 
   /// Widgets to display after the [title] widget.
   ///
   /// Typically these widgets are [IconButton]s representing common operations.
   /// For less common operations, consider using a [PopupMenuButton] as the
   /// last action.
-  final List<Widget> actions;
+  final List<Widget>? actions;
 
   /// This widget is stacked behind the toolbar and the tab bar. It's height will
   /// be the same as the app bar's overall height.
@@ -98,7 +93,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// changes the [GFAppBar]'s height when scrolled.
   ///
   /// Typically a [FlexibleSpaceBar]. See [FlexibleSpaceBar] for details.
-  final Widget flexibleSpace;
+  final Widget? flexibleSpace;
 
   /// This widget appears across the bottom of the app bar.
   ///
@@ -108,7 +103,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// See also:
   ///
   ///  * [PreferredSize], which can be used to give an arbitrary widget a preferred size.
-  final PreferredSizeWidget bottom;
+  final PreferredSizeWidget? bottom;
 
   /// The z-coordinate at which to place this app bar relative to its parent.
   ///
@@ -119,34 +114,34 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// If this property is null, then [ThemeData.appBarTheme.elevation] is used,
   /// if that is also null, the default value is 4, the appropriate elevation
   /// for app bars.
-  final double elevation;
+  final double? elevation;
 
   /// The material's shape as well its shadow.
   ///
   /// A shadow is only displayed if the [elevation] is greater than
   /// zero.
-  final ShapeBorder shape;
+  final ShapeBorder? shape;
 
   /// The color to use for the app bar's material. Typically this should be set
   /// along with [brightness], [iconTheme], [textTheme].
   ///
   /// If this property is null, then [ThemeData.appBarTheme.color] is used,
   /// if that is also null, then [ThemeData.primaryColor] is used.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// The brightness of the app bar's material. Typically this is set along
   /// with [backgroundColor], [iconTheme], [textTheme].
   ///
   /// If this property is null, then [ThemeData.appBarTheme.brightness] is used,
   /// if that is also null, then [ThemeData.primaryColorBrightness] is used.
-  final Brightness brightness;
+  final Brightness? brightness;
 
   /// The color, opacity, and size to use for app bar icons. Typically this
   /// is set along with [backgroundColor], [brightness], [textTheme].
   ///
   /// If this property is null, then [ThemeData.appBarTheme.iconTheme] is used,
   /// if that is also null, then [ThemeData.primaryIconTheme] is used.
-  final IconThemeData iconTheme;
+  final IconThemeData? iconTheme;
 
   /// The color, opacity, and size to use for the icons that appear in the app
   /// bar's [actions]. This should only be used when the [actions] should be
@@ -155,14 +150,14 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///
   /// If this property is null, then [ThemeData.appBarTheme.actionsIconTheme] is
   /// used, if that is also null, then this falls back to [iconTheme].
-  final IconThemeData actionsIconTheme;
+  final IconThemeData? actionsIconTheme;
 
   /// The typographic styles to use for text in the app bar. Typically this is
   /// set along with [brightness] [backgroundColor], [iconTheme].
   ///
   /// If this property is null, then [ThemeData.appBarTheme.textTheme] is used,
   /// if that is also null, then [ThemeData.primaryTextTheme] is used.
-  final TextTheme textTheme;
+  final TextTheme? textTheme;
 
   /// Whether this app bar is being displayed at the top of the screen.
   ///
@@ -174,7 +169,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// Whether the title should be centered.
   ///
   /// Defaults to being adapted to the current [TargetPlatform].
-  final bool centerTitle;
+  final bool? centerTitle;
 
   /// The spacing around [title] content on the horizontal axis. This spacing is
   /// applied even if there is no [leading] content or [actions]. If you want
@@ -231,7 +226,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///    runs and can validate and change ("format") the input value.
   ///  * onEditingComplete, [onSubmitted], [onSelectionChanged]:
   ///    which are more specialized input change notifications.
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
 
   /// {@macro flutter.widgets.editableText.onSubmitted}
   ///
@@ -240,12 +235,12 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///  * [EditableText.onSubmitted] for an example of how to handle moving to
   ///    the next/previous field when using [TextInputAction.next] and
   ///    [TextInputAction.previous] for [textInputAction].
-  final ValueChanged<String> onSubmitted;
+  final ValueChanged<String>? onSubmitted;
 
   /// Controls the text being edited.
   ///
   /// If null, this widget will create its own [TextEditingController].
-  final TextEditingController searchController;
+  final TextEditingController? searchController;
 
   /// {@template flutter.material.textfield.onTap}
   /// Called for each distinct tap except for every second tap of a double tap.
@@ -267,19 +262,18 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// To listen to arbitrary pointer events without competing with the
   /// text field's internal gesture detector, use a [Listener].
   /// {@endtemplate}
-  final GestureTapCallback onTap;
+  final GestureTapCallback? onTap;
 
   bool _getEffectiveCenterTitle(ThemeData theme) {
     if (centerTitle != null) {
-      return centerTitle;
+      return centerTitle!;
     }
-    assert(theme.platform != null);
     switch (theme.platform) {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
         return false;
       case TargetPlatform.iOS:
-        return actions == null || actions.length < 2;
+        return actions == null || actions!.length < 2;
       default:
         return false;
     }
@@ -291,7 +285,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class _GFAppBarState extends State<GFAppBar> {
   static const double _defaultElevation = 4;
-  Widget searchBar;
+  Widget? searchBar;
   bool showSearchBar = false;
   final TextEditingController _searchController = TextEditingController();
 
@@ -310,11 +304,9 @@ class _GFAppBarState extends State<GFAppBar> {
     final ThemeData theme = Theme.of(context);
     final AppBarTheme appBarTheme = AppBarTheme.of(context);
     final ScaffoldState scaffold = Scaffold.of(context);
-    // final ScaffoldState scaffold =Scaffold.of(context, nullOk: true);
-    // final ScaffoldState scaffold = Scaffold.maybeOf(context);
-    final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
-    final bool hasDrawer = scaffold?.hasDrawer ?? false;
-    final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
+    final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
+    final bool hasDrawer = scaffold.hasDrawer;
+    final bool hasEndDrawer = scaffold.hasEndDrawer;
     final bool canPop = parentRoute?.canPop ?? false;
     final bool useCloseButton =
         parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
@@ -324,10 +316,10 @@ class _GFAppBarState extends State<GFAppBar> {
     IconThemeData actionsIconTheme = widget.actionsIconTheme ??
         appBarTheme.actionsIconTheme ??
         overallIconTheme;
-    TextStyle centerStyle = widget.textTheme?.headline5 ??
+    TextStyle? centerStyle = widget.textTheme?.headline5 ??
         appBarTheme.textTheme?.headline5 ??
         theme.primaryTextTheme.headline5;
-    TextStyle sideStyle = widget.textTheme?.bodyText1 ??
+    TextStyle? sideStyle = widget.textTheme?.bodyText1 ??
         appBarTheme.textTheme?.bodyText1 ??
         theme.primaryTextTheme.bodyText1;
 
@@ -338,13 +330,13 @@ class _GFAppBarState extends State<GFAppBar> {
         curve: Curves.fastOutSlowIn,
       ).transform(widget.toolbarOpacity);
       if (centerStyle?.color != null) {
-        centerStyle = centerStyle.copyWith(
-          color: centerStyle.color.withOpacity(opacity),
+        centerStyle = centerStyle!.copyWith(
+          color: centerStyle.color!.withOpacity(opacity),
         );
       }
       if (sideStyle?.color != null) {
-        sideStyle = sideStyle.copyWith(
-          color: sideStyle.color.withOpacity(opacity),
+        sideStyle = sideStyle!.copyWith(
+          color: sideStyle.color!.withOpacity(opacity),
         );
       }
       overallIconTheme = overallIconTheme.copyWith(
@@ -355,7 +347,7 @@ class _GFAppBarState extends State<GFAppBar> {
       );
     }
 
-    Widget leading = widget.leading;
+    Widget? leading = widget.leading;
     if (leading == null && widget.automaticallyImplyLeading) {
       if (hasDrawer) {
         leading = IconButton(
@@ -376,9 +368,9 @@ class _GFAppBarState extends State<GFAppBar> {
       );
     }
 
-    Widget title = widget.title;
-    if (title != null) {
-      bool namesRoute;
+    Widget? title = widget.title;
+    if (title != null && centerStyle != null) {
+      bool? namesRoute;
       switch (theme.platform) {
         case TargetPlatform.android:
         case TargetPlatform.fuchsia:
@@ -401,12 +393,12 @@ class _GFAppBarState extends State<GFAppBar> {
       );
     }
 
-    Widget actions;
-    if (widget.actions != null && widget.actions.isNotEmpty) {
+    Widget? actions;
+    if (widget.actions != null && widget.actions!.isNotEmpty) {
       actions = Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: widget.actions,
+        children: widget.actions!,
       );
     } else if (hasEndDrawer) {
       actions = IconButton(
@@ -458,7 +450,7 @@ class _GFAppBarState extends State<GFAppBar> {
         ),
         onTap: widget.onTap,
         onChanged: widget.onChanged,
-        controller: _searchController ?? widget.searchController,
+        controller: widget.searchController ?? _searchController,
         onSubmitted: widget.onSubmitted,
       );
     }
@@ -493,13 +485,14 @@ class _GFAppBarState extends State<GFAppBar> {
 
     // If the toolbar is allocated less than kToolbarHeight make it
     // appear to scroll upwards within its shrinking container.
+    // TODO(krishna): Handle null
     Widget appBar = ClipRect(
       child: CustomSingleChildLayout(
         delegate: const _ToolbarContainerLayout(),
         child: IconTheme.merge(
           data: overallIconTheme,
           child: DefaultTextStyle(
-            style: sideStyle,
+            style: sideStyle!,
             child: toolbar,
           ),
         ),
@@ -544,7 +537,7 @@ class _GFAppBarState extends State<GFAppBar> {
       appBar = Stack(
         fit: StackFit.passthrough,
         children: <Widget>[
-          widget.flexibleSpace,
+          widget.flexibleSpace!,
           appBar,
         ],
       );
@@ -606,9 +599,8 @@ class _ToolbarContainerLayout extends SingleChildLayoutDelegate {
 // center it within its (NavigationToolbar) parent, and allow the
 // parent to constrain the title's actual height.
 class GFAppBarTitleBar extends SingleChildRenderObjectWidget {
-  const GFAppBarTitleBar({Key key, @required Widget child})
-      : assert(child != null),
-        super(key: key, child: child);
+  const GFAppBarTitleBar({Key? key, required Widget child})
+      : super(key: key, child: child);
 
   @override
   RenderGFAppBarTitleBar createRenderObject(BuildContext context) =>
@@ -625,8 +617,8 @@ class GFAppBarTitleBar extends SingleChildRenderObjectWidget {
 
 class RenderGFAppBarTitleBar extends RenderAligningShiftedBox {
   RenderGFAppBarTitleBar({
-    RenderBox child,
-    TextDirection textDirection,
+    RenderBox? child,
+    TextDirection? textDirection,
   }) : super(
           child: child,
           alignment: Alignment.center,
@@ -637,11 +629,13 @@ class RenderGFAppBarTitleBar extends RenderAligningShiftedBox {
   void performLayout() {
     final BoxConstraints innerConstraints =
         constraints.copyWith(maxHeight: double.infinity);
-    child.layout(
+    child?.layout(
       innerConstraints,
       parentUsesSize: true,
     );
-    size = constraints.constrain(child.size);
+    if (child != null) {
+      size = constraints.constrain(child!.size);
+    }
     alignChild();
   }
 }

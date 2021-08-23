@@ -44,6 +44,7 @@ void main() {
     const bool divider = true;
 
     const GFTypography typography = GFTypography(
+      text: 'type 1',
       showDivider: divider,
     );
 
@@ -56,6 +57,7 @@ void main() {
     final textopacity = Colors.black.withOpacity(0.56);
 
     final GFTypography typography = GFTypography(
+      text: 'type1',
       textColor: textopacity,
     );
 
@@ -79,6 +81,7 @@ void main() {
       icon: icon,
       backgroundImage: bgImage,
       backgroundImagecolorFilter: colorfilter,
+      text: 'type1',
     );
 
     final TestApp app = TestApp(typography);
