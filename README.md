@@ -2,11 +2,11 @@
 
 <p align="center">
   <a href="https://www.getwidget.dev/" target="_blank">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/logo.black_iOBoLWdj2I.png" alt="GetWidget UI library">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/logo.black_iOBoLWdj2I.png" alt="GetWidget Flutter UI KIT Library">
   </a>
 </p>
 
-[**GetWidget**](https://www.getwidget.dev) is a 100% free Flutter open-source UI library built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever. GetWidget has 1000+ pre-build widgets that you can reuse to develop both Flutter mobile app and web app. Our motto is to provide the best Flutter UI library to the Flutter community to speed up their development process and build awesome apps with pre-build Flutter Library Components.
+[**GetWidget**](https://www.getwidget.dev) is a 100% free Flutter open-source UI Kit library built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever. GetWidget has 1000+ pre-build widgets that you can reuse to develop both Flutter mobile app and web app. Our motto is to provide the best Flutter UI library to the Flutter community to speed up their development process and build awesome apps with pre-build Flutter Library Components.
 
 ## Table of contents 
 
@@ -22,7 +22,7 @@
  ## Screenshot
  <p align="center">
   <a target="_blank" href="https://docs.getwidget.dev/">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/GitHub_Image_updated_u9eSV6fDY-.png" alt="GetWidget Screens">
+    <img src="https://ik.imagekit.io/ionicfirebaseapp/GitHub_Image_updated_u9eSV6fDY-.png" alt="GetWidget UI KIT Collection">
   </a>
 </p>
 
@@ -34,9 +34,11 @@ Read the [Getting started page](https://docs.getwidget.dev)
 Forum [Support and discussion ](https://forum.getwidget.dev)
 
 ## Features 
-we have launched the library with the following components : 
+we have launched the library with the following components :   
+
+[GETWIDGET WIDGET COLLECTION](https://www.getwidget.dev/features)
  
- #### [Button](https://docs.getwidget.dev/gf-button) |  [Badge](https://docs.getwidget.dev/gf-badge) |  [Avatar](https://docs.getwidget.dev/gf-avatar) |  [Image](https://docs.getwidget.dev/gf-image) |  [Card](https://docs.getwidget.dev/gf-card) |  [Carousel](https://docs.getwidget.dev/gf-carousel) | [Tile](https://docs.getwidget.dev/gf-tile) | [Tab](https://docs.getwidget.dev/gf-tab) | [Typography](https://docs.getwidget.dev/gf-typography) | [Toast](https://docs.getwidget.dev/gf-toast) | [Toggle](https://docs.getwidget.dev/gf-toggle) | [Drawer](https://docs.getwidget.dev/gf-drawer) | [Accordian](https://docs.getwidget.dev/gf-accordion) | [Alert](https://docs.getwidget.dev/gf-alert) | [Appbar](https://docs.getwidget.dev/gf-appbar) | [Searchbar](https://docs.getwidget.dev/gf-searchbar) 
+ #### [Flutter Button Widget](https://docs.getwidget.dev/gf-button) |  [Flutter Elevated Button Widget](https://docs.getwidget.dev/gf-button/standard-button) | [Flutter Rounded Button Widget](https://docs.getwidget.dev/gf-button/pills-button) | [Flutter Square Button Widget](https://docs.getwidget.dev/gf-button/square-button) | [Flutter Icon Button Widget](https://docs.getwidget.dev/gf-button/icon-button) | [Flutter Social Button Widget](https://docs.getwidget.dev/gf-button/social-button) | [Flutter Badge Widget](https://docs.getwidget.dev/gf-badge) |  [Flutter Avatar Widget](https://docs.getwidget.dev/gf-avatar) |  [Flutter Image Widget](https://docs.getwidget.dev/gf-image) |  [Flutter Card Widget](https://docs.getwidget.dev/gf-card) |  [Flutter Carousel Widget](https://docs.getwidget.dev/gf-carousel) | [Flutter Tile Widget](https://docs.getwidget.dev/gf-tile) | [Flutter Tabbar Widget](https://docs.getwidget.dev/gf-tab) | [Flutter Typography](https://docs.getwidget.dev/gf-typography) | [Flutter Toaster Widget](https://docs.getwidget.dev/gf-toast) | [Flutter Switch Toggle Widget](https://docs.getwidget.dev/gf-toggle) | [Flutter Drawer Widget](https://docs.getwidget.dev/gf-drawer) | [Flutter Accordian Widget](https://docs.getwidget.dev/gf-accordion) | [Flutter Alert Widget](https://docs.getwidget.dev/gf-alert) | [Flutter Appbar Widget](https://docs.getwidget.dev/gf-appbar) | [Flutter Searchbar Widget](https://docs.getwidget.dev/gf-searchbar) | [Flutter Floating Widget](https://docs.getwidget.dev/gf-floating-widget) | [Flutter Rating Widget](https://docs.getwidget.dev/gf-rating) | [Flutter Dropdown Widget](https://docs.getwidget.dev/gf-dropdown) | [Flutter Loader Widget](https://docs.getwidget.dev/gf-loader) | [Flutter Progress Bar Widget](https://docs.getwidget.dev/gf-progress-bar) | [Flutter Shimmer Widget](https://docs.getwidget.dev/gf-shimmer) |  [Flutter Animation Widget](https://docs.getwidget.dev/gf-animation) |  [Flutter Border Widget](https://docs.getwidget.dev/gf-border) |  [Flutter Bottomsheet Widget](https://docs.getwidget.dev/gf-bottomsheet) |  [Flutter Checkbox Widget](https://docs.getwidget.dev/gf-checkbox) |  [Flutter CheckboxListTile Widget](https://docs.getwidget.dev/gf-checkbox-listtile) |  [Flutter Radio Button Widget](https://docs.getwidget.dev/gf-radio) |  [Flutter Radio ListTile Widget](https://docs.getwidget.dev/gf-radio-listtile) | [Flutter Sticky Header Widget](https://docs.getwidget.dev/gf-radio-listtile) 
  
  
  ## Demo 
@@ -49,7 +51,7 @@ we have launched the library with the following components :
       </p>
  
  ### An Open-Source News App Built With GetWidget & Flutter
- Ionicfirebaseapp.com has been developed an open-source News Mobile App with GetWidget, So can start building app faster to get an overview and do customization. You can Download News App Souce Code here: https://www.ionicfirebaseapp.com/products/flutter-news-app  
+ Ionicfirebaseapp.com has been developed an open-source News Mobile App with GetWidget, So can start building app faster to get an overview and do customization. You can Download News App Souce Code here: https://www.ionicfirebaseapp.com/products 
  ## Contributing
  
   GetWidget is **100% free** and **open source**. We encourage and support an active, healthy community that accepts contributions from the public &ndash; including you. There are a couple of ways in which you can contribute to the growing community of `getwidget`.
@@ -63,7 +65,7 @@ we have launched the library with the following components :
  
  
  
- ## Documentation
+ ##  Flutter Getwidget Documentation 
  
   [**Installation Guide**](https://docs.getwidget.dev)
   
@@ -76,7 +78,7 @@ Facebook: <https://www.facebook.com/getwidget>
 
 Linkedin: <https://www.linkedin.com/showcase/getwidget/>
 
-Instagram: <https://www.instagram.com/getwidget.dev/> 
+Instagram: <https://www.instagram.com/getwidgetdev/> 
 
  
  ## Copyright-and-license 
