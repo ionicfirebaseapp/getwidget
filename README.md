@@ -17,6 +17,7 @@
 - [Contributing](#contributing)
 - [Documentation](#documentation)
 - [Copyright and license](#copyright-and-license)
+- [Marketplace](https://market.getwidget.dev/)
 
  
  ## Screenshot
