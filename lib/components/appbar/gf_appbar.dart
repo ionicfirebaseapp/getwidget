@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+isublmport 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -434,6 +434,7 @@ class _GFAppBarState extends State<GFAppBar> {
             ),
             type: GFButtonType.transparent,
             onPressed: () {
+              widget.onSubmitted?.call(null);
               setState(() {
                 showSearchBar = !showSearchBar;
               });
