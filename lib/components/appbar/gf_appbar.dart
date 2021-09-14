@@ -434,8 +434,11 @@ class _GFAppBarState extends State<GFAppBar> {
             ),
             type: GFButtonType.transparent,
             onPressed: () {
+              widget.onSubmitted?.call("");
+              final controller = widget.searchController ?? _searchController;
               setState(() {
                 showSearchBar = !showSearchBar;
+                controller.text = "";
               });
             },
           ),
