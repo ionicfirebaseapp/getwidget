@@ -9,7 +9,9 @@ class GFCarousel extends StatefulWidget {
     this.pagerSize,
     this.passiveIndicator,
     this.activeIndicator,
-    this.pagination,
+    this.activeDotBorder,
+    this.passiveDotBorder,
+    this.hasPagination,
     this.height,
     this.aspectRatio = 16 / 9,
     this.viewportFraction = 0.8,
@@ -36,8 +38,14 @@ class GFCarousel extends StatefulWidget {
   /// The slider pagination's passive color.
   final Color? passiveIndicator;
 
+  /// The slider pagination's active border.
+  final Border? activeDotBorder;
+
+  /// The slider pagination's passive border.
+  final Border? passiveDotBorder;
+
   /// The [GFCarousel] shows pagination on state true.
-  final bool? pagination;
+  final bool? hasPagination;
 
   /// The widgets to be shown as sliders.
   final List<Widget> items;
@@ -213,7 +221,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
               if (widget.onPageChanged != null) {
                 widget.onPageChanged!(currentPage);
               }
-              if (widget.pagination == true) {
+              if (widget.hasPagination == true) {
                 onPageSlide(currentPage);
               }
             },
@@ -274,7 +282,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
               );
             },
           )),
-          widget.pagination == true
+          widget.hasPagination == true
               ? Positioned(
                   left: 0,
                   right: 0,
@@ -294,6 +302,7 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                                 margin: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 2),
                                 decoration: BoxDecoration(
+                                  border: currentSlide == pagerIndex ? widget.activeDotBorder: widget.passiveDotBorder,
                                   shape: BoxShape.circle,
                                   color: currentSlide == pagerIndex
                                       ? widget.activeIndicator == null
