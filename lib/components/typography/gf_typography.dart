@@ -16,6 +16,7 @@ class GFTypography extends StatelessWidget {
     this.dividerColor,
     this.showDivider = true,
     this.dividerWidth,
+    this.dividerHeight,
     this.backgroundImage,
     this.backgroundImagecolorFilter,
   })  : assert(text != null || child != null),
@@ -47,6 +48,9 @@ class GFTypography extends StatelessWidget {
 
   ///pass [double] type to increase or decrease the width of the divider
   final double? dividerWidth;
+
+  ///pass [double] type to increase or decrease the height of the divider
+  final double? dividerHeight;
 
   ///backgroundImage of type [ImageProvider] to set the background of [GFTypography]
   final ImageProvider? backgroundImage;
@@ -119,8 +123,8 @@ class GFTypography extends StatelessWidget {
                   margin: const EdgeInsets.only(top: 3, bottom: 3),
                   alignment: dividerAlignment,
                   child: Container(
-                    width: dividerWidth != null ? dividerWidth : 70,
-                    height: fontSize / 5,
+                    width: dividerWidth ?? 70,
+                    height: dividerHeight ?? (fontSize / 5),
                     decoration: BoxDecoration(
                       color: dividerColor ??
                           (backgroundImage != null
