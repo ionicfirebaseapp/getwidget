@@ -32,6 +32,7 @@ class GFTabBar extends StatefulWidget {
     this.unselectedLabelColor,
     this.unselectedLabelStyle,
     this.shape,
+    this.width,
   })  : assert(length != null && length >= 0),
         super(key: key);
 
@@ -160,6 +161,10 @@ class GFTabBar extends StatefulWidget {
   /// defines the shape of tabBar
   final ShapeBorder? shape;
 
+  // Width of TabBar.
+  // If this property is null, TabBar width is full screen
+  final double? width;
+
   @override
   _GFTabBarState createState() => _GFTabBarState();
 }
@@ -174,7 +179,7 @@ class _GFTabBarState extends State<GFTabBar> {
         scrollDirection: Axis.horizontal,
         controller: _scrollController,
         child: Container(
-          width: MediaQuery.of(context).size.width,
+          width: widget.width ?? MediaQuery.of(context).size.width,
           height:
               widget.tabBarHeight ?? MediaQuery.of(context).size.height * 0.1,
           child: Material(
