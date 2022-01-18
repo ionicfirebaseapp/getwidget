@@ -124,7 +124,7 @@ class GFTypography extends StatelessWidget {
                   alignment: dividerAlignment,
                   child: Container(
                     width: dividerWidth ?? 70,
-                    height: dividerHeight?? fontSize / 5,
+                    height: dividerHeight ?? (fontSize / 5),
                     decoration: BoxDecoration(
                       color: dividerColor ??
                           (backgroundImage != null
