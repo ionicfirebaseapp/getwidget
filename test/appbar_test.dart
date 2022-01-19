@@ -335,7 +335,7 @@ void main() {
     // rebuild the widget
     await tester.pump();
     // find the text 'flutter' in textField
-    expect(find.text('flutter'), findsOneWidget);
+    expect(find.text('flutter'), findsNothing);
     // tap the textField to test onTap
     await tester.tap(find.byType(TextField));
     // rebuild the widget

@@ -9,6 +9,7 @@ class GFDrawerHeaderPictures extends StatelessWidget {
     this.currentAccountPicture,
     this.otherAccountsPictures,
     this.closeButton,
+    this.centerAlign = false,
   }) : super(key: key);
 
   /// A widget placed in the upper-left corner that represents the current
@@ -22,6 +23,8 @@ class GFDrawerHeaderPictures extends StatelessWidget {
 
   /// widget onTap drawer get closed
   final Widget? closeButton;
+
+  final bool centerAlign;
 
   @override
   Widget build(BuildContext context) => Stack(
@@ -44,23 +47,25 @@ class GFDrawerHeaderPictures extends StatelessWidget {
             child: Row(
               children: (otherAccountsPictures ?? <Widget>[])
                   .take(3)
-                  .map<Widget>((Widget picture) => Padding(
-                        padding: const EdgeInsetsDirectional.only(start: 8),
-                        child: Semantics(
-                          container: true,
-                          child: Container(
-                            padding: const EdgeInsets.only(left: 8, bottom: 8),
-                            width: 48,
-                            height: 48,
-                            child: picture,
-                          ),
+                  .map<Widget>(
+                    (Widget picture) => Padding(
+                      padding: const EdgeInsetsDirectional.only(start: 8),
+                      child: Semantics(
+                        container: true,
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 8, bottom: 8),
+                          width: 48,
+                          height: 48,
+                          child: picture,
                         ),
-                      ))
+                      ),
+                    ),
+                  )
                   .toList(),
             ),
           ),
-          Positioned(
-            top: 40,
+          Align(
+            alignment: centerAlign ? Alignment.bottomCenter: Alignment.bottomLeft,
             child: Semantics(
               explicitChildNodes: true,
               child: SizedBox(
@@ -86,6 +91,7 @@ class GFDrawerHeader extends StatefulWidget {
     this.margin = const EdgeInsets.only(bottom: 8),
     this.currentAccountPicture,
     this.otherAccountsPictures,
+    this.centerAlign = false,
     this.child,
     this.duration = const Duration(milliseconds: 250),
     this.curve = Curves.fastOutSlowIn,
@@ -107,6 +113,12 @@ class GFDrawerHeader extends StatefulWidget {
   /// Up to three of these widgets will be arranged in a row in the header's
   /// upper-right corner. Normally a list of [CircleAvatar] widgets.
   final List<Widget>? otherAccountsPictures;
+
+  /// If centerAlign is [enabled] then currentAccountPicture in GFDrawerHeader 
+  /// will get center aligned.
+  /// 
+  /// By Default centerAlign is false.
+  final bool centerAlign;
 
   /// A widget to be placed inside the drawer header, inset by the padding.
   ///
@@ -160,6 +172,7 @@ class _GFDrawerHeaderState extends State<GFDrawerHeader> {
                     currentAccountPicture: widget.currentAccountPicture,
                     otherAccountsPictures: widget.otherAccountsPictures,
                     closeButton: widget.closeButton,
+                    centerAlign: widget.centerAlign,
                   ),
                 ),
               ),
