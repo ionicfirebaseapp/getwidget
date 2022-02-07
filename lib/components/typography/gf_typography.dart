@@ -110,13 +110,14 @@ class GFTypography extends StatelessWidget {
                       child: Text(
                         text!,
                         style: TextStyle(
-                            color: textColor ??
-                                (backgroundImage != null
-                                    ? Colors.white
-                                    : Colors.black),
-                            fontSize: fontSize,
-                            letterSpacing: 0.3,
-                            fontWeight: fontWeight),
+                          color: textColor ??
+                              (backgroundImage != null
+                                  ? Colors.white
+                                  : Colors.black),
+                          fontSize: fontSize,
+                          letterSpacing: 0.3,
+                          fontWeight: fontWeight,
+                        ),
                       ),
                     )
                   : child!

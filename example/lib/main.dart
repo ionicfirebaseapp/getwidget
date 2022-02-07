@@ -83,6 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     }),
               ],
             ),
+            GFTypography(
+              fontWeight: FontWeight.bold,
+            ),
             Column(
               children: <Widget>[
                 const Padding(
