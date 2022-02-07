@@ -23,6 +23,7 @@ void main() {
       textColor: textcolor,
       dividerAlignment: dividerposition,
       type: GFTypographyType.typo2,
+      fontWeight: FontWeight.w500,
       child: childWidget,
     );
 
