@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 /// An app bar consists of a toolbar and potentially other widgets, such as a
@@ -133,7 +131,13 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// with [backgroundColor], [iconTheme], [textTheme].
   ///
   /// If this property is null, then [ThemeData.appBarTheme.brightness] is used,
-  /// if that is also null, then [ThemeData.primaryColorBrightness] is used.
+  // ignore: comment_references
+  /// if that is also null, then the [appBarTheme] can
+  /// be used to configure the appearance of [AppBar]s. The appearance of
+  /// Keyboards for [TextField]s now uses the overall theme's
+  /// [ThemeData.brightness] and can also be customized with
+  /// [TextField.keyboardAppearance]. The brightness of any color can be found
+  /// with [ThemeData.estimateBrightnessForColor]..
   final Brightness? brightness;
 
   /// The color, opacity, and size to use for app bar icons. Typically this
@@ -317,10 +321,10 @@ class _GFAppBarState extends State<GFAppBar> {
         appBarTheme.actionsIconTheme ??
         overallIconTheme;
     TextStyle? centerStyle = widget.textTheme?.headline5 ??
-        appBarTheme.textTheme?.headline5 ??
+        appBarTheme.titleTextStyle ??
         theme.primaryTextTheme.headline5;
     TextStyle? sideStyle = widget.textTheme?.bodyText1 ??
-        appBarTheme.textTheme?.bodyText1 ??
+        appBarTheme.toolbarTextStyle ??
         theme.primaryTextTheme.bodyText1;
 
     if (widget.toolbarOpacity != 1.0) {
@@ -434,11 +438,11 @@ class _GFAppBarState extends State<GFAppBar> {
             ),
             type: GFButtonType.transparent,
             onPressed: () {
-              widget.onSubmitted?.call("");
+              widget.onSubmitted?.call('');
               final controller = widget.searchController ?? _searchController;
               setState(() {
                 showSearchBar = !showSearchBar;
-                controller.text = "";
+                controller.text = '';
               });
             },
           ),
@@ -488,14 +492,13 @@ class _GFAppBarState extends State<GFAppBar> {
 
     // If the toolbar is allocated less than kToolbarHeight make it
     // appear to scroll upwards within its shrinking container.
-    // TODO(krishna): Handle null
     Widget appBar = ClipRect(
       child: CustomSingleChildLayout(
         delegate: const _ToolbarContainerLayout(),
         child: IconTheme.merge(
           data: overallIconTheme,
           child: DefaultTextStyle(
-            style: sideStyle!,
+            style: sideStyle ?? const TextStyle(),
             child: toolbar,
           ),
         ),
@@ -547,8 +550,8 @@ class _GFAppBarState extends State<GFAppBar> {
     }
 
     final Brightness brightness = widget.brightness ??
-        appBarTheme.brightness ??
-        theme.primaryColorBrightness;
+        appBarTheme.systemOverlayStyle!.statusBarBrightness ??
+        theme.brightness;
     final SystemUiOverlayStyle overlayStyle = brightness == Brightness.dark
         ? SystemUiOverlayStyle.light
         : SystemUiOverlayStyle.dark;
@@ -559,7 +562,7 @@ class _GFAppBarState extends State<GFAppBar> {
         value: overlayStyle,
         child: Material(
           color:
-              widget.backgroundColor ?? appBarTheme.color ?? theme.primaryColor,
+              widget.backgroundColor ?? appBarTheme.backgroundColor ?? theme.primaryColor,
           elevation:
               widget.elevation ?? appBarTheme.elevation ?? _defaultElevation,
           shape: widget.shape,

@@ -1,5 +1,3 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
@@ -114,6 +112,7 @@ class GFDrawerHeader extends StatefulWidget {
   /// upper-right corner. Normally a list of [CircleAvatar] widgets.
   final List<Widget>? otherAccountsPictures;
 
+  // ignore: comment_references
   /// If centerAlign is [enabled] then currentAccountPicture in GFDrawerHeader 
   /// will get center aligned.
   /// 
