@@ -1,9 +1,6 @@
 import 'dart:math' as math;
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:getwidget/getwidget.dart';
 
 class GFButton extends StatefulWidget {
@@ -193,7 +190,7 @@ class GFButton extends StatefulWidget {
   /// colors.
   ///
   /// This property was added much later than the theme's set of highly
-  /// specific colors, like [ThemeData.buttonColor], [ThemeData.highlightColor],
+  /// specific colors, like [ThemeData.highlightColor],
   /// [ThemeData.splashColor] etc.
   ///
   /// The colors for new button classes can be defined exclusively in terms

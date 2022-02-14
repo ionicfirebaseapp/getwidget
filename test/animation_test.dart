@@ -2,7 +2,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:getwidget/getwidget.dart';
 
@@ -377,7 +376,6 @@ void main() {
       const Center(
         child: AnimatedSize(
           duration: Duration(milliseconds: 200),
-          vsync: TestVSync(),
           child: SizedBox(
             width: 100,
             height: 100,

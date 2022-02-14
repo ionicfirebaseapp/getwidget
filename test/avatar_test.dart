@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:flutter/cupertino.dart';
 
 void main() {
   final childWidget = Container(

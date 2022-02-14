@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
 /// An app bar consists of a toolbar and potentially other widgets, such as a
@@ -317,10 +315,10 @@ class _GFAppBarState extends State<GFAppBar> {
         appBarTheme.actionsIconTheme ??
         overallIconTheme;
     TextStyle? centerStyle = widget.textTheme?.headline5 ??
-        appBarTheme.textTheme?.headline5 ??
+        appBarTheme.titleTextStyle ??
         theme.primaryTextTheme.headline5;
     TextStyle? sideStyle = widget.textTheme?.bodyText1 ??
-        appBarTheme.textTheme?.bodyText1 ??
+        appBarTheme.toolbarTextStyle ??
         theme.primaryTextTheme.bodyText1;
 
     if (widget.toolbarOpacity != 1.0) {
@@ -434,11 +432,11 @@ class _GFAppBarState extends State<GFAppBar> {
             ),
             type: GFButtonType.transparent,
             onPressed: () {
-              widget.onSubmitted?.call("");
+              widget.onSubmitted?.call('');
               final controller = widget.searchController ?? _searchController;
               setState(() {
                 showSearchBar = !showSearchBar;
-                controller.text = "";
+                controller.text = '';
               });
             },
           ),
@@ -488,14 +486,13 @@ class _GFAppBarState extends State<GFAppBar> {
 
     // If the toolbar is allocated less than kToolbarHeight make it
     // appear to scroll upwards within its shrinking container.
-    // TODO(krishna): Handle null
     Widget appBar = ClipRect(
       child: CustomSingleChildLayout(
         delegate: const _ToolbarContainerLayout(),
         child: IconTheme.merge(
           data: overallIconTheme,
           child: DefaultTextStyle(
-            style: sideStyle!,
+            style: sideStyle ?? const TextStyle(),
             child: toolbar,
           ),
         ),
@@ -547,7 +544,6 @@ class _GFAppBarState extends State<GFAppBar> {
     }
 
     final Brightness brightness = widget.brightness ??
-        appBarTheme.brightness ??
         theme.primaryColorBrightness;
     final SystemUiOverlayStyle overlayStyle = brightness == Brightness.dark
         ? SystemUiOverlayStyle.light
@@ -559,7 +555,7 @@ class _GFAppBarState extends State<GFAppBar> {
         value: overlayStyle,
         child: Material(
           color:
-              widget.backgroundColor ?? appBarTheme.color ?? theme.primaryColor,
+              widget.backgroundColor ?? appBarTheme.backgroundColor ?? theme.primaryColor,
           elevation:
               widget.elevation ?? appBarTheme.elevation ?? _defaultElevation,
           shape: widget.shape,
