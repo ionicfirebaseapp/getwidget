@@ -129,7 +129,7 @@ class _GFAnimationState extends State<GFAnimation>
   bool selected = false;
   AnimationController? controller;
   Animation<double>? animation;
-  Animation<Offset>? offsetAnimation;
+  late Animation<Offset> offsetAnimation;
 
   @override
   void initState() {
@@ -244,7 +244,6 @@ class _GFAnimationState extends State<GFAnimation>
         child: AnimatedSize(
           alignment: widget.alignment ?? Alignment.center,
           curve: widget.curve ?? Curves.linear,
-          vsync: this,
           reverseDuration:
               widget.reverseDuration ?? const Duration(milliseconds: 2000),
           duration: widget.duration ?? const Duration(milliseconds: 2000),
@@ -282,11 +281,10 @@ class _GFAnimationState extends State<GFAnimation>
     throw Exception('animation cannot be null');
   }
 
-  // TODO(krishna): Handle null here
   Widget buildSlideTransitionWidget() => SlideTransition(
         child: widget.child,
         textDirection: widget.textDirection ?? TextDirection.ltr,
-        position: widget.slidePosition ?? offsetAnimation!,
+        position: widget.slidePosition ?? offsetAnimation,
       );
 
   Widget buildAnimatedDefaultTextStyleWidget() => GestureDetector(
