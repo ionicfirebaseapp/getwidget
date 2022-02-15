@@ -19,6 +19,7 @@ class GFTypography extends StatelessWidget {
     this.dividerHeight,
     this.backgroundImage,
     this.backgroundImagecolorFilter,
+    this.fontWeight = FontWeight.w500,
   })  : assert(text != null || child != null),
         super(key: key);
 
@@ -61,6 +62,9 @@ class GFTypography extends StatelessWidget {
 
   /// header type of [GFTypographyType] i.e, typo1, typo2, typo3, typo4, typo5, typo6
   final GFTypographyType type;
+
+  ///pass [FontWeight] for FontWeight
+  final FontWeight fontWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -106,13 +110,14 @@ class GFTypography extends StatelessWidget {
                       child: Text(
                         text!,
                         style: TextStyle(
-                            color: textColor ??
-                                (backgroundImage != null
-                                    ? Colors.white
-                                    : Colors.black),
-                            fontSize: fontSize,
-                            letterSpacing: 0.3,
-                            fontWeight: FontWeight.w500),
+                          color: textColor ??
+                              (backgroundImage != null
+                                  ? Colors.white
+                                  : Colors.black),
+                          fontSize: fontSize,
+                          letterSpacing: 0.3,
+                          fontWeight: fontWeight,
+                        ),
                       ),
                     )
                   : child!

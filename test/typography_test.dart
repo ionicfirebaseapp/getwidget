@@ -14,6 +14,7 @@ void main() {
   const dividerRadius = BorderRadius.all(Radius.circular(2));
   const textcolor = GFColors.INFO;
   const dividerposition = Alignment.center;
+  const fontWeight = FontWeight.w500;
 
   testWidgets('GFTypograpgy can be created', (WidgetTester tester) async {
     final GFTypography typography = GFTypography(
@@ -38,6 +39,7 @@ void main() {
     expect(app.typography.dividerAlignment, Alignment.center);
     expect(app.typography.dividerBorderRadius, dividerRadius);
     expect(app.typography.textColor, textcolor);
+    expect(app.typography.fontWeight, fontWeight);
   });
 
   testWidgets('GF Typography with divider', (tester) async {
