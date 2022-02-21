@@ -131,10 +131,10 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// with [backgroundColor], [iconTheme], [textTheme].
   ///
   /// If this property is null, then [ThemeData.appBarTheme.brightness] is used,
-  /// if that is also null, then the appBarTheme can be used to configure the 
-  /// appearance of AppBars. The appearance of Keyboards for TextFields now uses 
-  /// the overall theme's ThemeData.brightness and can also be customized with 
-  /// TextField.keyboardAppearance. The brightness of any color can be found with 
+  /// if that is also null, then the appBarTheme can be used to configure the
+  /// appearance of AppBars. The appearance of Keyboards for TextFields now uses
+  /// the overall theme's ThemeData.brightness and can also be customized with
+  /// TextField.keyboardAppearance. The brightness of any color can be found with
   /// ThemeData.estimateBrightnessForColor.
   final Brightness? brightness;
 
@@ -547,8 +547,7 @@ class _GFAppBarState extends State<GFAppBar> {
       );
     }
 
-    final Brightness brightness = widget.brightness ??
-        theme.brightness;
+    final Brightness brightness = widget.brightness ?? theme.brightness;
     final SystemUiOverlayStyle overlayStyle = brightness == Brightness.dark
         ? SystemUiOverlayStyle.light
         : SystemUiOverlayStyle.dark;
@@ -558,8 +557,9 @@ class _GFAppBarState extends State<GFAppBar> {
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: overlayStyle,
         child: Material(
-          color:
-              widget.backgroundColor ?? appBarTheme.backgroundColor ?? theme.primaryColor,
+          color: widget.backgroundColor ??
+              appBarTheme.backgroundColor ??
+              theme.primaryColor,
           elevation:
               widget.elevation ?? appBarTheme.elevation ?? _defaultElevation,
           shape: widget.shape,

@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.0.5 - 2022-02-21
+
+### Fixed
+
+- Added GFDrawer Header centerAlign option
+- Added border for GFCarousel
+- Added divider height option for GFTypography
+- Added font weight option for GFTypography
+- Added width parameter for GFTabBar
+
+
 ## 2.0.4 - 2021-08-23
 
 ### Fixed

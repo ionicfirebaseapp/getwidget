@@ -63,7 +63,8 @@ class GFDrawerHeaderPictures extends StatelessWidget {
             ),
           ),
           Align(
-            alignment: centerAlign ? Alignment.bottomCenter: Alignment.bottomLeft,
+            alignment:
+                centerAlign ? Alignment.bottomCenter : Alignment.bottomLeft,
             child: Semantics(
               explicitChildNodes: true,
               child: SizedBox(
@@ -113,9 +114,9 @@ class GFDrawerHeader extends StatefulWidget {
   final List<Widget>? otherAccountsPictures;
 
   // ignore: comment_references
-  /// If centerAlign is [enabled] then currentAccountPicture in GFDrawerHeader 
+  /// If centerAlign is [enabled] then currentAccountPicture in GFDrawerHeader
   /// will get center aligned.
-  /// 
+  ///
   /// By Default centerAlign is false.
   final bool centerAlign;
 

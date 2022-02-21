@@ -302,7 +302,9 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                                 margin: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 2),
                                 decoration: BoxDecoration(
-                                  border: currentSlide == pagerIndex ? widget.activeDotBorder: widget.passiveDotBorder,
+                                  border: currentSlide == pagerIndex
+                                      ? widget.activeDotBorder
+                                      : widget.passiveDotBorder,
                                   shape: BoxShape.circle,
                                   color: currentSlide == pagerIndex
                                       ? widget.activeIndicator == null

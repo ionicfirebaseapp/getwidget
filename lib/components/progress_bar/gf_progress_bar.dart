@@ -137,11 +137,11 @@ class _GFProgressBarState extends State<GFProgressBar>
           vsync: this);
       _animation = Tween(begin: _progressPercent, end: widget.percentage)
           .animate(_animationController!)
-            ..addListener(() {
-              setState(() {
-                _progressPercent = _animation?.value;
-              });
-            });
+        ..addListener(() {
+          setState(() {
+            _progressPercent = _animation?.value;
+          });
+        });
       _animationController?.forward();
     } else {
       _updateprogressPercent();
@@ -153,11 +153,11 @@ class _GFProgressBarState extends State<GFProgressBar>
           vsync: this);
       circularAnimation = Tween(begin: _percentage, end: widget.percentage)
           .animate(circularAnimationController!)
-            ..addListener(() {
-              setState(() {
-                _percentage = circularAnimation?.value;
-              });
-            });
+        ..addListener(() {
+          setState(() {
+            _percentage = circularAnimation?.value;
+          });
+        });
       circularAnimationController?.forward();
     } else {
       _updateProgress();
