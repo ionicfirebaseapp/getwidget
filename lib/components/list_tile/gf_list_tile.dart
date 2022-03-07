@@ -15,6 +15,7 @@ class GFListTile extends StatelessWidget {
     this.icon,
     this.padding = const EdgeInsets.all(8),
     this.margin = const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    this.listItemTextColor = GFColors.DARK,
     this.enabled = true,
     this.onTap,
     this.onLongPress,
@@ -81,6 +82,9 @@ class GFListTile extends StatelessWidget {
   /// The color for the tile's [Material] when it has the input focus.
   final Color? focusColor;
 
+  /// The color for the color of the list item text.
+  final Color? listItemTextColor;
+
   /// The color for the tile's [Material] when a pointer is hovering over it.
   final Color? hoverColor;
 
@@ -124,10 +128,10 @@ class GFListTile extends StatelessWidget {
                         titleText != null
                             ? Text(
                                 titleText!,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w500,
-                                    color: GFColors.DARK),
+                                    color: listItemTextColor),
                               )
                             : title ?? Container(),
                         subTitleText != null

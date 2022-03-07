@@ -21,6 +21,8 @@ class GFMultiSelect<T> extends StatefulWidget {
     this.inactiveBgColor = GFColors.WHITE,
     this.activeBorderColor = GFColors.WHITE,
     this.inactiveBorderColor = GFColors.WHITE,
+    this.listItemTextColor = GFColors.DARK,
+    this.buttonColor = GFColors.PRIMARY,
     this.submitButton,
     this.cancelButton,
     this.expandedIcon = const Icon(
@@ -146,6 +148,13 @@ class GFMultiSelect<T> extends StatefulWidget {
   /// defines dropdown ListTile's checkbox border color when its inactive
   /// type of [Color] used to change the border color of the inactive checkbox
   final Color inactiveBorderColor;
+
+  /// defines dropdown ListTile's button background color
+  /// type of [Color] used to change the button background color
+  final Color buttonColor;
+
+  /// The color for the color of the list item text.
+  final Color? listItemTextColor;
 
   /// defines dropdown ListTile's checkbox's active icon
   /// type of [Widget] used to change the  checkbox's active icon
@@ -291,8 +300,8 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
                                     activeBorderColor: widget.activeBorderColor,
                                     inactiveBgColor: widget.inactiveBgColor,
                                     activeIcon: widget.activeIcon,
-                                    inactiveBorderColor:
-                                        widget.inactiveBorderColor,
+                                    inactiveBorderColor: widget.inactiveBorderColor,
+                                    listItemTextColor: widget.listItemTextColor,
                                     customBgColor: widget.customBgColor,
                                     // checkColor: widget.checkColor,
                                     type: widget.type,
@@ -302,6 +311,7 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               GFButton(
+                                color: widget.buttonColor,
                                 onPressed: () {
                                   setState(() {
                                     showDropdown = !showDropdown;
@@ -313,6 +323,7 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
                                     widget.cancelButton ?? const Text('CANCEL'),
                               ),
                               GFButton(
+                                color: widget.buttonColor,
                                 onPressed: () {
                                   setState(() {
                                     showDropdown = !showDropdown;
