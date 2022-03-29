@@ -15,6 +15,7 @@ class GFTabBarView extends StatefulWidget {
     this.physics,
     this.height,
     this.dragStartBehavior = DragStartBehavior.start,
+    this.tabScrollDuration,
   }) : super(key: key);
 
   /// This widget's selection and animation state.
@@ -38,6 +39,8 @@ class GFTabBarView extends StatefulWidget {
 
   /// [GFTabBarView] height can be fixed using [double]
   final double? height;
+
+  final Duration? tabScrollDuration;
 
   @override
   _GFTabBarViewState createState() => _GFTabBarViewState();
@@ -147,7 +150,7 @@ class _GFTabBarViewState extends State<GFTabBarView> {
     if ((_currentIndex! - previousIndex).abs() == 1) {
       _warpUnderwayCount += 1;
       await _pageController.animateToPage(_currentIndex!,
-          duration: kTabScrollDuration, curve: Curves.ease);
+          duration: widget.tabScrollDuration ?? kTabScrollDuration, curve: Curves.ease);
       _warpUnderwayCount -= 1;
       return Future<void>.value();
     }
@@ -168,7 +171,7 @@ class _GFTabBarViewState extends State<GFTabBarView> {
     _pageController.jumpToPage(initialPage);
 
     await _pageController.animateToPage(_currentIndex!,
-        duration: kTabScrollDuration, curve: Curves.ease);
+        duration: widget.tabScrollDuration ?? kTabScrollDuration, curve: Curves.ease);
     if (!mounted) {
       return Future<void>.value();
     }
