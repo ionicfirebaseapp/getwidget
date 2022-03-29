@@ -81,7 +81,11 @@ class _GFCheckboxState extends State<GFCheckbox> {
         focusNode: widget.focusNode,
         autofocus: widget.autofocus,
         enabled: enabled,
-        child: InkWell(
+        child: InkResponse(
+          highlightShape: widget.type == GFCheckboxType.circle
+              ? BoxShape.circle
+              : BoxShape.rectangle,
+          containedInkWell: widget.type != GFCheckboxType.circle,
           canRequestFocus: enabled,
           onTap: widget.onChanged != null
               ? () {
@@ -91,6 +95,9 @@ class _GFCheckboxState extends State<GFCheckbox> {
           child: Container(
             height: widget.size,
             width: widget.size,
+            margin: widget.type != GFCheckboxType.circle
+                ? const EdgeInsets.all(10)
+                : EdgeInsets.zero,
             decoration: BoxDecoration(
                 color: enabled
                     ? widget.value

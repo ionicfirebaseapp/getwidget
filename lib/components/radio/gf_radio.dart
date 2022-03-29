@@ -101,6 +101,12 @@ class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     selected = widget.value == widget.groupValue;
     return InkWell(
+        borderRadius:
+            widget.type == GFRadioType.basic && widget.type == GFRadioType.blunt
+                ? BorderRadius.circular(50)
+                : widget.type == GFRadioType.square
+                    ? BorderRadius.circular(0)
+                    : BorderRadius.circular(10),
         enableFeedback: enabled,
         onTap: onStatusChange,
         child: Container(
