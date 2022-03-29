@@ -16,6 +16,7 @@ class GFCheckboxListTile extends StatelessWidget {
     this.subTitle,
     this.icon,
     this.description,
+    this.listItemTextColor = GFColors.DARK,
     this.padding = const EdgeInsets.all(8),
     this.margin = const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
     this.size = GFSize.MEDIUM,
@@ -82,6 +83,9 @@ class GFCheckboxListTile extends StatelessWidget {
   /// type of [Color] used to change the border color of the inactive checkbox
   final Color inactiveBorderColor;
 
+  /// The color for the color of the list item text.
+  final Color? listItemTextColor;
+
   /// Called when the user checks or unchecks the checkbox.
   final ValueChanged<bool>? onChanged;
 
@@ -146,6 +150,7 @@ class GFCheckboxListTile extends StatelessWidget {
         padding: padding,
         margin: margin,
         title: title,
+        listItemTextColor: listItemTextColor,
         icon: position == GFPosition.end ? checkbox : icon,
       ),
     );
