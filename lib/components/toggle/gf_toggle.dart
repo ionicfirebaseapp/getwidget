@@ -136,6 +136,10 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
           Positioned(
             top: 5,
             child: InkWell(
+              borderRadius: widget.type == GFToggleType.square
+                  ? const BorderRadius.all(Radius.circular(0))
+                  : widget.borderRadius ??
+                      const BorderRadius.all(Radius.circular(20)),
               onTap: onStatusChange,
               child: Container(
                 width: widget.type == GFToggleType.ios ? 45 : 36,

@@ -128,6 +128,7 @@ class _GFAccordionState extends State<GFAccordion>
           children: <Widget>[
             InkWell(
               onTap: _toggleCollapsed,
+              borderRadius: widget.titleBorderRadius,
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: widget.titleBorderRadius,
