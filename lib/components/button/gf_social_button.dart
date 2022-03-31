@@ -1,253 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:getwidget/colors/gf_social_color.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:getwidget/types/gf_social_type.dart';
 
-class GFSocialButton extends GFButton {
+class GFSocialButton extends StatelessWidget {
   /// Create buttons of all types. check out [GFIconButton] for icon buttons, and [GFBadge] for badges
   const GFSocialButton({
     Key? key,
     required this.onPressed,
-    this.onHighlightChanged,
-    this.textStyle,
-    this.boxShadow,
-    this.buttonBoxShadow,
-    this.focusColor,
-    this.hoverColor,
-    this.highlightColor,
-    this.splashColor,
+    required this.type,
+    required this.buttonType,
     this.elevation = 0.0,
-    this.focusElevation = 4.0,
-    this.hoverElevation = 4.0,
-    this.highlightElevation = 1.0,
-    this.disabledElevation = 0.0,
-    this.padding = const EdgeInsets.symmetric(horizontal: 8),
-    this.constraints,
-    this.borderShape,
-    this.animationDuration = kThemeChangeDuration,
-    this.clipBehavior = Clip.none,
-    this.focusNode,
-    this.autofocus = false,
-    MaterialTapTargetSize? materialTapTargetSize,
-    this.child,
-    this.type = GFButtonType.solid,
     this.shape = GFButtonShape.standard,
-    this.color = GFColors.PRIMARY,
-    this.textColor,
-    this.position = GFPosition.start,
     this.size = GFSize.MEDIUM,
-    this.borderSide,
-    this.text,
-    this.icon,
     this.blockButton,
     this.fullWidthButton,
-    this.colorScheme,
-    this.enableFeedback,
     this.onLongPress,
-    this.disabledColor,
-    this.disabledTextColor,
-  })  : materialTapTargetSize =
-            materialTapTargetSize ?? MaterialTapTargetSize.padded,
-        // assert(elevation != null && elevation >= 0.0),
-        assert(focusElevation >= 0.0),
-        assert(hoverElevation >= 0.0),
-        assert(highlightElevation >= 0.0),
-        assert(disabledElevation >= 0.0),
-        super(
-          key: key,
-          onPressed: onPressed,
-        );
+  }) : super(key: key);
 
   /// Called when the button is tapped or otherwise activated.
-  @override
   final VoidCallback? onPressed;
 
-  /// Called by the underlying [InkWell] widget's InkWell.onHighlightChanged callback.
-  @override
-  final ValueChanged<bool>? onHighlightChanged;
-
-  /// Defines the default text style, with [Material.textStyle], for the button's [child].
-  @override
-  final TextStyle? textStyle;
-
-  /// The border side for the button's [Material].
-  @override
-  final BorderSide? borderSide;
-
-  /// The box shadow for the button's [Material], if GFButtonType is solid
-  @override
-  final BoxShadow? boxShadow;
-
-  /// Pass [GFColors] or [Color]. The color for the button's [Material] when it has the input focus.
-  @override
-  final Color? focusColor;
-
-  /// Pass [GFColors] or [Color]. The color for the button's [Material] when a pointer is hovering over it.
-  @override
-  final Color? hoverColor;
-
-  /// Pass [GFColors] or [Color]. The highlight color for the button's [InkWell].
-  @override
-  final Color? highlightColor;
-
-  /// Pass [GFColors] or [Color]. The splash color for the button's [InkWell].
-  @override
-  final Color? splashColor;
-
   /// The elevation for the button's [Material] when the button is [enabled] but not pressed.
-  @override
   final double elevation;
 
-  /// The elevation for the button's [Material] when the button is [enabled] and a pointer is hovering over it.
-  @override
-  final double hoverElevation;
-
-  /// The elevation for the button's [Material] when the button is [enabled] and has the input focus.
-  @override
-  final double focusElevation;
-
-  /// The elevation for the button's [Material] when the button is [enabled] and pressed.
-  @override
-  final double highlightElevation;
-
-  /// The elevation for the button's [Material] when the button is not [enabled].
-  @override
-  final double disabledElevation;
-
-  /// The internal padding for the button's [child].
-  @override
-  final EdgeInsetsGeometry padding;
-
-  /// Defines the button's size.
-  @override
-  final BoxConstraints? constraints;
-
-  /// The shape of the button's [Material].
-  @override
-  final ShapeBorder? borderShape;
-
-  /// Defines the duration of animated changes for [shape] and [elevation].
-  @override
-  final Duration animationDuration;
-
-  /// Typically the button's label.
-  @override
-  final Widget? child;
-
-  /// Whether the button is enabled or disabled.
-  @override
   bool get enabled => onPressed != null;
 
-  /// Configures the minimum size of the tap target.
-  @override
-  final MaterialTapTargetSize materialTapTargetSize;
-
-  /// {@macro flutter.widgets.Focus.focusNode}
-  @override
-  final FocusNode? focusNode;
-
-  /// {@macro flutter.widgets.Focus.autofocus}
-  @override
-  final bool autofocus;
-
-  /// {@macro flutter.widgets.Clip}
-  @override
-  final Clip clipBehavior;
-
-  /// Button type of [GFButtonType] i.e, solid, outline, outline2x, transparent
-  @override
-  final GFButtonType type;
-
   /// Button type of GFSocialButtonShape i.e, standard, pills, square, shadow, icons
-  @override
   final GFButtonShape shape;
 
-  /// Pass [GFColors] or [Color]
-  @override
-  final Color color;
-
-  /// The fill color of the button when the button is disabled.
-  ///
-  /// The default value of this color is the theme's disabled color,
-  /// [ThemeData.disabledColor].
-  ///
-  /// See also:
-  ///
-  ///  * [color] - the fill color of the button when the button is [enabled].
-
-  @override
-  final Color? disabledColor;
-
-  /// Pass [GFColors] or [Color]
-  @override
-  final Color? textColor;
-
-  /// The color to use for this button's text when the button is disabled.
-  ///
-  /// The button's [Material.textStyle] will be the current theme's button
-  /// text style, [ThemeData.textTheme.button], configured with this color.
-  ///
-  /// The default value is the theme's disabled color,
-  /// [ThemeData.disabledColor].
-  ///
-  /// If [textColor] is a [MaterialStateProperty<Color>], [disabledTextColor]
-  /// will be ignored.
-  ///
-  /// See also:
-  ///
-  ///  * [textColor] - The color to use for this button's text when the button is [enabled].
-  @override
-  final Color? disabledTextColor;
-
   /// size of [double] or [GFSize] i.e, 1.2, small, medium, large etc.
-  @override
   final double size;
 
-  /// text of type [String] is alternative to child. text will get priority over child
-  @override
-  final String? text;
+  /// type signify the social icon type [GFSocialType] ie, whatsapp, facebook etc.
+  final GFSocialType type;
 
-  /// icon of type [Widget]
-  @override
-  final Widget? icon;
-
-  /// icon type of [GFPosition] i.e, start, end
-  @override
-  final GFPosition position;
+  /// type signify the type of social button [GFSocialButtonType] ie, solid, outlined etc.
+  final GFSocialButtonType buttonType;
 
   /// on true state blockButton gives block size button
-  @override
   final bool? blockButton;
 
   /// on true state full width Button gives full width button
-  @override
   final bool? fullWidthButton;
-
-  /// on true state default box shadow appears around button, if GFButtonType is solid
-  @override
-  final bool? buttonBoxShadow;
-
-  /// A set of thirteen colors that can be used to derive the button theme's
-  /// colors.
-  ///
-  /// This property was added much later than the theme's set of highly
-  /// specific colors, like [ThemeData.highlightColor],
-  /// [ThemeData.splashColor] etc.
-  ///
-  /// The colors for new button classes can be defined exclusively in terms
-  /// of [colorScheme]. When it's possible, the existing buttons will
-  /// (continue to) gradually migrate to it.
-  @override
-  final ColorScheme? colorScheme;
-
-  /// Whether detected gestures should provide acoustic and/or haptic feedback.
-  ///
-  /// For example, on Android a tap will produce a clicking sound and a
-  /// long-press will produce a short vibration, when feedback is enabled.
-  ///
-  /// See also:
-  ///
-  ///  * [Feedback] for providing platform-specific feedback to certain actions.
-  @override
-  final bool? enableFeedback;
 
   /// Called when the button is long-pressed.
   ///
@@ -256,43 +51,297 @@ class GFSocialButton extends GFButton {
   /// See also:
   ///
   ///  * [enabled], which is true if the button is enabled.
-  @override
   final VoidCallback? onLongPress;
 
-  Widget build(BuildContext context) => GFButton(
-        onPressed: onPressed,
-        onHighlightChanged: onHighlightChanged,
-        textStyle: textStyle,
-        boxShadow: boxShadow,
-        buttonBoxShadow: buttonBoxShadow,
-        focusColor: focusColor,
-        hoverColor: hoverColor,
-        highlightColor: highlightColor,
-        splashColor: splashColor,
-        elevation: elevation,
-        focusElevation: focusElevation,
-        hoverElevation: hoverElevation,
-        highlightElevation: highlightElevation,
-        disabledElevation: disabledElevation,
-        constraints: constraints,
-        borderShape: borderShape,
-        animationDuration: animationDuration,
-        clipBehavior: clipBehavior,
-        focusNode: focusNode,
-        autofocus: autofocus,
-        child: child,
-        type: GFButtonType.solid,
-        shape: GFButtonShape.standard,
-        color: GFColors.PRIMARY,
-        textColor: textColor,
-        position: GFPosition.start,
+  @override
+  Widget build(BuildContext context) {
+    Widget? icon;
+    String? text;
+    Color? color;
+    final double imageSize = (size == GFSize.LARGE)
+        ? 30
+        : (size == GFSize.MEDIUM)
+            ? 25
+            : 20;
+    switch (type) {
+      case GFSocialType.whatsapp:
+        icon = Image.asset(
+          "icons/whatsapp.png",
+          height: imageSize,
+          width: imageSize,
+          color: (buttonType == GFSocialButtonType.outline ||
+                  buttonType == GFSocialButtonType.outline2x ||
+                  buttonType == GFSocialButtonType.transparent)
+              ? GFSocialColors.WHATSAPP
+              : Colors.white,
+        );
+        text = 'Whatsapp';
+        color = GFSocialColors.WHATSAPP;
+        break;
+      case GFSocialType.facebook:
+        icon = Image.asset(
+          "icons/facebook.png",
+          height: imageSize,
+          width: imageSize,
+          color: (buttonType == GFSocialButtonType.outline ||
+                  buttonType == GFSocialButtonType.outline2x ||
+                  buttonType == GFSocialButtonType.transparent)
+              ? GFSocialColors.FACEBOOK
+              : Colors.white,
+        );
+        text = 'Facebook';
+        color = GFSocialColors.FACEBOOK;
+        break;
+      case GFSocialType.twitter:
+        icon = Image.asset(
+          "icons/twitter.png",
+          height: imageSize,
+          width: imageSize,
+          color: (buttonType == GFSocialButtonType.outline ||
+                  buttonType == GFSocialButtonType.outline2x ||
+                  buttonType == GFSocialButtonType.transparent)
+              ? GFSocialColors.TWITTER
+              : Colors.white,
+        );
+        text = 'Twitter';
+        color = GFSocialColors.TWITTER;
+        break;
+      case GFSocialType.google:
+        icon = Image.asset(
+          "icons/google.png",
+          height: imageSize,
+          width: imageSize,
+          color: (buttonType == GFSocialButtonType.outline ||
+                  buttonType == GFSocialButtonType.outline2x ||
+                  buttonType == GFSocialButtonType.transparent)
+              ? GFSocialColors.GOOGLE
+              : Colors.white,
+        );
+        text = 'Google';
+        color = GFSocialColors.GOOGLE;
+        break;
+      case GFSocialType.youtube:
+        icon = Image.asset(
+          "icons/youtube.png",
+          height: imageSize,
+          width: imageSize,
+          color: (buttonType == GFSocialButtonType.outline ||
+                  buttonType == GFSocialButtonType.outline2x ||
+                  buttonType == GFSocialButtonType.transparent)
+              ? GFSocialColors.YOUTUBE
+              : Colors.white,
+        );
+        text = 'Youtube';
+        color = GFSocialColors.YOUTUBE;
+        break;
+      case GFSocialType.dribble:
+        icon = Image.asset(
+          "icons/dribble.png",
+          height: imageSize,
+          width: imageSize,
+          color: (buttonType == GFSocialButtonType.outline ||
+                  buttonType == GFSocialButtonType.outline2x ||
+                  buttonType == GFSocialButtonType.transparent)
+              ? GFSocialColors.DRIBBLE
+              : Colors.white,
+        );
+        text = 'Dribble';
+        color = GFSocialColors.DRIBBLE;
+        break;
+      case GFSocialType.linkedin:
+        icon = Image.asset(
+          "icons/linkedin.png",
+          height: imageSize,
+          width: imageSize,
+          color: (buttonType == GFSocialButtonType.outline ||
+                  buttonType == GFSocialButtonType.outline2x ||
+                  buttonType == GFSocialButtonType.transparent)
+              ? GFSocialColors.LINKEDIN
+              : Colors.white,
+        );
+        text = 'Linkedin';
+        color = GFSocialColors.LINKEDIN;
+        break;
+      case GFSocialType.pinterest:
+        icon = Image.asset(
+          "icons/pinterest.png",
+          height: imageSize,
+          width: imageSize,
+          color: (buttonType == GFSocialButtonType.outline ||
+                  buttonType == GFSocialButtonType.outline2x ||
+                  buttonType == GFSocialButtonType.transparent)
+              ? GFSocialColors.PININTEREST
+              : Colors.white,
+        );
+        text = 'Pinterest';
+        color = GFSocialColors.PININTEREST;
+        break;
+      case GFSocialType.slack:
+        icon = Image.asset(
+          "icons/slack.png",
+          height: imageSize,
+          width: imageSize,
+          color: (buttonType == GFSocialButtonType.outline ||
+                  buttonType == GFSocialButtonType.outline2x ||
+                  buttonType == GFSocialButtonType.transparent)
+              ? GFSocialColors.SLACK
+              : Colors.white,
+        );
+        text = 'Slack';
+        color = GFSocialColors.SLACK;
+        break;
+      case GFSocialType.line:
+        icon = Image.asset(
+          "icons/line.png",
+          height: imageSize,
+          width: imageSize,
+          color: (buttonType == GFSocialButtonType.outline ||
+                  buttonType == GFSocialButtonType.outline2x ||
+                  buttonType == GFSocialButtonType.transparent)
+              ? GFSocialColors.LINE
+              : Colors.white,
+        );
+        text = 'Line';
+        color = GFSocialColors.LINE;
+        break;
+      case GFSocialType.wechat:
+        icon = Image.asset(
+          "icons/wechat.png",
+          height: imageSize,
+          width: imageSize,
+          color: (buttonType == GFSocialButtonType.outline ||
+                  buttonType == GFSocialButtonType.outline2x ||
+                  buttonType == GFSocialButtonType.transparent)
+              ? GFSocialColors.WECHAT
+              : Colors.white,
+        );
+        text = 'WeChat';
+        color = GFSocialColors.WECHAT;
+        break;
+    }
+
+    switch (buttonType) {
+      case GFSocialButtonType.solid:
+        return socialButtonSolid(icon, text, color);
+      case GFSocialButtonType.outline:
+        return socialButtonOutlined(icon, text, color);
+      case GFSocialButtonType.outline2x:
+        return socialButtonOutlined2x(icon, text, color);
+      case GFSocialButtonType.transparent:
+        return socialButtonTransparent(icon, text, color);
+      case GFSocialButtonType.icon:
+        return socialButtonIcon(icon, color);
+    }
+  }
+
+  Widget socialButtonSolid(Widget? icon, String? text, Color color) {
+    return GFButton(
+      onPressed: onPressed,
+      elevation: elevation,
+      shape: shape,
+      size: size,
+      text: text,
+      blockButton: blockButton,
+      fullWidthButton: fullWidthButton,
+      onLongPress: onLongPress,
+      icon: icon,
+      color: color,
+    );
+  }
+
+  Widget socialButtonOutlined(Widget? icon, String? text, Color color) {
+    return GFButton(
+      onPressed: () {},
+      type: GFButtonType.outline,
+      shape: shape,
+      size: size,
+      text: text,
+      blockButton: blockButton,
+      fullWidthButton: fullWidthButton,
+      onLongPress: onLongPress,
+      icon: icon,
+      color: color,
+      boxShadow: const BoxShadow(
+        color: Colors.black,
+        blurRadius: 10.0, // soften the shadow
+        spreadRadius: 7.0, //extend the shadow
+        offset: Offset(
+          5.0, // Move to right 10  horizontally
+          5.0, // Move to bottom 5 Vertically
+        ),
+      ),
+    );
+  }
+
+  Widget socialButtonOutlined2x(Widget icon, String text, Color color) {
+    return GFButton(
+      onPressed: () {},
+      type: GFButtonType.outline2x,
+      shape: shape,
+      size: size,
+      text: text,
+      blockButton: blockButton,
+      fullWidthButton: fullWidthButton,
+      onLongPress: onLongPress,
+      icon: icon,
+      color: color,
+      boxShadow: const BoxShadow(
+        color: Colors.black,
+        blurRadius: 10.0, // soften the shadow
+        spreadRadius: 7.0, //extend the shadow
+        offset: Offset(
+          5.0, // Move to right 10  horizontally
+          5.0, // Move to bottom 5 Vertically
+        ),
+      ),
+    );
+  }
+
+  Widget socialButtonTransparent(Widget icon, String text, Color color) {
+    return GFButton(
+      onPressed: () {},
+      type: GFButtonType.transparent,
+      shape: shape,
+      size: size,
+      text: text,
+      blockButton: blockButton,
+      fullWidthButton: fullWidthButton,
+      onLongPress: onLongPress,
+      icon: icon,
+      color: color,
+      boxShadow: const BoxShadow(
+        color: Colors.black,
+        blurRadius: 10.0, // soften the shadow
+        spreadRadius: 7.0, //extend the shadow
+        offset: Offset(
+          5.0, // Move to right 10  horizontally
+          5.0, // Move to bottom 5 Vertically
+        ),
+      ),
+    );
+  }
+
+  Widget socialButtonIcon(Widget? icon, Color color) {
+    return Material(
+      shape: RoundedRectangleBorder(
+        borderRadius: shape == GFButtonShape.pills
+            ? BorderRadius.circular(50.0)
+            : BorderRadius.circular(0.0),
+      ),
+      elevation: elevation,
+      child: GFIconButton(
+        onPressed: () {},
+        icon: icon!,
+        color: color,
         size: size,
-        borderSide: borderSide,
-        text: text,
-        icon: icon,
-        blockButton: blockButton,
-        fullWidthButton: fullWidthButton,
-        disabledColor: disabledTextColor,
-        disabledTextColor: disabledColor,
-      );
+        type: GFButtonType.solid,
+        shape: shape == GFButtonShape.standard
+            ? GFIconButtonShape.standard
+            : shape == GFButtonShape.pills
+                ? GFIconButtonShape.circle
+                : GFIconButtonShape.square,
+      ),
+    );
+  }
+
 }
