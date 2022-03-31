@@ -25,3 +25,14 @@ flutter:
     - lib/assets/github.svg
     - lib/assets/logo.svg
     - lib/assets/playstore.svg
+    - icons/whatsapp.png
+    - icons/google.png
+    - icons/facebook.png
+    - icons/twitter.png
+    - icons/dribble.png
+    - icons/linkedin.png
+    - icons/youtube.png
+    - icons/slack.png
+    - icons/pinterest.png
+    - icons/wechat.png
+    - icons/line.png
