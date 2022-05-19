@@ -12,8 +12,7 @@ dependencies:
   getwidget:
     path: ../
   cupertino_icons: ^0.1.3
-  flutter_svg: ^0.18.1
-  url_launcher: ^5.5.3
+
 
 dev_dependencies:
   flutter_test:
@@ -21,18 +20,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - lib/assets/github.svg
-    - lib/assets/logo.svg
-    - lib/assets/playstore.svg
-    - icons/whatsapp.png
-    - icons/google.png
-    - icons/facebook.png
-    - icons/twitter.png
-    - icons/dribble.png
-    - icons/linkedin.png
-    - icons/youtube.png
-    - icons/slack.png
-    - icons/pinterest.png
-    - icons/wechat.png
-    - icons/line.png

@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^1.0.3
+  url_launcher: ^6.1.2
 
 dev_dependencies:
   flutter_test:
@@ -16,3 +18,18 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - icons/assets/github.svg
+    - icons/assets/logo.svg
+    - icons/assets/playstore.svg
+    - icons/whatsapp.png
+    - icons/google.png
+    - icons/facebook.png
+    - icons/twitter.png
+    - icons/dribble.png
+    - icons/linkedin.png
+    - icons/youtube.png
+    - icons/slack.png
+    - icons/pinterest.png
+    - icons/wechat.png
+    - icons/line.png
