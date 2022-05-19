@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ionicfirebaseapp.getwidget_example">
    <application
-        android:label="Get Widget"
+        android:label="GetWidget"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
