@@ -17,7 +17,7 @@ class GFIntroScreen extends StatefulWidget {
     this.borderRadius,
     this.border,
     this.introScreenBottomNavigationBar,
-    this.showIntroScreenBottomNavigationBar = false,
+    this.showIntroScreenBottomNavigationBar = true,
     this.child,
     this.navigationBarColor = GFColors.SUCCESS,
     this.navigationBarHeight = 50,
