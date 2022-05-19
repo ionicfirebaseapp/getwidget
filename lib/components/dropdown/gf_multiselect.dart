@@ -5,9 +5,10 @@ class GFMultiSelect<T> extends StatefulWidget {
   /// GF Multiselect let user to select multiple items from the number of
   /// Checkbox ListTile items and display selected items in the TitleTile box.
   /// It displays list of items in the overlay dropdown fashion.
-  const GFMultiSelect({
+    GFMultiSelect({
     required this.items,
     required this.onSelect,
+    this.initialSelectedItemsIndex,
     this.dropdownTitleTileText = 'Select : ',
     this.dropdownTitleTileTextStyle =
         const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
@@ -58,10 +59,20 @@ class GFMultiSelect<T> extends StatefulWidget {
         const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
     this.dropdownButton,
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key){
+     if(initialSelectedItemsIndex!=null&&initialSelectedItemsIndex!.isNotEmpty){
+       for(int x in initialSelectedItemsIndex!){
+         _selectedTitles.add(items[x]);
+         _selectedTitlesIndex.add(x);
+       }
+     }
+   }
 
   /// defines the list of items the user can select
   final List<dynamic> items;
+
+  ///  A List of items that should be selected at the initial state
+  final List<int>? initialSelectedItemsIndex;
 
   /// callback when user select item from the dropdown,
   /// in callback we get list of selected items index
@@ -176,6 +187,9 @@ class GFMultiSelect<T> extends StatefulWidget {
 
   final Widget? dropdownButton;
 
+  final List _selectedTitles = [];
+  final List _selectedTitlesIndex = [];
+
   @override
   _GFMultiSelectState createState() => _GFMultiSelectState();
 }
@@ -183,19 +197,18 @@ class GFMultiSelect<T> extends StatefulWidget {
 class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
   bool showDropdown = false;
   final _controller = TextEditingController();
-  final List _selectedTitles = [];
-  final List _selectedTitlesIndex = [];
+
 
   void _onItemSelect(bool selected, int index) {
     if (selected == true) {
       setState(() {
-        _selectedTitles.add(widget.items[index]);
-        _selectedTitlesIndex.add(index);
+        widget._selectedTitles.add(widget.items[index]);
+        widget._selectedTitlesIndex.add(index);
       });
     } else {
       setState(() {
-        _selectedTitles.remove(widget.items[index]);
-        _selectedTitlesIndex.remove(index);
+        widget._selectedTitles.remove(widget.items[index]);
+        widget._selectedTitlesIndex.remove(index);
       });
     }
   }
@@ -212,12 +225,12 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            _selectedTitles.isEmpty
+            widget._selectedTitles.isEmpty
                 ? Expanded(
                     child: Text(widget.dropdownTitleTileText,
                         style: widget.dropdownTitleTileTextStyle))
                 : Expanded(
-                    child: Text(_selectedTitles.join(',  ').toString(),
+                    child: Text(widget._selectedTitles.join(',  ').toString(),
                         style: widget.dropdownTitleTileTextStyle)),
             !showDropdown ? widget.expandedIcon : widget.collapsedIcon,
           ],
@@ -280,13 +293,12 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
                           children: List.generate(
                               widget.items.length,
                               (index) => GFCheckboxListTile(
-                                    value: _selectedTitles
+                                    value: widget._selectedTitles
                                         .contains(widget.items[index]),
                                     onChanged: (bool selected) {
                                       _controller.text;
                                       _onItemSelect(selected, index);
-
-                                      widget.onSelect(_selectedTitlesIndex);
+                                      widget.onSelect(widget._selectedTitlesIndex);
                                     },
                                     selected: widget.selected,
                                     avatar: widget.avatar,
@@ -315,8 +327,8 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
                                 onPressed: () {
                                   setState(() {
                                     showDropdown = !showDropdown;
-                                    _selectedTitles.clear();
-                                    _selectedTitlesIndex.clear();
+                                    widget._selectedTitles.clear();
+                                    widget._selectedTitlesIndex.clear();
                                   });
                                 },
                                 child:
