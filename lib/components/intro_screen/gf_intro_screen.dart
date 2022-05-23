@@ -17,7 +17,7 @@ class GFIntroScreen extends StatefulWidget {
     this.borderRadius,
     this.border,
     this.introScreenBottomNavigationBar,
-    this.showIntroScreenBottomNavigationBar = false,
+    this.showIntroScreenBottomNavigationBar = true,
     this.child,
     this.navigationBarColor = GFColors.SUCCESS,
     this.navigationBarHeight = 50,
@@ -32,6 +32,8 @@ class GFIntroScreen extends StatefulWidget {
     this.dotShape,
     this.inactiveColor = GFColors.LIGHT,
     this.activeColor = GFColors.PRIMARY,
+
+
     this.dotHeight = 12,
     this.dotWidth = 12,
     this.dotMargin = const EdgeInsets.symmetric(horizontal: 2),

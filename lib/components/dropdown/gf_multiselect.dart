@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
-class GFMultiSelect<T> extends StatefulWidget {
+class GFMultiSelect<T> extends StatefulWidget  {
   /// GF Multiselect let user to select multiple items from the number of
   /// Checkbox ListTile items and display selected items in the TitleTile box.
   /// It displays list of items in the overlay dropdown fashion.
-  const GFMultiSelect({
+   const GFMultiSelect({
     required this.items,
     required this.onSelect,
+    this.initialSelectedItemsIndex,
     this.dropdownTitleTileText = 'Select : ',
     this.dropdownTitleTileTextStyle =
         const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
@@ -60,8 +61,12 @@ class GFMultiSelect<T> extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
+
   /// defines the list of items the user can select
   final List<dynamic> items;
+
+  ///  A List of items that should be selected at the initial state
+  final List<int>? initialSelectedItemsIndex;
 
   /// callback when user select item from the dropdown,
   /// in callback we get list of selected items index
@@ -176,15 +181,28 @@ class GFMultiSelect<T> extends StatefulWidget {
 
   final Widget? dropdownButton;
 
+
+
   @override
   _GFMultiSelectState createState() => _GFMultiSelectState();
 }
 
-class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
+class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> with AutomaticKeepAliveClientMixin {
+  final List _selectedTitles=[] ;
+  final List _selectedTitlesIndex=[];
   bool showDropdown = false;
   final _controller = TextEditingController();
-  final List _selectedTitles = [];
-  final List _selectedTitlesIndex = [];
+
+  @override
+  void initState(){
+    if(widget.initialSelectedItemsIndex!=null&&widget.initialSelectedItemsIndex!.isNotEmpty) {
+      for (int x in widget.initialSelectedItemsIndex!) {
+        _selectedTitles.add(widget.items[x]);
+        _selectedTitlesIndex.add(x);
+      }
+    }
+    super.initState();
+  }
 
   void _onItemSelect(bool selected, int index) {
     if (selected == true) {
@@ -285,7 +303,6 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
                                     onChanged: (bool selected) {
                                       _controller.text;
                                       _onItemSelect(selected, index);
-
                                       widget.onSelect(_selectedTitlesIndex);
                                     },
                                     selected: widget.selected,
@@ -341,4 +358,7 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

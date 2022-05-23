@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 _launchUrl(_githubLibraryRepoLink);
               },
-              child: SvgPicture.asset('lib/assets/logo.svg'),
+              child: SvgPicture.asset('assets/logo.svg'),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: GFColors.WHITE,
                     ),
                     icon: SvgPicture.asset(
-                      'lib/assets/github.svg',
+                      'assets/github.svg',
                       height: 22,
                     ),
                     color: GFColors.SUCCESS,
@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     textStyle:
                         const TextStyle(fontSize: 16, color: GFColors.WHITE),
                     icon: SvgPicture.asset(
-                      'lib/assets/playstore.svg',
+                      'assets/playstore.svg',
                       height: 20,
                     ),
                     color: GFColors.SUCCESS,
