@@ -45,6 +45,8 @@ export 'package:getwidget/components/tabs/gf_tabbar_view.dart';
 export 'package:getwidget/components/tabs/gf_tabs.dart';
 export 'package:getwidget/components/text_field/gf_text_field.dart';
 export 'package:getwidget/components/text_field/gf_text_field_rounded.dart';
+export 'package:getwidget/components/text_field/gf_text_field_pill.dart';
+export 'package:getwidget/components/text_field/gf_text_field_squared.dart';
 export 'package:getwidget/components/toast/gf_toast.dart';
 export 'package:getwidget/components/toggle/gf_toggle.dart';
 export 'package:getwidget/components/typography/gf_typography.dart';

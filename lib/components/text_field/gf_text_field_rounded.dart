@@ -8,12 +8,19 @@ class GFTextFieldRounded extends StatefulWidget{
 
   const GFTextFieldRounded({
     Key? key,
-    required this.normalbordercolor,
-    this.focusedbordercolor=Colors.green,
-    this.errorbordercolor=Colors.red,
-    this.idlebordercolor=Colors.black,
+    required this.editingbordercolor,
+    required this.idlebordercolor,
     required this.borderwidth,
     required this.cornerradius,
+    required this.hintText,
+    this.normalbordercolor=Colors.grey,
+    this.focusedbordercolor=Colors.green,
+    this.errorbordercolor=Colors.red,
+    this.disabledbordercolor=Colors.black,
+    this.paddingvertical=3,
+    this.paddinghorizontal=4,
+    this.marginvertical=3,
+    this.marginhorizontal=4,
     this.controller,
     this.initialValue='',
     this.focusNode,
@@ -66,13 +73,20 @@ class GFTextFieldRounded extends StatefulWidget{
   }) :super(key: key);
 
   final Color normalbordercolor;
+  final Color editingbordercolor;
   final Color focusedbordercolor;
   final Color errorbordercolor;
   final Color idlebordercolor;
+  final Color disabledbordercolor;
   final double borderwidth;
   final double cornerradius;
+  final double paddingvertical;
+  final double paddinghorizontal;
+  final double marginvertical;
+  final double marginhorizontal;
   final TextEditingController? controller;
   final String initialValue;
+  final String hintText;
   final FocusNode? focusNode;
   final TextInputType? keyboardType;
   final TextCapitalization textCapitalization ;
@@ -129,8 +143,13 @@ class _GFTextFieldRoundedState extends State<GFTextFieldRounded>{
 
   @override
   Widget build(BuildContext context)=>
+  Container(
+    margin: EdgeInsets.symmetric(vertical: widget.marginvertical,horizontal: widget.marginhorizontal),
+    padding: EdgeInsets.symmetric(vertical: widget.paddingvertical,horizontal: widget.paddinghorizontal),
+    child:
      GFTextField(
       decoration:  InputDecoration(
+        hintText: widget.hintText,
         border:  OutlineInputBorder(
           borderSide:  BorderSide(
             color: widget.normalbordercolor,
@@ -140,14 +159,14 @@ class _GFTextFieldRoundedState extends State<GFTextFieldRounded>{
         ),
         focusedBorder:  OutlineInputBorder(
           borderSide:  BorderSide(
-            color: widget.focusedbordercolor,
+            color: widget.editingbordercolor,
             width: widget.borderwidth,
           ),
           borderRadius: BorderRadius.circular(widget.cornerradius),
         ),
         disabledBorder:  OutlineInputBorder(
           borderSide:  BorderSide(
-            color: widget.idlebordercolor,
+            color: widget.disabledbordercolor,
             width: widget.borderwidth,
           ),
           borderRadius: BorderRadius.circular(widget.cornerradius),
@@ -161,7 +180,7 @@ class _GFTextFieldRoundedState extends State<GFTextFieldRounded>{
         ),
         enabledBorder:  OutlineInputBorder(
           borderSide:  BorderSide(
-            color: widget.focusedbordercolor,
+            color: widget.idlebordercolor,
             width: widget.borderwidth,
           ),
           borderRadius: BorderRadius.circular(widget.cornerradius),
@@ -222,6 +241,7 @@ class _GFTextFieldRoundedState extends State<GFTextFieldRounded>{
          scrollPhysics:widget.scrollPhysics,
          autofillHints:widget.autofillHints,
          autovalidateMode:widget.autovalidateMode
-    );
+    )
+  );
 
 }
