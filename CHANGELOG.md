@@ -1,5 +1,17 @@
 # Changelog
 
+
+## 2.0.6 - 2022-05-24
+
+### Fixed
+
+- Migrated to Flutter 3.0.0.
+- Option for adding preselected values in MultiSelect dropdown widget.
+- WidgetBinding instances null check issue fixed.
+- GFTextField migrated to null nullsafety and now enabled.
+- New GFTextField widgets added : GFTextFieldRounded, GFTextFieldSquared, GFTextFieldPill.
+- Added Prefix Icon option for GFTextField widgets.
+
 ## 2.0.5 - 2022-02-21
 
 ### Fixed
