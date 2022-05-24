@@ -13,6 +13,7 @@ class GFTextFieldRounded extends StatefulWidget{
     required this.borderwidth,
     required this.cornerradius,
     required this.hintText,
+    this.backgroundcolor,
     this.normalbordercolor=Colors.grey,
     this.focusedbordercolor=Colors.green,
     this.errorbordercolor=Colors.red,
@@ -78,6 +79,7 @@ class GFTextFieldRounded extends StatefulWidget{
   final Color errorbordercolor;
   final Color idlebordercolor;
   final Color disabledbordercolor;
+  final Color? backgroundcolor;
   final double borderwidth;
   final double cornerradius;
   final double paddingvertical;
@@ -149,6 +151,8 @@ class _GFTextFieldRoundedState extends State<GFTextFieldRounded>{
     child:
      GFTextField(
       decoration:  InputDecoration(
+        filled: widget.backgroundcolor!=null?true:false,
+        fillColor: widget.backgroundcolor,
         hintText: widget.hintText,
         border:  OutlineInputBorder(
           borderSide:  BorderSide(
