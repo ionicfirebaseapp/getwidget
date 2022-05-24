@@ -17,6 +17,7 @@ class GFTextFieldPill extends StatefulWidget{
     this.focusedbordercolor=Colors.green,
     this.errorbordercolor=Colors.red,
     this.disabledbordercolor=Colors.black,
+    this.iconPrefix,
     this.paddingvertical=3,
     this.paddinghorizontal=4,
     this.marginvertical=3,
@@ -85,6 +86,7 @@ class GFTextFieldPill extends StatefulWidget{
   final double marginhorizontal;
   final Color? backgroundcolor;
   final String hintText;
+  final Widget? iconPrefix;
   final TextEditingController? controller;
   final String initialValue;
   final FocusNode? focusNode;
@@ -150,6 +152,9 @@ class _GFTextFieldPillState extends State<GFTextFieldPill>{
           GFTextField(
               decoration:  InputDecoration(
                 filled: widget.backgroundcolor!=null?true:false,
+                // icon: widget.iconPrefix,
+                prefixIcon: widget.iconPrefix,
+                // prefix: widget.iconPrefix,
                 fillColor: widget.backgroundcolor,
                 hintText: widget.hintText,
                 border:  OutlineInputBorder(

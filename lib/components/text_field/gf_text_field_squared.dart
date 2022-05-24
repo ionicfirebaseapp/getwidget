@@ -13,6 +13,7 @@ class GFTextFieldSquared extends StatefulWidget{
     required this.borderwidth,
     required this.hintText,
     this.backgroundcolor,
+    this.iconPrefix,
     this.normalbordercolor=Colors.grey,
     this.focusedbordercolor=Colors.green,
     this.errorbordercolor=Colors.red,
@@ -79,6 +80,7 @@ class GFTextFieldSquared extends StatefulWidget{
   final Color idlebordercolor;
   final Color disabledbordercolor;
   final double borderwidth;
+  final Widget? iconPrefix;
   final double paddingvertical;
   final double paddinghorizontal;
   final double marginvertical;
@@ -149,6 +151,7 @@ class _GFTextFieldSquaredState extends State<GFTextFieldSquared>{
           child:
           GFTextField(
               decoration:  InputDecoration(
+                prefixIcon: widget.iconPrefix,
                 filled: widget.backgroundcolor!=null?true:false,
                 fillColor: widget.backgroundcolor,
                 hintText: widget.hintText,
