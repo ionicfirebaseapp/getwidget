@@ -153,7 +153,7 @@ class _GFTextFieldRoundedState extends State<GFTextFieldRounded>{
     child:
      GFTextField(
       decoration:  InputDecoration(
-        filled: widget.backgroundcolor!=null?true:false,
+        filled: widget.backgroundcolor!=null||false,
         prefixIcon: widget.iconPrefix,
         fillColor: widget.backgroundcolor,
         hintText: widget.hintText,

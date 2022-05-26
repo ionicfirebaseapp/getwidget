@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class GFTextField extends FormField<String>{
-
   GFTextField({
     Key? key,
     this.controller,
-    this.initialValue='',
+    this.initialValue,
     this.focusNode,
     this.decoration=const InputDecoration(),
     this.keyboardType=TextInputType.text,
@@ -31,7 +30,7 @@ class GFTextField extends FormField<String>{
     this.maxLengthEnforced=MaxLengthEnforcement.none,
     this.maxLines=1,
     this.minLines=1,
-    this.expands=true,
+    this.expands=false,
     this.maxLength,
     this.onChanged,
     this.onTap,
@@ -58,12 +57,12 @@ class GFTextField extends FormField<String>{
     final InputDecoration effectiveDecoration = (decoration ??
         const InputDecoration())
         .applyDefaults(Theme.of(field.context).inputDecorationTheme);
-    void onChangedHandler(String value) {
-      if (onChanged != null) {
-        onChanged(value);
-      }
-      field.didChange(value);
-    }
+    // void onChangedHandler(String value) {
+    //   if (onChanged != null) {
+    //     onChanged(value);
+    //   }
+    //   field.didChange(value);
+    // }
     return _GfTextFieldState(
         state: field,
            controller: controller,
@@ -73,6 +72,13 @@ class GFTextField extends FormField<String>{
           textInputAction: textInputAction,
           style: style,
           strutStyle: strutStyle,
+          initialValuex: initialValue??'',
+          autovalidate: autovalidate,
+          onSavedx: onSaved,
+          validator: validator,
+          color: color,
+          borderradius: borderradius,
+          autovalidateMode: autovalidateMode,
           textAlign: textAlign??TextAlign.start,
           textAlignVertical: textAlignVertical,
           textDirection: textDirection,
@@ -96,7 +102,7 @@ class GFTextField extends FormField<String>{
           maxLengthEnforced: maxLengthEnforced,
           maxLines: maxLines,
           minLines: minLines,
-          expands: (maxLines!=null && minLines!=null)?false:true,
+          expands: (maxLines==null && minLines==null)||false,
           maxLength: maxLength,
           onChanged: onChanged,
           onTap: onTap,
@@ -120,7 +126,8 @@ class GFTextField extends FormField<String>{
 
 
   final TextEditingController? controller;
-  final String initialValue;
+  @override
+  final String? initialValue;
   final FocusNode? focusNode;
   final InputDecoration? decoration;
   final TextInputType? keyboardType;
@@ -151,9 +158,12 @@ class GFTextField extends FormField<String>{
   final GestureTapCallback? onTap;
   final VoidCallback? onEditingComplete;
   final ValueChanged<String>? onFieldSubmitted;
+  @override
   final FormFieldSetter<String>? onSaved;
+  @override
   final FormFieldValidator<String>? validator;
   final List<TextInputFormatter>? inputFormatters;
+  @override
   final bool enabled;
   final double? cursorWidth ;
   final double? cursorHeight;
@@ -167,67 +177,18 @@ class GFTextField extends FormField<String>{
   final InputCounterWidgetBuilder? buildCounter;
   final ScrollPhysics? scrollPhysics;
   final Iterable<String>? autofillHints;
+  @override
   final AutovalidateMode autovalidateMode;
 
 
 }
 
-class _GfTextFieldState extends StatelessWidget{
-  FormFieldState<String> state;
-  TextEditingController? _controller;
-  TextEditingController? controller;
-  final String initialValue;
-  final FocusNode? focusNode;
-  final InputDecoration? decoration;
-  final TextInputType? keyboardType;
-  final TextCapitalization textCapitalization ;
-  final TextInputAction? textInputAction;
-  final TextStyle? style;
-  final StrutStyle? strutStyle;
-  final TextDirection? textDirection;
-  final TextAlign? textAlign ;
-  final TextAlignVertical? textAlignVertical;
-  final bool autofocus ;
-  final bool? readOnly ;
-  final ToolbarOptions? toolbarOptions;
-  final bool? showCursor;
-  final String obscuringCharacter;
-  final bool obscureText;
-  final bool autocorrect;
-  final SmartDashesType? smartDashesType;
-  final SmartQuotesType? smartQuotesType;
-  final bool enableSuggestions;
-  final bool? autovalidate;
-  final MaxLengthEnforcement maxLengthEnforced;
-  final int? maxLines;
-  final int? minLines;
-  final bool expands;
-  final int? maxLength;
-  final ValueChanged<String>? onChanged;
-  final GestureTapCallback? onTap;
-  final VoidCallback? onEditingComplete;
-  final ValueChanged<String>? onFieldSubmitted;
-  final FormFieldSetter<String>? onSaved;
-  final FormFieldValidator<String>? validator;
-  final List<TextInputFormatter>? inputFormatters;
-  final bool enabled;
-  final double? cursorWidth ;
-  final double? cursorHeight;
-  final Radius? cursorRadius;
-  final Color? cursorColor;
-  final Color? color;
-  final Radius? borderradius;
-  final Brightness? keyboardAppearance;
-  final EdgeInsets scrollPadding ;
-  final bool enableInteractiveSelection;
-  final InputCounterWidgetBuilder? buildCounter;
-  final ScrollPhysics? scrollPhysics;
-  final Iterable<String>? autofillHints;
-  final AutovalidateMode autovalidateMode;
-  _GfTextFieldState({
+class _GfTextFieldState extends StatefulWidget {
+
+  const _GfTextFieldState({
     required this.state,
     this.controller,
-    this.initialValue = '',
+    this.initialValuex = '',
     this.focusNode,
     this.decoration = const InputDecoration(hintText: 'Default style'),
     this.keyboardType = TextInputType.text,
@@ -259,7 +220,7 @@ class _GfTextFieldState extends StatelessWidget{
     this.onTap,
     this.onEditingComplete,
     this.onFieldSubmitted,
-    this.onSaved,
+    this.onSavedx,
     this.validator,
     this.inputFormatters,
     this.enabled = true,
@@ -276,64 +237,135 @@ class _GfTextFieldState extends StatelessWidget{
     this.scrollPhysics,
     this.autofillHints,
     this.autovalidateMode = AutovalidateMode.disabled
-  }){
-    _controller=controller;
-    if(_controller==null){
-      _controller=TextEditingController(text: state.value.toString());
-    }
+  });
+
+  final FormFieldState<String> state;
+  final TextEditingController? controller;
+  final String initialValuex;
+  final FocusNode? focusNode;
+  final InputDecoration? decoration;
+  final TextInputType? keyboardType;
+  final TextCapitalization textCapitalization;
+  final TextInputAction? textInputAction;
+  final TextStyle? style;
+  final StrutStyle? strutStyle;
+  final TextDirection? textDirection;
+  final TextAlign? textAlign;
+  final TextAlignVertical? textAlignVertical;
+  final bool autofocus;
+  final bool? readOnly;
+  final ToolbarOptions? toolbarOptions;
+  final bool? showCursor;
+  final String obscuringCharacter;
+  final bool obscureText;
+  final bool autocorrect;
+  final SmartDashesType? smartDashesType;
+  final SmartQuotesType? smartQuotesType;
+  final bool enableSuggestions;
+  final bool? autovalidate;
+  final MaxLengthEnforcement maxLengthEnforced;
+  final int? maxLines;
+  final int? minLines;
+  final bool expands;
+  final int? maxLength;
+  final ValueChanged<String>? onChanged;
+  final GestureTapCallback? onTap;
+  final VoidCallback? onEditingComplete;
+  final ValueChanged<String>? onFieldSubmitted;
+  final FormFieldSetter<String>? onSavedx;
+  final FormFieldValidator<String>? validator;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool enabled;
+  final double? cursorWidth;
+
+  final double? cursorHeight;
+  final Radius? cursorRadius;
+  final Color? cursorColor;
+  final Color? color;
+  final Radius? borderradius;
+  final Brightness? keyboardAppearance;
+  final EdgeInsets scrollPadding;
+
+  final bool enableInteractiveSelection;
+  final InputCounterWidgetBuilder? buildCounter;
+  final ScrollPhysics? scrollPhysics;
+  final Iterable<String>? autofillHints;
+  final AutovalidateMode autovalidateMode;
+
+  @override
+  State<_GfTextFieldState> createState() => _GfTextFieldStateState();
+}
+
+class _GfTextFieldStateState extends State<_GfTextFieldState>{
+
+  TextEditingController controller=TextEditingController();
+
+
+  @override
+  void initState(){
+
+    controller.text=widget.state.value.toString();
+    super.initState();
   }
 
         @override
-        Widget build(BuildContext context)=>Container(
+        Widget build(BuildContext context) =>
+           Container(
             child: TextField(
-            controller: _controller,
-            focusNode: focusNode,
-            decoration:decoration,
-            keyboardType: keyboardType,
-            textInputAction: textInputAction,
-            style: style,
-            strutStyle: strutStyle,
-            textAlign: textAlign??TextAlign.start,
-            textAlignVertical: textAlignVertical,
-            textDirection: textDirection,
-            textCapitalization: textCapitalization,
-            autofocus: autofocus,
-            toolbarOptions: toolbarOptions,
-            readOnly: readOnly??false,
-            showCursor: showCursor,
-            obscuringCharacter: obscuringCharacter,
-            obscureText: obscureText,
-            autocorrect: autocorrect,
-            smartDashesType: smartDashesType ??
-            (obscureText
-            ? SmartDashesType.disabled
-                : SmartDashesType.enabled),
-            smartQuotesType: smartQuotesType ??
-            (obscureText
-            ? SmartQuotesType.disabled
-                : SmartQuotesType.enabled),
-            enableSuggestions: enableSuggestions,
-            maxLengthEnforcement: maxLengthEnforced,
-            maxLines: maxLines,
-            minLines: minLines,
-            expands: (maxLines!=null && minLines!=null)?false:true,
-            maxLength: maxLength,
-            onChanged: onChanged,
-            onTap: onTap,
-            onEditingComplete: onEditingComplete,
-            onSubmitted: onFieldSubmitted,
-            inputFormatters: inputFormatters,
-            enabled: enabled ,
-            cursorWidth: cursorWidth??1,
-            cursorHeight: cursorHeight,
-            cursorRadius: cursorRadius,
-            cursorColor: cursorColor,
-            scrollPadding: scrollPadding,
-            scrollPhysics: scrollPhysics,
-            keyboardAppearance: keyboardAppearance,
-            enableInteractiveSelection: enableInteractiveSelection,
-            buildCounter: buildCounter,
-            autofillHints: autofillHints,
+              controller: widget.controller??controller,
+              focusNode: widget.focusNode,
+              decoration: widget.decoration,
+              keyboardType: widget.keyboardType,
+              textInputAction: widget.textInputAction,
+              style: widget.style,
+              strutStyle: widget.strutStyle,
+              textAlign: widget.textAlign ?? TextAlign.start,
+              textAlignVertical: widget.textAlignVertical,
+              textDirection: widget.textDirection,
+              textCapitalization: widget.textCapitalization,
+              autofocus: widget.autofocus,
+              toolbarOptions: widget.toolbarOptions,
+              readOnly: widget.readOnly ?? false,
+              showCursor: widget.showCursor,
+              obscuringCharacter: widget.obscuringCharacter,
+              obscureText: widget.obscureText,
+              autocorrect: widget.autocorrect,
+              smartDashesType: widget.smartDashesType ??
+                  (widget.obscureText
+                      ? SmartDashesType.disabled
+                      : SmartDashesType.enabled),
+              smartQuotesType: widget.smartQuotesType ??
+                  (widget.obscureText
+                      ? SmartQuotesType.disabled
+                      : SmartQuotesType.enabled),
+              enableSuggestions: widget.enableSuggestions,
+              maxLengthEnforcement: widget.maxLengthEnforced,
+              maxLines: widget.maxLines,
+              minLines: widget.minLines,
+              expands: (widget.maxLines != null && widget.minLines != null) || true,
+              maxLength: widget.maxLength,
+              onChanged: widget.onChanged,
+              onTap: widget.onTap,
+              onEditingComplete: widget.onEditingComplete,
+              onSubmitted: widget.onFieldSubmitted,
+              inputFormatters: widget.inputFormatters,
+              enabled: (widget.maxLines==null&&widget.minLines==null)||false,
+              cursorWidth: widget.cursorWidth ?? 1,
+              cursorHeight: widget.cursorHeight,
+              cursorRadius: widget.cursorRadius,
+              cursorColor: widget.cursorColor,
+              scrollPadding: widget.scrollPadding,
+              scrollPhysics: widget.scrollPhysics,
+              keyboardAppearance: widget.keyboardAppearance,
+              enableInteractiveSelection: widget.enableInteractiveSelection,
+              buildCounter: widget.buildCounter,
+              autofillHints: widget.autofillHints,
             ),
-            );
+          );
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
     }
