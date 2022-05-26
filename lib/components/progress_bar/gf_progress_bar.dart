@@ -34,7 +34,9 @@ class GFProgressBar extends StatefulWidget {
     // if (linearGradient != null) {
     //   throw ArgumentError(' linearGradient cannot be given');
     // }
-    assert(circleStartAngle >= 0.0);
+    if (circleStartAngle < 0.0) {
+      throw Exception('circleStartAngle cannot be less than zero');
+    }
     if (percentage < 0.0 || percentage > 1.0) {
       throw Exception('Percentage value must be be tween 0.0 and 1.0');
     }

@@ -66,7 +66,7 @@ class GFSocialButton extends StatelessWidget {
     switch (type) {
       case GFSocialType.whatsapp:
         icon = Image.asset(
-          "icons/whatsapp.png",
+          'icons/whatsapp.png',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -80,7 +80,7 @@ class GFSocialButton extends StatelessWidget {
         break;
       case GFSocialType.facebook:
         icon = Image.asset(
-          "icons/facebook.png",
+          'icons/facebook.png',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -94,7 +94,7 @@ class GFSocialButton extends StatelessWidget {
         break;
       case GFSocialType.twitter:
         icon = Image.asset(
-          "icons/twitter.png",
+          'icons/twitter.png',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -108,7 +108,7 @@ class GFSocialButton extends StatelessWidget {
         break;
       case GFSocialType.google:
         icon = Image.asset(
-          "icons/google.png",
+          'icons/google.png',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -122,7 +122,7 @@ class GFSocialButton extends StatelessWidget {
         break;
       case GFSocialType.youtube:
         icon = Image.asset(
-          "icons/youtube.png",
+          'icons/youtube.png',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -136,7 +136,7 @@ class GFSocialButton extends StatelessWidget {
         break;
       case GFSocialType.dribble:
         icon = Image.asset(
-          "icons/dribble.png",
+          'icons/dribble.png',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -150,7 +150,7 @@ class GFSocialButton extends StatelessWidget {
         break;
       case GFSocialType.linkedin:
         icon = Image.asset(
-          "icons/linkedin.png",
+          'icons/linkedin.png',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -164,7 +164,7 @@ class GFSocialButton extends StatelessWidget {
         break;
       case GFSocialType.pinterest:
         icon = Image.asset(
-          "icons/pinterest.png",
+          'icons/pinterest.png',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -178,7 +178,7 @@ class GFSocialButton extends StatelessWidget {
         break;
       case GFSocialType.slack:
         icon = Image.asset(
-          "icons/slack.png",
+          'icons/slack.png',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -192,7 +192,7 @@ class GFSocialButton extends StatelessWidget {
         break;
       case GFSocialType.line:
         icon = Image.asset(
-          "icons/line.png",
+          'icons/line.png',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -206,7 +206,7 @@ class GFSocialButton extends StatelessWidget {
         break;
       case GFSocialType.wechat:
         icon = Image.asset(
-          "icons/wechat.png",
+          'icons/wechat.png',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -234,8 +234,8 @@ class GFSocialButton extends StatelessWidget {
     }
   }
 
-  Widget socialButtonSolid(Widget? icon, String? text, Color color) {
-    return GFButton(
+  Widget socialButtonSolid(Widget? icon, String? text, Color color) =>
+     GFButton(
       onPressed: onPressed,
       elevation: elevation,
       shape: shape,
@@ -247,10 +247,10 @@ class GFSocialButton extends StatelessWidget {
       icon: icon,
       color: color,
     );
-  }
 
-  Widget socialButtonOutlined(Widget? icon, String? text, Color color) {
-    return GFButton(
+
+  Widget socialButtonOutlined(Widget? icon, String? text, Color color) =>
+     GFButton(
       onPressed: () {},
       type: GFButtonType.outline,
       shape: shape,
@@ -263,18 +263,18 @@ class GFSocialButton extends StatelessWidget {
       color: color,
       boxShadow: const BoxShadow(
         color: Colors.black,
-        blurRadius: 10.0, // soften the shadow
-        spreadRadius: 7.0, //extend the shadow
+        blurRadius: 10, // soften the shadow
+        spreadRadius:7, //extend the shadow
         offset: Offset(
-          5.0, // Move to right 10  horizontally
-          5.0, // Move to bottom 5 Vertically
+          5, // Move to right 10  horizontally
+         5, // Move to bottom 5 Vertically
         ),
       ),
     );
-  }
 
-  Widget socialButtonOutlined2x(Widget icon, String text, Color color) {
-    return GFButton(
+
+  Widget socialButtonOutlined2x(Widget icon, String text, Color color) =>
+     GFButton(
       onPressed: () {},
       type: GFButtonType.outline2x,
       shape: shape,
@@ -287,18 +287,18 @@ class GFSocialButton extends StatelessWidget {
       color: color,
       boxShadow: const BoxShadow(
         color: Colors.black,
-        blurRadius: 10.0, // soften the shadow
-        spreadRadius: 7.0, //extend the shadow
+        blurRadius: 10, // soften the shadow
+        spreadRadius: 7, //extend the shadow
         offset: Offset(
-          5.0, // Move to right 10  horizontally
-          5.0, // Move to bottom 5 Vertically
+          5, // Move to right 10  horizontally
+          5, // Move to bottom 5 Vertically
         ),
       ),
     );
-  }
 
-  Widget socialButtonTransparent(Widget icon, String text, Color color) {
-    return GFButton(
+
+  Widget socialButtonTransparent(Widget icon, String text, Color color) =>
+     GFButton(
       onPressed: () {},
       type: GFButtonType.transparent,
       shape: shape,
@@ -311,22 +311,22 @@ class GFSocialButton extends StatelessWidget {
       color: color,
       boxShadow: const BoxShadow(
         color: Colors.black,
-        blurRadius: 10.0, // soften the shadow
-        spreadRadius: 7.0, //extend the shadow
+        blurRadius: 10, // soften the shadow
+        spreadRadius: 7, //extend the shadow
         offset: Offset(
-          5.0, // Move to right 10  horizontally
-          5.0, // Move to bottom 5 Vertically
+          5, // Move to right 10  horizontally
+          5, // Move to bottom 5 Vertically
         ),
       ),
     );
-  }
 
-  Widget socialButtonIcon(Widget? icon, Color color) {
-    return Material(
+
+  Widget socialButtonIcon(Widget? icon, Color color) =>
+     Material(
       shape: RoundedRectangleBorder(
         borderRadius: shape == GFButtonShape.pills
-            ? BorderRadius.circular(50.0)
-            : BorderRadius.circular(0.0),
+            ? BorderRadius.circular(50)
+            : BorderRadius.circular(0),
       ),
       elevation: elevation,
       child: GFIconButton(
@@ -342,6 +342,6 @@ class GFSocialButton extends StatelessWidget {
                 : GFIconButtonShape.square,
       ),
     );
-  }
+
 
 }

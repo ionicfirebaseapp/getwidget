@@ -152,7 +152,7 @@ class _GFTextFieldSquaredState extends State<GFTextFieldSquared>{
           GFTextField(
               decoration:  InputDecoration(
                 prefixIcon: widget.iconPrefix,
-                filled: widget.backgroundcolor!=null?true:false,
+                filled: widget.backgroundcolor!=null||false,
                 fillColor: widget.backgroundcolor,
                 hintText: widget.hintText,
                 border:  OutlineInputBorder(

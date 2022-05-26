@@ -226,6 +226,7 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> with AutomaticKeepA
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     Widget dropdownTile() => Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

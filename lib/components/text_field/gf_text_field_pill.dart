@@ -47,7 +47,7 @@ class GFTextFieldPill extends StatefulWidget{
     this.maxLengthEnforced=MaxLengthEnforcement.none,
     this.maxLines=1,
     this.minLines=1,
-    this.expands=true,
+    this.expands=false,
     this.maxLength,
     this.onChanged,
     this.onTap,
@@ -144,111 +144,112 @@ class GFTextFieldPill extends StatefulWidget{
 class _GFTextFieldPillState extends State<GFTextFieldPill>{
 
   @override
-  Widget build(BuildContext context)=>
-      Container(
-          margin: EdgeInsets.symmetric(vertical: widget.marginvertical,horizontal: widget.marginhorizontal),
-          padding: EdgeInsets.symmetric(vertical: widget.paddingvertical,horizontal: widget.paddinghorizontal),
-          child:
-          GFTextField(
-              decoration:  InputDecoration(
-                filled: widget.backgroundcolor!=null?true:false,
-                // icon: widget.iconPrefix,
-                prefixIcon: widget.iconPrefix,
-                // prefix: widget.iconPrefix,
-                fillColor: widget.backgroundcolor,
-                hintText: widget.hintText,
-                border:  OutlineInputBorder(
-                  borderSide:  BorderSide(
-                    color: widget.normalbordercolor,
-                    width: widget.borderwidth,
-                  ),
-                  borderRadius: BorderRadius.circular(50),
+  Widget build(BuildContext context) => Container(
+        margin: EdgeInsets.symmetric(vertical: widget.marginvertical,
+            horizontal: widget.marginhorizontal),
+        padding: EdgeInsets.symmetric(vertical: widget.paddingvertical,
+            horizontal: widget.paddinghorizontal),
+        child:
+        GFTextField(
+            decoration: InputDecoration(
+              filled:widget.backgroundcolor!=null||false,
+              // icon: widget.iconPrefix,
+              prefixIcon: widget.iconPrefix,
+              // prefix: widget.iconPrefix,
+              fillColor: widget.backgroundcolor,
+              hintText: widget.hintText,
+              border: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: widget.normalbordercolor,
+                  width: widget.borderwidth,
                 ),
-                focusedBorder:  OutlineInputBorder(
-                  borderSide:  BorderSide(
-                    color: widget.editingbordercolor,
-                    width: widget.borderwidth,
-                  ),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                disabledBorder:  OutlineInputBorder(
-                  borderSide:  BorderSide(
-                    color: widget.disabledbordercolor,
-                    width: widget.borderwidth,
-                  ),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                errorBorder:  OutlineInputBorder(
-                  borderSide:  BorderSide(
-                    color: widget.errorbordercolor,
-                    width: widget.borderwidth,
-                  ),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                enabledBorder:  OutlineInputBorder(
-                  borderSide:  BorderSide(
-                    color: widget.idlebordercolor,
-                    width: widget.borderwidth,
-                  ),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                focusedErrorBorder:  OutlineInputBorder(
-                  borderSide:  BorderSide(
-                    color: widget.errorbordercolor,
-                    width: widget.borderwidth,
-                  ),
-                  borderRadius: BorderRadius.circular(50),
-                ),
+                borderRadius: BorderRadius.circular(50),
               ),
-              controller:widget.controller,
-              initialValue:widget.initialValue,
-              focusNode:widget.focusNode,
-              keyboardType:widget.keyboardType,
-              textCapitalization:widget.textCapitalization,
-              textInputAction:widget.textInputAction,
-              style:widget.style,
-              strutStyle:widget.strutStyle,
-              textDirection:widget.textDirection,
-              textAlign:widget.textAlign,
-              textAlignVertical:widget.textAlignVertical,
-              autofocus:widget.autofocus,
-              readOnly:widget.readOnly,
-              toolbarOptions:widget.toolbarOptions,
-              showCursor:widget.showCursor,
-              obscuringCharacter:widget.obscuringCharacter,
-              obscureText:widget.obscureText,
-              autocorrect:widget.autocorrect,
-              smartDashesType:widget.smartDashesType,
-              smartQuotesType:widget.smartQuotesType,
-              enableSuggestions:widget.enableSuggestions,
-              autovalidate:widget.autovalidate,
-              maxLengthEnforced:widget.maxLengthEnforced,
-              maxLines:widget.maxLines,
-              minLines:widget.minLines,
-              expands:widget.expands,
-              maxLength:widget.maxLength,
-              onChanged:widget.onChanged,
-              onTap:widget.onTap,
-              onEditingComplete:widget.onEditingComplete,
-              onFieldSubmitted:widget.onFieldSubmitted,
-              onSaved:widget.onSaved,
-              validator:widget.validator,
-              inputFormatters:widget.inputFormatters,
-              enabled:widget.enabled,
-              cursorWidth:widget.cursorWidth,
-              cursorHeight:widget.cursorHeight,
-              cursorRadius:widget.cursorRadius,
-              cursorColor:widget.cursorColor,
-              color:widget.color,
-              borderradius:widget.borderradius,
-              keyboardAppearance:widget.keyboardAppearance,
-              scrollPadding:widget.scrollPadding,
-              enableInteractiveSelection:widget.enableInteractiveSelection,
-              buildCounter:widget.buildCounter,
-              scrollPhysics:widget.scrollPhysics,
-              autofillHints:widget.autofillHints,
-              autovalidateMode:widget.autovalidateMode
-          )
-      );
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: widget.editingbordercolor,
+                  width: widget.borderwidth,
+                ),
+                borderRadius: BorderRadius.circular(50),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: widget.disabledbordercolor,
+                  width: widget.borderwidth,
+                ),
+                borderRadius: BorderRadius.circular(50),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: widget.errorbordercolor,
+                  width: widget.borderwidth,
+                ),
+                borderRadius: BorderRadius.circular(50),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: widget.idlebordercolor,
+                  width: widget.borderwidth,
+                ),
+                borderRadius: BorderRadius.circular(50),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: widget.errorbordercolor,
+                  width: widget.borderwidth,
+                ),
+                borderRadius: BorderRadius.circular(50),
+              ),
+            ),
+            controller: widget.controller,
+            initialValue: widget.initialValue,
+            focusNode: widget.focusNode,
+            keyboardType: widget.keyboardType,
+            textCapitalization: widget.textCapitalization,
+            textInputAction: widget.textInputAction,
+            style: widget.style,
+            strutStyle: widget.strutStyle,
+            textDirection: widget.textDirection,
+            textAlign: widget.textAlign,
+            textAlignVertical: widget.textAlignVertical,
+            autofocus: widget.autofocus,
+            readOnly: widget.readOnly,
+            toolbarOptions: widget.toolbarOptions,
+            showCursor: widget.showCursor,
+            obscuringCharacter: widget.obscuringCharacter,
+            obscureText: widget.obscureText,
+            autocorrect: widget.autocorrect,
+            smartDashesType: widget.smartDashesType,
+            smartQuotesType: widget.smartQuotesType,
+            enableSuggestions: widget.enableSuggestions,
+            autovalidate: widget.autovalidate,
+            maxLengthEnforced: widget.maxLengthEnforced,
+            maxLines: widget.maxLines,
+            minLines: widget.minLines,
+            expands: widget.expands,
+            maxLength: widget.maxLength,
+            onChanged: widget.onChanged,
+            onTap: widget.onTap,
+            onEditingComplete: widget.onEditingComplete,
+            onFieldSubmitted: widget.onFieldSubmitted,
+            onSaved: widget.onSaved,
+            validator: widget.validator,
+            inputFormatters: widget.inputFormatters,
+            enabled: widget.enabled,
+            cursorWidth: widget.cursorWidth,
+            cursorHeight: widget.cursorHeight,
+            cursorRadius: widget.cursorRadius,
+            cursorColor: widget.cursorColor,
+            color: widget.color,
+            borderradius: widget.borderradius,
+            keyboardAppearance: widget.keyboardAppearance,
+            scrollPadding: widget.scrollPadding,
+            enableInteractiveSelection: widget.enableInteractiveSelection,
+            buildCounter: widget.buildCounter,
+            scrollPhysics: widget.scrollPhysics,
+            autofillHints: widget.autofillHints,
+            autovalidateMode: widget.autovalidateMode
+        )
+    );
 
 }
