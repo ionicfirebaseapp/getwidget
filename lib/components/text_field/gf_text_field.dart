@@ -7,7 +7,7 @@ class GFTextField extends FormField<String>{
     this.controller,
     this.initialValue,
     this.focusNode,
-    this.decoration=const InputDecoration(),
+    this.decoration,
     this.keyboardType=TextInputType.text,
     this.textCapitalization=TextCapitalization.none,
     this.textInputAction,
@@ -53,21 +53,21 @@ class GFTextField extends FormField<String>{
     this.scrollPhysics,
     this.autofillHints,
     this.autovalidateMode=AutovalidateMode.disabled
-  }) : super(key:key,builder: (FormFieldState<String> field){
-    final InputDecoration effectiveDecoration = (decoration ??
-        const InputDecoration())
-        .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+  }) : super(key:key,builder: (FormFieldState<String> field)=>
+    // final InputDecoration effectiveDecoration = (decoration ??
+    //     const InputDecoration())
+    //     .applyDefaults(Theme.of(field.context).inputDecorationTheme);
     // void onChangedHandler(String value) {
     //   if (onChanged != null) {
     //     onChanged(value);
     //   }
     //   field.didChange(value);
     // }
-    return _GfTextFieldState(
+     _GfTextFieldState(
         state: field,
            controller: controller,
           focusNode: focusNode,
-          decoration:effectiveDecoration,
+          decoration:decoration,
           keyboardType: keyboardType,
           textInputAction: textInputAction,
           style: style,
@@ -121,8 +121,8 @@ class GFTextField extends FormField<String>{
           buildCounter: buildCounter,
           autofillHints: autofillHints,
 
-    );
-      });
+    )
+      );
 
 
   final TextEditingController? controller;
@@ -190,7 +190,7 @@ class _GfTextFieldState extends StatefulWidget {
     this.controller,
     this.initialValuex = '',
     this.focusNode,
-    this.decoration = const InputDecoration(hintText: 'Default style'),
+    this.decoration,
     this.keyboardType = TextInputType.text,
     this.textCapitalization = TextCapitalization.none,
     this.textInputAction,
@@ -214,7 +214,7 @@ class _GfTextFieldState extends StatefulWidget {
     this.maxLengthEnforced = MaxLengthEnforcement.none,
     this.maxLines = 1,
     this.minLines = 1,
-    this.expands = true,
+    this.expands,
     this.maxLength,
     this.onChanged,
     this.onTap,
@@ -266,7 +266,7 @@ class _GfTextFieldState extends StatefulWidget {
   final MaxLengthEnforcement maxLengthEnforced;
   final int? maxLines;
   final int? minLines;
-  final bool expands;
+  final bool? expands;
   final int? maxLength;
   final ValueChanged<String>? onChanged;
   final GestureTapCallback? onTap;
@@ -304,7 +304,7 @@ class _GfTextFieldStateState extends State<_GfTextFieldState>{
   @override
   void initState(){
 
-    controller.text=widget.state.value.toString();
+    controller.text=widget.state.value??'';
     super.initState();
   }
 
@@ -314,7 +314,7 @@ class _GfTextFieldStateState extends State<_GfTextFieldState>{
             child: TextField(
               controller: widget.controller??controller,
               focusNode: widget.focusNode,
-              decoration: widget.decoration,
+              decoration: widget.decoration??const InputDecoration(hintText: 'Type here'),
               keyboardType: widget.keyboardType,
               textInputAction: widget.textInputAction,
               style: widget.style,
@@ -342,14 +342,14 @@ class _GfTextFieldStateState extends State<_GfTextFieldState>{
               maxLengthEnforcement: widget.maxLengthEnforced,
               maxLines: widget.maxLines,
               minLines: widget.minLines,
-              expands: (widget.maxLines != null && widget.minLines != null) || true,
+              expands: (widget.maxLines == null && widget.minLines == null) || false,
               maxLength: widget.maxLength,
               onChanged: widget.onChanged,
               onTap: widget.onTap,
               onEditingComplete: widget.onEditingComplete,
               onSubmitted: widget.onFieldSubmitted,
               inputFormatters: widget.inputFormatters,
-              enabled: (widget.maxLines==null&&widget.minLines==null)||false,
+              enabled: widget.enabled||true,
               cursorWidth: widget.cursorWidth ?? 1,
               cursorHeight: widget.cursorHeight,
               cursorRadius: widget.cursorRadius,
@@ -368,4 +368,4 @@ class _GfTextFieldStateState extends State<_GfTextFieldState>{
     super.dispose();
   }
 
-    }
+  }
