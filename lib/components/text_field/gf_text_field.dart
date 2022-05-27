@@ -296,7 +296,7 @@ class _GfTextFieldState extends StatefulWidget {
   State<_GfTextFieldState> createState() => _GfTextFieldStateState();
 }
 
-class _GfTextFieldStateState extends State<_GfTextFieldState>{
+class _GfTextFieldStateState extends State<_GfTextFieldState> with AutomaticKeepAliveClientMixin{
 
   TextEditingController controller=TextEditingController();
 
@@ -311,7 +311,7 @@ class _GfTextFieldStateState extends State<_GfTextFieldState>{
         @override
         Widget build(BuildContext context) =>
            Container(
-            child: TextField(
+            child: TextFormField(
               controller: widget.controller??controller,
               focusNode: widget.focusNode,
               decoration: widget.decoration??const InputDecoration(hintText: 'Type here'),
@@ -329,6 +329,7 @@ class _GfTextFieldStateState extends State<_GfTextFieldState>{
               showCursor: widget.showCursor,
               obscuringCharacter: widget.obscuringCharacter,
               obscureText: widget.obscureText,
+              validator: widget.validator,
               autocorrect: widget.autocorrect,
               smartDashesType: widget.smartDashesType ??
                   (widget.obscureText
@@ -347,7 +348,7 @@ class _GfTextFieldStateState extends State<_GfTextFieldState>{
               onChanged: widget.onChanged,
               onTap: widget.onTap,
               onEditingComplete: widget.onEditingComplete,
-              onSubmitted: widget.onFieldSubmitted,
+              // onSubmitted: widget.onFieldSubmitted,
               inputFormatters: widget.inputFormatters,
               enabled: widget.enabled||true,
               cursorWidth: widget.cursorWidth ?? 1,
@@ -367,5 +368,8 @@ class _GfTextFieldStateState extends State<_GfTextFieldState>{
     controller.dispose();
     super.dispose();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   }

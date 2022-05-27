@@ -48,6 +48,7 @@ class _GfFormState extends State<GfForm> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     formskey= widget.formkey ??GlobalKey<FormState>();
+    print('Key set $formskey');
     super.initState();
   }
 
@@ -78,10 +79,11 @@ class _GfFormState extends State<GfForm> with AutomaticKeepAliveClientMixin {
                   padding: const EdgeInsets.symmetric(
                       vertical: 4, horizontal: 8),
                   child:
+
                   GFTypography(
                     text: widget.formHeading.toString(),
                     type: widget.headingtype,
-                  )) :
+                  )):
               Container(),
               widget.formHeading != null ?
               const SizedBox(height: 8,) : Container(),
@@ -89,7 +91,7 @@ class _GfFormState extends State<GfForm> with AutomaticKeepAliveClientMixin {
               SingleChildScrollView(
                 child:
                 Form(
-                  key: widget.formkey,
+                  key: formskey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -106,31 +108,29 @@ class _GfFormState extends State<GfForm> with AutomaticKeepAliveClientMixin {
               GFButton(
                   text: widget.defaultSubmitButtontext,
                   onPressed: () {
-                    print('Button Clicked ${widget.formkey!.currentState!
-                        .validate()}');
-                    if (widget.formkey!.currentState!.validate()) {
-                      if (widget.validatesuccess != null) {
-                        print('Button Success1');
-                        widget.validatesuccess!();
+                      if (formskey.currentState!.validate()) {
+                        if (widget.validatesuccess != null) {
+                          widget.validatesuccess!();
+                        }
+                        else {
+                          print('Button Success2');
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Validation Success')),
+                          );
+                        }
                       }
                       else {
-                        print('Button Success2');
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Validation Success')),
-                        );
+                        if (widget.validatefailed != null) {
+                          widget.validatefailed!();
+                        }
+                        else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Validation Failed')),
+                          );
+                        }
                       }
-                    }
-                    else {
-                      if (widget.validatefailed != null) {
-                        widget.validatefailed!();
-                      }
-                      else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Validation Failed')),
-                        );
-                      }
-                    }
-                  }) : Container(),
+                    })
+                   : Container(),
             ],
           )
       );
