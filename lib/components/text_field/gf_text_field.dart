@@ -54,15 +54,6 @@ class GFTextField extends FormField<String>{
     this.autofillHints,
     this.autovalidateMode=AutovalidateMode.disabled
   }) : super(key:key,builder: (FormFieldState<String> field)=>
-    // final InputDecoration effectiveDecoration = (decoration ??
-    //     const InputDecoration())
-    //     .applyDefaults(Theme.of(field.context).inputDecorationTheme);
-    // void onChangedHandler(String value) {
-    //   if (onChanged != null) {
-    //     onChanged(value);
-    //   }
-    //   field.didChange(value);
-    // }
      _GfTextFieldState(
         state: field,
            controller: controller,
