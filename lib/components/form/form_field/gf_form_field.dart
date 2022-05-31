@@ -2,17 +2,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:getwidget/components/form/form_field/decorations/gf_formfield_decoration.dart';
 import 'package:getwidget/components/text_field/gf_text_field.dart';
+import 'package:getwidget/shape/gf_textfield_shape.dart';
 import 'package:getwidget/types/gf_form_field_type.dart';
 
-class GfFormFieldPill extends StatefulWidget{
-  const GfFormFieldPill({
+class GfFormField extends StatefulWidget{
+  const GfFormField({
     Key? key,
     required this.gfFormFieldType,
     required this.editingbordercolor,
     required this.idlebordercolor,
     required this.borderwidth,
     required this.hintText,
+    this.shape,
     this.backgroundcolor,
     this.normalbordercolor=Colors.grey,
     this.focusedbordercolor=Colors.green,
@@ -81,11 +84,12 @@ class GfFormFieldPill extends StatefulWidget{
   final Color idlebordercolor;
   final Color disabledbordercolor;
   final double borderwidth;
-  final double paddingvertical;
-  final double paddinghorizontal;
-  final double marginvertical;
-  final double marginhorizontal;
+  final double? paddingvertical;
+  final double? paddinghorizontal;
+  final double? marginvertical;
+  final double? marginhorizontal;
   final Color? backgroundcolor;
+  final GFTextFieldShape? shape;
   final String hintText;
   final Widget? iconPrefix;
   final TextEditingController? controller;
@@ -128,7 +132,7 @@ class GfFormFieldPill extends StatefulWidget{
   final Radius? cursorRadius;
   final Color? cursorColor;
   final Color? color;
-  final Radius? borderradius;
+  final double? borderradius;
   final Brightness? keyboardAppearance;
   final EdgeInsets scrollPadding ;
   final bool enableInteractiveSelection;
@@ -139,81 +143,43 @@ class GfFormFieldPill extends StatefulWidget{
 
 
   @override
-  _GfFormFieldPillState createState()=> _GfFormFieldPillState();
+  _GfFormFieldState createState()=> _GfFormFieldState();
 }
 
-class _GfFormFieldPillState extends State<GfFormFieldPill> with AutomaticKeepAliveClientMixin{
-
-
+class _GfFormFieldState extends State<GfFormField> with AutomaticKeepAliveClientMixin{
+    String value='India';
+    final List<String> countries = ['Afghanistan','Albania','Algeria','Andorra','Angola','Anguilla','Antigua &amp; Barbuda','Argentina','Armenia','Aruba','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bermuda','Bhutan','Bolivia','Bosnia &amp; Herzegovina','Botswana','Brazil','British Virgin Islands','Brunei','Bulgaria','Burkina Faso','Burundi','Cambodia','Cameroon','Cape Verde','Cayman Islands','Chad','Chile','China','Colombia','Congo','Cook Islands','Costa Rica','Cote D Ivoire','Croatia','Cruise Ship','Cuba','Cyprus','Czech Republic','Denmark','Djibouti','Dominica','Dominican Republic','Ecuador','Egypt','El Salvador','Equatorial Guinea','Estonia','Ethiopia','Falkland Islands','Faroe Islands','Fiji','Finland','France','French Polynesia','French West Indies','Gabon','Gambia','Georgia','Germany','Ghana','Gibraltar','Greece','Greenland','Grenada','Guam','Guatemala','Guernsey','Guinea','Guinea Bissau','Guyana','Haiti','Honduras','Hong Kong','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Isle of Man','Israel','Italy','Jamaica','Japan','Jersey','Jordan','Kazakhstan','Kenya','Kuwait','Kyrgyz Republic','Laos','Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Macau','Macedonia','Madagascar','Malawi','Malaysia','Maldives','Mali','Malta','Mauritania','Mauritius','Mexico','Moldova','Monaco','Mongolia','Montenegro','Montserrat','Morocco','Mozambique','Namibia','Nepal','Netherlands','Netherlands Antilles','New Caledonia','New Zealand','Nicaragua','Niger','Nigeria','Norway','Oman','Pakistan','Palestine','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Poland','Portugal','Puerto Rico','Qatar','Reunion','Romania','Russia','Rwanda','Saint Pierre &amp; Miquelon','Samoa','San Marino','Satellite','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia','South Africa','South Korea','Spain','Sri Lanka','St Kitts &amp; Nevis','St Lucia','St Vincent','St. Lucia','Sudan','Suriname','Swaziland','Sweden','Switzerland','Syria','Taiwan','Tajikistan','Tanzania','Thailand','Timor LEste','Togo','Tonga','Trinidad &amp; Tobago','Tunisia','Turkey','Turkmenistan','Turks &amp; Caicos','Uganda','Ukraine','United Arab Emirates','United Kingdom','Uruguay','Uzbekistan','Venezuela','Vietnam','Virgin Islands (US)','Yemen','Zambia','Zimbabwe'];
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return getFormWidget(widget.gfFormFieldType);}
+    return  getFormWidget(widget.gfFormFieldType);}
 
 
  Widget getFormWidget(GfFormFieldType type){
    Widget retwidget=Container();
    switch(type){
-     case GfFormFieldType.Name:
-       retwidget= Container(
-           margin: EdgeInsets.symmetric(vertical: widget.marginvertical,
-               horizontal: widget.marginhorizontal),
-           padding: EdgeInsets.symmetric(vertical: widget.paddingvertical,
-               horizontal: widget.paddinghorizontal),
+     case GfFormFieldType.name:
+       retwidget=  Container(
+           margin: EdgeInsets.symmetric(vertical: widget.marginvertical??2,
+               horizontal: widget.marginhorizontal??2),
+           padding: EdgeInsets.symmetric(vertical: widget.paddingvertical??2,
+               horizontal: widget.paddinghorizontal??2),
            child:
            GFTextField(
-               decoration: InputDecoration(
-                 filled:widget.backgroundcolor!=null||false,
-                 // icon: widget.iconPrefix,
-                 prefixIcon: widget.iconPrefix,
-                 // prefix: widget.iconPrefix,
-                 fillColor: widget.backgroundcolor,
-                 hintText: widget.hintText,
-                 border: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.normalbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 focusedBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.editingbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 disabledBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.disabledbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 errorBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.errorbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 enabledBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.idlebordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 focusedErrorBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.errorbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-               ),
+               decoration:
+                GfFormFieldDecoration(
+                    context: context,
+                    shape: widget.shape??GFTextFieldShape.roundedsquare,
+                    borderRadius: widget.borderradius??6.0,
+                    editingBorderColor: widget.editingbordercolor,
+                    idleBorderColor: widget.idlebordercolor,
+                    gfprefixIcon: widget.iconPrefix,
+                    bgfilled: true,
+                    bgcolor: widget.backgroundcolor,
+                    hinttext: widget.hintText.isNotEmpty?widget.hintText:'Name',
+                ),
                controller: widget.controller,
-               initialValue: widget.initialValue,
+               fieldinitialValue: widget.initialValue,
                focusNode: widget.focusNode,
                keyboardType: TextInputType.name,
                textCapitalization: TextCapitalization.words,
@@ -243,24 +209,23 @@ class _GfFormFieldPillState extends State<GfFormFieldPill> with AutomaticKeepAli
                onTap: widget.onTap,
                onEditingComplete: widget.onEditingComplete,
                onFieldSubmitted: widget.onFieldSubmitted,
-               onSaved: widget.onSaved,
-               validator: (value) {
+               onfieldSaved: widget.onSaved,
+               validatornew: (value) {
                  if (value == null || value.isEmpty) {
-                   return 'Please enter Name';
+                   return 'Please enter name';
                  }
-                 else if(value.length<6 ){
-                   return 'Name should be 6 characters or more';
+                  if(value.length<6 ){
+                    return 'Name should be 6 characters or more';
                  }
                  return null;
                },
                inputFormatters: widget.inputFormatters,
-               enabled: widget.enabled,
+               fieldEnabled: widget.enabled,
                cursorWidth: widget.cursorWidth,
                cursorHeight: widget.cursorHeight,
                cursorRadius: widget.cursorRadius,
                cursorColor: widget.cursorColor,
                color: widget.color,
-               borderradius: widget.borderradius,
                keyboardAppearance: widget.keyboardAppearance,
                scrollPadding: widget.scrollPadding,
                enableInteractiveSelection: widget.enableInteractiveSelection,
@@ -268,69 +233,30 @@ class _GfFormFieldPillState extends State<GfFormFieldPill> with AutomaticKeepAli
                scrollPhysics: widget.scrollPhysics,
                autofillHints: widget.autofillHints,
                autovalidateMode: widget.autovalidateMode
-           )
+           ),
        );
        break;
-     case GfFormFieldType.Password:
+     case GfFormFieldType.password:
        retwidget= Container(
-           margin: EdgeInsets.symmetric(vertical: widget.marginvertical,
-               horizontal: widget.marginhorizontal),
-           padding: EdgeInsets.symmetric(vertical: widget.paddingvertical,
-               horizontal: widget.paddinghorizontal),
+           margin: EdgeInsets.symmetric(vertical: widget.marginvertical??2,
+               horizontal: widget.marginhorizontal??2),
+           padding: EdgeInsets.symmetric(vertical: widget.paddingvertical??2,
+               horizontal: widget.paddinghorizontal??2),
            child:
            GFTextField(
-               decoration: InputDecoration(
-                 filled:widget.backgroundcolor!=null||false,
-                 // icon: widget.iconPrefix,
-                 prefixIcon: widget.iconPrefix,
-                 // prefix: widget.iconPrefix,
-                 fillColor: widget.backgroundcolor,
-                 hintText: widget.hintText??'Name',
-                 border: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.normalbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 focusedBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.editingbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 disabledBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.disabledbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 errorBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.errorbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 enabledBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.idlebordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 focusedErrorBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.errorbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
+               decoration: GfFormFieldDecoration(
+                 context: context,
+                 shape: GFTextFieldShape.roundedsquare,
+                 borderRadius: widget.borderradius??6.0,
+                 editingBorderColor: widget.editingbordercolor,
+                 idleBorderColor: widget.idlebordercolor,
+                 gfprefixIcon: widget.iconPrefix,
+                 bgfilled: true,
+                 bgcolor: widget.backgroundcolor,
+                 hinttext: widget.hintText.isNotEmpty?widget.hintText:'Name',
                ),
                controller: widget.controller,
-               initialValue: widget.initialValue,
+               fieldinitialValue: widget.initialValue,
                focusNode: widget.focusNode,
                keyboardType: TextInputType.visiblePassword,
                textCapitalization: TextCapitalization.none,
@@ -360,24 +286,25 @@ class _GfFormFieldPillState extends State<GfFormFieldPill> with AutomaticKeepAli
                onTap: widget.onTap,
                onEditingComplete: widget.onEditingComplete,
                onFieldSubmitted: widget.onFieldSubmitted,
-               onSaved: widget.onSaved,
-               validator: (value) {
+               onfieldSaved: widget.onSaved,
+               validatornew: (value) {
                  if (value == null || value.isEmpty) {
                    return 'Please enter password';
                  }
                  else if(value.length<6 ){
                    return 'Password should be 6 characters or more';
                  }
-                 return null;
+                 else{
+                   return null;
+                 }
                },
                inputFormatters: widget.inputFormatters,
-               enabled: widget.enabled,
+               fieldEnabled: widget.enabled,
                cursorWidth: widget.cursorWidth,
                cursorHeight: widget.cursorHeight,
                cursorRadius: widget.cursorRadius,
                cursorColor: widget.cursorColor,
                color: widget.color,
-               borderradius: widget.borderradius,
                keyboardAppearance: widget.keyboardAppearance,
                scrollPadding: widget.scrollPadding,
                enableInteractiveSelection: widget.enableInteractiveSelection,
@@ -390,65 +317,26 @@ class _GfFormFieldPillState extends State<GfFormFieldPill> with AutomaticKeepAli
        break;
      case GfFormFieldType.email:
        retwidget= Container(
-           margin: EdgeInsets.symmetric(vertical: widget.marginvertical,
-               horizontal: widget.marginhorizontal),
-           padding: EdgeInsets.symmetric(vertical: widget.paddingvertical,
-               horizontal: widget.paddinghorizontal),
+           margin: EdgeInsets.symmetric(vertical: widget.marginvertical??2,
+               horizontal: widget.marginhorizontal??2),
+           padding: EdgeInsets.symmetric(vertical: widget.paddingvertical??2,
+               horizontal: widget.paddinghorizontal??2),
            child:
 
            GFTextField(
-               decoration: InputDecoration(
-                 filled:widget.backgroundcolor!=null||false,
-                 // icon: widget.iconPrefix,
-                 prefixIcon: widget.iconPrefix,
-                 // prefix: widget.iconPrefix,
-                 fillColor: widget.backgroundcolor,
-                 hintText: widget.hintText??'email',
-                 border: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.normalbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 focusedBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.editingbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 disabledBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.disabledbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 errorBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.errorbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 enabledBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.idlebordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 focusedErrorBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.errorbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
+               decoration: GfFormFieldDecoration(
+                 context: context,
+                 shape: GFTextFieldShape.roundedsquare,
+                 borderRadius: widget.borderradius??6.0,
+                 editingBorderColor: widget.editingbordercolor,
+                 idleBorderColor: widget.idlebordercolor,
+                 gfprefixIcon: widget.iconPrefix,
+                 bgfilled: true,
+                 bgcolor: widget.backgroundcolor,
+                 hinttext: widget.hintText.isNotEmpty?widget.hintText:'Name',
                ),
                controller: widget.controller,
-               initialValue: widget.initialValue,
+               fieldinitialValue: widget.initialValue,
                focusNode: widget.focusNode,
                keyboardType: TextInputType.emailAddress,
                textCapitalization: TextCapitalization.none,
@@ -478,24 +366,25 @@ class _GfFormFieldPillState extends State<GfFormFieldPill> with AutomaticKeepAli
                onTap: widget.onTap,
                onEditingComplete: widget.onEditingComplete,
                onFieldSubmitted: widget.onFieldSubmitted,
-               onSaved: widget.onSaved,
-               validator: (value) {
+               onfieldSaved: widget.onSaved,
+               validatornew: (value) {
                  if (value == null || value.isEmpty) {
-                   return 'Please enter Email id';
+                   return 'Please enter email id';
                  }
                  else if(value.length<10 && (!value.contains('@')&& !value.contains('.'))){
                    return 'Check your email';
                  }
-                 return null;
+                 else{
+                   return null;
+                 }
                },
                inputFormatters: widget.inputFormatters,
-               enabled: widget.enabled,
+               fieldEnabled: widget.enabled,
                cursorWidth: widget.cursorWidth,
                cursorHeight: widget.cursorHeight,
                cursorRadius: widget.cursorRadius,
                cursorColor: widget.cursorColor,
                color: widget.color,
-               borderradius: widget.borderradius,
                keyboardAppearance: widget.keyboardAppearance,
                scrollPadding: widget.scrollPadding,
                enableInteractiveSelection: widget.enableInteractiveSelection,
@@ -506,67 +395,28 @@ class _GfFormFieldPillState extends State<GfFormFieldPill> with AutomaticKeepAli
            )
        );
        break;
-     case GfFormFieldType.Phone:
-       retwidget= Container(
-           margin: EdgeInsets.symmetric(vertical: widget.marginvertical,
-               horizontal: widget.marginhorizontal),
-           padding: EdgeInsets.symmetric(vertical: widget.paddingvertical,
-               horizontal: widget.paddinghorizontal),
+     case GfFormFieldType.phone:
+       retwidget=
+           Container(
+           margin: EdgeInsets.symmetric(vertical: widget.marginvertical??2,
+               horizontal: widget.marginhorizontal??2),
+           padding: EdgeInsets.symmetric(vertical: widget.paddingvertical??2,
+               horizontal: widget.paddinghorizontal??2),
            child:
-
            GFTextField(
-               decoration: InputDecoration(
-                 filled:widget.backgroundcolor!=null||false,
-                 // icon: widget.iconPrefix,
-                 prefixIcon: widget.iconPrefix,
-                 // prefix: widget.iconPrefix,
-                 fillColor: widget.backgroundcolor,
-                 hintText: widget.hintText,
-                 border: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.normalbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 focusedBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.editingbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 disabledBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.disabledbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 errorBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.errorbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 enabledBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.idlebordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
-                 focusedErrorBorder: OutlineInputBorder(
-                   borderSide: BorderSide(
-                     color: widget.errorbordercolor,
-                     width: widget.borderwidth,
-                   ),
-                   borderRadius: BorderRadius.circular(50),
-                 ),
+               decoration:GfFormFieldDecoration(
+                 context: context,
+                 shape: GFTextFieldShape.roundedsquare,
+                 borderRadius: widget.borderradius??6.0,
+                 editingBorderColor: widget.editingbordercolor,
+                 idleBorderColor: widget.idlebordercolor,
+                 gfprefixIcon: widget.iconPrefix,
+                 bgfilled: true,
+                 bgcolor: widget.backgroundcolor,
+                 hinttext: widget.hintText.isNotEmpty?widget.hintText:'Name',
                ),
                controller: widget.controller,
-               initialValue: widget.initialValue,
+               fieldinitialValue: widget.initialValue,
                focusNode: widget.focusNode,
                keyboardType: TextInputType.phone,
                textCapitalization: TextCapitalization.none,
@@ -596,24 +446,25 @@ class _GfFormFieldPillState extends State<GfFormFieldPill> with AutomaticKeepAli
                onTap: widget.onTap,
                onEditingComplete: widget.onEditingComplete,
                onFieldSubmitted: widget.onFieldSubmitted,
-               onSaved: widget.onSaved,
-               validator: (value) {
+               onfieldSaved: widget.onSaved,
+               validatornew: (value) {
                  if (value == null || value.isEmpty) {
                    return 'Please enter phone number';
                  }
                  else if(value.length<10 ){
                    return 'Enter your 10 digit phone number';
                  }
-                 return null;
+                 else {
+                   return null;
+                 }
                },
                inputFormatters: widget.inputFormatters,
-               enabled: widget.enabled,
+               fieldEnabled: widget.enabled,
                cursorWidth: widget.cursorWidth,
                cursorHeight: widget.cursorHeight,
                cursorRadius: widget.cursorRadius,
                cursorColor: widget.cursorColor,
                color: widget.color,
-               borderradius: widget.borderradius,
                keyboardAppearance: widget.keyboardAppearance,
                scrollPadding: widget.scrollPadding,
                enableInteractiveSelection: widget.enableInteractiveSelection,
@@ -621,14 +472,47 @@ class _GfFormFieldPillState extends State<GfFormFieldPill> with AutomaticKeepAli
                scrollPhysics: widget.scrollPhysics,
                autofillHints: widget.autofillHints,
                autovalidateMode: widget.autovalidateMode
-           )
+           ),
+       );
+       break;
+     case GfFormFieldType.country:
+       retwidget=Container(
+       margin: EdgeInsets.symmetric(vertical: widget.marginvertical??2,
+           horizontal: widget.marginhorizontal??2),
+       padding: EdgeInsets.symmetric(vertical: widget.paddingvertical??2,
+           horizontal: widget.paddinghorizontal??2),
+        child: DropdownButtonFormField(
+              value: value,
+            decoration:GfFormFieldDecoration(
+              context: context,
+              shape: GFTextFieldShape.roundedsquare,
+              borderRadius: widget.borderradius??6.0,
+              editingBorderColor: widget.editingbordercolor,
+              idleBorderColor: widget.idlebordercolor,
+              gfprefixIcon: widget.iconPrefix,
+              bgfilled: true,
+              bgcolor: widget.backgroundcolor,
+              hinttext: widget.hintText.isNotEmpty?widget.hintText:'Name',
+            ),
+            validator: (value) => null,
+            items:countries
+                .map<DropdownMenuItem<String>>((String value) =>
+                     DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    )
+                  ).toList(),
+            onChanged: (String? textx){
+                setState((){
+                  value=textx.toString();
+                });
+            }),
+
        );
        break;
    }
    return retwidget;
  }
-
-
 
   @override
   bool get wantKeepAlive => true;

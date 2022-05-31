@@ -25,7 +25,7 @@ export 'package:getwidget/components/drawer/gf_drawer_header.dart';
 export 'package:getwidget/components/dropdown/gf_dropdown.dart';
 export 'package:getwidget/components/dropdown/gf_multiselect.dart';
 export 'package:getwidget/components/floating_widget/gf_floating_widget.dart';
-export 'package:getwidget/components/form/form_field/gf_form_field_pill.dart';
+export 'package:getwidget/components/form/form_field/gf_form_field.dart';
 export 'package:getwidget/components/form/gf_form.dart';
 export 'package:getwidget/components/image/gf_image_overlay.dart';
 export 'package:getwidget/components/intro_screen/gf_intro_screen.dart';

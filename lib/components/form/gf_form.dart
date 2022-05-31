@@ -3,7 +3,8 @@ import 'package:getwidget/getwidget.dart';
 
 class GfForm extends StatefulWidget {
 
-  GfForm({Key? key,
+ const  GfForm({
+   Key? key,
     this.height,
     this.width,
     this.radius,
@@ -18,11 +19,7 @@ class GfForm extends StatefulWidget {
     this.defaultSubmitButtontext='SUBMIT',
     this.formBorderColor=Colors.black,
     this.headingtype=GFTypographyType.typo5
-  }) : super(key: key){
-    if(defaultSubmitButtonEnabled&&customSubmitButton!=null){
-      throw Exception('Unable set customSubmitButton when defaultSubmitButtonEnabled is set to true');
-    }
-  }
+  }):super(key: key);
 
   final double? height;
   final double? width;
@@ -44,18 +41,16 @@ class GfForm extends StatefulWidget {
 }
 
 class _GfFormState extends State<GfForm> with AutomaticKeepAliveClientMixin {
-  late GlobalKey<FormState> formskey;
+   late final GlobalKey<FormState> formskey;
   @override
   void initState() {
     formskey= widget.formkey ??GlobalKey<FormState>();
-    print('Key set $formskey');
-    super.initState();
+   super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
     return  Container(
           width: widget.width ?? MediaQuery
               .of(context)
@@ -95,7 +90,7 @@ class _GfFormState extends State<GfForm> with AutomaticKeepAliveClientMixin {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      ...widget.formfields
+                      ...widget.formfields,
                     ],
                   ),
                 ),
@@ -108,34 +103,34 @@ class _GfFormState extends State<GfForm> with AutomaticKeepAliveClientMixin {
               GFButton(
                   text: widget.defaultSubmitButtontext,
                   onPressed: () {
-                      if (formskey.currentState!.validate()) {
-                        if (widget.validatesuccess != null) {
-                          widget.validatesuccess!();
-                        }
-                        else {
-                          print('Button Success2');
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Validation Success')),
-                          );
-                        }
+
+                    if (formskey.currentState!.validate())
+                    {
+                      if (widget.validatesuccess != null) {
+                        widget.validatesuccess!();
                       }
                       else {
-                        if (widget.validatefailed != null) {
-                          widget.validatefailed!();
-                        }
-                        else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Validation Failed')),
-                          );
-                        }
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Validation Success')),);
                       }
-                    })
-                   : Container(),
+                    }
+                    else {
+                      if (widget.validatefailed != null) {
+                        widget.validatefailed!();
+                      }
+                      else {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Validation Failed')),
+                        );
+                      }
+                    }
+                  })
+                  : Container(),
             ],
           )
       );
 }
   @override
   bool get wantKeepAlive => true;
-    }
+
+  }
+
 

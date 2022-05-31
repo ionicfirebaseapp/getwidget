@@ -1,8 +1,8 @@
 
 enum GfFormFieldType{
-  Name,
-  Password,
+  name,
+  password,
   email,
-  Phone,
-  Country
+  phone,
+  country
 }
