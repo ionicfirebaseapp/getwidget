@@ -43,7 +43,7 @@ class GfFormFieldDecoration extends InputDecoration{
             color: Colors.red.shade800,
             width: borderWidth??0,
           ),
-          borderRadius: shape==GFTextFieldShape.pills? BorderRadius.circular(50):shape==GFTextFieldShape.roundedsquare? BorderRadius.circular(borderRadius??0):BorderRadius.circular(0),
+          borderRadius: getradius(shape),
         );
 
   @override
@@ -53,7 +53,7 @@ class GfFormFieldDecoration extends InputDecoration{
           color: Colors.red,
           width: borderWidth??0,
         ),
-        borderRadius: shape==GFTextFieldShape.pills? BorderRadius.circular(50):shape==GFTextFieldShape.roundedsquare? BorderRadius.circular(borderRadius??0):BorderRadius.circular(0),
+        borderRadius: getradius(shape),
       );
     @override
     InputBorder get focusedBorder =>
@@ -62,7 +62,7 @@ class GfFormFieldDecoration extends InputDecoration{
           color: editingBorderColor??Theme.of(context).primaryColor,
           width: borderWidth??0,
         ),
-        borderRadius: shape==GFTextFieldShape.pills? BorderRadius.circular(50):shape==GFTextFieldShape.roundedsquare? BorderRadius.circular(borderRadius??0):BorderRadius.circular(0),
+        borderRadius: getradius(shape),
       );
 
     @override
@@ -72,7 +72,7 @@ class GfFormFieldDecoration extends InputDecoration{
             color: editingBorderColor??Theme.of(context).primaryColor,
             width: borderWidth??0,
           ),
-          borderRadius: shape==GFTextFieldShape.pills? BorderRadius.circular(50):shape==GFTextFieldShape.roundedsquare? BorderRadius.circular(borderRadius??0):BorderRadius.circular(0),
+          borderRadius: getradius(shape),
         );
   @override
   InputBorder get border =>
@@ -81,7 +81,7 @@ class GfFormFieldDecoration extends InputDecoration{
           color: editingBorderColor??Theme.of(context).primaryColor,
           width: borderWidth??0,
         ),
-        borderRadius: shape==GFTextFieldShape.pills? BorderRadius.circular(50):shape==GFTextFieldShape.roundedsquare? BorderRadius.circular(borderRadius??0):BorderRadius.circular(0),
+        borderRadius: getradius(shape),
       );
   @override
   InputBorder get disabledBorder =>
@@ -90,14 +90,14 @@ class GfFormFieldDecoration extends InputDecoration{
           color: editingBorderColor??Theme.of(context).primaryColor,
           width: borderWidth??0,
         ),
-        borderRadius: shape==GFTextFieldShape.pills? BorderRadius.circular(50):shape==GFTextFieldShape.roundedsquare? BorderRadius.circular(borderRadius??0):BorderRadius.circular(0),
+        borderRadius: getradius(shape),
       );
 
-    @override
-    Widget? get prefixIcon => gfprefixIcon;
+  @override
+  Widget? get prefixIcon => gfprefixIcon;
 
-    @override
-    String? get hintText => hinttext;
+  @override
+  String? get hintText => hinttext;
 
   @override
   bool get filled => bgfilled;
@@ -108,5 +108,19 @@ class GfFormFieldDecoration extends InputDecoration{
   @override
   EdgeInsets get contentPadding =>fieldPadding??const EdgeInsets.symmetric(horizontal: 4,vertical: 4);
 
-
+  BorderRadius getradius(GFTextFieldShape shape){
+    double radius=0;
+    switch (shape){
+      case GFTextFieldShape.pills:
+        radius=50;
+        break;
+      case GFTextFieldShape.roundedsquare:
+        radius=borderRadius??0;
+        break;
+      case GFTextFieldShape.square:
+        radius=0;
+        break;
+    }
+    return BorderRadius.circular(radius);
+  }
 }

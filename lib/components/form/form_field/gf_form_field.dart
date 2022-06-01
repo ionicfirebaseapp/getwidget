@@ -3,6 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:getwidget/components/form/form_field/decorations/gf_formfield_decoration.dart';
+import 'package:getwidget/components/form/form_field/validators/validators.dart';
+import 'package:getwidget/components/form/form_field/widgets/gf_formradiobutton.dart';
+import 'package:getwidget/components/form/form_field/widgets/gf_questionwidget.dart';
 import 'package:getwidget/components/text_field/gf_text_field.dart';
 import 'package:getwidget/shape/gf_textfield_shape.dart';
 import 'package:getwidget/types/gf_form_field_type.dart';
@@ -210,15 +213,7 @@ class _GfFormFieldState extends State<GfFormField> with AutomaticKeepAliveClient
                onEditingComplete: widget.onEditingComplete,
                onFieldSubmitted: widget.onFieldSubmitted,
                onfieldSaved: widget.onSaved,
-               validatornew: (value) {
-                 if (value == null || value.isEmpty) {
-                   return 'Please enter name';
-                 }
-                  if(value.length<6 ){
-                    return 'Name should be 6 characters or more';
-                 }
-                 return null;
-               },
+               validatornew: widget.validator??GfFormValidators().getnamevalidator(),
                inputFormatters: widget.inputFormatters,
                fieldEnabled: widget.enabled,
                cursorWidth: widget.cursorWidth,
@@ -287,17 +282,7 @@ class _GfFormFieldState extends State<GfFormField> with AutomaticKeepAliveClient
                onEditingComplete: widget.onEditingComplete,
                onFieldSubmitted: widget.onFieldSubmitted,
                onfieldSaved: widget.onSaved,
-               validatornew: (value) {
-                 if (value == null || value.isEmpty) {
-                   return 'Please enter password';
-                 }
-                 else if(value.length<6 ){
-                   return 'Password should be 6 characters or more';
-                 }
-                 else{
-                   return null;
-                 }
-               },
+               validatornew: widget.validator??GfFormValidators().getpasswordvalidator(),
                inputFormatters: widget.inputFormatters,
                fieldEnabled: widget.enabled,
                cursorWidth: widget.cursorWidth,
@@ -367,17 +352,8 @@ class _GfFormFieldState extends State<GfFormField> with AutomaticKeepAliveClient
                onEditingComplete: widget.onEditingComplete,
                onFieldSubmitted: widget.onFieldSubmitted,
                onfieldSaved: widget.onSaved,
-               validatornew: (value) {
-                 if (value == null || value.isEmpty) {
-                   return 'Please enter email id';
-                 }
-                 else if(value.length<10 && (!value.contains('@')&& !value.contains('.'))){
-                   return 'Check your email';
-                 }
-                 else{
-                   return null;
-                 }
-               },
+               validatornew: widget.validator??GfFormValidators().getemailvalidator(),
+
                inputFormatters: widget.inputFormatters,
                fieldEnabled: widget.enabled,
                cursorWidth: widget.cursorWidth,
@@ -447,17 +423,7 @@ class _GfFormFieldState extends State<GfFormField> with AutomaticKeepAliveClient
                onEditingComplete: widget.onEditingComplete,
                onFieldSubmitted: widget.onFieldSubmitted,
                onfieldSaved: widget.onSaved,
-               validatornew: (value) {
-                 if (value == null || value.isEmpty) {
-                   return 'Please enter phone number';
-                 }
-                 else if(value.length<10 ){
-                   return 'Enter your 10 digit phone number';
-                 }
-                 else {
-                   return null;
-                 }
-               },
+               validatornew: widget.validator??GfFormValidators().getphonevalidator(),
                inputFormatters: widget.inputFormatters,
                fieldEnabled: widget.enabled,
                cursorWidth: widget.cursorWidth,
@@ -508,6 +474,166 @@ class _GfFormFieldState extends State<GfFormField> with AutomaticKeepAliveClient
                 });
             }),
 
+       );
+       break;
+     case GfFormFieldType.text:
+       retwidget=  Container(
+         margin: EdgeInsets.symmetric(vertical: widget.marginvertical??2,
+             horizontal: widget.marginhorizontal??2),
+         padding: EdgeInsets.symmetric(vertical: widget.paddingvertical??2,
+             horizontal: widget.paddinghorizontal??2),
+         child:
+         GFTextField(
+             decoration:
+             GfFormFieldDecoration(
+               context: context,
+               shape: widget.shape??GFTextFieldShape.roundedsquare,
+               borderRadius: widget.borderradius??6.0,
+               editingBorderColor: widget.editingbordercolor,
+               idleBorderColor: widget.idlebordercolor,
+               gfprefixIcon: widget.iconPrefix,
+               bgfilled: true,
+               bgcolor: widget.backgroundcolor,
+               hinttext: widget.hintText.isNotEmpty?widget.hintText:'Value',
+             ),
+             controller: widget.controller,
+             fieldinitialValue: widget.initialValue,
+             focusNode: widget.focusNode,
+             keyboardType: TextInputType.text,
+             textCapitalization: TextCapitalization.words,
+             textInputAction: widget.textInputAction,
+             style: widget.style,
+             strutStyle: widget.strutStyle,
+             textDirection: widget.textDirection,
+             textAlign: widget.textAlign,
+             textAlignVertical: widget.textAlignVertical,
+             autofocus: widget.autofocus,
+             readOnly: widget.readOnly,
+             toolbarOptions: widget.toolbarOptions,
+             showCursor: widget.showCursor,
+             obscuringCharacter: widget.obscuringCharacter,
+             obscureText: widget.obscureText,
+             autocorrect: widget.autocorrect,
+             smartDashesType: widget.smartDashesType,
+             smartQuotesType: widget.smartQuotesType,
+             enableSuggestions: widget.enableSuggestions,
+             autovalidate: widget.autovalidate,
+             maxLengthEnforced: widget.maxLengthEnforced,
+             maxLines: widget.maxLines,
+             minLines: widget.minLines,
+             expands: widget.expands,
+             maxLength: widget.maxLength,
+             onChanged: widget.onChanged,
+             onTap: widget.onTap,
+             onEditingComplete: widget.onEditingComplete,
+             onFieldSubmitted: widget.onFieldSubmitted,
+             onfieldSaved: widget.onSaved,
+             validatornew: widget.validator??GfFormValidators().gettextvalidator(),
+             inputFormatters: widget.inputFormatters,
+             fieldEnabled: widget.enabled,
+             cursorWidth: widget.cursorWidth,
+             cursorHeight: widget.cursorHeight,
+             cursorRadius: widget.cursorRadius,
+             cursorColor: widget.cursorColor,
+             color: widget.color,
+             keyboardAppearance: widget.keyboardAppearance,
+             scrollPadding: widget.scrollPadding,
+             enableInteractiveSelection: widget.enableInteractiveSelection,
+             buildCounter: widget.buildCounter,
+             scrollPhysics: widget.scrollPhysics,
+             autofillHints: widget.autofillHints,
+             autovalidateMode: widget.autovalidateMode
+         ),
+       );
+       break;
+     case GfFormFieldType.number:
+       retwidget=  Container(
+         margin: EdgeInsets.symmetric(vertical: widget.marginvertical??2,
+             horizontal: widget.marginhorizontal??2),
+         padding: EdgeInsets.symmetric(vertical: widget.paddingvertical??2,
+             horizontal: widget.paddinghorizontal??2),
+         child:
+         GFTextField(
+             decoration:
+             GfFormFieldDecoration(
+               context: context,
+               shape: widget.shape??GFTextFieldShape.roundedsquare,
+               borderRadius: widget.borderradius??6.0,
+               editingBorderColor: widget.editingbordercolor,
+               idleBorderColor: widget.idlebordercolor,
+               gfprefixIcon: widget.iconPrefix,
+               bgfilled: true,
+               bgcolor: widget.backgroundcolor,
+               hinttext: widget.hintText.isNotEmpty?widget.hintText:'Name',
+             ),
+             controller: widget.controller,
+             fieldinitialValue: widget.initialValue,
+             focusNode: widget.focusNode,
+             keyboardType: TextInputType.number,
+             textCapitalization: TextCapitalization.words,
+             textInputAction: widget.textInputAction,
+             style: widget.style,
+             strutStyle: widget.strutStyle,
+             textDirection: widget.textDirection,
+             textAlign: widget.textAlign,
+             textAlignVertical: widget.textAlignVertical,
+             autofocus: widget.autofocus,
+             readOnly: widget.readOnly,
+             toolbarOptions: widget.toolbarOptions,
+             showCursor: widget.showCursor,
+             obscuringCharacter: widget.obscuringCharacter,
+             obscureText: widget.obscureText,
+             autocorrect: widget.autocorrect,
+             smartDashesType: widget.smartDashesType,
+             smartQuotesType: widget.smartQuotesType,
+             enableSuggestions: widget.enableSuggestions,
+             autovalidate: widget.autovalidate,
+             maxLengthEnforced: widget.maxLengthEnforced,
+             maxLines: widget.maxLines,
+             minLines: widget.minLines,
+             expands: widget.expands,
+             maxLength: widget.maxLength,
+             onChanged: widget.onChanged,
+             onTap: widget.onTap,
+             onEditingComplete: widget.onEditingComplete,
+             onFieldSubmitted: widget.onFieldSubmitted,
+             onfieldSaved: widget.onSaved,
+             validatornew: widget.validator??GfFormValidators().getnumbervalidator(),
+             inputFormatters: widget.inputFormatters,
+             fieldEnabled: widget.enabled,
+             cursorWidth: widget.cursorWidth,
+             cursorHeight: widget.cursorHeight,
+             cursorRadius: widget.cursorRadius,
+             cursorColor: widget.cursorColor,
+             color: widget.color,
+             keyboardAppearance: widget.keyboardAppearance,
+             scrollPadding: widget.scrollPadding,
+             enableInteractiveSelection: widget.enableInteractiveSelection,
+             buildCounter: widget.buildCounter,
+             scrollPhysics: widget.scrollPhysics,
+             autofillHints: widget.autofillHints,
+             autovalidateMode: widget.autovalidateMode
+         ),
+       );
+       break;
+     case GfFormFieldType.gender:
+       retwidget=  Container(
+         margin: EdgeInsets.symmetric(vertical: widget.marginvertical??2,
+             horizontal: widget.marginhorizontal??2),
+         padding: EdgeInsets.symmetric(vertical: widget.paddingvertical??2,
+             horizontal: widget.paddinghorizontal??2),
+         child:
+       GfFormRadiobutton(onChanged: (String? value){},initialSelectedValue: 'Male',)
+       );
+       break;
+     case GfFormFieldType.question:
+       retwidget=  Container(
+           margin: EdgeInsets.symmetric(vertical: widget.marginvertical??2,
+               horizontal: widget.marginhorizontal??2),
+           padding: EdgeInsets.symmetric(vertical: widget.paddingvertical??2,
+               horizontal: widget.paddinghorizontal??2),
+           child:
+              GfFormQuestionWidget(onChanged: (String? value){},initialSelectedValue: 'Decline',question: 'Do you accept the Terms and Condition?',accepttext: 'Accept',declinetext: 'Decline',)
        );
        break;
    }
