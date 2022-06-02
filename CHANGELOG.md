@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.0.0 - 2022-06-02
+
+### Added
+
+- Support for flutter 3
+- Basic form widgets
+
 ## 2.1.1 - 2022-06-02
 
 ### Fixed
