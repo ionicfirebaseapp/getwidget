@@ -3,7 +3,10 @@
 
 ## 2.1.1 - 2022-06-02
 
-- Fallback to flutter 2.*
+### Fixed
+
+- Fallback to flutter 2.* because of version issues
+- Next release will support flutter 3
 
 ## 2.1.0 - 2022-05-30
 
