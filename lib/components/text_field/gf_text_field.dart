@@ -5,7 +5,7 @@ class GFTextField extends FormField<String>{
   GFTextField({
     Key? key,
     this.controller,
-    this.initialValue,
+    this.fieldinitialValue,
     this.focusNode,
     this.decoration,
     this.keyboardType=TextInputType.text,
@@ -36,10 +36,10 @@ class GFTextField extends FormField<String>{
     this.onTap,
     this.onEditingComplete,
     this.onFieldSubmitted,
-    this.onSaved,
-    this.validator,
+    this.onfieldSaved,
+    this.validatornew,
     this.inputFormatters,
-    this.enabled=true,
+    this.fieldEnabled=true,
     this.cursorWidth=2.0,
     this.cursorHeight,
     this.cursorRadius,
@@ -54,71 +54,70 @@ class GFTextField extends FormField<String>{
     this.autofillHints,
     this.autovalidateMode=AutovalidateMode.disabled
   }) : super(key:key,builder: (FormFieldState<String> field)=>
-     _GfTextFieldState(
-        state: field,
-           controller: controller,
-          focusNode: focusNode,
-          decoration:decoration,
-          keyboardType: keyboardType,
-          textInputAction: textInputAction,
-          style: style,
-          strutStyle: strutStyle,
-          initialValuex: initialValue??'',
-          autovalidate: autovalidate,
-          onSavedx: onSaved,
-          validator: validator,
-          color: color,
-          borderradius: borderradius,
-          autovalidateMode: autovalidateMode,
-          textAlign: textAlign??TextAlign.start,
-          textAlignVertical: textAlignVertical,
-          textDirection: textDirection,
-          textCapitalization: textCapitalization,
-          autofocus: autofocus,
-          toolbarOptions: toolbarOptions,
-          readOnly: readOnly??false,
-          showCursor: showCursor,
-          obscuringCharacter: obscuringCharacter,
-          obscureText: obscureText,
-          autocorrect: autocorrect,
-          smartDashesType: smartDashesType ??
-              (obscureText
-                  ? SmartDashesType.disabled
-                  : SmartDashesType.enabled),
-          smartQuotesType: smartQuotesType ??
-              (obscureText
-                  ? SmartQuotesType.disabled
-                  : SmartQuotesType.enabled),
-          enableSuggestions: enableSuggestions,
-          maxLengthEnforced: maxLengthEnforced,
-          maxLines: maxLines,
-          minLines: minLines,
-          expands: (maxLines==null && minLines==null)||false,
-          maxLength: maxLength,
-          onChanged: onChanged,
-          onTap: onTap,
-          onEditingComplete: onEditingComplete,
-          onFieldSubmitted: onFieldSubmitted,
-          inputFormatters: inputFormatters,
-          enabled: enabled,
-          cursorWidth: cursorWidth??1,
-          cursorHeight: cursorHeight,
-          cursorRadius: cursorRadius,
-          cursorColor: cursorColor,
-          scrollPadding: scrollPadding,
-          scrollPhysics: scrollPhysics,
-          keyboardAppearance: keyboardAppearance,
-          enableInteractiveSelection: enableInteractiveSelection,
-          buildCounter: buildCounter,
-          autofillHints: autofillHints,
+  _GfTextFieldState(
+    state: field,
+    controller: controller,
+    focusNode: focusNode,
+    decoration:decoration,
+    keyboardType: keyboardType,
+    textInputAction: textInputAction,
+    style: style,
+    strutStyle: strutStyle,
+    initialValuex: fieldinitialValue??'',
+    autovalidate: autovalidate,
+    onSavedx: onfieldSaved,
+    validator: validatornew,
+    color: color,
+    borderradius: borderradius,
+    autovalidateMode: autovalidateMode,
+    textAlign: textAlign??TextAlign.start,
+    textAlignVertical: textAlignVertical,
+    textDirection: textDirection,
+    textCapitalization: textCapitalization,
+    autofocus: autofocus,
+    toolbarOptions: toolbarOptions,
+    readOnly: readOnly??false,
+    showCursor: showCursor,
+    obscuringCharacter: obscuringCharacter,
+    obscureText: obscureText,
+    autocorrect: autocorrect,
+    smartDashesType: smartDashesType ??
+        (obscureText
+            ? SmartDashesType.disabled
+            : SmartDashesType.enabled),
+    smartQuotesType: smartQuotesType ??
+        (obscureText
+            ? SmartQuotesType.disabled
+            : SmartQuotesType.enabled),
+    enableSuggestions: enableSuggestions,
+    maxLengthEnforced: maxLengthEnforced,
+    maxLines: maxLines,
+    minLines: minLines,
+    expands: (maxLines==null && minLines==null)||false,
+    maxLength: maxLength,
+    onChanged: onChanged,
+    onTap: onTap,
+    onEditingComplete: onEditingComplete,
+    onFieldSubmitted: onFieldSubmitted,
+    inputFormatters: inputFormatters,
+    enabled: fieldEnabled,
+    cursorWidth: cursorWidth??1,
+    cursorHeight: cursorHeight,
+    cursorRadius: cursorRadius,
+    cursorColor: cursorColor,
+    scrollPadding: scrollPadding,
+    scrollPhysics: scrollPhysics,
+    keyboardAppearance: keyboardAppearance,
+    enableInteractiveSelection: enableInteractiveSelection,
+    buildCounter: buildCounter,
+    autofillHints: autofillHints,
 
-    )
-      );
+  )
+  );
 
 
   final TextEditingController? controller;
-  @override
-  final String? initialValue;
+  final String? fieldinitialValue;
   final FocusNode? focusNode;
   final InputDecoration? decoration;
   final TextInputType? keyboardType;
@@ -149,13 +148,10 @@ class GFTextField extends FormField<String>{
   final GestureTapCallback? onTap;
   final VoidCallback? onEditingComplete;
   final ValueChanged<String>? onFieldSubmitted;
-  @override
-  final FormFieldSetter<String>? onSaved;
-  @override
-  final FormFieldValidator<String>? validator;
+  final FormFieldSetter<String>? onfieldSaved;
+  final FormFieldValidator<String>? validatornew;
   final List<TextInputFormatter>? inputFormatters;
-  @override
-  final bool enabled;
+  final bool fieldEnabled;
   final double? cursorWidth ;
   final double? cursorHeight;
   final Radius? cursorRadius;
@@ -287,76 +283,82 @@ class _GfTextFieldState extends StatefulWidget {
   State<_GfTextFieldState> createState() => _GfTextFieldStateState();
 }
 
-class _GfTextFieldStateState extends State<_GfTextFieldState>{
+class _GfTextFieldStateState extends State<_GfTextFieldState> with AutomaticKeepAliveClientMixin{
 
-  TextEditingController controller=TextEditingController();
+  final TextEditingController controller=TextEditingController();
 
 
   @override
   void initState(){
-
     controller.text=widget.state.value??'';
     super.initState();
   }
 
-        @override
-        Widget build(BuildContext context) =>
-           Container(
-            child: TextField(
-              controller: widget.controller??controller,
-              focusNode: widget.focusNode,
-              decoration: widget.decoration??const InputDecoration(hintText: 'Type here'),
-              keyboardType: widget.keyboardType,
-              textInputAction: widget.textInputAction,
-              style: widget.style,
-              strutStyle: widget.strutStyle,
-              textAlign: widget.textAlign ?? TextAlign.start,
-              textAlignVertical: widget.textAlignVertical,
-              textDirection: widget.textDirection,
-              textCapitalization: widget.textCapitalization,
-              autofocus: widget.autofocus,
-              toolbarOptions: widget.toolbarOptions,
-              readOnly: widget.readOnly ?? false,
-              showCursor: widget.showCursor,
-              obscuringCharacter: widget.obscuringCharacter,
-              obscureText: widget.obscureText,
-              autocorrect: widget.autocorrect,
-              smartDashesType: widget.smartDashesType ??
-                  (widget.obscureText
-                      ? SmartDashesType.disabled
-                      : SmartDashesType.enabled),
-              smartQuotesType: widget.smartQuotesType ??
-                  (widget.obscureText
-                      ? SmartQuotesType.disabled
-                      : SmartQuotesType.enabled),
-              enableSuggestions: widget.enableSuggestions,
-              maxLengthEnforcement: widget.maxLengthEnforced,
-              maxLines: widget.maxLines,
-              minLines: widget.minLines,
-              expands: (widget.maxLines == null && widget.minLines == null) || false,
-              maxLength: widget.maxLength,
-              onChanged: widget.onChanged,
-              onTap: widget.onTap,
-              onEditingComplete: widget.onEditingComplete,
-              onSubmitted: widget.onFieldSubmitted,
-              inputFormatters: widget.inputFormatters,
-              enabled: widget.enabled||true,
-              cursorWidth: widget.cursorWidth ?? 1,
-              cursorHeight: widget.cursorHeight,
-              cursorRadius: widget.cursorRadius,
-              cursorColor: widget.cursorColor,
-              scrollPadding: widget.scrollPadding,
-              scrollPhysics: widget.scrollPhysics,
-              keyboardAppearance: widget.keyboardAppearance,
-              enableInteractiveSelection: widget.enableInteractiveSelection,
-              buildCounter: widget.buildCounter,
-              autofillHints: widget.autofillHints,
-            ),
-          );
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return Container(
+      child: TextFormField(
+        controller: widget.controller ?? controller,
+        focusNode: widget.focusNode,
+        decoration: widget.decoration ??
+            const InputDecoration(hintText: 'Type here'),
+        keyboardType: widget.keyboardType,
+        textInputAction: widget.textInputAction,
+        style: widget.style,
+        validator: widget.validator,
+        strutStyle: widget.strutStyle,
+        textAlign: widget.textAlign ?? TextAlign.start,
+        textAlignVertical: widget.textAlignVertical,
+        textDirection: widget.textDirection,
+        textCapitalization: widget.textCapitalization,
+        autofocus: widget.autofocus,
+        toolbarOptions: widget.toolbarOptions,
+        readOnly: widget.readOnly ?? false,
+        showCursor: widget.showCursor,
+        obscuringCharacter: widget.obscuringCharacter,
+        obscureText: widget.obscureText,
+        autocorrect: widget.autocorrect,
+        smartDashesType: widget.smartDashesType ??
+            (widget.obscureText
+                ? SmartDashesType.disabled
+                : SmartDashesType.enabled),
+        smartQuotesType: widget.smartQuotesType ??
+            (widget.obscureText
+                ? SmartQuotesType.disabled
+                : SmartQuotesType.enabled),
+        enableSuggestions: widget.enableSuggestions,
+        maxLengthEnforcement: widget.maxLengthEnforced,
+        maxLines: widget.maxLines,
+        minLines: widget.minLines,
+        expands: (widget.maxLines == null && widget.minLines == null) || false,
+        maxLength: widget.maxLength,
+        onChanged: widget.onChanged,
+        onTap: widget.onTap,
+        onEditingComplete: widget.onEditingComplete,
+        // onSubmitted: widget.onFieldSubmitted,//TextFormField does not support onSubmitted
+        inputFormatters: widget.inputFormatters,
+        enabled: widget.enabled || true,
+        cursorWidth: widget.cursorWidth ?? 1,
+        cursorHeight: widget.cursorHeight,
+        cursorRadius: widget.cursorRadius,
+        cursorColor: widget.cursorColor,
+        scrollPadding: widget.scrollPadding,
+        scrollPhysics: widget.scrollPhysics,
+        keyboardAppearance: widget.keyboardAppearance,
+        enableInteractiveSelection: widget.enableInteractiveSelection,
+        buildCounter: widget.buildCounter,
+        autofillHints: widget.autofillHints,
+      ),
+    );
+  }
   @override
   void dispose() {
     controller.dispose();
     super.dispose();
   }
 
-  }
+  @override
+  bool get wantKeepAlive => true;
+
+}

@@ -149,6 +149,7 @@ class _GFTextFieldPillState extends State<GFTextFieldPill>{
             horizontal: widget.marginhorizontal),
         padding: EdgeInsets.symmetric(vertical: widget.paddingvertical,
             horizontal: widget.paddinghorizontal),
+        constraints: const BoxConstraints(maxHeight: 64),
         child:
         GFTextField(
             decoration: InputDecoration(
@@ -202,7 +203,7 @@ class _GFTextFieldPillState extends State<GFTextFieldPill>{
               ),
             ),
             controller: widget.controller,
-            initialValue: widget.initialValue,
+            fieldinitialValue: widget.initialValue,
             focusNode: widget.focusNode,
             keyboardType: widget.keyboardType,
             textCapitalization: widget.textCapitalization,
@@ -232,10 +233,10 @@ class _GFTextFieldPillState extends State<GFTextFieldPill>{
             onTap: widget.onTap,
             onEditingComplete: widget.onEditingComplete,
             onFieldSubmitted: widget.onFieldSubmitted,
-            onSaved: widget.onSaved,
-            validator: widget.validator,
+            onfieldSaved: widget.onSaved,
+            validatornew: widget.validator,
             inputFormatters: widget.inputFormatters,
-            enabled: widget.enabled,
+            fieldEnabled: widget.enabled,
             cursorWidth: widget.cursorWidth,
             cursorHeight: widget.cursorHeight,
             cursorRadius: widget.cursorRadius,

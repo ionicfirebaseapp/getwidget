@@ -3,7 +3,8 @@ import 'package:getwidget/getwidget.dart';
 
 class GfForm extends StatefulWidget {
 
-  GfForm({Key? key,
+ const  GfForm({
+   Key? key,
     this.height,
     this.width,
     this.radius,
@@ -18,11 +19,7 @@ class GfForm extends StatefulWidget {
     this.defaultSubmitButtontext='SUBMIT',
     this.formBorderColor=Colors.black,
     this.headingtype=GFTypographyType.typo5
-  }) : super(key: key){
-    if(defaultSubmitButtonEnabled&&customSubmitButton!=null){
-      throw Exception('Unable set customSubmitButton when defaultSubmitButtonEnabled is set to true');
-    }
-  }
+  }):super(key: key);
 
   final double? height;
   final double? width;
@@ -44,17 +41,16 @@ class GfForm extends StatefulWidget {
 }
 
 class _GfFormState extends State<GfForm> with AutomaticKeepAliveClientMixin {
-  late GlobalKey<FormState> formskey;
+   late final GlobalKey<FormState> formskey;
   @override
   void initState() {
     formskey= widget.formkey ??GlobalKey<FormState>();
-    super.initState();
+   super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
     return  Container(
           width: widget.width ?? MediaQuery
               .of(context)
@@ -78,10 +74,11 @@ class _GfFormState extends State<GfForm> with AutomaticKeepAliveClientMixin {
                   padding: const EdgeInsets.symmetric(
                       vertical: 4, horizontal: 8),
                   child:
+
                   GFTypography(
                     text: widget.formHeading.toString(),
                     type: widget.headingtype,
-                  )) :
+                  )):
               Container(),
               widget.formHeading != null ?
               const SizedBox(height: 8,) : Container(),
@@ -89,11 +86,11 @@ class _GfFormState extends State<GfForm> with AutomaticKeepAliveClientMixin {
               SingleChildScrollView(
                 child:
                 Form(
-                  key: widget.formkey,
+                  key: formskey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      ...widget.formfields
+                      ...widget.formfields,
                     ],
                   ),
                 ),
@@ -106,18 +103,14 @@ class _GfFormState extends State<GfForm> with AutomaticKeepAliveClientMixin {
               GFButton(
                   text: widget.defaultSubmitButtontext,
                   onPressed: () {
-                    print('Button Clicked ${widget.formkey!.currentState!
-                        .validate()}');
-                    if (widget.formkey!.currentState!.validate()) {
+
+                    if (formskey.currentState!.validate())
+                    {
                       if (widget.validatesuccess != null) {
-                        print('Button Success1');
                         widget.validatesuccess!();
                       }
                       else {
-                        print('Button Success2');
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Validation Success')),
-                        );
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Validation Success')),);
                       }
                     }
                     else {
@@ -125,17 +118,19 @@ class _GfFormState extends State<GfForm> with AutomaticKeepAliveClientMixin {
                         widget.validatefailed!();
                       }
                       else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Validation Failed')),
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Validation Failed')),
                         );
                       }
                     }
-                  }) : Container(),
+                  })
+                  : Container(),
             ],
           )
       );
 }
   @override
   bool get wantKeepAlive => true;
-    }
+
+  }
+
 
