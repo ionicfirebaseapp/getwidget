@@ -30,6 +30,7 @@
 .pub/
 build/
 web/
+.fvm/
 getwidget-app-kit
 getwidget-web-kit
 getwidget_app

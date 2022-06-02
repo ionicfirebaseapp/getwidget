@@ -60,7 +60,7 @@ class _GFStickyHeaderBuilderState extends State<GFStickyHeaderBuilder> {
         callback: (double stuckValue) {
           if (_stuckValue != stuckValue) {
             _stuckValue = stuckValue;
-            WidgetsBinding.instance.endOfFrame.then((_) {
+            WidgetsBinding.instance?.endOfFrame.then((_) {
               if (mounted) {
                 setState(() {});
               }
