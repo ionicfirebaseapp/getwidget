@@ -11,7 +11,7 @@ import 'package:getwidget/shape/gf_textfield_shape.dart';
 import 'package:getwidget/types/gf_form_field_type.dart';
 
 class GfFormField extends StatefulWidget{
-  const GfFormField({
+   GfFormField({
     Key? key,
     required this.gfFormFieldType,
     required this.editingbordercolor,
@@ -76,9 +76,18 @@ class GfFormField extends StatefulWidget{
     this.buildCounter,
     this.scrollPhysics,
     this.autofillHints,
-    this.autovalidateMode=AutovalidateMode.disabled
-
-  }) :super(key: key);
+    this.autovalidateMode=AutovalidateMode.disabled,
+    this.onGenderChanged,
+    this.initialGender,
+    this.question,
+    this.acceptButtonText,
+    this.declineButtonText,
+    this.onQuestionWidgetChanged
+  }) :super(key: key){
+    if(gfFormFieldType==GfFormFieldType.question&&question==null){
+      throw Exception('Question cannot be Null for question widget');
+    }
+  }
   final GfFormFieldType gfFormFieldType;
   final Color normalbordercolor;
   final Color editingbordercolor;
@@ -123,6 +132,7 @@ class GfFormField extends StatefulWidget{
   final bool expands;
   final int? maxLength;
   final ValueChanged<String>? onChanged;
+  final Function(String?)? onGenderChanged;
   final GestureTapCallback? onTap;
   final VoidCallback? onEditingComplete;
   final ValueChanged<String>? onFieldSubmitted;
@@ -143,9 +153,15 @@ class GfFormField extends StatefulWidget{
   final ScrollPhysics? scrollPhysics;
   final Iterable<String>? autofillHints;
   final AutovalidateMode autovalidateMode;
+  final String? initialGender;
+  final String? question;
+  final String? acceptButtonText;
+  final String? declineButtonText;
+   final Function(String?)? onQuestionWidgetChanged;
 
 
-  @override
+
+   @override
   _GfFormFieldState createState()=> _GfFormFieldState();
 }
 
@@ -623,7 +639,10 @@ class _GfFormFieldState extends State<GfFormField> with AutomaticKeepAliveClient
          padding: EdgeInsets.symmetric(vertical: widget.paddingvertical??2,
              horizontal: widget.paddinghorizontal??2),
          child:
-       GfFormRadiobutton(onChanged: (String? value){},initialSelectedValue: 'Male',)
+       GfFormRadiobutton(
+         onChanged: widget.onGenderChanged??(value){
+         print('Gender changed $value');
+       },initialSelectedValue: widget.initialGender??'Male',)
        );
        break;
      case GfFormFieldType.question:
@@ -633,7 +652,13 @@ class _GfFormFieldState extends State<GfFormField> with AutomaticKeepAliveClient
            padding: EdgeInsets.symmetric(vertical: widget.paddingvertical??2,
                horizontal: widget.paddinghorizontal??2),
            child:
-              GfFormQuestionWidget(onChanged: (String? value){},initialSelectedValue: 'Decline',question: 'Do you accept the Terms and Condition?',accepttext: 'Accept',declinetext: 'Decline',)
+              GfFormQuestionWidget(
+                onChanged:  widget.onQuestionWidgetChanged??(value){
+                  print('Question changed $value');
+                },initialSelectedValue: 'Decline',
+                question: widget.question??'Do you accept the Terms and Condition?',
+                accepttext: widget.acceptButtonText??'Accept',
+                declinetext: widget.declineButtonText??'Decline',)
        );
        break;
    }
