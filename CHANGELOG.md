@@ -1,6 +1,12 @@
 # Changelog
 
 
+## 3.0.1 - 2022-06-02
+
+### Added
+
+- Fixed analysis warnings
+
 ## 3.0.0 - 2022-06-02
 
 ### Added
