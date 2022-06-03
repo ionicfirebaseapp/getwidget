@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
-class GFMultiSelect<T> extends StatefulWidget  {
+class GFMultiSelect<T> extends StatefulWidget {
   /// GF Multiselect let user to select multiple items from the number of
   /// Checkbox ListTile items and display selected items in the TitleTile box.
   /// It displays list of items in the overlay dropdown fashion.
-   const GFMultiSelect({
+  const GFMultiSelect({
     required this.items,
     required this.onSelect,
     this.initialSelectedItemsIndex,
@@ -60,7 +60,6 @@ class GFMultiSelect<T> extends StatefulWidget  {
     this.dropdownButton,
     Key? key,
   }) : super(key: key);
-
 
   /// defines the list of items the user can select
   final List<dynamic> items;
@@ -181,21 +180,21 @@ class GFMultiSelect<T> extends StatefulWidget  {
 
   final Widget? dropdownButton;
 
-
-
   @override
   _GFMultiSelectState createState() => _GFMultiSelectState();
 }
 
-class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> with AutomaticKeepAliveClientMixin {
-  final List _selectedTitles=[] ;
-  final List _selectedTitlesIndex=[];
+class _GFMultiSelectState<T> extends State<GFMultiSelect<T>>
+    with AutomaticKeepAliveClientMixin {
+  final List _selectedTitles = [];
+  final List _selectedTitlesIndex = [];
   bool showDropdown = false;
   final _controller = TextEditingController();
 
   @override
-  void initState(){
-    if(widget.initialSelectedItemsIndex!=null&&widget.initialSelectedItemsIndex!.isNotEmpty) {
+  void initState() {
+    if (widget.initialSelectedItemsIndex != null &&
+        widget.initialSelectedItemsIndex!.isNotEmpty) {
       for (int x in widget.initialSelectedItemsIndex!) {
         _selectedTitles.add(widget.items[x]);
         _selectedTitlesIndex.add(x);
@@ -318,7 +317,8 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>> with AutomaticKeepA
                                     activeBorderColor: widget.activeBorderColor,
                                     inactiveBgColor: widget.inactiveBgColor,
                                     activeIcon: widget.activeIcon,
-                                    inactiveBorderColor: widget.inactiveBorderColor,
+                                    inactiveBorderColor:
+                                        widget.inactiveBorderColor,
                                     listItemTextColor: widget.listItemTextColor,
                                     customBgColor: widget.customBgColor,
                                     // checkColor: widget.checkColor,

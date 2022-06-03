@@ -5,7 +5,7 @@ enum GFSocialType {
   google,
   dribble,
   linkedin,
-  youtube, 
+  youtube,
   slack,
   pinterest,
   wechat,
@@ -13,7 +13,7 @@ enum GFSocialType {
 }
 
 enum GFSocialButtonType {
-/// Default type is [GFSocialButtonType.solid], used to fill with color for widget
+  /// Default type is [GFSocialButtonType.solid], used to fill with color for widget
   solid,
 
   /// Type [GFSocialButtonType.outline], used for widget with outline border and fill color with Colors.transparent

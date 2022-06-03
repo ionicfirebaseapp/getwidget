@@ -150,7 +150,8 @@ class _GFTabBarViewState extends State<GFTabBarView> {
     if ((_currentIndex! - previousIndex).abs() == 1) {
       _warpUnderwayCount += 1;
       await _pageController.animateToPage(_currentIndex!,
-          duration: widget.tabScrollDuration ?? kTabScrollDuration, curve: Curves.ease);
+          duration: widget.tabScrollDuration ?? kTabScrollDuration,
+          curve: Curves.ease);
       _warpUnderwayCount -= 1;
       return Future<void>.value();
     }
@@ -171,7 +172,8 @@ class _GFTabBarViewState extends State<GFTabBarView> {
     _pageController.jumpToPage(initialPage);
 
     await _pageController.animateToPage(_currentIndex!,
-        duration: widget.tabScrollDuration ?? kTabScrollDuration, curve: Curves.ease);
+        duration: widget.tabScrollDuration ?? kTabScrollDuration,
+        curve: Curves.ease);
     if (!mounted) {
       return Future<void>.value();
     }

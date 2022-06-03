@@ -6,7 +6,6 @@ enum GFTextFieldShape {
   /// [GFTextFieldShape.pills], used for TextField with curved edges
   pills,
 
-
   /// [GFTextFieldShape.square], used for TextField with squared edges
   square,
 }

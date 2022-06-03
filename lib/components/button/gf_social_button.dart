@@ -234,114 +234,106 @@ class GFSocialButton extends StatelessWidget {
     }
   }
 
-  Widget socialButtonSolid(Widget? icon, String? text, Color color) =>
-     GFButton(
-      onPressed: onPressed,
-      elevation: elevation,
-      shape: shape,
-      size: size,
-      text: text,
-      blockButton: blockButton,
-      fullWidthButton: fullWidthButton,
-      onLongPress: onLongPress,
-      icon: icon,
-      color: color,
-    );
-
+  Widget socialButtonSolid(Widget? icon, String? text, Color color) => GFButton(
+        onPressed: onPressed,
+        elevation: elevation,
+        shape: shape,
+        size: size,
+        text: text,
+        blockButton: blockButton,
+        fullWidthButton: fullWidthButton,
+        onLongPress: onLongPress,
+        icon: icon,
+        color: color,
+      );
 
   Widget socialButtonOutlined(Widget? icon, String? text, Color color) =>
-     GFButton(
-      onPressed: () {},
-      type: GFButtonType.outline,
-      shape: shape,
-      size: size,
-      text: text,
-      blockButton: blockButton,
-      fullWidthButton: fullWidthButton,
-      onLongPress: onLongPress,
-      icon: icon,
-      color: color,
-      boxShadow: const BoxShadow(
-        color: Colors.black,
-        blurRadius: 10, // soften the shadow
-        spreadRadius:7, //extend the shadow
-        offset: Offset(
-          5, // Move to right 10  horizontally
-         5, // Move to bottom 5 Vertically
+      GFButton(
+        onPressed: () {},
+        type: GFButtonType.outline,
+        shape: shape,
+        size: size,
+        text: text,
+        blockButton: blockButton,
+        fullWidthButton: fullWidthButton,
+        onLongPress: onLongPress,
+        icon: icon,
+        color: color,
+        boxShadow: const BoxShadow(
+          color: Colors.black,
+          blurRadius: 10, // soften the shadow
+          spreadRadius: 7, //extend the shadow
+          offset: Offset(
+            5, // Move to right 10  horizontally
+            5, // Move to bottom 5 Vertically
+          ),
         ),
-      ),
-    );
-
+      );
 
   Widget socialButtonOutlined2x(Widget icon, String text, Color color) =>
-     GFButton(
-      onPressed: () {},
-      type: GFButtonType.outline2x,
-      shape: shape,
-      size: size,
-      text: text,
-      blockButton: blockButton,
-      fullWidthButton: fullWidthButton,
-      onLongPress: onLongPress,
-      icon: icon,
-      color: color,
-      boxShadow: const BoxShadow(
-        color: Colors.black,
-        blurRadius: 10, // soften the shadow
-        spreadRadius: 7, //extend the shadow
-        offset: Offset(
-          5, // Move to right 10  horizontally
-          5, // Move to bottom 5 Vertically
+      GFButton(
+        onPressed: () {},
+        type: GFButtonType.outline2x,
+        shape: shape,
+        size: size,
+        text: text,
+        blockButton: blockButton,
+        fullWidthButton: fullWidthButton,
+        onLongPress: onLongPress,
+        icon: icon,
+        color: color,
+        boxShadow: const BoxShadow(
+          color: Colors.black,
+          blurRadius: 10, // soften the shadow
+          spreadRadius: 7, //extend the shadow
+          offset: Offset(
+            5, // Move to right 10  horizontally
+            5, // Move to bottom 5 Vertically
+          ),
         ),
-      ),
-    );
-
+      );
 
   Widget socialButtonTransparent(Widget icon, String text, Color color) =>
-     GFButton(
-      onPressed: () {},
-      type: GFButtonType.transparent,
-      shape: shape,
-      size: size,
-      text: text,
-      blockButton: blockButton,
-      fullWidthButton: fullWidthButton,
-      onLongPress: onLongPress,
-      icon: icon,
-      color: color,
-      boxShadow: const BoxShadow(
-        color: Colors.black,
-        blurRadius: 10, // soften the shadow
-        spreadRadius: 7, //extend the shadow
-        offset: Offset(
-          5, // Move to right 10  horizontally
-          5, // Move to bottom 5 Vertically
-        ),
-      ),
-    );
-
-
-  Widget socialButtonIcon(Widget? icon, Color color) =>
-     Material(
-      shape: RoundedRectangleBorder(
-        borderRadius: shape == GFButtonShape.pills
-            ? BorderRadius.circular(50)
-            : BorderRadius.circular(0),
-      ),
-      elevation: elevation,
-      child: GFIconButton(
+      GFButton(
         onPressed: () {},
-        icon: icon!,
-        color: color,
+        type: GFButtonType.transparent,
+        shape: shape,
         size: size,
-        type: GFButtonType.solid,
-        shape: shape == GFButtonShape.standard
-            ? GFIconButtonShape.standard
-            : shape == GFButtonShape.pills
-                ? GFIconButtonShape.circle
-                : GFIconButtonShape.square,
-      ),
-    );
+        text: text,
+        blockButton: blockButton,
+        fullWidthButton: fullWidthButton,
+        onLongPress: onLongPress,
+        icon: icon,
+        color: color,
+        boxShadow: const BoxShadow(
+          color: Colors.black,
+          blurRadius: 10, // soften the shadow
+          spreadRadius: 7, //extend the shadow
+          offset: Offset(
+            5, // Move to right 10  horizontally
+            5, // Move to bottom 5 Vertically
+          ),
+        ),
+      );
 
-
+  Widget socialButtonIcon(Widget? icon, Color color) => Material(
+        shape: RoundedRectangleBorder(
+          borderRadius: shape == GFButtonShape.pills
+              ? BorderRadius.circular(50)
+              : BorderRadius.circular(0),
+        ),
+        elevation: elevation,
+        child: GFIconButton(
+          onPressed: () {},
+          icon: icon!,
+          color: color,
+          size: size,
+          type: GFButtonType.solid,
+          shape: shape == GFButtonShape.standard
+              ? GFIconButtonShape.standard
+              : shape == GFButtonShape.pills
+                  ? GFIconButtonShape.circle
+                  : GFIconButtonShape.square,
+        ),
+      );
 }

@@ -32,8 +32,6 @@ class GFIntroScreen extends StatefulWidget {
     this.dotShape,
     this.inactiveColor = GFColors.LIGHT,
     this.activeColor = GFColors.PRIMARY,
-
-
     this.dotHeight = 12,
     this.dotWidth = 12,
     this.dotMargin = const EdgeInsets.symmetric(horizontal: 2),

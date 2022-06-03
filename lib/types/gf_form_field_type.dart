@@ -1,5 +1,4 @@
-
-enum GfFormFieldType{
+enum GfFormFieldType {
   name,
   password,
   email,
