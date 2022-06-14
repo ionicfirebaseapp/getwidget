@@ -53,7 +53,7 @@ class GFTextField extends FormField<String> {
       this.buildCounter,
       this.scrollPhysics,
       this.autofillHints,
-      this.autovalidateMode = AutovalidateMode.disabled})
+      this.autoValidateMode = AutovalidateMode.disabled})
       : super(
             key: key,
             builder: (FormFieldState<String> field) => _GfTextFieldState(
@@ -71,7 +71,7 @@ class GFTextField extends FormField<String> {
                   validator: validatornew,
                   color: color,
                   borderradius: borderradius,
-                  autovalidateMode: autovalidateMode,
+                  autoValidateMode: autoValidateMode,
                   textAlign: textAlign ?? TextAlign.start,
                   textAlignVertical: textAlignVertical,
                   textDirection: textDirection,
@@ -163,8 +163,7 @@ class GFTextField extends FormField<String> {
   final InputCounterWidgetBuilder? buildCounter;
   final ScrollPhysics? scrollPhysics;
   final Iterable<String>? autofillHints;
-  @override
-  final AutovalidateMode autovalidateMode;
+  final AutovalidateMode autoValidateMode;
 }
 
 class _GfTextFieldState extends StatefulWidget {
@@ -219,7 +218,7 @@ class _GfTextFieldState extends StatefulWidget {
       this.buildCounter,
       this.scrollPhysics,
       this.autofillHints,
-      this.autovalidateMode = AutovalidateMode.disabled});
+      this.autoValidateMode = AutovalidateMode.disabled});
 
   final FormFieldState<String> state;
   final TextEditingController? controller;
@@ -272,7 +271,7 @@ class _GfTextFieldState extends StatefulWidget {
   final InputCounterWidgetBuilder? buildCounter;
   final ScrollPhysics? scrollPhysics;
   final Iterable<String>? autofillHints;
-  final AutovalidateMode autovalidateMode;
+  final AutovalidateMode autoValidateMode;
 
   @override
   State<_GfTextFieldState> createState() => _GfTextFieldStateState();

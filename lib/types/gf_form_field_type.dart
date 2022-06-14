@@ -3,9 +3,6 @@ enum GfFormFieldType {
   password,
   email,
   phone,
-  country,
-  gender,
-  question,
   text,
   number
 }

@@ -67,7 +67,7 @@ class GFTextFieldPill extends StatefulWidget {
       this.buildCounter,
       this.scrollPhysics,
       this.autofillHints,
-      this.autovalidateMode = AutovalidateMode.disabled})
+      this.autoValidateMode = AutovalidateMode.disabled})
       : super(key: key);
 
   final Color normalbordercolor;
@@ -131,7 +131,7 @@ class GFTextFieldPill extends StatefulWidget {
   final InputCounterWidgetBuilder? buildCounter;
   final ScrollPhysics? scrollPhysics;
   final Iterable<String>? autofillHints;
-  final AutovalidateMode autovalidateMode;
+  final AutovalidateMode autoValidateMode;
 
   @override
   _GFTextFieldPillState createState() => _GFTextFieldPillState();
@@ -244,5 +244,5 @@ class _GFTextFieldPillState extends State<GFTextFieldPill> {
           buildCounter: widget.buildCounter,
           scrollPhysics: widget.scrollPhysics,
           autofillHints: widget.autofillHints,
-          autovalidateMode: widget.autovalidateMode));
+          autoValidateMode: widget.autoValidateMode));
 }
