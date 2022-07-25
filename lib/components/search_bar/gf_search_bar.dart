@@ -80,7 +80,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
   }
 
   void init() {
-    TextColor = textColor ?? Colors.grey[600];
+    textColor = textColor ?? Colors.grey[600];
     _searchList = <T>[];
     textController = widget.controller ?? textController;
     notifier = ValueNotifier(null);
@@ -152,7 +152,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
       child: TextField(
         controller: textController,
         focusNode: _focusNode,
-        style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+        style: TextStyle(fontSize: 16, color: textColor),
         decoration: widget.searchBoxInputDecoration == null
             ? InputDecoration(
                 enabledBorder: const OutlineInputBorder(
