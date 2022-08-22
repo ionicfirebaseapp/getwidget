@@ -232,7 +232,6 @@ class _GFCarouselState extends State<GFCarousel> with TickerProviderStateMixin {
                 realPage,
                 widget.items.length,
               );
-              currentSlide = widget.initialPage;
               return AnimatedBuilder(
                 animation: pageController,
                 child: widget.items[index],
