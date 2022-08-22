@@ -14,6 +14,7 @@ class GFSearchBar<T> extends StatefulWidget {
     required this.overlaySearchListItemBuilder,
     required this.searchQueryBuilder,
     Key? key,
+    this.textColor,
     this.controller,
     this.onItemSelected,
     this.hideSearchBoxWhenItemSelected = false,
@@ -39,6 +40,9 @@ class GFSearchBar<T> extends StatefulWidget {
 
   /// displays the [Widget] when the search item failed
   final Widget? noItemsFoundWidget;
+
+  /// defines Colors of Text in the searchBar
+  final Colors textColor;
 
   /// defines what to do with onSelect SearchList item
   final OnItemSelected<T>? onItemSelected;
@@ -76,6 +80,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
   }
 
   void init() {
+    textColor = textColor ?? Colors.grey[600];
     _searchList = <T>[];
     textController = widget.controller ?? textController;
     notifier = ValueNotifier(null);
@@ -147,7 +152,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
       child: TextField(
         controller: textController,
         focusNode: _focusNode,
-        style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+        style: TextStyle(fontSize: 16, color: textColor),
         decoration: widget.searchBoxInputDecoration == null
             ? InputDecoration(
                 enabledBorder: const OutlineInputBorder(
