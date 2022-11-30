@@ -42,7 +42,7 @@ class GFSearchBar<T> extends StatefulWidget {
   final Widget? noItemsFoundWidget;
 
   /// defines Colors of Text in the searchBar
-  final Colors textColor;
+  final Color? textColor;
 
   /// defines what to do with onSelect SearchList item
   final OnItemSelected<T>? onItemSelected;
@@ -72,6 +72,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
   final double textBoxHeight = 48;
   TextEditingController textController = TextEditingController();
   bool isSearchBoxSelected = false;
+  Color? textColor;
 
   @override
   void initState() {
@@ -80,7 +81,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
   }
 
   void init() {
-    textColor = textColor ?? Colors.grey[600];
+    textColor = widget.textColor ?? Colors.grey[600];
     _searchList = <T>[];
     textController = widget.controller ?? textController;
     notifier = ValueNotifier(null);
