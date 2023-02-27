@@ -74,7 +74,7 @@ class GFSearchBar<T> extends StatefulWidget {
 class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
   late List<T> _list;
   late List<T?> _searchList;
-  bool isLoading = false;
+  bool? isLoading;
   bool? isFocused;
   late FocusNode _focusNode;
   late ValueNotifier<T?> notifier;
@@ -116,7 +116,8 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
           ..clear()
           ..addAll(_list);
         if (overlaySearchList == null) {
-          onTextFieldFocus(widget.circularProgressIndicatorColor);
+          onTextFieldFocus(
+              circularIndicatorColor: widget.circularProgressIndicatorColor);
         } else {
           overlaySearchList?.markNeedsBuild();
         }
@@ -126,7 +127,6 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
       final text = textController.text;
       if (text.trim().isNotEmpty) {
         _searchList.clear();
-
         if (widget.searchQueryBuilder != null &&
             widget.searchAsyncQueryBuilder == null) {
           final List<T?> filterList =
@@ -142,7 +142,8 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
           isLoading = false;
         }
         if (overlaySearchList == null) {
-          onTextFieldFocus(widget.circularProgressIndicatorColor);
+          onTextFieldFocus(
+              circularIndicatorColor: widget.circularProgressIndicatorColor);
         } else {
           overlaySearchList?.markNeedsBuild();
         }
@@ -151,7 +152,8 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
           ..clear()
           ..addAll(_list);
         if (overlaySearchList == null) {
-          onTextFieldFocus(widget.circularProgressIndicatorColor);
+          onTextFieldFocus(
+              circularIndicatorColor: widget.circularProgressIndicatorColor);
         } else {
           overlaySearchList?.markNeedsBuild();
         }
@@ -194,7 +196,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
                 ),
                 suffixIcon: const Icon(Icons.search),
                 border: InputBorder.none,
-                hintText: 'Search here...',
+                hintText: (notifier.value ?? 'Search here...').toString(),
                 contentPadding: const EdgeInsets.only(
                   left: 16,
                   right: 20,
@@ -241,7 +243,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
     }
   }
 
-  void onTextFieldFocus(Color? circularIndicatorColor) {
+  void onTextFieldFocus({Color? circularIndicatorColor}) {
     setState(() {
       isSearchBoxSelected = true;
     });
@@ -325,7 +327,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
                             ),
                           ],
                         )
-                      : isLoading
+                      : isLoading ?? false
                           ? Center(
                               child: Padding(
                                 padding:
