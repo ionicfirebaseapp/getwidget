@@ -32,11 +32,11 @@ class GFToggle extends StatefulWidget {
       : super(key: key);
 
   ///type [String] used to add custom text i.e, ON,ENABLE
-  ///please add only 4 character in this string
+  ///please add only 4 character in this string.
   final String? enabledText;
 
   ///type [String] used to add custom text i.e, ON,DISABLE
-  ///please add only 4 character in this string
+  ///please add only 4 character in this string.
   final String? disabledText;
 
   ///type of [TextStyle] used to define the style properties of the enabled text
