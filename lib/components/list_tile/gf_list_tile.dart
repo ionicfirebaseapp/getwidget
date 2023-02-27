@@ -24,6 +24,14 @@ class GFListTile extends StatelessWidget {
     this.hoverColor,
     this.focusNode,
     this.autofocus = false,
+    this.firstButtonTitle,
+    this.secondButtonTitle,
+    this.onFirstButtonTap,
+    this.onSecondButtonTap,
+    this.firstButtonTextStyle,
+    this.secondButtonTextStyle,
+    this.radius,
+    this.shadow,
   }) : super(key: key);
 
   /// type of [String] used to pass text, alternative to title property and gets higher priority than title
@@ -95,6 +103,29 @@ class GFListTile extends StatelessWidget {
   /// Defaults to false
   final bool autofocus;
 
+  /// The firstButtonTitle to display inside the [GFListTile]. see [Text]
+  final String? firstButtonTitle;
+
+  /// The secondButtonTitle to display inside the [GFListTile]. see [Text]
+  final String? secondButtonTitle;
+
+  /// The style for the firstButtonText.
+  final TextStyle? firstButtonTextStyle;
+
+  /// The style for the secondButtonText.
+  final TextStyle? secondButtonTextStyle;
+
+  /// Called when the user taps on the first button.
+  final GestureTapCallback? onFirstButtonTap;
+
+  /// Called when the user taps on the second button.
+  final GestureTapCallback? onSecondButtonTap;
+
+  /// the circular radius of [GFListTile]
+  final double? radius;
+
+  final BoxShadow? shadow;
+
   @override
   Widget build(BuildContext context) => InkWell(
         onTap: enabled ? onTap : null,
@@ -113,42 +144,80 @@ class GFListTile extends StatelessWidget {
             margin: margin,
             decoration: BoxDecoration(
               color: color,
-              borderRadius: const BorderRadius.all(Radius.circular(5)),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                avatar ?? Container(),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        titleText != null
-                            ? Text(
-                                titleText!,
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w500,
-                                    color: listItemTextColor),
-                              )
-                            : title ?? Container(),
-                        subTitleText != null
-                            ? Text(
-                                subTitleText!,
-                                style: const TextStyle(
-                                  fontSize: 14.5,
-                                  color: Colors.black54,
-                                ),
-                              )
-                            : subTitle ?? Container(),
-                        description ?? Container()
-                      ],
+              borderRadius: BorderRadius.all(Radius.circular(radius ?? 8)),
+              boxShadow: [
+                shadow ??
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 4,
+                      blurRadius: 7,
+                      offset: const Offset(2, 4), // changes position of shadow
                     ),
-                  ),
+              ],
+            ),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    avatar ?? Container(),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            titleText != null
+                                ? Text(
+                                    titleText!,
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500,
+                                        color: listItemTextColor),
+                                  )
+                                : title ?? Container(),
+                            subTitleText != null
+                                ? Text(
+                                    subTitleText!,
+                                    style: const TextStyle(
+                                      fontSize: 14.5,
+                                      color: Colors.black54,
+                                    ),
+                                  )
+                                : subTitle ?? Container(),
+                            description ?? Container()
+                          ],
+                        ),
+                      ),
+                    ),
+                    icon ?? Container(),
+                  ],
                 ),
-                icon ?? Container(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (firstButtonTitle?.isNotEmpty ?? false)
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: InkWell(
+                          onTap: onFirstButtonTap,
+                          child: Text(firstButtonTitle ?? '',
+                              style: firstButtonTextStyle),
+                        ),
+                      ),
+                    if (secondButtonTitle?.isNotEmpty ?? false)
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: InkWell(
+                          onTap: onSecondButtonTap,
+                          child: Text(
+                            secondButtonTitle ?? '',
+                            style: secondButtonTextStyle,
+                          ),
+                        ),
+                      )
+                  ],
+                ),
               ],
             ),
           ),
