@@ -32,6 +32,7 @@ class GFToggle extends StatefulWidget {
       : super(key: key);
 
   ///type [String] used to add custom text i.e, ON,ENABLE
+  ///type [substring] used to restrict 4 character enabledText and disabledText text.
   final String? enabledText;
 
   ///type [String] used to add custom text i.e, ON,DISABLE
@@ -72,7 +73,6 @@ class GFToggle extends StatefulWidget {
 
   /// Called when the user toggles the switch on or off.
   final ValueChanged<bool?> onChanged;
-
   @override
   _GFToggleState createState() => _GFToggleState();
 }
@@ -83,20 +83,18 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
   late AnimationController controller;
   late Animation<Offset> offset;
   late bool isOn;
-
   @override
   void initState() {
     isOn = widget.value;
-
     controller = AnimationController(duration: widget.duration, vsync: this);
     offset = (isOn
             ? Tween<Offset>(
-                begin: const Offset(1, 0),
+                begin: const Offset(1.28, 0),
                 end: Offset.zero,
               )
             : Tween<Offset>(
                 begin: Offset.zero,
-                end: const Offset(1, 0),
+                end: const Offset(1.28, 0),
               ))
         .animate(controller);
     super.initState();
@@ -105,7 +103,6 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
   @override
   void dispose() {
     animationController?.dispose();
-
     controller.dispose();
     super.dispose();
   }
@@ -131,7 +128,7 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
         children: <Widget>[
           Container(
             height: widget.type == GFToggleType.android ? 25 : 30,
-            width: widget.type == GFToggleType.android ? 40 : 50,
+            width: widget.type == GFToggleType.android ? 46.5 : 55,
           ),
           Positioned(
             top: 5,
@@ -142,8 +139,8 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                       const BorderRadius.all(Radius.circular(20)),
               onTap: onStatusChange,
               child: Container(
-                width: widget.type == GFToggleType.ios ? 45 : 36,
-                height: widget.type == GFToggleType.ios ? 25 : 15,
+                width: widget.type == GFToggleType.ios ? 54 : 46,
+                height: widget.type == GFToggleType.ios ? 25 : 18,
                 decoration: BoxDecoration(
                     color: isOn
                         ? widget.enabledTrackColor ?? Colors.lightGreen
@@ -158,16 +155,17 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                       : const EdgeInsets.only(left: 3, right: 3, top: 3.4),
                   child: isOn
                       ? Text(
-                          widget.enabledText ??
+                          widget.enabledText?.substring(0, 4) ??
                               (widget.type == GFToggleType.custom ? 'ON' : ''),
                           style: widget.enabledTextStyle ??
                               (widget.type == GFToggleType.ios
                                   ? const TextStyle(
                                       color: Colors.white, fontSize: 12)
                                   : const TextStyle(
-                                      color: Colors.white, fontSize: 8)))
+                                      color: Colors.white, fontSize: 8)),
+                        )
                       : Text(
-                          widget.disabledText ??
+                          widget.disabledText?.substring(0, 4) ??
                               (widget.type == GFToggleType.custom ? 'OFF' : ''),
                           textAlign: TextAlign.end,
                           style: widget.disabledTextStyle ??
@@ -182,16 +180,16 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
             ),
           ),
           Positioned(
-            top: widget.type == GFToggleType.ios ? 7.5 : 3,
-            left: widget.type == GFToggleType.ios ? 2 : 0,
+            top: widget.type == GFToggleType.ios ? 6.5 : 3,
+            left: widget.type == GFToggleType.ios ? 3 : 0,
             child: InkWell(
               onTap: onStatusChange,
               child: SlideTransition(
                 position: offset,
                 child: Container(
                   padding: const EdgeInsets.only(left: 10),
-                  height: 20,
-                  width: 20,
+                  height: 22,
+                  width: 22,
                   decoration: BoxDecoration(
                     shape: widget.type == GFToggleType.square
                         ? BoxShape.rectangle
