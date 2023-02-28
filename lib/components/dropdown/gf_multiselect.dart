@@ -26,6 +26,7 @@ class GFMultiSelect<T> extends StatefulWidget {
     this.buttonColor = GFColors.PRIMARY,
     this.submitButton,
     this.cancelButton,
+    this.validationMessage,
     this.expandedIcon = const Icon(
       Icons.keyboard_arrow_down,
       color: Colors.black87,
@@ -45,6 +46,7 @@ class GFMultiSelect<T> extends StatefulWidget {
     this.inactiveIcon,
     this.customBgColor = GFColors.SUCCESS,
     this.selected = false,
+    this.validation = false,
     this.dropdownTitleTileBorder,
     this.dropdownTitleTileBorderRadius =
         const BorderRadius.all(Radius.circular(4)),
@@ -175,10 +177,17 @@ class GFMultiSelect<T> extends StatefulWidget {
   /// Normally, this property is left to its default value, false.
   final bool selected;
 
+  /// provide the validation message if none of the item is not selected
+  /// default value is false
+  final bool validation;
+
   /// defines the background color of the dropdown. Can be given [Color] or [GFColors]
   final Color dropdownBgColor;
 
   final Widget? dropdownButton;
+
+  /// provide the message that you want to show when user can not select items as required.
+  final String? validationMessage;
 
   @override
   _GFMultiSelectState createState() => _GFMultiSelectState();
@@ -343,9 +352,18 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>>
                               GFButton(
                                 color: widget.buttonColor,
                                 onPressed: () {
-                                  setState(() {
-                                    showDropdown = !showDropdown;
-                                  });
+                                  if (_selectedTitles.isNotEmpty ||
+                                      !widget.validation) {
+                                    setState(() {
+                                      showDropdown = !showDropdown;
+                                    });
+                                  } else {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text(widget.validationMessage ??
+                                          'Please select an item'),
+                                    ));
+                                  }
                                 },
                                 child: widget.submitButton ?? const Text('OK'),
                               )
