@@ -4,11 +4,8 @@ import 'package:flutter/material.dart';
 
 typedef QueryListItemBuilder<T> = Widget Function(T item);
 typedef OnItemSelected<T> = void Function(T item);
-typedef AsyncQueryBuilder<T> = Future<List<T>> Function(
-  String query,
-  List<T> list,
-);
-typedef SyncQueryBuilder<T> = FutureOr<List<T>> Function(
+
+typedef QueryBuilder<T> = FutureOr<List<T>> Function(
   String query,
   List<T> list,
 );
@@ -19,7 +16,6 @@ class GFSearchBar<T> extends StatefulWidget {
     required this.searchList,
     required this.overlaySearchListItemBuilder,
     this.searchQueryBuilder,
-    this.searchAsyncQueryBuilder,
     Key? key,
     this.textColor,
     this.circularProgressIndicatorColor,
@@ -45,11 +41,7 @@ class GFSearchBar<T> extends StatefulWidget {
 
   /// can search and filter the query with synchronous function  [searchList]
   /// please select any one of the option from searchQueryBuilder and searchAsyncQueryBuilder  as per your needs
-  final SyncQueryBuilder<T>? searchQueryBuilder;
-
-  /// can search and filter the query with asynchronous function [searchList]
-  /// please select any one of the option from searchQueryBuilder and searchAsyncQueryBuilder  as per your needs
-  final AsyncQueryBuilder<T>? searchAsyncQueryBuilder;
+  final QueryBuilder<T>? searchQueryBuilder;
 
   /// displays the [Widget] when the search item failed
   final Widget? noItemsFoundWidget;
