@@ -12,10 +12,8 @@ void main() {
   const bottomBar = Text('Get Widget');
 
   testWidgets('GFAlert can be created.', (tester) async {
-    final GFAlert alert = GFAlert(
-        backgroundColor: bgColor,
-        topBar: topBar,
-        bottomBar: bottomBar);
+    final GFAlert alert =
+        GFAlert(backgroundColor: bgColor, topBar: topBar, bottomBar: bottomBar);
 
     final TestApp app = TestApp(alert);
 
@@ -49,8 +47,7 @@ void main() {
     const roundedType = GFAlertType.rounded;
 
     const GFAlert alert =
-        GFAlert(topBar: topBar, type: roundedType, bottomBar: bottomBar
-        );
+        GFAlert(topBar: topBar, type: roundedType, bottomBar: bottomBar);
 
     const TestApp app = TestApp(alert);
 
@@ -111,10 +108,8 @@ void main() {
         )
       ],
     );
-    final GFAlert alert = GFAlert(
-        topBar: topBar,
-        type: basicType,
-        bottomBar: bottomBar);
+    final GFAlert alert =
+        GFAlert(topBar: topBar, type: basicType, bottomBar: bottomBar);
 
     final TestApp app = TestApp(alert);
 

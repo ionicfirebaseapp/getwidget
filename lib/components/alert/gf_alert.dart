@@ -7,10 +7,12 @@ class GFAlert extends StatefulWidget {
   const GFAlert(
       {Key? key,
       this.title,
-      this.titleTextStyle = const TextStyle(color: Colors.black87, fontSize: 20, fontWeight: FontWeight.w700),
+      this.titleTextStyle = const TextStyle(
+          color: Colors.black87, fontSize: 20, fontWeight: FontWeight.w700),
       this.titleAlignment,
       this.subtitle,
-      this.subtitleTextStyle = const TextStyle(color : Colors.black87, fontSize: 17, fontWeight: FontWeight.w400),
+      this.subtitleTextStyle = const TextStyle(
+          color: Colors.black87, fontSize: 17, fontWeight: FontWeight.w400),
       this.subtitleAlignment,
       this.topBar,
       this.topBarAlignment,
@@ -152,41 +154,53 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                         alignment: widget.titleAlignment ?? Alignment.topLeft,
                         child: widget.title != null
                             ? Text(widget.title!, style: widget.titleTextStyle)
-                            : Text('Alert !!!!', style : widget.titleTextStyle),
+                            : Text('Alert !!!!', style: widget.titleTextStyle),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       Align(
-                        alignment:
-                        widget.subtitleAlignment ?? Alignment.topLeft,
-                        child: widget.subtitle != null
-                            ? Text(widget.subtitle!,
-                            style: widget.subtitleTextStyle)
-                            : Text('This is subtitle.', style: widget.subtitleTextStyle)),
+                          alignment:
+                              widget.subtitleAlignment ?? Alignment.topLeft,
+                          child: widget.subtitle != null
+                              ? Text(widget.subtitle!,
+                                  style: widget.subtitleTextStyle)
+                              : Text('This is subtitle.',
+                                  style: widget.subtitleTextStyle)),
                       Align(
                         alignment:
-                        widget.bottomBarAlignment ?? Alignment.bottomRight,
-                        child: widget.bottomBar ?? Container(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              TextButton(
-                                child: const Text('CANCEL', style: TextStyle(fontSize: 18, color: Colors.lightBlue),),
-                                onPressed: () {
-                                  //Navigator.of(context).pop();
-                                },
+                            widget.bottomBarAlignment ?? Alignment.bottomRight,
+                        child: widget.bottomBar ??
+                            Container(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  TextButton(
+                                    child: const Text(
+                                      'CANCEL',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.lightBlue),
+                                    ),
+                                    onPressed: () {
+                                      //Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: const Text(
+                                      'OK',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.lightBlue),
+                                    ),
+                                    onPressed: () {
+                                      //Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
                               ),
-                              TextButton(
-                                child: const Text('OK', style: TextStyle(fontSize: 18, color: Colors.lightBlue),),
-                                onPressed: () {
-                                  //Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
+                            ),
                       ),
                     ],
                   ),
