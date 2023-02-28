@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 typedef QueryListItemBuilder<T> = Widget Function(T item);
@@ -6,7 +8,7 @@ typedef AsyncQueryBuilder<T> = Future<List<T>> Function(
   String query,
   List<T> list,
 );
-typedef SyncQueryBuilder<T> = List<T> Function(
+typedef SyncQueryBuilder<T> = FutureOr<List<T>> Function(
   String query,
   List<T> list,
 );
@@ -126,21 +128,14 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
     textController.addListener(() async {
       final text = textController.text;
       if (text.trim().isNotEmpty) {
+        isLoading = true;
         _searchList.clear();
-        if (widget.searchQueryBuilder != null &&
-            widget.searchAsyncQueryBuilder == null) {
-          final List<T?> filterList =
-              widget.searchQueryBuilder!(text, widget.searchList);
-          _searchList.addAll(filterList);
-        } else if (widget.searchQueryBuilder == null &&
-            widget.searchAsyncQueryBuilder != null) {
-          isLoading = true;
-          final List<T?> filterList =
-              await widget.searchAsyncQueryBuilder!(text, widget.searchList);
-          _searchList.clear();
-          _searchList.addAll(filterList);
-          isLoading = false;
-        }
+        final List<T?> filterList =
+            await widget.searchQueryBuilder!(text, widget.searchList);
+        _searchList.clear();
+        _searchList.addAll(filterList);
+        isLoading = false;
+
         if (overlaySearchList == null) {
           onTextFieldFocus(
               circularIndicatorColor: widget.circularProgressIndicatorColor);
