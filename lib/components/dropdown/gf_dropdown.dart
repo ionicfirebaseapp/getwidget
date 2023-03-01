@@ -27,7 +27,7 @@ class GFDropdown<T> extends StatefulWidget {
       this.focusNode,
       this.autofocus = false,
       this.dropdownColor,
-      this.padding = const EdgeInsets.all(5),
+      this.padding = const EdgeInsets.all(8),
       this.borderRadius = const BorderRadius.all(Radius.circular(4)),
       this.border = const BorderSide(
           color: Colors.transparent, width: 1, style: BorderStyle.solid),
@@ -128,7 +128,7 @@ class _GFDropdownState<T> extends State<GFDropdown<T>> {
         child: Container(
           height: widget.itemHeight,
           padding: widget.padding,
-          child: DropdownButton(
+          child: DropdownButton<T>(
             items: widget.items,
             selectedItemBuilder: widget.selectedItemBuilder,
             value: widget.value,

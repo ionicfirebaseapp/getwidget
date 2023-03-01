@@ -244,7 +244,7 @@ void main() {
                       child: IconButton(
                         icon: const Icon(Icons.image, color: Colors.white),
                         // ignore: deprecated_member_use
-                        onPressed: () => Scaffold.of(context).showSnackBar(
+                        onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('Favorite #$index'))),
                       ),
                     ),
