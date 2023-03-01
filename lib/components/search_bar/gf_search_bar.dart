@@ -15,7 +15,7 @@ class GFSearchBar<T> extends StatefulWidget {
   const GFSearchBar({
     required this.searchList,
     required this.overlaySearchListItemBuilder,
-    this.searchQueryBuilder,
+    required this.searchQueryBuilder,
     Key? key,
     this.textColor,
     this.circularProgressIndicatorColor,
@@ -39,9 +39,8 @@ class GFSearchBar<T> extends StatefulWidget {
   /// defines the height of [searchList] overlay container
   final double? overlaySearchListHeight;
 
-  /// can search and filter the query with synchronous function  [searchList]
-  /// please select any one of the option from searchQueryBuilder and searchAsyncQueryBuilder  as per your needs
-  final QueryBuilder<T>? searchQueryBuilder;
+  /// can search and filter the query with synchronous and asynchronous function  [searchList]
+  final QueryBuilder<T> searchQueryBuilder;
 
   /// displays the [Widget] when the search item failed
   final Widget? noItemsFoundWidget;
