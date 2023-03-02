@@ -35,7 +35,7 @@ class GFSearchBar<T> extends StatefulWidget {
   /// defines the height of [searchList] overlay container
   final double? overlaySearchListHeight;
 
-  /// can search and filter the query with synchronous function  [searchList]
+  /// can search and filter the [searchList]
   final QueryBuilder<T> searchQueryBuilder;
 
   /// displays the [Widget] when the search item failed
