@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 
 typedef QueryListItemBuilder<T> = Widget Function(T item);
 typedef OnItemSelected<T> = void Function(T item);
-typedef AsyncQueryBuilder<T> = Future<List<T>> Function(
-  String query,
-  List<T> list,
-);
-typedef SyncQueryBuilder<T> = List<T> Function(
+typedef QueryBuilder<T> = List<T> Function(
   String query,
   List<T> list,
 );
@@ -16,11 +12,9 @@ class GFSearchBar<T> extends StatefulWidget {
   const GFSearchBar({
     required this.searchList,
     required this.overlaySearchListItemBuilder,
-    this.searchQueryBuilder,
-    this.searchAsyncQueryBuilder,
+    required this.searchQueryBuilder,
     Key? key,
     this.textColor,
-    this.circularProgressIndicatorColor,
     this.controller,
     this.onItemSelected,
     this.hideSearchBoxWhenItemSelected = false,
@@ -42,21 +36,13 @@ class GFSearchBar<T> extends StatefulWidget {
   final double? overlaySearchListHeight;
 
   /// can search and filter the query with synchronous function  [searchList]
-  /// please select any one of the option from searchQueryBuilder and searchAsyncQueryBuilder  as per your needs
-  final SyncQueryBuilder<T>? searchQueryBuilder;
-
-  /// can search and filter the query with asynchronous function [searchList]
-  /// please select any one of the option from searchQueryBuilder and searchAsyncQueryBuilder  as per your needs
-  final AsyncQueryBuilder<T>? searchAsyncQueryBuilder;
+  final QueryBuilder<T> searchQueryBuilder;
 
   /// displays the [Widget] when the search item failed
   final Widget? noItemsFoundWidget;
 
   /// defines Colors of Text in the searchBar
   final Color? textColor;
-
-  /// defines Colors of CircularProgressIndicator in the searchBar
-  final Color? circularProgressIndicatorColor;
 
   /// defines what to do with onSelect SearchList item
   final OnItemSelected<T>? onItemSelected;
@@ -74,7 +60,6 @@ class GFSearchBar<T> extends StatefulWidget {
 class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
   late List<T> _list;
   late List<T?> _searchList;
-  bool? isLoading;
   bool? isFocused;
   late FocusNode _focusNode;
   late ValueNotifier<T?> notifier;
@@ -116,34 +101,21 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
           ..clear()
           ..addAll(_list);
         if (overlaySearchList == null) {
-          onTextFieldFocus(
-              circularIndicatorColor: widget.circularProgressIndicatorColor);
+          onTextFieldFocus();
         } else {
           overlaySearchList?.markNeedsBuild();
         }
       }
     });
-    textController.addListener(() async {
+    textController.addListener(() {
       final text = textController.text;
       if (text.trim().isNotEmpty) {
         _searchList.clear();
-        if (widget.searchQueryBuilder != null &&
-            widget.searchAsyncQueryBuilder == null) {
-          final List<T?> filterList =
-              widget.searchQueryBuilder!(text, widget.searchList);
-          _searchList.addAll(filterList);
-        } else if (widget.searchQueryBuilder == null &&
-            widget.searchAsyncQueryBuilder != null) {
-          isLoading = true;
-          final List<T?> filterList =
-              await widget.searchAsyncQueryBuilder!(text, widget.searchList);
-          _searchList.clear();
-          _searchList.addAll(filterList);
-          isLoading = false;
-        }
+        final List<T?> filterList =
+            widget.searchQueryBuilder(text, widget.searchList);
+        _searchList.addAll(filterList);
         if (overlaySearchList == null) {
-          onTextFieldFocus(
-              circularIndicatorColor: widget.circularProgressIndicatorColor);
+          onTextFieldFocus();
         } else {
           overlaySearchList?.markNeedsBuild();
         }
@@ -152,8 +124,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
           ..clear()
           ..addAll(_list);
         if (overlaySearchList == null) {
-          onTextFieldFocus(
-              circularIndicatorColor: widget.circularProgressIndicatorColor);
+          onTextFieldFocus();
         } else {
           overlaySearchList?.markNeedsBuild();
         }
@@ -196,7 +167,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
                 ),
                 suffixIcon: const Icon(Icons.search),
                 border: InputBorder.none,
-                hintText: (notifier.value ?? 'Search here...').toString(),
+                hintText: 'Search here...',
                 contentPadding: const EdgeInsets.only(
                   left: 16,
                   right: 20,
@@ -243,7 +214,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
     }
   }
 
-  void onTextFieldFocus({Color? circularIndicatorColor}) {
+  void onTextFieldFocus() {
     setState(() {
       isSearchBoxSelected = true;
     });
@@ -327,27 +298,13 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
                             ),
                           ],
                         )
-                      : isLoading ?? false
+                      : widget.noItemsFoundWidget != null
                           ? Center(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                child: CircularProgressIndicator(
-                                  color: circularIndicatorColor ?? Colors.blue,
-                                ),
-                              ),
+                              child: widget.noItemsFoundWidget,
                             )
-                          : widget.noItemsFoundWidget != null
-                              ? Center(
-                                  child: widget.noItemsFoundWidget,
-                                )
-                              : Container(
-                                  margin: const EdgeInsets.all(8),
-                                  child: const Text(
-                                    'No items found',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                ),
+                          : Container(
+                              child: const Text('no items found'),
+                            ),
                 ),
               ),
             ));
