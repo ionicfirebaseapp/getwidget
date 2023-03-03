@@ -153,10 +153,13 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                 child: Padding(
                   padding: widget.type == GFToggleType.ios
                       ? const EdgeInsets.only(left: 3.5, right: 3.5, top: 5.4)
-                      : const EdgeInsets.only(left: 3, right: 3, top: 3.4),
+                      : const EdgeInsets.only(left: 7, right: 7, top: 3),
                   child: isOn
                       ? Text(
-                          widget.enabledText?.substring(0, 4) ??
+                          (widget.enabledText != null &&
+                                      widget.enabledText!.length > 4
+                                  ? widget.enabledText?.substring(0, 4)
+                                  : widget.enabledText) ??
                               (widget.type == GFToggleType.custom ? 'ON' : ''),
                           style: widget.enabledTextStyle ??
                               (widget.type == GFToggleType.ios
@@ -166,7 +169,10 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                                       color: Colors.white, fontSize: 8)),
                         )
                       : Text(
-                          widget.disabledText?.substring(0, 4) ??
+                          (widget.disabledText != null &&
+                                      widget.disabledText!.length > 4
+                                  ? widget.disabledText?.substring(0, 4)
+                                  : widget.disabledText) ??
                               (widget.type == GFToggleType.custom ? 'OFF' : ''),
                           textAlign: TextAlign.end,
                           style: widget.disabledTextStyle ??
