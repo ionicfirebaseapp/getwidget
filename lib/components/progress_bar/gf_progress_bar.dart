@@ -30,6 +30,8 @@ class GFProgressBar extends StatefulWidget {
     this.padding,
     this.alignment = MainAxisAlignment.start,
     this.clipLinearGradient = false,
+    this.isDragable = false,
+    this.onProgressChanged,
   }) : super(key: key) {
     // if (linearGradient != null) {
     //   throw ArgumentError(' linearGradient cannot be given');
@@ -118,6 +120,15 @@ class GFProgressBar extends StatefulWidget {
 
   /// type of double which should be from 0 to 1 to indicate the progress of the ProgressBars
   final double percentage;
+
+  /// return the current value of progressbar
+  /// to get latest value please set isDragable field to true
+  /// this feature is only available for linear progress type
+  final ValueChanged<double>? onProgressChanged;
+
+  /// set true if you want the change this progressbar value
+  /// this feature is only available for linear progress type
+  final bool? isDragable;
 
   @override
   _GFProgressBarState createState() => _GFProgressBarState();
@@ -223,6 +234,20 @@ class _GFProgressBarState extends State<GFProgressBar>
     }
   }
 
+  void _onDragUpdate(BuildContext context, DragUpdateDetails details) {
+    final RenderBox box = context.findRenderObject() as RenderBox;
+    final Offset localOffset = box.globalToLocal(details.globalPosition);
+    final double width = box.size.width;
+    double progress = localOffset.dx / width;
+    progress = double.parse(progress.toStringAsFixed(2));
+    setState(() {
+      _percentage = progress;
+      _progressPercent = progress;
+    });
+
+    if (widget.onProgressChanged != null) widget.onProgressChanged!(progress);
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -239,20 +264,27 @@ class _GFProgressBarState extends State<GFProgressBar>
         height: widget.lineHeight,
         padding: widget.padding,
         child: widget.type == GFProgressType.linear
-            ? CustomPaint(
-                painter: LinearPainter(
-                  progressHeadType: widget.progressHeadType,
-                  fromRightToLeft: widget.fromRightToLeft,
-                  progress: _progressPercent,
-                  child: widget.child,
-                  progressBarColor: widget.progressBarColor,
-                  linearGradient: widget.linearGradient,
-                  backgroundColor: widget.backgroundColor,
-                  circleWidth: widget.lineHeight,
-                  mask: widget.mask,
-                  clipLinearGradient: widget.clipLinearGradient,
+            ? GestureDetector(
+                onHorizontalDragUpdate: (details) {
+                  if (widget.isDragable!) {
+                    _onDragUpdate(context, details);
+                  }
+                },
+                child: CustomPaint(
+                  painter: LinearPainter(
+                    progressHeadType: widget.progressHeadType,
+                    fromRightToLeft: widget.fromRightToLeft,
+                    progress: _progressPercent,
+                    child: widget.child,
+                    progressBarColor: widget.progressBarColor,
+                    linearGradient: widget.linearGradient,
+                    backgroundColor: widget.backgroundColor,
+                    circleWidth: widget.lineHeight,
+                    mask: widget.mask,
+                    clipLinearGradient: widget.clipLinearGradient,
+                  ),
+                  child: (widget.child != null) ? widget.child : Container(),
                 ),
-                child: (widget.child != null) ? widget.child : Container(),
               )
             : CustomPaint(
                 painter: CirclePainter(
