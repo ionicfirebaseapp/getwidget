@@ -348,6 +348,13 @@ int _remainder(int input, int source) {
   return result < 0 ? source + result : result;
 }
 
+/// How we can use this
+/// For swipe with mouse, we need to change default scroll behavior of app.
+/// Pass an AppScrollBehavior instance to scrollBehavior property of MaterialApp:
+/// MaterialApp(
+///   scrollBehavior: AppScrollBehavior(),
+
+/// );
 class AppScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {

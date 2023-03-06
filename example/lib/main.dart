@@ -9,7 +9,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'GetWidget',
-        scrollBehavior: AppScrollBehavior(),
         debugShowCheckedModeBanner: false,
         home: MyHomePage(),
       );
