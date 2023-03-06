@@ -8,11 +8,17 @@ class GFAlert extends StatefulWidget {
     Key? key,
     this.title,
     this.titleTextStyle = const TextStyle(
-        color: Colors.black87, fontSize: 20, fontWeight: FontWeight.w700),
+      color: Colors.black87,
+      fontSize: 20,
+      fontWeight: FontWeight.w700,
+    ),
     this.titleAlignment,
     this.subtitle,
     this.subtitleTextStyle = const TextStyle(
-        color: Colors.black87, fontSize: 17, fontWeight: FontWeight.w400),
+      color: Colors.black87,
+      fontSize: 17,
+      fontWeight: FontWeight.w400,
+    ),
     this.subtitleAlignment,
     this.topBar,
     this.topBarAlignment,
@@ -27,10 +33,14 @@ class GFAlert extends StatefulWidget {
     this.borderRadius,
     this.okButtonText,
     this.cancelButtonText,
-    this.okButtonTextStyle =
-        const TextStyle(fontSize: 18, color: Colors.lightBlue),
-    this.cancelButtonTextStyle =
-        const TextStyle(fontSize: 18, color: Colors.lightBlue),
+    this.okButtonTextStyle = const TextStyle(
+      fontSize: 18,
+      color: Colors.lightBlue,
+    ),
+    this.cancelButtonTextStyle = const TextStyle(
+      fontSize: 18,
+      color: Colors.lightBlue,
+    ),
     this.onTapCancel,
     this.onTapOk,
   }) : super(key: key);
@@ -115,7 +125,9 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
   @override
   void initState() {
     animationController = AnimationController(
-        duration: const Duration(milliseconds: 300), vsync: this);
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
     animation = CurvedAnimation(
       parent: animationController,
       curve: Curves.fastOutSlowIn,
