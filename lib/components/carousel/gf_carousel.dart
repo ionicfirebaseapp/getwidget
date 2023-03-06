@@ -353,7 +353,6 @@ int _remainder(int input, int source) {
 /// Pass an AppScrollBehavior instance to scrollBehavior property of MaterialApp:
 /// MaterialApp(
 ///   scrollBehavior: AppScrollBehavior(),
-
 /// );
 class AppScrollBehavior extends MaterialScrollBehavior {
   @override
