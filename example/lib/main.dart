@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         title: 'GetWidget',
         debugShowCheckedModeBanner: false,
+        scrollBehavior: AppScrollBehavior(),
         home: MyHomePage(),
       );
 }
