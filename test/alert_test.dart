@@ -12,10 +12,10 @@ void main() {
   const bottomBar = Text('Get Widget');
 
   testWidgets('GFAlert can be created.', (tester) async {
-    final GFAlert alert =
+    const GFAlert alert =
         GFAlert(backgroundColor: bgColor, topBar: topBar, bottomBar: bottomBar);
 
-    final TestApp app = TestApp(alert);
+    const TestApp app = TestApp(alert);
 
     await tester.pumpWidget(Container(child: childWidget));
     expect(find.byWidget(childWidget), findsOneWidget);

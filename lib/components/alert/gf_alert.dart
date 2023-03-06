@@ -4,28 +4,36 @@ import 'package:getwidget/getwidget.dart';
 class GFAlert extends StatefulWidget {
   /// Alert has to be wrap inside the body like [GFFloatingWidget]. See [GFFloatingWidget]
 
-  const GFAlert(
-      {Key? key,
-      this.title,
-      this.titleTextStyle = const TextStyle(
-          color: Colors.black87, fontSize: 20, fontWeight: FontWeight.w700),
-      this.titleAlignment,
-      this.subtitle,
-      this.subtitleTextStyle = const TextStyle(
-          color: Colors.black87, fontSize: 17, fontWeight: FontWeight.w400),
-      this.subtitleAlignment,
-      this.topBar,
-      this.topBarAlignment,
-      this.bottomBar,
-      this.bottomBarAlignment,
-      this.backgroundColor,
-      this.width,
-      this.type = GFAlertType.rounded,
-      this.alignment,
-      this.padding,
-      this.shadow,
-      this.borderRadius})
-      : super(key: key);
+  const GFAlert({
+    Key? key,
+    this.title,
+    this.titleTextStyle = const TextStyle(
+        color: Colors.black87, fontSize: 20, fontWeight: FontWeight.w700),
+    this.titleAlignment,
+    this.subtitle,
+    this.subtitleTextStyle = const TextStyle(
+        color: Colors.black87, fontSize: 17, fontWeight: FontWeight.w400),
+    this.subtitleAlignment,
+    this.topBar,
+    this.topBarAlignment,
+    this.bottomBar,
+    this.bottomBarAlignment,
+    this.backgroundColor,
+    this.width,
+    this.type = GFAlertType.rounded,
+    this.alignment,
+    this.padding,
+    this.shadow,
+    this.borderRadius,
+    this.okButtonText,
+    this.cancelButtonText,
+    this.okButtonTextStyle =
+        const TextStyle(fontSize: 18, color: Colors.lightBlue),
+    this.cancelButtonTextStyle =
+        const TextStyle(fontSize: 18, color: Colors.lightBlue),
+    this.onTapCancel,
+    this.onTapOk,
+  }) : super(key: key);
 
   /// title of type [String] used to describe the title of the [GFAlert]
   final String? title;
@@ -78,6 +86,24 @@ class GFAlert extends StatefulWidget {
   /// type of [Alignment] used to align the [GFAlert]
   final Alignment? alignment;
 
+  /// type of [String] used to replace the text of cancel button in [GFAlert]
+  final String? cancelButtonText;
+
+  ///type of [TextStyle] to change the style of the cancel button text
+  final TextStyle cancelButtonTextStyle;
+
+  ///type of [TextStyle] to change the style of the ok button text
+  final TextStyle okButtonTextStyle;
+
+  /// type of [String] used to replace the text of ok button in [GFAlert]
+  final String? okButtonText;
+
+  /// type of [Function] used for tap on ok button in [GFAlert]
+  final void Function()? onTapOk;
+
+  /// type of [Function] used for tap on cancel button in [GFAlert]
+  final void Function()? onTapCancel;
+
   @override
   _GFAlertState createState() => _GFAlertState();
 }
@@ -115,33 +141,51 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                 width: widget.type == GFAlertType.fullWidth
                     ? MediaQuery.of(context).size.width
                     : widget.width ?? MediaQuery.of(context).size.width * 0.885,
-                constraints: const BoxConstraints(minHeight: 50),
+                constraints: const BoxConstraints(
+                  minHeight: 50,
+                ),
                 margin: widget.type == GFAlertType.fullWidth
-                    ? const EdgeInsets.only(left: 0, right: 0)
+                    ? const EdgeInsets.only(
+                        left: 0,
+                        right: 0,
+                      )
                     : const EdgeInsets.only(
-                        left: 20, right: 20, top: 20, bottom: 20),
+                        left: 20,
+                        right: 20,
+                        top: 20,
+                        bottom: 20,
+                      ),
                 padding: widget.padding ??
                     const EdgeInsets.only(
-                        left: 20, right: 20, top: 20, bottom: 10),
+                      left: 20,
+                      right: 20,
+                      top: 20,
+                      bottom: 10,
+                    ),
                 decoration: BoxDecoration(
-                    borderRadius: widget.type == GFAlertType.basic
-                        ? BorderRadius.circular(3)
-                        : widget.type == GFAlertType.rounded
-                            ? BorderRadius.circular(widget.borderRadius ?? 10)
-                            : BorderRadius.zero,
-                    color: widget.backgroundColor ?? GFColors.WHITE,
-                    boxShadow: widget.shadow ??
-                        [
-                          BoxShadow(
-                            color: Colors.black87.withOpacity(0.1),
-                            offset: const Offset(0, 1),
-                            blurRadius: 10,
-                            spreadRadius: 2,
-                          )
-                        ]),
+                  borderRadius: widget.type == GFAlertType.basic
+                      ? BorderRadius.circular(3)
+                      : widget.type == GFAlertType.rounded
+                          ? BorderRadius.circular(
+                              widget.borderRadius ?? 10,
+                            )
+                          : BorderRadius.zero,
+                  color: widget.backgroundColor ?? GFColors.WHITE,
+                  boxShadow: widget.shadow ??
+                      [
+                        BoxShadow(
+                          color: Colors.black87.withOpacity(0.1),
+                          offset: const Offset(0, 1),
+                          blurRadius: 10,
+                          spreadRadius: 2,
+                        )
+                      ],
+                ),
                 child: ClipRRect(
                   borderRadius: widget.type == GFAlertType.rounded
-                      ? BorderRadius.circular(widget.borderRadius ?? 10)
+                      ? BorderRadius.circular(
+                          widget.borderRadius ?? 10,
+                        )
                       : BorderRadius.zero,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,20 +197,31 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                       Align(
                         alignment: widget.titleAlignment ?? Alignment.topLeft,
                         child: widget.title != null
-                            ? Text(widget.title!, style: widget.titleTextStyle)
-                            : Text('Alert !!!!', style: widget.titleTextStyle),
+                            ? Text(
+                                widget.title!,
+                                style: widget.titleTextStyle,
+                              )
+                            : Text(
+                                'Alert !!!!',
+                                style: widget.titleTextStyle,
+                              ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       Align(
-                          alignment:
-                              widget.subtitleAlignment ?? Alignment.topLeft,
-                          child: widget.subtitle != null
-                              ? Text(widget.subtitle!,
-                                  style: widget.subtitleTextStyle)
-                              : Text('This is subtitle.',
-                                  style: widget.subtitleTextStyle)),
+                        alignment:
+                            widget.subtitleAlignment ?? Alignment.topLeft,
+                        child: widget.subtitle != null
+                            ? Text(
+                                widget.subtitle!,
+                                style: widget.subtitleTextStyle,
+                              )
+                            : Text(
+                                'This is subtitle.',
+                                style: widget.subtitleTextStyle,
+                              ),
+                      ),
                       Align(
                         alignment:
                             widget.bottomBarAlignment ?? Alignment.bottomRight,
@@ -177,27 +232,18 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   TextButton(
-                                    child: const Text(
-                                      'CANCEL',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.lightBlue),
+                                    child: Text(
+                                      widget.cancelButtonText ?? 'CANCEL',
+                                      style: widget.cancelButtonTextStyle,
                                     ),
-                                    onPressed: () {
-                                      //Navigator.of(context).pop();
-                                    },
+                                    onPressed: widget.onTapCancel,
                                   ),
                                   TextButton(
-                                    child: const Text(
-                                      'OK',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.lightBlue),
-                                    ),
-                                    onPressed: () {
-                                      //Navigator.of(context).pop();
-                                    },
-                                  ),
+                                      child: Text(
+                                        widget.okButtonText ?? 'OK',
+                                        style: widget.okButtonTextStyle,
+                                      ),
+                                      onPressed: widget.onTapOk),
                                 ],
                               ),
                             ),
