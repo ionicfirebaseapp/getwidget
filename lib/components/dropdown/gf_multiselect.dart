@@ -36,6 +36,7 @@ class GFMultiSelect<T> extends StatefulWidget {
       color: Colors.black87,
       size: 30,
     ),
+    this.focusNode,
     this.dropdownBgColor = Colors.white,
     this.activeIcon = const Icon(
       Icons.check,
@@ -180,6 +181,8 @@ class GFMultiSelect<T> extends StatefulWidget {
 
   final Widget? dropdownButton;
 
+  final FocusNode? focusNode;
+
   @override
   _GFMultiSelectState createState() => _GFMultiSelectState();
 }
@@ -200,6 +203,7 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>>
         _selectedTitlesIndex.add(x);
       }
     }
+
     super.initState();
   }
 
@@ -241,122 +245,134 @@ class _GFMultiSelectState<T> extends State<GFMultiSelect<T>>
           ],
         );
 
-    return Column(
-      children: [
-        InkWell(
-            onTap: () {
-              setState(() {
-                showDropdown = !showDropdown;
-              });
-            },
-            child: Container(
-                margin: widget.dropdownTitleTileMargin,
-                padding: widget.dropdownTitleTilePadding,
-                decoration: BoxDecoration(
-                    color: widget.dropdownTitleTileColor,
-                    border: widget.dropdownTitleTileBorder,
-                    borderRadius: widget.dropdownTitleTileBorderRadius),
-                child: Container(
+    return FocusableActionDetector(
+      focusNode: widget.focusNode,
+      onFocusChange: (bool d) {
+        if (!showDropdown) {
+          setState(() {
+            showDropdown = !showDropdown;
+          });
+        }
+      },
+      child: Column(
+        children: [
+          InkWell(
+              onTap: () {
+                setState(() {
+                  showDropdown = !showDropdown;
+                });
+              },
+              child: Container(
+                  margin: widget.dropdownTitleTileMargin,
+                  padding: widget.dropdownTitleTilePadding,
                   decoration: BoxDecoration(
-                    border: widget.hideDropdownUnderline
-                        ? const Border(
-                            bottom: BorderSide(color: Colors.transparent))
-                        : Border(bottom: widget.dropdownUnderlineBorder),
-                  ),
-                  child: widget.dropdownTitleTileHintText == null
-                      ? dropdownTile()
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '${widget.dropdownTitleTileHintText}',
-                              style: widget.dropdownTitleTileHintTextStyle,
-                            ),
-                            dropdownTile(),
-                            const SizedBox(
-                              height: 2,
-                            )
-                          ],
-                        ),
-                ))),
-        showDropdown
-            ? Container(
-                padding: const EdgeInsets.symmetric(vertical: 6),
-                decoration: BoxDecoration(
-                  color: widget.dropdownBgColor,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 3,
-                    )
-                  ],
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Column(
-                          children: List.generate(
-                              widget.items.length,
-                              (index) => GFCheckboxListTile(
-                                    value: _selectedTitles
-                                        .contains(widget.items[index]),
-                                    onChanged: (bool selected) {
-                                      _controller.text;
-                                      _onItemSelect(selected, index);
-                                      widget.onSelect(_selectedTitlesIndex);
-                                    },
-                                    selected: widget.selected,
-                                    avatar: widget.avatar,
-                                    titleText: widget.items[index],
-                                    color: widget.color,
-                                    padding: widget.padding,
-                                    margin: widget.margin,
-                                    size: widget.size,
-                                    activeBgColor: widget.activeBgColor,
-                                    inactiveIcon: widget.inactiveIcon,
-                                    activeBorderColor: widget.activeBorderColor,
-                                    inactiveBgColor: widget.inactiveBgColor,
-                                    activeIcon: widget.activeIcon,
-                                    inactiveBorderColor:
-                                        widget.inactiveBorderColor,
-                                    listItemTextColor: widget.listItemTextColor,
-                                    customBgColor: widget.customBgColor,
-                                    // checkColor: widget.checkColor,
-                                    type: widget.type,
-                                  ))),
-                      widget.dropdownButton ??
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      color: widget.dropdownTitleTileColor,
+                      border: widget.dropdownTitleTileBorder,
+                      borderRadius: widget.dropdownTitleTileBorderRadius),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: widget.hideDropdownUnderline
+                          ? const Border(
+                              bottom: BorderSide(color: Colors.transparent))
+                          : Border(bottom: widget.dropdownUnderlineBorder),
+                    ),
+                    child: widget.dropdownTitleTileHintText == null
+                        ? dropdownTile()
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              GFButton(
-                                color: widget.buttonColor,
-                                onPressed: () {
-                                  setState(() {
-                                    showDropdown = !showDropdown;
-                                    _selectedTitles.clear();
-                                    _selectedTitlesIndex.clear();
-                                  });
-                                },
-                                child:
-                                    widget.cancelButton ?? const Text('CANCEL'),
+                              Text(
+                                '${widget.dropdownTitleTileHintText}',
+                                style: widget.dropdownTitleTileHintTextStyle,
                               ),
-                              GFButton(
-                                color: widget.buttonColor,
-                                onPressed: () {
-                                  setState(() {
-                                    showDropdown = !showDropdown;
-                                  });
-                                },
-                                child: widget.submitButton ?? const Text('OK'),
+                              dropdownTile(),
+                              const SizedBox(
+                                height: 2,
                               )
                             ],
-                          )
+                          ),
+                  ))),
+          showDropdown
+              ? Container(
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  decoration: BoxDecoration(
+                    color: widget.dropdownBgColor,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 3,
+                      )
                     ],
                   ),
-                ),
-              )
-            : Container(),
-      ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Column(
+                          children: List.generate(
+                            widget.items.length,
+                            (index) => GFCheckboxListTile(
+                              value:
+                                  _selectedTitles.contains(widget.items[index]),
+                              onChanged: (bool selected) {
+                                _controller.text;
+                                _onItemSelect(selected, index);
+                                widget.onSelect(_selectedTitlesIndex);
+                              },
+                              selected: widget.selected,
+                              avatar: widget.avatar,
+                              titleText: widget.items[index],
+                              color: widget.color,
+                              padding: widget.padding,
+                              margin: widget.margin,
+                              size: widget.size,
+                              activeBgColor: widget.activeBgColor,
+                              inactiveIcon: widget.inactiveIcon,
+                              activeBorderColor: widget.activeBorderColor,
+                              inactiveBgColor: widget.inactiveBgColor,
+                              activeIcon: widget.activeIcon,
+                              inactiveBorderColor: widget.inactiveBorderColor,
+                              listItemTextColor: widget.listItemTextColor,
+                              customBgColor: widget.customBgColor,
+                              // checkColor: widget.checkColor,
+                              type: widget.type,
+                            ),
+                          ),
+                        ),
+                        widget.dropdownButton ??
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                GFButton(
+                                  color: widget.buttonColor,
+                                  onPressed: () {
+                                    setState(() {
+                                      showDropdown = !showDropdown;
+                                      _selectedTitles.clear();
+                                      _selectedTitlesIndex.clear();
+                                    });
+                                  },
+                                  child: widget.cancelButton ??
+                                      const Text('CANCEL'),
+                                ),
+                                GFButton(
+                                  color: widget.buttonColor,
+                                  onPressed: () {
+                                    setState(() {
+                                      showDropdown = !showDropdown;
+                                    });
+                                  },
+                                  child:
+                                      widget.submitButton ?? const Text('OK'),
+                                )
+                              ],
+                            )
+                      ],
+                    ),
+                  ),
+                )
+              : Container(),
+        ],
+      ),
     );
   }
 
