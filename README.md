@@ -23,7 +23,7 @@
  ## Screenshot
  <p align="center">
   <a target="_blank" href="https://docs.getwidget.dev/">
-    <img src="https://ik.imagekit.io/ionicfirebaseapp/GitHub_Image_updated_u9eSV6fDY-.png" alt="GetWidget UI KIT Collection">
+    <img src="https://ik.imagekit.io/h9hq9qdx8/getwidget/GitHub_Image.webp" alt="GetWidget UI KIT Collection">
   </a>
 </p>
 
