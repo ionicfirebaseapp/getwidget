@@ -3,26 +3,27 @@ import 'package:getwidget/getwidget.dart';
 
 class GFCheckbox extends StatefulWidget {
   /// [GFCheckbox] is a small box (as in a checklist) in which to place a check mark to make a selection with various customization options.
-  const GFCheckbox(
-      {Key? key,
-      this.size = GFSize.MEDIUM,
-      this.type = GFCheckboxType.basic,
-      this.activeBgColor = GFColors.PRIMARY,
-      this.inactiveBgColor = GFColors.WHITE,
-      this.activeBorderColor = GFColors.WHITE,
-      this.inactiveBorderColor = GFColors.DARK,
-      required this.onChanged,
-      required this.value,
-      this.activeIcon = const Icon(
-        Icons.check,
-        size: 20,
-        color: GFColors.WHITE,
-      ),
-      this.inactiveIcon,
-      this.customBgColor = GFColors.SUCCESS,
-      this.autofocus = false,
-      this.focusNode})
-      : super(key: key);
+  const GFCheckbox({
+    Key? key,
+    this.size = GFSize.MEDIUM,
+    this.type = GFCheckboxType.basic,
+    this.activeBgColor = GFColors.PRIMARY,
+    this.inactiveBgColor = GFColors.WHITE,
+    this.activeBorderColor = GFColors.WHITE,
+    this.inactiveBorderColor = GFColors.DARK,
+    required this.onChanged,
+    required this.value,
+    this.activeIcon = const Icon(
+      Icons.check,
+      size: 20,
+      color: GFColors.WHITE,
+    ),
+    this.inactiveIcon,
+    this.customBgColor = GFColors.SUCCESS,
+    this.autofocus = false,
+    this.focusNode,
+    this.validator,
+  }) : super(key: key);
 
   /// type of [GFCheckboxType] which is of four type is basic, square, circular and custom
   final GFCheckboxType type;
@@ -64,80 +65,99 @@ class GFCheckbox extends StatefulWidget {
   /// an optional focus node to use as the focus node for this widget.
   final FocusNode? focusNode;
 
+  /// An optional method that validates an input. Returns an error string to
+  /// display if the input is invalid, or null otherwise.
+  final FormFieldValidator<bool>? validator;
   @override
   _GFCheckboxState createState() => _GFCheckboxState();
 }
 
 class _GFCheckboxState extends State<GFCheckbox> {
   bool get enabled => widget.onChanged != null;
-
   @override
   void initState() {
     super.initState();
   }
 
+  bool _isChecked = false;
   @override
-  Widget build(BuildContext context) => FocusableActionDetector(
-        focusNode: widget.focusNode,
-        autofocus: widget.autofocus,
-        enabled: enabled,
-        child: InkResponse(
-          highlightShape: widget.type == GFCheckboxType.circle
-              ? BoxShape.circle
-              : BoxShape.rectangle,
-          containedInkWell: widget.type != GFCheckboxType.circle,
-          canRequestFocus: enabled,
-          onTap: widget.onChanged != null
-              ? () {
-                  widget.onChanged!(!widget.value);
-                }
-              : null,
-          child: Container(
-            height: widget.size,
-            width: widget.size,
-            margin: widget.type != GFCheckboxType.circle
-                ? const EdgeInsets.all(10)
-                : EdgeInsets.zero,
-            decoration: BoxDecoration(
-                color: enabled
-                    ? widget.value
-                        ? widget.type == GFCheckboxType.custom
-                            ? Colors.white
-                            : widget.activeBgColor
-                        : widget.inactiveBgColor
-                    : Colors.grey,
-                borderRadius: widget.type == GFCheckboxType.basic
-                    ? BorderRadius.circular(3)
-                    : widget.type == GFCheckboxType.circle
-                        ? BorderRadius.circular(50)
-                        : BorderRadius.zero,
-                border: Border.all(
-                    color: widget.value
-                        ? widget.type == GFCheckboxType.custom
-                            ? Colors.black87
-                            : widget.activeBorderColor
-                        : widget.inactiveBorderColor)),
-            child: widget.value
-                ? widget.type == GFCheckboxType.custom
-                    ? Stack(
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.center,
-                          ),
-                          Container(
-                            margin: const EdgeInsets.all(5),
-                            alignment: Alignment.center,
-                            width: widget.size * 0.8,
-                            height: widget.size * 0.8,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                color: widget.customBgColor),
-                          )
-                        ],
-                      )
-                    : widget.activeIcon
-                : widget.inactiveIcon,
-          ),
-        ),
+  Widget build(BuildContext context) => FormField<bool>(
+        initialValue: _isChecked,
+        validator: widget.validator,
+        builder: (state) {
+          return Column(children: [
+            FocusableActionDetector(
+              focusNode: widget.focusNode,
+              autofocus: widget.autofocus,
+              enabled: enabled,
+              child: InkResponse(
+                highlightShape: widget.type == GFCheckboxType.circle
+                    ? BoxShape.circle
+                    : BoxShape.rectangle,
+                containedInkWell: widget.type != GFCheckboxType.circle,
+                canRequestFocus: enabled,
+                onTap: widget.onChanged != null
+                    ? () {
+                        _isChecked = !widget.value!;
+                        state.didChange(!widget.value!);
+                        widget.onChanged!(!widget.value);
+                      }
+                    : null,
+                child: Container(
+                  height: widget.size,
+                  width: widget.size,
+                  margin: widget.type != GFCheckboxType.circle
+                      ? const EdgeInsets.all(10)
+                      : EdgeInsets.zero,
+                  decoration: BoxDecoration(
+                      color: enabled
+                          ? widget.value
+                              ? widget.type == GFCheckboxType.custom
+                                  ? Colors.white
+                                  : widget.activeBgColor
+                              : widget.inactiveBgColor
+                          : Colors.grey,
+                      borderRadius: widget.type == GFCheckboxType.basic
+                          ? BorderRadius.circular(3)
+                          : widget.type == GFCheckboxType.circle
+                              ? BorderRadius.circular(50)
+                              : BorderRadius.zero,
+                      border: Border.all(
+                          color: widget.value
+                              ? widget.type == GFCheckboxType.custom
+                                  ? Colors.black87
+                                  : widget.activeBorderColor
+                              : widget.inactiveBorderColor)),
+                  child: widget.value
+                      ? widget.type == GFCheckboxType.custom
+                          ? Stack(
+                              children: <Widget>[
+                                Container(
+                                  alignment: Alignment.center,
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.all(5),
+                                  alignment: Alignment.center,
+                                  width: widget.size * 0.8,
+                                  height: widget.size * 0.8,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.rectangle,
+                                      color: widget.customBgColor),
+                                )
+                              ],
+                            )
+                          : widget.activeIcon
+                      : widget.inactiveIcon,
+                ),
+              ),
+            ),
+            state.hasError
+                ? Text(
+                    state.errorText!,
+                    style: TextStyle(color: Theme.of(context).errorColor),
+                  )
+                : Container(),
+          ]);
+        },
       );
 }
