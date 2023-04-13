@@ -33,7 +33,8 @@ void main() {
       ),
       preferredSize: const Size.fromHeight(4));
 
-  const textTheme = TextTheme(headline5: TextStyle(color: Colors.tealAccent));
+  const textTheme =
+      TextTheme(headlineSmall: TextStyle(color: Colors.tealAccent));
   const iconTheme = IconThemeData(color: Colors.red);
   const actionsIconTheme = IconThemeData(color: Colors.amber);
 
