@@ -1,4 +1,5 @@
 import 'dart:core';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:getwidget/getwidget.dart';
@@ -244,7 +245,7 @@ void main() {
                       child: IconButton(
                         icon: const Icon(Icons.image, color: Colors.white),
                         // ignore: deprecated_member_use
-                        onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+                        onPressed: () => Scaffold.of(context).showSnackBar(
                             SnackBar(content: Text('Favorite #$index'))),
                       ),
                     ),

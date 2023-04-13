@@ -122,7 +122,7 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
         isLoading = true;
         _searchList.clear();
         final List<T?> filterList =
-            await widget.searchQueryBuilder!(text, widget.searchList);
+            await widget.searchQueryBuilder(text, widget.searchList);
         _searchList.clear();
         _searchList.addAll(filterList);
         isLoading = false;
