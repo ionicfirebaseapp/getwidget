@@ -68,7 +68,7 @@ class GFDropdown<T> extends StatefulWidget {
   /// Called when the dropdown button is tapped.
   final VoidCallback? onTap;
 
-  /// Defaults to the [TextTheme.subtitle1] value of the current
+  /// Defaults to the [TextTheme.titleMedium] value of the current
   /// [ThemeData.textTheme] of the current [Theme].
   final TextStyle? style;
 

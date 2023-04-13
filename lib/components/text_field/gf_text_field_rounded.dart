@@ -33,8 +33,6 @@ class GFTextFieldRounded extends StatefulWidget {
       this.textAlignVertical = TextAlignVertical.center,
       this.autofocus = false,
       this.readOnly = false,
-      this.toolbarOptions = const ToolbarOptions(
-          copy: true, cut: true, paste: true, selectAll: true),
       this.showCursor,
       this.obscuringCharacter = '.',
       this.obscureText = false,
@@ -99,7 +97,7 @@ class GFTextFieldRounded extends StatefulWidget {
   final TextAlignVertical? textAlignVertical;
   final bool autofocus;
   final bool? readOnly;
-  final ToolbarOptions? toolbarOptions;
+
   final bool? showCursor;
   final String obscuringCharacter;
   final bool obscureText;
@@ -209,7 +207,6 @@ class _GFTextFieldRoundedState extends State<GFTextFieldRounded> {
           textAlignVertical: widget.textAlignVertical,
           autofocus: widget.autofocus,
           readOnly: widget.readOnly,
-          toolbarOptions: widget.toolbarOptions,
           showCursor: widget.showCursor,
           obscuringCharacter: widget.obscuringCharacter,
           obscureText: widget.obscureText,

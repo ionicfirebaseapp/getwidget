@@ -46,7 +46,7 @@ class GFStickyHeader extends MultiChildRenderObjectWidget {
 
   @override
   RenderGFStickyHeader createRenderObject(BuildContext context) {
-    final scrollable = Scrollable.of(context)!;
+    final scrollable = Scrollable.of(context);
     return RenderGFStickyHeader(
       direction: direction,
       scrollable: scrollable,

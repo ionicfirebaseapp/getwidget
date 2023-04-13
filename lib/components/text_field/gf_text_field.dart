@@ -18,8 +18,6 @@ class GFTextField extends FormField<String> {
       this.textAlignVertical = TextAlignVertical.center,
       this.autofocus = false,
       this.readOnly = false,
-      this.toolbarOptions = const ToolbarOptions(
-          copy: true, cut: true, paste: true, selectAll: true),
       this.showCursor,
       this.obscuringCharacter = '.',
       this.obscureText = false,
@@ -77,7 +75,6 @@ class GFTextField extends FormField<String> {
                   textDirection: textDirection,
                   textCapitalization: textCapitalization,
                   autofocus: autofocus,
-                  toolbarOptions: toolbarOptions,
                   readOnly: readOnly ?? false,
                   showCursor: showCursor,
                   obscuringCharacter: obscuringCharacter,
@@ -129,7 +126,7 @@ class GFTextField extends FormField<String> {
   final TextAlignVertical? textAlignVertical;
   final bool autofocus;
   final bool? readOnly;
-  final ToolbarOptions? toolbarOptions;
+
   final bool? showCursor;
   final String obscuringCharacter;
   final bool obscureText;
@@ -183,8 +180,6 @@ class _GfTextFieldState extends StatefulWidget {
       this.textAlignVertical = TextAlignVertical.center,
       this.autofocus = false,
       this.readOnly = false,
-      this.toolbarOptions = const ToolbarOptions(
-          copy: true, cut: true, paste: true, selectAll: true),
       this.showCursor,
       this.obscuringCharacter = '.',
       this.obscureText = false,
@@ -235,7 +230,7 @@ class _GfTextFieldState extends StatefulWidget {
   final TextAlignVertical? textAlignVertical;
   final bool autofocus;
   final bool? readOnly;
-  final ToolbarOptions? toolbarOptions;
+
   final bool? showCursor;
   final String obscuringCharacter;
   final bool obscureText;
@@ -306,7 +301,7 @@ class _GfTextFieldStateState extends State<_GfTextFieldState>
         textDirection: widget.textDirection,
         textCapitalization: widget.textCapitalization,
         autofocus: widget.autofocus,
-        toolbarOptions: widget.toolbarOptions,
+
         readOnly: widget.readOnly ?? false,
         showCursor: widget.showCursor,
         obscuringCharacter: widget.obscuringCharacter,

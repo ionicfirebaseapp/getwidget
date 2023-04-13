@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.1.0 - 2023-04-12
+
+- Added drag functionality for Linear progress bar
+- Added validation in multiselect widget, GF-CheckBox, GF-Radio, GF-DropDown
+- GF-Alert design updated and made it more customizable
+- Fixed text crop issue in GF-Toggle
+- Added the async function for search query
+- Mouse support for GF-Carousel
 
 ## 3.0.1 - 2022-06-02
 
