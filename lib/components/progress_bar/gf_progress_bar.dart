@@ -245,7 +245,9 @@ class _GFProgressBarState extends State<GFProgressBar>
       _progressPercent = progress;
     });
 
-    if (widget.onProgressChanged != null) widget.onProgressChanged!(progress);
+    if (widget.onProgressChanged != null) {
+      widget.onProgressChanged!(progress);
+    }
   }
 
   @override

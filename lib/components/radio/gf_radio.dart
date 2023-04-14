@@ -180,7 +180,7 @@ class _GFRadioState<T> extends State<GFRadio<T>> with TickerProviderStateMixin {
           state.hasError
               ? Text(
                   state.errorText!,
-                  style: TextStyle(color: Theme.of(context).errorColor),
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
                 )
               : Container(),
         ]);

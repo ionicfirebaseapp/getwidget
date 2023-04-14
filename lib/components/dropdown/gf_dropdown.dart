@@ -169,7 +169,8 @@ class _GFDropdownState<T> extends State<GFDropdown<T>> {
                 state.hasError
                     ? Text(
                         state.errorText!,
-                        style: TextStyle(color: Theme.of(context).errorColor),
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.error),
                       )
                     : Container(),
               ],
