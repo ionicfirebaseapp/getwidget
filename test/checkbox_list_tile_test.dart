@@ -116,7 +116,52 @@ void main() {
     Widget buildFrame({Color? colors, Color? toggleableActiveColor}) =>
         MaterialApp(
           theme: ThemeData.light().copyWith(
-            toggleableActiveColor: toggleableActiveColor,
+            switchTheme: SwitchThemeData(
+              thumbColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return null;
+                }
+                if (states.contains(MaterialState.selected)) {
+                  return toggleableActiveColor;
+                }
+                return null;
+              }),
+              trackColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return null;
+                }
+                if (states.contains(MaterialState.selected)) {
+                  return toggleableActiveColor;
+                }
+                return null;
+              }),
+            ),
+            radioTheme: RadioThemeData(
+              fillColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return null;
+                }
+                if (states.contains(MaterialState.selected)) {
+                  return toggleableActiveColor;
+                }
+                return null;
+              }),
+            ),
+            checkboxTheme: CheckboxThemeData(
+              fillColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return null;
+                }
+                if (states.contains(MaterialState.selected)) {
+                  return toggleableActiveColor;
+                }
+                return null;
+              }),
+            ),
           ),
           home: Scaffold(
             body: Center(

@@ -236,7 +236,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///
   ///  * [EditableText.onSubmitted] for an example of how to handle moving to
   ///    the next/previous field when using [TextInputAction.next] and
-  ///    [TextInputAction.previous] for [textInputAction].
+  ///    [TextInputAction.previous] for [TextInputAction].
   final ValueChanged<String>? onSubmitted;
 
   /// Controls the text being edited.
