@@ -27,6 +27,7 @@ class GFDropdown<T> extends StatefulWidget {
       this.focusNode,
       this.autofocus = false,
       this.dropdownColor,
+      this.validator,
       this.padding = const EdgeInsets.all(8),
       this.borderRadius = const BorderRadius.all(Radius.circular(4)),
       this.border = const BorderSide(
@@ -113,43 +114,65 @@ class GFDropdown<T> extends StatefulWidget {
   /// Defines the background color of the dropdownButton.
   final dynamic dropdownButtonColor;
 
+  /// An optional method that validates an input. Returns an error string to
+  /// display if the input is invalid, or null otherwise.
+  final FormFieldValidator<T>? validator;
+
   @override
   State<GFDropdown<T>> createState() => _GFDropdownState<T>();
 }
 
 class _GFDropdownState<T> extends State<GFDropdown<T>> {
   @override
-  Widget build(BuildContext context) => Material(
-        color: widget.dropdownButtonColor,
-        shape: RoundedRectangleBorder(
-          side: widget.border,
-          borderRadius: widget.borderRadius,
-        ),
-        child: Container(
-          height: widget.itemHeight,
-          padding: widget.padding,
-          child: DropdownButton<T>(
-            items: widget.items,
-            selectedItemBuilder: widget.selectedItemBuilder,
-            value: widget.value,
-            hint: widget.hint,
-            disabledHint: widget.disabledHint,
-            onChanged: widget.onChanged,
-            onTap: widget.onTap,
-            elevation: widget.elevation,
-            style: widget.style,
-            icon: widget.icon,
-            iconDisabledColor: widget.iconDisabledColor,
-            iconEnabledColor: widget.iconEnabledColor,
-            iconSize: widget.iconSize,
-            isDense: widget.isDense,
-            isExpanded: widget.isExpanded,
-            // itemHeight: widget.itemHeight,
-            focusColor: widget.focusColor,
-            focusNode: widget.focusNode,
-            autofocus: widget.autofocus,
-            dropdownColor: widget.dropdownColor,
-          ),
-        ),
+  Widget build(BuildContext context) => FormField<T>(
+        validator: widget.validator,
+        builder: (state) => Material(
+            color: widget.dropdownButtonColor,
+            shape: RoundedRectangleBorder(
+              side: widget.border,
+              borderRadius: widget.borderRadius,
+            ),
+            child: Column(
+              children: [
+                Container(
+                  height: widget.itemHeight,
+                  padding: widget.padding,
+                  child: DropdownButton<T>(
+                    items: widget.items,
+                    selectedItemBuilder: widget.selectedItemBuilder,
+                    value: widget.value,
+                    hint: widget.hint,
+                    disabledHint: widget.disabledHint,
+                    onChanged: widget.onChanged != null
+                        ? (val) {
+                            widget.onChanged!(val);
+                            state.didChange(val);
+                          }
+                        : null,
+
+                    onTap: widget.onTap,
+                    elevation: widget.elevation,
+                    style: widget.style,
+                    icon: widget.icon,
+                    iconDisabledColor: widget.iconDisabledColor,
+                    iconEnabledColor: widget.iconEnabledColor,
+                    iconSize: widget.iconSize,
+                    isDense: widget.isDense,
+                    isExpanded: widget.isExpanded,
+                    // itemHeight: widget.itemHeight,
+                    focusColor: widget.focusColor,
+                    focusNode: widget.focusNode,
+                    autofocus: widget.autofocus,
+                    dropdownColor: widget.dropdownColor,
+                  ),
+                ),
+                state.hasError
+                    ? Text(
+                        state.errorText!,
+                        style: TextStyle(color: Theme.of(context).errorColor),
+                      )
+                    : Container(),
+              ],
+            )),
       );
 }
