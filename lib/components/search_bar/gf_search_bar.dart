@@ -25,6 +25,8 @@ class GFSearchBar<T> extends StatefulWidget {
     this.overlaySearchListHeight,
     this.noItemsFoundWidget,
     this.searchBoxInputDecoration,
+    this.padding,
+    this.margin
   }) : super(key: key);
 
   /// List of text or [Widget] reference for users
@@ -59,6 +61,12 @@ class GFSearchBar<T> extends StatefulWidget {
 
   /// defines the input controller of searchBox
   final TextEditingController? controller;
+
+  /// defines the padding of searchBox
+  final EdgeInsets? padding;
+
+  /// defines the margin of searchBox
+  final EdgeInsets? margin;
 
   @override
   MySingleChoiceSearchState<T> createState() => MySingleChoiceSearchState<T>();
@@ -162,8 +170,8 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
         MediaQuery.of(context).size.height / 4;
 
     searchBox = Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      margin: const EdgeInsets.only(bottom: 12),
+      padding: widget.padding ?? const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      margin: widget.margin ?? const EdgeInsets.only(bottom: 12),
       child: TextField(
         controller: textController,
         focusNode: _focusNode,
