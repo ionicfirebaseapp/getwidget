@@ -20,10 +20,10 @@ class GFAlert extends StatefulWidget {
       fontWeight: FontWeight.w400,
     ),
     this.subtitleAlignment,
-    this.topBar,
-    this.topBarAlignment,
     this.bottomBar,
     this.bottomBarAlignment,
+    this.content,
+    this.contentAlignment,
     this.backgroundColor,
     this.width,
     this.type = GFAlertType.rounded,
@@ -63,11 +63,11 @@ class GFAlert extends StatefulWidget {
   /// type of [Alignment] used to align the subtitle text inside the [GFAlert]
   final Alignment? subtitleAlignment;
 
-  /// topBar of  type [Widget] can be used to show a widget at the top of title.
-  final Widget? topBar;
+  ///ContentChild of type [Widget] can be used to show a widget with contents in the [GFAlert]
+  final Widget? content;
 
-  /// type of [Alignment] used to align the topBar widget [GFAlert]
-  final Alignment? topBarAlignment;
+  /// type of [Alignment] used to align the content widget [GFAlert]
+  final Alignment? contentAlignment;
 
   /// bottomBar of  type [Widget] can be used to show a widget at the bottom of subtitle.
   final Widget? bottomBar;
@@ -202,38 +202,40 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Align(
-                        alignment: widget.topBarAlignment ?? Alignment.center,
-                        child: widget.topBar ?? Container(),
-                      ),
-                      Align(
-                        alignment: widget.titleAlignment ?? Alignment.topLeft,
-                        child: widget.title != null
-                            ? Text(
-                                widget.title!,
-                                style: widget.titleTextStyle,
-                              )
-                            : Text(
-                                'Alert !!!!',
-                                style: widget.titleTextStyle,
-                              ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Align(
-                        alignment:
-                            widget.subtitleAlignment ?? Alignment.topLeft,
-                        child: widget.subtitle != null
-                            ? Text(
-                                widget.subtitle!,
-                                style: widget.subtitleTextStyle,
-                              )
-                            : Text(
-                                'This is subtitle.',
-                                style: widget.subtitleTextStyle,
-                              ),
-                      ),
+                      if (widget.title != null) ...[
+                        Align(
+                          alignment: widget.titleAlignment ?? Alignment.topLeft,
+                          child: Text(
+                            widget.title!,
+                            style: widget.titleTextStyle,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                      if (widget.subtitle != null) ...[
+                        Align(
+                            alignment:
+                                widget.subtitleAlignment ?? Alignment.topLeft,
+                            child: Text(
+                              widget.subtitle!,
+                              style: widget.subtitleTextStyle,
+                            )),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                      if (widget.content != null) ...[
+                        Align(
+                          alignment:
+                              widget.contentAlignment ?? Alignment.centerLeft,
+                          child: widget.content,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ],
                       Align(
                         alignment:
                             widget.bottomBarAlignment ?? Alignment.bottomRight,
