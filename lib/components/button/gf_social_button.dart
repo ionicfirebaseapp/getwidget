@@ -67,6 +67,7 @@ class GFSocialButton extends StatelessWidget {
       case GFSocialType.whatsapp:
         icon = Image.asset(
           'icons/whatsapp.png',
+          package: 'getwidget',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -81,6 +82,7 @@ class GFSocialButton extends StatelessWidget {
       case GFSocialType.facebook:
         icon = Image.asset(
           'icons/facebook.png',
+          package: 'getwidget',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -95,6 +97,7 @@ class GFSocialButton extends StatelessWidget {
       case GFSocialType.twitter:
         icon = Image.asset(
           'icons/twitter.png',
+          package: 'getwidget',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -109,6 +112,7 @@ class GFSocialButton extends StatelessWidget {
       case GFSocialType.google:
         icon = Image.asset(
           'icons/google.png',
+          package: 'getwidget',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -123,6 +127,7 @@ class GFSocialButton extends StatelessWidget {
       case GFSocialType.youtube:
         icon = Image.asset(
           'icons/youtube.png',
+          package: 'getwidget',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -137,6 +142,7 @@ class GFSocialButton extends StatelessWidget {
       case GFSocialType.dribble:
         icon = Image.asset(
           'icons/dribble.png',
+          package: 'getwidget',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -151,6 +157,7 @@ class GFSocialButton extends StatelessWidget {
       case GFSocialType.linkedin:
         icon = Image.asset(
           'icons/linkedin.png',
+          package: 'getwidget',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -165,6 +172,7 @@ class GFSocialButton extends StatelessWidget {
       case GFSocialType.pinterest:
         icon = Image.asset(
           'icons/pinterest.png',
+          package: 'getwidget',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -179,6 +187,7 @@ class GFSocialButton extends StatelessWidget {
       case GFSocialType.slack:
         icon = Image.asset(
           'icons/slack.png',
+          package: 'getwidget',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -193,6 +202,7 @@ class GFSocialButton extends StatelessWidget {
       case GFSocialType.line:
         icon = Image.asset(
           'icons/line.png',
+          package: 'getwidget',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
@@ -207,6 +217,7 @@ class GFSocialButton extends StatelessWidget {
       case GFSocialType.wechat:
         icon = Image.asset(
           'icons/wechat.png',
+          package: 'getwidget',
           height: imageSize,
           width: imageSize,
           color: (buttonType == GFSocialButtonType.outline ||
