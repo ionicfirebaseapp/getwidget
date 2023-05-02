@@ -150,12 +150,19 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                         ? const BorderRadius.all(Radius.circular(0))
                         : widget.borderRadius ??
                             const BorderRadius.all(Radius.circular(20))),
-                child: Padding(
-                  padding: widget.type == GFToggleType.ios
-                      ? const EdgeInsets.only(left: 3.5, right: 3.5, top: 5.4)
-                      : const EdgeInsets.only(left: 7, right: 7, top: 3),
-                  child: isOn
-                      ? Text(
+                padding: widget.type == GFToggleType.ios
+                    ? const EdgeInsets.only(
+                        left: 3.5,
+                        right: 3.5,
+                      )
+                    : const EdgeInsets.only(
+                        left: 7,
+                        right: 7,
+                      ),
+                child: isOn
+                    ? Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
                           (widget.enabledText != null &&
                                       widget.enabledText!.length > 4
                                   ? widget.enabledText?.substring(0, 4)
@@ -167,22 +174,22 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                                       color: Colors.white, fontSize: 12)
                                   : const TextStyle(
                                       color: Colors.white, fontSize: 8)),
-                        )
-                      : Text(
+                        ))
+                    : Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
                           (widget.disabledText != null &&
                                       widget.disabledText!.length > 4
                                   ? widget.disabledText?.substring(0, 4)
                                   : widget.disabledText) ??
                               (widget.type == GFToggleType.custom ? 'OFF' : ''),
-                          textAlign: TextAlign.end,
                           style: widget.disabledTextStyle ??
                               (widget.type == GFToggleType.ios
                                   ? const TextStyle(
                                       color: Colors.white, fontSize: 12)
                                   : const TextStyle(
                                       color: Colors.white, fontSize: 8)),
-                        ),
-                ),
+                        )),
               ),
             ),
           ),
