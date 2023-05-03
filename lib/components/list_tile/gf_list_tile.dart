@@ -145,15 +145,19 @@ class GFListTile extends StatelessWidget {
             decoration: BoxDecoration(
               color: color,
               borderRadius: BorderRadius.all(Radius.circular(radius ?? 8)),
-              boxShadow: [
-                shadow ??
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 4,
-                      blurRadius: 7,
-                      offset: const Offset(2, 4), // changes position of shadow
-                    ),
-              ],
+              boxShadow: color != null
+                  ? [
+                      shadow ??
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+
+                            spreadRadius: 4,
+                            blurRadius: 7,
+                            offset: const Offset(
+                                2, 4), // changes position of shadow
+                          ),
+                    ]
+                  : [],
             ),
             child: Column(
               children: [
