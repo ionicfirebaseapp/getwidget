@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
@@ -140,6 +142,7 @@ class _GFProgressBarState extends State<GFProgressBar>
   Animation? _animation, circularAnimation;
   double _progressPercent = 0;
   double _percentage = 0;
+  double _progress = 0.5;
 
   @override
   void initState() {
@@ -250,6 +253,17 @@ class _GFProgressBarState extends State<GFProgressBar>
     }
   }
 
+  void _onDragUpdateCircular(Offset position, Size size) {
+    final dx = position.dx - size.width / 2;
+    final dy = position.dy - size.height / 2;
+    final angle = atan2(dy, dx);
+    final progress = angle / (2 * pi) + 0.5;
+    debugPrint("progress percentage is $progress");
+    setState(() {
+      _progress = progress.clamp(0.0, 1.0);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -288,21 +302,29 @@ class _GFProgressBarState extends State<GFProgressBar>
                   child: (widget.child != null) ? widget.child : Container(),
                 ),
               )
-            : CustomPaint(
-                painter: CirclePainter(
-                    progressHeadType: widget.progressHeadType,
-                    progress: _percentage * 360,
-                    progressBarColor: widget.progressBarColor,
-                    backgroundColor: widget.backgroundColor,
-                    circleStartAngle: widget.circleStartAngle,
-                    radius: (widget.radius! / 2) - widget.circleWidth / 2,
-                    circleWidth: widget.circleWidth,
-                    reverse: widget.reverse,
-                    linearGradient: widget.linearGradient,
-                    mask: widget.mask),
-                child: (widget.child != null)
-                    ? Center(child: widget.child)
-                    : Container(),
+            : GestureDetector(
+                onPanUpdate: (details) {
+                  if (widget.isDragable!) {
+                    final size = context.size!;
+                    _onDragUpdateCircular(details.localPosition, size);
+                  }
+                },
+                child: CustomPaint(
+                  painter: CirclePainter(
+                      progressHeadType: widget.progressHeadType,
+                      progress: _progress * 360,
+                      progressBarColor: widget.progressBarColor,
+                      backgroundColor: widget.backgroundColor,
+                      circleStartAngle: widget.circleStartAngle,
+                      radius: (widget.radius! / 2) - widget.circleWidth / 2,
+                      circleWidth: widget.circleWidth,
+                      reverse: widget.reverse,
+                      linearGradient: widget.linearGradient,
+                      mask: widget.mask),
+                  child: (widget.child != null)
+                      ? Center(child: widget.child)
+                      : Container(),
+                ),
               ));
 
     if (hasSetWidth) {
