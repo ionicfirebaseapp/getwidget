@@ -7,7 +7,7 @@
 </p>
 
 GetWidget, a leading [**Flutter app development company**](https://www.getwidget.dev/hire-flutter-developer), proudly operates as a 100% free and open-source platform. We encourage and support an active, healthy community that accepts contributions from the public – including you. There are a couple of ways in which you can contribute to the growing community of getwidget.
- UI Kit library built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever. GetWidget has 1000+ pre-build widgets that you can reuse to develop both Flutter mobile app and web app. Our motto is to provide the best Flutter UI library to the Flutter community to speed up their development process and build awesome apps with pre-build Flutter Library Components.[**pre-build Flutter Library Components**](https://docs.getwidget.dev/)
+ UI Kit library built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever. GetWidget has 1000+ pre-build widgets that you can reuse to develop both Flutter mobile app and web app. Our motto is to provide the best Flutter UI library to the Flutter community to speed up their development process and build awesome apps with [**pre-build Flutter Library Components**](https://docs.getwidget.dev/)
 
 ## Table of contents 
 
