@@ -12,22 +12,22 @@ typedef QueryBuilder<T> = FutureOr<List<T>> Function(
 
 class GFSearchBar<T> extends StatefulWidget {
   /// search bar with various customization option
-  const GFSearchBar({
-    required this.searchList,
-    required this.overlaySearchListItemBuilder,
-    required this.searchQueryBuilder,
-    Key? key,
-    this.textColor,
-    this.circularProgressIndicatorColor,
-    this.controller,
-    this.onItemSelected,
-    this.hideSearchBoxWhenItemSelected = false,
-    this.overlaySearchListHeight,
-    this.noItemsFoundWidget,
-    this.searchBoxInputDecoration,
-    this.padding,
-    this.margin
-  }) : super(key: key);
+  const GFSearchBar(
+      {required this.searchList,
+      required this.overlaySearchListItemBuilder,
+      required this.searchQueryBuilder,
+      Key? key,
+      this.textColor,
+      this.circularProgressIndicatorColor,
+      this.controller,
+      this.onItemSelected,
+      this.hideSearchBoxWhenItemSelected = false,
+      this.overlaySearchListHeight,
+      this.noItemsFoundWidget,
+      this.searchBoxInputDecoration,
+      this.padding,
+      this.margin})
+      : super(key: key);
 
   /// List of text or [Widget] reference for users
   final List<T> searchList;
@@ -170,7 +170,8 @@ class MySingleChoiceSearchState<T> extends State<GFSearchBar<T?>> {
         MediaQuery.of(context).size.height / 4;
 
     searchBox = Container(
-      padding: widget.padding ?? const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      padding: widget.padding ??
+          const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       margin: widget.margin ?? const EdgeInsets.only(bottom: 12),
       child: TextField(
         controller: textController,
