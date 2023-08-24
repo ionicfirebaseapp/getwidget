@@ -4,24 +4,24 @@ import 'package:getwidget/components/form/form_field/widgets/providers/gf_timepi
 import 'package:getwidget/components/form/gf_form_provider.dart';
 
 class GfTimePicker extends StatefulWidget {
-  const GfTimePicker({
-    Key? key,
-    this.errorText,
-    this.cancelText,
-    this.confirmText,
-    this.helpText,
-    this.hourLabelText,
-    this.minuteLabelText,
-    this.defaultTime,
-    this.labelText,
-    this.borderColor,
-    this.headingText,
-    this.borderWidth,
-    this.buttonText,
-    this.buttonIcon,
-    this.margin,
-    this.padding
-  }) : super(key: key);
+  const GfTimePicker(
+      {Key? key,
+      this.errorText,
+      this.cancelText,
+      this.confirmText,
+      this.helpText,
+      this.hourLabelText,
+      this.minuteLabelText,
+      this.defaultTime,
+      this.labelText,
+      this.borderColor,
+      this.headingText,
+      this.borderWidth,
+      this.buttonText,
+      this.buttonIcon,
+      this.margin,
+      this.padding})
+      : super(key: key);
   @override
   State<GfTimePicker> createState() => _GfTimePickerState();
 
@@ -71,82 +71,92 @@ class _GfTimePickerState extends State<GfTimePicker> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     try {
-      final GfFormHandler gfFormHandler = GfFormHandlerWidget
-          .of(context)
-          .gfFormHandler;
+      final GfFormHandler gfFormHandler =
+          GfFormHandlerWidget.of(context).gfFormHandler;
       gfFormHandler.setModel(dataModel);
-    }
-    on Exception catch (e) {
+    } on Exception catch (e) {
       print('Exception at attaching to handler : $e');
     }
     return Container(
-      margin: widget.margin ?? const EdgeInsets.symmetric(vertical: 2,
-          horizontal: 2),
-      padding: widget.padding ?? const EdgeInsets.symmetric(vertical: 2,
-          horizontal: 2),
-      child:
-      AnimatedBuilder(
+      margin: widget.margin ??
+          const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
+      padding: widget.padding ??
+          const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
+      child: AnimatedBuilder(
           animation: dataModel,
           builder: (context, child) {
             selectedTime = dataModel.getTime();
             return InputDecorator(
               decoration: InputDecoration(
-                label: widget.headingText != null ? Text(
-                    widget.headingText.toString()) : null,
+                label: widget.headingText != null
+                    ? Text(widget.headingText.toString())
+                    : null,
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6),
                     borderSide: BorderSide(
                         color: widget.borderColor ?? Colors.black,
-                        width: widget.borderWidth ?? 1.5)
-                ),
+                        width: widget.borderWidth ?? 1.5)),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6),
                     borderSide: BorderSide(
                         color: widget.borderColor ?? Colors.black,
-                        width: widget.borderWidth ?? 1.5)
-                ),
+                        width: widget.borderWidth ?? 1.5)),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Expanded(child:
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(widget.labelText ?? 'Selected Time',
-                        style: const TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w600),),
-                      const SizedBox(height: 6,),
-                      Text(selectedTime.format(context).toString(),
-                        style: const TextStyle(color: Colors.black,),),
-                    ],
-                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.labelText ?? 'Selected Time',
+                          style: const TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.w600),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Text(
+                          selectedTime.format(context).toString(),
+                          style: const TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     constraints: const BoxConstraints(minWidth: 64),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(60),
                       color: Colors.grey,
                     ),
-                    child:
-                    InkWell(
+                    child: InkWell(
                       onTap: () => _selectDate(context),
-                      child:
-                      Row(
+                      child: Row(
                         children: [
-                          widget.buttonIcon ?? const Icon(
-                            Icons.punch_clock_outlined, color: Colors.black,
-                            size: 16,),
-                          const SizedBox(width: 8,),
-                          Text(widget.buttonText ?? 'Pick Time',
-                            style: const TextStyle(color: Colors.black,),),
+                          widget.buttonIcon ??
+                              const Icon(
+                                Icons.punch_clock_outlined,
+                                color: Colors.black,
+                                size: 16,
+                              ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            widget.buttonText ?? 'Pick Time',
+                            style: const TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
                         ],
                       ),
                     ),

@@ -1,6 +1,10 @@
 # Changelog
 
-## 3.1.0 - 2023-04-12
+## 3.1.1 - 2023-04-14
+
+- Code formatted for better score
+
+## 3.1.0 - 2023-04-14
 
 - Added drag functionality for Linear progress bar
 - Added validation in multiselect widget, GF-CheckBox, GF-Radio, GF-DropDown
