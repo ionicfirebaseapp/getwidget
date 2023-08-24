@@ -12,8 +12,8 @@ void main() {
   const bottomBar = Text('Get Widget');
 
   testWidgets('GFAlert can be created.', (tester) async {
-    const GFAlert alert =
-        GFAlert(backgroundColor: bgColor, content: topBar, bottomBar: bottomBar);
+    const GFAlert alert = GFAlert(
+        backgroundColor: bgColor, content: topBar, bottomBar: bottomBar);
 
     const TestApp app = TestApp(alert);
 
