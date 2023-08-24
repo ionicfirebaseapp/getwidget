@@ -81,6 +81,7 @@ class GFAccordion extends StatefulWidget {
   final BorderRadius contentBorderRadius;
 
   /// function called when the content body collapsed
+  // ignore: avoid_positional_boolean_parameters
   final Function(bool)? onToggleCollapsed;
 
   @override
