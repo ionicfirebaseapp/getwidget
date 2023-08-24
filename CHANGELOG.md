@@ -3,8 +3,8 @@
 ## 4.0.0 - 2023-08-24
 
 - Added padding and margin properties for gf_search_bar
-- Added content parameter for gf_alert
 - Added drag option for circular progress bar in gf_progress_bar
+- Replaced topbar with content parameter in gf_alert
 - Fixed social buttons assets issue
 - Fixed alignment issue for gf_toggle text
 - Fixed shadow issue for gf_list_tile when no color passed
