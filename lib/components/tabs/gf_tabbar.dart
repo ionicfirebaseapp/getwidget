@@ -196,6 +196,7 @@ class _GFTabBarState extends State<GFTabBar> {
               indicatorPadding: widget.indicatorPadding,
               indicatorWeight: widget.indicatorWeight,
               tabs: widget.tabs,
+              labelPadding: widget.labelPadding,
             ),
           ),
         ),
