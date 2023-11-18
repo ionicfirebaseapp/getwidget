@@ -16,7 +16,7 @@ GetWidget, a leading [**Flutter app development company**](https://www.getwidget
 - [Features](#features)
 - [Demo](#demo)
 - [Contributing](#contributing)
-- [Documentation](#documentation)
+- [Documentation](#flutter-getwidget-documentation)
 - [Copyright and license](#copyright-and-license)
 - [Marketplace](https://market.getwidget.dev/)
 
