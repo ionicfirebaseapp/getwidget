@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.0 - 2024-12-18
+
+- Change type from CardTheme to CardThemeData in response to breaking change in flutter 3.27.
+
 ## 4.0.0 - 2023-08-24
 
 - Added padding and margin properties for gf_search_bar
