@@ -197,6 +197,7 @@ class _GFSegmentTabsState extends State<GFSegmentTabs> {
               indicatorPadding: widget.indicatorPadding,
               indicatorWeight: widget.indicatorWeight,
               tabs: widget.tabs,
+              labelPadding: widget.labelPadding,
             ),
           ),
         ),
