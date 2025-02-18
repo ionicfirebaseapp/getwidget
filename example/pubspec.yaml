@@ -11,9 +11,9 @@ dependencies:
     sdk: flutter
   getwidget:
     path: ../
-  cupertino_icons: ^1.0.5
-  flutter_svg: ^1.0.3
-  url_launcher: ^6.1.2
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.17
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
