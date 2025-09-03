@@ -115,7 +115,7 @@ class GFCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CardThemeData cardTheme = CardTheme.of(context);
+    final cardTheme = CardTheme.of(context);
 
     final Widget cardChild = Padding(
       padding: padding,
