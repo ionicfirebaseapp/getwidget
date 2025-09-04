@@ -304,7 +304,7 @@ class _GFAppBarState extends State<GFAppBar> {
     assert(!widget.primary || debugCheckHasMediaQuery(context));
     assert(debugCheckHasMaterialLocalizations(context));
     final ThemeData theme = Theme.of(context);
-    final AppBarTheme appBarTheme = AppBarTheme.of(context);
+    final appBarTheme = AppBarTheme.of(context);
     final ScaffoldState scaffold = Scaffold.of(context);
     final ModalRoute<dynamic>? parentRoute = ModalRoute.of(context);
     final bool hasDrawer = scaffold.hasDrawer;
