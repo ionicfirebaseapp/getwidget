@@ -183,6 +183,7 @@ class _GFProgressBarState extends State<GFProgressBar>
   void _updateProgress() {
     setState(() {
       _percentage = widget.percentage;
+      _progress = _percentage;
     });
   }
 
@@ -255,8 +256,8 @@ class _GFProgressBarState extends State<GFProgressBar>
   }
 
   void _onDragUpdateCircular(Offset position, Size size) {
-    final dx = position.dx - size.width / 2;
-    final dy = position.dy - size.height / 2;
+    final dx = position.dx;
+    final dy = position.dy + widget.radius! / 2;
     final angle = atan2(dy, dx);
     final progress = angle / (2 * pi) + 0.5;
 
@@ -278,7 +279,9 @@ class _GFProgressBarState extends State<GFProgressBar>
     final containerWidget = Container(
         margin: widget.margin,
         width: hasSetWidth ? widget.width : MediaQuery.of(context).size.width,
-        height: widget.lineHeight,
+        height: widget.type == GFProgressType.linear
+            ? widget.lineHeight
+            : widget.radius!,
         padding: widget.padding,
         child: widget.type == GFProgressType.linear
             ? GestureDetector(
