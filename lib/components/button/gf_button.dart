@@ -576,7 +576,7 @@ class _GFButtonState extends State<GFButton> {
           onHover: _handleHoveredChanged,
           onTap: widget.onPressed,
           onLongPress: widget.onLongPress,
-          enableFeedback: widget.enableFeedback ?? true,
+          enableFeedback: widget.enableFeedback ?? false,
           splashColor: widget.splashColor,
           highlightColor: widget.highlightColor,
           focusColor: widget.focusColor,
