@@ -363,7 +363,7 @@ class _GFButtonState extends State<GFButton> {
         if (disabledColor != null) {
           return disabledColor!;
         } else {
-          return color.withOpacity(0.48);
+          return color.withValues(alpha: 0.48);
         }
       }
     }
@@ -377,7 +377,7 @@ class _GFButtonState extends State<GFButton> {
       if (disabledColor != null) {
         return disabledColor!;
       } else {
-        return color.withOpacity(0.48);
+        return color.withValues(alpha: 0.48);
       }
     }
 
@@ -429,7 +429,7 @@ class _GFButtonState extends State<GFButton> {
     final Color? effectiveTextColor = MaterialStateProperty.resolveAs<Color?>(
         widget.textStyle?.color, _states);
     final Color themeColor =
-        Theme.of(context).colorScheme.onSurface.withOpacity(0.12);
+        Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.12);
     final BorderSide outlineBorder = BorderSide(
       color: widget.borderSide == null
           ? getBorderColor()

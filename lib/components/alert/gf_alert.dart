@@ -186,7 +186,7 @@ class _GFAlertState extends State<GFAlert> with TickerProviderStateMixin {
                   boxShadow: widget.shadow ??
                       [
                         BoxShadow(
-                          color: Colors.black87.withOpacity(0.1),
+                          color: Colors.black87.withValues(alpha: 0.1),
                           offset: const Offset(0, 1),
                           blurRadius: 10,
                           spreadRadius: 2,

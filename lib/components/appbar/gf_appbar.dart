@@ -333,12 +333,12 @@ class _GFAppBarState extends State<GFAppBar> {
       ).transform(widget.toolbarOpacity);
       if (centerStyle?.color != null) {
         centerStyle = centerStyle!.copyWith(
-          color: centerStyle.color!.withOpacity(opacity),
+          color: centerStyle.color!.withValues(alpha: opacity),
         );
       }
       if (sideStyle?.color != null) {
         sideStyle = sideStyle!.copyWith(
-          color: sideStyle.color!.withOpacity(opacity),
+          color: sideStyle.color!.withValues(alpha: opacity),
         );
       }
       overallIconTheme = overallIconTheme.copyWith(

@@ -309,8 +309,8 @@ Future<void> main() async {
       (tester) async {
     const imageOverlay = NetworkImage(
         'https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg');
-    final colorFilter =
-        ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken);
+    final colorFilter = ColorFilter.mode(
+        Colors.black.withValues(alpha: 0.67), BlendMode.darken);
     const customTitle = GFListTile(
       titleText: 'Card Title',
       subTitleText: 'Sub title',
@@ -339,8 +339,8 @@ Future<void> main() async {
       (tester) async {
     const imageOverlay = NetworkImage(
         'https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg');
-    final colorFilter =
-        ColorFilter.mode(Colors.black.withOpacity(0.67), BlendMode.darken);
+    final colorFilter = ColorFilter.mode(
+        Colors.black.withValues(alpha: 0.67), BlendMode.darken);
     const customTitle = GFListTile(
       avatar: GFAvatar(),
       titleText: 'Card Title',
