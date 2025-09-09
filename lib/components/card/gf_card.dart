@@ -10,35 +10,36 @@ class GFCard extends StatelessWidget {
   ///
   /// The [elevation] must be null or non-negative. The [borderOnForeground]
   /// must not be null.
-  const GFCard(
-      {Key? key,
-      this.color,
-      this.elevation,
-      this.shape,
-      this.borderOnForeground = true,
-      this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      this.margin,
-      this.clipBehavior,
-      this.semanticContainer,
-      this.title,
-      this.content,
-      this.image,
-      this.showImage = false,
-      this.showOverlayImage = false,
-      this.buttonBar,
-      this.imageOverlay,
-      this.titlePosition,
-      this.borderRadius,
-      this.border,
-      this.boxFit,
-      this.colorFilter,
-      this.height,
-      this.gradient})
-      : assert(elevation == null || elevation >= 0.0),
+  const GFCard({
+    Key? key,
+    this.color,
+    this.elevation,
+    this.shape,
+    this.borderOnForeground = true,
+    this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+    this.margin,
+    this.clipBehavior,
+    this.semanticContainer,
+    this.title,
+    this.content,
+    this.image,
+    this.showImage = false,
+    this.showOverlayImage = false,
+    this.buttonBar,
+    this.imageOverlay,
+    this.titlePosition,
+    this.borderRadius,
+    this.border,
+    this.boxFit,
+    this.colorFilter,
+    this.height,
+    this.gradient,
+  })  : assert(elevation == null || elevation >= 0.0),
         assert(
-            color == null || gradient == null,
-            'Cannot provide both a color and a decoration\n'
-            'The color argument is just a shorthand for "decoration: new BoxDecoration(color: color)".'),
+          color == null || gradient == null,
+          'Cannot provide both a color and a decoration\n'
+          'The color argument is just a shorthand for "decoration: new BoxDecoration(color: color)".',
+        ),
         super(key: key);
 
   /// defines the card's height
@@ -136,10 +137,7 @@ class GFCard extends StatelessWidget {
                   ? Container(child: image)
                   : Container()
               : title ?? Container(),
-          Padding(
-            padding: padding,
-            child: content ?? Container(),
-          ),
+          Padding(padding: padding, child: content ?? Container()),
           buttonBar ?? Container(),
         ],
       ),

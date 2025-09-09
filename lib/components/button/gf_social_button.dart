@@ -178,11 +178,11 @@ class GFSocialButton extends StatelessWidget {
           color: (buttonType == GFSocialButtonType.outline ||
                   buttonType == GFSocialButtonType.outline2x ||
                   buttonType == GFSocialButtonType.transparent)
-              ? GFSocialColors.PININTEREST
+              ? GFSocialColors.PINTEREST
               : Colors.white,
         );
         text = 'Pinterest';
-        color = GFSocialColors.PININTEREST;
+        color = GFSocialColors.PINTEREST;
         break;
       case GFSocialType.slack:
         icon = Image.asset(

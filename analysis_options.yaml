@@ -58,6 +58,7 @@ linter:
     - flutter_style_todos
     - hash_and_equals
     - implementation_imports
+    - collection_methods_unrelated_type
     - join_return_with_assignment
     - library_names
     - library_prefixes
