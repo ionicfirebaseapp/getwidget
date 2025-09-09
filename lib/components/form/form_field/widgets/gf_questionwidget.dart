@@ -67,9 +67,9 @@ class _GfFormQuestionWidgetState extends State<GfFormQuestionWidget>
                   ),
                   RadioGroup(
                     groupValue: selectedValue,
-                    onChanged: (String? val) {
+                    onChanged: (String? value) {
                       setState(() {
-                        selectedValue = widget.accepttext ?? 'Yes';
+                        selectedValue = value.toString();
                         widget.onChanged(selectedValue);
                         dataModel.setValue(selectedValue.toString());
                       });
