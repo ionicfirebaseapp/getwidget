@@ -1,5 +1,33 @@
 # Changelog
 
+## [7.0.0] - 2025-09-09
+
+### 🚀 Features
+- Extended color options in the colors folder ([#367](https://github.com/ionicfirebaseapp/getwidget/pull/367)).
+- Improved code formatting and readability in `GFCard` widget ([#368](https://github.com/ionicfirebaseapp/getwidget/pull/368)).
+- Set appropriate default hint values for `GfFormField` hint texts ([#350](https://github.com/ionicfirebaseapp/getwidget/pull/350)).
+
+### 🐛 Bug Fixes
+- Fixed spelling of 'accordion' and anchor link for documentation in README ([#349](https://github.com/ionicfirebaseapp/getwidget/pull/349)).
+- Fixed: `enableFeedback` can't be null ([#364](https://github.com/ionicfirebaseapp/getwidget/pull/364)).
+- Fixed direct reference to `CardThemeData` for Flutter version compatibility ([#366](https://github.com/ionicfirebaseapp/getwidget/pull/366)).
+- Fixed build issues on Flutter 3.35.0 ([#371](https://github.com/ionicfirebaseapp/getwidget/pull/371)).
+- Fixed color for social color Pinterest.
+
+### 🔨 Refactors
+- Removed deprecated lint hints ([#341](https://github.com/ionicfirebaseapp/getwidget/pull/341)).
+- Multiple PR merges resolving conflicts and improving stability ([#373](https://github.com/ionicfirebaseapp/getwidget/pull/373), [#374](https://github.com/ionicfirebaseapp/getwidget/pull/374), [#372](https://github.com/ionicfirebaseapp/getwidget/pull/372), [#375](https://github.com/ionicfirebaseapp/getwidget/pull/375)).
+
+### 🛠 Compatibility
+- Upgrade compatibility with Flutter 3.29.0 and 3.35.0 ([#363](https://github.com/ionicfirebaseapp/getwidget/pull/363), [#371](https://github.com/ionicfirebaseapp/getwidget/pull/371)).
+
+### ⚠️ Breaking Changes
+- Please review the merged PRs and migration guides for any breaking changes impacting the upgrade from v6.x.x to v7.0.0.
+
+---
+
+**See the [GitHub Pull Requests](https://github.com/ionicfirebaseapp/getwidget/pulls?state=closed&sort=updated&direction=desc) and [Commits](https://github.com/ionicfirebaseapp/getwidget/commits?per_page=10&sort=author-date) for more details.**
+
 ## 6.0.0 - 2025-02-25
 
 - Upgrade compatibility with Flutter 3.29.0
