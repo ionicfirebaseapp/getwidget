@@ -235,7 +235,7 @@ class _GFButtonState extends State<GFButton> {
   late GFPosition position;
   late BoxShadow boxShadow;
 
-  final Set<MaterialState> _states = <MaterialState>{};
+  final Set<WidgetState> _states = <WidgetState>{};
 
   @override
   void initState() {
@@ -251,16 +251,16 @@ class _GFButtonState extends State<GFButton> {
     disabledColor = widget.disabledColor;
     disabledTextColor = widget.disabledTextColor;
     _updateState(
-      MaterialState.disabled,
+      WidgetState.disabled,
       !widget.enabled,
     );
     super.initState();
   }
 
-  bool get _hovered => _states.contains(MaterialState.hovered);
-  bool get _focused => _states.contains(MaterialState.focused);
-  bool get _pressed => _states.contains(MaterialState.pressed);
-  bool get _disabled => _states.contains(MaterialState.disabled);
+  bool get _hovered => _states.contains(WidgetState.hovered);
+  bool get _focused => _states.contains(WidgetState.focused);
+  bool get _pressed => _states.contains(WidgetState.pressed);
+  bool get _disabled => _states.contains(WidgetState.disabled);
 
   double? buttonWidth() {
     double? buttonWidth = 0;
@@ -274,14 +274,14 @@ class _GFButtonState extends State<GFButton> {
     return buttonWidth;
   }
 
-  void _updateState(MaterialState state, bool value) {
+  void _updateState(WidgetState state, bool value) {
     value ? _states.add(state) : _states.remove(state);
   }
 
   void _handleHighlightChanged(bool value) {
     if (_pressed != value) {
       setState(() {
-        _updateState(MaterialState.pressed, value);
+        _updateState(WidgetState.pressed, value);
         if (widget.onHighlightChanged != null) {
           widget.onHighlightChanged!(value);
         }
@@ -292,7 +292,7 @@ class _GFButtonState extends State<GFButton> {
   void _handleHoveredChanged(bool value) {
     if (_hovered != value) {
       setState(() {
-        _updateState(MaterialState.hovered, value);
+        _updateState(WidgetState.hovered, value);
       });
     }
   }
@@ -300,14 +300,14 @@ class _GFButtonState extends State<GFButton> {
   void _handleFocusedChanged(bool value) {
     if (_focused != value) {
       setState(() {
-        _updateState(MaterialState.focused, value);
+        _updateState(WidgetState.focused, value);
       });
     }
   }
 
   @override
   void didUpdateWidget(GFButton oldWidget) {
-    _updateState(MaterialState.disabled, !widget.enabled);
+    _updateState(WidgetState.disabled, !widget.enabled);
     // If the button is disabled while a press gesture is currently ongoing,
     // InkWell makes a call to handleHighlightChanged. This causes an exception
     // because it calls setState in the middle of a build. To preempt this, we
@@ -327,7 +327,7 @@ class _GFButtonState extends State<GFButton> {
     disabledColor = widget.disabledColor;
     disabledTextColor = widget.disabledTextColor;
     _updateState(
-      MaterialState.disabled,
+      WidgetState.disabled,
       !widget.enabled,
     );
     super.didUpdateWidget(oldWidget);
@@ -426,8 +426,8 @@ class _GFButtonState extends State<GFButton> {
       }
     }
 
-    final Color? effectiveTextColor = MaterialStateProperty.resolveAs<Color?>(
-        widget.textStyle?.color, _states);
+    final Color? effectiveTextColor =
+        WidgetStateProperty.resolveAs<Color?>(widget.textStyle?.color, _states);
     final Color themeColor =
         Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.12);
     final BorderSide outlineBorder = BorderSide(
