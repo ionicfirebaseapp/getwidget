@@ -109,7 +109,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///
   /// The value is non-negative.
   ///
-  /// If this property is null, then [ThemeData.appBarTheme.elevation] is used,
+  /// If this property is null, then [elevation] is used,
   /// if that is also null, the default value is 4, the appropriate elevation
   /// for app bars.
   final double? elevation;
@@ -123,14 +123,14 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// The color to use for the app bar's material. Typically this should be set
   /// along with [brightness], [iconTheme], [textTheme].
   ///
-  /// If this property is null, then [ThemeData.appBarTheme.color] is used,
+  /// If this property is null, then [backgroundColor] is used,
   /// if that is also null, then [ThemeData.primaryColor] is used.
   final Color? backgroundColor;
 
   /// The brightness of the app bar's material. Typically this is set along
   /// with [backgroundColor], [iconTheme], [textTheme].
   ///
-  /// If this property is null, then [ThemeData.appBarTheme.brightness] is used,
+  /// If this property is null, then [brightness] is used,
   /// if that is also null, then the appBarTheme can be used to configure the
   /// appearance of AppBars. The appearance of Keyboards for TextFields now uses
   /// the overall theme's ThemeData.brightness and can also be customized with
@@ -141,7 +141,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// The color, opacity, and size to use for app bar icons. Typically this
   /// is set along with [backgroundColor], [brightness], [textTheme].
   ///
-  /// If this property is null, then [ThemeData.appBarTheme.iconTheme] is used,
+  /// If this property is null, then [iconTheme] is used,
   /// if that is also null, then [ThemeData.primaryIconTheme] is used.
   final IconThemeData? iconTheme;
 
@@ -150,14 +150,14 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   /// themed differently than the icon that appears in the app bar's [leading]
   /// widget.
   ///
-  /// If this property is null, then [ThemeData.appBarTheme.actionsIconTheme] is
+  /// If this property is null, then [actionsIconTheme] is
   /// used, if that is also null, then this falls back to [iconTheme].
   final IconThemeData? actionsIconTheme;
 
   /// The typographic styles to use for text in the app bar. Typically this is
   /// set along with [brightness] [backgroundColor], [iconTheme].
   ///
-  /// If this property is null, then [ThemeData.appBarTheme.textTheme] is used,
+  /// If this property is null, then [textTheme] is used,
   /// if that is also null, then [ThemeData.primaryTextTheme] is used.
   final TextTheme? textTheme;
 
