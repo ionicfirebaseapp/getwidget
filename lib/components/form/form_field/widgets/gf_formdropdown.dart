@@ -65,7 +65,7 @@ class _GfFormDropDownState extends State<GfFormDropDown> {
             padding: widget.padding ??
                 const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
             child: DropdownButtonFormField<String>(
-                value: selectedValue,
+                initialValue: selectedValue,
                 decoration: GfFormFieldDecoration(
                   context: context,
                   shape: GFTextFieldShape.roundedsquare,
