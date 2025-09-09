@@ -226,7 +226,7 @@ class GFAppBar extends StatefulWidget implements PreferredSizeWidget {
   ///
   ///  * inputFormatters, which are called before [onChanged]
   ///    runs and can validate and change ("format") the input value.
-  ///  * onEditingComplete, [onSubmitted], [onSelectionChanged]:
+  ///  * onEditingComplete, [onSubmitted] onSelectionChanged:
   ///    which are more specialized input change notifications.
   final ValueChanged<String>? onChanged;
 

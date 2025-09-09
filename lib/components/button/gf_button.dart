@@ -152,7 +152,6 @@ class GFButton extends StatefulWidget {
   /// The color to use for this button's text when the button is disabled.
   ///
   /// The button's [Material.textStyle] will be the current theme's button
-  /// text style, [ThemeData.textTheme.button], configured with this color.
   ///
   /// The default value is the theme's disabled color,
   /// [ThemeData.disabledColor].
