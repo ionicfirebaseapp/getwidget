@@ -73,7 +73,6 @@ linter:
     - only_throw_errors
     # in some places it is required to override fields
     # - overridden_fields
-    - package_api_docs
     - package_names
     - package_prefixed_library_names
     - parameter_assignments

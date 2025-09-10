@@ -56,7 +56,7 @@ void main() {
   });
 
   testWidgets('GF Typography with opacity', (tester) async {
-    final textopacity = Colors.black.withOpacity(0.56);
+    final textopacity = Colors.black.withValues(alpha: 0.56);
 
     final GFTypography typography = GFTypography(
       text: 'type1',
@@ -69,7 +69,7 @@ void main() {
   });
 
   testWidgets('GF Typography with Custom Heading', (tester) async {
-    final textopacity = Colors.black.withOpacity(0.56);
+    final textopacity = Colors.black.withValues(alpha: 0.56);
     const bool divider = true;
     const icon = GFAvatar();
     const colorfilter = ColorFilter.mode(Colors.black, BlendMode.darken);
