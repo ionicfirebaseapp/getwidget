@@ -21,6 +21,7 @@
 - [Contributing](#contributing)
 - [Documentation](#flutter-getwidget-documentation)
 - [Resources](#resources)
+- [Open-source AI tooling](#open-source-ai-tooling)
 - [Built by](#built-by)
 - [Copyright and license](#copyright-and-license)
 - [Marketplace](https://market.getwidget.dev/)
@@ -91,12 +92,22 @@ Learn more about Flutter development with the GetWidget team:
 - [Hire Flutter developers](https://www.getwidget.dev/hire-flutter-developer/) — engagement models, rate cards, vetting
 - [Claude development services](https://www.getwidget.dev/services/claude-development/) — Claude API + Claude Code engineering
 - [AI development services](https://www.getwidget.dev/services/ai-development/) — eval-first AI builds
+- [AI agent development](https://www.getwidget.dev/services/ai-agent-development/) — agent orchestration, tool use, reliability evals
+- [AI chatbot development](https://www.getwidget.dev/services/ai-chatbot-development/) — RAG-backed chat with eval gates
 
 **Reading list**
 - [Flutter mobile app development guide](https://www.getwidget.dev/blog/flutter-mobile-app-development-guide/)
 - [Top Flutter widgets catalog](https://www.getwidget.dev/blog/top-flutter-widgets-catalog/)
 - [How much does it cost to hire a Flutter developer](https://www.getwidget.dev/blog/how-much-does-it-cost-to-hire-a-flutter-developer/)
 - [Amazing apps built with Flutter](https://www.getwidget.dev/blog/amazing-apps-built-with-flutter-framework/)
+
+## Open-source AI tooling
+
+The same team also publishes open-source AI infrastructure:
+
+- **[paiteq/ai-eval-harness](https://github.com/paiteq/ai-eval-harness)** — Ragas + promptfoo eval harness for RAG and agent systems. MIT-licensed. The harness we use internally to score Claude, OpenAI, and open-source model selection on real client corpora.
+- **Benchmarks** — quarterly dated benchmarks on RAG retrieval and agent reliability, published at [getwidget.dev/benchmarks](https://www.getwidget.dev/benchmarks/).
+- **Datasets** — public eval corpora on [huggingface.co/paiteq](https://huggingface.co/paiteq).
 
 ## Built by
 
