@@ -107,7 +107,7 @@ The same team also publishes open-source AI infrastructure:
 
 - **[paiteq/ai-eval-harness](https://github.com/paiteq/ai-eval-harness)** — Ragas + promptfoo eval harness for RAG and agent systems. MIT-licensed. The harness we use internally to score Claude, OpenAI, and open-source model selection on real client corpora.
 - **Benchmarks** — quarterly dated benchmarks on RAG retrieval and agent reliability, published at [getwidget.dev/benchmarks](https://www.getwidget.dev/benchmarks/).
-- **Datasets** — public eval corpora on [huggingface.co/paiteq](https://huggingface.co/paiteq).
+- **Datasets** — public eval corpora on [huggingface.co/paiteq-ai](https://huggingface.co/paiteq-ai).
 
 ## Built by
 
