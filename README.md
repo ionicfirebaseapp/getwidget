@@ -54,18 +54,16 @@ we have launched the library with the following components :
         </a>
       </p>
 
- ### An Open-Source News App Built With GetWidget & Flutter
- Ionicfirebaseapp.com has been developed an open-source News Mobile App with GetWidget, So can start building app faster to get an overview and do customization. You can Download News App Souce Code here: https://www.ionicfirebaseapp.com/products
  ## Contributing
 
-  GetWidget is **100% free** and **open source**. We encourage and support an active, healthy community that accepts contributions from the public &ndash; including you. There are a couple of ways in which you can contribute to the growing community of `getwidget`.
+  GetWidget is **100% free** and **open source**. We welcome contributions from the community.
 
   * Pick up any issue marked with ["good first issue"](https://github.com/ionicfirebaseapp/getwidget/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
   * Fix a bug
   * Write and improve some **documentation**. Documentation is very critical to us. We would appreciate help in adding multiple languages to our docs.
   * If you are a developer, feel free to check out the source and submit pull requests.
-  * Dig into [**CONTRIBUTING.MD**](CONTRIBUTING.md), which covers submitting bugs, requesting new features, preparing your code for a pull request, etc.
-  * Please don't forget to **like**, **follow**, and **star our repo**! Join our growing [community](https://forum.getwidget.dev) to keep up to date with the latest GetWidget development.
+  * Read [**CONTRIBUTING.MD**](CONTRIBUTING.md) for the full PR workflow.
+  * Star the repo and follow along for updates.
 
 
 
