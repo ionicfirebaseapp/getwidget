@@ -1,6 +1,6 @@
 name: getwidget
-description: GetWidget is open source library that come with pre-build 1000+ UI components. It makes development faster & more enjoyable. You can customize the component as per your need.
-version: 7.0.0
+description: GetWidget is an open-source Flutter UI Kit with 1,000+ production-ready widgets (buttons, cards, carousels, forms, and more). Maintained since 2017 by the team at getwidget.dev.
+version: 7.0.1
 homepage: https://github.com/ionicfirebaseapp/getwidget
 
 environment:
