@@ -6,21 +6,31 @@
   </a>
 </p>
 
-GetWidget, a leading [**Flutter app development company**](https://www.getwidget.dev/flutter-app-development-company/), proudly operates as a 100% free and open-source platform. We encourage and support an active, healthy community that accepts contributions from the public – including you. There are a couple of ways in which you can contribute to the growing community of getwidget.
- UI Kit library built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever. GetWidget has 1000+ pre-build widgets that you can reuse to develop both Flutter mobile app and web app. Our motto is to provide the best Flutter UI library to the Flutter community to speed up their development process and build awesome apps with [**pre-build Flutter Library Components**](https://docs.getwidget.dev/)
+**GetWidget is an open-source Flutter UI Kit with 1,000+ production-ready widgets.** Drop-in buttons, cards, carousels, forms, avatars, accordions, and more — every component is documented, themable, and built to ship in real apps. Maintained since 2017 by the team at [getwidget.dev](https://www.getwidget.dev/), a [Flutter app development company](https://www.getwidget.dev/flutter-app-development-company/) shipping production AI-native Flutter apps.
+
+> **Maintained · v7.0.1 (May 2026) · 23,000 monthly downloads on pub.dev · 4,800+ GitHub stars · used in production by teams across 10+ industries.**
 
 ## Table of contents
 
+- [Why GetWidget](#why-getwidget)
 - [Screenshot](#screenshot)
 - [Quick start](#quick-start)
 - [Features](#features)
 - [Demo](#demo)
+- [FAQ](#faq)
 - [Contributing](#contributing)
 - [Documentation](#flutter-getwidget-documentation)
 - [Resources](#resources)
 - [Built by](#built-by)
 - [Copyright and license](#copyright-and-license)
 - [Marketplace](https://market.getwidget.dev/)
+
+## Why GetWidget
+
+- **Faster than rolling your own.** 1,000+ widgets covering the patterns every app needs (buttons, lists, cards, carousels, forms, modals, navigation), all themable from a single design-token surface.
+- **Consistent design language.** Every widget follows the same prop conventions and theming model, so screens look intentional, not stitched together.
+- **Production-tested, actively maintained.** Used by 23,000+ developers monthly on pub.dev since 2017. Releases follow Flutter's stable channel.
+- **Pairs with Material and Cupertino.** GetWidget is additive — you can mix `GF*` widgets with Material/Cupertino widgets in the same screen.
 
 
  ## Screenshot
@@ -108,6 +118,29 @@ Facebook: <https://www.facebook.com/getwidget>
 
 Instagram: <https://www.instagram.com/getwidgetdev/>
 
+
+## FAQ
+
+### Is GetWidget actively maintained?
+Yes. GetWidget has been published continuously since 2017, currently on v7.0.1 (May 2026). Releases track Flutter's stable channel, and the package is downloaded by 23,000+ developers each month on pub.dev. Issues and pull requests are reviewed on the [GitHub repo](https://github.com/ionicfirebaseapp/getwidget).
+
+### How does GetWidget compare to Flutter's built-in Material and Cupertino widgets?
+GetWidget is additive, not a replacement. Material and Cupertino give you primitives. GetWidget gives you 1,000+ pre-composed, themable widgets (e.g. `GFCard`, `GFCarousel`, `GFAccordion`, `GFAvatar`, `GFRating`) that bundle layout, state, and styling in one widget — so you spend less time wiring up common patterns. You can mix GetWidget widgets with Material/Cupertino in the same screen.
+
+### Can I use GetWidget in commercial apps?
+Yes. GetWidget is released under the [MIT License](LICENSE) — free for both personal and commercial use, including closed-source apps. No attribution is required in your app's UI, though a credit link back to the project is always appreciated.
+
+### Which Flutter SDK versions does GetWidget support?
+GetWidget targets the Flutter stable channel and supports Dart SDK `>=2.12.0 <4.0.0` (null-safety). v7.0.0+ is tested against Flutter 3.35.0 and newer.
+
+### Who builds GetWidget?
+GetWidget is maintained by the engineering team at [getwidget.dev](https://www.getwidget.dev/), an AI-native Flutter development studio founded in 2017 (Dallas + Bengaluru). The kit is the same set of widgets we use to ship production Flutter apps for our own clients across healthcare, fintech, e-commerce, legal, and other regulated verticals.
+
+### Where do I get help?
+- Documentation: [docs.getwidget.dev](https://docs.getwidget.dev)
+- Issues and feature requests: [GitHub issues](https://github.com/ionicfirebaseapp/getwidget/issues)
+- Community forum: [forum.getwidget.dev](https://forum.getwidget.dev)
+- Commercial support / custom Flutter engineering: [getwidget.dev](https://www.getwidget.dev/)
 
  ## Copyright-and-license
  Code and documentation Copyright 2017-2026 the [GETWIDGET Authors](https://www.getwidget.dev) and [IONICFIREBASEAPP](https://ionicfirebaseapp.com) Code released under the [MIT License]. Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).

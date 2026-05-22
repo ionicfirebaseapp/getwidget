@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.0.1] - 2026-05-22
+
+### 📝 Documentation
+- Rewrote `pubspec.yaml` description for clarity, grammar, and pub.dev discoverability ("1,000+ production-ready Flutter widgets, maintained since 2017").
+- README: added recency banner, "Why GetWidget" section, and a 6-question FAQ (maintained status, Material/Cupertino comparison, commercial use, Flutter SDK compatibility, maintainers, support channels).
+- LICENSE: updated copyright years from `2020` to `2017-2026` for both copyright holders.
+
+No runtime code changes in this release.
+
 ## [7.0.0] - 2025-09-09
 
 ### 🚀 Features
