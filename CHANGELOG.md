@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.0.2] - 2026-05-24
+
+### 📝 Documentation
+- README: pointed the "Hire Flutter developers" pillar-guide anchor at the sister staffing brand `hireflutterdev.com` (the canonical surface for that buyer cluster).
+- README: strengthened the "Built by" entry to the commercial anchor variant `HireFlutterDev — hire dedicated Flutter developers`.
+
+No runtime code changes in this release.
+
 ## [7.0.1] - 2026-05-22
 
 ### 📝 Documentation
