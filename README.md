@@ -89,7 +89,7 @@ Learn more about Flutter development with the GetWidget team:
 
 **Pillar guides**
 - [Flutter app development company](https://www.getwidget.dev/flutter-app-development-company/) — services, process, pricing
-- [Hire Flutter developers](https://www.getwidget.dev/hire-flutter-developer/) — engagement models, rate cards, vetting
+- [Hire Flutter developers](https://hireflutterdev.com/) — vetted senior Flutter staff-aug, $18-60/hr tiers, 48-hour developer match, 30-day replacement guarantee
 - [Claude development services](https://www.getwidget.dev/services/claude-development/) — Claude API + Claude Code engineering
 - [AI development services](https://www.getwidget.dev/services/ai-development/) — eval-first AI builds
 - [AI agent development](https://www.getwidget.dev/services/ai-agent-development/) — agent orchestration, tool use, reliability evals
@@ -114,7 +114,7 @@ The same team also publishes open-source AI infrastructure:
 GetWidget is maintained by the team behind:
 
 - **[GetWidget](https://www.getwidget.dev/)** — Flutter + AI engineering, founded 2017, Dallas + Bengaluru
-- **[Hire Flutter Dev](https://hireflutterdev.com/)** — vetted senior Flutter developers, AI-augmented delivery
+- **[HireFlutterDev — hire dedicated Flutter developers](https://hireflutterdev.com/)** — vetted senior Flutter developers, AI-augmented delivery, India-based, 48-hour match
 - **[Paiteq](https://www.paiteq.com/)** — AI engineering practice (Claude, OpenAI, open-source), eval-first
 
 ### Social Media
