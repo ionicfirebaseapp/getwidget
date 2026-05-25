@@ -148,7 +148,6 @@ class GFButtonBadge extends StatefulWidget {
   /// The color to use for this badge's text when the badge is disabled.
   ///
   /// The badge's [Material.textStyle] will be the current theme's badge
-  /// text style, [ThemeData.textTheme.badge], configured with this color.
   ///
   /// The default value is the theme's disabled color,
   /// [ThemeData.disabledColor].

@@ -122,7 +122,7 @@ class _GFIconButtonState extends State<GFIconButton> {
       if (widget.disabledColor != null) {
         return widget.disabledColor!;
       } else {
-        return color.withOpacity(0.48);
+        return color.withValues(alpha: 0.48);
       }
     }
   }
@@ -136,7 +136,7 @@ class _GFIconButtonState extends State<GFIconButton> {
     if (widget.disabledColor != null) {
       return widget.disabledColor;
     } else {
-      return color.withOpacity(0.48);
+      return color.withValues(alpha: 0.48);
     }
   }
 
@@ -158,7 +158,7 @@ class _GFIconButtonState extends State<GFIconButton> {
           ? color == GFColors.TRANSPARENT
               ? GFColors.DARK
               : color
-          : color.withOpacity(0.48);
+          : color.withValues(alpha: 0.48);
     } else if (color == GFColors.TRANSPARENT) {
       return widget.onPressed != null ? GFColors.DARK : GFColors.WHITE;
     } else {
@@ -171,7 +171,7 @@ class _GFIconButtonState extends State<GFIconButton> {
     assert(debugCheckHasMaterial(context));
 
     final Color themeColor =
-        Theme.of(context).colorScheme.onSurface.withOpacity(0.12);
+        Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.12);
     final BorderSide outlineBorder = BorderSide(
       color: widget.borderSide == null
           ? getBorderColor()

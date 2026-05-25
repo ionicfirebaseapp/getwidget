@@ -386,7 +386,7 @@ class LinearPainter extends CustomPainter {
     _paintBackground.strokeWidth = circleWidth ?? 0.0;
 
     _paintLine.color = progress.toString() == '0.0' && progressBarColor != null
-        ? progressBarColor ?? Colors.transparent.withOpacity(0)
+        ? progressBarColor ?? Colors.transparent.withValues(alpha: 0)
         : progressBarColor ?? Colors.transparent;
     _paintLine.style = PaintingStyle.stroke;
     _paintLine.strokeWidth = circleWidth ?? 0.0;

@@ -137,7 +137,8 @@ class GFAvatar extends StatelessWidget {
           ? null
           : Center(
               child: MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+                data: MediaQuery.of(context)
+                    .copyWith(textScaler: const TextScaler.linear(1)),
                 child: IconTheme(
                   data: theme.iconTheme.copyWith(color: textStyle?.color),
                   child: DefaultTextStyle(

@@ -60,7 +60,7 @@ class GFCard extends StatelessWidget {
   /// Whether to paint the [shape] border in front of the child.
   final bool borderOnForeground;
 
-  /// If this property is null then [ThemeData.cardTheme.clipBehavior] is used.
+  /// If this property is null then [CardTheme.clipBehavior] is used.
   final Clip? clipBehavior;
 
   /// The empty space that surrounds the card. Defines the card's outer [Container.margin].

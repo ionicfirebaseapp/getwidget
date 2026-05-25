@@ -213,7 +213,7 @@ class _GFToggleState extends State<GFToggle> with TickerProviderStateMixin {
                         : widget.disabledThumbColor ?? Colors.white,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.16),
+                        color: Colors.black.withValues(alpha: 0.16),
                         blurRadius: 6,
                         spreadRadius: 0,
                       ),

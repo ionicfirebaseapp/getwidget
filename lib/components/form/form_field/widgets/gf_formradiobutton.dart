@@ -42,61 +42,55 @@ class _GfFormGenderbuttonState extends State<GfFormGenderbutton>
           builder: (context, child) {
             selectedValue = dataModel.selectedValue;
             return Card(
-                child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                InkWell(
-                  onTap: () {
-                    selectedValue = 'Male';
-                    widget.onChanged(selectedValue);
-                    dataModel.setValue(selectedValue.toString());
-                  },
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Radio(
-                          value: 'Male',
-                          groupValue: selectedValue,
-                          onChanged: (String? val) {
-                            if (val != null && val.isNotEmpty) {
-                              selectedValue = val.toString();
-                              widget.onChanged(selectedValue);
-                              dataModel.setValue(val.toString());
-                            }
-                          },
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        const Text('Male')
-                      ]),
-                ),
-                InkWell(
+                child: RadioGroup(
+              onChanged: (String? val) {
+                setState(() {
+                  selectedValue = val.toString();
+                  widget.onChanged(selectedValue);
+                  dataModel.setValue(selectedValue.toString());
+                });
+              },
+              groupValue: selectedValue,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  InkWell(
                     onTap: () {
-                      selectedValue = 'Female';
+                      selectedValue = 'Male';
                       widget.onChanged(selectedValue);
                       dataModel.setValue(selectedValue.toString());
                     },
-                    child: Row(
+                    child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Radio(
-                            value: 'Female',
-                            groupValue: selectedValue,
-                            onChanged: (String? val) {
-                              if (val != null && val.isNotEmpty) {
-                                selectedValue = val.toString();
-                                widget.onChanged(selectedValue);
-                                dataModel.setValue(val.toString());
-                              }
-                            },
+                            value: 'Male',
                           ),
-                          const SizedBox(
+                          SizedBox(
                             width: 8,
                           ),
-                          const Text('Female')
-                        ])),
-              ],
+                          Text('Male')
+                        ]),
+                  ),
+                  InkWell(
+                      onTap: () {
+                        selectedValue = 'Female';
+                        widget.onChanged(selectedValue);
+                        dataModel.setValue(selectedValue.toString());
+                      },
+                      child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Radio(
+                              value: 'Female',
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text('Female')
+                          ])),
+                ],
+              ),
             ));
           }),
     );
